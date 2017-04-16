@@ -1,4 +1,4 @@
-# NVM Systems and Transation Papers
+# Transation and logging on NVM
 Collected by `Yizhou` <shan13@purdue.edu>  
 First line is a five star rating, range from [1:5]
 
