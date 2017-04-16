@@ -2,20 +2,17 @@
 Collected by `Yizhou` <shan13@purdue.edu>  
 First line is a five star rating, range from [1:5]
 
----
 ## Whole-system persistence, ASPLOS 2012
 - 3.5
 
----
 ## Kiln, MICRO 2013
 - 4
 - Use NV caches and NV memory to give a storage transaction interface.
 - Support in-place updates instead of any WAL or COW. (Suggestion: Read
 NV-heaps and Mnemosyne with this paper)
 
----
 ## Memory Persistency, ISCA 2014
-- 5, worth reading
+- 5
 - **A store**: the cache coherence actions required to make a write (including a
 NVRAM write) visible to other processors.
 - **A persist**: the action of writing durably to NVRAM.
@@ -24,9 +21,8 @@ order.
 - Relaxed Persistency: where the persists ordering can be different from what
 consistency model exposes.
 
----
 ## Delegated Persist Ordering, MICRO 2016
-- 5, worth reading
+- 5
 - **Key idea**: A mode that allow volatile execution to proceed ahead of persists.
 - Delegated ordering, wherein ordering requirements are communicated explicitly
 to the PM controller, fully **decoupling** PM write ordering from volatile
