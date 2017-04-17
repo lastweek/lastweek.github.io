@@ -1,6 +1,4 @@
 # Papers about persistency, NVRAM ordering
-Collected by `Yizhou` <shan13@purdue.edu>  
-First line is a five star rating, range from [1:5]
 
 ## Whole-system persistence, ASPLOS 2012
 - 3.5
@@ -24,6 +22,9 @@ consistency model exposes.
 ## Delegated Persist Ordering, MICRO 2016
 - 5
 - **Key idea**: A mode that allow volatile execution to proceed ahead of persists.
+- E.g. the `pcommit` instruction will block all following memory operations even
+if they point volatile memory, therefore stall the CPU. Ideally, the `pcommit`
+should only block operations point to non-volatile memory.
 - Delegated ordering, wherein ordering requirements are communicated explicitly
 to the PM controller, fully **decoupling** PM write ordering from volatile
 execution and cache management.
