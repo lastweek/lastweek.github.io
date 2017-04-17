@@ -24,3 +24,14 @@ updates that file systems require, programmers must use more complex techniques
 such as: Journaling (WAL), Shadow paging, Log-structuring.
 
 ## WORT: Write Optimal Radix Tree for Persistent Memory Storage Systems, FAST'17
+- 4
+- Interesting, first time reading a paper about data structures in PM.
+- This paper is first to port Radix Tree to PM.
+- Indexing data structures like B-tree is built as disk-based indexing,
+arbitrary changes to a volatile copy of a tree node in DRAM can be made without
+considering memory write ordering because it is a volatile copy and its
+persistent copy always exists in disk storage and is updated in disk block
+units. However, with failure-atomic write granularity of 8 bytes in PM, changes
+to an existing tree node must be carefully ordered to enforce consistency and
+recoverability. Existing B-tree papers in PM: NVTree, wB+Tree, and FPTree.
+- Damn it! Learn data structures! -:(
