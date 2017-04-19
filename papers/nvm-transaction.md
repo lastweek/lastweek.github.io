@@ -1,5 +1,8 @@
 # Transaction and logging on NVM
 
+## Atlas, OOPSLA'14
+- TODO
+
 ##  Failure-Atomic Persistent Memory Updates via JUSTDO Logging, ASPLOS'16
 - 4
 - An interesting one. Kind of based on Atlas (OOPSLA'14).
@@ -68,6 +71,9 @@ copies.
 - A little novel but not significant.
 
 ## Scalable logging through emerging non-volatile memory, VLDB'14
+- TODO
+
+## Rewind: recovery write-ahead system for in-memory non-volatile data structures, VLDB'15
 - TODO
 
 ##  Let's talk about storage and recovery methods for non-volatile memory database systems, SIGMOD'15
