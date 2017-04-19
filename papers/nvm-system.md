@@ -20,3 +20,6 @@ that NVMM can provide
 (or smaller), aligned stores are atomic. To build the more complex atomic
 updates that file systems require, programmers must use more complex techniques
 such as: Journaling (WAL), Shadow paging, Log-structuring.
+
+## Heapo, TOS'14
+- TODO
