@@ -1,3 +1,10 @@
+## VLDB
+1. Scalable logging through emerging non-volatile memory, VLDB'14
+2. Rewind: recovery write-ahead system for in-memory non-volatile data structures, VLDB'15
+
+## SIGMOD
+1. Let's talk about storage and recovery methods for non-volatile memory database systems, SIGMOD'15
+
 ## MSST16
 (MSST17 papers are not out)
 1. Fine-grained Metadata Journaling on NVM

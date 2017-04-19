@@ -1,14 +1,17 @@
 # Fault-Tolerance, Replication, Consensus Protocol
 
-## Implementing fault-tolerant sevices using the state machine approach, ACM Computer Survey'90
+## Implementing fault-tolerant services using the state machine approach, _ACM Computer Survey'90_
 - 5
 - Classic
 
-## Practical Byzantine fault tolerance and proactive recovery, ACM Computer Syst'02
+## Practical Byzantine fault tolerance and proactive recovery, _ACM Computer Syst'02_
 - TODO
 - view?
 
-## Just Say NO to Paxos Overhead: Replacing Consensus with Network Ordering, OSDI'16
+## Incremental Consistency Guarantees for Replicated Objects, _OSDI'16_
+- 4
+
+## Just Say NO to Paxos Overhead: Replacing Consensus with Network Ordering, _OSDI'16_
 - 5
 - Dividing responsibility between the network layer and replication protocol.
 Oh mama, the Ordered Unreliable Multicast (OUM) is really useful and can be
@@ -19,6 +22,6 @@ synchronized) and thus build fast systems. Interesting.
 - Based on OUM network, the Paxos can be pruned. The perf can be improved.
 But I really do not want to talk about Paxos. :-(
 
-## XFT: Practical Fault Tolerance beyond Crashes, OSDI'16
+## XFT: Practical Fault Tolerance beyond Crashes, _OSDI'16_
 - 3
 - Damn it I hate Byzantine non-crash fault :-(
