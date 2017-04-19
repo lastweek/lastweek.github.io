@@ -58,8 +58,17 @@ transaction into three fully asynchronous steps.
 to implement undo and redo logging in PM.
 
 ## Atomic In-place Updates for Non-volatile Main Memories with Kamino-Tx, EuroSys'17
-- ?
-- Yet another transaction system for PM.
+- 3
+- Kamino-TX maintains an additional copy of data off the critical path of
+transactions. Traditional transactions for NVM will implement UNDO or REDO log,
+this means the tx system will have to make a copy of data first. Well, this
+paper trade storage for latency, they make `an additional copy of the whole
+heap`. Thus transaction can update in-place, the tx_commit will sync these two
+copies.
+- A little novel but not significant.
 
 ## Scalable logging through emerging non-volatile memory, VLDB'14
+- TODO
+
+##  Let's talk about storage and recovery methods for non-volatile memory database systems, SIGMOD'15
 - TODO

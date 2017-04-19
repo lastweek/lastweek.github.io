@@ -8,7 +8,8 @@
 - An analytic paper.
 
 ## NVthreads: Practical Persistence for Multi-threaded Applications, EuroSys'17
-- TODO
+- 4
+- Boilerup! A paper from Purdue CS.
 
 ## Silent Shredder: Zero-Cost Shredding for Secure Non-Volatile Main Memory Controllers, ASPLOS'16
 - TODO
