@@ -1,14 +1,15 @@
 .. ys-homepage documentation master file, created by
-   sphinx-quickstart on Wed Jul 12 23:08:40 2017.
+   sphinx-quickstart on Wed Jul 12 23:55:08 2017.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Yizhou Shan's Homepage
+Yizhou Shan Homepage
 =======================================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+
 
 
 Indices and tables

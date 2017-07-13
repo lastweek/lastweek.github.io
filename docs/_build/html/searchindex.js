@@ -1,0 +1,1 @@
+Search.setIndex({docnames:["index"],envversion:50,filenames:["index.rst"],objects:{},objnames:{},objtypes:{},terms:{index:0,modul:0,page:0,search:0},titles:["Yizhou Shan Homepage"],titleterms:{homepag:0,indic:0,shan:0,tabl:0,yizhou:0}})
