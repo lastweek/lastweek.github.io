@@ -3,18 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Yizhou's Homepage
+Yizhou Shan
 =======================================
-I'm yet another PhD student at `Wuklab <http://wuklab.io>`_, Purdue ECE.
+I'm yet another first-year PhD student at `Wuklab <http://wuklab.io>`_, Purdue ECE.
 
-Research Interests
+Research
 ###################
-My research interestes are on operating system, distributed storage systems and NVM.
-I do a lot kernel programming and no doubt that linux kernel is my favorite open-source project.
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+My research interestes are on `operating system`, `distributed storage systems` and
+`non-volatile memory systems`. I like kernel and no doubt that linux is my favorite open-source project.
 
 Contact
 ###############
@@ -23,13 +19,14 @@ Contact
 | West Lafayette, IN 47907
 | Office: EE 336
 
-| Phone: (765)337-0133
+| Phone: +1 (765)337-0133
 | Email: shan13@purdue.edu
 
 Publications
 ################
+[1] 
 
-Social Media
+Social
 ###############
 * `Github <https://github.com/lastweek>`_
 * `Instagram <https://www.instagram.com/yizhou.shan/>`_
