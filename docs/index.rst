@@ -24,7 +24,13 @@ Contact
 
 Publications
 ################
-[1] 
+| **Distributed Shared Persistent Memory**
+| Yizhou Shan, Shin-Yeh Tsai, Yiying Zhang
+| *To appear at SoCC '17*
+
+| **Disaggregated Operating System**
+| Yizhou Shan, Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang
+| *To appear as poster at SoCC '17*
 
 Social
 ###############
