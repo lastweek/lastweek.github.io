@@ -5,7 +5,7 @@
 
 Yizhou Shan
 =======================================
-I'm yet another first-year PhD student at `Wuklab <http://wuklab.io>`_, Purdue ECE.
+I'm a second-year Ph.D. student at `Wuklab <http://wuklab.io>`_, Purdue ECE.
 
 Research
 ###################
