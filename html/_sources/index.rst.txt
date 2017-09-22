@@ -24,13 +24,13 @@ Contact
 
 Publications
 ################
-| **Distributed Shared Persistent Memory**
+| `Distributed Shared Persistent Memory <https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf>`_ 
 | Yizhou Shan, Shin-Yeh Tsai, Yiying Zhang
-| *To appear at SoCC '17*
+| ACM Symposium on Cloud Computing 2017 (SoCC '17)
 
-| **Disaggregated Operating System**
+| `Disaggregated Operating System <https://lastweek.github.io/pubs/SoCC17-Lego-Poster.pdf>`_
 | Yizhou Shan, Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang
-| *To appear as poster at SoCC '17*
+| Poster at ACM Symposium on Cloud Computing 2017 (SoCC ‘17)
 
 Social
 ###############
