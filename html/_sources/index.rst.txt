@@ -5,12 +5,14 @@
 
 Yizhou Shan
 =======================================
-I'm a second-year Ph.D. student at `Wuklab <http://wuklab.io>`_, Purdue ECE.
+I'm a second-year Ph.D. student at `Wuklab.io <http://wuklab.io>`_, Purdue ECE.
+Find more information about me from my `CV <https://lastweek.github.io/pubs/cv.pdf>`_.
 
 Research
 ###################
 My research interestes are on `operating system`, `distributed storage systems` and
-`non-volatile memory systems`. I like kernel and no doubt that linux is my favorite open-source project.
+`non-volatile memory systems`. I like kernel and no doubt Linux is my favorite open-source project.
+Yup, talk is cheap, I will show you the code.
 
 Contact
 ###############
@@ -24,12 +26,12 @@ Contact
 
 Publications
 ################
-| `Distributed Shared Persistent Memory <https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf>`_ 
-| Yizhou Shan, Shin-Yeh Tsai, Yiying Zhang
+| [0] `Distributed Shared Persistent Memory <https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf>`_ 
+| **Yizhou Shan**, Shin-Yeh Tsai, Yiying Zhang
 | ACM Symposium on Cloud Computing 2017 (SoCC '17)
 
-| `Disaggregated Operating System <https://lastweek.github.io/pubs/SoCC17-Lego-Poster.pdf>`_
-| Yizhou Shan, Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang
+| [1] `Disaggregated Operating System <https://lastweek.github.io/pubs/SoCC17-Lego-Poster.pdf>`_
+| **Yizhou Shan**, Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang
 | Poster at ACM Symposium on Cloud Computing 2017 (SoCC ‘17)
 
 Social
