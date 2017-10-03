@@ -12,7 +12,6 @@ Research
 ###################
 My research interestes are on `operating system`, `distributed storage systems` and
 `non-volatile memory systems`. I like kernel and no doubt Linux is my favorite open-source project.
-Yup, talk is cheap, I will show you the code.
 
 Contact
 ###############
@@ -33,6 +32,10 @@ Publications
 | [1] `Disaggregated Operating System <https://lastweek.github.io/pubs/SoCC17-Lego-Poster.pdf>`_
 | **Yizhou Shan**, Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang
 | Poster at ACM Symposium on Cloud Computing 2017 (SoCC ‘17)
+
+Technical Stuff
+##############
+`Lego Notes <https://purdue0-my.sharepoint.com/personal/shan13_purdue_edu/_layouts/15/guestaccess.aspx?folderid=0267bd7b206cb419aa885dd1a87922e4a&authkey=AZZ7fmN_tR-VKWfLoBtksRE>`_
 
 Social
 ###############
