@@ -33,10 +33,6 @@ Publications
 | **Yizhou Shan**, Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang
 | Poster at ACM Symposium on Cloud Computing 2017 (SoCC ‘17)
 
-Technical Stuff
-##############
-`Lego Notes <https://purdue0-my.sharepoint.com/personal/shan13_purdue_edu/_layouts/15/guestaccess.aspx?folderid=0267bd7b206cb419aa885dd1a87922e4a&authkey=AZZ7fmN_tR-VKWfLoBtksRE>`_
-
 Social
 ###############
 * `Github <https://github.com/lastweek>`_
