@@ -5,8 +5,12 @@
 
 Yizhou Shan
 =======================================
-I'm a second-year Ph.D. student at `Wuklab.io <http://wuklab.io>`_, Purdue ECE.
-Find more information about me from my `CV <https://lastweek.github.io/pubs/cv.pdf>`_.
+| I'm a second-year Ph.D. student at `Wuklab.io <http://wuklab.io>`_, Purdue ECE. My `CV <https://lastweek.github.io/pubs/cv.pdf>`_.
+
+What's New
+##################
+* [Sep. 2017] Attending SoCC'17 Conference
+* [Sep. 2017] Awarded SOSP'17 Scholarship! Thank you Tencent. -;)
 
 Research
 ###################
