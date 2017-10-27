@@ -9,8 +9,9 @@ Yizhou Shan
 
 What's New
 ##################
-* [Sep. 2017] Attending SoCC'17 Conference
-* [Sep. 2017] Awarded SOSP'17 Scholarship! Thank you Tencent. -;)
+* [Oct. 2017] Attended SOSP'17
+* [Sep. 2017] Attended SoCC'17
+* [Sep. 2017] Awarded SOSP'17 Scholarship. Thank you Tencent.
 
 Research
 ###################
@@ -39,7 +40,7 @@ Publications
 
 | `Lego: A Distributed, Decomposed OS for Resource Disaggregation <https://lastweek.github.io>`_
 | **Yizhou Shan**, Yilun Chen, Yutong Huang, Sumukh Hallymysore, Yiying Zhang 
-| To appear as Poster at the 26th ACM Symposium on Operating Systems Principles (SOSP '17)
+| Poster at the 26th ACM Symposium on Operating Systems Principles (SOSP '17)
 
 Social
 ###############
