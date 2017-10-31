@@ -9,8 +9,8 @@ Yizhou Shan
 
 What's New
 ##################
-* [Oct. 2017] Attended SOSP'17
-* [Sep. 2017] Attended SoCC'17
+* [Oct. 2017] Attended SOSP'17, and presented Lego poster
+* [Sep. 2017] Attended SoCC'17, and presented Hotpot
 * [Sep. 2017] Awarded SOSP'17 Scholarship. Thank you Tencent.
 
 Research
