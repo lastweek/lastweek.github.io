@@ -5,13 +5,13 @@
 
 Yizhou Shan
 =======================================
-| I'm a second-year Ph.D. student at `Wuklab.io <http://wuklab.io>`_, Purdue ECE. My `CV <https://lastweek.github.io/pubs/cv.pdf>`_.
+| I'm a second-year Ph.D. student at Purdue ECE, advised by Prof. Yiying Zhang. Our lab is `Wuklab.io <http://wuklab.io>`_. Yes, the `Monkey King <https://en.wikipedia.org/wiki/Sun_Wukong>`_ Lab. Please find my CV `here <https://lastweek.github.io/pubs/cv.pdf>`_.
 
 What's New
 ##################
-* [Oct. 2017] Attended SOSP'17, and presented Lego poster
-* [Sep. 2017] Attended SoCC'17, and presented Hotpot
-* [Sep. 2017] Awarded SOSP'17 Scholarship. Thank you Tencent.
+* [Oct. 2017] Attended SOSP'17 and presented Lego
+* [Sep. 2017] Attended SoCC'17 and presented Hotpot
+* [Sep. 2017] Awarded SOSP'17 Scholarship.
 
 Research
 ###################
@@ -38,7 +38,7 @@ Publications
 | **Yizhou Shan**, Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang
 | Poster at ACM Symposium on Cloud Computing 2017 (SoCC ‘17)
 
-| `Lego: A Distributed, Decomposed OS for Resource Disaggregation <https://lastweek.github.io>`_
+| `Lego: A Distributed, Decomposed OS for Resource Disaggregation <https://lastweek.github.io/pubs/SOSP17-Lego-Poster.pdf>`_
 | **Yizhou Shan**, Yilun Chen, Yutong Huang, Sumukh Hallymysore, Yiying Zhang 
 | Poster at the 26th ACM Symposium on Operating Systems Principles (SOSP '17)
 
