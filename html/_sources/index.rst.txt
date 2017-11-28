@@ -26,7 +26,7 @@ Contact
 | Office: EE 336
 
 | Phone: +1 (765)337-0133
-| Email: shan13@purdue.edu
+| Email: ys@purdue.edu
 
 Publications
 ################
