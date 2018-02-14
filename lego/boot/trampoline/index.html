@@ -686,18 +686,18 @@
                 
                 <h1 id="how-trampoline-works-in-lego">How trampoline works in Lego</h1>
 <h2 id="what-is-trampoline-code">What is trampoline code?</h2>
-<p>Trampoline code is used by <code>BSP</code> to boot other secondary CPUs.
-At startup, <code>BSP</code> wakeup secondary CPUs by sending a <code>APIC INIT</code>
-command, which carry the <code>[start_ip]</code> where the secondary CPUs should
+<p>Trampoline code is used by <code class="codehilite">BSP</code> to boot other secondary CPUs.
+At startup, <code class="codehilite">BSP</code> wakeup secondary CPUs by sending a <code class="codehilite">APIC INIT</code>
+command, which carry the <code class="codehilite">[start_ip]</code> where the secondary CPUs should
 start to run.</p>
-<p>The trampoline code is the code starting from <code>[start_ip]</code>. Used
-by the secondary CPU to jump from <code>16-bit realmode</code> to <code>64-bit</code> code
-(the first instruction of 64-bit code will be in <code>arch/x86/kernel/head_64.S</code>).</p>
+<p>The trampoline code is the code starting from <code class="codehilite">[start_ip]</code>. Used
+by the secondary CPU to jump from <code class="codehilite">16-bit realmode</code> to <code class="codehilite">64-bit</code> code
+(the first instruction of 64-bit code will be in <code class="codehilite">arch/x86/kernel/head_64.S</code>).</p>
 <h2 id="where-is-the-trampoline-source-code">Where is the trampoline source code?</h2>
-<p>The source files are all in <code>arch/x86/realmode/</code>. There are two parts: <strong>1)</strong> <code>arch/x86/realmode/rm/trampoline.S</code>: which is the code that will run. And it is a mix of 16-bit, 32-bit, 64-bit code (ugh..). <strong>2)</strong> <code>arch/x86/realmode/piggy.S</code>: Since the trampoline code can not to linked
+<p>The source files are all in <code class="codehilite">arch/x86/realmode/</code>. There are two parts: <strong>1)</strong> <code class="codehilite">arch/x86/realmode/rm/trampoline.S</code>: which is the code that will run. And it is a mix of 16-bit, 32-bit, 64-bit code (ugh..). <strong>2)</strong> <code class="codehilite">arch/x86/realmode/piggy.S</code>: Since the trampoline code can not to linked
 into kernel image directly. So we have to piggyback the trampoline.bin binary
-code into a section, which is described by <code>trampoline_start</code> and <code>trampoline_end</code>. So the kernel can address the trampoline code via these two symbols.</p>
-<p>The compile flow is:</p>
+code into a section, which is described by <code class="codehilite">trampoline_start</code> and <code class="codehilite">trampoline_end</code>. So the kernel can address the trampoline code via these two symbols.</p>
+<p>The compile flow is:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -710,15 +710,14 @@ code into a section, which is described by <code>trampoline_start</code> and <co
              -&gt; This bin goes into piggy.o
             -&gt; piggy.o goes into vmImage
 </pre></div>
-</td></tr></table>
-
+</td></tr></table></p>
 <h2 id="what-happened-at-runtime">What happened at runtime?</h2>
-<p>The setup code was loaded by GRUB below 1MB. Inside <code>arch/x86/boot/main.c</code>, we
-will save the <code>cs()</code> into the <code>boot_params</code> and pass it to kernel. In <code>setup_arch()</code>, we will copy the trampoline.bin code to the <code>cs()</code> address reported by <code>boot_param</code>. This means we will override setup code, which is okay.</p>
-<p>At last, we wake up the secondary CPUs inside <code>smp_init()</code>.</p>
+<p>The setup code was loaded by GRUB below 1MB. Inside <code class="codehilite">arch/x86/boot/main.c</code>, we
+will save the <code class="codehilite">cs()</code> into the <code class="codehilite">boot_params</code> and pass it to kernel. In <code class="codehilite">setup_arch()</code>, we will copy the trampoline.bin code to the <code class="codehilite">cs()</code> address reported by <code class="codehilite">boot_param</code>. This means we will override setup code, which is okay.</p>
+<p>At last, we wake up the secondary CPUs inside <code class="codehilite">smp_init()</code>.</p>
 <h2 id="compare-with-linux">Compare with Linux</h2>
 <p>I vaguely remember how Linux implement this. The only thing I remember is that Linux use some sort of structure, which is filled by BSP and then passed, or used by secondary CPUs. The mechanism has no difference, though. Linux just has more robust debugging facilities.</p>
-<p>--<br />
+<p>&ndash;<br />
 Yizhou Shan<br />
 Mar 3, 2017</p>
                 

@@ -599,23 +599,23 @@
                 
                 <h1 id="pcache-configuration">Pcache Configuration</h1>
 <p>Last Updated: 02/01/18</p>
-<p>This doc explains what configuration options pcache has, and how to config them properly. Pcache is only enabled in Lego's processor manager and currently it uses DRAM to emulate the last-level cache (or, L4).</p>
+<p>This doc explains what configuration options pcache has, and how to config them properly. Pcache is only enabled in Lego&rsquo;s processor manager and currently it uses DRAM to emulate the last-level cache (or, L4).</p>
 <h1 id="kconfig">Kconfig</h1>
 <h4 id="config_memmap_memblock_reserved">CONFIG_MEMMAP_MEMBLOCK_RESERVED</h4>
 <p><strong>DEFAULT: Y</strong></p>
-<p>By default, boot command line option <code>memmap $</code> will reserve a range of physical memory.
+<p>By default, boot command line option <code class="codehilite">memmap $</code> will reserve a range of physical memory.
 This reserved memory will be marked reserved in e820 table, which
-means this range will not be registered into <code>memblock</code>. Only memory that has been
-registered into <code>memblock</code> will be assigned <code>struct page</code> with it (both <code>memblock.memory</code> and <code>memblock.reserve</code> will have). And do note that this part of reserved memory can be mapped as 1GB page at boot time.</p>
-<p>In other words, by default (the linux semantic), users need to <code>ioremap</code>
-the <code>memmap $</code> reserved physical memory, and use the returned kernel virtual address afterwards.
-And do note that the <code>ioremap()</code> only support 4KB mapping.</p>
-<p>In Lego, if this option is enabled, the memory marked by <code>memmap $</code> will <em>NOT</em> be marked
-reserved into e820 table, instead, it will be pushed into <code>memblock</code>, which means
-it is mapped into kernel direct mapping and has <code>struct page</code>.</p>
+means this range will not be registered into <code class="codehilite">memblock</code>. Only memory that has been
+registered into <code class="codehilite">memblock</code> will be assigned <code class="codehilite">struct page</code> with it (both <code class="codehilite">memblock.memory</code> and <code class="codehilite">memblock.reserve</code> will have). And do note that this part of reserved memory can be mapped as 1GB page at boot time.</p>
+<p>In other words, by default (the linux semantic), users need to <code class="codehilite">ioremap</code>
+the <code class="codehilite">memmap $</code> reserved physical memory, and use the returned kernel virtual address afterwards.
+And do note that the <code class="codehilite">ioremap()</code> only support 4KB mapping.</p>
+<p>In Lego, if this option is enabled, the memory marked by <code class="codehilite">memmap $</code> will <em>NOT</em> be marked
+reserved into e820 table, instead, it will be pushed into <code class="codehilite">memblock</code>, which means
+it is mapped into kernel direct mapping and has <code class="codehilite">struct page</code>.</p>
 <p>For those who have done DAX, or NVM related stuff, you must have struggled with
-<code>memmap $</code>, and complained why it does not have <code>struct page</code>, I guess? So here is
-the simple code to do so:</p>
+<code class="codehilite">memmap $</code>, and complained why it does not have <code class="codehilite">struct page</code>, I guess? So here is
+the simple code to do so:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -644,11 +644,10 @@ the simple code to do so:</p>
         <span class="n">e820_add_region</span><span class="p">(</span><span class="n">start_at</span><span class="p">,</span> <span class="n">mem_size</span><span class="p">,</span> <span class="n">E820_RESERVED</span><span class="p">);</span>
 <span class="cp">#endif</span>
 </pre></div>
-</td></tr></table>
-
-<p>But why we are having this? Because I think the <code>direct 1GB mapping</code> may have
+</td></tr></table></p>
+<p>But why we are having this? Because I think the <code class="codehilite">direct 1GB mapping</code> may have
 better performance: huge page mapping can truly save us a lot TLB misses. However, the real performance number is unknown.</p>
-<p>If unsure, say <code>Y</code>.</p>
+<p>If unsure, say <code class="codehilite">Y</code>.</p>
                 
                   
                 

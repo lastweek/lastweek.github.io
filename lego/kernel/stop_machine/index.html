@@ -598,8 +598,8 @@
                 
                 
                 <h1 id="the-highest-priority-thread-in-kernel">The highest priority thread in kernel</h1>
-<p>This document is about <code>migration/N</code> kernel threads, <code>stop_sched</code> schdueling class, and the interesting source file <code>kernel/stop_machine.c</code>. Background on kernel scheduler design is recommended.</p>
-<p>Scheduler uses the following code to pick the next runnable task:</p>
+<p>This document is about <code class="codehilite">migration/N</code> kernel threads, <code class="codehilite">stop_sched</code> schdueling class, and the interesting source file <code class="codehilite">kernel/stop_machine.c</code>. Background on kernel scheduler design is recommended.</p>
+<p>Scheduler uses the following code to pick the next runnable task:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -634,20 +634,18 @@
         <span class="n">BUG</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
-</td></tr></table>
-
-<p>while the class is linked together as:</p>
+</td></tr></table></p>
+<p>while the class is linked together as:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#define sched_class_highest     (&amp;stop_sched_class)                                                       </span>
 <span class="cp">#define for_each_class(class) \                                                                           </span>
    <span class="k">for</span> <span class="p">(</span><span class="n">class</span> <span class="o">=</span> <span class="n">sched_class_highest</span><span class="p">;</span> <span class="n">class</span><span class="p">;</span> <span class="n">class</span> <span class="o">=</span> <span class="n">class</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span>
 </pre></div>
-</td></tr></table>
-
-<p>Clearly, the highest priority class is <code>stop_sched_class</code>. Whenever this scheduling has class runnable threads, scheduler will always run them first. So what kernel threads are using this scheduling class? Well, you must have seen something like <code>migration/0</code> when you do <code>ps aux</code> in Linux. And yes, these kernel threads are the only users.</p>
-<p>These threads are sleeping most of their lifetime, they will be invoked to do some very urgent stuff. For example, when a user thread that is currently running on CPU0 calls <code>sched_setaffinity()</code> to bind to CPU1, kernel is not able to do this because this user thread is currently running (runqueue can not move a <em>running</em> task out, it can only move queued task out). Then, scheduler has to ask <code>migration/0</code> for help. Once there is a job enqueued, <code>migration/0</code> will be invoked. Since it has the highest-priority, it will start execution immediately. Thus the migration from CPU0 to CPU1 is performed safely and fast.</p>
-<p><code>migration</code> code is defined in <code>kernel/stop_machine.c</code>. They are created during early boot. They use the <code>smpboot_register_percpu_thread</code> to create threads. They are written in this way because Linux supports cpu hotplug. To simplify we can also create them manually through <code>kthread_create</code>. Since Lego does not support cpu hotplug, and this <code>cpu_stop_init</code> is called after SMP is initialized, so Lego has slight different initialiaztion:</p>
+</td></tr></table></p>
+<p>Clearly, the highest priority class is <code class="codehilite">stop_sched_class</code>. Whenever this scheduling has class runnable threads, scheduler will always run them first. So what kernel threads are using this scheduling class? Well, you must have seen something like <code class="codehilite">migration/0</code> when you do <code class="codehilite">ps aux</code> in Linux. And yes, these kernel threads are the only users.</p>
+<p>These threads are sleeping most of their lifetime, they will be invoked to do some very urgent stuff. For example, when a user thread that is currently running on CPU0 calls <code class="codehilite">sched_setaffinity()</code> to bind to CPU1, kernel is not able to do this because this user thread is currently running (runqueue can not move a <em>running</em> task out, it can only move queued task out). Then, scheduler has to ask <code class="codehilite">migration/0</code> for help. Once there is a job enqueued, <code class="codehilite">migration/0</code> will be invoked. Since it has the highest-priority, it will start execution immediately. Thus the migration from CPU0 to CPU1 is performed safely and fast.</p>
+<p><code class="codehilite">migration</code> code is defined in <code class="codehilite">kernel/stop_machine.c</code>. They are created during early boot. They use the <code class="codehilite">smpboot_register_percpu_thread</code> to create threads. They are written in this way because Linux supports cpu hotplug. To simplify we can also create them manually through <code class="codehilite">kthread_create</code>. Since Lego does not support cpu hotplug, and this <code class="codehilite">cpu_stop_init</code> is called after SMP is initialized, so Lego has slight different initialiaztion:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -690,9 +688,8 @@
         <span class="n">for_each_online_cpu</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span>
                 <span class="n">stop_machine_unpark</span><span class="p">(</span><span class="n">cpu</span><span class="p">);</span>
 </pre></div>
-</td></tr></table>
-
-<p>Internally, it also use a list to keep enqueued jobs. Once the thread is waken up, it tries to lookup this list and dequeue jobs (similar to kthread creation, kworker etc.):</p>
+</td></tr></table></p>
+<p>Internally, it also use a list to keep enqueued jobs. Once the thread is waken up, it tries to lookup this list and dequeue jobs (similar to kthread creation, kworker etc.):
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -737,9 +734,8 @@
         <span class="p">}</span>   
 <span class="p">}</span>
 </pre></div>
-</td></tr></table>
-
-<p>It has several interesting public APIs that are quite similar to <code>smp_call_functions</code>, but the difference is: this set of APIs provide a guaranteed time-to-execute waiting time, because it will simply preempt anything running on CPU.</p>
+</td></tr></table></p>
+<p>It has several interesting public APIs that are quite similar to <code class="codehilite">smp_call_functions</code>, but the difference is: this set of APIs provide a guaranteed time-to-execute waiting time, because it will simply preempt anything running on CPU.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="nf">stop_one_cpu</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">cpu</span><span class="p">,</span> <span class="n">cpu_stop_fn_t</span> <span class="n">fn</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
@@ -749,7 +745,7 @@
 </td></tr></table>
 
 <p>They are used only when there are some very urgent things to do. So, please use with caution.</p>
-<p>--<br />
+<p>&ndash;<br />
 Yizhou Shan<br />
 Feb 12, 2018</p>
                 

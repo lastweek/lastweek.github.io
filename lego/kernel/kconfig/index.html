@@ -687,55 +687,55 @@
                 <h1 id="lego-kconfig">Lego Kconfig</h1>
 <h2 id="network">Network</h2>
 <ul>
-<li>Enable <code>CONFIG_INFINIBAND</code></li>
-<li>Enable <code>CONFIG_FIT</code></li>
-<li>Set <code>CONFIG_FIT_INITIAL_SLEEP_TIMEOUT</code>: boot time connection timeout</li>
-<li>Set <code>CONFIG_FIT_NR_NODES</code>: number of Lego nodes in this run</li>
-<li>Set <code>CONFIG_FIT_LOCAL_ID</code>: current node id</li>
+<li>Enable <code class="codehilite">CONFIG_INFINIBAND</code></li>
+<li>Enable <code class="codehilite">CONFIG_FIT</code></li>
+<li>Set <code class="codehilite">CONFIG_FIT_INITIAL_SLEEP_TIMEOUT</code>: boot time connection timeout</li>
+<li>Set <code class="codehilite">CONFIG_FIT_NR_NODES</code>: number of Lego nodes in this run</li>
+<li>Set <code class="codehilite">CONFIG_FIT_LOCAL_ID</code>: current node id</li>
 <li>
-<p>In <code>net/lego/fit_machine.c</code>, modify the <code>lego_cluster_hostnames</code> array to match the machines you are using.</p>
+<p>In <code class="codehilite">net/lego/fit_machine.c</code>, modify the <code class="codehilite">lego_cluster_hostnames</code> array to match the machines you are using.</p>
 </li>
 <li>
-<p>Set <code>CONFIG_DEFAULT_MEM_NODE</code> in processor manager</p>
+<p>Set <code class="codehilite">CONFIG_DEFAULT_MEM_NODE</code> in processor manager</p>
 </li>
-<li>Set <code>CONFIG_DEFAULT_STORAGE_NODE</code> if you are running with storage component.</li>
+<li>Set <code class="codehilite">CONFIG_DEFAULT_STORAGE_NODE</code> if you are running with storage component.</li>
 </ul>
 <p>Network configuration is crucial, please make sure all Lego nodes have consistent configurations. Otherwise the system may panic or fail to connect.</p>
 <h2 id="processor">Processor</h2>
 <ul>
-<li>Enable <code>CONFIG_COMP_PROCESSOR</code><ul>
-<li>open <code>.config</code></li>
-<li>remove line <code># CONFIG_COMP_PROCESSOR is not set</code></li>
-<li>close <code>.config</code></li>
-<li>do <code>make</code>, you will see <code>Configure Lego as processor component (COMP_PROCESSOR) [N/y/?] (NEW)</code>, select Y</li>
+<li>Enable <code class="codehilite">CONFIG_COMP_PROCESSOR</code><ul>
+<li>open <code class="codehilite"><span class="na">.config</span></code></li>
+<li>remove line <code class="codehilite"># CONFIG_COMP_PROCESSOR is not set</code></li>
+<li>close <code class="codehilite"><span class="na">.config</span></code></li>
+<li>do <code class="codehilite">make</code>, you will see <code class="codehilite">Configure Lego as processor component (COMP_PROCESSOR) [N/y/?] (NEW)</code>, select Y</li>
 <li>Choose default configuration for all new config options</li>
 </ul>
 </li>
-<li>Enable <code>CONFIG_USE_RAMFS</code> if you are not using storage components</li>
+<li>Enable <code class="codehilite">CONFIG_USE_RAMFS</code> if you are not using storage components</li>
 </ul>
 <h2 id="memory">Memory</h2>
 <ul>
-<li>Enable <code>CONFIG_COMP_MEMORY</code><ul>
-<li>open <code>.config</code></li>
-<li>remove line <code># CONFIG_COMP_MEMORY is not set</code></li>
-<li>close <code>.config</code></li>
-<li>do <code>make</code>, you will see <code>Configure Lego as memory component manager (COMP_MEMORY) [N/y/?] (NEW)</code>, select Y</li>
+<li>Enable <code class="codehilite">CONFIG_COMP_MEMORY</code><ul>
+<li>open <code class="codehilite"><span class="na">.config</span></code></li>
+<li>remove line <code class="codehilite"># CONFIG_COMP_MEMORY is not set</code></li>
+<li>close <code class="codehilite"><span class="na">.config</span></code></li>
+<li>do <code class="codehilite">make</code>, you will see <code class="codehilite">Configure Lego as memory component manager (COMP_MEMORY) [N/y/?] (NEW)</code>, select Y</li>
 <li>Choose default configuration for all new config options</li>
 </ul>
 </li>
-<li>Enable <code>CONFIG_USE_RAMFS</code> if you are not using storage components<ul>
-<li>Set <code>CONFIG_RAMFS_OBJECT_FILE</code>: points to <strong>static-linked</strong> ELF file that you want to execute.</li>
-<li>tips: you can put your test code under <code>usr/</code> directory, and a simple <code>make</code> will compile everything under.</li>
+<li>Enable <code class="codehilite">CONFIG_USE_RAMFS</code> if you are not using storage components<ul>
+<li>Set <code class="codehilite">CONFIG_RAMFS_OBJECT_FILE</code>: points to <strong>static-linked</strong> ELF file that you want to execute.</li>
+<li>tips: you can put your test code under <code class="codehilite">usr/</code> directory, and a simple <code class="codehilite">make</code> will compile everything under.</li>
 </ul>
 </li>
 </ul>
 <h2 id="run-without-storage-component">Run without Storage Component</h2>
 <p>To run Lego just with one processor component and one memory component, you need to:</p>
 <ul>
-<li>Enable <code>CONFIG_USE_RAMFS</code> at both sides. And in memory side, you need to set the <code>CONFIG_RAMFS_OBJECT_FILE</code>, which points to the ELF binary you want to test.</li>
-<li>make sure <code>CONFIG_DEFAULT_MEM_NODE</code> at processor component is pointing to memory component's node id.</li>
+<li>Enable <code class="codehilite">CONFIG_USE_RAMFS</code> at both sides. And in memory side, you need to set the <code class="codehilite">CONFIG_RAMFS_OBJECT_FILE</code>, which points to the ELF binary you want to test.</li>
+<li>make sure <code class="codehilite">CONFIG_DEFAULT_MEM_NODE</code> at processor component is pointing to memory component&rsquo;s node id.</li>
 </ul>
-<p>A typical code snippet and configuration would be:</p>
+<p>A typical code snippet and configuration would be:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -744,8 +744,7 @@
         <span class="p">[</span><span class="mi">1</span><span class="p">]</span>     <span class="o">=</span>       <span class="s">&quot;wuklab01&quot;</span><span class="p">,</span>
 <span class="p">};</span>
 </pre></div>
-</td></tr></table>
-
+</td></tr></table></p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3

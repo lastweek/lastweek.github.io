@@ -599,17 +599,16 @@
                 
                 <h1 id="near-memory-processing">Near Memory Processing</h1>
 <ul>
-<li>==NMP: Near Memory Processing==</li>
+<li><mark>NMP: Near Memory Processing</mark></li>
 <li>
-<p>==NDC: Near Data Computing==</p>
+<p><mark>NDC: Near Data Computing</mark></p>
 </li>
 <li>
-<p><code>PRIME: A Novel Processing-in-memory Architecture for Neural Network
-Computation in ReRAM-based Main Memory, ISCA'16</code></p>
+<p><code class="codehilite"><span class="n">PRIME</span><span class="o">:</span> <span class="n">A</span> <span class="n">Novel</span> <span class="n">Processing</span><span class="o">-</span><span class="k">in</span><span class="o">-</span><span class="n">memory</span> <span class="n">Architecture</span> <span class="k">for</span> <span class="n">Neural</span> <span class="n">Network</span><span class="n">Computation</span> <span class="k">in</span> <span class="n">ReRAM</span><span class="o">-</span><span class="n">based</span> <span class="n">Main</span> <span class="n">Memory</span><span class="o">,</span> <span class="n">ISCA</span><span class="err">&#39;</span><span class="mi">16</span></code></p>
 <ul>
 <li>High-performance
 acceleration of NN requires high memory bandwidth since
-the ==PUs are hungry for fetching the synaptic weights [17]==. To
+the <mark>PUs are hungry for fetching the synaptic weights [17]</mark>. To
 address this challenge, recent special-purpose chip designs
 have adopted large on-chip memory to store the synaptic
 weights. For example, DaDianNao [18] employed a large
@@ -618,8 +617,8 @@ TrueNorth utilized an SRAM crossbar memory for synapses
 in each core [19].</li>
 </ul>
 </li>
-<li>==DianNao== and ==DaDianNao==<ul>
-<li>... <strong>memory bandwidth requirements</strong> of two important
+<li><mark>DianNao</mark> and <mark>DaDianNao</mark><ul>
+<li>&hellip; <strong>memory bandwidth requirements</strong> of two important
 layer types: convolutional layers with private kernels
 (used in DNNs) and classifier layers used in both CNNs and
 DNNs. For these types of layers, the total number of required
@@ -627,9 +626,9 @@ synapses can be massive, in the millions of parameters, or
 even tens or hundreds thereof.</li>
 <li>providing sufficient eDRAM capacity to hold
 all <strong>synapse</strong> on the combined eDRAM of all chips will
-save on <code>off-chip DRAM accesses</code>, which are particularly
+save on <code class="codehilite">off-chip DRAM accesses</code>, which are particularly
 costly energy-wise</li>
-<li>==Synapses==. In a perceptron layer, all synapses are usually
+<li><mark>Synapses</mark>. In a perceptron layer, all synapses are usually
 unique, and thus there is no reuse within the layer. On the
 other hand, the synapses are reused across network invocations,
 i.e., for each new input data (also called “input row”)
@@ -645,11 +644,11 @@ millions, which is within the reach of an L2 cache. In Figure
 across network invocations is possible by considering only
 the perceptron layer; as a result, the total bandwidth requirements
 are now drastically reduced.</li>
-<li>So, ML workloads do need large memory bandwidth, and need a lot memory. But how about <strong>temporary working set size</strong>? It's the best if it has a reasonable working set size that can fit the cache.</li>
+<li>So, ML workloads do need large memory bandwidth, and need a lot memory. But how about <strong>temporary working set size</strong>? It&rsquo;s the best if it has a reasonable working set size that can fit the cache.</li>
 </ul>
 </li>
-<li>==TPU==<ul>
-<li>Each model needs between 5M and 100M weights (9th
+<li><mark>TPU</mark><ul>
+<li>Each model needs between 5M and 100M weights (9<sup>th</sup>
 column of Table 1), which can take a lot of time and energy to
 access. To amortize the access costs, <strong>the same weights are reused
 across a batch of independent examples during inference or
@@ -660,12 +659,12 @@ called Weight Memory</strong> (for inference, weights are read-only; 8
 GiB supports many simultaneously active models). The weight
 FIFO is four tiles deep. The intermediate results are held in the <strong>24
 MiB on-chip Unified Buffer</strong>, which can serve as inputs to the Matrix Unit.</li>
-<li>==In virtual cache model, we actually can assign those weights to some designated sets, thus avoid conflicting with other data, which means we can sustain those weights in cache!==</li>
+<li><mark>In virtual cache model, we actually can assign those weights to some designated sets, thus avoid conflicting with other data, which means we can sustain those weights in cache!</mark></li>
 </ul>
 </li>
 </ul>
 <p>To conclude:<br />
-<code>a)</code> ML needs to use weight/synapses during computation, and those data will be reused repeatly across different stages. Besides, output from last stage serves the input of next stage, so buffering the <code>intermediate data</code> is important. Most ML accelerators use some kind of <code>on-chip memory</code> (<em>Weighted FIFO, Unified Cache in TPU</em>) to buffer those data. This fits the <code>HBM+Disaggregated Memory</code> model: HBM is the on-chip memory, while disaggregated memory is the off-chip memory. <code>b)</code> Combined with virtual cache, we could assign special virtual addresses to weight data, so they stay in some designated cache sets. Kernel can avoid allocating conflict virtual addresses later. Thus we can retain these weight data in virtual cache easily.</p>
+<code class="codehilite">a)</code> ML needs to use weight/synapses during computation, and those data will be reused repeatly across different stages. Besides, output from last stage serves the input of next stage, so buffering the <code class="codehilite">intermediate data</code> is important. Most ML accelerators use some kind of <code class="codehilite">on-chip memory</code> (<em>Weighted FIFO, Unified Cache in TPU</em>) to buffer those data. This fits the <code class="codehilite">HBM+Disaggregated Memory</code> model: HBM is the on-chip memory, while disaggregated memory is the off-chip memory. <code class="codehilite">b)</code> Combined with virtual cache, we could assign special virtual addresses to weight data, so they stay in some designated cache sets. Kernel can avoid allocating conflict virtual addresses later. Thus we can retain these weight data in virtual cache easily.</p>
                 
                   
                 

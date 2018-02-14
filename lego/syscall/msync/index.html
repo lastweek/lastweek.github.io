@@ -598,16 +598,16 @@
                 
                 
                 <h1 id="msync">msync()</h1>
-<p>The document is a summary I wrote after reading <code>Failure-atomic msync()</code> paper, which help me understand several questions related to <code>msync()</code>.</p>
+<p>The document is a summary I wrote after reading <code class="codehilite">Failure-atomic msync()</code> paper, which help me understand several questions related to <code class="codehilite">msync()</code>.</p>
 <ul>
 <li>
-<p><code>msync() is not atomic.</code> During msync(), pages are being written back to disk one by one (or batched): few pages have been flushed back, but few pages are still in the memory. This premature writeback is not atomic and will be affected by failure.</p>
+<p><code class="codehilite">msync() is not atomic.</code> During msync(), pages are being written back to disk one by one (or batched): few pages have been flushed back, but few pages are still in the memory. This premature writeback is not atomic and will be affected by failure.</p>
 </li>
 <li>
-<p><code>msync() need concurrency control</code>. This actually is the issue I asked before. With a multi-threaded application, does msync() provide the synchronization semantic? The answer is no. Other threads within the same process are able to write to pages under msync(). This implies, application need to handle concurrency by themselves, e.g., rwlocks. At the very beginning, I thought msync() provide this semantic. The only way to implement this should be: kernel make all pages' PTE read-only, and then perform flush back. If any other threads does a write during flush, they will have a page fault. And in the pgfault function, we hold the threads until the pages are written back.</p>
+<p><code class="codehilite">msync() need concurrency control</code>. This actually is the issue I asked before. With a multi-threaded application, does msync() provide the synchronization semantic? The answer is no. Other threads within the same process are able to write to pages under msync(). This implies, application need to handle concurrency by themselves, e.g., rwlocks. At the very beginning, I thought msync() provide this semantic. The only way to implement this should be: kernel make all pages&rsquo; PTE read-only, and then perform flush back. If any other threads does a write during flush, they will have a page fault. And in the pgfault function, we hold the threads until the pages are written back.</p>
 </li>
 </ul>
-<p>--<br />
+<p>&ndash;<br />
 Yizhou Shan<br />
 Feb 01, 2018</p>
                 

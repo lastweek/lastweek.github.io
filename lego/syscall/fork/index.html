@@ -767,14 +767,14 @@
                 <h1 id="fork">fork()</h1>
 <h2 id="entry-points">Entry Points</h2>
 <ul>
-<li><code>fork()</code></li>
-<li><code>vfork()</code></li>
-<li><code>clone()</code></li>
-<li><code>kernel_thread()</code></li>
+<li><code class="codehilite">fork()</code></li>
+<li><code class="codehilite">vfork()</code></li>
+<li><code class="codehilite">clone()</code></li>
+<li><code class="codehilite">kernel_thread()</code></li>
 </ul>
-<p>All of them land on <code>do_fork()</code>, which is Lego's main fork function.</p>
+<p>All of them land on <code class="codehilite">do_fork()</code>, which is Lego&rsquo;s main fork function.</p>
 <h2 id="do_fork">do_fork()</h2>
-<p>There are mainly three parts within <code>do_fork()</code>: <code>1)</code> <code>copy_process()</code>, which duplicates a new task based on <code>current</code>, including allocate new kernel stack, new task_struct, increase mm reference counter, etc. <code>2)</code> If we are creating a new process, then tell global monitor or memory manager to let them update bookkeeping and create corresponding data structures. <code>3)</code> <code>wake_up_new_task()</code>, which gives away the newly created task to local scheduler.</p>
+<p>There are mainly three parts within <code class="codehilite">do_fork()</code>: <code class="codehilite">1)</code> <code class="codehilite">copy_process()</code>, which duplicates a new task based on <code class="codehilite">current</code>, including allocate new kernel stack, new task_struct, increase mm reference counter, etc. <code class="codehilite">2)</code> If we are creating a new process, then tell global monitor or memory manager to let them update bookkeeping and create corresponding data structures. <code class="codehilite">3)</code> <code class="codehilite">wake_up_new_task()</code>, which gives away the newly created task to local scheduler.</p>
 <h3 id="1-copy_process">1) copy_process()</h3>
 <p>This is a fairly long and complex function, thus I will mainly walk through important and interesting parts.</p>
 <h4 id="dup_task_struct">dup_task_struct()</h4>
@@ -782,7 +782,7 @@
 <h4 id="copy_thread_tls">copy_thread_tls()</h4>
 <p>todo</p>
 <h4 id="setup_sched_fork">setup_sched_fork()</h4>
-<p>Callback to scheduler to setup this new task. It may reset all scheduler related information. Here we also have a chance to change this task's scheduler class:</p>
+<p>Callback to scheduler to setup this new task. It may reset all scheduler related information. Here we also have a chance to change this task&rsquo;s scheduler class:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -874,7 +874,7 @@
 </td></tr></table>
 
 <h3 id="3-wake_up_new_task">3) wake_up_new_task()</h3>
-<p>The last step of <code>do_fork</code> is waking up the new thread or process, which is performed by <code>wake_up_new_task()</code> function. The first question this function will ask is: <code>which cpu to land?</code> The answer comes from <code>select_task_rq()</code>:</p>
+<p>The last step of <code class="codehilite">do_fork</code> is waking up the new thread or process, which is performed by <code class="codehilite">wake_up_new_task()</code> function. The first question this function will ask is: <code class="codehilite">which cpu to land?</code> The answer comes from <code class="codehilite">select_task_rq()</code>:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -895,8 +895,8 @@
 </pre></div>
 </td></tr></table>
 
-<p>Clearly, this is determined by <code>cpus_allowed</code>, which is the same with its parent at this point. That being said, if the parent is only able to run on one specific CPU, then all its children will end up running on the same CPU when they wake up (they could change their affinity later). This is also the default on Linux: <code>A child created via fork(2) inherits its parent's CPU affinity mask. The affinity mask is preserved across an execve(2).</code></p>
-<p>After landing CPU is selected, following operation is simple: just enqueue this task into landing CPU's runqueue, and we are done:</p>
+<p>Clearly, this is determined by <code class="codehilite">cpus_allowed</code>, which is the same with its parent at this point. That being said, if the parent is only able to run on one specific CPU, then all its children will end up running on the same CPU when they wake up (they could change their affinity later). This is also the default on Linux: <code class="codehilite">A child created via fork(2) inherits its parent&#39;s CPU affinity mask. The affinity mask is preserved across an execve(2).</code></p>
+<p>After landing CPU is selected, following operation is simple: just enqueue this task into landing CPU&rsquo;s runqueue, and we are done:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -935,7 +935,7 @@
 </pre></div>
 </td></tr></table>
 
-<p>--<br />
+<p>&ndash;<br />
 Yizhou Shan<br />
 Feb 11, 2018</p>
                 

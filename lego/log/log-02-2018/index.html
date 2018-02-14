@@ -743,7 +743,7 @@
                 <h1 id="feb-2018">Feb 2018</h1>
 <hr />
 <h2 id="0214-wed-rainy">02/14 Wed Rainy</h2>
-<p>Hmm, tried to make kmalloc behave as kzalloc, and bind all threads to one core, still gave the same old bug:</p>
+<p>Hmm, tried to make kmalloc behave as kzalloc, and bind all threads to one core, still gave the same old bug:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -772,8 +772,7 @@
   [93183.488434] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
   [93183.557075] CR2: 00007ffff27a4000 CR3: 000000107e924000 CR4: 00000000000406a0
 </pre></div>
-</td></tr></table>
-
+</td></tr></table></p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -806,11 +805,11 @@
 
 <hr />
 <h2 id="0213-tue-sunny">02/13 Tue Sunny</h2>
-<p>Checking our SLOB allocator today. So I found Yutong's code is using <code>set_page_private</code> when slob get a new page from buddy. This private field is only intended to be used by buddy to record the <code>order</code>. This mixed usage will confuse buddy and create bug.</p>
-<p>Even though I removed the <code>:::c set_page_private(page, 0)</code> after <code>free_page</code>, word_count-pthread still fails. Damn.</p>
+<p>Checking our SLOB allocator today. So I found Yutong&rsquo;s code is using <code class="codehilite">set_page_private</code> when slob get a new page from buddy. This private field is only intended to be used by buddy to record the <code class="codehilite">order</code>. This mixed usage will confuse buddy and create bug.</p>
+<p>Even though I removed the <code class="codehilite"><span class="n">set_page_private</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></code> after <code class="codehilite">free_page</code>, word_count-pthread still fails. Damn.</p>
 <hr />
 <h2 id="0212-mon-cloudy">02/12 Mon Cloudy</h2>
-<p>Add this commit <code>4cb3a8b6a943c90714fd9bb5e5465ee315f0aa30</code>:</p>
+<p>Add this commit <code class="codehilite">4cb3a8b6a943c90714fd9bb5e5465ee315f0aa30</code>:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -841,10 +840,9 @@
     Even though before I&#39;ve added things like force GFP_ZERO in all
     physical page allocation, I missed the kmalloc&#39;s case!
 </pre></div>
-</td></tr></table>
-
+</td></tr></table></p>
 <p>The story is:</p>
-<p>I patched the stop_machine code today, and tried to run code with P+M on VM, everything works fine. However, when I tried to run the new code with P+M+S on physical machine, M crashed at a very weird point:</p>
+<p>I patched the stop_machine code today, and tried to run code with P+M on VM, everything works fine. However, when I tried to run the new code with P+M+S on physical machine, M crashed at a very weird point:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -887,9 +885,8 @@
 [ 7794.325572] [&lt;ffffffff8101c5b0&gt;] ? __kthread_parkme+0x90/0x90
 [ 7794.394205] [&lt;ffffffff8100b462&gt;] ret_from_fork+0x22/0x30
 </pre></div>
-</td></tr></table>
-
-<p>So faulting source code is:</p>
+</td></tr></table></p>
+<p>So faulting source code is:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -906,9 +903,8 @@
 </span>                                       <span class="n">pte</span><span class="p">,</span> <span class="n">pmd</span><span class="p">,</span> <span class="n">entry</span><span class="p">)</span>
     <span class="p">....</span>
 </pre></div>
-</td></tr></table>
-
-<p>Something wrong with <code>vma</code>? At this loader stage, this vma is a temporaty stack vma created for saving <code>argv</code> and <code>envp</code>. So I look back into the code that created this vma:</p>
+</td></tr></table></p>
+<p>Something wrong with <code class="codehilite">vma</code>? At this loader stage, this vma is a temporaty stack vma created for saving <code class="codehilite">argv</code> and <code class="codehilite">envp</code>. So I look back into the code that created this vma:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -929,15 +925,14 @@
 </span>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">vma</span><span class="p">)</span>
                 <span class="k">return</span> <span class="o">-</span><span class="n">ENOMEM</span><span class="p">;</span>
 </pre></div>
-</td></tr></table>
-
-<p>The code after this does NOT do necessary cleanup. The <code>vm_ops</code> happens to have some garbage value from last user. So it is not 0, so the above <code>vma-&gt;vm_ops</code> is true, and it will try to read <code>vma-&gt;vm_ops-&gt;fault</code>. And that, my friend, is where garbage turns into crash.</p>
-<p>This presents a series of potential bugs. Ugh, <code>memory safety</code>!</p>
+</td></tr></table></p>
+<p>The code after this does NOT do necessary cleanup. The <code class="codehilite">vm_ops</code> happens to have some garbage value from last user. So it is not 0, so the above <code class="codehilite">vma-&gt;vm_ops</code> is true, and it will try to read <code class="codehilite">vma-&gt;vm_ops-&gt;fault</code>. And that, my friend, is where garbage turns into crash.</p>
+<p>This presents a series of potential bugs. Ugh, <code class="codehilite">memory safety</code>!</p>
 <hr />
-<h2 id="0209-fri-cloudy"><code>02/09 Fri Cloudy</code></h2>
-<p>Tried to modify Phoneix code: replace <code>realloc</code> with <code>malloc+mempcy</code>. Thus the <code>mremap</code> syscall is avoided, but it still has general protection fault. Same with yesterday, corrupted at <code>__strcmp_sse42</code>, with corrupted <code>RSI</code> or <code>RDI</code>. So I guess it is not about <code>mremap</code> itself at all. I will follow yesterday's checking list.</p>
+<h2 id="0209-fri-cloudy"><code class="codehilite">02/09 Fri Cloudy</code></h2>
+<p>Tried to modify Phoneix code: replace <code class="codehilite">realloc</code> with <code class="codehilite">malloc+mempcy</code>. Thus the <code class="codehilite">mremap</code> syscall is avoided, but it still has general protection fault. Same with yesterday, corrupted at <code class="codehilite">__strcmp_sse42</code>, with corrupted <code class="codehilite">RSI</code> or <code class="codehilite">RDI</code>. So I guess it is not about <code class="codehilite">mremap</code> itself at all. I will follow yesterday&rsquo;s checking list.</p>
 <hr />
-<h2 id="0208-thur-cloudy"><code>02/08 Thur Cloudy</code></h2>
+<h2 id="0208-thur-cloudy"><code class="codehilite">02/08 Thur Cloudy</code></h2>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -986,8 +981,8 @@
   4272e1:       83 f8 30                cmp    $0x30,%eax
   4272e4:       77 3a                   ja     427320 &lt;__strcmp_sse42+0x50&gt;
   4272e6:       f3 0f 6f 0f             movdqu (%rdi),%xmm1
-* 4272ea:       f3 0f 6f 16             movdqu (%rsi),%xmm2
-  4272ee:       66 0f ef c0             pxor   %xmm0,%xmm0
+<span class="hll">* 4272ea:       f3 0f 6f 16             movdqu (%rsi),%xmm2
+</span>  4272ee:       66 0f ef c0             pxor   %xmm0,%xmm0
   4272f2:       66 0f 74 c1             pcmpeqb %xmm1,%xmm0
   4272f6:       66 0f 74 ca             pcmpeqb %xmm2,%xmm1
   4272fa:       66 0f f8 c8             psubb  %xmm0,%xmm1
@@ -1011,13 +1006,13 @@
   427340:       41 89 d0                mov    %edx,%r8d
   427343:       91                      xchg   %eax,%ecx
   427344:       48 87 f7                xchg   %rsi,%rdi
-* 427347:       66 0f 6f 17             movdqa (%rdi),%xmm2
-  (RDI: 0000000000000000)
+<span class="hll">* 427347:       66 0f 6f 17             movdqa (%rdi),%xmm2
+</span>  (RDI: 0000000000000000)
 </pre></div>
 </td></tr></table>
 
 <p>Frustrating! What is wrong with multithread program? Because of broken FPU-switch code? of inappropriate TLB flush? of IB corrupts memory? of what? ugh?</p>
-<p>I'm done with this random guess and frustrated general protection or segfault, I need to first make sure underlying kernel is 100%  percent correct, this is a checking list:</p>
+<p>I&rsquo;m done with this random guess and frustrated general protection or segfault, I need to first make sure underlying kernel is 100%  percent correct, this is a checking list:</p>
 <ul>
 <li>fpu save/restore<ul>
 <li>always fail at some XMM instruction</li>
@@ -1031,7 +1026,7 @@
 </ul>
 </li>
 <li>set_arch_tls (%fs)<ul>
-<li>glibc's way of using per thread data</li>
+<li>glibc&rsquo;s way of using per thread data</li>
 </ul>
 </li>
 <li>some cpu may miss tlb flush</li>
@@ -1070,28 +1065,28 @@
 <p>What is the implication of multiple CPU entering kernel at the same time? How can it corrupt user pages? Maybe: kernel entry code, per-cpu data in entry code, fpu code, switch_to, scheduler.</p>
 <p>Why it always fail at those FPU code i.e. the strcmp function? I failed to compile without those sse, any solution? How it hurt performance?</p>
 <hr />
-<h2 id="0207-wed-cloudy"><code>02/07 Wed Cloudy</code></h2>
-<p><code>20:07</code><br />
+<h2 id="0207-wed-cloudy"><code class="codehilite">02/07 Wed Cloudy</code></h2>
+<p><code class="codehilite"><span class="mi">20</span><span class="o">:</span><span class="mi">07</span></code><br />
 Pushed a small patch on mremap issue. Hope it will work. mremap really makes the whole thing very interesting, will be a very good research finding on combing virtual cache and operating system. Need to go gym with a friend, will be back on debugging late tonight.</p>
-<p><code>9:30</code><br />
-Have two meetings to do today, and an security class, won't have too much time coding during daytime.</p>
+<p><code class="codehilite"><span class="mi">9</span><span class="o">:</span><span class="mi">30</span></code><br />
+Have two meetings to do today, and an security class, won&rsquo;t have too much time coding during daytime.</p>
 <hr />
-<h2 id="0206-tue-sunny"><code>02/06 Tue Sunny</code></h2>
-<p>Well. We've ruled out both <code>smp_call_function</code> and <code>workqueue</code> yesterday with Yiying's help. But the multi-thread word-count still fails <code>:-(</code> Single thread word-count just finished 4GB dataset (with 8GB pcache). So what could be still wrong with multithread one????</p>
+<h2 id="0206-tue-sunny"><code class="codehilite">02/06 Tue Sunny</code></h2>
+<p>Well. We&rsquo;ve ruled out both <code class="codehilite">smp_call_function</code> and <code class="codehilite">workqueue</code> yesterday with Yiying&rsquo;s help. But the multi-thread word-count still fails <code class="codehilite"><span class="p">:-(</span></code> Single thread word-count just finished 4GB dataset (with 8GB pcache). So what could be still wrong with multithread one????</p>
 <ul>
 <li>chill</li>
 <li>check exit code</li>
-<li><code>(Checked)</code> check pcache's usage of task_struct, should always use the group_leader</li>
+<li><code class="codehilite">(Checked)</code> check pcache&rsquo;s usage of task_struct, should always use the group_leader</li>
 <li>check cpu boot code and check the switch code again</li>
 <li>I believe pinpoint the issue in multithread word-count can solve a lot issues, it must be some thread creation, removal, schedule things.</li>
-<li>How about adding a lock for ibapi, make it sequential? Sweet, I tried, finally it is <code>a bug that we are able to debug</code>.</li>
+<li>How about adding a lock for ibapi, make it sequential? Sweet, I tried, finally it is <code class="codehilite">a bug that we are able to debug</code>.</li>
 </ul>
-<p><code>22:39</code><br />
-Done for today. I'm trying to patch <code>move_pte</code> and <code>pcache_move_pte</code>. Although in theory we defenitly need to patch it, I keep thinking the code before should not trigger any serious bus or memory corruption. Ugh. Maybe it is concurrent <code>mremap</code> that one of them remap from A to B, while another one remap from C to A. It is possible. But my dead brain can not think of this anymore. I'm going to hit the gym and do some squats.</p>
-<p><code>17:01</code><br />
-Criminal found: <code>mremap()</code> and <code>virtual cache</code> did the crime. Interesting, I have not seen any research paper, tech-reports, writeup, code about this, not even the OVC paper, which, by the way, I think they must consider this case. Otherwise, a mremap will simply crash its virtual cache. Many thanks went to my smoke-and-think time.</p>
-<p><code>15:14</code><br />
-Something new came up! After adding a spinlock for ibapi, this showed up (I tried one more time after this, which does not show up). We are lucky to catch this. At least I know where to look at. Also, this is defenitly triggered by <code>mremap</code>. It is seems it is overlapped <code>mremap()</code>. One thing I did not know is which thread trigger this bug, the sweep thread? Cause mremap related pcache rmap functions do not use <code>rmap_get_locked_pte</code>.</p>
+<p><code class="codehilite"><span class="mi">22</span><span class="o">:</span><span class="mi">39</span></code><br />
+Done for today. I&rsquo;m trying to patch <code class="codehilite">move_pte</code> and <code class="codehilite">pcache_move_pte</code>. Although in theory we defenitly need to patch it, I keep thinking the code before should not trigger any serious bus or memory corruption. Ugh. Maybe it is concurrent <code class="codehilite">mremap</code> that one of them remap from A to B, while another one remap from C to A. It is possible. But my dead brain can not think of this anymore. I&rsquo;m going to hit the gym and do some squats.</p>
+<p><code class="codehilite"><span class="mi">17</span><span class="o">:</span><span class="mi">01</span></code><br />
+Criminal found: <code class="codehilite">mremap()</code> and <code class="codehilite">virtual cache</code> did the crime. Interesting, I have not seen any research paper, tech-reports, writeup, code about this, not even the OVC paper, which, by the way, I think they must consider this case. Otherwise, a mremap will simply crash its virtual cache. Many thanks went to my smoke-and-think time.</p>
+<p><code class="codehilite"><span class="mi">15</span><span class="o">:</span><span class="mi">14</span></code><br />
+Something new came up! After adding a spinlock for ibapi, this showed up (I tried one more time after this, which does not show up). We are lucky to catch this. At least I know where to look at. Also, this is defenitly triggered by <code class="codehilite">mremap</code>. It is seems it is overlapped <code class="codehilite">mremap()</code>. One thing I did not know is which thread trigger this bug, the sweep thread? Cause mremap related pcache rmap functions do not use <code class="codehilite">rmap_get_locked_pte</code>.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -1108,10 +1103,10 @@ Something new came up! After adding a spinlock for ibapi, this showed up (I trie
 </pre></div>
 </td></tr></table>
 
-<p><code>14:00</code> <br />
-<code>word_count-pthread</code>: 100MB dataset
-<code>pcache</code>: 8GB, 8-way
-<code>victim</code>: 8 entries</p>
+<p><code class="codehilite"><span class="mi">14</span><span class="o">:</span><span class="mi">00</span></code> <br />
+<code class="codehilite">word_count-pthread</code>: 100MB dataset
+<code class="codehilite">pcache</code>: 8GB, 8-way
+<code class="codehilite">victim</code>: 8 entries
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -1155,8 +1150,7 @@ o;
 [ 1296.963297] CR2: 00007ffff1c1e000 CR3: 000000207fd8a000 CR4: 00000000000406a0
 </pre></div>
 </td></tr></table>
-
-<p>So what is this <code>ip:4272ea</code>, let us objdump the binary:</p>
+So what is this <code class="codehilite"><span class="n">ip</span><span class="o">:</span><span class="mi">4272</span><span class="n">ea</span></code>, let us objdump the binary:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -1210,11 +1204,10 @@ o;
   4272ee:       66 0f ef c0             pxor   %xmm0,%xmm0
 </pre></div>
 </td></tr></table>
-
-<p>You can see <code>%rsi</code> has some garbage value <code>RSI: 4854005942004441</code>. Something went wrong. Will it be our FPU? I'm not quite sure. If FPU code has error, why single-thread one succeed? Why it only shows up at multithread ones?</p>
+You can see <code class="codehilite"><span class="nf">%rsi</span></code> has some garbage value <code class="codehilite"><span class="n">RSI</span><span class="o">:</span> <span class="mi">4854005942004441</span></code>. Something went wrong. Will it be our FPU? I&rsquo;m not quite sure. If FPU code has error, why single-thread one succeed? Why it only shows up at multithread ones?</p>
 <hr />
-<h2 id="0205-mon-sunny"><code>02/05 Mon Sunny</code></h2>
-<p>From yesterday's testing of Phoenix, it looks like something is wrong in <code>smp_call_functions()</code>. They are invoked through <code>tlb flush</code>, which was further invoked by <code>mremap</code>, or <code>munmap</code>. The warning from smp is:</p>
+<h2 id="0205-mon-sunny"><code class="codehilite">02/05 Mon Sunny</code></h2>
+<p>From yesterday&rsquo;s testing of Phoenix, it looks like something is wrong in <code class="codehilite">smp_call_functions()</code>. They are invoked through <code class="codehilite">tlb flush</code>, which was further invoked by <code class="codehilite">mremap</code>, or <code class="codehilite">munmap</code>. The warning from smp is:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -1249,10 +1242,10 @@ o;
 </pre></div>
 </td></tr></table>
 
-<p>So I decided to look into smp.c a little bit to find out if there is something wrong (I wrote it long time ago). The warning itself is true, it means some inconsistent behavior.. I saw <code>alloc_percpu</code> stuff during <code>call_function_init</code>, hence probably I also need to check percpu code a little code cause I'm not sure if I port all the functionalities.</p>
-<p>In all, today's task, check <code>percpu</code> and <code>smp_call_function</code> code. Esp, <code>percpu</code> code, they are crucial and very hard to relate real bugs to it.</p>
-<p>Well... things changed. I found a more serious bug: something about <code>cpuhotplug</code>, even though lego is not using it. <code>cpuhotplug</code> is a set of implict callbacks to all different subsystems who want to do some initialization work on each <code>offline-&gt;online</code> cpu.</p>
-<p>Let us dig into how secondary cpu boots:</p>
+<p>So I decided to look into smp.c a little bit to find out if there is something wrong (I wrote it long time ago). The warning itself is true, it means some inconsistent behavior.. I saw <code class="codehilite">alloc_percpu</code> stuff during <code class="codehilite">call_function_init</code>, hence probably I also need to check percpu code a little code cause I&rsquo;m not sure if I port all the functionalities.</p>
+<p>In all, today&rsquo;s task, check <code class="codehilite">percpu</code> and <code class="codehilite">smp_call_function</code> code. Esp, <code class="codehilite">percpu</code> code, they are crucial and very hard to relate real bugs to it.</p>
+<p>Well&hellip; things changed. I found a more serious bug: something about <code class="codehilite">cpuhotplug</code>, even though lego is not using it. <code class="codehilite">cpuhotplug</code> is a set of implict callbacks to all different subsystems who want to do some initialization work on each <code class="codehilite">offline-&gt;online</code> cpu.</p>
+<p>Let us dig into how secondary cpu boots:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -1273,9 +1266,8 @@ o;
               <span class="p">}</span>
           <span class="n">cpuhp_invoke_callback</span><span class="p">()</span>
 </pre></div>
-</td></tr></table>
-
-<p>See? There will be some callbacks! What are those callbacks exactly? Well, they are predefined at the <code>kernel/cpu.c</code>. To save the trouble of reading code, I just print what functions are executed, the log is:</p>
+</td></tr></table></p>
+<p>See? There will be some callbacks! What are those callbacks exactly? Well, they are predefined at the <code class="codehilite">kernel/cpu.c</code>. To save the trouble of reading code, I just print what functions are executed, the log is:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -1350,10 +1342,9 @@ o;
 [    1.006206] cpuhp_invoke_callback(): 136  CPU:2  page_writeback_cpu_online+0x0/0x20
 [    1.006549] cpuhp_invoke_callback(): 136  CPU:2  sched_cpu_activate+0x0/0x190
 </pre></div>
-</td></tr></table>
-
-<p>Interesting! Currently, Lego need to add the <code>smpboot_create_threads()</code>, <code>workqueue_prepare_cpu()</code>, <code>workqueue_prepare_cpu()</code>, <code>bringup_cpu()</code>, <code>smpboot_unpark_threads()</code>, <code>workqueue_online_cpu()</code>.</p>
-<p>This hidden things is really hard to find and not easy to track during boot. Especially during boot, they should do something like <code>for_each_online_cpu</code> and init one by one. But I guess, after adding support of cpu hotplug, code kind of merged. Some stuff will be executed whenever a cpu has been teardown or bought up. And bang, why not use the same set of hotplug during boot, right?
+</td></tr></table></p>
+<p>Interesting! Currently, Lego need to add the <code class="codehilite">smpboot_create_threads()</code>, <code class="codehilite">workqueue_prepare_cpu()</code>, <code class="codehilite">workqueue_prepare_cpu()</code>, <code class="codehilite">bringup_cpu()</code>, <code class="codehilite">smpboot_unpark_threads()</code>, <code class="codehilite">workqueue_online_cpu()</code>.</p>
+<p>This hidden things is really hard to find and not easy to track during boot. Especially during boot, they should do something like <code class="codehilite">for_each_online_cpu</code> and init one by one. But I guess, after adding support of cpu hotplug, code kind of merged. Some stuff will be executed whenever a cpu has been teardown or bought up. And bang, why not use the same set of hotplug during boot, right?
 Well.</p>
 <hr />
                 
