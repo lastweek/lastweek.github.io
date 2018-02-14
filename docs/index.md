@@ -6,21 +6,18 @@ Please find my CV [here](https://lastweek.github.io/pubs/cv.pdf).
 
 ## Research
 
-My research interests are on operating system, distributed storage systems,
-and non-volatile memory systems. I like kernel and no doubt Linux is my
+My research interests span Operating System, Distributed Systems,
+and Non-Volatile Memory. I like hacking kernel and no doubt Linux is my
 favorite open-source project.
 
 
 ## Contact
-
-```
 465 Northwestern Ave  
-Purdue University
-West Lafayette, IN 47907
-Office: EE 345
+Purdue University  
+West Lafayette, IN 47907  
+Office: EE 345  
 
 Email: ys@purdue.edu
-```
 
 ## Conferences and Workshops
 * [Distributed Shared Persistent Memory](https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf), NVMW'18

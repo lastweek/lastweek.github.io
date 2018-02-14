@@ -28,8 +28,6 @@ pages:
 
 markdown_extensions:
   - smarty
-
-markdown_extensions:
   - pymdownx.arithmatex
   - pymdownx.betterem:
       smart_enable: all
@@ -47,10 +45,6 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
   - pymdownx.progressbar
-
-# pymdownx highlight with linenums has bugs
-# So use this instead
-markdown_extensions:
   - codehilite:
       linenums: true
 
