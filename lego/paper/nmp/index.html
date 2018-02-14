@@ -599,9 +599,9 @@
                 
                 <h1 id="near-memory-processing">Near Memory Processing</h1>
 <ul>
-<li><mark>NMP: Near Memory Processing</mark></li>
+<li>==NMP: Near Memory Processing==</li>
 <li>
-<p><mark>NDC: Near Data Computing</mark></p>
+<p>==NDC: Near Data Computing==</p>
 </li>
 <li>
 <p><code>PRIME: A Novel Processing-in-memory Architecture for Neural Network
@@ -609,7 +609,7 @@ Computation in ReRAM-based Main Memory, ISCA'16</code></p>
 <ul>
 <li>High-performance
 acceleration of NN requires high memory bandwidth since
-the <mark>PUs are hungry for fetching the synaptic weights [17]</mark>. To
+the ==PUs are hungry for fetching the synaptic weights [17]==. To
 address this challenge, recent special-purpose chip designs
 have adopted large on-chip memory to store the synaptic
 weights. For example, DaDianNao [18] employed a large
@@ -618,7 +618,7 @@ TrueNorth utilized an SRAM crossbar memory for synapses
 in each core [19].</li>
 </ul>
 </li>
-<li><mark>DianNao</mark> and <mark>DaDianNao</mark><ul>
+<li>==DianNao== and ==DaDianNao==<ul>
 <li>... <strong>memory bandwidth requirements</strong> of two important
 layer types: convolutional layers with private kernels
 (used in DNNs) and classifier layers used in both CNNs and
@@ -629,7 +629,7 @@ even tens or hundreds thereof.</li>
 all <strong>synapse</strong> on the combined eDRAM of all chips will
 save on <code>off-chip DRAM accesses</code>, which are particularly
 costly energy-wise</li>
-<li><mark>Synapses</mark>. In a perceptron layer, all synapses are usually
+<li>==Synapses==. In a perceptron layer, all synapses are usually
 unique, and thus there is no reuse within the layer. On the
 other hand, the synapses are reused across network invocations,
 i.e., for each new input data (also called “input row”)
@@ -648,8 +648,8 @@ are now drastically reduced.</li>
 <li>So, ML workloads do need large memory bandwidth, and need a lot memory. But how about <strong>temporary working set size</strong>? It's the best if it has a reasonable working set size that can fit the cache.</li>
 </ul>
 </li>
-<li><mark>TPU</mark><ul>
-<li>Each model needs between 5M and 100M weights (9<sup>th</sup>
+<li>==TPU==<ul>
+<li>Each model needs between 5M and 100M weights (9th
 column of Table 1), which can take a lot of time and energy to
 access. To amortize the access costs, <strong>the same weights are reused
 across a batch of independent examples during inference or
@@ -660,7 +660,7 @@ called Weight Memory</strong> (for inference, weights are read-only; 8
 GiB supports many simultaneously active models). The weight
 FIFO is four tiles deep. The intermediate results are held in the <strong>24
 MiB on-chip Unified Buffer</strong>, which can serve as inputs to the Matrix Unit.</li>
-<li><mark>In virtual cache model, we actually can assign those weights to some designated sets, thus avoid conflicting with other data, which means we can sustain those weights in cache!</mark></li>
+<li>==In virtual cache model, we actually can assign those weights to some designated sets, thus avoid conflicting with other data, which means we can sustain those weights in cache!==</li>
 </ul>
 </li>
 </ul>

@@ -783,88 +783,157 @@
 <p>todo</p>
 <h4 id="setup_sched_fork">setup_sched_fork()</h4>
 <p>Callback to scheduler to setup this new task. It may reset all scheduler related information. Here we also have a chance to change this task's scheduler class:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">int</span> <span style="color: #0000FF">setup_sched_fork</span>(<span style="color: #B00040">unsigned</span> <span style="color: #B00040">long</span> clone_flags, <span style="color: #008000; font-weight: bold">struct</span> task_struct <span style="color: #666666">*</span>p)
-{
-        <span style="color: #B00040">int</span> cpu <span style="color: #666666">=</span> get_cpu();
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="nf">setup_sched_fork</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">clone_flags</span><span class="p">,</span> <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">p</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="kt">int</span> <span class="n">cpu</span> <span class="o">=</span> <span class="n">get_cpu</span><span class="p">();</span>
 
-        __sched_fork(clone_flags, p);
+        <span class="n">__sched_fork</span><span class="p">(</span><span class="n">clone_flags</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
 
-        p<span style="color: #666666">-&gt;</span>state <span style="color: #666666">=</span> TASK_NEW;
-        ...
-        <span style="color: #008000; font-weight: bold">if</span> (unlikely(p<span style="color: #666666">-&gt;</span>sched_reset_on_fork)) {
-                <span style="color: #008000; font-weight: bold">if</span> (task_has_rt_policy(p)) {
-                        p<span style="color: #666666">-&gt;</span>policy <span style="color: #666666">=</span> SCHED_NORMAL;
-                        p<span style="color: #666666">-&gt;</span>static_prio <span style="color: #666666">=</span> NICE_TO_PRIO(<span style="color: #666666">0</span>);
-                        p<span style="color: #666666">-&gt;</span>rt_priority <span style="color: #666666">=</span> <span style="color: #666666">0</span>;
-                } <span style="color: #008000; font-weight: bold">else</span> <span style="color: #008000; font-weight: bold">if</span> (PRIO_TO_NICE(p<span style="color: #666666">-&gt;</span>static_prio) <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>)
-                        p<span style="color: #666666">-&gt;</span>static_prio <span style="color: #666666">=</span> NICE_TO_PRIO(<span style="color: #666666">0</span>);
+        <span class="n">p</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">TASK_NEW</span><span class="p">;</span>
+        <span class="p">...</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">sched_reset_on_fork</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">task_has_rt_policy</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="n">p</span><span class="o">-&gt;</span><span class="n">policy</span> <span class="o">=</span> <span class="n">SCHED_NORMAL</span><span class="p">;</span>
+                        <span class="n">p</span><span class="o">-&gt;</span><span class="n">static_prio</span> <span class="o">=</span> <span class="n">NICE_TO_PRIO</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+                        <span class="n">p</span><span class="o">-&gt;</span><span class="n">rt_priority</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">PRIO_TO_NICE</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">static_prio</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+                        <span class="n">p</span><span class="o">-&gt;</span><span class="n">static_prio</span> <span class="o">=</span> <span class="n">NICE_TO_PRIO</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 
-                p<span style="color: #666666">-&gt;</span>prio <span style="color: #666666">=</span> p<span style="color: #666666">-&gt;</span>normal_prio <span style="color: #666666">=</span> __normal_prio(p);
-                set_load_weight(p);
-                ...
-        }    
+                <span class="n">p</span><span class="o">-&gt;</span><span class="n">prio</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">normal_prio</span> <span class="o">=</span> <span class="n">__normal_prio</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+                <span class="n">set_load_weight</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+                <span class="p">...</span>
+        <span class="p">}</span>    
 
-        <span style="color: #008000; font-weight: bold">if</span> (rt_prio(p<span style="color: #666666">-&gt;</span>prio))
-                p<span style="color: #666666">-&gt;</span>sched_class <span style="color: #666666">=</span> <span style="color: #666666">&amp;</span>rt_sched_class;
-        <span style="color: #008000; font-weight: bold">else</span> {
-                p<span style="color: #666666">-&gt;</span>sched_class <span style="color: #666666">=</span> <span style="color: #666666">&amp;</span>fair_sched_class;
-                set_load_weight(p);
-        }    
+        <span class="k">if</span> <span class="p">(</span><span class="n">rt_prio</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">prio</span><span class="p">))</span>
+                <span class="n">p</span><span class="o">-&gt;</span><span class="n">sched_class</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">rt_sched_class</span><span class="p">;</span>
+        <span class="k">else</span> <span class="p">{</span>
+                <span class="n">p</span><span class="o">-&gt;</span><span class="n">sched_class</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">fair_sched_class</span><span class="p">;</span>
+                <span class="n">set_load_weight</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+        <span class="p">}</span>    
 
-        __set_task_cpu(p, cpu);
-        <span style="color: #008000; font-weight: bold">if</span> (p<span style="color: #666666">-&gt;</span>sched_class<span style="color: #666666">-&gt;</span>task_fork)
-                p<span style="color: #666666">-&gt;</span>sched_class<span style="color: #666666">-&gt;</span>task_fork(p);
+        <span class="n">__set_task_cpu</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">cpu</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">sched_class</span><span class="o">-&gt;</span><span class="n">task_fork</span><span class="p">)</span>
+                <span class="n">p</span><span class="o">-&gt;</span><span class="n">sched_class</span><span class="o">-&gt;</span><span class="n">task_fork</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
 
-        ...
-}
+        <span class="p">...</span>
+<span class="p">}</span>
 </pre></div>
+</td></tr></table>
 
 <h3 id="2-p2m_fork">2) p2m_fork()</h3>
 <p>In order to track user activities, we need to know when user are going to create new process. Fork is the best time and the only time we kernel know. So, Lego adds this special hook to tell remote global monitor or memory manager that there is a new process going to be created. Upon receiving this message, remote monitor will update its bookkeeping for this specific user/vNode.</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">/* Tell remote memory component */</span>
-<span style="color: #BC7A00">#ifdef CONFIG_COMP_PROCESSOR</span>
-<span style="color: #008000; font-weight: bold">if</span> (clone_flags <span style="color: #666666">&amp;</span> CLONE_GLOBAL_THREAD) {
-        ...
-        p2m_fork(p, clone_flags);
-        ...
-}   
-<span style="color: #BC7A00">#endif</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cm">/* Tell remote memory component */</span>
+<span class="cp">#ifdef CONFIG_COMP_PROCESSOR</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">clone_flags</span> <span class="o">&amp;</span> <span class="n">CLONE_GLOBAL_THREAD</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">...</span>
+        <span class="n">p2m_fork</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">clone_flags</span><span class="p">);</span>
+        <span class="p">...</span>
+<span class="p">}</span>   
+<span class="cp">#endif</span>
 </pre></div>
+</td></tr></table>
 
 <h3 id="3-wake_up_new_task">3) wake_up_new_task()</h3>
 <p>The last step of <code>do_fork</code> is waking up the new thread or process, which is performed by <code>wake_up_new_task()</code> function. The first question this function will ask is: <code>which cpu to land?</code> The answer comes from <code>select_task_rq()</code>:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">static</span> <span style="color: #008000; font-weight: bold">inline</span>
-<span style="color: #B00040">int</span> <span style="color: #0000FF">select_task_rq</span>(<span style="color: #008000; font-weight: bold">struct</span> task_struct <span style="color: #666666">*</span>p, <span style="color: #B00040">int</span> cpu, <span style="color: #B00040">int</span> sd_flags, <span style="color: #B00040">int</span> wake_flags)
-{
-        <span style="color: #008000; font-weight: bold">if</span> (p<span style="color: #666666">-&gt;</span>nr_cpus_allowed <span style="color: #666666">&gt;</span> <span style="color: #666666">1</span>)
-                cpu <span style="color: #666666">=</span> p<span style="color: #666666">-&gt;</span>sched_class<span style="color: #666666">-&gt;</span>select_task_rq(p, cpu, sd_flags, wake_flags);
-        <span style="color: #008000; font-weight: bold">else</span>
-                cpu <span style="color: #666666">=</span> cpumask_any(<span style="color: #666666">&amp;</span>p<span style="color: #666666">-&gt;</span>cpus_allowed);
-        ...
-}
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">static</span> <span class="kr">inline</span>
+<span class="kt">int</span> <span class="nf">select_task_rq</span><span class="p">(</span><span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="kt">int</span> <span class="n">cpu</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sd_flags</span><span class="p">,</span> <span class="kt">int</span> <span class="n">wake_flags</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">nr_cpus_allowed</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">cpu</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">sched_class</span><span class="o">-&gt;</span><span class="n">select_task_rq</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">cpu</span><span class="p">,</span> <span class="n">sd_flags</span><span class="p">,</span> <span class="n">wake_flags</span><span class="p">);</span>
+        <span class="k">else</span>
+                <span class="n">cpu</span> <span class="o">=</span> <span class="n">cpumask_any</span><span class="p">(</span><span class="o">&amp;</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">cpus_allowed</span><span class="p">);</span>
+        <span class="p">...</span>
+<span class="p">}</span>
 </pre></div>
+</td></tr></table>
 
 <p>Clearly, this is determined by <code>cpus_allowed</code>, which is the same with its parent at this point. That being said, if the parent is only able to run on one specific CPU, then all its children will end up running on the same CPU when they wake up (they could change their affinity later). This is also the default on Linux: <code>A child created via fork(2) inherits its parent's CPU affinity mask. The affinity mask is preserved across an execve(2).</code></p>
 <p>After landing CPU is selected, following operation is simple: just enqueue this task into landing CPU's runqueue, and we are done:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">void</span> <span style="color: #0000FF">wake_up_new_task</span>(<span style="color: #008000; font-weight: bold">struct</span> task_struct <span style="color: #666666">*</span>p)
-{
-        ...
-<span style="color: #408080; font-style: italic">/* Select a CPU for new thread to run */</span>
-<span style="color: #BC7A00">#ifdef CONFIG_SMP</span>
-        <span style="color: #408080; font-style: italic">/*   </span>
-<span style="color: #408080; font-style: italic">         * Fork balancing, do it here and not earlier because:</span>
-<span style="color: #408080; font-style: italic">         *  - cpus_allowed can change in the fork path</span>
-<span style="color: #408080; font-style: italic">         *  - any previously selected cpu might disappear through hotplug</span>
-<span style="color: #408080; font-style: italic">         */</span>
-        set_task_cpu(p, select_task_rq(p, task_cpu(p), SD_BALANCE_FORK, <span style="color: #666666">0</span>));
-<span style="color: #BC7A00">#endif</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">wake_up_new_task</span><span class="p">(</span><span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">p</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="p">...</span>
+<span class="cm">/* Select a CPU for new thread to run */</span>
+<span class="cp">#ifdef CONFIG_SMP</span>
+        <span class="cm">/*   </span>
+<span class="cm">         * Fork balancing, do it here and not earlier because:</span>
+<span class="cm">         *  - cpus_allowed can change in the fork path</span>
+<span class="cm">         *  - any previously selected cpu might disappear through hotplug</span>
+<span class="cm">         */</span>
+        <span class="n">set_task_cpu</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">select_task_rq</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">task_cpu</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">SD_BALANCE_FORK</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+<span class="cp">#endif</span>
 
-        rq <span style="color: #666666">=</span> __task_rq_lock(p);
-        activate_task(rq, p, <span style="color: #666666">0</span>);
-        p<span style="color: #666666">-&gt;</span>on_rq <span style="color: #666666">=</span> TASK_ON_RQ_QUEUED;
-        ...
-}
+        <span class="n">rq</span> <span class="o">=</span> <span class="n">__task_rq_lock</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+        <span class="n">activate_task</span><span class="p">(</span><span class="n">rq</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="n">p</span><span class="o">-&gt;</span><span class="n">on_rq</span> <span class="o">=</span> <span class="n">TASK_ON_RQ_QUEUED</span><span class="p">;</span>
+        <span class="p">...</span>
+<span class="p">}</span>
 </pre></div>
+</td></tr></table>
 
 <p>--<br />
 Yizhou Shan<br />

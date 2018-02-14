@@ -743,14 +743,89 @@
                 <h1 id="feb-2018">Feb 2018</h1>
 <hr />
 <h2 id="0214-wed-rainy">02/14 Wed Rainy</h2>
+<p>Hmm, tried to make kmalloc behave as kzalloc, and bind all threads to one core, still gave the same old bug:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="hll">  42731a:       f3 0f 6f 16             movdqu (%rsi),%xmm2
+</span>
+  [93182.657376] word_count-pthr[85] general protection ip:42731a sp:7fffe3ffed28 error:0
+  [93182.747959] CPU: 8 PID: 85 Comm: word_count-pthr 4.0.0-lego+ #170
+  [93182.820758] RIP: 0033:[&lt;000000000042731a&gt;]  [&lt;000000000042731a&gt;] 0x42731a
+  [93182.901878] RSP: 002b:00007fffe3ffed28  EFLAGS: 00010283
+  [93182.965317] RAX: 000000000000001f RBX: 00007ffff001b010 RCX: 0000000000000005
+  [93183.050596] RDX: 0000000000000000 RSI: 5345485355420045 RDI: 00007ffff294791f
+  [93183.135876] RBP: 00007ffff294791f R08: 000000000000ffff R09: 0000000000000008
+  [93183.221156] R10: fffffffffffff048 R11: 00000000004acfc0 R12: 0000000000001cde
+  [93183.306435] R13: 00000000006e4a8c R14: 0000000000001cd7 R15: 0000000000001cda
+  [93183.391716] FS:  00007fffe3fff700(0000) GS:ffff88107fc80000(0000) knlGS:0000000000000000
+  [93183.488434] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+  [93183.557075] CR2: 00007ffff27a4000 CR3: 000000107e924000 CR4: 00000000000406a0
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="hll">  427377:       66 0f 6f 17             movdqa (%rdi),%xmm2
+</span>
+  [93180.527248] word_count-pthr[93]: segfault at 0x0 ip 0000000000427377 sp 00007fffdfff6d28 error 4
+  [93180.630314] CPU: 8 PID: 93 Comm: word_count-pthr 4.0.0-lego+ #170
+  [93180.703114] RIP: 0033:[&lt;0000000000427377&gt;]  [&lt;0000000000427377&gt;] 0x427377
+  [93180.784234] RSP: 002b:00007fffdfff6d28  EFLAGS: 00010297
+  [93180.847674] RAX: 0000000000000000 RBX: 000000000073c4c0 RCX: 000000000000000d
+  [93180.932953] RDX: 000000000000ffff RSI: 00007ffff4999070 RDI: 0000000000000000
+  [93181.018233] RBP: 00007ffff499907d R08: 000000000000ffff R09: 0000000000000000
+  [93181.103513] R10: 0000000000427760 R11: 00007ffff49982c0 R12: 0000000000000118
+  [93181.188791] R13: 00000000006e4aac R14: 0000000000000116 R15: 0000000000000117
+  [93181.274072] FS:  00007fffdfff7700(0000) GS:ffff88107fc80000(0000) knlGS:0000000000000000
+  [93181.370790] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+  [93181.439430] CR2: 0000000000000000 CR3: 000000107e924000 CR4: 00000000000406a0
+</pre></div>
+</td></tr></table>
+
 <hr />
 <h2 id="0213-tue-sunny">02/13 Tue Sunny</h2>
 <p>Checking our SLOB allocator today. So I found Yutong's code is using <code>set_page_private</code> when slob get a new page from buddy. This private field is only intended to be used by buddy to record the <code>order</code>. This mixed usage will confuse buddy and create bug.</p>
-<p>Even though I removed the <code class="highlight">set_page_private(page, <span style="color: #666666">0</span>)</code> after <code>free_page</code>, word_count-pthread still fails. Damn.</p>
+<p>Even though I removed the <code>:::c set_page_private(page, 0)</code> after <code>free_page</code>, word_count-pthread still fails. Damn.</p>
 <hr />
 <h2 id="0212-mon-cloudy">02/12 Mon Cloudy</h2>
-<p>Add this commit <code>4cb3a8b6a943c90714fd9bb5e5465ee315f0aa30</code>:
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>    memory: Use kzalloc instead of kmalloc in __bprm_mm_init (loader)
+<p>Add this commit <code>4cb3a8b6a943c90714fd9bb5e5465ee315f0aa30</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    memory: Use kzalloc instead of kmalloc in __bprm_mm_init (loader)
 
     This was an potentionl bug that was not triggered previously.
     It is simply because kmalloc&#39;ed vma contains some garbage area,
@@ -765,53 +840,97 @@
     This actually reminds me that this is a series of potential bugs!
     Even though before I&#39;ve added things like force GFP_ZERO in all
     physical page allocation, I missed the kmalloc&#39;s case!
-</pre></div></p>
+</pre></div>
+</td></tr></table>
+
 <p>The story is:</p>
-<p>I patched the stop_machine code today, and tried to run code with P+M on VM, everything works fine. However, when I tried to run the new code with P+M+S on physical machine, M crashed at a very weird point:
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>[ 7791.998168] handle_p2m_execve(): pid:81,argc:2,envc:2,file:/root/ys/phoenix/phoenix-2.0/tests/word_count/word_count-pthread
+<p>I patched the stop_machine code today, and tried to run code with P+M on VM, everything works fine. However, when I tried to run the new code with P+M+S on physical machine, M crashed at a very weird point:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[ 7791.998168] handle_p2m_execve(): pid:81,argc:2,envc:2,file:/root/ys/phoenix/phoenix-2.0/tests/word_count/word_count-pthread
 [ 7792.129312] BUG: unable to handle kernel NULL pointer dereference at 0000000000000031
 [ 7792.222889] IP: [&lt;ffffffff8102c180&gt;] handle_lego_mm_fault+0x160/0x4b0
 [ 7792.299842] PGD 0
 [ 7792.323760] Oops: 0000 [#1] PREEMPT SMP MEMORY
 [ 7792.376794] CPU: 4 PID: 79 Comm: mc-manager 4.0.0-lego+ #29
-<span style="background-color: #ffffcc">[ 7792.443349] RIP: .. [&lt;ffffffff8102c180&gt;] handle_lego_mm_fault+0x160/0x4b0
+<span class="hll">[ 7792.443349] RIP: .. [&lt;ffffffff8102c180&gt;] handle_lego_mm_fault+0x160/0x4b0
 </span>......
 ....
 [ 7793.750506] Call Trace:
 [ 7793.779623] &lt;TSK&gt;
-<span style="background-color: #ffffcc">[ 7793.802501] [&lt;ffffffff810053f4&gt;] ? apic_timer_interrupt+0x54/0x90
-</span><span style="background-color: #ffffcc">[ 7793.875295] [&lt;ffffffff8102e469&gt;] faultin_page+0x9/0x70
-</span><span style="background-color: #ffffcc">[ 7793.936649] [&lt;ffffffff8102ef01&gt;] copy_strings.isra.1+0xe1/0x130
-</span><span style="background-color: #ffffcc">[ 7794.007362] [&lt;ffffffff8102f11e&gt;] exec_loader+0x1ce/0x340
-</span><span style="background-color: #ffffcc">[ 7794.070796] [&lt;ffffffff81027def&gt;] handle_p2m_execve+0x12f/0x200
+<span class="hll">[ 7793.802501] [&lt;ffffffff810053f4&gt;] ? apic_timer_interrupt+0x54/0x90
+</span><span class="hll">[ 7793.875295] [&lt;ffffffff8102e469&gt;] faultin_page+0x9/0x70
+</span><span class="hll">[ 7793.936649] [&lt;ffffffff8102ef01&gt;] copy_strings.isra.1+0xe1/0x130
+</span><span class="hll">[ 7794.007362] [&lt;ffffffff8102f11e&gt;] exec_loader+0x1ce/0x340
+</span><span class="hll">[ 7794.070796] [&lt;ffffffff81027def&gt;] handle_p2m_execve+0x12f/0x200
 </span>[ 7794.140469] [&lt;ffffffff810274fb&gt;] mc_manager+0x1ab/0x2b0
 [ 7794.202864] [&lt;ffffffff81027350&gt;] ? bitmap_fill+0x33/0x33
 [ 7794.266298] [&lt;ffffffff8101c6b7&gt;] kthread+0x107/0x130
 [ 7794.325572] [&lt;ffffffff8101c5b0&gt;] ? __kthread_parkme+0x90/0x90
 [ 7794.394205] [&lt;ffffffff8100b462&gt;] ret_from_fork+0x22/0x30
-</pre></div></p>
-<p>So faulting source code is:
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">handle_pte_fault</span>(<span style="color: #008000; font-weight: bold">struct</span> vm_area_struct <span style="color: #666666">*</span>vma, <span style="color: #B00040">unsigned</span> <span style="color: #B00040">long</span> address,
-                            <span style="color: #B00040">unsigned</span> <span style="color: #B00040">int</span> flags, pte_t <span style="color: #666666">*</span>pte, pmd_t <span style="color: #666666">*</span>pmd)
-{
-    ....
-<span style="background-color: #ffffcc">        <span style="color: #008000; font-weight: bold">if</span> (vma<span style="color: #666666">-&gt;</span>vm_ops <span style="color: #666666">&amp;&amp;</span> vma<span style="color: #666666">-&gt;</span>vm_ops<span style="color: #666666">-&gt;</span>fault)
-</span><span style="background-color: #ffffcc">                <span style="color: #008000; font-weight: bold">return</span> do_linear_fault(vma, address, flags,
-</span>                                       pte, pmd, entry)
-    ....
-</pre></div></p>
-<p>Something wrong with <code>vma</code>? At this loader stage, this vma is a temporaty stack vma created for saving <code>argv</code> and <code>envp</code>. So I look back into the code that created this vma:
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>managers<span style="color: #666666">/</span>memory<span style="color: #666666">/</span>loader<span style="color: #666666">/</span>core.<span style="color: #A0A000">c</span>:
-<span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">int</span> __bprm_mm_init(<span style="color: #008000; font-weight: bold">struct</span> lego_binprm <span style="color: #666666">*</span>bprm)
-{
-        <span style="color: #B00040">int</span> err;
-        <span style="color: #008000; font-weight: bold">struct</span> vm_area_struct <span style="color: #666666">*</span>vma <span style="color: #666666">=</span> <span style="color: #008000">NULL</span>;
-        <span style="color: #008000; font-weight: bold">struct</span> lego_mm_struct <span style="color: #666666">*</span>mm <span style="color: #666666">=</span> bprm<span style="color: #666666">-&gt;</span>mm;
+</pre></div>
+</td></tr></table>
 
-<span style="background-color: #ffffcc">        bprm<span style="color: #666666">-&gt;</span>vma <span style="color: #666666">=</span> vma <span style="color: #666666">=</span> kmalloc(<span style="color: #008000; font-weight: bold">sizeof</span>(<span style="color: #666666">*</span>vma), GFP_KERNEL);
-</span>        <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #666666">!</span>vma)
-                <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">-</span>ENOMEM;
-</pre></div></p>
+<p>So faulting source code is:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">static</span> <span class="kt">int</span> <span class="nf">handle_pte_fault</span><span class="p">(</span><span class="k">struct</span> <span class="n">vm_area_struct</span> <span class="o">*</span><span class="n">vma</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">address</span><span class="p">,</span>
+                            <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">flags</span><span class="p">,</span> <span class="n">pte_t</span> <span class="o">*</span><span class="n">pte</span><span class="p">,</span> <span class="n">pmd_t</span> <span class="o">*</span><span class="n">pmd</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="p">....</span>
+<span class="hll">        <span class="k">if</span> <span class="p">(</span><span class="n">vma</span><span class="o">-&gt;</span><span class="n">vm_ops</span> <span class="o">&amp;&amp;</span> <span class="n">vma</span><span class="o">-&gt;</span><span class="n">vm_ops</span><span class="o">-&gt;</span><span class="n">fault</span><span class="p">)</span>
+</span><span class="hll">                <span class="k">return</span> <span class="n">do_linear_fault</span><span class="p">(</span><span class="n">vma</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span>
+</span>                                       <span class="n">pte</span><span class="p">,</span> <span class="n">pmd</span><span class="p">,</span> <span class="n">entry</span><span class="p">)</span>
+    <span class="p">....</span>
+</pre></div>
+</td></tr></table>
+
+<p>Something wrong with <code>vma</code>? At this loader stage, this vma is a temporaty stack vma created for saving <code>argv</code> and <code>envp</code>. So I look back into the code that created this vma:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">managers</span><span class="o">/</span><span class="n">memory</span><span class="o">/</span><span class="n">loader</span><span class="o">/</span><span class="n">core</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="n">__bprm_mm_init</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="kt">int</span> <span class="n">err</span><span class="p">;</span>
+        <span class="k">struct</span> <span class="n">vm_area_struct</span> <span class="o">*</span><span class="n">vma</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+        <span class="k">struct</span> <span class="n">lego_mm_struct</span> <span class="o">*</span><span class="n">mm</span> <span class="o">=</span> <span class="n">bprm</span><span class="o">-&gt;</span><span class="n">mm</span><span class="p">;</span>
+
+<span class="hll">        <span class="n">bprm</span><span class="o">-&gt;</span><span class="n">vma</span> <span class="o">=</span> <span class="n">vma</span> <span class="o">=</span> <span class="n">kmalloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="o">*</span><span class="n">vma</span><span class="p">),</span> <span class="n">GFP_KERNEL</span><span class="p">);</span>
+</span>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">vma</span><span class="p">)</span>
+                <span class="k">return</span> <span class="o">-</span><span class="n">ENOMEM</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
 <p>The code after this does NOT do necessary cleanup. The <code>vm_ops</code> happens to have some garbage value from last user. So it is not 0, so the above <code>vma-&gt;vm_ops</code> is true, and it will try to read <code>vma-&gt;vm_ops-&gt;fault</code>. And that, my friend, is where garbage turns into crash.</p>
 <p>This presents a series of potential bugs. Ugh, <code>memory safety</code>!</p>
 <hr />
@@ -819,7 +938,44 @@
 <p>Tried to modify Phoneix code: replace <code>realloc</code> with <code>malloc+mempcy</code>. Thus the <code>mremap</code> syscall is avoided, but it still has general protection fault. Same with yesterday, corrupted at <code>__strcmp_sse42</code>, with corrupted <code>RSI</code> or <code>RDI</code>. So I guess it is not about <code>mremap</code> itself at all. I will follow yesterday's checking list.</p>
 <hr />
 <h2 id="0208-thur-cloudy"><code>02/08 Thur Cloudy</code></h2>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>00000000004272d0 &lt;__strcmp_sse42&gt;:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>00000000004272d0 &lt;__strcmp_sse42&gt;:
 
   4272d0:       89 f1                   mov    %esi,%ecx
   4272d2:       89 f8                   mov    %edi,%eax
@@ -858,6 +1014,7 @@
 * 427347:       66 0f 6f 17             movdqa (%rdi),%xmm2
   (RDI: 0000000000000000)
 </pre></div>
+</td></tr></table>
 
 <p>Frustrating! What is wrong with multithread program? Because of broken FPU-switch code? of inappropriate TLB flush? of IB corrupts memory? of what? ugh?</p>
 <p>I'm done with this random guess and frustrated general protection or segfault, I need to first make sure underlying kernel is 100%  percent correct, this is a checking list:</p>
@@ -935,7 +1092,13 @@ Done for today. I'm trying to patch <code>move_pte</code> and <code>pcache_move_
 Criminal found: <code>mremap()</code> and <code>virtual cache</code> did the crime. Interesting, I have not seen any research paper, tech-reports, writeup, code about this, not even the OVC paper, which, by the way, I think they must consider this case. Otherwise, a mremap will simply crash its virtual cache. Many thanks went to my smoke-and-think time.</p>
 <p><code>15:14</code><br />
 Something new came up! After adding a spinlock for ibapi, this showed up (I tried one more time after this, which does not show up). We are lucky to catch this. At least I know where to look at. Also, this is defenitly triggered by <code>mremap</code>. It is seems it is overlapped <code>mremap()</code>. One thing I did not know is which thread trigger this bug, the sweep thread? Cause mremap related pcache rmap functions do not use <code>rmap_get_locked_pte</code>.</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>[ 3826.048774] normal_p2s_open(): f_name: word_100MB.txt, mode: 04400, flags: 0
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[ 3826.048774] normal_p2s_open(): f_name: word_100MB.txt, mode: 04400, flags: 0
 [ 3827.891622] SYSC_mremap(cpu18): move: [0x7fffe5788000 - 0x7fffe5806000] -&gt; [0x7fffe531b000 - 0x7fffe5399000]
 [ 3828.178643] SYSC_mremap(cpu14): move: [0x7fffe5941000 - 0x7fffe5980000] -&gt; [0x7fffe57c7000 - 0x7fffe5806000]
 
@@ -943,12 +1106,33 @@ Something new came up! After adding a spinlock for ibapi, this showed up (I trie
 ****    rmap-&gt;owner_process: word_count-pthr uva: 0x7fffe57c8000 ptep: ffff88107efe0e40, rmap-&gt;page_table: ffff88107efe0e40
 ****    pcache_pfn: 0x1257c8, pte_pfn: 0x125942
 </pre></div>
+</td></tr></table>
 
 <p><code>14:00</code> <br />
 <code>word_count-pthread</code>: 100MB dataset
 <code>pcache</code>: 8GB, 8-way
-<code>victim</code>: 8 entries
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>[ 1294.845313] STDOUT: ---[
+<code>victim</code>: 8 entries</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[ 1294.845313] STDOUT: ---[
 Wordcount: Running...
 ]---
 [ 1294.903661] STDOUT: ---[
@@ -970,8 +1154,35 @@ o;
 [ 1296.582686] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
 [ 1296.963297] CR2: 00007ffff1c1e000 CR3: 000000207fd8a000 CR4: 00000000000406a0
 </pre></div>
-So what is this <code>ip:4272ea</code>, let us objdump the binary:
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>0000000000425e60 &lt;strcmp&gt;:
+</td></tr></table>
+
+<p>So what is this <code>ip:4272ea</code>, let us objdump the binary:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>0000000000425e60 &lt;strcmp&gt;:
   425e60:       48 8d 05 69 14 00 00    lea    0x1469(%rip),%rax        # 4272d0 &lt;__strcmp_sse42&gt;
   425e67:       f7 05 5f b8 2b 00 00    testl  $0x100000,0x2bb85f(%rip)        # 6e16d0 &lt;_dl_x86_cpu_features+0x10&gt;
   425e6e:       00 10 00
@@ -998,45 +1209,110 @@ So what is this <code>ip:4272ea</code>, let us objdump the binary:
 * 4272ea:       f3 0f 6f 16             movdqu (%rsi),%xmm2
   4272ee:       66 0f ef c0             pxor   %xmm0,%xmm0
 </pre></div>
-You can see <code>%rsi</code> has some garbage value <code>RSI: 4854005942004441</code>. Something went wrong. Will it be our FPU? I'm not quite sure. If FPU code has error, why single-thread one succeed? Why it only shows up at multithread ones?</p>
+</td></tr></table>
+
+<p>You can see <code>%rsi</code> has some garbage value <code>RSI: 4854005942004441</code>. Something went wrong. Will it be our FPU? I'm not quite sure. If FPU code has error, why single-thread one succeed? Why it only shows up at multithread ones?</p>
 <hr />
 <h2 id="0205-mon-sunny"><code>02/05 Mon Sunny</code></h2>
 <p>From yesterday's testing of Phoenix, it looks like something is wrong in <code>smp_call_functions()</code>. They are invoked through <code>tlb flush</code>, which was further invoked by <code>mremap</code>, or <code>munmap</code>. The warning from smp is:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>[ <span style="color: #666666">1260.586696</span>] <span style="color: #A0A000">WARNING</span>: <span style="color: #A0A000">CPU</span>: <span style="color: #666666">0</span> <span style="color: #A0A000">PID</span>: <span style="color: #666666">73</span> at kernel<span style="color: #666666">/</span>smp.<span style="color: #A0A000">c</span>:<span style="color: #666666">129</span> generic_smp_call_function_single_interrupt<span style="color: #666666">+0xb8/0x160</span>
-[ <span style="color: #666666">1260.705251</span>] <span style="color: #A0A000">CPU</span>: <span style="color: #666666">0</span> <span style="color: #A0A000">PID</span>: <span style="color: #666666">73</span> <span style="color: #A0A000">Comm</span>: word_count<span style="color: #666666">-</span>pthr <span style="color: #666666">4.0.0-</span>lego<span style="color: #666666">+</span> <span style="border: 1px solid #FF0000">#</span><span style="color: #666666">99</span>
-[ <span style="color: #666666">1260.777008</span>] <span style="color: #A0A000">Stack</span>:
-[ <span style="color: #666666">1260.800927</span>] ffff88207fdffef8 ffffffff8100ec67 ffff88107fc00000 ffff88107fc00000
-[ <span style="color: #666666">1260.888283</span>] ffffffff8100d410 ffff88207fe23df0 ffff88207fdfff08 ffffffff8100ed5f
-[ <span style="color: #666666">1260.975639</span>] ffff88207fdfff38 ffffffff8100fe68 <span style="color: #666666">00007ff</span>fe58c3010 <span style="color: #666666">0000000000000f96</span>
-[ <span style="color: #666666">1261.062995</span>] <span style="color: #666666">000000000000f960</span> <span style="color: #666666">0000000000000f95</span> ffff88207fdfff48 ffffffff810020dd
-[ <span style="color: #666666">1261.150351</span>] <span style="color: #666666">00007ff</span>ff58869c1 ffffffff8100b2e9 <span style="color: #666666">0000000000000f96</span> <span style="color: #666666">0000000000000f95</span>
-[ <span style="color: #666666">1261.237707</span>] Call <span style="color: #A0A000">Trace</span>:
-[ <span style="color: #666666">1261.266825</span>] <span style="color: #666666">&lt;</span>TSK<span style="color: #666666">&gt;</span>
-[ <span style="color: #666666">1261.289704</span>] [<span style="color: #666666">&lt;</span>ffffffff8100ec76<span style="color: #666666">&gt;</span>] __warn.constprop<span style="color: #666666">.0+0xa6/0x100</span>
-[ <span style="color: #666666">1261.359381</span>] [<span style="color: #666666">&lt;</span>ffffffff8100d410<span style="color: #666666">&gt;</span>] <span style="color: #666666">?</span> pgd_free<span style="color: #666666">+0x90/0x90</span>
-[ <span style="color: #666666">1261.419699</span>] [<span style="color: #666666">&lt;</span>ffffffff8100ed5f<span style="color: #666666">&gt;</span>] warn_slowpath_null<span style="color: #666666">+0xf/0x20</span>
-[ <span style="color: #666666">1261.487295</span>] [<span style="color: #666666">&lt;</span>ffffffff8100fe68<span style="color: #666666">&gt;</span>] generic_smp_call_function_single_interrupt<span style="color: #666666">+0xb8/0x160</span>
-[ <span style="color: #666666">1261.581931</span>] [<span style="color: #666666">&lt;</span>ffffffff810020dd<span style="color: #666666">&gt;</span>] call_function_interrupt<span style="color: #666666">+0x1d/0x20</span>
-[ <span style="color: #666666">1261.655767</span>] [<span style="color: #666666">&lt;</span>ffffffff8100b2e9<span style="color: #666666">&gt;</span>] smp__call_function_interrupt<span style="color: #666666">+0x69/0x70</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span> <span class="mf">1260.586696</span><span class="p">]</span> <span class="nl">WARNING</span><span class="p">:</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">0</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">73</span> <span class="n">at</span> <span class="n">kernel</span><span class="o">/</span><span class="n">smp</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">129</span> <span class="n">generic_smp_call_function_single_interrupt</span><span class="o">+</span><span class="mh">0xb8</span><span class="o">/</span><span class="mh">0x160</span>
+<span class="p">[</span> <span class="mf">1260.705251</span><span class="p">]</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">0</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">73</span> <span class="nl">Comm</span><span class="p">:</span> <span class="n">word_count</span><span class="o">-</span><span class="n">pthr</span> <span class="mf">4.0.0</span><span class="o">-</span><span class="n">lego</span><span class="o">+</span> <span class="err">#</span><span class="mi">99</span>
+<span class="p">[</span> <span class="mf">1260.777008</span><span class="p">]</span> <span class="nl">Stack</span><span class="p">:</span>
+<span class="p">[</span> <span class="mf">1260.800927</span><span class="p">]</span> <span class="n">ffff88207fdffef8</span> <span class="n">ffffffff8100ec67</span> <span class="n">ffff88107fc00000</span> <span class="n">ffff88107fc00000</span>
+<span class="p">[</span> <span class="mf">1260.888283</span><span class="p">]</span> <span class="n">ffffffff8100d410</span> <span class="n">ffff88207fe23df0</span> <span class="n">ffff88207fdfff08</span> <span class="n">ffffffff8100ed5f</span>
+<span class="p">[</span> <span class="mf">1260.975639</span><span class="p">]</span> <span class="n">ffff88207fdfff38</span> <span class="n">ffffffff8100fe68</span> <span class="mf">00007ff</span><span class="n">fe58c3010</span> <span class="mf">0000000000000f</span><span class="mi">96</span>
+<span class="p">[</span> <span class="mf">1261.062995</span><span class="p">]</span> <span class="mf">000000000000f</span><span class="mi">960</span> <span class="mf">0000000000000f</span><span class="mi">95</span> <span class="n">ffff88207fdfff48</span> <span class="n">ffffffff810020dd</span>
+<span class="p">[</span> <span class="mf">1261.150351</span><span class="p">]</span> <span class="mf">00007ff</span><span class="n">ff58869c1</span> <span class="n">ffffffff8100b2e9</span> <span class="mf">0000000000000f</span><span class="mi">96</span> <span class="mf">0000000000000f</span><span class="mi">95</span>
+<span class="p">[</span> <span class="mf">1261.237707</span><span class="p">]</span> <span class="n">Call</span> <span class="nl">Trace</span><span class="p">:</span>
+<span class="p">[</span> <span class="mf">1261.266825</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">TSK</span><span class="o">&gt;</span>
+<span class="p">[</span> <span class="mf">1261.289704</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100ec76</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">__warn</span><span class="p">.</span><span class="n">constprop</span><span class="mf">.0</span><span class="o">+</span><span class="mh">0xa6</span><span class="o">/</span><span class="mh">0x100</span>
+<span class="p">[</span> <span class="mf">1261.359381</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100d410</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">pgd_free</span><span class="o">+</span><span class="mh">0x90</span><span class="o">/</span><span class="mh">0x90</span>
+<span class="p">[</span> <span class="mf">1261.419699</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100ed5f</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">warn_slowpath_null</span><span class="o">+</span><span class="mh">0xf</span><span class="o">/</span><span class="mh">0x20</span>
+<span class="p">[</span> <span class="mf">1261.487295</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100fe68</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">generic_smp_call_function_single_interrupt</span><span class="o">+</span><span class="mh">0xb8</span><span class="o">/</span><span class="mh">0x160</span>
+<span class="p">[</span> <span class="mf">1261.581931</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810020dd</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">call_function_interrupt</span><span class="o">+</span><span class="mh">0x1d</span><span class="o">/</span><span class="mh">0x20</span>
+<span class="p">[</span> <span class="mf">1261.655767</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100b2e9</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">smp__call_function_interrupt</span><span class="o">+</span><span class="mh">0x69</span><span class="o">/</span><span class="mh">0x70</span>
 </pre></div>
+</td></tr></table>
 
 <p>So I decided to look into smp.c a little bit to find out if there is something wrong (I wrote it long time ago). The warning itself is true, it means some inconsistent behavior.. I saw <code>alloc_percpu</code> stuff during <code>call_function_init</code>, hence probably I also need to check percpu code a little code cause I'm not sure if I port all the functionalities.</p>
 <p>In all, today's task, check <code>percpu</code> and <code>smp_call_function</code> code. Esp, <code>percpu</code> code, they are crucial and very hard to relate real bugs to it.</p>
 <p>Well... things changed. I found a more serious bug: something about <code>cpuhotplug</code>, even though lego is not using it. <code>cpuhotplug</code> is a set of implict callbacks to all different subsystems who want to do some initialization work on each <code>offline-&gt;online</code> cpu.</p>
-<p>Let us dig into how secondary cpu boots:
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Trampoline.. setup <span style="color: #666666">64</span>bit mode
-start_secondary()
-  smp_callin()
-        notify_cpu_starting()
-              ...
-              <span style="color: #008000; font-weight: bold">while</span> (st<span style="color: #666666">-&gt;</span>state <span style="color: #666666">&lt;</span> target) {
-                      st<span style="color: #666666">-&gt;</span>state<span style="color: #666666">++</span>;
-                      cpuhp_invoke_callback(cpu, st<span style="color: #666666">-&gt;</span>state, <span style="color: #008000">true</span>, <span style="color: #008000">NULL</span>);
-              }
-          cpuhp_invoke_callback()
-</pre></div></p>
-<p>See? There will be some callbacks! What are those callbacks exactly? Well, they are predefined at the <code>kernel/cpu.c</code>. To save the trouble of reading code, I just print what functions are executed, the log is:
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>[    0.118235] cpuhp_invoke_callback(): 136  CPU:0  page_writeback_cpu_online+0x0/0x20
+<p>Let us dig into how secondary cpu boots:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">Trampoline</span><span class="p">..</span> <span class="n">setup</span> <span class="mi">64</span><span class="n">bit</span> <span class="n">mode</span>
+<span class="n">start_secondary</span><span class="p">()</span>
+  <span class="n">smp_callin</span><span class="p">()</span>
+        <span class="n">notify_cpu_starting</span><span class="p">()</span>
+              <span class="p">...</span>
+              <span class="k">while</span> <span class="p">(</span><span class="n">st</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+                      <span class="n">st</span><span class="o">-&gt;</span><span class="n">state</span><span class="o">++</span><span class="p">;</span>
+                      <span class="n">cpuhp_invoke_callback</span><span class="p">(</span><span class="n">cpu</span><span class="p">,</span> <span class="n">st</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">,</span> <span class="nb">true</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+              <span class="p">}</span>
+          <span class="n">cpuhp_invoke_callback</span><span class="p">()</span>
+</pre></div>
+</td></tr></table>
+
+<p>See? There will be some callbacks! What are those callbacks exactly? Well, they are predefined at the <code>kernel/cpu.c</code>. To save the trouble of reading code, I just print what functions are executed, the log is:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[    0.118235] cpuhp_invoke_callback(): 136  CPU:0  page_writeback_cpu_online+0x0/0x20
 
 [    0.368478] cpuhp_invoke_callback(): 136  CPU:1  smpboot_create_threads+0x0/0x90
 [    0.370196] cpuhp_invoke_callback(): 136  CPU:1  perf_event_init_cpu+0x0/0xa0
@@ -1073,7 +1349,9 @@ start_secondary()
 [    1.006029] cpuhp_invoke_callback(): 136  CPU:2  notify_online+0x0/0x20
 [    1.006206] cpuhp_invoke_callback(): 136  CPU:2  page_writeback_cpu_online+0x0/0x20
 [    1.006549] cpuhp_invoke_callback(): 136  CPU:2  sched_cpu_activate+0x0/0x190
-</pre></div></p>
+</pre></div>
+</td></tr></table>
+
 <p>Interesting! Currently, Lego need to add the <code>smpboot_create_threads()</code>, <code>workqueue_prepare_cpu()</code>, <code>workqueue_prepare_cpu()</code>, <code>bringup_cpu()</code>, <code>smpboot_unpark_threads()</code>, <code>workqueue_online_cpu()</code>.</p>
 <p>This hidden things is really hard to find and not easy to track during boot. Especially during boot, they should do something like <code>for_each_online_cpu</code> and init one by one. But I guess, after adding support of cpu hotplug, code kind of merged. Some stuff will be executed whenever a cpu has been teardown or bought up. And bang, why not use the same set of hotplug during boot, right?
 Well.</p>

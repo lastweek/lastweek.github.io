@@ -735,13 +735,66 @@
 <li>Enable <code>CONFIG_USE_RAMFS</code> at both sides. And in memory side, you need to set the <code>CONFIG_RAMFS_OBJECT_FILE</code>, which points to the ELF binary you want to test.</li>
 <li>make sure <code>CONFIG_DEFAULT_MEM_NODE</code> at processor component is pointing to memory component's node id.</li>
 </ul>
-<p>A typical code snippet and configuration would be:
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">static</span> <span style="color: #008000; font-weight: bold">const</span> <span style="color: #B00040">char</span> <span style="color: #666666">*</span>lego_cluster_hostnames[CONFIG_FIT_NR_NODES] <span style="color: #666666">=</span> {
-        [<span style="color: #666666">0</span>]     <span style="color: #666666">=</span>       <span style="color: #BA2121">&quot;wuklab00&quot;</span>,
-        [<span style="color: #666666">1</span>]     <span style="color: #666666">=</span>       <span style="color: #BA2121">&quot;wuklab01&quot;</span>,
-};
-</pre></div></p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>wuklab00 Processor
+<p>A typical code snippet and configuration would be:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">lego_cluster_hostnames</span><span class="p">[</span><span class="n">CONFIG_FIT_NR_NODES</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">]</span>     <span class="o">=</span>       <span class="s">&quot;wuklab00&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">]</span>     <span class="o">=</span>       <span class="s">&quot;wuklab01&quot;</span><span class="p">,</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>wuklab00 Processor
 
 #
 # Lego Processor Component Configurations
@@ -791,8 +844,43 @@ CONFIG_FIT_INITIAL_SLEEP_TIMEOUT=30
 CONFIG_FIT_NR_NODES=2
 CONFIG_FIT_LOCAL_ID=0
 </pre></div>
+</td></tr></table>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>wuklab01 Memory
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>wuklab01 Memory
 
 #
 # Lego Memory Component Configurations
@@ -828,6 +916,7 @@ CONFIG_FIT_INITIAL_SLEEP_TIMEOUT=30
 CONFIG_FIT_NR_NODES=2
 CONFIG_FIT_LOCAL_ID=1
 </pre></div>
+</td></tr></table>
                 
                   
                 
