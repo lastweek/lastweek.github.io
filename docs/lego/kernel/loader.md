@@ -42,7 +42,119 @@ static int do_execveat_common(int fd, struct filename *filename,
 
 
 ## Lego's Loader
-asd
+
+### Virtual Address Space Range
+
+User's virtual address falls into this range:
+```
+[sysctl_mmap_min_addr, TASK_SIZE)
+```
+
+By default,
+```C
+unsigned long sysctl_mmap_min_addr = PAGE_SIZE;
+
+/*
+ * User space process size. 47bits minus one guard page.  The guard
+ * page is necessary on Intel CPUs: if a SYSCALL instruction is at
+ * the highest possible canonical userspace address, then that
+ * syscall will enter the kernel with a non-canonical return
+ * address, and SYSRET will explode dangerously.  We avoid this
+ * particular problem by preventing anything from being mapped
+ * at the maximum canonical address.
+ */                                                                                                       
+#define TASK_SIZE       ((1UL << 47) - PAGE_SIZE)
+```
+
+Essentially:
+```
+[0x1000, 0x7ffffffff000)
+```
+
+### Loaded ELF Segments
+PT_LOAD: TODO
+
+### Disabled Dynamic-Linked Binary
+The following code detects if an ELF executable is dynamic-linked:
+```C
+static int load_elf_binary(struct lego_task_struct *tsk, struct lego_binprm *bprm,
+                           u64 *new_ip, u64 *new_sp, unsigned long *argv_len, unsigned long *envp_len)
+{
+        ...
+        elf_ppnt = elf_phdata;
+        for (i = 0; i < loc->elf_ex.e_phnum; i++, elf_ppnt++) {
+                if (elf_ppnt->p_type == PT_INTERP) {
+                        /*  
+                         * This is the program interpreter used for
+                         * dynamic linked elf - not supported for now
+                         */
+                        WARN(1, "Only static-linked elf is supported!\n");
+                        retval = -ENOEXEC;
+                        goto out_free_ph;
+                }   
+        ...
+}
+(managers/memory/loader/elf.c)
+```
+
+### Disabled Randomized Top of Stack
+Lego currently does not randomize the stack top. The stack vma is allocated by `bprm_mm_init()` at early execve time. There is no randomization at the allocation time, and this applies to all exectuable formats. The end of vma is just `TASK_SIZE`:
+```c
+static int __bprm_mm_init(struct lego_binprm *bprm)
+{
+        ...
+        vma->vm_end = TASK_SIZE;
+        ...
+}
+(managers/memory/loader/elf.c)
+```
+
+Top of stack randomization happens within each specific format loader. They do this by calling back to virtual loader layer's `setup_arg_pages()` function, which is used to finalize the top of stack:
+```C
+int setup_arg_pages(struct lego_task_struct *tsk, struct lego_binprm *bprm,
+                    unsigned long stack_top, int executable_stack);
+```
+
+So, to actually randomize the top of stack, you can simply do the following:
+```C
+static unsigned long randomize_stack_top(unsigned long stack_top)
+{                                
+        unsigned long random_variable = 0;
+
+        if ((current->flags & PF_RANDOMIZE) &&
+                !(current->personality & ADDR_NO_RANDOMIZE)) {
+                random_variable = get_random_long();
+                random_variable &= STACK_RND_MASK;
+                random_variable <<= PAGE_SHIFT;
+        }
+#ifdef CONFIG_STACK_GROWSUP
+        return PAGE_ALIGN(stack_top) + random_variable;
+#else           
+        return PAGE_ALIGN(stack_top) - random_variable;
+#endif
+}
+
+static int load_elf_binary(struct lego_task_struct *tsk, struct lego_binprm *bprm,
+                           u64 *new_ip, u64 *new_sp, unsigned long *argv_len, unsigned long *envp_len)
+{
+        ...
+        retval = setup_arg_pages(bprm, randomize_stack_top(TASK_SIZE),
+                                 executable_stack);
+        ...
+}
+```
+
+However, current Lego disables randomization by passing `TASK_SIZE`:
+```C
+static int load_elf_binary(struct lego_task_struct *tsk, struct lego_binprm *bprm,
+                           u64 *new_ip, u64 *new_sp, unsigned long *argv_len, unsigned long *envp_len)
+{
+        ...
+        retval = setup_arg_pages(tsk, bprm, TASK_SIZE, executable_stack);
+        ...
+}
+(managers/memory/loader/elf.c)
+```
 
 --  
 Yizhou Shan  
