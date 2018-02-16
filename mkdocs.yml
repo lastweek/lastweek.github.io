@@ -11,10 +11,11 @@ pages:
            - 'GRUB':             'lego/boot/grub.md'
            - 'Trampoline':       'lego/boot/trampoline.md'
    - 'Kernel':
-        - 'Kconfig':           'lego/kernel/kconfig.md'
-        - 'Debug':             'lego/kernel/debug.md'
-        - 'pagefault_disable': 'lego/kernel/pagefault_disable.md'
-        - 'stop_machine':      'lego/kernel/stop_machine.md'
+        - 'Kconfig': 'lego/kernel/kconfig.md'
+        - 'Debug': 'lego/kernel/debug.md'
+        - 'Disable pgfault': 'lego/kernel/pagefault_disable.md'
+        - 'Stop machine': 'lego/kernel/stop_machine.md'
+        - 'Loader': 'lego/kernel/loader.md'
    - Syscall:
            - 'msync()':       'lego/syscall/msync.md'
            - 'mremap()':      'lego/syscall/mremap.md'
