@@ -901,7 +901,12 @@
 </pre></div>
 </td></tr></table></p>
 <h3 id="loaded-elf-segments">Loaded ELF Segments</h3>
-<p>PT_LOAD: TODO</p>
+<p>Only PT_LOAD segments are loaded into memory:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">elf_ppnt</span><span class="o">-&gt;</span><span class="n">p_type</span> <span class="o">!=</span> <span class="n">PT_LOAD</span><span class="p">)</span>
+        <span class="k">continue</span><span class="p">;</span>
+</pre></div>
+</td></tr></table></p>
 <h3 id="disabled-dynamic-linked-binary">Disabled Dynamic-Linked Binary</h3>
 <p>The following code detects if an ELF executable is dynamic-linked:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
