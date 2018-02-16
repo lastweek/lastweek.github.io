@@ -72,7 +72,11 @@ Essentially:
 ```
 
 ### Loaded ELF Segments
-PT_LOAD: TODO
+Only PT_LOAD segments are loaded into memory:
+```c
+if (elf_ppnt->p_type != PT_LOAD)
+        continue;
+```
 
 ### Disabled Dynamic-Linked Binary
 The following code detects if an ELF executable is dynamic-linked:
