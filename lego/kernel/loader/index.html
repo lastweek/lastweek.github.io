@@ -36,7 +36,7 @@
     
     
       
-        <title>NMP - Yizhou Shan's Home Page</title>
+        <title>Loader - Yizhou Shan's Home Page</title>
       
     
     
@@ -69,7 +69,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#near-memory-processing" tabindex="1" class="md-skip">
+      <a href="#lego-program-loader" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -95,7 +95,7 @@
                 Yizhou Shan's Home Page
               </span>
               <span class="md-header-nav__topic">
-                NMP
+                Loader
               </span>
             
           
@@ -329,10 +329,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3" checked>
     
     <label class="md-nav__link" for="nav-3-3">
       Kernel
@@ -350,7 +352,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/kconfig/" title="Kconfig" class="md-nav__link">
+    <a href="../kconfig/" title="Kconfig" class="md-nav__link">
       Kconfig
     </a>
   </li>
@@ -362,7 +364,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/debug/" title="Debug" class="md-nav__link">
+    <a href="../debug/" title="Debug" class="md-nav__link">
       Debug
     </a>
   </li>
@@ -374,7 +376,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/pagefault_disable/" title="Disable pgfault" class="md-nav__link">
+    <a href="../pagefault_disable/" title="Disable pgfault" class="md-nav__link">
       Disable pgfault
     </a>
   </li>
@@ -386,7 +388,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/stop_machine/" title="Stop machine" class="md-nav__link">
+    <a href="../stop_machine/" title="Stop machine" class="md-nav__link">
       Stop machine
     </a>
   </li>
@@ -396,11 +398,90 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../kernel/loader/" title="Loader" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Loader
+      </label>
+    
+    <a href="./" title="Loader" class="md-nav__link md-nav__link--active">
       Loader
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" title="Status" class="md-nav__link">
+    Status
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overall" title="Overall" class="md-nav__link">
+    Overall
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linuxs-loader" title="Linux's Loader" class="md-nav__link">
+    Linux's Loader
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entry-point" title="Entry Point" class="md-nav__link">
+    Entry Point
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#main-routine" title="Main Routine" class="md-nav__link">
+    Main Routine
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legos-loader" title="Lego's Loader" class="md-nav__link">
+    Lego's Loader
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -533,12 +614,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
     
     <label class="md-nav__link" for="nav-3-6">
       Paper
@@ -554,20 +633,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-    <a href="./" title="NMP" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../paper/nmp/" title="NMP" class="md-nav__link">
       NMP
     </a>
-    
   </li>
 
         
@@ -598,6 +668,63 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" title="Status" class="md-nav__link">
+    Status
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overall" title="Overall" class="md-nav__link">
+    Overall
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linuxs-loader" title="Linux's Loader" class="md-nav__link">
+    Linux's Loader
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entry-point" title="Entry Point" class="md-nav__link">
+    Entry Point
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#main-routine" title="Main Routine" class="md-nav__link">
+    Main Routine
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legos-loader" title="Lego's Loader" class="md-nav__link">
+    Lego's Loader
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -609,74 +736,71 @@
               
                 
                 
-                <h1 id="near-memory-processing">Near Memory Processing</h1>
-<ul>
-<li><mark>NMP: Near Memory Processing</mark></li>
-<li>
-<p><mark>NDC: Near Data Computing</mark></p>
-</li>
-<li>
-<p><code class="codehilite"><span class="n">PRIME</span><span class="o">:</span> <span class="n">A</span> <span class="n">Novel</span> <span class="n">Processing</span><span class="o">-</span><span class="k">in</span><span class="o">-</span><span class="n">memory</span> <span class="n">Architecture</span> <span class="k">for</span> <span class="n">Neural</span> <span class="n">Network</span><span class="n">Computation</span> <span class="k">in</span> <span class="n">ReRAM</span><span class="o">-</span><span class="n">based</span> <span class="n">Main</span> <span class="n">Memory</span><span class="o">,</span> <span class="n">ISCA</span><span class="err">&#39;</span><span class="mi">16</span></code></p>
-<ul>
-<li>High-performance
-acceleration of NN requires high memory bandwidth since
-the <mark>PUs are hungry for fetching the synaptic weights [17]</mark>. To
-address this challenge, recent special-purpose chip designs
-have adopted large on-chip memory to store the synaptic
-weights. For example, DaDianNao [18] employed a large
-on-chip eDRAM for both high bandwidth and data locality;
-TrueNorth utilized an SRAM crossbar memory for synapses
-in each core [19].</li>
-</ul>
-</li>
-<li><mark>DianNao</mark> and <mark>DaDianNao</mark><ul>
-<li>&hellip; <strong>memory bandwidth requirements</strong> of two important
-layer types: convolutional layers with private kernels
-(used in DNNs) and classifier layers used in both CNNs and
-DNNs. For these types of layers, the total number of required
-synapses can be massive, in the millions of parameters, or
-even tens or hundreds thereof.</li>
-<li>providing sufficient eDRAM capacity to hold
-all <strong>synapse</strong> on the combined eDRAM of all chips will
-save on <code class="codehilite">off-chip DRAM accesses</code>, which are particularly
-costly energy-wise</li>
-<li><mark>Synapses</mark>. In a perceptron layer, all synapses are usually
-unique, and thus there is no reuse within the layer. On the
-other hand, the synapses are reused across network invocations,
-i.e., for each new input data (also called “input row”)
-presented to the neural network. So a sufficiently large L2
-could store all network synapses and take advantage of that
-locality. For DNNs with private kernels, this is not possible
-as the total number of synapses are in the tens or hundreds
-of millions (the largest network to date has a billion
-synapses [26]). However, for both CNNs and DNNs with
-shared kernels, the total number of synapses range in the
-millions, which is within the reach of an L2 cache. In Figure
-6, see CLASS1 - Tiled+L2, we emulate the case where reuse
-across network invocations is possible by considering only
-the perceptron layer; as a result, the total bandwidth requirements
-are now drastically reduced.</li>
-<li>So, ML workloads do need large memory bandwidth, and need a lot memory. But how about <strong>temporary working set size</strong>? It&rsquo;s the best if it has a reasonable working set size that can fit the cache.</li>
-</ul>
-</li>
-<li><mark>TPU</mark><ul>
-<li>Each model needs between 5M and 100M weights (9<sup>th</sup>
-column of Table 1), which can take a lot of time and energy to
-access. To amortize the access costs, <strong>the same weights are reused
-across a batch of independent examples during inference or
-training</strong>, which improves performance.</li>
-<li>The weights for the matrix unit are staged through an onchip
-<strong>Weight FIFO</strong> that reads from an <strong>off-chip 8 GiB DRAM
-called Weight Memory</strong> (for inference, weights are read-only; 8
-GiB supports many simultaneously active models). The weight
-FIFO is four tiles deep. The intermediate results are held in the <strong>24
-MiB on-chip Unified Buffer</strong>, which can serve as inputs to the Matrix Unit.</li>
-<li><mark>In virtual cache model, we actually can assign those weights to some designated sets, thus avoid conflicting with other data, which means we can sustain those weights in cache!</mark></li>
-</ul>
-</li>
-</ul>
-<p>To conclude:<br />
-<code class="codehilite">a)</code> ML needs to use weight/synapses during computation, and those data will be reused repeatly across different stages. Besides, output from last stage serves the input of next stage, so buffering the <code class="codehilite">intermediate data</code> is important. Most ML accelerators use some kind of <code class="codehilite">on-chip memory</code> (<em>Weighted FIFO, Unified Cache in TPU</em>) to buffer those data. This fits the <code class="codehilite">HBM+Disaggregated Memory</code> model: HBM is the on-chip memory, while disaggregated memory is the off-chip memory. <code class="codehilite">b)</code> Combined with virtual cache, we could assign special virtual addresses to weight data, so they stay in some designated cache sets. Kernel can avoid allocating conflict virtual addresses later. Thus we can retain these weight data in virtual cache easily.</p>
+                <h1 id="lego-program-loader">Lego Program Loader</h1>
+<p>This document explains the high-level workflow of Lego&rsquo;s program loader, and how we change the normal loader to fit the disaggregated operating system model. Background on linking and loading is recommended.</p>
+<h2 id="status">Status</h2>
+<table>
+<thead>
+<tr>
+<th>Formats</th>
+<th>Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ELF (static-linked)</td>
+<td><img alt="✔️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
+</tr>
+<tr>
+<td>ELF (dynamic-linked)</td>
+<td><img alt="✖️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2716.svg" title=":heavy_multiplication_x:" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="overall">Overall</h2>
+<p>In order to support different executable formats, Lego has a <code class="codehilite">virtual loader layer</code> above all specific formats, which is quite similar to <code class="codehilite">virtual file system</code>. In Lego, <code class="codehilite">execve()</code> is divided into two parts: <code class="codehilite">1)</code> syscall hook at processor side, <code class="codehilite">2)</code> real loader at memory side. Combined together, they provide the same semantic of <code class="codehilite">execve()</code> as described in Linux man page. Also for the code, we divide the Linux implementation into parts. But our emulation model introduces several interesting workarounds, which we will talk later.</p>
+<p>Therefore, before we dive into Lego&rsquo;s implementation, we first walk through Linux&rsquo;s code, describe the important steps, and then we will talk about how lego divide these functionalities to fit disaggregated operating system model.</p>
+<h2 id="linuxs-loader">Linux&rsquo;s Loader</h2>
+<p>This section describes the overall code flow of <code class="codehilite">execve()</code> within Linux. From the entry point to the return assembly part.</p>
+<h3 id="entry-point">Entry Point</h3>
+<p>So the normal entry point is <code class="codehilite">do_execve()</code> that will do all dirty work. Above that, it can be invoked by syscall from user space, or from kernel space by calling <code class="codehilite">do_execve()</code> directly. There are not too many places that will call <code class="codehilite">do_execve</code> within kernel. One notable case is how kernel starts the <code class="codehilite">pid 1</code> user program. This happens after kernel finished all initialization. The code is:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">static</span> <span class="kt">int</span> <span class="nf">run_init_process</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">init_filename</span><span class="p">)</span>                                                    
+<span class="p">{</span>                                                                                                         
+        <span class="n">argv_init</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">init_filename</span><span class="p">;</span>                                                                     
+        <span class="k">return</span> <span class="n">do_execve</span><span class="p">(</span><span class="n">getname_kernel</span><span class="p">(</span><span class="n">init_filename</span><span class="p">),</span>                                                   
+                <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="n">__user</span> <span class="o">*</span><span class="k">const</span> <span class="n">__user</span> <span class="o">*</span><span class="p">)</span><span class="n">argv_init</span><span class="p">,</span>                                             
+                <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="n">__user</span> <span class="o">*</span><span class="k">const</span> <span class="n">__user</span> <span class="o">*</span><span class="p">)</span><span class="n">envp_init</span><span class="p">);</span>                                            
+<span class="p">}</span>      
+</pre></div>
+</td></tr></table></p>
+<h3 id="main-routine">Main Routine</h3>
+<p>Linux is good at making things complex, the execve main routine is no different. To accommodate different usages, the final dirty work is done by:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * sys_execve() executes a new program.</span>
+<span class="cm"> */</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">do_execveat_common</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="k">struct</span> <span class="n">filename</span> <span class="o">*</span><span class="n">filename</span><span class="p">,</span>
+                              <span class="k">struct</span> <span class="n">user_arg_ptr</span> <span class="n">argv</span><span class="p">,</span>
+                              <span class="k">struct</span> <span class="n">user_arg_ptr</span> <span class="n">envp</span><span class="p">,</span>
+                              <span class="kt">int</span> <span class="n">flags</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></p>
+<h2 id="legos-loader">Lego&rsquo;s Loader</h2>
+<p>asd</p>
+<p>&ndash;<br />
+Yizhou Shan<br />
+Feb 16, 2018</p>
                 
                   
                 
@@ -695,7 +819,7 @@ MiB on-chip Unified Buffer</strong>, which can serve as inputs to the Matrix Uni
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../pcache/smp_design/" title="SMP Design" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../stop_machine/" title="Stop machine" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -704,11 +828,25 @@ MiB on-chip Unified Buffer</strong>, which can serve as inputs to the Matrix Uni
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                SMP Design
+                Stop machine
               </span>
             </div>
           </a>
         
+        
+          <a href="../../syscall/msync/" title="msync()" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                msync()
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>

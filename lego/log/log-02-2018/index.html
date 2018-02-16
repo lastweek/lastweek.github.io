@@ -295,6 +295,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0215-thur-rainy" title="02/15 Thur Rainy" class="md-nav__link">
+    02/15 Thur Rainy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0214-wed-rainy" title="02/14 Wed Rainy" class="md-nav__link">
     02/14 Wed Rainy
   </a>
@@ -463,8 +470,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/pagefault_disable/" title="pagefault_disable" class="md-nav__link">
-      pagefault_disable
+    <a href="../../kernel/pagefault_disable/" title="Disable pgfault" class="md-nav__link">
+      Disable pgfault
     </a>
   </li>
 
@@ -475,8 +482,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/stop_machine/" title="stop_machine" class="md-nav__link">
-      stop_machine
+    <a href="../../kernel/stop_machine/" title="Stop machine" class="md-nav__link">
+      Stop machine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/loader/" title="Loader" class="md-nav__link">
+      Loader
     </a>
   </li>
 
@@ -668,6 +687,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0215-thur-rainy" title="02/15 Thur Rainy" class="md-nav__link">
+    02/15 Thur Rainy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0214-wed-rainy" title="02/14 Wed Rainy" class="md-nav__link">
     02/14 Wed Rainy
   </a>
@@ -741,6 +767,27 @@
                 
                 
                 <h1 id="feb-2018">Feb 2018</h1>
+<hr />
+<h2 id="0215-thur-rainy">02/15 Thur Rainy</h2>
+<p>Today is Chinese New Year.</p>
+<p>Line 7 and 8 show the uva belong to the same page. Need to revisit <code class="codehilite">get_arg_pages</code>.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[  108.393991] handle_p2m_execve(): pid:22,argc:2,envc:2,file:/root/ys/phoenix/phoenix-2.0/tests/word_count/word_count-pthread
+[  108.395255]     argc[0] (len: 65):  /root/ys/phoenix/phoenix-2.0/tests/word_count/word_count-pthread
+[  108.396329]     argc[1] (len: 82):  /root/ys/phoenix/phoenix-2.0/tests/word_count/word_count_datafiles/word_100MB.txt
+[  108.397530]     envc[0] (len:  7):  HOME=/
+[  108.398069]     envc[1] (len: 11):  TERM=linux
+[  108.398640] __bprm_mm_init vma: ffff88083effe6b8
+<span class="hll">[  108.399226] faultin_page vma: ffff88083effe6b8 uva: 0x7fffffffefed
+</span><span class="hll">[  108.399949] faultin_page vma: ffff88083effe6b8 uva: 0x7fffffffef94
+</span></pre></div>
+</td></tr></table></p>
 <hr />
 <h2 id="0214-wed-rainy">02/14 Wed Rainy</h2>
 <p>Hmm, tried to make kmalloc behave as kzalloc, and bind all threads to one core, still gave the same old bug:
