@@ -472,6 +472,40 @@
     Lego's Loader
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#virtual-address-space-range" title="Virtual Address Space Range" class="md-nav__link">
+    Virtual Address Space Range
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loaded-elf-segments" title="Loaded ELF Segments" class="md-nav__link">
+    Loaded ELF Segments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disabled-dynamic-linked-binary" title="Disabled Dynamic-Linked Binary" class="md-nav__link">
+    Disabled Dynamic-Linked Binary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disabled-randomized-top-of-stack" title="Disabled Randomized Top of Stack" class="md-nav__link">
+    Disabled Randomized Top of Stack
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
       
@@ -717,6 +751,40 @@
     Lego's Loader
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#virtual-address-space-range" title="Virtual Address Space Range" class="md-nav__link">
+    Virtual Address Space Range
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loaded-elf-segments" title="Loaded ELF Segments" class="md-nav__link">
+    Loaded ELF Segments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disabled-dynamic-linked-binary" title="Disabled Dynamic-Linked Binary" class="md-nav__link">
+    Disabled Dynamic-Linked Binary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disabled-randomized-top-of-stack" title="Disabled Randomized Top of Stack" class="md-nav__link">
+    Disabled Randomized Top of Stack
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
       
@@ -797,7 +865,175 @@
 </pre></div>
 </td></tr></table></p>
 <h2 id="legos-loader">Lego&rsquo;s Loader</h2>
-<p>asd</p>
+<h3 id="virtual-address-space-range">Virtual Address Space Range</h3>
+<p>User&rsquo;s virtual address falls into this range:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[sysctl_mmap_min_addr, TASK_SIZE)
+</pre></div>
+</td></tr></table></p>
+<p>By default,
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">sysctl_mmap_min_addr</span> <span class="o">=</span> <span class="n">PAGE_SIZE</span><span class="p">;</span>
+
+<span class="cm">/*</span>
+<span class="cm"> * User space process size. 47bits minus one guard page.  The guard</span>
+<span class="cm"> * page is necessary on Intel CPUs: if a SYSCALL instruction is at</span>
+<span class="cm"> * the highest possible canonical userspace address, then that</span>
+<span class="cm"> * syscall will enter the kernel with a non-canonical return</span>
+<span class="cm"> * address, and SYSRET will explode dangerously.  We avoid this</span>
+<span class="cm"> * particular problem by preventing anything from being mapped</span>
+<span class="cm"> * at the maximum canonical address.</span>
+<span class="cm"> */</span>                                                                                                       
+<span class="cp">#define TASK_SIZE       ((1UL &lt;&lt; 47) - PAGE_SIZE)</span>
+</pre></div>
+</td></tr></table></p>
+<p>Essentially:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[0x1000, 0x7ffffffff000)
+</pre></div>
+</td></tr></table></p>
+<h3 id="loaded-elf-segments">Loaded ELF Segments</h3>
+<p>PT_LOAD: TODO</p>
+<h3 id="disabled-dynamic-linked-binary">Disabled Dynamic-Linked Binary</h3>
+<p>The following code detects if an ELF executable is dynamic-linked:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">static</span> <span class="kt">int</span> <span class="nf">load_elf_binary</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
+                           <span class="n">u64</span> <span class="o">*</span><span class="n">new_ip</span><span class="p">,</span> <span class="n">u64</span> <span class="o">*</span><span class="n">new_sp</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">argv_len</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">envp_len</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="p">...</span>
+        <span class="n">elf_ppnt</span> <span class="o">=</span> <span class="n">elf_phdata</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">loc</span><span class="o">-&gt;</span><span class="n">elf_ex</span><span class="p">.</span><span class="n">e_phnum</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">,</span> <span class="n">elf_ppnt</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">elf_ppnt</span><span class="o">-&gt;</span><span class="n">p_type</span> <span class="o">==</span> <span class="n">PT_INTERP</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="cm">/*  </span>
+<span class="cm">                         * This is the program interpreter used for</span>
+<span class="cm">                         * dynamic linked elf - not supported for now</span>
+<span class="cm">                         */</span>
+                        <span class="n">WARN</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;Only static-linked elf is supported!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+                        <span class="n">retval</span> <span class="o">=</span> <span class="o">-</span><span class="n">ENOEXEC</span><span class="p">;</span>
+                        <span class="k">goto</span> <span class="n">out_free_ph</span><span class="p">;</span>
+                <span class="p">}</span>   
+        <span class="p">...</span>
+<span class="p">}</span>
+<span class="p">(</span><span class="n">managers</span><span class="o">/</span><span class="n">memory</span><span class="o">/</span><span class="n">loader</span><span class="o">/</span><span class="n">elf</span><span class="p">.</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></p>
+<h3 id="disabled-randomized-top-of-stack">Disabled Randomized Top of Stack</h3>
+<p>Lego currently does not randomize the stack top. The stack vma is allocated by <code class="codehilite">bprm_mm_init()</code> at early execve time. There is no randomization at the allocation time, and this applies to all exectuable formats. The end of vma is just <code class="codehilite">TASK_SIZE</code>:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">static</span> <span class="kt">int</span> <span class="nf">__bprm_mm_init</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="p">...</span>
+        <span class="n">vma</span><span class="o">-&gt;</span><span class="n">vm_end</span> <span class="o">=</span> <span class="n">TASK_SIZE</span><span class="p">;</span>
+        <span class="p">...</span>
+<span class="p">}</span>
+<span class="p">(</span><span class="n">managers</span><span class="o">/</span><span class="n">memory</span><span class="o">/</span><span class="n">loader</span><span class="o">/</span><span class="n">elf</span><span class="p">.</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></p>
+<p>Top of stack randomization happens within each specific format loader. They do this by calling back to virtual loader layer&rsquo;s <code class="codehilite">setup_arg_pages()</code> function, which is used to finalize the top of stack:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="nf">setup_arg_pages</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
+                    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">stack_top</span><span class="p">,</span> <span class="kt">int</span> <span class="n">executable_stack</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></p>
+<p>So, to actually randomize the top of stack, you can simply do the following:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="nf">randomize_stack_top</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">stack_top</span><span class="p">)</span>
+<span class="p">{</span>                                
+        <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">random_variable</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">((</span><span class="n">current</span><span class="o">-&gt;</span><span class="n">flags</span> <span class="o">&amp;</span> <span class="n">PF_RANDOMIZE</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+                <span class="o">!</span><span class="p">(</span><span class="n">current</span><span class="o">-&gt;</span><span class="n">personality</span> <span class="o">&amp;</span> <span class="n">ADDR_NO_RANDOMIZE</span><span class="p">))</span> <span class="p">{</span>
+                <span class="n">random_variable</span> <span class="o">=</span> <span class="n">get_random_long</span><span class="p">();</span>
+                <span class="n">random_variable</span> <span class="o">&amp;=</span> <span class="n">STACK_RND_MASK</span><span class="p">;</span>
+                <span class="n">random_variable</span> <span class="o">&lt;&lt;=</span> <span class="n">PAGE_SHIFT</span><span class="p">;</span>
+        <span class="p">}</span>
+<span class="cp">#ifdef CONFIG_STACK_GROWSUP</span>
+        <span class="k">return</span> <span class="n">PAGE_ALIGN</span><span class="p">(</span><span class="n">stack_top</span><span class="p">)</span> <span class="o">+</span> <span class="n">random_variable</span><span class="p">;</span>
+<span class="cp">#else           </span>
+        <span class="k">return</span> <span class="n">PAGE_ALIGN</span><span class="p">(</span><span class="n">stack_top</span><span class="p">)</span> <span class="o">-</span> <span class="n">random_variable</span><span class="p">;</span>
+<span class="cp">#endif</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">load_elf_binary</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
+                           <span class="n">u64</span> <span class="o">*</span><span class="n">new_ip</span><span class="p">,</span> <span class="n">u64</span> <span class="o">*</span><span class="n">new_sp</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">argv_len</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">envp_len</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="p">...</span>
+        <span class="n">retval</span> <span class="o">=</span> <span class="n">setup_arg_pages</span><span class="p">(</span><span class="n">bprm</span><span class="p">,</span> <span class="n">randomize_stack_top</span><span class="p">(</span><span class="n">TASK_SIZE</span><span class="p">),</span>
+                                 <span class="n">executable_stack</span><span class="p">);</span>
+        <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></p>
+<p>However, current Lego disables randomization by passing <code class="codehilite">TASK_SIZE</code>:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">static</span> <span class="kt">int</span> <span class="nf">load_elf_binary</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
+                           <span class="n">u64</span> <span class="o">*</span><span class="n">new_ip</span><span class="p">,</span> <span class="n">u64</span> <span class="o">*</span><span class="n">new_sp</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">argv_len</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">envp_len</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="p">...</span>
+        <span class="n">retval</span> <span class="o">=</span> <span class="n">setup_arg_pages</span><span class="p">(</span><span class="n">tsk</span><span class="p">,</span> <span class="n">bprm</span><span class="p">,</span> <span class="n">TASK_SIZE</span><span class="p">,</span> <span class="n">executable_stack</span><span class="p">);</span>
+        <span class="p">...</span>
+<span class="p">}</span>
+<span class="p">(</span><span class="n">managers</span><span class="o">/</span><span class="n">memory</span><span class="o">/</span><span class="n">loader</span><span class="o">/</span><span class="n">elf</span><span class="p">.</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></p>
 <p>&ndash;<br />
 Yizhou Shan<br />
 Feb 16, 2018</p>
