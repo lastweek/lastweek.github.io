@@ -902,15 +902,11 @@
 2
 3
 4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">static</span> <span class="kt">int</span> <span class="nf">run_init_process</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">init_filename</span><span class="p">)</span>                                                    
-<span class="p">{</span>                                                                                                         
-        <span class="n">argv_init</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">init_filename</span><span class="p">;</span>                                                                     
-        <span class="k">return</span> <span class="n">do_execve</span><span class="p">(</span><span class="n">getname_kernel</span><span class="p">(</span><span class="n">init_filename</span><span class="p">),</span>                                                   
-                <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="n">__user</span> <span class="o">*</span><span class="k">const</span> <span class="n">__user</span> <span class="o">*</span><span class="p">)</span><span class="n">argv_init</span><span class="p">,</span>                                             
-                <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="n">__user</span> <span class="o">*</span><span class="k">const</span> <span class="n">__user</span> <span class="o">*</span><span class="p">)</span><span class="n">envp_init</span><span class="p">);</span>                                            
-<span class="p">}</span>      
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">static</span> <span class="kt">int</span> <span class="nf">run_init_process</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">init_filename</span><span class="p">)</span>                                                    
+<span class="p">{</span>
+        <span class="n">argv_init</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">init_filename</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">do_execve</span><span class="p">(</span><span class="n">init_filename</span><span class="p">,</span> <span class="n">argv_init</span><span class="p">,</span> <span class="n">envp_init</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </td></tr></table></p>
 <h2 id="main-routine">Main Routine</h2>
@@ -1011,7 +1007,7 @@
 </td></tr></table></p>
 <hr />
 <h4 id="un-populated-stack">Un-Populated stack</h4>
-<p>Stack vma is manually expanded to <code class="codehilite">32 pages + pages for argv info</code> by loader to accommodate future usage. Only pages for argv are populated by default, the extra 32 pages are not. A typical progam may need 1 page for saving argv info, plus the 32 extra, the layout will be:
+<p>Stack vma is manually expanded to <code class="codehilite">32 pages + pages for argv info</code> by loader to accommodate future usage. Only pages for argv are populated by default, the extra 32 pages are not. A typical program may need 1 page for saving argv info, plus the 32 extra, the layout will be:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>7ffffffde000-7ffffffff000 rw-p 00000000 [stack]
 </pre></div>
 </td></tr></table></p>
@@ -1186,7 +1182,7 @@
 </td></tr></table></p>
 <p>&ndash;<br />
 Yizhou Shan<br />
-Feb 16, 2018</p>
+Last Updated: Feb 18, 2018</p>
                 
                   
                 
