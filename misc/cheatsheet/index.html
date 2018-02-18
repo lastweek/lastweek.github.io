@@ -233,6 +233,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#qemu" title="QEMU" class="md-nav__link">
+    QEMU
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#markdown" title="Markdown" class="md-nav__link">
     Markdown
   </a>
@@ -655,6 +662,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#qemu" title="QEMU" class="md-nav__link">
+    QEMU
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#markdown" title="Markdown" class="md-nav__link">
     Markdown
   </a>
@@ -681,7 +695,71 @@
                 <h1 id="cheatsheet">cheatsheet</h1>
 <h2 id="virsh">virsh</h2>
 <ul>
-<li><code class="codehilite"># qemu-monitor-command guest_os_id --hmp &quot;info cpus&quot;</code></li>
+<li>Pass commands to QEMU in the virsh bash:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span># qemu-monitor-command guest_os_id --hmp &quot;info cpus&quot;
+</pre></div>
+</td></tr></table></li>
+</ul>
+<h2 id="qemu">QEMU</h2>
+<ul>
+<li>Run standalone kernel:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># Create a new directory to store the serial output from printk().</span>
+<span class="nv">OUTPUT_DIR</span><span class="o">=</span><span class="s2">&quot;test-output&quot;</span>
+<span class="k">if</span> <span class="o">[</span> -e <span class="nv">$OUTPUT_DIR</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="k">if</span> <span class="o">[</span> -f <span class="nv">$OUTPUT_DIR</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+                <span class="nb">echo</span> <span class="s2">&quot;ERROR: </span><span class="nv">$OUTPUT_DIR</span><span class="s2"> is not a directly&quot;</span>
+                <span class="nb">exit</span> <span class="m">1</span>
+        <span class="k">fi</span>
+<span class="k">else</span>
+        mkdir -p <span class="nv">$OUTPUT_DIR</span>
+<span class="k">fi</span>
+
+<span class="nv">KERNEL</span><span class="o">=</span><span class="s2">&quot;arch/x86_64/boot/bzImage&quot;</span>
+<span class="nv">KERNEL_PARAM</span><span class="o">=</span><span class="s2">&quot;console=ttyS0 earlyprintk=serial,ttyS0,115200&quot;</span>
+<span class="nv">SERIAL</span><span class="o">=</span><span class="s2">&quot;-serial file:</span><span class="nv">$OUTPUT_DIR</span><span class="s2">/ttyS0 -serial file:</span><span class="nv">$OUTPUT_DIR</span><span class="s2">/ttyS1&quot;</span>
+
+<span class="c1"># -cpu Haswell,+tsc,+sse,+xsave,+aes,+avx,+erms,+pdpe1gb,+pge \</span>
+<span class="c1"># Above -cpu option may not work with some kernels.</span>
+qemu-system-x86_64 -s  <span class="se">\</span>
+        -nographic <span class="se">\</span>
+        -kernel <span class="nv">$KERNEL</span> -append <span class="s2">&quot;</span><span class="nv">$KERNEL_PARAM</span><span class="s2">&quot;</span> <span class="se">\</span>
+        -no-reboot <span class="se">\</span>
+        -d int,cpu_reset -D <span class="nv">$OUTPUT_DIR</span>/qemu.log <span class="se">\</span>
+        <span class="nv">$SERIAL</span> <span class="se">\</span>
+        -m 16G <span class="se">\</span>
+        -monitor stdio <span class="se">\</span>
+        -smp <span class="nv">cpus</span><span class="o">=</span><span class="m">24</span>,cores<span class="o">=</span><span class="m">12</span>,threads<span class="o">=</span><span class="m">2</span>,sockets<span class="o">=</span><span class="m">2</span> <span class="se">\</span>
+        -numa node,cpus<span class="o">=</span><span class="m">0</span>-11,mem<span class="o">=</span>8G,nodeid<span class="o">=</span><span class="m">0</span> <span class="se">\</span>
+        -numa node,cpus<span class="o">=</span><span class="m">12</span>-23,mem<span class="o">=</span>8G,nodeid<span class="o">=</span><span class="m">1</span>
+</pre></div>
+</td></tr></table></li>
 </ul>
 <h2 id="markdown">Markdown</h2>
 <ul>

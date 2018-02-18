@@ -295,6 +295,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0217-sat-snowy" title="02/17 Sat Snowy" class="md-nav__link">
+    02/17 Sat Snowy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0216-fri-cloudy" title="02/16 Fri Cloudy" class="md-nav__link">
     02/16 Fri Cloudy
   </a>
@@ -706,6 +713,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0217-sat-snowy" title="02/17 Sat Snowy" class="md-nav__link">
+    02/17 Sat Snowy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0216-fri-cloudy" title="02/16 Fri Cloudy" class="md-nav__link">
     02/16 Fri Cloudy
   </a>
@@ -793,6 +807,10 @@
                 
                 
                 <h1 id="feb-2018">Feb 2018</h1>
+<hr />
+<h2 id="0217-sat-snowy">02/17 Sat Snowy</h2>
+<p>Fixed the bss bug. It comes from loader. We did not implement the <code class="codehilite">lego_clear_user</code> function, so some part of bss is non-zero.</p>
+<p>Bad news is word_count-pthread still fail at same fpu instruction. Have to look into memory code more.</p>
 <hr />
 <h2 id="0216-fri-cloudy">02/16 Fri Cloudy</h2>
 <p>Yilun found a major loader bug yesterday: the <code class="codehilite"><span class="na">.bss</span></code> section variables are not 0, in the <code class="codehilite">iozone</code> benchmark. I did not encounter this issue before with simple test program. This is pretty serious.</p>

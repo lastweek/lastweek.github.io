@@ -455,21 +455,29 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#main-routine" title="Main Routine" class="md-nav__link">
-    Main Routine
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
+  <a href="#main-routine" title="Main Routine" class="md-nav__link">
+    Main Routine
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#legos-loader" title="Lego's Loader" class="md-nav__link">
     Lego's Loader
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features" title="Features" class="md-nav__link">
+    Features
   </a>
   
     <nav class="md-nav">
@@ -483,8 +491,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#loaded-elf-segments" title="Loaded ELF Segments" class="md-nav__link">
-    Loaded ELF Segments
+  <a href="#pre-populated-bss-and-brk" title="Pre-Populated .bss and .brk" class="md-nav__link">
+    Pre-Populated .bss and .brk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-populated-stack" title="Un-Populated stack" class="md-nav__link">
+    Un-Populated stack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-populated-text-and-data" title="Un-Populated .text and .data" class="md-nav__link">
+    Un-Populated .text and .data
   </a>
   
 </li>
@@ -500,6 +522,11 @@
   <a href="#disabled-randomized-top-of-stack" title="Disabled Randomized Top of Stack" class="md-nav__link">
     Disabled Randomized Top of Stack
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -746,21 +773,29 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#main-routine" title="Main Routine" class="md-nav__link">
-    Main Routine
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
+  <a href="#main-routine" title="Main Routine" class="md-nav__link">
+    Main Routine
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#legos-loader" title="Lego's Loader" class="md-nav__link">
     Lego's Loader
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features" title="Features" class="md-nav__link">
+    Features
   </a>
   
     <nav class="md-nav">
@@ -774,8 +809,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#loaded-elf-segments" title="Loaded ELF Segments" class="md-nav__link">
-    Loaded ELF Segments
+  <a href="#pre-populated-bss-and-brk" title="Pre-Populated .bss and .brk" class="md-nav__link">
+    Pre-Populated .bss and .brk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-populated-stack" title="Un-Populated stack" class="md-nav__link">
+    Un-Populated stack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-populated-text-and-data" title="Un-Populated .text and .data" class="md-nav__link">
+    Un-Populated .text and .data
   </a>
   
 </li>
@@ -791,6 +840,11 @@
   <a href="#disabled-randomized-top-of-stack" title="Disabled Randomized Top of Stack" class="md-nav__link">
     Disabled Randomized Top of Stack
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -859,7 +913,7 @@
 <span class="p">}</span>      
 </pre></div>
 </td></tr></table></p>
-<h3 id="main-routine">Main Routine</h3>
+<h2 id="main-routine">Main Routine</h2>
 <p>Linux is good at making things complex, the execve main routine is no different. To accommodate different usages, the final dirty work is done by:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -877,7 +931,10 @@
 </pre></div>
 </td></tr></table></p>
 <h2 id="legos-loader">Lego&rsquo;s Loader</h2>
-<h3 id="virtual-address-space-range">Virtual Address Space Range</h3>
+<h3 id="features">Features</h3>
+<p>This section lists various features, or behaviors and Lego&rsquo;s program loader.</p>
+<hr />
+<h4 id="virtual-address-space-range">Virtual Address Space Range</h4>
 <p>User&rsquo;s virtual address falls into this range:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[sysctl_mmap_min_addr, TASK_SIZE)
 </pre></div>
@@ -912,15 +969,90 @@
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[0x1000, 0x7ffffffff000)
 </pre></div>
 </td></tr></table></p>
-<h3 id="loaded-elf-segments">Loaded ELF Segments</h3>
-<p>Only PT_LOAD segments are loaded into memory:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">elf_ppnt</span><span class="o">-&gt;</span><span class="n">p_type</span> <span class="o">!=</span> <span class="n">PT_LOAD</span><span class="p">)</span>
-        <span class="k">continue</span><span class="p">;</span>
+<hr />
+<h4 id="pre-populated-bss-and-brk">Pre-Populated <code class="codehilite"><span class="na">.bss</span></code> and <code class="codehilite"><span class="na">.brk</span></code></h4>
+<p>The heap vma created at loading time is a combination of <code class="codehilite"><span class="na">.bss</span></code> and <code class="codehilite"><span class="na">.brk</span></code> segments. Since brk usage is 0 (will it be non-zero?) at this moment, so the heap vma is essentially just <code class="codehilite"><span class="na">.bss</span></code> pages. Normally, Linux kernel does not populate pages for this vma during loading, but Lego does. It can save several page allocation cost for heap pcache miss. It is controlled by <code class="codehilite">vm_brk()</code>.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="nf">vm_brk</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span>
+           <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">start</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="kt">int</span> <span class="n">ret</span><span class="p">;</span>
+        <span class="k">struct</span> <span class="n">lego_mm_struct</span> <span class="o">*</span><span class="n">mm</span> <span class="o">=</span> <span class="n">tsk</span><span class="o">-&gt;</span><span class="n">mm</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">down_write_killable</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mm</span><span class="o">-&gt;</span><span class="n">mmap_sem</span><span class="p">))</span>
+                <span class="k">return</span> <span class="o">-</span><span class="n">EINTR</span><span class="p">;</span>
+
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">do_brk</span><span class="p">(</span><span class="n">tsk</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+        <span class="n">up_write</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mm</span><span class="o">-&gt;</span><span class="n">mmap_sem</span><span class="p">);</span>
+
+        <span class="cm">/* Prepopulate brk pages */</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">ret</span><span class="p">)</span>
+                <span class="n">lego_mm_populate</span><span class="p">(</span><span class="n">mm</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </td></tr></table></p>
-<h3 id="disabled-dynamic-linked-binary">Disabled Dynamic-Linked Binary</h3>
-<p>The following code detects if an ELF executable is dynamic-linked:
+<hr />
+<h4 id="un-populated-stack">Un-Populated stack</h4>
+<p>Stack vma is manually expanded to <code class="codehilite">32 pages + pages for argv info</code> by loader to accommodate future usage. Only pages for argv are populated by default, the extra 32 pages are not. A typical progam may need 1 page for saving argv info, plus the 32 extra, the layout will be:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>7ffffffde000-7ffffffff000 rw-p 00000000 [stack]
+</pre></div>
+</td></tr></table></p>
+<p>The code to expand stack is done when ELF loader tries to finalize the stack vma, by calling <code class="codehilite">setup_arg_pages()</code>:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="nf">setup_arg_pages</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
+                    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">stack_top</span><span class="p">,</span> <span class="kt">int</span> <span class="n">executable_stack</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="p">...</span>
+        <span class="cm">/*</span>
+<span class="cm">         * 32*4k (or 2*64k) pages</span>
+<span class="cm">         */</span>
+        <span class="n">stack_expand</span> <span class="o">=</span> <span class="mi">131072UL</span><span class="p">;</span>
+        <span class="n">stack_size</span> <span class="o">=</span> <span class="n">vma</span><span class="o">-&gt;</span><span class="n">vm_end</span> <span class="o">-</span> <span class="n">vma</span><span class="o">-&gt;</span><span class="n">vm_start</span><span class="p">;</span>
+        <span class="n">stack_base</span> <span class="o">=</span> <span class="n">vma</span><span class="o">-&gt;</span><span class="n">vm_start</span> <span class="o">-</span> <span class="n">stack_expand</span><span class="p">;</span>
+
+        <span class="n">mm</span><span class="o">-&gt;</span><span class="n">start_stack</span> <span class="o">=</span> <span class="n">bprm</span><span class="o">-&gt;</span><span class="n">p</span><span class="p">;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">expand_stack</span><span class="p">(</span><span class="n">vma</span><span class="p">,</span> <span class="n">stack_base</span><span class="p">);</span>
+        <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></p>
+<hr />
+<h4 id="un-populated-text-and-data">Un-Populated <code class="codehilite"><span class="na">.text</span></code> and <code class="codehilite"><span class="na">.data</span></code></h4>
+<p>In essence, all PT_LOAD segments of ELF image are not pre-populated. They will be fetched from storage on demand. This is the traditional on-demand paging way. If we want to reduce the overhead of code and data&rsquo;s on-demand paging, we can prefault them in the future.</p>
+<hr />
+<h4 id="disabled-dynamic-linked-binary">Disabled Dynamic-Linked Binary</h4>
+<p>The following code detects if an ELF executable is dynamic-linked. Besides, we changed several other places within ELF loader to disable the support for dynamic-linked binary.
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -958,7 +1090,8 @@
 <span class="p">(</span><span class="n">managers</span><span class="o">/</span><span class="n">memory</span><span class="o">/</span><span class="n">loader</span><span class="o">/</span><span class="n">elf</span><span class="p">.</span><span class="n">c</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></p>
-<h3 id="disabled-randomized-top-of-stack">Disabled Randomized Top of Stack</h3>
+<hr />
+<h4 id="disabled-randomized-top-of-stack">Disabled Randomized Top of Stack</h4>
 <p>Lego currently does not randomize the stack top. The stack vma is allocated by <code class="codehilite">bprm_mm_init()</code> at early execve time. There is no randomization at the allocation time, and this applies to all exectuable formats. The end of vma is just <code class="codehilite">TASK_SIZE</code>:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
