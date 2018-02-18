@@ -20,12 +20,10 @@ This section describes the overall code flow of `execve()` within Linux. From th
 So the normal entry point is `do_execve()` that will do all dirty work. Above that, it can be invoked by syscall from user space, or from kernel space by calling `do_execve()` directly. There are not too many places that will call `do_execve` within kernel. One notable case is how kernel starts the `pid 1` user program. This happens after kernel finished all initialization. The code is:
 ```c
 static int run_init_process(const char *init_filename)                                                    
-{                                                                                                         
-        argv_init[0] = init_filename;                                                                     
-        return do_execve(getname_kernel(init_filename),                                                   
-                (const char __user *const __user *)argv_init,                                             
-                (const char __user *const __user *)envp_init);                                            
-}      
+{
+        argv_init[0] = init_filename;
+        return do_execve(init_filename, argv_init, envp_init);
+}
 ```
 
 ## Main Routine
@@ -101,7 +99,7 @@ int vm_brk(struct lego_task_struct *tsk,
 
 ---
 #### Un-Populated stack
-Stack vma is manually expanded to `32 pages + pages for argv info` by loader to accommodate future usage. Only pages for argv are populated by default, the extra 32 pages are not. A typical progam may need 1 page for saving argv info, plus the 32 extra, the layout will be:
+Stack vma is manually expanded to `32 pages + pages for argv info` by loader to accommodate future usage. Only pages for argv are populated by default, the extra 32 pages are not. A typical program may need 1 page for saving argv info, plus the 32 extra, the layout will be:
 ```
 7ffffffde000-7ffffffff000 rw-p 00000000 [stack]
 ```
@@ -216,4 +214,4 @@ static int load_elf_binary(struct lego_task_struct *tsk, struct lego_binprm *bpr
 
 --  
 Yizhou Shan  
-Feb 16, 2018
+Last Updated: Feb 18, 2018
