@@ -28,7 +28,7 @@ static int run_init_process(const char *init_filename)
 }      
 ```
 
-### Main Routine
+## Main Routine
 Linux is good at making things complex, the execve main routine is no different. To accommodate different usages, the final dirty work is done by:
 ```c
 /*
@@ -43,7 +43,11 @@ static int do_execveat_common(int fd, struct filename *filename,
 
 ## Lego's Loader
 
-### Virtual Address Space Range
+### Features
+This section lists various features, or behaviors and Lego's program loader.
+
+---
+#### Virtual Address Space Range
 
 User's virtual address falls into this range:
 ```
@@ -71,15 +75,63 @@ Essentially:
 [0x1000, 0x7ffffffff000)
 ```
 
-### Loaded ELF Segments
-Only PT_LOAD segments are loaded into memory:
+---
+#### Pre-Populated `.bss` and `.brk`
+The heap vma created at loading time is a combination of `.bss` and `.brk` segments. Since brk usage is 0 (will it be non-zero?) at this moment, so the heap vma is essentially just `.bss` pages. Normally, Linux kernel does not populate pages for this vma during loading, but Lego does. It can save several page allocation cost for heap pcache miss. It is controlled by `vm_brk()`.
 ```c
-if (elf_ppnt->p_type != PT_LOAD)
-        continue;
+int vm_brk(struct lego_task_struct *tsk,
+           unsigned long start, unsigned long len)
+{
+        int ret;
+        struct lego_mm_struct *mm = tsk->mm;
+
+        if (down_write_killable(&mm->mmap_sem))
+                return -EINTR;
+
+        ret = do_brk(tsk, start, len);
+        up_write(&mm->mmap_sem);
+
+        /* Prepopulate brk pages */
+        if (!ret)
+                lego_mm_populate(mm, start, len);
+
+        return ret;
+}
 ```
 
-### Disabled Dynamic-Linked Binary
-The following code detects if an ELF executable is dynamic-linked:
+---
+#### Un-Populated stack
+Stack vma is manually expanded to `32 pages + pages for argv info` by loader to accommodate future usage. Only pages for argv are populated by default, the extra 32 pages are not. A typical progam may need 1 page for saving argv info, plus the 32 extra, the layout will be:
+```
+7ffffffde000-7ffffffff000 rw-p 00000000 [stack]
+```
+
+The code to expand stack is done when ELF loader tries to finalize the stack vma, by calling `setup_arg_pages()`:
+```c
+int setup_arg_pages(struct lego_task_struct *tsk, struct lego_binprm *bprm,
+                    unsigned long stack_top, int executable_stack)
+{
+        ...
+        /*
+         * 32*4k (or 2*64k) pages
+         */
+        stack_expand = 131072UL;
+        stack_size = vma->vm_end - vma->vm_start;
+        stack_base = vma->vm_start - stack_expand;
+
+        mm->start_stack = bprm->p;
+        ret = expand_stack(vma, stack_base);
+        ...
+}
+```
+
+---
+#### Un-Populated `.text` and `.data`
+In essence, all PT_LOAD segments of ELF image are not pre-populated. They will be fetched from storage on demand. This is the traditional on-demand paging way. If we want to reduce the overhead of code and data's on-demand paging, we can prefault them in the future.
+
+---
+#### Disabled Dynamic-Linked Binary
+The following code detects if an ELF executable is dynamic-linked. Besides, we changed several other places within ELF loader to disable the support for dynamic-linked binary.
 ```C
 static int load_elf_binary(struct lego_task_struct *tsk, struct lego_binprm *bprm,
                            u64 *new_ip, u64 *new_sp, unsigned long *argv_len, unsigned long *envp_len)
@@ -101,7 +153,9 @@ static int load_elf_binary(struct lego_task_struct *tsk, struct lego_binprm *bpr
 (managers/memory/loader/elf.c)
 ```
 
-### Disabled Randomized Top of Stack
+
+---
+#### Disabled Randomized Top of Stack
 Lego currently does not randomize the stack top. The stack vma is allocated by `bprm_mm_init()` at early execve time. There is no randomization at the allocation time, and this applies to all exectuable formats. The end of vma is just `TASK_SIZE`:
 ```c
 static int __bprm_mm_init(struct lego_binprm *bprm)
