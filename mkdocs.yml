@@ -16,6 +16,7 @@ pages:
         - 'Disable pgfault': 'lego/kernel/pagefault_disable.md'
         - 'Stop machine': 'lego/kernel/stop_machine.md'
         - 'Loader': 'lego/kernel/loader.md'
+        - 'Process Virtual Memory': 'lego/kernel/vm.md'
    - Syscall:
            - 'msync()':       'lego/syscall/msync.md'
            - 'mremap()':      'lego/syscall/mremap.md'
