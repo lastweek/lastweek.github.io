@@ -36,7 +36,7 @@
     
     
       
-        <title>mremap() - Yizhou Shan's Home Page</title>
+        <title>Process Virtual Memory - Yizhou Shan's Home Page</title>
       
     
     
@@ -69,7 +69,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#mremap" tabindex="1" class="md-skip">
+      <a href="#process-virtual-memory" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -95,7 +95,7 @@
                 Yizhou Shan's Home Page
               </span>
               <span class="md-header-nav__topic">
-                mremap()
+                Process Virtual Memory
               </span>
             
           
@@ -329,10 +329,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3" checked>
     
     <label class="md-nav__link" for="nav-3-3">
       Kernel
@@ -350,7 +352,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/kconfig/" title="Kconfig" class="md-nav__link">
+    <a href="../kconfig/" title="Kconfig" class="md-nav__link">
       Kconfig
     </a>
   </li>
@@ -362,7 +364,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/debug/" title="Debug" class="md-nav__link">
+    <a href="../debug/" title="Debug" class="md-nav__link">
       Debug
     </a>
   </li>
@@ -374,7 +376,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/pagefault_disable/" title="Disable pgfault" class="md-nav__link">
+    <a href="../pagefault_disable/" title="Disable pgfault" class="md-nav__link">
       Disable pgfault
     </a>
   </li>
@@ -386,7 +388,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/stop_machine/" title="Stop machine" class="md-nav__link">
+    <a href="../stop_machine/" title="Stop machine" class="md-nav__link">
       Stop machine
     </a>
   </li>
@@ -398,58 +400,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/loader/" title="Loader" class="md-nav__link">
+    <a href="../loader/" title="Loader" class="md-nav__link">
       Loader
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../kernel/vm/" title="Process Virtual Memory" class="md-nav__link">
-      Process Virtual Memory
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4" checked>
-    
-    <label class="md-nav__link" for="nav-3-4">
-      Syscall
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-3-4">
-        Syscall
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../msync/" title="msync()" class="md-nav__link">
-      msync()
     </a>
   </li>
 
@@ -468,10 +420,122 @@
       
     
     
-    <a href="./" title="mremap()" class="md-nav__link md-nav__link--active">
-      mremap()
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Process Virtual Memory
+      </label>
+    
+    <a href="./" title="Process Virtual Memory" class="md-nav__link md-nav__link--active">
+      Process Virtual Memory
     </a>
     
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#limits" title="Limits" class="md-nav__link">
+    Limits
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#max-number-of-vmas" title="Max Number of VMAs" class="md-nav__link">
+    Max Number of VMAs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#facts" title="Facts" class="md-nav__link">
+    Facts
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#munmap-can-split-vma" title="munmap can split vma" class="md-nav__link">
+    munmap can split vma
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#msync-is-not-atomic" title="msync() is not atomic" class="md-nav__link">
+    msync() is not atomic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#msync-need-concurrency-control" title="msync() need concurrency control" class="md-nav__link">
+    msync() need concurrency control
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Syscall
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        Syscall
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/msync/" title="msync()" class="md-nav__link">
+      msync()
+    </a>
   </li>
 
         
@@ -481,7 +545,19 @@
 
 
   <li class="md-nav__item">
-    <a href="../fork/" title="fork()" class="md-nav__link">
+    <a href="../../syscall/mremap/" title="mremap()" class="md-nav__link">
+      mremap()
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/fork/" title="fork()" class="md-nav__link">
       fork()
     </a>
   </li>
@@ -622,6 +698,69 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#limits" title="Limits" class="md-nav__link">
+    Limits
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#max-number-of-vmas" title="Max Number of VMAs" class="md-nav__link">
+    Max Number of VMAs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#facts" title="Facts" class="md-nav__link">
+    Facts
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#munmap-can-split-vma" title="munmap can split vma" class="md-nav__link">
+    munmap can split vma
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#msync-is-not-atomic" title="msync() is not atomic" class="md-nav__link">
+    msync() is not atomic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#msync-need-concurrency-control" title="msync() need concurrency control" class="md-nav__link">
+    msync() need concurrency control
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -633,7 +772,26 @@
               
                 
                 
-                <h1 id="mremap">mremap()</h1>
+                <h1 id="process-virtual-memory">Process Virtual Memory</h1>
+<h2 id="limits">Limits</h2>
+<h3 id="max-number-of-vmas">Max Number of VMAs</h3>
+<p>By default, the maximum number of VMAs is: <code class="codehilite">65530</code>. It is defined by the following variable:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#define MAPCOUNT_ELF_CORE_MARGIN        (5)</span>
+<span class="cp">#define DEFAULT_MAX_MAP_COUNT   (USHRT_MAX - MAPCOUNT_ELF_CORE_MARGIN)</span>
+
+<span class="kt">int</span> <span class="n">sysctl_max_map_count</span> <span class="n">__read_mostly</span> <span class="o">=</span> <span class="n">DEFAULT_MAX_MAP_COUNT</span><span class="p">;</span>
+</pre></div>
+</td></tr></table></p>
+<h2 id="facts">Facts</h2>
+<h3 id="munmap-can-split-vma"><code class="codehilite">munmap</code> can split vma</h3>
+<p><code class="codehilite">munmap</code> can create a hole with an existing vma, thus divide one existing vma to two new vmas. Do note that, <code class="codehilite">munmap</code> can create hole for both anonymous vma <em><strong>and</strong></em> file-backed vma.</p>
+<h3 id="msync-is-not-atomic"><code class="codehilite">msync()</code> is not atomic</h3>
+<p>During <code class="codehilite">msync()</code>, pages are being written back to disk one by one (or batched). Consider the case where few pages have been flushed back, while some other few pages are still in the memory. This premature writeback is not atomic and will be affected by failure.</p>
+<h3 id="msync-need-concurrency-control"><code class="codehilite">msync()</code> need concurrency control</h3>
+<p>With a multi-threaded application, does msync() provide the synchronization semantic? The answer is NO. Other threads within the same process are able to write to pages currently under <code class="codehilite">msync()</code>. This implies that application need to handle concurrency by themselves, e.g., rwlocks.</p>
                 
                   
                 
@@ -652,7 +810,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../msync/" title="msync()" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../loader/" title="Loader" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -661,19 +819,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                msync()
+                Loader
               </span>
             </div>
           </a>
         
         
-          <a href="../fork/" title="fork()" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../syscall/msync/" title="msync()" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                fork()
+                msync()
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

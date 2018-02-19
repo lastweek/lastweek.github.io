@@ -331,6 +331,46 @@
             "title": "Disabled Randomized Top of Stack"
         }, 
         {
+            "location": "/lego/kernel/vm/", 
+            "text": "Process Virtual Memory\n\n\nLimits\n\n\nMax Number of VMAs\n\n\nBy default, the maximum number of VMAs is: \n65530\n. It is defined by the following variable:\n\n1\n2\n3\n4\n#define MAPCOUNT_ELF_CORE_MARGIN        (5)\n\n\n#define DEFAULT_MAX_MAP_COUNT   (USHRT_MAX - MAPCOUNT_ELF_CORE_MARGIN)\n\n\n\nint\n \nsysctl_max_map_count\n \n__read_mostly\n \n=\n \nDEFAULT_MAX_MAP_COUNT\n;\n\n\n\n\n\n\nFacts\n\n\nmunmap\n can split vma\n\n\nmunmap\n can create a hole with an existing vma, thus divide one existing vma to two new vmas. Do note that, \nmunmap\n can create hole for both anonymous vma \nand\n file-backed vma.\n\n\nmsync()\n is not atomic\n\n\nDuring \nmsync()\n, pages are being written back to disk one by one (or batched). Consider the case where few pages have been flushed back, while some other few pages are still in the memory. This premature writeback is not atomic and will be affected by failure.\u000b\u000b\n\n\nmsync()\n need concurrency control\n\n\nWith a multi-threaded application, does msync() provide the synchronization semantic? The answer is NO. Other threads within the same process are able to write to pages currently under \nmsync()\n. This implies that application need to handle concurrency by themselves, e.g., rwlocks.", 
+            "title": "Process Virtual Memory"
+        }, 
+        {
+            "location": "/lego/kernel/vm/#process-virtual-memory", 
+            "text": "", 
+            "title": "Process Virtual Memory"
+        }, 
+        {
+            "location": "/lego/kernel/vm/#limits", 
+            "text": "", 
+            "title": "Limits"
+        }, 
+        {
+            "location": "/lego/kernel/vm/#max-number-of-vmas", 
+            "text": "By default, the maximum number of VMAs is:  65530 . It is defined by the following variable: 1\n2\n3\n4 #define MAPCOUNT_ELF_CORE_MARGIN        (5)  #define DEFAULT_MAX_MAP_COUNT   (USHRT_MAX - MAPCOUNT_ELF_CORE_MARGIN)  int   sysctl_max_map_count   __read_mostly   =   DEFAULT_MAX_MAP_COUNT ;", 
+            "title": "Max Number of VMAs"
+        }, 
+        {
+            "location": "/lego/kernel/vm/#facts", 
+            "text": "", 
+            "title": "Facts"
+        }, 
+        {
+            "location": "/lego/kernel/vm/#munmap-can-split-vma", 
+            "text": "munmap  can create a hole with an existing vma, thus divide one existing vma to two new vmas. Do note that,  munmap  can create hole for both anonymous vma  and  file-backed vma.", 
+            "title": "munmap can split vma"
+        }, 
+        {
+            "location": "/lego/kernel/vm/#msync-is-not-atomic", 
+            "text": "During  msync() , pages are being written back to disk one by one (or batched). Consider the case where few pages have been flushed back, while some other few pages are still in the memory. This premature writeback is not atomic and will be affected by failure.", 
+            "title": "msync() is not atomic"
+        }, 
+        {
+            "location": "/lego/kernel/vm/#msync-need-concurrency-control", 
+            "text": "With a multi-threaded application, does msync() provide the synchronization semantic? The answer is NO. Other threads within the same process are able to write to pages currently under  msync() . This implies that application need to handle concurrency by themselves, e.g., rwlocks.", 
+            "title": "msync() need concurrency control"
+        }, 
+        {
             "location": "/lego/syscall/msync/", 
             "text": "msync()\n\n\nThe document is a summary I wrote after reading \nFailure-atomic msync()\n paper, which help me understand several questions related to \nmsync()\n.\n\n\n\n\n\n\nmsync() is not atomic.\n During msync(), pages are being written back to disk one by one (or batched): few pages have been flushed back, but few pages are still in the memory. This premature writeback is not atomic and will be affected by failure.\u000b\u000b\n\n\n\n\n\n\nmsync() need concurrency control\n. This actually is the issue I asked before. With a multi-threaded application, does msync() provide the synchronization semantic? The answer is no. Other threads within the same process are able to write to pages under msync(). This implies, application need to handle concurrency by themselves, e.g., rwlocks. \u000b\u000bAt the very beginning, I thought msync() provide this semantic. The only way to implement this should be: kernel make all pages\n PTE read-only, and then perform flush back. If any other threads does a write during flush, they will have a page fault. And in the pgfault function, we hold the threads until the pages are written back.\n\n\n\n\n\n\n\nYizhou Shan\n\nFeb 01, 2018", 
             "title": "msync()"
