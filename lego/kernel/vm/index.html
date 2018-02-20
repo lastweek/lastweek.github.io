@@ -400,8 +400,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../loader/" title="Loader" class="md-nav__link">
-      Loader
+    <a href="../loader/" title="Program Loader" class="md-nav__link">
+      Program Loader
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../vfs/" title="Virtual File System" class="md-nav__link">
+      Virtual File System
     </a>
   </li>
 
@@ -792,6 +804,10 @@
 <p>During <code class="codehilite">msync()</code>, pages are being written back to disk one by one (or batched). Consider the case where few pages have been flushed back, while some other few pages are still in the memory. This premature writeback is not atomic and will be affected by failure.</p>
 <h3 id="msync-need-concurrency-control"><code class="codehilite">msync()</code> need concurrency control</h3>
 <p>With a multi-threaded application, does msync() provide the synchronization semantic? The answer is NO. Other threads within the same process are able to write to pages currently under <code class="codehilite">msync()</code>. This implies that application need to handle concurrency by themselves, e.g., rwlocks.</p>
+<p>&ndash;<br />
+Yizhou Shan<br />
+Created: Feb 19, 2018<br />
+Last Updated: Feb 19, 2018</p>
                 
                   
                 
@@ -810,7 +826,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../loader/" title="Loader" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../vfs/" title="Virtual File System" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -819,7 +835,7 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Loader
+                Virtual File System
               </span>
             </div>
           </a>

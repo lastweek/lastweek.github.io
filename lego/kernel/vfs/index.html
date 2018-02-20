@@ -36,7 +36,7 @@
     
     
       
-        <title>GRUB - Yizhou Shan's Home Page</title>
+        <title>Virtual File System - Yizhou Shan's Home Page</title>
       
     
     
@@ -69,7 +69,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#use-grub2-to-boot-lego" tabindex="1" class="md-skip">
+      <a href="#processor-managers-virtual-file-system" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -95,7 +95,7 @@
                 Yizhou Shan's Home Page
               </span>
               <span class="md-header-nav__topic">
-                GRUB
+                Virtual File System
               </span>
             
           
@@ -281,12 +281,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
     
     <label class="md-nav__link" for="nav-3-2">
       Boot
@@ -302,56 +300,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        GRUB
-      </label>
-    
-    <a href="./" title="GRUB" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../boot/grub/" title="GRUB" class="md-nav__link">
       GRUB
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#how-lego-pretend-as-a-linux-kernel" title="How Lego pretend as a Linux kernel" class="md-nav__link">
-    How Lego pretend as a Linux kernel
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-config-grub2-for-lego" title="How to config GRUB2 for Lego" class="md-nav__link">
-    How to config GRUB2 for Lego
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -361,7 +314,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../trampoline/" title="Trampoline" class="md-nav__link">
+    <a href="../../boot/trampoline/" title="Trampoline" class="md-nav__link">
       Trampoline
     </a>
   </li>
@@ -376,10 +329,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3" checked>
     
     <label class="md-nav__link" for="nav-3-3">
       Kernel
@@ -397,7 +352,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/kconfig/" title="Kconfig" class="md-nav__link">
+    <a href="../kconfig/" title="Kconfig" class="md-nav__link">
       Kconfig
     </a>
   </li>
@@ -409,7 +364,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/debug/" title="Debug" class="md-nav__link">
+    <a href="../debug/" title="Debug" class="md-nav__link">
       Debug
     </a>
   </li>
@@ -421,7 +376,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/pagefault_disable/" title="Disable pgfault" class="md-nav__link">
+    <a href="../pagefault_disable/" title="Disable pgfault" class="md-nav__link">
       Disable pgfault
     </a>
   </li>
@@ -433,7 +388,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/stop_machine/" title="Stop machine" class="md-nav__link">
+    <a href="../stop_machine/" title="Stop machine" class="md-nav__link">
       Stop machine
     </a>
   </li>
@@ -445,7 +400,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/loader/" title="Program Loader" class="md-nav__link">
+    <a href="../loader/" title="Program Loader" class="md-nav__link">
       Program Loader
     </a>
   </li>
@@ -455,11 +410,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../kernel/vfs/" title="Virtual File System" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+    <a href="./" title="Virtual File System" class="md-nav__link md-nav__link--active">
       Virtual File System
     </a>
+    
   </li>
 
         
@@ -469,7 +433,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/vm/" title="Process Virtual Memory" class="md-nav__link">
+    <a href="../vm/" title="Process Virtual Memory" class="md-nav__link">
       Process Virtual Memory
     </a>
   </li>
@@ -670,29 +634,6 @@
     
   
   
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#how-lego-pretend-as-a-linux-kernel" title="How Lego pretend as a Linux kernel" class="md-nav__link">
-    How Lego pretend as a Linux kernel
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-config-grub2-for-lego" title="How to config GRUB2 for Lego" class="md-nav__link">
-    How to config GRUB2 for Lego
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -704,13 +645,13 @@
               
                 
                 
-                <h1 id="use-grub2-to-boot-lego">Use GRUB2 to boot Lego</h1>
-<p>Last Updated: 02/02/2018</p>
-<p>This document explains: <strong>1)</strong> how Lego itself is written to pretend as a Linux kernel, <strong>2)</strong> how to boot Lego kernel with GRUB2, <strong>3)</strong> GRUB2 configurations specific to Lego.</p>
-<h2 id="how-lego-pretend-as-a-linux-kernel">How Lego pretend as a Linux kernel</h2>
-<p>asdsad</p>
-<h2 id="how-to-config-grub2-for-lego">How to config GRUB2 for Lego</h2>
-<p>asdsa</p>
+                <h1 id="processor-managers-virtual-file-system">Processor Manager&rsquo;s Virtual File System</h1>
+<p>Lego processor manager has an virtual file system layer to accommodate the famous legacy <code class="codehilite">Everything is a file</code> philosophy. But we implement this in a very dirty way.</p>
+<p>Cover later.</p>
+<p>&ndash;<br />
+Yizhou Shan<br />
+Created: Feb 20, 2018<br />
+Last Updated: Feb 20, 2018</p>
                 
                   
                 
@@ -729,7 +670,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../log/log-02-2018/" title="Feb 2018" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../loader/" title="Program Loader" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -738,19 +679,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Feb 2018
+                Program Loader
               </span>
             </div>
           </a>
         
         
-          <a href="../trampoline/" title="Trampoline" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../vm/" title="Process Virtual Memory" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Trampoline
+                Process Virtual Memory
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

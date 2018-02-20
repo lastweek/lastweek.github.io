@@ -246,6 +246,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#tmux" title="tmux" class="md-nav__link">
+    tmux
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bash" title="bash" class="md-nav__link">
+    bash
+  </a>
+  
+</li>
+      
       
       
       
@@ -450,8 +464,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../lego/kernel/loader/" title="Loader" class="md-nav__link">
-      Loader
+    <a href="../../lego/kernel/loader/" title="Program Loader" class="md-nav__link">
+      Program Loader
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/kernel/vfs/" title="Virtual File System" class="md-nav__link">
+      Virtual File System
     </a>
   </li>
 
@@ -687,6 +713,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#tmux" title="tmux" class="md-nav__link">
+    tmux
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bash" title="bash" class="md-nav__link">
+    bash
+  </a>
+  
+</li>
+      
       
       
       
@@ -776,6 +816,25 @@ qemu-system-x86_64 -s  <span class="se">\</span>
 <h2 id="markdown">Markdown</h2>
 <ul>
 <li><a href="https://www.webpagefx.com/tools/emoji-cheat-sheet/">Emoji cheatsheet</a></li>
+</ul>
+<h2 id="tmux">tmux</h2>
+<ul>
+<li>Install <a href="https://github.com/tmux-plugins">tmux-plugins</a>, it makes your terminal bling bling.</li>
+</ul>
+<h2 id="bash">bash</h2>
+<ul>
+<li>Show current git branch in PS1:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>parse_git_branch<span class="o">()</span> <span class="o">{</span>
+     git branch <span class="m">2</span>&gt; /dev/null <span class="p">|</span> sed -e <span class="s1">&#39;/^[^*]/d&#39;</span> -e <span class="s1">&#39;s/* \(.*\)/ git:(\1)/&#39;</span>
+<span class="o">}</span>
+
+<span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;\[\e[32m\][\u@\h: \W\e[33m\]\$(parse_git_branch)\[\033[32m\]]\[\e[00m\] </span>$<span class="s2"> &quot;</span>
+</pre></div>
+</td></tr></table></li>
 </ul>
                 
                   
