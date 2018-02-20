@@ -851,33 +851,15 @@
 <h2 id="0219-mon-rainy">02/19 Mon Rainy</h2>
 <p>It is another week. I can not deny I&rsquo;m a little tired about the bug. Tried so many possible solutions, but none of them work. Well, today I first need to test the vma changes (pgoff and anon_vma) thing. Especially the vma merge and split.</p>
 <p>This morning I fixed a bug in kernel_init process: make kernel_init able to run all possible CPUs. Because the first user process is forked from kernel_init, it is quite important that it gets the right cpu affinity:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cm">/*</span>
-<span class="cm"> * This is our first kernel thread (pid 1),</span>
-<span class="cm"> */</span>
-<span class="k">static</span> <span class="kt">int</span> <span class="nf">kernel_init</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">unused</span><span class="p">)</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">static</span> <span class="kt">int</span> <span class="nf">kernel_init</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">unused</span><span class="p">)</span>
 <span class="p">{</span>
-        <span class="cm">/* Wait until kthreadd is all set-up. */</span>
-        <span class="n">wait_for_completion</span><span class="p">(</span><span class="o">&amp;</span><span class="n">kthreadd_done</span><span class="p">);</span>
-
-        <span class="cm">/*  </span>
-<span class="cm">         * init can run on any cpu.</span>
-<span class="cm">         */</span>
+        <span class="p">...</span>
         <span class="n">set_cpus_allowed_ptr</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">cpu_possible_mask</span><span class="p">);</span>
-        <span class="n">set_task_comm</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="s">&quot;kernel_init&quot;</span><span class="p">);</span>
         <span class="p">...</span>
 <span class="p">}</span>
 </pre></div>
@@ -893,6 +875,10 @@
 <li>check why the cpus_allowed changed</li>
 <li>check why word_count-pthread open <code class="codehilite">/dev/../cpu</code> so many times. Anything wrong with our <code class="codehilite">copy_files</code>, or open, close?</li>
 <li>here is an idea, to verify if FPU code is correct, run some scientific benchmarks.</li>
+</ul>
+<p>Okay, findings:</p>
+<ul>
+<li>cpus_allowd is fine, it is reset inside <code class="codehilite">sched_init()</code>, when it tries make the <code class="codehilite">init_task</code> as the <code class="codehilite">idle</code> thread. Thus it is reasonable to set cpus_allowed again at <code class="codehilite">kernel_init</code> thread.</li>
 </ul>
 <hr />
 <h2 id="0218-sun-sunny">02/18 Sun Sunny</h2>
