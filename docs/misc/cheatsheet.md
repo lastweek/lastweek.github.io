@@ -42,3 +42,17 @@ qemu-system-x86_64 -s  \
 
 ## Markdown
 * [Emoji cheatsheet](https://www.webpagefx.com/tools/emoji-cheat-sheet/)
+
+## tmux
+* Install [tmux-plugins](https://github.com/tmux-plugins), it makes your terminal bling bling.
+
+## bash
+
+* Show current git branch in PS1:
+```bash
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ git:(\1)/'
+}
+
+PS1="\[\e[32m\][\u@\h: \W\e[33m\]\$(parse_git_branch)\[\033[32m\]]\[\e[00m\] $ "
+```

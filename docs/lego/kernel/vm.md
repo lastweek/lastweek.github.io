@@ -21,3 +21,9 @@ During `msync()`, pages are being written back to disk one by one (or batched). 
 
 ### `msync()` need concurrency control
 With a multi-threaded application, does msync() provide the synchronization semantic? The answer is NO. Other threads within the same process are able to write to pages currently under `msync()`. This implies that application need to handle concurrency by themselves, e.g., rwlocks.
+
+
+--  
+Yizhou Shan  
+Created: Feb 19, 2018  
+Last Updated: Feb 19, 2018

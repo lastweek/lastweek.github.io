@@ -9,15 +9,15 @@ This document explains the high-level workflow of Lego's program loader, and how
 | ELF (dynamic-linked)|:heavy_multiplication_x:|
 
 ## Overall
-In order to support different executable formats, Lego has a `virtual loader layer` above all specific formats, which is quite similar to `virtual file system`. In Lego, `execve()` is divided into two parts: `1)` syscall hook at processor side, `2)` real loader at memory side. Combined together, they provide the same semantic of `execve()` as described in Linux man page. Also for the code, we divide the Linux implementation into parts. But our emulation model introduces several interesting workarounds, which we will talk later.
+In order to support different executable formats, Lego has a `virtual loader layer` above all specific formats, which is quite similar to `virtual file system`. In Lego, `execve()` is divided into two parts: `1)` syscall hook at processor side, `2)` real loader at memory side. Combined together, they provide the same semantic of `execve()` as described in Linux man page. Also for the code, we divide the Linux implementation into parts. But our emulation model introduces several interesting workarounds.
 
-Therefore, before we dive into Lego's implementation, we first walk through Linux's code, describe the important steps, and then we will talk about how lego divide these functionalities to fit disaggregated operating system model.
 
-## Linux's Loader
-This section describes the overall code flow of `execve()` within Linux. From the entry point to the return assembly part.
+## Lego's Loader
+
+Lego basically divide the Linux loader into two parts, one in memory manager and other in processor manager. Most dirty work is done by memory manager. Processor manager only needs to make sure the new execution has a fresh environment to start.
 
 ### Entry Point
-So the normal entry point is `do_execve()` that will do all dirty work. Above that, it can be invoked by syscall from user space, or from kernel space by calling `do_execve()` directly. There are not too many places that will call `do_execve` within kernel. One notable case is how kernel starts the `pid 1` user program. This happens after kernel finished all initialization. The code is:
+So the normal entry point is `do_execve()`. Above that, it can be invoked by syscall from user space, or from kernel space by calling `do_execve()` directly. There are not too many places that will call `do_execve` within kernel. One notable case is how kernel starts the `pid 1` user program. This happens after kernel finished all initialization. The code is:
 ```c
 static int run_init_process(const char *init_filename)                                                    
 {
@@ -25,21 +25,135 @@ static int run_init_process(const char *init_filename)
         return do_execve(init_filename, argv_init, envp_init);
 }
 ```
+### Memory Manager's Job
+Memory manager side will do most of the dirty loading work. It will parse the ELF image, create new VMAs based on ELF information. After that, it only pass `start_ip` and `start_stack` back to processor manager. Once processor manager starts running this new execution, pages will be fetched from memory component on demand.
 
-## Main Routine
-Linux is good at making things complex, the execve main routine is no different. To accommodate different usages, the final dirty work is done by:
+### Processor Manager's Job
+It needs to flush old execution environment, and setup the new execution environment, such as signal, FPU. Notably, processor manager need to run `flush_old_exec()`, and `setup_new_exec()`.
+
+#### Destroy old context: flush_old_exec()
+
+##### Zap other threads
+`de_thread` is used to kill other threads within the same thread group, thus make sure this process has its own signal table. Furthermore, A `exec` starts a new thread group with the same TGID of the previous thread group, so we probably also need to switch PID if calling thread is not a leader.
+
+##### Switch to new address space
+We also need to release the old mm, and allocate a new mm. The new mm only has the high address kernel mapping established. Do note that in Lego, pgtable is used to emulate the processor cache:
 ```c
-/*
- * sys_execve() executes a new program.
- */
-static int do_execveat_common(int fd, struct filename *filename,
-                              struct user_arg_ptr argv,
-                              struct user_arg_ptr envp,
-                              int flags);
+static int exec_mmap(void)
+{
+        struct mm_struct *new_mm;
+        struct mm_struct *old_mm;
+        struct task_struct *tsk;
+
+        new_mm = mm_alloc();
+        if (!new_mm)
+                return -ENOMEM;
+
+        tsk = current;
+        old_mm = current->mm;
+        mm_release(tsk, old_mm);
+
+        task_lock(tsk);
+        tsk->mm = new_mm;
+        tsk->active_mm = new_mm;
+        activate_mm(old_mm, new_mm);
+        task_unlock(tsk);
+
+        if (old_mm)
+                mmput(old_mm);
+        return 0;
+}
+```
+
+##### Clear Architecture-Specific state
+This is performed by `flush_thread()`, which is an architecture-specific callback. In x86, we need to clear FPU state, and reset TLS array:
+```c
+void flush_thread(void)
+{
+        struct task_struct *tsk = current;
+        memset(tsk->thread.tls_array, 0, sizeof(tsk->thread.tls_array));
+
+        fpu__clear(&tsk->thread.fpu);
+}
 ```
 
 
-## Lego's Loader
+#### Setup new context: setup_new_exec()
+Lego's `setup_new_exec()` is quite different from Linux's default implementation. Lego moves several functions to memory component, like the `arch_pick_mmap_layout` stuff. Thus, Lego only flush the signal handlers and reset the signal stack stuff:
+```c
+static void setup_new_exec(const char *filename)
+{
+        /* This is the point of no return */
+        current->sas_ss_sp = current->sas_ss_size = 0;
+
+        set_task_comm(current, kbasename(filename));
+
+        flush_signal_handlers(current, 0);
+}
+```
+
+#### Change return frame in stack
+We do not return to user mode here, we simply replace the return IP of the regs frame. While the kernel thread returns, it will simply merge to syscall return path (check ret_from_fork() in entry.S for detail).
+```c
+/**
+ * start_thread - Starting a new user thread
+ * @regs: pointer to pt_regs
+ * @new_ip: the first instruction IP of user thread
+ * @new_sp: the new stack pointer of user thread
+ */
+void start_thread(struct pt_regs *regs, unsigned long new_ip,
+                  unsigned long new_sp)
+{
+        loadsegment(fs, 0);
+        loadsegment(es, 0);
+        loadsegment(ds, 0);
+        load_gs_index(0);
+        regs->ip                = new_ip;
+        regs->sp                = new_sp;
+        regs->cs                = __USER_CS;
+        regs->ss                = __USER_DS;
+        regs->flags             = X86_EFLAGS_IF;
+}
+```
+
+If calling `execve()` from userspace, the return frame is saved in the stack, we can simply do `start_thread` above, and merge to syscall return path. However, if calling `execve()` from a kernel thread, things changed. As you can see, all forked threads will run from `ret_from_fork` when it wakes for the first time. If it is a kernel thread, it jumps to `line 23`, to execute the kernel function. Normally, the function should not return. If it does return, it normally has called an `execve()`, and return frame has been changed by `start_thread()`. So we jump to `line 16` to let it merge to syscall return path.
+
+```asm hl_lines="16 23"
+/*
+ * A newly forked process directly context switches into this address.
+ *
+ * rax: prev task we switched from
+ * rbx: kernel thread func (NULL for user thread)
+ * r12: kernel thread arg
+ */
+ENTRY(ret_from_fork)
+        movq    %rax, %rdi
+        call    schedule_tail           /* rdi: 'prev' task parameter */
+
+        testq   %rbx, %rbx              /* from kernel_thread? */
+        jnz     1f                      /* kernel threads are uncommon */
+
+2:
+        movq    %rsp, %rdi
+        call    syscall_return_slowpath /* return with IRQs disabled */
+        SWAPGS                          /* switch to user gs.base */
+        jmp     restore_regs_and_iret
+
+1:
+        /* kernel thread */
+        movq    %r12, %rdi
+        call    *%rbx
+        /*  
+         * A kernel thread is allowed to return here after successfully
+         * calling do_execve().  Exit to userspace to complete the execve()
+         * syscall:
+         */
+        movq    $0, RAX(%rsp)
+        jmp     2b  
+END(ret_from_fork)
+```
+
+This is such a typical control flow hijacking. :-)
 
 ### Features
 This section lists various features, or behaviors and Lego's program loader.
@@ -214,4 +328,5 @@ static int load_elf_binary(struct lego_task_struct *tsk, struct lego_binprm *bpr
 
 --  
 Yizhou Shan  
-Last Updated: Feb 18, 2018
+Created: Feb 16, 2018  
+Last Updated: Feb 20, 2018
