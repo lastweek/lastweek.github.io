@@ -6,6 +6,23 @@
 # qemu-monitor-command guest_os_id --hmp "info cpus"
 ```
 
+## Markdown
+* [Emoji cheatsheet](https://www.webpagefx.com/tools/emoji-cheat-sheet/)
+
+## tmux
+* Install [tmux-plugins](https://github.com/tmux-plugins), it makes your terminal bling bling.
+
+## bash
+
+* Show current git branch in PS1:
+```bash
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ git:(\1)/'
+}
+
+PS1="\[\e[32m\][\u@\h: \W\e[33m\]\$(parse_git_branch)\[\033[32m\]]\[\e[00m\] $ "
+```
+
 ## QEMU
 
 * Run standalone kernel:
@@ -40,19 +57,23 @@ qemu-system-x86_64 -s  \
         -numa node,cpus=12-23,mem=8G,nodeid=1
 ```
 
-## Markdown
-* [Emoji cheatsheet](https://www.webpagefx.com/tools/emoji-cheat-sheet/)
+## Install CentOS on Dell PowerEdge
 
-## tmux
-* Install [tmux-plugins](https://github.com/tmux-plugins), it makes your terminal bling bling.
-
-## bash
-
-* Show current git branch in PS1:
-```bash
-parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ git:(\1)/'
-}
-
-PS1="\[\e[32m\][\u@\h: \W\e[33m\]\$(parse_git_branch)\[\033[32m\]]\[\e[00m\] $ "
-```
+- Enable `SR-IOV` for future usage
+    - Press `F11 Boot Manager` during boot
+    - Find `Integrated Devices`
+    - Enable `SR-IOV Global Enable`
+- Partition
+    - `/boot`: e.g, 50GB
+    - `swap`: e.g, 4G
+    - `/`: all left
+- Don't forget to enable Network during installation.
+- Change SSH port
+    - Disable `firewalld`
+        - `systemctl stop firewalld`
+        - `systemctl disable firewalld`
+    - If SELinux is enabled
+        - `yum install policycoreutils-python`
+        - `semanage port -a -t ssh_port_t -p tcp #PORTNUMBER`
+    - Change `/etc/ssh/sshd_config`
+    - `systemctl restart sshd`
