@@ -875,7 +875,10 @@
                 <h1 id="feb-2018">Feb 2018</h1>
 <hr />
 <h2 id="0210-tue-cloudy">02/10 Tue Cloudy</h2>
-<p>Not too many Sunny days recently. Well, continue yesterday&rsquo;s work. I don&rsquo;t think I can easily find out why so many <code class="codehilite">/proc/memoinfo</code> open happened.I&rsquo;m trying to enable the <code class="codehilite">flush_thread</code> in P&rsquo;s exec code.</p>
+<p>Not too many Sunny days recently. Well, continue yesterday&rsquo;s work. I don&rsquo;t think I can easily find out why so many <code class="codehilite">/proc/memoinfo</code> open happened. Instead, I&rsquo;m trying to enable the <code class="codehilite">flush_thread</code> in P&rsquo;s exec code.</p>
+<p>During the way, I found some issue related to <code class="codehilite">__ARCH_HAS_SA_RESTORER</code> in signal code. I need to check if these x86 macros are defined, but lego does not port them.</p>
+<p>Well, it turns out flush_thread does not make too much difference. Next I&rsquo;m going to try to disable <code class="codehilite">exit_thread</code>, which uses <code class="codehilite">fpu__drop()</code>.</p>
+<p>Hmm, disable <code class="codehilite">exit_thread</code> also does not work.</p>
 <hr />
 <h2 id="0219-mon-rainy">02/19 Mon Rainy</h2>
 <p>It is another week. I can not deny I&rsquo;m a little tired about the bug. Tried so many possible solutions, but none of them work. Well, today I first need to test the vma changes (pgoff and anon_vma) thing. Especially the vma merge and split.</p>

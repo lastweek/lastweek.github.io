@@ -233,13 +233,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#qemu" title="QEMU" class="md-nav__link">
-    QEMU
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#markdown" title="Markdown" class="md-nav__link">
     Markdown
   </a>
@@ -256,6 +249,20 @@
         <li class="md-nav__item">
   <a href="#bash" title="bash" class="md-nav__link">
     bash
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qemu" title="QEMU" class="md-nav__link">
+    QEMU
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-centos-on-dell-poweredge" title="Install CentOS on Dell PowerEdge" class="md-nav__link">
+    Install CentOS on Dell PowerEdge
   </a>
   
 </li>
@@ -700,13 +707,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#qemu" title="QEMU" class="md-nav__link">
-    QEMU
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#markdown" title="Markdown" class="md-nav__link">
     Markdown
   </a>
@@ -723,6 +723,20 @@
         <li class="md-nav__item">
   <a href="#bash" title="bash" class="md-nav__link">
     bash
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qemu" title="QEMU" class="md-nav__link">
+    QEMU
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-centos-on-dell-poweredge" title="Install CentOS on Dell PowerEdge" class="md-nav__link">
+    Install CentOS on Dell PowerEdge
   </a>
   
 </li>
@@ -749,6 +763,29 @@
 <ul>
 <li>Pass commands to QEMU in the virsh bash:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span># qemu-monitor-command guest_os_id --hmp &quot;info cpus&quot;
+</pre></div>
+</td></tr></table></li>
+</ul>
+<h2 id="markdown">Markdown</h2>
+<ul>
+<li><a href="https://www.webpagefx.com/tools/emoji-cheat-sheet/">Emoji cheatsheet</a></li>
+</ul>
+<h2 id="tmux">tmux</h2>
+<ul>
+<li>Install <a href="https://github.com/tmux-plugins">tmux-plugins</a>, it makes your terminal bling bling.</li>
+</ul>
+<h2 id="bash">bash</h2>
+<ul>
+<li>Show current git branch in PS1:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>parse_git_branch<span class="o">()</span> <span class="o">{</span>
+     git branch <span class="m">2</span>&gt; /dev/null <span class="p">|</span> sed -e <span class="s1">&#39;/^[^*]/d&#39;</span> -e <span class="s1">&#39;s/* \(.*\)/ git:(\1)/&#39;</span>
+<span class="o">}</span>
+
+<span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;\[\e[32m\][\u@\h: \W\e[33m\]\$(parse_git_branch)\[\033[32m\]]\[\e[00m\] </span>$<span class="s2"> &quot;</span>
 </pre></div>
 </td></tr></table></li>
 </ul>
@@ -813,28 +850,36 @@ qemu-system-x86_64 -s  <span class="se">\</span>
 </pre></div>
 </td></tr></table></li>
 </ul>
-<h2 id="markdown">Markdown</h2>
+<h2 id="install-centos-on-dell-poweredge">Install CentOS on Dell PowerEdge</h2>
 <ul>
-<li><a href="https://www.webpagefx.com/tools/emoji-cheat-sheet/">Emoji cheatsheet</a></li>
+<li>Enable <code class="codehilite">SR-IOV</code> for future usage<ul>
+<li>Press <code class="codehilite">F11 Boot Manager</code> during boot</li>
+<li>Find <code class="codehilite">Integrated Devices</code></li>
+<li>Enable <code class="codehilite">SR-IOV Global Enable</code></li>
 </ul>
-<h2 id="tmux">tmux</h2>
-<ul>
-<li>Install <a href="https://github.com/tmux-plugins">tmux-plugins</a>, it makes your terminal bling bling.</li>
+</li>
+<li>Partition<ul>
+<li><code class="codehilite">/boot</code>: e.g, 50GB</li>
+<li><code class="codehilite">swap</code>: e.g, 4G</li>
+<li><code class="codehilite">/</code>: all left</li>
 </ul>
-<h2 id="bash">bash</h2>
-<ul>
-<li>Show current git branch in PS1:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>parse_git_branch<span class="o">()</span> <span class="o">{</span>
-     git branch <span class="m">2</span>&gt; /dev/null <span class="p">|</span> sed -e <span class="s1">&#39;/^[^*]/d&#39;</span> -e <span class="s1">&#39;s/* \(.*\)/ git:(\1)/&#39;</span>
-<span class="o">}</span>
-
-<span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;\[\e[32m\][\u@\h: \W\e[33m\]\$(parse_git_branch)\[\033[32m\]]\[\e[00m\] </span>$<span class="s2"> &quot;</span>
-</pre></div>
-</td></tr></table></li>
+</li>
+<li>Don&rsquo;t forget to enable Network during installation.</li>
+<li>Change SSH port<ul>
+<li>Disable <code class="codehilite">firewalld</code><ul>
+<li><code class="codehilite">systemctl stop firewalld</code></li>
+<li><code class="codehilite">systemctl disable firewalld</code></li>
+</ul>
+</li>
+<li>If SELinux is enabled<ul>
+<li><code class="codehilite">yum install policycoreutils-python</code></li>
+<li><code class="codehilite">semanage port -a -t ssh_port_t -p tcp #PORTNUMBER</code></li>
+</ul>
+</li>
+<li>Change <code class="codehilite">/etc/ssh/sshd_config</code></li>
+<li><code class="codehilite">systemctl restart sshd</code></li>
+</ul>
+</li>
 </ul>
                 
                   
