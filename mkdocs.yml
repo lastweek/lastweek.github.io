@@ -19,6 +19,7 @@ pages:
         - 'Virtual File System': 'lego/kernel/vfs.md'
         - 'Process Virtual Memory': 'lego/kernel/vm.md'
    - Syscall:
+           - 'compat':        'lego/syscall/compat.md'
            - 'msync()':       'lego/syscall/msync.md'
            - 'mremap()':      'lego/syscall/mremap.md'
            - 'fork()':        'lego/syscall/fork.md'
