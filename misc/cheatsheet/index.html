@@ -267,6 +267,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#avoid-typing-ssh-password" title="Avoid Typing SSH Password" class="md-nav__link">
+    Avoid Typing SSH Password
+  </a>
+  
+</li>
+      
       
       
       
@@ -741,6 +748,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#avoid-typing-ssh-password" title="Avoid Typing SSH Password" class="md-nav__link">
+    Avoid Typing SSH Password
+  </a>
+  
+</li>
+      
       
       
       
@@ -880,6 +894,11 @@ qemu-system-x86_64 -s  <span class="se">\</span>
 <li><code class="codehilite">systemctl restart sshd</code></li>
 </ul>
 </li>
+</ul>
+<h2 id="avoid-typing-ssh-password">Avoid Typing SSH Password</h2>
+<ul>
+<li>Generate keys: <code class="codehilite">ssh-keygen -t rsa</code></li>
+<li>Copy to remote: <code class="codehilite">ssh-copy-id -i ~/.ssh/id_rsa.pub username@remotehost -p 22</code></li>
 </ul>
                 
                   

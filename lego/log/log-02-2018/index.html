@@ -295,8 +295,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#0210-tue-cloudy" title="02/10 Tue Cloudy" class="md-nav__link">
-    02/10 Tue Cloudy
+  <a href="#0221-wed" title="02/21 Wed" class="md-nav__link">
+    02/21 Wed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0220-tue-cloudy" title="02/20 Tue Cloudy" class="md-nav__link">
+    02/20 Tue Cloudy
   </a>
   
 </li>
@@ -758,8 +765,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#0210-tue-cloudy" title="02/10 Tue Cloudy" class="md-nav__link">
-    02/10 Tue Cloudy
+  <a href="#0221-wed" title="02/21 Wed" class="md-nav__link">
+    02/21 Wed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0220-tue-cloudy" title="02/20 Tue Cloudy" class="md-nav__link">
+    02/20 Tue Cloudy
   </a>
   
 </li>
@@ -874,7 +888,16 @@
                 
                 <h1 id="feb-2018">Feb 2018</h1>
 <hr />
-<h2 id="0210-tue-cloudy">02/10 Tue Cloudy</h2>
+<h2 id="0221-wed">02/21 Wed</h2>
+<ul>
+<li>irq_regs, old code, check</li>
+<li>signal frame, and fpu hook together</li>
+<li><code class="codehilite">in_interrupt()</code>, it is empty, TODO</li>
+<li>check arch/x86/Makefile, it introduce a lot FPU flags.</li>
+<li>added more than 4K lines today. Damn FPU. Ugh go home sleep.</li>
+</ul>
+<hr />
+<h2 id="0220-tue-cloudy">02/20 Tue Cloudy</h2>
 <p>Not too many Sunny days recently. Well, continue yesterday&rsquo;s work. I don&rsquo;t think I can easily find out why so many <code class="codehilite">/proc/memoinfo</code> open happened. Instead, I&rsquo;m trying to enable the <code class="codehilite">flush_thread</code> in P&rsquo;s exec code.</p>
 <p>During the way, I found some issue related to <code class="codehilite">__ARCH_HAS_SA_RESTORER</code> in signal code. I need to check if these x86 macros are defined, but lego does not port them.</p>
 <p>Well, it turns out flush_thread does not make too much difference. Next I&rsquo;m going to try to disable <code class="codehilite">exit_thread</code>, which uses <code class="codehilite">fpu__drop()</code>.</p>
