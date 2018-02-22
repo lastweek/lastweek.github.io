@@ -77,3 +77,8 @@ qemu-system-x86_64 -s  \
         - `semanage port -a -t ssh_port_t -p tcp #PORTNUMBER`
     - Change `/etc/ssh/sshd_config`
     - `systemctl restart sshd`
+
+## Avoid Typing SSH Password
+
+- Generate keys: `ssh-keygen -t rsa`
+- Copy to remote: `ssh-copy-id -i ~/.ssh/id_rsa.pub username@remotehost -p 22`
