@@ -10,4 +10,5 @@ Tricks:
 - No hard coded addresses: use indirect references, e.g., short jumps and near calls.
 - First portion of payload can be a bunch of NOPs, IP will slide into the real shellcode
 - http://shell-storm.org/
-- 
+- encrypt shellcode
+-

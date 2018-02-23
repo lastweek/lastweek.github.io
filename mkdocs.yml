@@ -18,7 +18,9 @@ pages:
         - 'Program Loader': 'lego/kernel/loader.md'
         - 'Virtual File System': 'lego/kernel/vfs.md'
         - 'Process Virtual Memory': 'lego/kernel/vm.md'
+        - 'x86 FPU': 'lego/kernel/fpu.md'
    - Syscall:
+           - 'Facts':         'lego/syscall/facts.md'
            - 'compat':        'lego/syscall/compat.md'
            - 'msync()':       'lego/syscall/msync.md'
            - 'mremap()':      'lego/syscall/mremap.md'

@@ -1,6 +1,6 @@
 # Compat SYSCALL in Lego
 
-Lego does __not__ support compat syscalls, where one is able to run 32-bit image on 64-bit OS. However, the ugly FPU code and signal part in Linux is heavily hacked with the assumption that compat syscall is supported. We are no expert in this FPU thing, just to make sure we don't break this FPU evil, Lego adds the fake compat syscall support. Fake means whenever a 32-bit syscall is issued, Lego will just panic.
+Lego does __not__ support compatible syscalls, where one is able to run 32-bit image on 64-bit OS. However, the ugly FPU code and signal part in Linux is heavily hacked with the assumption that compat syscall is supported. We are no expert in this FPU thing, just to make sure we don't break this FPU evil, Lego adds the fake compat syscall support. Fake means whenever a 32-bit syscall is issued, Lego will just panic.
 
 ## Kconfig
 If one compiles a x86_64 Linux kernel, compat syscalls are supported by default. Everything related to compat syscalls are controlled by the following two Kconfig options. Lego may want to support compat syscalls in the future, thus we add these two Kconfigs to avoid future mess:
