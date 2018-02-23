@@ -54,6 +54,7 @@ markdown_extensions:
   - pymdownx.progressbar
   - codehilite:
       linenums: true
+      guess_lang: true
 
 theme:
   name: 'material'
