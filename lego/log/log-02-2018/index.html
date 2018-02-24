@@ -1307,7 +1307,10 @@ Another one:
 </td></tr></table></p>
 <p>Do note this happens after computation. This happens when phoenix create a lot threads to sort the results.</p>
 <p>Both bug happen to the same set, same user page. The pcache is clearly corrupted: <code class="codehilite"><span class="n">mapcount</span><span class="o">:</span><span class="mi">8</span><span class="o">,</span> <span class="n">refcount</span><span class="o">:</span><span class="mi">0</span><span class="o">,</span> <span class="n">flags</span><span class="o">:().</span></code></p>
-<p>Come back after dinner.</p>
+<p>Come back after dinner.
+Remember to check altenative, cause the XSAVE above should be XSAVEOPT. Make sure it does not override other memory. Also, check linker script. Do not forget to link any sections.</p>
+<p>Another several bug logs in wuklab13 and wuklab15: <code class="codehilite">022318-*</code>. I&rsquo;m really tired today after fixing the FPU bug. But I&rsquo;m also pretty confident pcache is something I&rsquo;m able to debug. Even thought it is hard in SMP case.</p>
+<p>Anyway, I gonna call for the day.</p>
 <hr />
 <h2 id="0222-thur">02/22 Thur</h2>
 <ul>
