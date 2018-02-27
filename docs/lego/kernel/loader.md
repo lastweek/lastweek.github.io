@@ -6,7 +6,7 @@ This document explains the high-level workflow of Lego's program loader, and how
 |Formats|Supported|
 |-|-|
 | ELF (static-linked) |:heavy_check_mark:|
-| ELF (dynamic-linked)|:heavy_multiplication_x:|
+| ELF (dynamic-linked)|:heavy_check_mark:|
 
 ## Overall
 In order to support different executable formats, Lego has a `virtual loader layer` above all specific formats, which is quite similar to `virtual file system`. In Lego, `execve()` is divided into two parts: `1)` syscall hook at processor side, `2)` real loader at memory side. Combined together, they provide the same semantic of `execve()` as described in Linux man page. Also for the code, we divide the Linux implementation into parts. But our emulation model introduces several interesting workarounds.
@@ -25,8 +25,59 @@ static int run_init_process(const char *init_filename)
         return do_execve(init_filename, argv_init, envp_init);
 }
 ```
+
 ### Memory Manager's Job
 Memory manager side will do most of the dirty loading work. It will parse the ELF image, create new VMAs based on ELF information. After that, it only pass `start_ip` and `start_stack` back to processor manager. Once processor manager starts running this new execution, pages will be fetched from memory component on demand.
+
+#### Load ld-linux
+For dynamically-linked images, kernel ELF loader needs to load the `ld-linux.so` as well. It will first try to map the `ld-linux.so` into this process's virtual address space. Furthermore, the first user instruction that will run is no longer `__libc_main_start`, kernel will transfer the kernel to `ld-linux.so` instead. Thus, for a normal user program, `ld-linux.so` will load all the shared libraries before running glibc.
+
+```c hl_lines="10 37"
+static int load_elf_binary(struct lego_task_struct *tsk, struct lego_binprm *bprm,
+                           u64 *new_ip, u64 *new_sp, unsigned long *argv_len, unsigned long *envp_len)
+{
+
+        ...
+        /* Dynamically-linked */
+        if (elf_interpreter) {
+                unsigned long interp_map_addr = 0;
+
+                elf_entry = load_elf_interp(tsk, &loc->interp_elf_ex,
+                                            interpreter,
+                                            &interp_map_addr,
+                                            load_bias, interp_elf_phdata);
+                if (!IS_ERR((void *)elf_entry)) {
+                        /*
+                         * load_elf_interp() returns relocation
+                         * adjustment
+                         */
+                        interp_load_addr = elf_entry;
+                        elf_entry += loc->interp_elf_ex.e_entry;
+                }
+                if (BAD_ADDR(elf_entry)) {
+                        retval = IS_ERR((void *)elf_entry) ?
+                                        (int)elf_entry : -EINVAL;
+                        goto out_free_dentry;
+                }
+                reloc_func_desc = interp_load_addr;
+
+                put_lego_file(interpreter);
+                kfree(elf_interpreter);
+        } else {
+        /* Statically-linked */
+                /*
+                 * e_entry is the VA to which the system first transfers control
+                 * Not the start_code! Normally, it is the <_start> function.
+                 */
+                elf_entry = loc->elf_ex.e_entry;
+                if (BAD_ADDR(elf_entry)) {
+                        retval = -EINVAL;
+                        goto out_free_dentry;
+                }
+        }
+        ...
+}
+```
 
 ### Processor Manager's Job
 It needs to flush old execution environment, and setup the new execution environment, such as signal, FPU. Notably, processor manager need to run `flush_old_exec()`, and `setup_new_exec()`.
@@ -242,31 +293,6 @@ int setup_arg_pages(struct lego_task_struct *tsk, struct lego_binprm *bprm,
 In essence, all PT_LOAD segments of ELF image are not pre-populated. They will be fetched from storage on demand. This is the traditional on-demand paging way. If we want to reduce the overhead of code and data's on-demand paging, we can prefault them in the future.
 
 ---
-#### Disabled Dynamic-Linked Binary
-The following code detects if an ELF executable is dynamic-linked. Besides, we changed several other places within ELF loader to disable the support for dynamic-linked binary.
-```C
-static int load_elf_binary(struct lego_task_struct *tsk, struct lego_binprm *bprm,
-                           u64 *new_ip, u64 *new_sp, unsigned long *argv_len, unsigned long *envp_len)
-{
-        ...
-        elf_ppnt = elf_phdata;
-        for (i = 0; i < loc->elf_ex.e_phnum; i++, elf_ppnt++) {
-                if (elf_ppnt->p_type == PT_INTERP) {
-                        /*  
-                         * This is the program interpreter used for
-                         * dynamic linked elf - not supported for now
-                         */
-                        WARN(1, "Only static-linked elf is supported!\n");
-                        retval = -ENOEXEC;
-                        goto out_free_ph;
-                }   
-        ...
-}
-(managers/memory/loader/elf.c)
-```
-
-
----
 #### Disabled Randomized Top of Stack
 Lego currently does not randomize the stack top. The stack vma is allocated by `bprm_mm_init()` at early execve time. There is no randomization at the allocation time, and this applies to all exectuable formats. The end of vma is just `TASK_SIZE`:
 ```c
@@ -326,7 +352,69 @@ static int load_elf_binary(struct lego_task_struct *tsk, struct lego_binprm *bpr
 (managers/memory/loader/elf.c)
 ```
 
+---
+#### No vDSO
+Currently, Lego does not have `vDSO` support. There are not too many syscalls mapped in the vDSO, for [x86-64](http://man7.org/linux/man-pages/man7/vdso.7.html):
+
+- clock_gettime
+- getcpu
+- gettimeofday
+- time
+
+The reason to add it back is simple: if those syscalls are used `a lot` and hurt overall performance. Do note that when we add it back, it will be different from the common design: vDSO `must` be mapped at processor side, mapped in our emulated pgtable.
+
+Below is the original part where loader maps vDSO:
+```c
+static int load_elf_binary(struct lego_task_struct *tsk, struct lego_binprm *bprm,
+                           u64 *new_ip, u64 *new_sp, unsigned long *argv_len, unsigned long *envp_len)
+{
+        ...
+#ifdef ARCH_HAS_SETUP_ADDITIONAL_PAGES
+        /*
+         * TODO: vdso
+         * x86 can map vdso vma here
+         */
+#endif
+        ...
+}
+managers/memory/loader/elf.c
+```
+
+For lego, we should move it to processor right before `start_thread()`:
+```c
+int do_execve(const char *filename,
+              const char * const *argv,
+              const char * const *envp)
+{
+        ...
+        /* Should be here */
+
+        start_thread(regs, new_ip, new_sp);
+        ...
+}
+```
+
+Besides, don't forget to report the `vDSO` address in the aux vector:
+```c
+static int create_elf_tables(struct lego_task_struct *tsk, struct lego_binprm *bprm,
+                struct elfhdr *exec, unsigned long load_addr, unsigned long interp_load_addr,
+                unsigned long *argv_len, unsigned long *envp_len)
+{
+        ...
+#ifdef ARCH_DLINFO
+        /*
+         * ARCH_DLINFO must come first so PPC can do its special alignment of
+         * AUXV.
+         * update AT_VECTOR_SIZE_ARCH if the number of NEW_AUX_ENT() in
+         * ARCH_DLINFO changes
+         */
+        ARCH_DLINFO;
+#endif
+        ...
+}
+```
+
 --  
 Yizhou Shan  
 Created: Feb 16, 2018  
-Last Updated: Feb 20, 2018
+Last Updated: Feb 27, 2018
