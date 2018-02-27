@@ -295,6 +295,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0227-tue" title="02/27 Tue" class="md-nav__link">
+    02/27 Tue
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0224-sat" title="02/24 Sat" class="md-nav__link">
     02/24 Sat
   </a>
@@ -849,6 +856,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0227-tue" title="02/27 Tue" class="md-nav__link">
+    02/27 Tue
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0224-sat" title="02/24 Sat" class="md-nav__link">
     02/24 Sat
   </a>
@@ -1019,6 +1033,118 @@
                 
                 
                 <h1 id="feb-2018">Feb 2018</h1>
+<hr />
+<h2 id="0227-tue">02/27 Tue</h2>
+<p>Spent two days on CS527 source project, implemented a small SSHD and SSD client. And we have to inject exactly five bugs, or vulnerabilities into the systems. Lol, it is really hard to intentionally plant BUGs!</p>
+<p>Anyway, back to Lego. Since others are having a hard time compile program statically, I will try to add dynamic loader today.</p>
+<p>The interpreter: <code class="codehilite">/lib64/ld-linux-x86-64.so.2</code>.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Linux seq.c maps (no randomization):
+00400000-00401000 r-xp 00000000 fd:00 18752683                           /root/ys/LegoOS/usr/a.out
+00600000-00601000 r--p 00000000 fd:00 18752683                           /root/ys/LegoOS/usr/a.out
+00601000-00602000 rw-p 00001000 fd:00 18752683                           /root/ys/LegoOS/usr/a.out
+00602000-00604000 rw-p 00000000 00:00 0                                  [heap]
+7ffff7a18000-7ffff7bd0000 r-xp 00000000 fd:00 55051990                   /usr/lib64/libc-2.17.so
+7ffff7bd0000-7ffff7dd0000 ---p 001b8000 fd:00 55051990                   /usr/lib64/libc-2.17.so
+7ffff7dd0000-7ffff7dd4000 r--p 001b8000 fd:00 55051990                   /usr/lib64/libc-2.17.so
+7ffff7dd4000-7ffff7dd6000 rw-p 001bc000 fd:00 55051990                   /usr/lib64/libc-2.17.so
+7ffff7dd6000-7ffff7ddb000 rw-p 00000000 00:00 0
+<span class="hll">7ffff7ddb000-7ffff7dfc000 r-xp 00000000 fd:00 55051983                   /usr/lib64/ld-2.17.so
+</span>7ffff7fde000-7ffff7fe1000 rw-p 00000000 00:00 0
+7ffff7ff9000-7ffff7ffa000 rw-p 00000000 00:00 0
+7ffff7ffa000-7ffff7ffc000 r-xp 00000000 00:00 0                          [vdso]
+<span class="hll">7ffff7ffc000-7ffff7ffd000 r--p 00021000 fd:00 55051983                   /usr/lib64/ld-2.17.so
+</span>7ffff7ffd000-7ffff7ffe000 rw-p 00022000 fd:00 55051983                   /usr/lib64/ld-2.17.so
+<span class="hll">7ffff7ffe000-7ffff7fff000 rw-p 00000000 00:00 0
+</span><span class="hll">7ffffffde000-7ffffffff000 rw-p 00000000 00:00 0                          [stack]
+</span>ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">lego</span> <span class="n">after</span> <span class="n">loading</span>
+<span class="mo">00400000</span><span class="o">-</span><span class="mo">00401000</span> <span class="n">r</span><span class="o">-</span><span class="n">xp</span> <span class="mo">00000000</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">ys</span><span class="o">/</span><span class="n">LegoOS</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">a</span><span class="p">.</span><span class="k">out</span>
+<span class="mo">00600000</span><span class="o">-</span><span class="mo">00602000</span> <span class="n">rw</span><span class="o">-</span><span class="n">p</span> <span class="mo">00000000</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">ys</span><span class="o">/</span><span class="n">LegoOS</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">a</span><span class="p">.</span><span class="k">out</span>
+<span class="mo">00602000</span><span class="o">-</span><span class="mo">00604000</span> <span class="n">rw</span><span class="o">-</span><span class="n">p</span> <span class="mo">00000000</span> <span class="p">[</span><span class="n">heap</span><span class="p">]</span>
+<span class="mf">7ff</span><span class="n">ff7ddb000</span><span class="o">-</span><span class="mf">7ff</span><span class="n">ff7dfc000</span> <span class="n">r</span><span class="o">-</span><span class="n">xp</span> <span class="mo">00000000</span> <span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">ld</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">x86</span><span class="o">-</span><span class="mf">64.</span><span class="n">so</span><span class="mf">.2</span>
+<span class="mf">7ff</span><span class="n">ff7ffc000</span><span class="o">-</span><span class="mf">7ff</span><span class="n">ff7ffe000</span> <span class="n">rw</span><span class="o">-</span><span class="n">p</span> <span class="mo">00021000</span> <span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">ld</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">x86</span><span class="o">-</span><span class="mf">64.</span><span class="n">so</span><span class="mf">.2</span>
+<span class="mf">7ff</span><span class="n">ff7ffe000</span><span class="o">-</span><span class="mf">7ff</span><span class="n">ff7fff000</span> <span class="n">rw</span><span class="o">-</span><span class="n">p</span> <span class="mo">00000000</span>
+<span class="mf">7ff</span><span class="n">ffffde000</span><span class="o">-</span><span class="mf">7ff</span><span class="n">ffffff000</span> <span class="n">rw</span><span class="o">-</span><span class="n">p</span> <span class="mo">00000000</span> <span class="p">[</span><span class="n">stack</span><span class="p">]</span>
+
+
+<span class="p">[</span> <span class="mf">2066.379224</span><span class="p">]</span> <span class="o">****</span>    <span class="n">Finish</span> <span class="n">dump</span> <span class="n">final</span> <span class="n">mm</span>
+<span class="p">[</span> <span class="mf">2066.426023</span><span class="p">]</span> <span class="n">handle_p2m_execve</span><span class="p">()</span><span class="o">:</span> <span class="nl">reply_status</span><span class="p">:</span> <span class="n">OKAY</span><span class="p">,</span> <span class="nl">new_ip</span><span class="p">:</span> <span class="mh">0x7ffff7ddc170</span><span class="p">,</span> <span class="nl">new_sp</span><span class="p">:</span> <span class="mh">0x7fffffffede0</span>
+<span class="p">[</span> <span class="mf">2066.628949</span><span class="p">]</span> <span class="n">handle_p2m_pcache_miss</span><span class="p">()</span> <span class="n">cpu</span> <span class="mi">4</span> <span class="n">I</span> <span class="nl">nid</span><span class="p">:</span><span class="mi">0</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">flags</span><span class="p">:</span><span class="mi">150</span> <span class="nl">vaddr</span><span class="p">:</span><span class="mh">0x7ffff7ddc170</span>
+<span class="p">[</span> <span class="mf">2066.732034</span><span class="p">]</span> <span class="n">handle_p2m_pcache_miss</span><span class="p">()</span> <span class="n">cpu</span> <span class="mi">4</span> <span class="n">O</span> <span class="nl">nid</span><span class="p">:</span><span class="mi">0</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">flags</span><span class="p">:</span><span class="mi">150</span> <span class="nl">vaddr</span><span class="p">:</span><span class="mh">0x7ffff7ddc170</span>
+<span class="p">[</span> <span class="mf">2066.934947</span><span class="p">]</span> <span class="n">handle_p2m_pcache_miss</span><span class="p">()</span> <span class="n">cpu</span> <span class="mi">4</span> <span class="n">I</span> <span class="nl">nid</span><span class="p">:</span><span class="mi">0</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">flags</span><span class="p">:</span><span class="mi">51</span> <span class="nl">vaddr</span><span class="p">:</span><span class="mh">0x7fffffffedd8</span>
+<span class="p">[</span> <span class="mf">2067.036978</span><span class="p">]</span> <span class="n">handle_p2m_pcache_miss</span><span class="p">()</span> <span class="n">cpu</span> <span class="mi">4</span> <span class="n">O</span> <span class="nl">nid</span><span class="p">:</span><span class="mi">0</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">flags</span><span class="p">:</span><span class="mi">51</span> <span class="nl">vaddr</span><span class="p">:</span><span class="mh">0x7fffffffedd8</span>
+<span class="p">[</span> <span class="mf">2067.238842</span><span class="p">]</span> <span class="n">handle_p2m_pcache_miss</span><span class="p">()</span> <span class="n">cpu</span> <span class="mi">4</span> <span class="n">I</span> <span class="nl">nid</span><span class="p">:</span><span class="mi">0</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">flags</span><span class="p">:</span><span class="mi">50</span> <span class="nl">vaddr</span><span class="p">:</span><span class="mh">0x7ffff7ffce00</span>
+<span class="p">[</span> <span class="mf">2067.340880</span><span class="p">]</span> <span class="n">handle_p2m_pcache_miss</span><span class="p">()</span> <span class="n">cpu</span> <span class="mi">4</span> <span class="n">O</span> <span class="nl">nid</span><span class="p">:</span><span class="mi">0</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">flags</span><span class="p">:</span><span class="mi">50</span> <span class="nl">vaddr</span><span class="p">:</span><span class="mh">0x7ffff7ffce00</span>
+<span class="p">[</span> <span class="mf">2067.542747</span><span class="p">]</span> <span class="n">handle_p2m_pcache_miss</span><span class="p">()</span> <span class="n">cpu</span> <span class="mi">4</span> <span class="n">I</span> <span class="nl">nid</span><span class="p">:</span><span class="mi">0</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">flags</span><span class="p">:</span><span class="mi">51</span> <span class="nl">vaddr</span><span class="p">:</span><span class="mh">0x7ffff7ffd9a8</span>
+<span class="p">[</span> <span class="mf">2067.644774</span><span class="p">]</span> <span class="n">handle_p2m_pcache_miss</span><span class="p">()</span> <span class="n">cpu</span> <span class="mi">4</span> <span class="n">O</span> <span class="nl">nid</span><span class="p">:</span><span class="mi">0</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">flags</span><span class="p">:</span><span class="mi">51</span> <span class="nl">vaddr</span><span class="p">:</span><span class="mh">0x7ffff7ffd9a8</span>
+<span class="p">[</span> <span class="mf">2067.846640</span><span class="p">]</span> <span class="n">handle_p2m_pcache_miss</span><span class="p">()</span> <span class="n">cpu</span> <span class="mi">4</span> <span class="n">I</span> <span class="nl">nid</span><span class="p">:</span><span class="mi">0</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">flags</span><span class="p">:</span><span class="mi">50</span> <span class="nl">vaddr</span><span class="p">:</span><span class="mh">0x7ffff7ddb8e0</span>
+<span class="p">[</span> <span class="mf">2067.948679</span><span class="p">]</span> <span class="n">handle_p2m_pcache_miss</span><span class="p">()</span> <span class="n">cpu</span> <span class="mi">4</span> <span class="n">O</span> <span class="nl">nid</span><span class="p">:</span><span class="mi">0</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">flags</span><span class="p">:</span><span class="mi">50</span> <span class="nl">vaddr</span><span class="p">:</span><span class="mh">0x7ffff7ddb8e0</span>
+<span class="p">[</span> <span class="mf">2068.355424</span><span class="p">]</span> <span class="o">------------</span><span class="p">[</span> <span class="n">cut</span> <span class="n">here</span> <span class="p">]</span><span class="o">------------</span>
+<span class="p">[</span> <span class="mf">2068.408568</span><span class="p">]</span> <span class="nl">WARNING</span><span class="p">:</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">4</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">31</span> <span class="n">at</span> <span class="n">managers</span><span class="o">/</span><span class="n">memory</span><span class="o">/</span><span class="n">handle_pcache</span><span class="o">/</span><span class="n">fault</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">54</span> <span class="n">handle_p2m_pcache_miss</span><span class="o">+</span><span class="mh">0x29d</span><span class="o">/</span><span class="mh">0x380</span>
+<span class="hll"><span class="p">[</span> <span class="mf">2068.532327</span><span class="p">]</span> <span class="nl">src_nid</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nl">pid</span><span class="p">:</span><span class="mi">32</span><span class="p">,</span><span class="nl">vaddr</span><span class="p">:</span><span class="mh">0x7ffff7e0e000</span>
+</span><span class="p">[</span> <span class="mf">2068.588487</span><span class="p">]</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">4</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">31</span> <span class="nl">Comm</span><span class="p">:</span> <span class="n">mc</span><span class="o">-</span><span class="n">manager</span> <span class="mf">4.0.0</span><span class="o">-</span><span class="n">lego</span><span class="o">-</span><span class="n">ys</span><span class="o">+</span> <span class="err">#</span><span class="mi">100</span>
+<span class="p">[</span> <span class="mf">2068.659207</span><span class="p">]</span> <span class="nl">Stack</span><span class="p">:</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[root@wuklab13: lib64] $ ll ld-*
+-rwxr-xr-x 1 root root 164112 Nov 30 13:53 ld-2.17.so
+lrwxrwxrwx 1 root root     10 Jan  8 12:34 ld-linux-x86-64.so.2 -&gt; ld-2.17.so
+[root@wuklab13: lib64]
+</pre></div>
+</td></tr></table>
+
+<p>It turns out there is a bug in mmap code: forgot to increment the file ref count when a file-backed vma is created. Some put_file in loader accidentally free the ld-linux file. Bug fixed, dyloader works like a charm.</p>
 <hr />
 <h2 id="0224-sat">02/24 Sat</h2>
 <p>Well. PhDs do not have weekends.
