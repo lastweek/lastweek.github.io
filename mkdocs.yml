@@ -6,6 +6,7 @@ pages:
    - 'Jasmine':                'misc/jasmine.md'
 - Lego:
    - 'Log':
+           - 'TODO': 'lego/log/TODO.md'
            - 'Feb 2018':           'lego/log/log-02-2018.md'
    - 'Boot':
            - 'GRUB':             'lego/boot/grub.md'

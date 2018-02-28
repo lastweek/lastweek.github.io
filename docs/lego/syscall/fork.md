@@ -1,6 +1,34 @@
 # fork()
 
-## Entry Points
+## Memory Manager
+We need to duplicate the address space in the memory manager side. Follow the traditional `fork()` semantic, both the existing and newly created address space will be write-protected.
+
+Since we have the flexibility to implement any VM organization, we should be careful while duplicating the address space. Currently, we are using page-based VM, thus the duplicating is basically creating a new `pgd` and copy existing pgtables, and further downgrade permission to read-only. This is now performed by `lego_copy_page_range()`.
+
+The final write-protect is performed by `lego_copy_one_pte()`:
+```c
+static inline int lego_copy_one_pte(..)
+{
+	..
+	/*
+	 * If it's a COW mapping, write protect it both
+	 * in the parent and the child
+	 */
+	if (is_cow_mapping(vm_flags)) {
+		ptep_set_wrprotect(src_pte);   
+		pte = pte_wrprotect(pte);      
+	}
+	...
+}
+```
+
+### Duplicate VM Free Pool
+{==TODO==} Yutong
+
+## Processor Manager
+Boring implementation details in the processor manager side.
+
+### Entry Points
 - `fork()`
 - `vfork()`
 - `clone()`
@@ -8,14 +36,14 @@
 
 All of them land on `do_fork()`, which is Lego's main fork function.
 
-## do_fork()
+### do_fork()
 
 There are mainly three parts within `do_fork()`: `1)` `copy_process()`, which duplicates a new task based on `current`, including allocate new kernel stack, new task_struct, increase mm reference counter, etc. `2)` If we are creating a new process, then tell global monitor or memory manager to let them update bookkeeping and create corresponding data structures. `3)` `wake_up_new_task()`, which gives away the newly created task to local scheduler.
 
-### copy_process()
+#### copy_process()
 The routine is kind of boring. It do a lot dirty work to copy information from calling thread to new thread. The most important data structures of course are `task_struct`, `mm_sturct`, `sighand`, and so on. This section only talks about few of them, and leave others to readers who are interested.
 
-#### Sanity Checking
+##### Sanity Checking
 Mainly check if `clone_flags` are passed properly. For example, if user is creating a new thread, that implies certain data structures are shared, cause new thread belongs to the same process with the calling thread. If `CLONE_THREAD` is passed, then `CLONE_SIGHAND`, `CLONE_VM`, and so on must be set as well.
 ```c
 	/*
@@ -35,7 +63,7 @@ Mainly check if `clone_flags` are passed properly. For example, if user is creat
 
 ```
 
-#### dup_task_struct()
+##### dup_task_struct()
 Two main things: 1) duplicate a new `task_struct`, 2) duplicate a new kernel stack. x86 is just a weird architecture, the size of `task_struct` depends on the size of fpu. So the allocation and duplication need to callback to x86-specific code to duplicate the task_struct and fpu info.
 ```c
 int arch_dup_task_struct(struct task_struct *dst, struct task_struct *src)
@@ -56,8 +84,7 @@ static void setup_thread_stack(struct task_struct *p, struct task_struct *org)
         task_thread_info(p)->task = p;
 }
 ```
-
-#### copy_mm()
+##### copy_mm()
 This is where threads within a process will share the virtual address space happens. If we are creating a new process, then this function will create a new `mm_struct`, and also a new `pgd`:
 ```c
 /*
@@ -71,10 +98,13 @@ if (unlikely(!mm->pgd)) {
 }
 ```
 
+##### Duplicate pcache data
+{==TODO==}
+
 ???+ danger "TODO: hook with pcache"
     We need to duplicate the pcache vm_range array, once Yutong finished the code.
 
-#### setup_sched_fork()
+##### setup_sched_fork()
 Callback to scheduler to setup this new task. It may reset all scheduler related information. Here we also have a chance to change this task's scheduler class:
 
 ```c
@@ -114,7 +144,7 @@ int setup_sched_fork(unsigned long clone_flags, struct task_struct *p)
 }
 ```
 
-#### Allocate new pid
+##### Allocate new pid
 In both Lego and Linux, we don't allocate new pid for a new thread, if that thread is an `idle thread`. So callers of `do_fork` needs to pass something to let `do_fork` know. In Linux, they use `struct pid, init_struct_pid` to check. In Lego, we introduce an new clone_flag `CLONE_IDLE_THREAD`. If that flag is set, `do_fork()` will try to allocate a new pid for the new thread. Otherwise, it will be 0:
 ```c
 /* clone idle thread, whose pid is 0 */
@@ -132,7 +162,7 @@ In order to avoid conflict with Linux clone_flag, we define it as:
 #define CLONE_IDLE_THREAD       0x100000000
 ```
 
-#### SETTID/CLEARTID
+##### SETTID/CLEARTID
 These are some futex related stuff. I will cover these stuff in futex document:
 ```c
 p->set_child_tid = (clone_flags & CLONE_CHILD_SETTID) ? child_tidptr : NULL;
@@ -146,10 +176,10 @@ p->robust_list = NULL;
 #endif
 ```
 
-#### copy_thread_tls()
+##### copy_thread_tls()
 This is the most interesting function. Cover later.
 
-### p2m_fork()
+#### p2m_fork()
 In order to track user activities, we need to know when user are going to create new process. Fork is the best time and the only time we kernel know. So, Lego adds this special hook to tell remote global monitor or memory manager that there is a new process going to be created. Upon receiving this message, remote monitor will update its bookkeeping for this specific user/vNode.
 
 ```c
@@ -174,7 +204,7 @@ In order to avoid conflict with Linux clone_flag, we define it as:
 #define CLONE_GLOBAL_THREAD     0x200000000
 ```
 
-### wake_up_new_task()
+#### wake_up_new_task()
 The last step of `do_fork` is waking up the new thread or process, which is performed by `wake_up_new_task()` function. The first question this function will ask is: `which cpu to land?` The answer comes from `select_task_rq()`:
 
 ```c
@@ -217,4 +247,4 @@ void wake_up_new_task(struct task_struct *p)
 --  
 Yizhou Shan  
 Created: Feb 11, 2018  
-Last Updated: Feb 19, 2018
+Last Updated: Feb 27, 2018
