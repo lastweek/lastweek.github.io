@@ -266,6 +266,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../log/TODO/" title="TODO" class="md-nav__link">
+      TODO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../log/log-02-2018/" title="Feb 2018" class="md-nav__link">
       Feb 2018
     </a>
@@ -547,13 +559,41 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#memory-manager" title="Memory Manager" class="md-nav__link">
+    Memory Manager
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#duplicate-vm-free-pool" title="Duplicate VM Free Pool" class="md-nav__link">
+    Duplicate VM Free Pool
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#processor-manager" title="Processor Manager" class="md-nav__link">
+    Processor Manager
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#entry-points" title="Entry Points" class="md-nav__link">
     Entry Points
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#do_fork" title="do_fork()" class="md-nav__link">
     do_fork()
   </a>
@@ -586,6 +626,13 @@
           <li class="md-nav__item">
   <a href="#copy_mm" title="copy_mm()" class="md-nav__link">
     copy_mm()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duplicate-pcache-data" title="Duplicate pcache data" class="md-nav__link">
+    Duplicate pcache data
   </a>
   
 </li>
@@ -634,6 +681,11 @@
   <a href="#wake_up_new_task" title="wake_up_new_task()" class="md-nav__link">
     wake_up_new_task()
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -792,13 +844,41 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#memory-manager" title="Memory Manager" class="md-nav__link">
+    Memory Manager
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#duplicate-vm-free-pool" title="Duplicate VM Free Pool" class="md-nav__link">
+    Duplicate VM Free Pool
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#processor-manager" title="Processor Manager" class="md-nav__link">
+    Processor Manager
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#entry-points" title="Entry Points" class="md-nav__link">
     Entry Points
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#do_fork" title="do_fork()" class="md-nav__link">
     do_fork()
   </a>
@@ -831,6 +911,13 @@
           <li class="md-nav__item">
   <a href="#copy_mm" title="copy_mm()" class="md-nav__link">
     copy_mm()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duplicate-pcache-data" title="Duplicate pcache data" class="md-nav__link">
+    Duplicate pcache data
   </a>
   
 </li>
@@ -886,6 +973,11 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
       
       
@@ -905,7 +997,42 @@
                 
                 
                 <h1 id="fork">fork()</h1>
-<h2 id="entry-points">Entry Points</h2>
+<h2 id="memory-manager">Memory Manager</h2>
+<p>We need to duplicate the address space in the memory manager side. Follow the traditional <code class="codehilite">fork()</code> semantic, both the existing and newly created address space will be write-protected.</p>
+<p>Since we have the flexibility to implement any VM organization, we should be careful while duplicating the address space. Currently, we are using page-based VM, thus the duplicating is basically creating a new <code class="codehilite">pgd</code> and copy existing pgtables, and further downgrade permission to read-only. This is now performed by <code class="codehilite">lego_copy_page_range()</code>.</p>
+<p>The final write-protect is performed by <code class="codehilite">lego_copy_one_pte()</code>:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">int</span> <span class="nf">lego_copy_one_pte</span><span class="p">(..)</span>
+<span class="p">{</span>
+    <span class="p">..</span>
+    <span class="cm">/*</span>
+<span class="cm">     * If it&#39;s a COW mapping, write protect it both</span>
+<span class="cm">     * in the parent and the child</span>
+<span class="cm">     */</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">is_cow_mapping</span><span class="p">(</span><span class="n">vm_flags</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">ptep_set_wrprotect</span><span class="p">(</span><span class="n">src_pte</span><span class="p">);</span>   
+        <span class="n">pte</span> <span class="o">=</span> <span class="n">pte_wrprotect</span><span class="p">(</span><span class="n">pte</span><span class="p">);</span>      
+    <span class="p">}</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></p>
+<h3 id="duplicate-vm-free-pool">Duplicate VM Free Pool</h3>
+<p><mark class="critic">TODO</mark> Yutong</p>
+<h2 id="processor-manager">Processor Manager</h2>
+<p>Boring implementation details in the processor manager side.</p>
+<h3 id="entry-points">Entry Points</h3>
 <ul>
 <li><code class="codehilite">fork()</code></li>
 <li><code class="codehilite">vfork()</code></li>
@@ -913,11 +1040,11 @@
 <li><code class="codehilite">kernel_thread()</code></li>
 </ul>
 <p>All of them land on <code class="codehilite">do_fork()</code>, which is Lego&rsquo;s main fork function.</p>
-<h2 id="do_fork">do_fork()</h2>
+<h3 id="do_fork">do_fork()</h3>
 <p>There are mainly three parts within <code class="codehilite">do_fork()</code>: <code class="codehilite">1)</code> <code class="codehilite">copy_process()</code>, which duplicates a new task based on <code class="codehilite">current</code>, including allocate new kernel stack, new task_struct, increase mm reference counter, etc. <code class="codehilite">2)</code> If we are creating a new process, then tell global monitor or memory manager to let them update bookkeeping and create corresponding data structures. <code class="codehilite">3)</code> <code class="codehilite">wake_up_new_task()</code>, which gives away the newly created task to local scheduler.</p>
-<h3 id="copy_process">copy_process()</h3>
+<h4 id="copy_process">copy_process()</h4>
 <p>The routine is kind of boring. It do a lot dirty work to copy information from calling thread to new thread. The most important data structures of course are <code class="codehilite">task_struct</code>, <code class="codehilite">mm_sturct</code>, <code class="codehilite">sighand</code>, and so on. This section only talks about few of them, and leave others to readers who are interested.</p>
-<h4 id="sanity-checking">Sanity Checking</h4>
+<h5 id="sanity-checking">Sanity Checking</h5>
 <p>Mainly check if <code class="codehilite">clone_flags</code> are passed properly. For example, if user is creating a new thread, that implies certain data structures are shared, cause new thread belongs to the same process with the calling thread. If <code class="codehilite">CLONE_THREAD</code> is passed, then <code class="codehilite">CLONE_SIGHAND</code>, <code class="codehilite">CLONE_VM</code>, and so on must be set as well.
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -948,7 +1075,7 @@
         <span class="k">return</span> <span class="n">ERR_PTR</span><span class="p">(</span><span class="o">-</span><span class="n">EINVAL</span><span class="p">);</span>
 </pre></div>
 </td></tr></table></p>
-<h4 id="dup_task_struct">dup_task_struct()</h4>
+<h5 id="dup_task_struct">dup_task_struct()</h5>
 <p>Two main things: 1) duplicate a new <code class="codehilite">task_struct</code>, 2) duplicate a new kernel stack. x86 is just a weird architecture, the size of <code class="codehilite">task_struct</code> depends on the size of fpu. So the allocation and duplication need to callback to x86-specific code to duplicate the task_struct and fpu info.
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -981,7 +1108,7 @@ The stack duplication is fairly simple, just copy everything from the old stack 
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></p>
-<h4 id="copy_mm">copy_mm()</h4>
+<h5 id="copy_mm">copy_mm()</h5>
 <p>This is where threads within a process will share the virtual address space happens. If we are creating a new process, then this function will create a new <code class="codehilite">mm_struct</code>, and also a new <code class="codehilite">pgd</code>:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -1002,7 +1129,9 @@ The stack duplication is fairly simple, just copy everything from the old stack 
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></p>
-<details class="danger" open="open"><summary>TODO: hook with pcache</summary><p>We need to duplicate the pcache vm_range array, once Yutong finished the code.</p></details><h4 id="setup_sched_fork">setup_sched_fork()</h4>
+<h5 id="duplicate-pcache-data">Duplicate pcache data</h5>
+<p><mark class="critic">TODO</mark></p>
+<details class="danger" open="open"><summary>TODO: hook with pcache</summary><p>We need to duplicate the pcache vm_range array, once Yutong finished the code.</p></details><h5 id="setup_sched_fork">setup_sched_fork()</h5>
 <p>Callback to scheduler to setup this new task. It may reset all scheduler related information. Here we also have a chance to change this task&rsquo;s scheduler class:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -1074,7 +1203,7 @@ The stack duplication is fairly simple, just copy everything from the old stack 
 </pre></div>
 </td></tr></table>
 
-<h4 id="allocate-new-pid">Allocate new pid</h4>
+<h5 id="allocate-new-pid">Allocate new pid</h5>
 <p>In both Lego and Linux, we don&rsquo;t allocate new pid for a new thread, if that thread is an <code class="codehilite">idle thread</code>. So callers of <code class="codehilite">do_fork</code> needs to pass something to let <code class="codehilite">do_fork</code> know. In Linux, they use <code class="codehilite">struct pid, init_struct_pid</code> to check. In Lego, we introduce an new clone_flag <code class="codehilite">CLONE_IDLE_THREAD</code>. If that flag is set, <code class="codehilite">do_fork()</code> will try to allocate a new pid for the new thread. Otherwise, it will be 0:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -1094,7 +1223,7 @@ The stack duplication is fairly simple, just copy everything from the old stack 
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#define CLONE_IDLE_THREAD       0x100000000</span>
 </pre></div>
 </td></tr></table></p>
-<h4 id="settidcleartid">SETTID/CLEARTID</h4>
+<h5 id="settidcleartid">SETTID/CLEARTID</h5>
 <p>These are some futex related stuff. I will cover these stuff in futex document:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -1115,9 +1244,9 @@ The stack duplication is fairly simple, just copy everything from the old stack 
 <span class="cp">#endif</span>
 </pre></div>
 </td></tr></table></p>
-<h4 id="copy_thread_tls">copy_thread_tls()</h4>
+<h5 id="copy_thread_tls">copy_thread_tls()</h5>
 <p>This is the most interesting function. Cover later.</p>
-<h3 id="p2m_fork">p2m_fork()</h3>
+<h4 id="p2m_fork">p2m_fork()</h4>
 <p>In order to track user activities, we need to know when user are going to create new process. Fork is the best time and the only time we kernel know. So, Lego adds this special hook to tell remote global monitor or memory manager that there is a new process going to be created. Upon receiving this message, remote monitor will update its bookkeeping for this specific user/vNode.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -1147,7 +1276,7 @@ The stack duplication is fairly simple, just copy everything from the old stack 
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#define CLONE_GLOBAL_THREAD     0x200000000</span>
 </pre></div>
 </td></tr></table></p>
-<h3 id="wake_up_new_task">wake_up_new_task()</h3>
+<h4 id="wake_up_new_task">wake_up_new_task()</h4>
 <p>The last step of <code class="codehilite">do_fork</code> is waking up the new thread or process, which is performed by <code class="codehilite">wake_up_new_task()</code> function. The first question this function will ask is: <code class="codehilite">which cpu to land?</code> The answer comes from <code class="codehilite">select_task_rq()</code>:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -1212,7 +1341,7 @@ The stack duplication is fairly simple, just copy everything from the old stack 
 <p>&ndash;<br />
 Yizhou Shan<br />
 Created: Feb 11, 2018<br />
-Last Updated: Feb 19, 2018</p>
+Last Updated: Feb 27, 2018</p>
                 
                   
                 

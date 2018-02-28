@@ -36,7 +36,7 @@
     
     
       
-        <title>msync() - Yizhou Shan's Home Page</title>
+        <title>TODO - Yizhou Shan's Home Page</title>
       
     
     
@@ -69,7 +69,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#msync" tabindex="1" class="md-skip">
+      <a href="#todo" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -95,7 +95,7 @@
                 Yizhou Shan's Home Page
               </span>
               <span class="md-header-nav__topic">
-                msync()
+                TODO
               </span>
             
           
@@ -245,10 +245,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1" checked>
     
     <label class="md-nav__link" for="nav-3-1">
       Log
@@ -264,11 +266,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../log/TODO/" title="TODO" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+    <a href="./" title="TODO" class="md-nav__link md-nav__link--active">
       TODO
     </a>
+    
   </li>
 
         
@@ -278,7 +289,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../log/log-02-2018/" title="Feb 2018" class="md-nav__link">
+    <a href="../log-02-2018/" title="Feb 2018" class="md-nav__link">
       Feb 2018
     </a>
   </li>
@@ -461,12 +472,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
     
     <label class="md-nav__link" for="nav-3-4">
       Syscall
@@ -484,7 +493,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../facts/" title="Facts" class="md-nav__link">
+    <a href="../../syscall/facts/" title="Facts" class="md-nav__link">
       Facts
     </a>
   </li>
@@ -496,7 +505,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../compat/" title="compat" class="md-nav__link">
+    <a href="../../syscall/compat/" title="compat" class="md-nav__link">
       compat
     </a>
   </li>
@@ -506,20 +515,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-    <a href="./" title="msync()" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../syscall/msync/" title="msync()" class="md-nav__link">
       msync()
     </a>
-    
   </li>
 
         
@@ -529,7 +529,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../mremap/" title="mremap()" class="md-nav__link">
+    <a href="../../syscall/mremap/" title="mremap()" class="md-nav__link">
       mremap()
     </a>
   </li>
@@ -541,7 +541,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../fork/" title="fork()" class="md-nav__link">
+    <a href="../../syscall/fork/" title="fork()" class="md-nav__link">
       fork()
     </a>
   </li>
@@ -693,19 +693,27 @@
               
                 
                 
-                <h1 id="msync">msync()</h1>
-<p>The document is a summary I wrote after reading <code class="codehilite">Failure-atomic msync()</code> paper, which help me understand several questions related to <code class="codehilite">msync()</code>.</p>
+                <h1 id="todo">TODO</h1>
 <ul>
 <li>
-<p><code class="codehilite">msync() is not atomic.</code> During msync(), pages are being written back to disk one by one (or batched): few pages have been flushed back, but few pages are still in the memory. This premature writeback is not atomic and will be affected by failure.</p>
+<p><code class="codehilite">vDSO</code>: if later we find applications are using <code class="codehilite">gettimeofday</code>, <code class="codehilite">time</code>, and <code class="codehilite">getcpu</code> a lot, and it truly hurt performance, then we should consider adding this in the processor side. (Check Processor Loader document for code that needs to be patched). (02/27/18)</p>
 </li>
 <li>
-<p><code class="codehilite">msync() need concurrency control</code>. This actually is the issue I asked before. With a multi-threaded application, does msync() provide the synchronization semantic? The answer is no. Other threads within the same process are able to write to pages under msync(). This implies, application need to handle concurrency by themselves, e.g., rwlocks. At the very beginning, I thought msync() provide this semantic. The only way to implement this should be: kernel make all pages&rsquo; PTE read-only, and then perform flush back. If any other threads does a write during flush, they will have a page fault. And in the pgfault function, we hold the threads until the pages are written back.</p>
+<p><code class="codehilite">VA randomization</code>: our loader does not add any randomization. For security reasons, we probably want to add this.</p>
+</li>
+<li>
+<p><code class="codehilite">VM Organization</code>: multiple vm choice at M side, on a per-vma basis.</p>
+</li>
+<li>
+<p><code class="codehilite"><span class="n">fork</span><span class="o">:</span> <span class="n">dup</span> <span class="n">free</span> <span class="n">pool</span></code>: duplicate the free VA pool at both P and M.</p>
+</li>
+<li>
+<p><code class="codehilite">pcache</code>: send each page&rsquo;s type back. something like PcacheAnon, PcacheFile. So the pcache_evict/do_exit routine can be optimized.</p>
+</li>
+<li>
+<p><code class="codehilite">mm alloc</code>: don&rsquo;t use the kmalloc to get a new mm_struct. This is a hot data structure, use get_free_page instead maybe. Like task_struct.</p>
 </li>
 </ul>
-<p>&ndash;<br />
-Yizhou Shan<br />
-Feb 01, 2018</p>
                 
                   
                 
@@ -724,7 +732,7 @@ Feb 01, 2018</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../compat/" title="compat" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../../misc/jasmine/" title="Jasmine" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -733,19 +741,19 @@ Feb 01, 2018</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                compat
+                Jasmine
               </span>
             </div>
           </a>
         
         
-          <a href="../mremap/" title="mremap()" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../log-02-2018/" title="Feb 2018" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                mremap()
+                Feb 2018
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
