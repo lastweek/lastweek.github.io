@@ -1,12 +1,24 @@
-||Gen-Z|OpenCAPI|CCIX|OmniPath|PCIe 3.0 | PCIe 4.0|
-|-|-|-|-|-|-|-|
-| Products| N/A|Power9|?|Intel|A lot|Coming Soon|
-| Domain| cross components| Motherboard |Motherboard|cross components|Motherboard|Motherboard|
-| Semantic| memory | memory  | memory | network+pcie|pcie|pcie|
-| Bandwidth |32GBps ~ 400+GBps <br> `Unidirectional`|25GBps/lane x4~x32 <br> `Unidirectional`|16/20/25 GBps/lane <br> `Unidirectional`|25 GBps/port <br> `Bidirectional`| ~1GBps/lane |~2GBps/lane|
-| Latency|sub 100-ns|.|.|.|.|.|
+# Interconnect Technology Comparison
 
+||Products|Domain|Semantic|Bandwidth|Latency|
+|-|-|-|-|-|-|
+|Gen-Z|N/A|Cross components|Memory|32GBps ~ 400+GBps <br> `Unidirectional`|<100us|
+|OpenCAPI|IBM Power9|Motherboard|Memory|25GBps/lane x4~x32 <br> `Unidirectional`|?|
+|CCIX|N/A|Motherboard|Memory|16/20/25 GBps/lane <br> `Unidirectional`|?|
+|OmniPath|Intel KnightsLanding|Cross networrk|Network|25 GBps/port <br> `Bidirectional`|?|
+|PCIe 3.0|A Lot|Motherboard|PCIe|~1GBps/lane|?|
+|PCIe 4.0|Soon|Motherboard|PCIe|~2GBps/lane|?|
+|EDR|Mellanox ConnectX6|Cross network|Network|100Gbps|0.5us|
+|HDR|Mellanox ConnectX4,X5|Cross network|Network|200Gbps|<0.5us|
 
 References:
-- [https://www.openfabrics.org/images/eventpresos/2017presentations/213_CCIXGen-Z_BBenton.pdf](https://www.openfabrics.org/images/eventpresos/2017presentations/213_CCIXGen-Z_BBenton.pdf)
-- [https://www.anandtech.com/show/11967/pcisig-finalizes-and-releasees-pcie-40-spec](https://www.anandtech.com/show/11967/pcisig-finalizes-and-releasees-pcie-40-spec)
+
+- Gen-Z CCIX OpenCAPI
+    - [https://www.openfabrics.org/images/eventpresos/2017presentations/213_CCIXGen-Z_BBenton.pdf](https://www.openfabrics.org/images/eventpresos/2017presentations/213_CCIXGen-Z_BBenton.pdf)
+
+- PCIe
+    - [https://www.anandtech.com/show/11967/pcisig-finalizes-and-releasees-pcie-40-spec](https://www.anandtech.com/show/11967/pcisig-finalizes-and-releasees-pcie-40-spec)
+
+- OmniPath
+    - [http://www.hoti.org/hoti23/slides/rimmer.pdf](http://www.hoti.org/hoti23/slides/rimmer.pdf)
+    - [https://www.intel.com/content/www/us/en/products/network-io/high-performance-fabrics/omni-path-edge-switch-100-series.html](https://www.intel.com/content/www/us/en/products/network-io/high-performance-fabrics/omni-path-edge-switch-100-series.html)
