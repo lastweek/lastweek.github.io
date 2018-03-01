@@ -33,6 +33,7 @@ pages:
    - Paper:
            - 'NMP': 'lego/paper/nmp.md'
            - 'processor_oom': 'lego/paper/processor_oom.md'
+           - 'genz': 'lego/paper/genz.md'
 
 markdown_extensions:
   - smarty
