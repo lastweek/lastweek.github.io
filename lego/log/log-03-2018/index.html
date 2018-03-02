@@ -474,6 +474,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../kernel/vDSO/" title="vDSO" class="md-nav__link">
+      vDSO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../kernel/vfs/" title="Virtual File System" class="md-nav__link">
       Virtual File System
     </a>
@@ -781,6 +793,9 @@
 [43181.517729] __pcache_do_fill_page(): O pid:25 tgid:25 address:0x415000 flags:0x150 ret:0(OKAY) csum:0xffff88029e8f028e
 </pre></div>
 </td></tr></table></p>
+<p>After all, it is TLB issue. I forgot to flush tlb after making the original pte read-only during fork. So the parent will be also to continue RW some pages, which should be process-private.</p>
+<p>Lego&rsquo;s current TLB flush is very native, we do tlbflush after each pte changes. This will have worse performance compared to linux&rsquo;s batch flush.</p>
+<p>Today&rsquo;s case is flush tlb after making pte read-only. And this really has to be performed one by one</p>
                 
                   
                 

@@ -434,6 +434,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../kernel/vDSO/" title="vDSO" class="md-nav__link">
+      vDSO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../kernel/vfs/" title="Virtual File System" class="md-nav__link">
       Virtual File System
     </a>
@@ -726,13 +738,13 @@
 <th>Domain</th>
 <th>Coherent</th>
 <th>Semantic</th>
-<th align="left">Bandwidth</th>
+<th align="left">Maximum Bandwidth</th>
 <th>Latency</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Gen-Z</td>
+<td>Gen-Z<sup id="fnref3:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup><sup id="fnref:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup></td>
 <td>N/A</td>
 <td>Cross components</td>
 <td><img alt="✖️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2716.svg" title=":heavy_multiplication_x:" /></td>
@@ -741,7 +753,7 @@
 <td>&lt;100ns</td>
 </tr>
 <tr>
-<td>OpenCAPI</td>
+<td>OpenCAPI<sup id="fnref2:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup></td>
 <td>IBM Power9</td>
 <td>Motherboard</td>
 <td><img alt="✔️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
@@ -750,7 +762,7 @@
 <td>?</td>
 </tr>
 <tr>
-<td>CCIX</td>
+<td>CCIX<sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup></td>
 <td>N/A</td>
 <td>Motherboard</td>
 <td><img alt="✔️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
@@ -759,7 +771,7 @@
 <td>?</td>
 </tr>
 <tr>
-<td>OmniPath</td>
+<td>OmniPath<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup><sup id="fnref:10"><a class="footnote-ref" href="#fn:10" rel="footnote">10</a></sup></td>
 <td>Intel KnightsLanding</td>
 <td>Cross networrk</td>
 <td><img alt="✖️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2716.svg" title=":heavy_multiplication_x:" /></td>
@@ -786,7 +798,7 @@
 <td>?</td>
 </tr>
 <tr>
-<td>EDR</td>
+<td>IB EDR</td>
 <td>Mellanox ConnectX4,X5</td>
 <td>Cross network</td>
 <td><img alt="✖️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2716.svg" title=":heavy_multiplication_x:" /></td>
@@ -795,7 +807,7 @@
 <td>0.5us</td>
 </tr>
 <tr>
-<td>HDR</td>
+<td>IB HDR</td>
 <td>Mellanox ConnectX6</td>
 <td>Cross network</td>
 <td><img alt="✖️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2716.svg" title=":heavy_multiplication_x:" /></td>
@@ -804,7 +816,7 @@
 <td>&lt;0.5us</td>
 </tr>
 <tr>
-<td>HyperTransport</td>
+<td>HyperTransport<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup></td>
 <td>AMD</td>
 <td>Motherboard</td>
 <td><img alt="✔️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
@@ -813,7 +825,7 @@
 <td>?</td>
 </tr>
 <tr>
-<td>NVLink</td>
+<td>NVLink<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup></td>
 <td>NVIDIA V100 <br> IBM Power9</td>
 <td>Motherboard</td>
 <td><img alt="✔️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
@@ -822,7 +834,7 @@
 <td>?</td>
 </tr>
 <tr>
-<td>QPI</td>
+<td>QPI<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup><sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup></td>
 <td>Intel</td>
 <td>Motherboard</td>
 <td><img alt="✔️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
@@ -832,11 +844,20 @@
 </tr>
 <tr>
 <td>Intel Main Memory Bus</td>
-<td>Processors</td>
+<td>Intel</td>
 <td>Processor</td>
 <td><img alt="✔️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
 <td>Memory</td>
-<td align="left">E7-8894 v4 85 GB/s <br> E5-2620 v3 59 GB/s</td>
+<td align="left">E7-8894 v4 <code class="codehilite">85 GB/s</code> <br> E5-2620 v3 <code class="codehilite">59 GB/s</code></td>
+<td>?</td>
+</tr>
+<tr>
+<td>Ethernet<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup></td>
+<td>A Lot</td>
+<td>Motherboard</td>
+<td><img alt="✖️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2716.svg" title=":heavy_multiplication_x:" /></td>
+<td>Network</td>
+<td align="left">Mellanox <code class="codehilite">200Gbps</code> <br> Cisco ASR <code class="codehilite">100 Gbps</code><sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup></td>
 <td>?</td>
 </tr>
 </tbody>
@@ -844,52 +865,46 @@
 <ul>
 <li>POWER9, NVLink 2.0, 300GB/s</li>
 </ul>
-<p>References:</p>
-<ul>
-<li>
-<p>NVLink</p>
-<ul>
-<li><a href="http://www.nvidia.com/object/nvlink.html">http://www.nvidia.com/object/nvlink.html</a></li>
-<li><a href="https://en.wikipedia.org/wiki/NVLink">https://en.wikipedia.org/wiki/NVLink</a></li>
-</ul>
+<p>&ndash;<br />
+Yizhou Shan <img alt="🐳" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f433.svg" title=":whale:" /><br />
+Created: Feb 28, 2018<br />
+Last Updated: March 01, 2018</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><a href="https://www.cisco.com/c/en/us/products/collateral/routers/asr-9000-series-aggregation-services-routers/datasheet-c78-740092.html">Ethernet Cisco ASR 9000 Series 4-Port 100-Gigabit Ethernet</a>&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
-<li>
-<p>HyperTransport</p>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/HyperTransport">https://en.wikipedia.org/wiki/HyperTransport</a></li>
-</ul>
+<li id="fn:2">
+<p><a href="https://en.wikipedia.org/wiki/Terabit_Ethernet">Terabit Ethernet</a>
+ <a href="https://en.wikipedia.org/wiki/NVLink">https://en.wikipedia.org/wiki/NVLink</a>&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
-<li>
-<p>QPI</p>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Intel_QuickPath_Interconnect">https://en.wikipedia.org/wiki/Intel_QuickPath_Interconnect</a></li>
-<li><a href="https://communities.intel.com/thread/21872">https://communities.intel.com/thread/21872</a></li>
-</ul>
+<li id="fn:3">
+<p><a href="http://www.nvidia.com/object/nvlink.html">NVLink</a>&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
-<li>
-<p>Gen-Z CCIX OpenCAPI</p>
-<ul>
-<li><a href="https://www.openfabrics.org/images/eventpresos/2017presentations/213_CCIXGen-Z_BBenton.pdf">https://www.openfabrics.org/images/eventpresos/2017presentations/213_CCIXGen-Z_BBenton.pdf</a></li>
-<li><a href="http://genzconsortium.org/wp-content/uploads/2017/08/Gen-Z-Overview.pdf">Gen-Z Overview</a></li>
-</ul>
+<li id="fn:4">
+<p><a href="https://en.wikipedia.org/wiki/HyperTransport">HyperTransport</a>&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
-<li>
-<p>PCIe</p>
-<ul>
-<li><a href="https://www.anandtech.com/show/11967/pcisig-finalizes-and-releasees-pcie-40-spec">https://www.anandtech.com/show/11967/pcisig-finalizes-and-releasees-pcie-40-spec</a></li>
-</ul>
+<li id="fn:5">
+<p><a href="https://en.wikipedia.org/wiki/Intel_QuickPath_Interconnect">https://en.wikipedia.org/wiki/Intel_QuickPath_Interconnect</a>&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
-<li>
-<p>OmniPath</p>
-<ul>
-<li><a href="http://www.hoti.org/hoti23/slides/rimmer.pdf">http://www.hoti.org/hoti23/slides/rimmer.pdf</a></li>
-<li><a href="https://www.intel.com/content/www/us/en/products/network-io/high-performance-fabrics/omni-path-edge-switch-100-series.html">https://www.intel.com/content/www/us/en/products/network-io/high-performance-fabrics/omni-path-edge-switch-100-series.html</a></li>
-</ul>
+<li id="fn:6">
+<p><a href="https://communities.intel.com/thread/21872">https://communities.intel.com/thread/21872</a>&#160;<a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text">&#8617;</a></p>
 </li>
-<li>
-<p><img alt="🐳" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f433.svg" title=":whale:" /></p>
+<li id="fn:7">
+<p><a href="https://www.openfabrics.org/images/eventpresos/2017presentations/213_CCIXGen-Z_BBenton.pdf">https://www.openfabrics.org/images/eventpresos/2017presentations/213_CCIXGen-Z_BBenton.pdf</a>&#160;<a class="footnote-backref" href="#fnref:7" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:7" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:7" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a></p>
 </li>
-</ul>
+<li id="fn:8">
+<p><a href="http://genzconsortium.org/wp-content/uploads/2017/08/Gen-Z-Overview.pdf">Gen-Z Overview</a>&#160;<a class="footnote-backref" href="#fnref:8" rev="footnote" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+<li id="fn:9">
+<p><a href="http://www.hoti.org/hoti23/slides/rimmer.pdf">http://www.hoti.org/hoti23/slides/rimmer.pdf</a>&#160;<a class="footnote-backref" href="#fnref:9" rev="footnote" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+</li>
+<li id="fn:10">
+<p><a href="https://www.intel.com/content/www/us/en/products/network-io/high-performance-fabrics/omni-path-edge-switch-100-series.html">https://www.intel.com/content/www/us/en/products/network-io/high-performance-fabrics/omni-path-edge-switch-100-series.html</a>&#160;<a class="footnote-backref" href="#fnref:10" rev="footnote" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
                   
                 
