@@ -18,6 +18,7 @@ pages:
         - 'Disable pgfault': 'lego/kernel/pagefault_disable.md'
         - 'Stop machine': 'lego/kernel/stop_machine.md'
         - 'Program Loader': 'lego/kernel/loader.md'
+        - 'vDSO': 'lego/kernel/vDSO.md'
         - 'Virtual File System': 'lego/kernel/vfs.md'
         - 'Process Virtual Memory': 'lego/kernel/vm.md'
         - 'x86 FPU': 'lego/kernel/fpu.md'
@@ -37,7 +38,9 @@ pages:
            - 'genz': 'lego/paper/genz.md'
 
 markdown_extensions:
+  - tables
   - smarty
+  - footnotes
   - pymdownx.arithmatex
   - pymdownx.betterem:
       smart_enable: all
