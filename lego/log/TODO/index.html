@@ -735,6 +735,9 @@
 <p><code class="codehilite">vDSO</code>: if later we find applications are using <code class="codehilite">gettimeofday</code>, <code class="codehilite">time</code>, and <code class="codehilite">getcpu</code> a lot, and it truly hurt performance, then we should consider adding this in the processor side. (Check Processor Loader document for code that needs to be patched). (02/27/18)</p>
 </li>
 <li>
+<p><code class="codehilite">vsyscall</code>: mostly emulation</p>
+</li>
+<li>
 <p><code class="codehilite">VA randomization</code>: our loader does not add any randomization. For security reasons, we probably want to add this.</p>
 </li>
 <li>
@@ -750,13 +753,16 @@
 <p><code class="codehilite">mm alloc</code>: don&rsquo;t use the kmalloc to get a new mm_struct. This is a hot data structure, use get_free_page instead maybe. Like task_struct.</p>
 </li>
 <li>
-<p><code class="codehilite">fork_dup_pcache</code>: have real vm_flags to guide write-protect. Get vm ranges from memory to optimize the duplication.</p>
+<p><code class="codehilite">fork_dup_pcache</code>: have real <code class="codehilite">vm_flags</code> to guide write-protect. Get vm ranges from memory to optimize the duplication. Currently, all pages will be downgraded to read-only.</p>
 </li>
 <li>
 <p><code class="codehilite">P side mm sem</code>: check if we need the sem in P side. pgfault need read, fork and others need W. Even though M side also serialize this, but  out ops are divided.</p>
 </li>
 <li>
 <p><code class="codehilite">mprotect</code>: it is empty now. We assume applications are well-written. But does any of them rely on this COW feature?</p>
+</li>
+<li>
+<p><code class="codehilite">CPU_NO_HZ</code>: disable timer for some cores, to reduce the overhead of timer interrupts. This is named <code class="codehilite">CPU_NO_HZ</code> and some similar Kconfigs.</p>
 </li>
 </ul>
                 
