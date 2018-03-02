@@ -2,6 +2,8 @@
 
 - `vDSO`: if later we find applications are using `gettimeofday`, `time`, and `getcpu` a lot, and it truly hurt performance, then we should consider adding this in the processor side. (Check Processor Loader document for code that needs to be patched). (02/27/18)
 
+- `vsyscall`: mostly emulation
+
 - `VA randomization`: our loader does not add any randomization. For security reasons, we probably want to add this.
 
 - `VM Organization`: multiple vm choice at M side, on a per-vma basis.
@@ -12,8 +14,10 @@
 
 - `mm alloc`: don't use the kmalloc to get a new mm_struct. This is a hot data structure, use get_free_page instead maybe. Like task_struct.
 
-- `fork_dup_pcache`: have real vm_flags to guide write-protect. Get vm ranges from memory to optimize the duplication.
+- `fork_dup_pcache`: have real `vm_flags` to guide write-protect. Get vm ranges from memory to optimize the duplication. Currently, all pages will be downgraded to read-only.
 
 - `P side mm sem`: check if we need the sem in P side. pgfault need read, fork and others need W. Even though M side also serialize this, but  out ops are divided.
 
 - `mprotect`: it is empty now. We assume applications are well-written. But does any of them rely on this COW feature?
+
+- `CPU_NO_HZ`: disable timer for some cores, to reduce the overhead of timer interrupts. This is named `CPU_NO_HZ` and some similar Kconfigs.
