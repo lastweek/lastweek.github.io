@@ -266,8 +266,32 @@
 
 
   <li class="md-nav__item">
+    <a href="../../log/TODO/" title="TODO" class="md-nav__link">
+      TODO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../log/log-02-2018/" title="Feb 2018" class="md-nav__link">
       Feb 2018
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../log/log-03-2018/" title="March 2018" class="md-nav__link">
+      March 2018
     </a>
   </li>
 
@@ -435,8 +459,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/pagefault_disable/" title="pagefault_disable" class="md-nav__link">
-      pagefault_disable
+    <a href="../../kernel/pagefault_disable/" title="Disable pgfault" class="md-nav__link">
+      Disable pgfault
     </a>
   </li>
 
@@ -447,8 +471,68 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/stop_machine/" title="stop_machine" class="md-nav__link">
-      stop_machine
+    <a href="../../kernel/stop_machine/" title="Stop machine" class="md-nav__link">
+      Stop machine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/loader/" title="Program Loader" class="md-nav__link">
+      Program Loader
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/vDSO/" title="vDSO" class="md-nav__link">
+      vDSO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/vfs/" title="Virtual File System" class="md-nav__link">
+      Virtual File System
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/vm/" title="Process Virtual Memory" class="md-nav__link">
+      Process Virtual Memory
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/fpu/" title="x86 FPU" class="md-nav__link">
+      x86 FPU
     </a>
   </li>
 
@@ -476,6 +560,30 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/facts/" title="Facts" class="md-nav__link">
+      Facts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/compat/" title="compat" class="md-nav__link">
+      compat
+    </a>
+  </li>
+
         
           
           
@@ -578,6 +686,66 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      Paper
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        Paper
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/nmp/" title="NMP" class="md-nav__link">
+      NMP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/processor_oom/" title="processor_oom" class="md-nav__link">
+      processor_oom
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/genz/" title="genz" class="md-nav__link">
+      genz
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -650,32 +818,38 @@
                 
                 <h1 id="how-trampoline-works-in-lego">How trampoline works in Lego</h1>
 <h2 id="what-is-trampoline-code">What is trampoline code?</h2>
-<p>Trampoline code is used by <code>BSP</code> to boot other secondary CPUs.
-At startup, <code>BSP</code> wakeup secondary CPUs by sending a <code>APIC INIT</code>
-command, which carry the <code>[start_ip]</code> where the secondary CPUs should
+<p>Trampoline code is used by <code class="codehilite">BSP</code> to boot other secondary CPUs.
+At startup, <code class="codehilite">BSP</code> wakeup secondary CPUs by sending a <code class="codehilite">APIC INIT</code>
+command, which carry the <code class="codehilite">[start_ip]</code> where the secondary CPUs should
 start to run.</p>
-<p>The trampoline code is the code starting from <code>[start_ip]</code>. Used
-by the secondary CPU to jump from <code>16-bit realmode</code> to <code>64-bit</code> code
-(the first instruction of 64-bit code will be in <code>arch/x86/kernel/head_64.S</code>).</p>
+<p>The trampoline code is the code starting from <code class="codehilite">[start_ip]</code>. Used
+by the secondary CPU to jump from <code class="codehilite">16-bit realmode</code> to <code class="codehilite">64-bit</code> code
+(the first instruction of 64-bit code will be in <code class="codehilite">arch/x86/kernel/head_64.S</code>).</p>
 <h2 id="where-is-the-trampoline-source-code">Where is the trampoline source code?</h2>
-<p>The source files are all in <code>arch/x86/realmode/</code>. There are two parts: <strong>1)</strong> <code>arch/x86/realmode/rm/trampoline.S</code>: which is the code that will run. And it is a mix of 16-bit, 32-bit, 64-bit code (ugh..). <strong>2)</strong> <code>arch/x86/realmode/piggy.S</code>: Since the trampoline code can not to linked
+<p>The source files are all in <code class="codehilite">arch/x86/realmode/</code>. There are two parts: <strong>1)</strong> <code class="codehilite">arch/x86/realmode/rm/trampoline.S</code>: which is the code that will run. And it is a mix of 16-bit, 32-bit, 64-bit code (ugh..). <strong>2)</strong> <code class="codehilite">arch/x86/realmode/piggy.S</code>: Since the trampoline code can not to linked
 into kernel image directly. So we have to piggyback the trampoline.bin binary
-code into a section, which is described by <code>trampoline_start</code> and <code>trampoline_end</code>. So the kernel can address the trampoline code via these two symbols.</p>
+code into a section, which is described by <code class="codehilite">trampoline_start</code> and <code class="codehilite">trampoline_end</code>. So the kernel can address the trampoline code via these two symbols.</p>
 <p>The compile flow is:
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>    arch/x86/realmode/rm/trmapoline.S
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    arch/x86/realmode/rm/trmapoline.S
     -&gt; CC__ arch/x86/realmode/rm/trmapoline.o
        -&gt; LD arch/x86/realmode/rm/trampoline
           -&gt; OBJCOPY arch/x86/realmode/rm/trampoline.bin
              -&gt; This bin goes into piggy.o
             -&gt; piggy.o goes into vmImage
-</pre></div></p>
+</pre></div>
+</td></tr></table></p>
 <h2 id="what-happened-at-runtime">What happened at runtime?</h2>
-<p>The setup code was loaded by GRUB below 1MB. Inside <code>arch/x86/boot/main.c</code>, we
-will save the <code>cs()</code> into the <code>boot_params</code> and pass it to kernel. In <code>setup_arch()</code>, we will copy the trampoline.bin code to the <code>cs()</code> address reported by <code>boot_param</code>. This means we will override setup code, which is okay.</p>
-<p>At last, we wake up the secondary CPUs inside <code>smp_init()</code>.</p>
+<p>The setup code was loaded by GRUB below 1MB. Inside <code class="codehilite">arch/x86/boot/main.c</code>, we
+will save the <code class="codehilite">cs()</code> into the <code class="codehilite">boot_params</code> and pass it to kernel. In <code class="codehilite">setup_arch()</code>, we will copy the trampoline.bin code to the <code class="codehilite">cs()</code> address reported by <code class="codehilite">boot_param</code>. This means we will override setup code, which is okay.</p>
+<p>At last, we wake up the secondary CPUs inside <code class="codehilite">smp_init()</code>.</p>
 <h2 id="compare-with-linux">Compare with Linux</h2>
 <p>I vaguely remember how Linux implement this. The only thing I remember is that Linux use some sort of structure, which is filled by BSP and then passed, or used by secondary CPUs. The mechanism has no difference, though. Linux just has more robust debugging facilities.</p>
-<p>--<br />
+<p>&ndash;<br />
 Yizhou Shan<br />
 Mar 3, 2017</p>
                 

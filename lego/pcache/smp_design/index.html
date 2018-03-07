@@ -266,8 +266,32 @@
 
 
   <li class="md-nav__item">
+    <a href="../../log/TODO/" title="TODO" class="md-nav__link">
+      TODO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../log/log-02-2018/" title="Feb 2018" class="md-nav__link">
       Feb 2018
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../log/log-03-2018/" title="March 2018" class="md-nav__link">
+      March 2018
     </a>
   </li>
 
@@ -374,8 +398,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/pagefault_disable/" title="pagefault_disable" class="md-nav__link">
-      pagefault_disable
+    <a href="../../kernel/pagefault_disable/" title="Disable pgfault" class="md-nav__link">
+      Disable pgfault
     </a>
   </li>
 
@@ -386,8 +410,68 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/stop_machine/" title="stop_machine" class="md-nav__link">
-      stop_machine
+    <a href="../../kernel/stop_machine/" title="Stop machine" class="md-nav__link">
+      Stop machine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/loader/" title="Program Loader" class="md-nav__link">
+      Program Loader
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/vDSO/" title="vDSO" class="md-nav__link">
+      vDSO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/vfs/" title="Virtual File System" class="md-nav__link">
+      Virtual File System
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/vm/" title="Process Virtual Memory" class="md-nav__link">
+      Process Virtual Memory
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/fpu/" title="x86 FPU" class="md-nav__link">
+      x86 FPU
     </a>
   </li>
 
@@ -415,6 +499,30 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/facts/" title="Facts" class="md-nav__link">
+      Facts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/compat/" title="compat" class="md-nav__link">
+      compat
+    </a>
+  </li>
+
         
           
           
@@ -571,6 +679,66 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      Paper
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        Paper
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/nmp/" title="NMP" class="md-nav__link">
+      NMP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/processor_oom/" title="processor_oom" class="md-nav__link">
+      processor_oom
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/genz/" title="genz" class="md-nav__link">
+      genz
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -636,7 +804,7 @@
                 
                 <h1 id="smp-design-thought">SMP Design Thought</h1>
 <p>Coding pcache is nothing different from coding mm code. It is the same with your familiar mixed pgfault, LRU, page cache and writeback code. Each pcache line can be involved with multiple activities at the same time. We have to use different states to synchronize among them. If you have ever read linux mm code, you will know that sometimes, comment is literally more than code. SMP pain in ass.</p>
-<p>I don't think this document is well written. It is just some random thoughts I wrote down while coding. Some of them might be wrong. But it is still worth looking back.</p>
+<p>I don&rsquo;t think this document is well written. It is just some random thoughts I wrote down while coding. Some of them might be wrong. But it is still worth looking back.</p>
 <h2 id="pcache-and-victim-cache-organization">Pcache and Victim Cache Organization</h2>
 <p>Our pcache and victim cache are allocated and arranged as a big array. As for
 pcache we look at it in a <em>cache set view</em>, which means consecutive pcache lines
@@ -644,23 +812,23 @@ are not relevant in natual. As for victim cache, we simply treat it as a big arr
 and walk through it one by one.</p>
 <h2 id="allocationeviction-smp-consideration">Allocation/Eviction SMP Consideration</h2>
 <p>The alloc/free of both pcache and victim cache are simple: each pcache line or
-victim cache line has a <code>Allocated</code> bit to indicate if this line is free or not.
-The <code>Allocated</code> bit is manipulated by atomic bit operations, thus SMP safe. This
+victim cache line has a <code class="codehilite">Allocated</code> bit to indicate if this line is free or not.
+The <code class="codehilite">Allocated</code> bit is manipulated by atomic bit operations, thus SMP safe. This
 further implies that we do not need another spinlock to guard allocation.</p>
 <p>However, other activities such as explict eviction, background sweep may walk
-through the cache lines at the same time of cache allocation, a single <code>Allocated</code>
+through the cache lines at the same time of cache allocation, a single <code class="codehilite">Allocated</code>
 bit is not enough. Because an allocated cache line will need some initial setup,
 such as reset refcount, clear flags (prep_new_pcache),
 thus there is a small time gap between Allocated bit being set and the cache line
 being truly safe to use. Other activities must wait the cache line to be usable,
 and then they can do further operations on this cache line.</p>
 <p>To solve this race condition, there two possible solutions:
-1) Add another bit: <code>Usable</code>, which is set once initial setup is done.
-   In this case, functions excluding alloction code should always check if the <code>Usable</code>
+1) Add another bit: <code class="codehilite">Usable</code>, which is set once initial setup is done.
+   In this case, functions excluding alloction code should always check if the <code class="codehilite">Usable</code>
    bit is set or not. a) If it is set, this means the cache line is safe for further operations
-   b) If not, and <code>Allocated</code> bit is set, this means the cache line is under setup in another core,
+   b) If not, and <code class="codehilite">Allocated</code> bit is set, this means the cache line is under setup in another core,
    We should skip it.
-   c) If not, and <code>Allocated</code> bit is not set, this means this cache line is simply free.
+   c) If not, and <code class="codehilite">Allocated</code> bit is not set, this means this cache line is simply free.
    We should skip it.</p>
 <p>2) Add allocated cache lines to a list (such as LRU list), and functions excluding allocation
    code will only look into cache lines within this list. In other words, others will only
@@ -673,12 +841,12 @@ the second solution. Pages freshly allocated will be added a LRU list or page ca
 And page reclaim code will only look into pages within the LRU list, it will not go through all
 physical pages to do so. The reason for Linux to do so is simple: kernel can not scan the whole
 physical pages to find out pages to operate.</p>
-<p><code>Pcache:</code> When it comes to pcache, we use both.
+<p><code class="codehilite">Pcache:</code> When it comes to pcache, we use both.
 In our envision, pcache will have high-associativity such as 64 or 128.
 It will have very bad performance if our eviction algorithm or sweep thread need to go through every
 cache lines within a set to find out candidates, while there might be only 1 or 2 allocated lines.
-However, additional <code>Usable</code> bit is added for debug purpose.</p>
-<p><code>Victim Cache:</code> When it comes to victim cache, the first solution seems a better choice.
+However, additional <code class="codehilite">Usable</code> bit is added for debug purpose.</p>
+<p><code class="codehilite">Victim Cache:</code> When it comes to victim cache, the first solution seems a better choice.
 Because victim cache only a few cache lines, e.g., 8 or 16. This means a whole victim cache line
 walk is fast. While the list deletion and addition seem may introduce some unnecessary overhead.
 It is all about trade-off.</p>
@@ -688,18 +856,18 @@ It is all about trade-off.</p>
 evict_lru is configured.</p>
 <p>I do not have any doubt about second solution, it works, though with a lot SMP pain in ass.
 But I do have more to say about the first solution, which is adding another usable bit.
-The <code>Usable</code> bit <em>only</em> ensures other threads will not use unmature pcache, but it can not
+The <code class="codehilite">Usable</code> bit <em>only</em> ensures other threads will not use unmature pcache, but it can not
 prevent other threads seeing a going-to-be-freed pcache.</p>
 <p>What is this going-to-be-freed asshole? Let us consider this case: CPU0 is doing eviction
-and checked the <code>Usable</code> bit, which is set. Then CPU0 thought this cache line is all set,
-ready to be torqued. Before doing all the dirty work, CPU0 will <code>get_pcache_unless_zero()</code>
+and checked the <code class="codehilite">Usable</code> bit, which is set. Then CPU0 thought this cache line is all set,
+ready to be torqued. Before doing all the dirty work, CPU0 will <code class="codehilite">get_pcache_unless_zero()</code>
 first to make sure the pcache will not go away in the middle. However, meanwhile, CPU1 did
-a <code>put_pcache()</code> <em>and</em> a consecutive <code>pcache_alloc()</code> right before CPU0 did called
-<code>get_pcache_unless_zero()</code>. Bang! CPU0 may use an mature pcache line, cause CPU1's <code>pcache_init_ref_count()</code>
-may come before CPU1's <code>get_pcache_unless_zero()</code>! How to solve this? CPU0 need to add
-additional checking after <code>get_pcache_unless_zero()</code>.</p>
-<p>For more details, please check the code in <code>pcache/evcit_random.c</code>, which has more pretty explanation.</p>
-<p>--<br />
+a <code class="codehilite">put_pcache()</code> <em>and</em> a consecutive <code class="codehilite">pcache_alloc()</code> right before CPU0 did called
+<code class="codehilite">get_pcache_unless_zero()</code>. Bang! CPU0 may use an mature pcache line, cause CPU1&rsquo;s <code class="codehilite">pcache_init_ref_count()</code>
+may come before CPU1&rsquo;s <code class="codehilite">get_pcache_unless_zero()</code>! How to solve this? CPU0 need to add
+additional checking after <code class="codehilite">get_pcache_unless_zero()</code>.</p>
+<p>For more details, please check the code in <code class="codehilite">pcache/evcit_random.c</code>, which has more pretty explanation.</p>
+<p>&ndash;<br />
 Yizhou Shan<br />
 Jan 31, 2018</p>
                 
@@ -734,6 +902,20 @@ Jan 31, 2018</p>
             </div>
           </a>
         
+        
+          <a href="../../paper/nmp/" title="NMP" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                NMP
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>

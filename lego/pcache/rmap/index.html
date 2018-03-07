@@ -266,8 +266,32 @@
 
 
   <li class="md-nav__item">
+    <a href="../../log/TODO/" title="TODO" class="md-nav__link">
+      TODO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../log/log-02-2018/" title="Feb 2018" class="md-nav__link">
       Feb 2018
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../log/log-03-2018/" title="March 2018" class="md-nav__link">
+      March 2018
     </a>
   </li>
 
@@ -374,8 +398,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/pagefault_disable/" title="pagefault_disable" class="md-nav__link">
-      pagefault_disable
+    <a href="../../kernel/pagefault_disable/" title="Disable pgfault" class="md-nav__link">
+      Disable pgfault
     </a>
   </li>
 
@@ -386,8 +410,68 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/stop_machine/" title="stop_machine" class="md-nav__link">
-      stop_machine
+    <a href="../../kernel/stop_machine/" title="Stop machine" class="md-nav__link">
+      Stop machine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/loader/" title="Program Loader" class="md-nav__link">
+      Program Loader
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/vDSO/" title="vDSO" class="md-nav__link">
+      vDSO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/vfs/" title="Virtual File System" class="md-nav__link">
+      Virtual File System
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/vm/" title="Process Virtual Memory" class="md-nav__link">
+      Process Virtual Memory
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/fpu/" title="x86 FPU" class="md-nav__link">
+      x86 FPU
     </a>
   </li>
 
@@ -415,6 +499,30 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/facts/" title="Facts" class="md-nav__link">
+      Facts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/compat/" title="compat" class="md-nav__link">
+      compat
+    </a>
+  </li>
+
         
           
           
@@ -571,6 +679,66 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      Paper
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        Paper
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/nmp/" title="NMP" class="md-nav__link">
+      NMP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/processor_oom/" title="processor_oom" class="md-nav__link">
+      processor_oom
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/genz/" title="genz" class="md-nav__link">
+      genz
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -635,16 +803,16 @@
                 
                 
                 <h1 id="reverse-mapping-of-pcache">Reverse Mapping of Pcache</h1>
-<p>This document explains Lego's reverse mapping design for pcache. We also present Lego internal functions that eventually manipulate rmap data structures.
+<p>This document explains Lego&rsquo;s reverse mapping design for pcache. We also present Lego internal functions that eventually manipulate rmap data structures.
 For readers who are not familiar with reverse mapping, I recommend you search <em>what is rmap in Linux</em> first.</p>
 <h2 id="design">Design</h2>
 <p>The reverse mapping, or rmap, of our pcache is implemented in a very basic and
 straightforward way: pointing back to all page table entries (ptes) directly.
 Shared pcache lines will have a list of ptes that point to this pcache line.
 We also did this way in Hotpot.</p>
-<p>rmap is used by <strong>1)</strong> a bunch of syscalls, such as <code>fork()</code>, <code>execv()</code>, <code>mmap()</code>,
-<code>munmap()</code>, <code>mremap()</code>, <code>brk()</code>. <strong>2)</strong> page reclaim, which needs to unmap all ptes for a
-given swapped page. Other than <code>fork()</code> and <code>execv()</code>, other vm related syscalls
+<p>rmap is used by <strong>1)</strong> a bunch of syscalls, such as <code class="codehilite">fork()</code>, <code class="codehilite">execv()</code>, <code class="codehilite">mmap()</code>,
+<code class="codehilite">munmap()</code>, <code class="codehilite">mremap()</code>, <code class="codehilite">brk()</code>. <strong>2)</strong> page reclaim, which needs to unmap all ptes for a
+given swapped page. Other than <code class="codehilite">fork()</code> and <code class="codehilite">execv()</code>, other vm related syscalls
 are invoked very frequently for a typical datacenter application. Moreover, page
 reclaim and swap also run concurrently to gain exclusive access to rmap.</p>
 <p>So, rmap operations have to be fast. Directly pointing to pte seems the best
@@ -658,9 +826,9 @@ which leverages vma itself to take a longer path towards pte.</p>
 thus there will not be any shared hot library pages, which implies rmap list maintenance
 is simplified. <strong>2)</strong> Our targeted applications
 mostly are single process. Even for multiple process ones, the number of processes
-stay stable and <code>fork()</code> happen at early init time. <strong>3)</strong> major users of rmap such
-as <code>mremap()</code> and <code>munmap()</code>  perform rmap operation explicitly, <code>mmap()</code> perform
-rmap implicitly via pgfault (or pcache miss), <code>pcache reclaim</code> perform sweep async.
+stay stable and <code class="codehilite">fork()</code> happen at early init time. <strong>3)</strong> major users of rmap such
+as <code class="codehilite">mremap()</code> and <code class="codehilite">munmap()</code>  perform rmap operation explicitly, <code class="codehilite">mmap()</code> perform
+rmap implicitly via pgfault (or pcache miss), <code class="codehilite">pcache reclaim</code> perform sweep async.
 All of them, combined with 1) and 2), most of the time will perform rmap operation
 on a single pte.</p>
 <h2 id="internal">Internal</h2>
@@ -676,30 +844,30 @@ on a single pte.</p>
 <tbody>
 <tr>
 <td>Add</td>
-<td><code>fork()</code> <br><code>pgfault</code></td>
-<td><code>copy_pte_range()</code> -&gt; <code>pcache_copy_pte()</code> <br> <code>pcache_add_rmap()</code></td>
+<td><code class="codehilite">fork()</code> <br><code class="codehilite">pgfault</code></td>
+<td><code class="codehilite">copy_pte_range()</code> -&gt; <code class="codehilite">pcache_copy_pte()</code> <br> <code class="codehilite">pcache_add_rmap()</code></td>
 </tr>
 <tr>
 <td>Remove</td>
-<td><code>munmap()</code> <br> <code>exit_mmap()</code></td>
-<td><code>zap_pte_range()</code> -&gt; <code>pcache_zap_pte()</code></td>
+<td><code class="codehilite">munmap()</code> <br> <code class="codehilite">exit_mmap()</code></td>
+<td><code class="codehilite">zap_pte_range()</code> -&gt; <code class="codehilite">pcache_zap_pte()</code></td>
 </tr>
 <tr>
 <td>Update</td>
-<td><code>mremap()</code></td>
-<td><code>move_ptes()</code> -&gt; <code>pcache_move_pte()</code></td>
+<td><code class="codehilite">mremap()</code></td>
+<td><code class="codehilite">move_ptes()</code> -&gt; <code class="codehilite">pcache_move_pte()</code></td>
 </tr>
 <tr>
 <td>Lookup</td>
 <td>pcache eviction sweep, etc.</td>
-<td><code>pcache_referenced()</code>, <code>pcache_wrprotect()</code> <br> <code>pcache_try_to_unmap()</code></td>
+<td><code class="codehilite">pcache_referenced()</code>, <code class="codehilite">pcache_wrprotect()</code> <br> <code class="codehilite">pcache_try_to_unmap()</code></td>
 </tr>
 </tbody>
 </table>
 <h2 id="thought">Thought</h2>
-<p>One function I personally love the most is <code>rmap_walk()</code>, whose name pretty much tells the story. To use <code>rmap_walk()</code>, caller passes a <code>struct rmap_walk_control</code>, which including caller specific callback for each rmap. This function also isolates the specific data structures used by rmap from various callers. In Lego, a lot pcache functions are built upon <code>rmap_walk()</code>.</p>
-<p><code>struct rmap_walk_control</code>, or <code>struct scan_control</code>, or <code>struct something_control</code> are used a lot by Linux kernel. Personally I do love this way of doing data structure walk, or reuse functions. However, even this way can greatly reduce duplicated code size, it will make the code unnecessary complex. As a system developer, no more expects to see a function longer than 100 lines. People love saying: <em>Do one thing and do it better</em>, while it not always works that perfectly. Coding is nothing different life, it is all about trade-off.</p>
-<p>--<br />
+<p>One function I personally love the most is <code class="codehilite">rmap_walk()</code>, whose name pretty much tells the story. To use <code class="codehilite">rmap_walk()</code>, caller passes a <code class="codehilite">struct rmap_walk_control</code>, which including caller specific callback for each rmap. This function also isolates the specific data structures used by rmap from various callers. In Lego, a lot pcache functions are built upon <code class="codehilite">rmap_walk()</code>.</p>
+<p><code class="codehilite">struct rmap_walk_control</code>, or <code class="codehilite">struct scan_control</code>, or <code class="codehilite">struct something_control</code> are used a lot by Linux kernel. Personally I do love this way of doing data structure walk, or reuse functions. However, even this way can greatly reduce duplicated code size, it will make the code unnecessary complex. As a system developer, no more expects to see a function longer than 100 lines. People love saying: <em>Do one thing and do it better</em>, while it not always works that perfectly. Coding is nothing different life, it is all about trade-off.</p>
+<p>&ndash;<br />
 Yizhou Shan<br />
 Feb 02, 2018</p>
                 

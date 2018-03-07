@@ -266,8 +266,32 @@
 
 
   <li class="md-nav__item">
+    <a href="../../log/TODO/" title="TODO" class="md-nav__link">
+      TODO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../log/log-02-2018/" title="Feb 2018" class="md-nav__link">
       Feb 2018
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../log/log-03-2018/" title="March 2018" class="md-nav__link">
+      March 2018
     </a>
   </li>
 
@@ -374,8 +398,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/pagefault_disable/" title="pagefault_disable" class="md-nav__link">
-      pagefault_disable
+    <a href="../../kernel/pagefault_disable/" title="Disable pgfault" class="md-nav__link">
+      Disable pgfault
     </a>
   </li>
 
@@ -386,8 +410,68 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/stop_machine/" title="stop_machine" class="md-nav__link">
-      stop_machine
+    <a href="../../kernel/stop_machine/" title="Stop machine" class="md-nav__link">
+      Stop machine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/loader/" title="Program Loader" class="md-nav__link">
+      Program Loader
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/vDSO/" title="vDSO" class="md-nav__link">
+      vDSO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/vfs/" title="Virtual File System" class="md-nav__link">
+      Virtual File System
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/vm/" title="Process Virtual Memory" class="md-nav__link">
+      Process Virtual Memory
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/fpu/" title="x86 FPU" class="md-nav__link">
+      x86 FPU
     </a>
   </li>
 
@@ -415,6 +499,30 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/facts/" title="Facts" class="md-nav__link">
+      Facts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/compat/" title="compat" class="md-nav__link">
+      compat
+    </a>
+  </li>
+
         
           
           
@@ -528,6 +636,66 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      Paper
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        Paper
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/nmp/" title="NMP" class="md-nav__link">
+      NMP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/processor_oom/" title="processor_oom" class="md-nav__link">
+      processor_oom
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/genz/" title="genz" class="md-nav__link">
+      genz
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -563,41 +731,55 @@
                 
                 <h1 id="pcache-configuration">Pcache Configuration</h1>
 <p>Last Updated: 02/01/18</p>
-<p>This doc explains what configuration options pcache has, and how to config them properly. Pcache is only enabled in Lego's processor manager and currently it uses DRAM to emulate the last-level cache (or, L4).</p>
+<p>This doc explains what configuration options pcache has, and how to config them properly. Pcache is only enabled in Lego&rsquo;s processor manager and currently it uses DRAM to emulate the last-level cache (or, L4).</p>
 <h1 id="kconfig">Kconfig</h1>
 <h4 id="config_memmap_memblock_reserved">CONFIG_MEMMAP_MEMBLOCK_RESERVED</h4>
 <p><strong>DEFAULT: Y</strong></p>
-<p>By default, boot command line option <code>memmap $</code> will reserve a range of physical memory.
+<p>By default, boot command line option <code class="codehilite">memmap $</code> will reserve a range of physical memory.
 This reserved memory will be marked reserved in e820 table, which
-means this range will not be registered into <code>memblock</code>. Only memory that has been
-registered into <code>memblock</code> will be assigned <code>struct page</code> with it (both <code>memblock.memory</code> and <code>memblock.reserve</code> will have). And do note that this part of reserved memory can be mapped as 1GB page at boot time.</p>
-<p>In other words, by default (the linux semantic), users need to <code>ioremap</code>
-the <code>memmap $</code> reserved physical memory, and use the returned kernel virtual address afterwards.
-And do note that the <code>ioremap()</code> only support 4KB mapping.</p>
-<p>In Lego, if this option is enabled, the memory marked by <code>memmap $</code> will <em>NOT</em> be marked
-reserved into e820 table, instead, it will be pushed into <code>memblock</code>, which means
-it is mapped into kernel direct mapping and has <code>struct page</code>.</p>
+means this range will not be registered into <code class="codehilite">memblock</code>. Only memory that has been
+registered into <code class="codehilite">memblock</code> will be assigned <code class="codehilite">struct page</code> with it (both <code class="codehilite">memblock.memory</code> and <code class="codehilite">memblock.reserve</code> will have). And do note that this part of reserved memory can be mapped as 1GB page at boot time.</p>
+<p>In other words, by default (the linux semantic), users need to <code class="codehilite">ioremap</code>
+the <code class="codehilite">memmap $</code> reserved physical memory, and use the returned kernel virtual address afterwards.
+And do note that the <code class="codehilite">ioremap()</code> only support 4KB mapping.</p>
+<p>In Lego, if this option is enabled, the memory marked by <code class="codehilite">memmap $</code> will <em>NOT</em> be marked
+reserved into e820 table, instead, it will be pushed into <code class="codehilite">memblock</code>, which means
+it is mapped into kernel direct mapping and has <code class="codehilite">struct page</code>.</p>
 <p>For those who have done DAX, or NVM related stuff, you must have struggled with
-<code>memmap $</code>, and complained why it does not have <code>struct page</code>, I guess? So here is
+<code class="codehilite">memmap $</code>, and complained why it does not have <code class="codehilite">struct page</code>, I guess? So here is
 the simple code to do so:
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">if</span> (<span style="color: #666666">*</span>p <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;@&#39;</span>) {
-        start_at <span style="color: #666666">=</span> memparse(p<span style="color: #666666">+1</span>, <span style="color: #666666">&amp;</span>p);
-        e820_add_region(start_at, mem_size, E820_RAM);
-} <span style="color: #008000; font-weight: bold">else</span> <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #666666">*</span>p <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;#&#39;</span>) {
-        start_at <span style="color: #666666">=</span> memparse(p<span style="color: #666666">+1</span>, <span style="color: #666666">&amp;</span>p);
-        e820_add_region(start_at, mem_size, E820_ACPI);
-} <span style="color: #008000; font-weight: bold">else</span> <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #666666">*</span>p <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;$&#39;</span>) {
-        start_at <span style="color: #666666">=</span> memparse(p<span style="color: #666666">+1</span>, <span style="color: #666666">&amp;</span>p);
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span> <span class="o">==</span> <span class="sc">&#39;@&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">start_at</span> <span class="o">=</span> <span class="n">memparse</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">);</span>
+        <span class="n">e820_add_region</span><span class="p">(</span><span class="n">start_at</span><span class="p">,</span> <span class="n">mem_size</span><span class="p">,</span> <span class="n">E820_RAM</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span> <span class="o">==</span> <span class="sc">&#39;#&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">start_at</span> <span class="o">=</span> <span class="n">memparse</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">);</span>
+        <span class="n">e820_add_region</span><span class="p">(</span><span class="n">start_at</span><span class="p">,</span> <span class="n">mem_size</span><span class="p">,</span> <span class="n">E820_ACPI</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span> <span class="o">==</span> <span class="sc">&#39;$&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">start_at</span> <span class="o">=</span> <span class="n">memparse</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">);</span>
 
-<span style="color: #BC7A00">#ifdef CONFIG_MEMMAP_MEMBLOCK_RESERVED</span>
-        memblock_reserve(start_at, mem_size);
-<span style="color: #BC7A00">#else</span>
-        e820_add_region(start_at, mem_size, E820_RESERVED);
-<span style="color: #BC7A00">#endif</span>
-</pre></div></p>
-<p>But why we are having this? Because I think the <code>direct 1GB mapping</code> may have
+<span class="cp">#ifdef CONFIG_MEMMAP_MEMBLOCK_RESERVED</span>
+        <span class="n">memblock_reserve</span><span class="p">(</span><span class="n">start_at</span><span class="p">,</span> <span class="n">mem_size</span><span class="p">);</span>
+<span class="cp">#else</span>
+        <span class="n">e820_add_region</span><span class="p">(</span><span class="n">start_at</span><span class="p">,</span> <span class="n">mem_size</span><span class="p">,</span> <span class="n">E820_RESERVED</span><span class="p">);</span>
+<span class="cp">#endif</span>
+</pre></div>
+</td></tr></table></p>
+<p>But why we are having this? Because I think the <code class="codehilite">direct 1GB mapping</code> may have
 better performance: huge page mapping can truly save us a lot TLB misses. However, the real performance number is unknown.</p>
-<p>If unsure, say <code>Y</code>.</p>
+<p>If unsure, say <code class="codehilite">Y</code>.</p>
                 
                   
                 

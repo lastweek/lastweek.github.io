@@ -36,7 +36,7 @@
     
     
       
-        <title>pagefault_disable - Yizhou Shan's Home Page</title>
+        <title>Disable pgfault - Yizhou Shan's Home Page</title>
       
     
     
@@ -95,7 +95,7 @@
                 Yizhou Shan's Home Page
               </span>
               <span class="md-header-nav__topic">
-                pagefault_disable
+                Disable pgfault
               </span>
             
           
@@ -266,8 +266,32 @@
 
 
   <li class="md-nav__item">
+    <a href="../../log/TODO/" title="TODO" class="md-nav__link">
+      TODO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../log/log-02-2018/" title="Feb 2018" class="md-nav__link">
       Feb 2018
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../log/log-03-2018/" title="March 2018" class="md-nav__link">
+      March 2018
     </a>
   </li>
 
@@ -384,8 +408,8 @@
       
     
     
-    <a href="./" title="pagefault_disable" class="md-nav__link md-nav__link--active">
-      pagefault_disable
+    <a href="./" title="Disable pgfault" class="md-nav__link md-nav__link--active">
+      Disable pgfault
     </a>
     
   </li>
@@ -397,8 +421,68 @@
 
 
   <li class="md-nav__item">
-    <a href="../stop_machine/" title="stop_machine" class="md-nav__link">
-      stop_machine
+    <a href="../stop_machine/" title="Stop machine" class="md-nav__link">
+      Stop machine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../loader/" title="Program Loader" class="md-nav__link">
+      Program Loader
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../vDSO/" title="vDSO" class="md-nav__link">
+      vDSO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../vfs/" title="Virtual File System" class="md-nav__link">
+      Virtual File System
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../vm/" title="Process Virtual Memory" class="md-nav__link">
+      Process Virtual Memory
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fpu/" title="x86 FPU" class="md-nav__link">
+      x86 FPU
     </a>
   </li>
 
@@ -426,6 +510,30 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/facts/" title="Facts" class="md-nav__link">
+      Facts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/compat/" title="compat" class="md-nav__link">
+      compat
+    </a>
+  </li>
+
         
           
           
@@ -528,6 +636,66 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      Paper
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        Paper
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/nmp/" title="NMP" class="md-nav__link">
+      NMP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/processor_oom/" title="processor_oom" class="md-nav__link">
+      processor_oom
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/genz/" title="genz" class="md-nav__link">
+      genz
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -562,12 +730,12 @@
                 
                 
                 <h1 id="the-story-of-pagefault_disableenable">The story of pagefault_disable/enable</h1>
-<p><code>pagefault_disable()</code> is not really disabling the whole pgfault handling code. It is used to disable only the handling of pgfault that landed from <code>user virtual address</code>. Please note the difference between <code>user virtual address</code> and <code>user mode fault</code>. The first means the faulting address belongs to user virtual address space, while it can come from either user mode (CPL3) or kernel mode (CPL0). The second is a fault come from user mode (CPL3).</p>
-<p>If pgfault is disabled, then <code>do_page_fault()</code> function will <strong>NOT</strong> try to solve the pgfault by calling into <code>pcache</code>, instead, it will go straight to <code>fixup</code> code (in no_context()).</p>
-<p>This function is not intended to be used standalone. Normally, we do <strong>1)</strong> <code>pagefault_disable()</code>, <strong>2)</strong> then use some functions that have <code>fixup</code> code, <strong>3)</strong> then <code>pagefault_enable()</code>. (The <code>fixup</code> code is another magic inside kernel. We will cover it in another document.)</p>
-<p>Currently in Lego, this is only used by <code>futex</code>, which needs something like <code>atomic_cmpxchg()</code> with an user virtual address. If pgfault happens in the middle, then this will not be atomic since kernel need to do pcache operations, which further needs to through network.</p>
-<p>However, do note the difference with <code>uaccess</code> family functions. Most <code>uaccess</code> functions will not disable pgfault handling, which means pcache will be invoked. If pcache returns a <code>SEGFAULT</code>, pgfault code will go into <code>fixup</code> code. And that, my friend, is where <code>uaccess</code> returns <code>-EFAULT</code> to caller.</p>
-<p>--<br />
+<p><code class="codehilite">pagefault_disable()</code> is not really disabling the whole pgfault handling code. It is used to disable only the handling of pgfault that landed from <code class="codehilite">user virtual address</code>. Please note the difference between <code class="codehilite">user virtual address</code> and <code class="codehilite">user mode fault</code>. The first means the faulting address belongs to user virtual address space, while it can come from either user mode (CPL3) or kernel mode (CPL0). The second is a fault come from user mode (CPL3).</p>
+<p>If pgfault is disabled, then <code class="codehilite">do_page_fault()</code> function will <strong>NOT</strong> try to solve the pgfault by calling into <code class="codehilite">pcache</code>, instead, it will go straight to <code class="codehilite">fixup</code> code (in no_context()).</p>
+<p>This function is not intended to be used standalone. Normally, we do <strong>1)</strong> <code class="codehilite">pagefault_disable()</code>, <strong>2)</strong> then use some functions that have <code class="codehilite">fixup</code> code, <strong>3)</strong> then <code class="codehilite">pagefault_enable()</code>. (The <code class="codehilite">fixup</code> code is another magic inside kernel. We will cover it in another document.)</p>
+<p>Currently in Lego, this is only used by <code class="codehilite">futex</code>, which needs something like <code class="codehilite">atomic_cmpxchg()</code> with an user virtual address. If pgfault happens in the middle, then this will not be atomic since kernel need to do pcache operations, which further needs to through network.</p>
+<p>However, do note the difference with <code class="codehilite">uaccess</code> family functions. Most <code class="codehilite">uaccess</code> functions will not disable pgfault handling, which means pcache will be invoked. If pcache returns a <code class="codehilite">SEGFAULT</code>, pgfault code will go into <code class="codehilite">fixup</code> code. And that, my friend, is where <code class="codehilite">uaccess</code> returns <code class="codehilite">-EFAULT</code> to caller.</p>
+<p>&ndash;<br />
 Yizhou Shan<br />
 Feb 01, 2018</p>
                 
@@ -603,13 +771,13 @@ Feb 01, 2018</p>
           </a>
         
         
-          <a href="../stop_machine/" title="stop_machine" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../stop_machine/" title="Stop machine" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                stop_machine
+                Stop machine
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
