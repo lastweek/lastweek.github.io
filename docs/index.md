@@ -21,14 +21,28 @@ Office: EE 345
 Email: ys@purdue.edu
 
 ## Conferences and Workshops
-* [Distributed Shared Persistent Memory](https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf), NVMW'18
-* [Disaggregated Operating System](http://hpts.ws/papers/2017/lego.pdf), HPTS'17
-* [Distributed Shared Persistent Memory](https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf), SoCC'17
+* [Disaggregating Memory with Software-Managed Virtual Cache]()
+<br> _Yizhou Shan_, Yiying Zhang
+<br> to appear at the 2018 Workshop on Warehouse-scale Memory Systems (__WAMS '18__) (co-located with ASPLOS '18)
+* [Distributed Shared Persistent Memory](https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf)
+<br> _Yizhou Shan_, Shin-Yeh Tsai, Yiying Zhang
+<br> at the 9th Annual Non-Volatile Memories Workshop (__NVMW '18__)
+* [Disaggregated Operating System](http://hpts.ws/papers/2017/lego.pdf)
+<br> Yiying Zhang, _Yizhou Shan_, Sumukh Hallymysore
+<br> at the 17th International Workshop on High Performance Transaction Systems (__HPTS '17__)
+* [Distributed Shared Persistent Memory](https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf)
+<br> _Yizhou Shan_, Shin-Yeh Tsai, Yiying Zhang
+<br> Proceedings of the ACM Symposium on Cloud Computing 2017 (__SoCC '17__)
 
 
 ## Posters
-* [Lego: A Distributed, Decomposed OS for Resource Disaggregation](https://lastweek.github.io/pubs/SOSP17-Lego-Poster.pdf), SOSP'17
-* [Disaggregated Operating System](https://lastweek.github.io/pubs/SoCC17-Lego-Poster.pdf), SoCC'17
+* [Lego: A Distributed, Decomposed OS for Resource Disaggregation](https://lastweek.github.io/pubs/SOSP17-Lego-Poster.pdf)
+<br> _Yizhou Shan_, Yilun Chen, Yutong Huang, Sumukh Hallymysore, Yiying Zhang
+<br> Poster at the 26th ACM Symposium on Operating Systems Principles (__SOSP '17__)
+
+* [Disaggregated Operating System](https://lastweek.github.io/pubs/SoCC17-Lego-Poster.pdf)
+<br> _Yizhou Shan_, Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang
+<br> Poster at the ACM Symposium on Cloud Computing 2017 (__SoCC '17__)
 
 
 ## Social
