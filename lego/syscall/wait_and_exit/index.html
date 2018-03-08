@@ -36,7 +36,7 @@
     
     
       
-        <title>Debug - Yizhou Shan's Home Page</title>
+        <title>wait4 and exit() - Yizhou Shan's Home Page</title>
       
     
     
@@ -69,7 +69,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#debug-facility-in-lego" tabindex="1" class="md-skip">
+      <a href="#wait4-waitid-and-exit" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -95,7 +95,7 @@
                 Yizhou Shan's Home Page
               </span>
               <span class="md-header-nav__topic">
-                Debug
+                wait4 and exit()
               </span>
             
           
@@ -353,12 +353,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3">
     
     <label class="md-nav__link" for="nav-3-3">
       Kernel
@@ -376,8 +374,202 @@
 
 
   <li class="md-nav__item">
-    <a href="../kconfig/" title="Kconfig" class="md-nav__link">
+    <a href="../../kernel/kconfig/" title="Kconfig" class="md-nav__link">
       Kconfig
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/debug/" title="Debug" class="md-nav__link">
+      Debug
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/pagefault_disable/" title="Disable pgfault" class="md-nav__link">
+      Disable pgfault
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/stop_machine/" title="Stop machine" class="md-nav__link">
+      Stop machine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/loader/" title="Program Loader" class="md-nav__link">
+      Program Loader
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/vDSO/" title="vDSO" class="md-nav__link">
+      vDSO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/vfs/" title="Virtual File System" class="md-nav__link">
+      Virtual File System
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/vm/" title="Process Virtual Memory" class="md-nav__link">
+      Process Virtual Memory
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/fpu/" title="x86 FPU" class="md-nav__link">
+      x86 FPU
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4" checked>
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Syscall
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        Syscall
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../facts/" title="Facts" class="md-nav__link">
+      Facts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../compat/" title="compat" class="md-nav__link">
+      compat
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../msync/" title="msync()" class="md-nav__link">
+      msync()
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mremap/" title="mremap()" class="md-nav__link">
+      mremap()
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fork/" title="fork()" class="md-nav__link">
+      fork()
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../getrusage/" title="getrusage()" class="md-nav__link">
+      getrusage()
     </a>
   </li>
 
@@ -396,245 +588,10 @@
       
     
     
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        Debug
-      </label>
-    
-    <a href="./" title="Debug" class="md-nav__link md-nav__link--active">
-      Debug
-    </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#core-kernel" title="Core Kernel" class="md-nav__link">
-    Core Kernel
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#processor-manager" title="Processor Manager" class="md-nav__link">
-    Processor Manager
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#memory-manager" title="Memory Manager" class="md-nav__link">
-    Memory Manager
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../pagefault_disable/" title="Disable pgfault" class="md-nav__link">
-      Disable pgfault
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../stop_machine/" title="Stop machine" class="md-nav__link">
-      Stop machine
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../loader/" title="Program Loader" class="md-nav__link">
-      Program Loader
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../vDSO/" title="vDSO" class="md-nav__link">
-      vDSO
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../vfs/" title="Virtual File System" class="md-nav__link">
-      Virtual File System
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../vm/" title="Process Virtual Memory" class="md-nav__link">
-      Process Virtual Memory
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../fpu/" title="x86 FPU" class="md-nav__link">
-      x86 FPU
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
-    
-    <label class="md-nav__link" for="nav-3-4">
-      Syscall
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-3-4">
-        Syscall
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../syscall/facts/" title="Facts" class="md-nav__link">
-      Facts
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../syscall/compat/" title="compat" class="md-nav__link">
-      compat
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../syscall/msync/" title="msync()" class="md-nav__link">
-      msync()
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../syscall/mremap/" title="mremap()" class="md-nav__link">
-      mremap()
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../syscall/fork/" title="fork()" class="md-nav__link">
-      fork()
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../syscall/getrusage/" title="getrusage()" class="md-nav__link">
-      getrusage()
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../syscall/wait_and_exit/" title="wait4 and exit()" class="md-nav__link">
+    <a href="./" title="wait4 and exit()" class="md-nav__link md-nav__link--active">
       wait4 and exit()
     </a>
+    
   </li>
 
         
@@ -785,36 +742,6 @@
     
   
   
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#core-kernel" title="Core Kernel" class="md-nav__link">
-    Core Kernel
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#processor-manager" title="Processor Manager" class="md-nav__link">
-    Processor Manager
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#memory-manager" title="Memory Manager" class="md-nav__link">
-    Memory Manager
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -826,47 +753,32 @@
               
                 
                 
-                <h1 id="debug-facility-in-lego">Debug Facility in Lego</h1>
-<p>Lego provides several handy debug helpers to ease our coding pain. We category them by layers, namely <strong>1)</strong> <code class="codehilite">Core Kernel</code>, the lowest level of Lego, which is shared by all managers. <strong>2)</strong> <code class="codehilite">Processor Manager</code>, which controls processor components. <strong>3)</strong> <code class="codehilite">Memory Manager</code>, which controls memory components.</p>
-<h2 id="core-kernel">Core Kernel</h2>
-<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">dump_pte</span><span class="p">(</span><span class="n">pte_t</span> <span class="o">*</span><span class="n">ptep</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">reason</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">dump_page</span><span class="p">(</span><span class="k">struct</span> <span class="n">page</span> <span class="o">*</span><span class="n">page</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">reason</span><span class="p">);</span>
-</pre></div>
-</td></tr></table>
-These two helpers will dump a given pte entry or a page. Use this function if you are developing core related to physical memory allocation or pcache.</p>
+                <h1 id="wait4-waitid-and-exit">wait4(), waitid(), and exit()</h1>
+<p>Lego supports <code class="codehilite">wait4()</code> and <code class="codehilite">waitid()</code> syscalls, and they are compatible with Linux programs. These two syscalls rely on <code class="codehilite">exit_notify()</code> function when a thread <code class="codehilite">exit()</code>. Basically, when a thread exit, it will notify its parent, and reparent<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup> its children if necessary.</p>
+<p>Facts in Lego:</p>
+<ul>
+<li>Lego does not have <strong>process group and session</strong><sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup> concept. Each process is within its own process group and session.</li>
+<li>This implies Lego will not have <strong>Orphaned Process Group</strong><sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> when a process exit.</li>
+<li><strong>Orphan process</strong><sup id="fnref2:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup> is adopted by init process (pid 1), which follows the UNIX tradition.</li>
+</ul>
+<p>&ndash;<br />
+Yizhou Shan<br />
+Created: Mar 8, 2018<br />
+Last Updated: Mar 8, 2018</p>
+<div class="footnote">
 <hr />
-<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">ptdump_walk_pgd_level</span><span class="p">(</span><span class="n">pgd_t</span> <span class="o">*</span><span class="n">pgd</span><span class="p">);</span>
-</pre></div>
-</td></tr></table>
-This debug helper will dump the whole pgtable ranges. Contiguous page table entries that share the same property will be merged together and will be printed once. Use this function if you are developing code related to user page tables.</p>
-<hr />
-<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">show_state_filter</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">state_filter</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">print_rq</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">sched_show_task</span><span class="p">(</span><span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">p</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">sysrq_sched_debug_show</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
-</pre></div>
-</td></tr></table>
-This set of functions are debug helpers for local scheduler. They will print all the tasks running in the system, and detailed information about percpu <code class="codehilite">runqueue</code>. Use this set of functions if you are developing code related to scheduler.</p>
-<h2 id="processor-manager">Processor Manager</h2>
-<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">dump_pcache_meta</span><span class="p">(</span><span class="k">struct</span> <span class="n">pcache_meta</span> <span class="o">*</span><span class="n">pcm</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">reason</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">dump_pcache_victim</span><span class="p">(</span><span class="k">struct</span> <span class="n">pcache_victim_meta</span> <span class="o">*</span><span class="n">victim</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">reason</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">dump_pcache_rmap</span><span class="p">(</span><span class="k">struct</span> <span class="n">pcache_rmap</span> <span class="o">*</span><span class="n">rmap</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">reason</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">dump_pcache_line</span><span class="p">(</span><span class="k">struct</span> <span class="n">pcache_meta</span> <span class="o">*</span><span class="n">pcm</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">reason</span><span class="p">);</span>
-</pre></div>
-</td></tr></table>
-These functions dump a given pcache line, a victim line, or a given reserve mapping. The last one will print the pcache line content, which generates a lot messages, you are warned. Use these functions if you are developing pcache or victim cache code.</p>
-<h2 id="memory-manager">Memory Manager</h2>
-<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">dump_lego_mm</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">lego_mm_struct</span> <span class="o">*</span><span class="n">mm</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">dump_vma</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">vm_area_struct</span> <span class="o">*</span><span class="n">vma</span><span class="p">);</span>
-</pre></div>
-</td></tr></table>
-These two functions are used to dump the virtual address space of a process. Use these functions if you developing process VM related things.</p>
+<ol>
+<li id="fn:1">
+<p><a href="https://www.gnu.org/software/libc/manual/html_node/Orphaned-Process-Groups.html">Orphaned Process Groups</a>&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://en.wikipedia.org/wiki/Process_group">Process Group</a>&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://en.wikipedia.org/wiki/Orphan_process">Orphan Process</a>&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
                   
                 
@@ -885,7 +797,7 @@ These two functions are used to dump the virtual address space of a process. Use
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../kconfig/" title="Kconfig" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../getrusage/" title="getrusage()" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -894,19 +806,19 @@ These two functions are used to dump the virtual address space of a process. Use
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Kconfig
+                getrusage()
               </span>
             </div>
           </a>
         
         
-          <a href="../pagefault_disable/" title="Disable pgfault" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../pcache/config/" title="Config" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Disable pgfault
+                Config
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

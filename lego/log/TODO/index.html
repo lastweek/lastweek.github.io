@@ -276,9 +276,45 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        TODO
+      </label>
+    
     <a href="./" title="TODO" class="md-nav__link md-nav__link--active">
       TODO
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#planned" title="Planned" class="md-nav__link">
+    Planned
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finished" title="Finished" class="md-nav__link">
+    Finished
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -571,6 +607,30 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/getrusage/" title="getrusage()" class="md-nav__link">
+      getrusage()
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/wait_and_exit/" title="wait4 and exit()" class="md-nav__link">
+      wait4 and exit()
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -718,6 +778,29 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#planned" title="Planned" class="md-nav__link">
+    Planned
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finished" title="Finished" class="md-nav__link">
+    Finished
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -730,12 +813,18 @@
                 
                 
                 <h1 id="todo">TODO</h1>
+<p>Last Updated: Mar 7, 2018</p>
+<h2 id="planned">Planned</h2>
 <ul>
+<li><code class="codehilite">__unhash_process()</code>: in exit, release pid etc.</li>
 <li>
-<p><code class="codehilite">vDSO</code>: if later we find applications are using <code class="codehilite">gettimeofday</code>, <code class="codehilite">time</code>, and <code class="codehilite">getcpu</code> a lot, and it truly hurt performance, then we should consider adding this in the processor side. (Check Processor Loader document for code that needs to be patched). (02/27/18)</p>
+<p><code class="codehilite">de_thread()</code>: in exec, change pid etc.</p>
 </li>
 <li>
-<p><code class="codehilite">vsyscall</code>: mostly emulation</p>
+<p><code class="codehilite">posix timers</code>: used by exit(), wait() and others. Functions like <code class="codehilite">posix_cpu_timers_exit_group</code>.</p>
+</li>
+<li>
+<p><code class="codehilite">vDSO</code>: if later we find applications are using <code class="codehilite">gettimeofday</code>, <code class="codehilite">time</code>, and <code class="codehilite">getcpu</code> a lot, and it truly hurt performance, then we should consider adding this in the processor side. (Check Processor Loader document for code that needs to be patched). (02/27/18)</p>
 </li>
 <li>
 <p><code class="codehilite">VA randomization</code>: our loader does not add any randomization. For security reasons, we probably want to add this.</p>
@@ -764,6 +853,10 @@
 <li>
 <p><code class="codehilite">CPU_NO_HZ</code>: disable timer for some cores, to reduce the overhead of timer interrupts. This is named <code class="codehilite">CPU_NO_HZ</code> and some similar Kconfigs.</p>
 </li>
+</ul>
+<h2 id="finished">Finished</h2>
+<ul>
+<li><del class="critic">-<code class="codehilite">vsyscall</code>: mostly emulation-</del></li>
 </ul>
                 
                   
