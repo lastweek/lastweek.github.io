@@ -1,8 +1,15 @@
 # TODO
 
-- `vDSO`: if later we find applications are using `gettimeofday`, `time`, and `getcpu` a lot, and it truly hurt performance, then we should consider adding this in the processor side. (Check Processor Loader document for code that needs to be patched). (02/27/18)
+Last Updated: Mar 7, 2018
 
-- `vsyscall`: mostly emulation
+## Planned
+
+- `__unhash_process()`: in exit, release pid etc.
+- `de_thread()`: in exec, change pid etc.
+
+- `posix timers`: used by exit(), wait() and others. Functions like `posix_cpu_timers_exit_group`.
+
+- `vDSO`: if later we find applications are using `gettimeofday`, `time`, and `getcpu` a lot, and it truly hurt performance, then we should consider adding this in the processor side. (Check Processor Loader document for code that needs to be patched). (02/27/18)
 
 - `VA randomization`: our loader does not add any randomization. For security reasons, we probably want to add this.
 
@@ -21,3 +28,7 @@
 - `mprotect`: it is empty now. We assume applications are well-written. But does any of them rely on this COW feature?
 
 - `CPU_NO_HZ`: disable timer for some cores, to reduce the overhead of timer interrupts. This is named `CPU_NO_HZ` and some similar Kconfigs.
+
+## Finished
+
+- {---`vsyscall`: mostly emulation---}

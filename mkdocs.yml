@@ -28,6 +28,8 @@ pages:
            - 'msync()':       'lego/syscall/msync.md'
            - 'mremap()':      'lego/syscall/mremap.md'
            - 'fork()':        'lego/syscall/fork.md'
+           - 'getrusage()':   'lego/syscall/getrusage.md'
+           - 'wait4 and exit()': 'lego/syscall/wait_and_exit.md'
    - Pcache:
            - 'Config': 'lego/pcache/config.md'
            - 'Reverse Mapping': 'lego/pcache/rmap.md'
