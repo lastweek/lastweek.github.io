@@ -319,6 +319,26 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0309-fri" title="03/09 Fri" class="md-nav__link">
+    03/09 Fri
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-bug-in-kmalloc" title="Find bug in kmalloc" class="md-nav__link">
+    Find bug in kmalloc
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0308-thur" title="03/08 Thur" class="md-nav__link">
     03/08 Thur
   </a>
@@ -814,6 +834,26 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0309-fri" title="03/09 Fri" class="md-nav__link">
+    03/09 Fri
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-bug-in-kmalloc" title="Find bug in kmalloc" class="md-nav__link">
+    Find bug in kmalloc
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0308-thur" title="03/08 Thur" class="md-nav__link">
     03/08 Thur
   </a>
@@ -865,6 +905,356 @@
                 
                 
                 <h1 id="march-2018">March 2018</h1>
+<h2 id="0309-fri">03/09 Fri</h2>
+<h3 id="find-bug-in-kmalloc">Find bug in kmalloc</h3>
+<p>Tried to print pud in every syscall and catch the criminal:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">wuklab13</span> <span class="mo">030</span><span class="mi">9</span><span class="o">-</span><span class="mi">1</span>
+<span class="hll"><span class="p">[</span>  <span class="mf">320.088684</span><span class="p">]</span> <span class="n">CPU5</span> <span class="n">PID32</span> <span class="n">sys_close</span><span class="o">+</span><span class="mh">0x0</span><span class="o">/</span><span class="mh">0x1f0</span>
+</span><span class="p">[</span>  <span class="mf">320.137567</span><span class="p">]</span> <span class="n">do_syscall_64</span><span class="p">()</span><span class="o">:</span> <span class="n">enter</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff88207fc6f000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff88207fc6f000</span>
+<span class="p">[</span>  <span class="mf">320.269657</span><span class="p">]</span> <span class="n">SYSC_close</span><span class="p">()</span> <span class="n">cpu</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="n">tsk</span><span class="p">(</span><span class="mi">32</span><span class="o">/</span><span class="mi">32</span><span class="o">/</span><span class="n">python</span><span class="p">)</span> <span class="n">user</span><span class="o">-</span><span class="nl">ip</span><span class="p">:</span><span class="mh">0x7ffff7df3c37</span>
+<span class="p">[</span>  <span class="mf">320.349742</span><span class="p">]</span>     <span class="mi">3</span>
+<span class="p">[</span>  <span class="mf">320.372624</span><span class="p">]</span> <span class="n">SYSC_close</span><span class="p">()</span><span class="o">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">libpython2</span><span class="mf">.7</span><span class="p">.</span><span class="n">so</span><span class="mf">.1.0</span><span class="p">]</span>
+<span class="hll"><span class="p">[</span>  <span class="mf">320.441268</span><span class="p">]</span> <span class="n">SYSC_close</span><span class="p">()</span> <span class="n">cpu</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="n">tsk</span><span class="p">(</span><span class="mi">32</span><span class="o">/</span><span class="mi">32</span><span class="o">/</span><span class="n">python</span><span class="p">)</span> <span class="nl">ret</span><span class="p">:</span> <span class="mh">0x0</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span class="p">[</span>  <span class="mf">320.510954</span><span class="p">]</span> <span class="n">do_syscall_64</span><span class="p">()</span><span class="o">:</span> <span class="n">leave</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff88207fc6f000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff88207fc6f000</span>
+
+<span class="p">[</span>  <span class="mf">320.643043</span><span class="p">]</span>     <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7ffff7a101f0</span><span class="p">,</span> <span class="nl">pgd</span><span class="p">:</span> <span class="n">ffff88207fccf7f8</span>
+<span class="p">[</span>  <span class="mf">320.709607</span><span class="p">]</span>     <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7ffff7a101f0</span><span class="p">,</span> <span class="nl">pgd</span><span class="p">:</span> <span class="n">ffff88207fccf7f8</span> <span class="n">pud</span> <span class="n">ffff88207fcaeff8</span>
+<span class="p">[</span>  <span class="mf">320.798014</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">I</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff7a101f0</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x50</span>
+<span class="p">[</span>  <span class="mf">320.995755</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">O</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff7a101f0</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x50</span> <span class="nl">ret</span><span class="p">:</span><span class="mi">0</span><span class="p">(</span><span class="n">OKAY</span><span class="p">)</span>
+
+<span class="p">[</span>  <span class="mf">321.101944</span><span class="p">]</span>     <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7ffff7a21749</span><span class="p">,</span> <span class="nl">pgd</span><span class="p">:</span> <span class="n">ffff88207fccf7f8</span>
+<span class="p">[</span>  <span class="mf">321.168509</span><span class="p">]</span>     <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7ffff7a21749</span><span class="p">,</span> <span class="nl">pgd</span><span class="p">:</span> <span class="n">ffff88207fccf7f8</span> <span class="n">pud</span> <span class="n">ffff88207fcaeff8</span>
+<span class="p">[</span>  <span class="mf">321.256914</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">I</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff7a21749</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x50</span>
+<span class="p">[</span>  <span class="mf">321.454651</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">O</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff7a21749</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x50</span> <span class="nl">ret</span><span class="p">:</span><span class="mi">0</span><span class="p">(</span><span class="n">OKAY</span><span class="p">)</span>
+
+<span class="p">[</span>  <span class="mf">321.560845</span><span class="p">]</span>     <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7ffff7ff2fda</span><span class="p">,</span> <span class="nl">pgd</span><span class="p">:</span> <span class="n">ffff88207fccf7f8</span>
+<span class="p">[</span>  <span class="mf">321.627409</span><span class="p">]</span>     <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7ffff7ff2fda</span><span class="p">,</span> <span class="nl">pgd</span><span class="p">:</span> <span class="n">ffff88207fccf7f8</span> <span class="n">pud</span> <span class="n">ffff88207fcaeff8</span>
+<span class="p">[</span>  <span class="mf">321.715815</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">I</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff7ff2fda</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x50</span>
+<span class="p">[</span>  <span class="mf">321.913553</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">O</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff7ff2fda</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x50</span> <span class="nl">ret</span><span class="p">:</span><span class="mi">0</span><span class="p">(</span><span class="n">OKAY</span><span class="p">)</span>
+
+<span class="hll"><span class="p">[</span>  <span class="mf">322.019745</span><span class="p">]</span> <span class="n">CPU5</span> <span class="n">PID32</span> <span class="n">sys_open</span><span class="o">+</span><span class="mh">0x0</span><span class="o">/</span><span class="mh">0x10</span>
+</span><span class="p">[</span>  <span class="mf">322.066548</span><span class="p">]</span> <span class="n">do_syscall_64</span><span class="p">()</span><span class="o">:</span> <span class="n">enter</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff9001801ff000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff9001801ff000</span>
+<span class="p">[</span>  <span class="mf">322.198638</span><span class="p">]</span> <span class="n">SYSC_open</span><span class="p">()</span> <span class="n">cpu</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="n">tsk</span><span class="p">(</span><span class="mi">32</span><span class="o">/</span><span class="mi">32</span><span class="o">/</span><span class="n">python</span><span class="p">)</span> <span class="n">user</span><span class="o">-</span><span class="nl">ip</span><span class="p">:</span><span class="mh">0x7ffff7df3b27</span>
+<span class="p">[</span>  <span class="mf">322.277683</span><span class="p">]</span>     <span class="nl">f_name</span><span class="p">:</span> <span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">libpthread</span><span class="p">.</span><span class="n">so</span><span class="mf">.0</span><span class="p">,</span> <span class="nl">flags</span><span class="p">:</span> <span class="mi">80000</span><span class="p">,</span> <span class="nl">mode</span><span class="p">:</span> <span class="n">e150</span>
+<span class="hll"><span class="p">[</span>  <span class="mf">322.357780</span><span class="p">]</span> <span class="n">SYSC_open</span><span class="p">()</span> <span class="n">cpu</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="n">tsk</span><span class="p">(</span><span class="mi">32</span><span class="o">/</span><span class="mi">32</span><span class="o">/</span><span class="n">python</span><span class="p">)</span> <span class="nl">ret</span><span class="p">:</span> <span class="mh">0x3</span> <span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span><span class="p">[</span>  <span class="mf">322.426414</span><span class="p">]</span> <span class="n">do_syscall_64</span><span class="p">()</span><span class="o">:</span> <span class="n">leave</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff9001801ff000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff9001801ff000</span>
+</pre></div>
+</td></tr></table></p>
+<p>After printing more in pcache_handle_fault, I found who corrupted pgtable:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">wuklab13</span> <span class="mo">030</span><span class="mi">9</span><span class="o">-</span><span class="mi">5</span>
+<span class="p">[</span>  <span class="mf">661.308584</span><span class="p">]</span> <span class="n">CPU5</span> <span class="n">PID32</span> <span class="n">sys_close</span><span class="o">+</span><span class="mh">0x0</span><span class="o">/</span><span class="mh">0x1f0</span>
+<span class="p">[</span>  <span class="mf">661.357466</span><span class="p">]</span> <span class="n">do_syscall_64</span><span class="p">()</span><span class="o">:</span> <span class="n">enter</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff88207fcae000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff88207fcae000</span>
+<span class="p">[</span>  <span class="mf">661.489557</span><span class="p">]</span> <span class="n">SYSC_close</span><span class="p">()</span> <span class="n">cpu</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="n">tsk</span><span class="p">(</span><span class="mi">32</span><span class="o">/</span><span class="mi">32</span><span class="o">/</span><span class="n">python</span><span class="p">)</span> <span class="n">user</span><span class="o">-</span><span class="nl">ip</span><span class="p">:</span><span class="mh">0x7ffff7df3c37</span>
+<span class="p">[</span>  <span class="mf">661.569642</span><span class="p">]</span>     <span class="mi">3</span>    
+<span class="p">[</span>  <span class="mf">661.592525</span><span class="p">]</span> <span class="n">SYSC_close</span><span class="p">()</span><span class="o">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">libpython2</span><span class="mf">.7</span><span class="p">.</span><span class="n">so</span><span class="mf">.1.0</span><span class="p">]</span>
+<span class="p">[</span>  <span class="mf">661.661170</span><span class="p">]</span> <span class="n">SYSC_close</span><span class="p">()</span> <span class="n">cpu</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="n">tsk</span><span class="p">(</span><span class="mi">32</span><span class="o">/</span><span class="mi">32</span><span class="o">/</span><span class="n">python</span><span class="p">)</span> <span class="nl">ret</span><span class="p">:</span> <span class="mh">0x0</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">[</span>  <span class="mf">661.730854</span><span class="p">]</span> <span class="n">do_syscall_64</span><span class="p">()</span><span class="o">:</span> <span class="n">leave</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff88207fcae000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff88207fcae000</span>
+<span class="p">[</span>  <span class="mf">661.862944</span><span class="p">]</span> <span class="n">pcache_handle_fault</span><span class="p">()</span><span class="o">:</span> <span class="n">enter</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff88207fcae000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff88207fcae000</span>
+<span class="p">[</span>  <span class="mf">662.001275</span><span class="p">]</span>     <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7ffff7a101f0</span><span class="p">,</span> <span class="nl">pgd</span><span class="p">:</span> <span class="n">ffff88207fccf7f8</span>
+<span class="p">[</span>  <span class="mf">662.067840</span><span class="p">]</span>     <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7ffff7a101f0</span><span class="p">,</span> <span class="nl">pgd</span><span class="p">:</span> <span class="n">ffff88207fccf7f8</span> <span class="n">pud</span> <span class="n">ffff88207fcafff8</span>
+<span class="p">[</span>  <span class="mf">662.156247</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">I</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff7a101f0</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x50</span>
+<span class="p">[</span>  <span class="mf">662.353985</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">O</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff7a101f0</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x50</span> <span class="nl">ret</span><span class="p">:</span><span class="mi">0</span><span class="p">(</span><span class="n">OKAY</span><span class="p">)</span>
+<span class="p">[</span>  <span class="mf">662.460176</span><span class="p">]</span> <span class="n">pcache_handle_fault</span><span class="p">()</span><span class="o">:</span> <span class="n">leave</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff88207fcae000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff88207fcae000</span>
+
+<span class="p">[</span>  <span class="mf">662.600586</span><span class="p">]</span> <span class="n">pcache_handle_fault</span><span class="p">()</span><span class="o">:</span> <span class="n">enter</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff88207fcae000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff88207fcae000</span>
+<span class="p">[</span>  <span class="mf">662.738916</span><span class="p">]</span>     <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7ffff7a21749</span><span class="p">,</span> <span class="nl">pgd</span><span class="p">:</span> <span class="n">ffff88207fccf7f8</span>
+<span class="p">[</span>  <span class="mf">662.805481</span><span class="p">]</span>     <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7ffff7a21749</span><span class="p">,</span> <span class="nl">pgd</span><span class="p">:</span> <span class="n">ffff88207fccf7f8</span> <span class="n">pud</span> <span class="n">ffff88207fcafff8</span>
+<span class="p">[</span>  <span class="mf">662.893888</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">I</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff7a21749</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x50</span>
+<span class="p">[</span>  <span class="mf">663.091636</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">O</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff7a21749</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x50</span> <span class="nl">ret</span><span class="p">:</span><span class="mi">0</span><span class="p">(</span><span class="n">OKAY</span><span class="p">)</span>
+<span class="p">[</span>  <span class="mf">663.197831</span><span class="p">]</span> <span class="n">pcache_handle_fault</span><span class="p">()</span><span class="o">:</span> <span class="n">leave</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff88207fcae000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff88207fcae000</span>
+
+<span class="hll"><span class="p">[</span>  <span class="mf">663.338242</span><span class="p">]</span> <span class="n">pcache_handle_fault</span><span class="p">()</span><span class="o">:</span> <span class="n">enter</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff88207fcae000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff88207fcae000</span>
+</span><span class="p">[</span>  <span class="mf">663.476572</span><span class="p">]</span>     <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7ffff7ff2fda</span><span class="p">,</span> <span class="nl">pgd</span><span class="p">:</span> <span class="n">ffff88207fccf7f8</span>
+<span class="p">[</span>  <span class="mf">663.543135</span><span class="p">]</span>     <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7ffff7ff2fda</span><span class="p">,</span> <span class="nl">pgd</span><span class="p">:</span> <span class="n">ffff88207fccf7f8</span> <span class="n">pud</span> <span class="n">ffff88207fcafff8</span>
+<span class="p">[</span>  <span class="mf">663.631543</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">I</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff7ff2fda</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x50</span>
+<span class="p">[</span>  <span class="mf">663.829279</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">O</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff7ff2fda</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x50</span> <span class="nl">ret</span><span class="p">:</span><span class="mi">0</span><span class="p">(</span><span class="n">OKAY</span><span class="p">)</span>
+<span class="hll"><span class="p">[</span>  <span class="mf">663.935472</span><span class="p">]</span> <span class="n">pcache_handle_fault</span><span class="p">()</span><span class="o">:</span> <span class="n">leave</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff9001801ff000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff9001801ff000</span>
+</span>
+<span class="p">[</span>  <span class="mf">664.075884</span><span class="p">]</span> <span class="n">CPU5</span> <span class="n">PID32</span> <span class="n">sys_open</span><span class="o">+</span><span class="mh">0x0</span><span class="o">/</span><span class="mh">0x10</span>
+<span class="p">[</span>  <span class="mf">664.122686</span><span class="p">]</span> <span class="n">do_syscall_64</span><span class="p">()</span><span class="o">:</span> <span class="n">enter</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff9001801ff000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff9001801ff000</span>
+<span class="p">[</span>  <span class="mf">664.254776</span><span class="p">]</span> <span class="n">SYSC_open</span><span class="p">()</span> <span class="n">cpu</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="n">tsk</span><span class="p">(</span><span class="mi">32</span><span class="o">/</span><span class="mi">32</span><span class="o">/</span><span class="n">python</span><span class="p">)</span> <span class="n">user</span><span class="o">-</span><span class="nl">ip</span><span class="p">:</span><span class="mh">0x7ffff7df3b27</span>
+<span class="p">[</span>  <span class="mf">664.333821</span><span class="p">]</span>     <span class="nl">f_name</span><span class="p">:</span> <span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">libpthread</span><span class="p">.</span><span class="n">so</span><span class="mf">.0</span><span class="p">,</span> <span class="nl">flags</span><span class="p">:</span> <span class="mi">80000</span><span class="p">,</span> <span class="nl">mode</span><span class="p">:</span> <span class="n">e150</span>
+<span class="p">[</span>  <span class="mf">664.413918</span><span class="p">]</span> <span class="n">SYSC_open</span><span class="p">()</span> <span class="n">cpu</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="n">tsk</span><span class="p">(</span><span class="mi">32</span><span class="o">/</span><span class="mi">32</span><span class="o">/</span><span class="n">python</span><span class="p">)</span> <span class="nl">ret</span><span class="p">:</span> <span class="mh">0x3</span> <span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="p">[</span>  <span class="mf">664.482552</span><span class="p">]</span> <span class="n">do_syscall_64</span><span class="p">()</span><span class="o">:</span> <span class="n">leave</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff9001801ff000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff9001801ff000</span>
+</pre></div>
+</td></tr></table></p>
+<p>Then, try catching bug with address <code class="codehilite">0x7ffff7ff2fda</code> fault. Printing still being the most effective way to debug. :-)</p>
+<p>Dig further, I found pgtable corrupted after <code class="codehilite">pcache_add_rmap()</code>, namely after <code class="codehilite">alloc_pcache_rmap()</code>:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span> <span class="mf">5024.482570</span><span class="p">]</span> <span class="n">pcache_add_rmap</span><span class="p">()</span> <span class="mi">343</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff88207fcae000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff88207fcae000</span>
+<span class="p">[</span> <span class="mf">5024.613601</span><span class="p">]</span> <span class="n">alloc_pcache_rmap</span><span class="p">()</span><span class="o">:</span> <span class="nl">size</span><span class="p">:</span> <span class="mi">56</span><span class="p">,</span> <span class="nl">rmap</span><span class="p">:</span> <span class="n">ffff88207fccefd0</span>
+<span class="p">[</span> <span class="mf">5024.686396</span><span class="p">]</span> <span class="n">pcache_add_rmap</span><span class="p">()</span> <span class="mi">358</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff90207fcce000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff90207fcce000</span>
+</pre></div>
+</td></tr></table></p>
+<p>Well, <code class="codehilite"><span class="n">rmap</span><span class="o">:</span> <span class="n">ffff88207fccefd0</span></code> &amp; <code class="codehilite">ffff90207fcce000</code>, clearly
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span>  <span class="mf">843.916517</span><span class="p">]</span> <span class="n">pcache_add_rmap</span><span class="p">()</span> <span class="mi">372</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff88207fcae000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff88207fcae000</span>
+<span class="p">[</span>  <span class="mf">844.047557</span><span class="p">]</span> <span class="n">alloc_pcache_rmap</span><span class="p">()</span> <span class="mi">60</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff88207fcae000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff88207fcae000</span>
+<span class="p">[</span>  <span class="mf">844.179638</span><span class="p">]</span> <span class="n">alloc_pcache_rmap</span><span class="p">()</span><span class="o">:</span> <span class="nl">size</span><span class="p">:</span> <span class="mi">56</span><span class="p">,</span> <span class="nl">rmap</span><span class="p">:</span> <span class="n">ffff88207fccefd0</span>
+<span class="hll"><span class="p">[</span>  <span class="mf">844.252438</span><span class="p">]</span> <span class="n">alloc_pcache_rmap</span><span class="p">()</span> <span class="mi">71</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff88207fcae000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff88207fcae000</span>
+</span><span class="hll"><span class="p">[</span>  <span class="mf">844.384517</span><span class="p">]</span> <span class="n">alloc_pcache_rmap</span><span class="p">()</span><span class="o">:</span> <span class="nl">size</span><span class="p">:</span> <span class="mi">56</span><span class="p">,</span> <span class="nl">rmap</span><span class="p">:</span> <span class="n">ffff88207fccefd0</span>
+</span><span class="hll"><span class="p">[</span>  <span class="mf">844.457317</span><span class="p">]</span> <span class="n">alloc_pcache_rmap</span><span class="p">()</span> <span class="mi">85</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff90207fcce000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff90207fcce000</span>
+</span><span class="p">[</span>  <span class="mf">844.589398</span><span class="p">]</span> <span class="n">pcache_add_rmap</span><span class="p">()</span> <span class="mi">387</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff90207fcce000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff90207fcce000</span>
+
+<span class="mi">46</span> <span class="k">static</span> <span class="k">struct</span> <span class="n">pcache_rmap</span> <span class="o">*</span><span class="n">alloc_pcache_rmap</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="mi">47</span> <span class="p">{</span>
+<span class="mi">48</span>         <span class="k">struct</span> <span class="n">pcache_rmap</span> <span class="o">*</span><span class="n">rmap</span><span class="p">;</span>
+<span class="mi">49</span>
+<span class="mi">50</span>         <span class="n">pgd_t</span> <span class="o">*</span><span class="n">pgd</span><span class="p">;</span>
+<span class="mi">51</span>         <span class="n">pud_t</span> <span class="o">*</span><span class="n">pud</span><span class="p">;</span>
+<span class="mi">52</span>         <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">addr</span><span class="p">;</span>
+<span class="mi">53</span>         <span class="k">struct</span> <span class="n">mm_struct</span> <span class="o">*</span><span class="n">mm</span> <span class="o">=</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">mm</span><span class="p">;</span>
+<span class="mi">54</span>
+<span class="mi">55</span>         <span class="nf">if</span> <span class="p">(</span><span class="n">pall</span><span class="p">)</span> <span class="p">{</span>
+<span class="mi">56</span>                 <span class="n">addr</span> <span class="o">=</span> <span class="mh">0x601008</span><span class="p">;</span>
+<span class="mi">57</span>                 <span class="n">pgd</span> <span class="o">=</span> <span class="n">pgd_offset</span><span class="p">(</span><span class="n">mm</span><span class="p">,</span> <span class="n">addr</span><span class="p">);</span>
+<span class="mi">58</span>                 <span class="n">pud</span> <span class="o">=</span> <span class="n">pud_alloc</span><span class="p">(</span><span class="n">mm</span><span class="p">,</span> <span class="n">pgd</span><span class="p">,</span> <span class="n">addr</span><span class="p">);</span>
+<span class="mi">59</span>                 <span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;%s() %d pgd %p, pgd.cont_va %lx, pud_index=%#lx pud: %p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="mi">60</span>                         <span class="n">__func__</span><span class="p">,</span> <span class="n">__LINE__</span><span class="p">,</span> <span class="n">pgd</span><span class="p">,</span> <span class="n">pgd_page_vaddr</span><span class="p">(</span><span class="o">*</span><span class="n">pgd</span><span class="p">),</span> <span class="n">pud_index</span><span class="p">(</span><span class="n">addr</span><span class="p">),</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">pud</span><span class="p">);</span>
+<span class="mi">61</span>         <span class="p">}</span>
+<span class="mi">62</span>
+<span class="mi">63</span>         <span class="n">rmap</span> <span class="o">=</span> <span class="n">kmalloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="o">*</span><span class="n">rmap</span><span class="p">),</span> <span class="n">GFP_KERNEL</span><span class="p">);</span>
+<span class="mi">64</span>
+<span class="mi">65</span>         <span class="nf">if</span> <span class="p">(</span><span class="n">pall</span><span class="p">)</span> <span class="p">{</span>
+<span class="mi">66</span>                 <span class="n">addr</span> <span class="o">=</span> <span class="mh">0x601008</span><span class="p">;</span>
+<span class="mi">67</span>                 <span class="n">pgd</span> <span class="o">=</span> <span class="n">pgd_offset</span><span class="p">(</span><span class="n">mm</span><span class="p">,</span> <span class="n">addr</span><span class="p">);</span>
+<span class="mi">68</span>                 <span class="n">pud</span> <span class="o">=</span> <span class="n">pud_alloc</span><span class="p">(</span><span class="n">mm</span><span class="p">,</span> <span class="n">pgd</span><span class="p">,</span> <span class="n">addr</span><span class="p">);</span>
+<span class="mi">69</span>                 <span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;%s(): size: %zu, rmap: %p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">__func__</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="o">*</span><span class="n">rmap</span><span class="p">),</span> <span class="n">rmap</span><span class="p">);</span>
+<span class="mi">70</span>                 <span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;%s() %d pgd %p, pgd.cont_va %lx, pud_index=%#lx pud: %p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="hll"><span class="mi">71</span>                         <span class="n">__func__</span><span class="p">,</span> <span class="n">__LINE__</span><span class="p">,</span> <span class="n">pgd</span><span class="p">,</span> <span class="n">pgd_page_vaddr</span><span class="p">(</span><span class="o">*</span><span class="n">pgd</span><span class="p">),</span> <span class="n">pud_index</span><span class="p">(</span><span class="n">addr</span><span class="p">),</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">pud</span><span class="p">);</span>
+</span><span class="mi">72</span>         <span class="p">}</span>
+<span class="mi">73</span>
+<span class="mi">74</span>         <span class="nf">if</span> <span class="p">(</span><span class="n">rmap</span><span class="p">)</span> <span class="p">{</span>
+<span class="mi">75</span>                 <span class="n">INIT_LIST_HEAD</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rmap</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">);</span>
+<span class="mi">76</span>                 <span class="n">rmap</span><span class="o">-&gt;</span><span class="n">flags</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mi">77</span>         <span class="p">}</span>
+<span class="mi">78</span>
+<span class="mi">79</span>         <span class="nf">if</span> <span class="p">(</span><span class="n">pall</span><span class="p">)</span> <span class="p">{</span>
+<span class="mi">80</span>                 <span class="n">addr</span> <span class="o">=</span> <span class="mh">0x601008</span><span class="p">;</span>
+<span class="mi">81</span>                 <span class="n">pgd</span> <span class="o">=</span> <span class="n">pgd_offset</span><span class="p">(</span><span class="n">mm</span><span class="p">,</span> <span class="n">addr</span><span class="p">);</span>
+<span class="mi">82</span>                 <span class="n">pud</span> <span class="o">=</span> <span class="n">pud_alloc</span><span class="p">(</span><span class="n">mm</span><span class="p">,</span> <span class="n">pgd</span><span class="p">,</span> <span class="n">addr</span><span class="p">);</span>
+<span class="mi">83</span>                 <span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;%s(): size: %zu, rmap: %p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">__func__</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="o">*</span><span class="n">rmap</span><span class="p">),</span> <span class="n">rmap</span><span class="p">);</span>
+<span class="mi">84</span>                 <span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;%s() %d pgd %p, pgd.cont_va %lx, pud_index=%#lx pud: %p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="hll"><span class="mi">85</span>                         <span class="n">__func__</span><span class="p">,</span> <span class="n">__LINE__</span><span class="p">,</span> <span class="n">pgd</span><span class="p">,</span> <span class="n">pgd_page_vaddr</span><span class="p">(</span><span class="o">*</span><span class="n">pgd</span><span class="p">),</span> <span class="n">pud_index</span><span class="p">(</span><span class="n">addr</span><span class="p">),</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">pud</span><span class="p">);</span>
+</span><span class="mi">86</span>         <span class="p">}</span>
+<span class="mi">87</span>
+<span class="mi">88</span>         <span class="k">return</span> <span class="n">rmap</span><span class="p">;</span>
+<span class="mi">89</span> <span class="p">}</span>
+</pre></div>
+</td></tr></table></p>
+<p>Narrow it down to <code class="codehilite">INIT_LIST_HEAD</code>:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span> <span class="mf">1334.548682</span><span class="p">]</span> <span class="n">alloc_pcache_rmap</span><span class="p">()</span><span class="o">:</span> <span class="nl">size</span><span class="p">:</span> <span class="mi">56</span><span class="p">,</span> <span class="nl">rmap</span><span class="p">:</span> <span class="n">ffff88207fccefd0</span>
+<span class="p">[</span> <span class="mf">1334.621487</span><span class="p">]</span> <span class="n">alloc_pcache_rmap</span><span class="p">()</span> <span class="mi">71</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff88207fcae000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff88207fcae000</span>
+<span class="hll"><span class="p">[</span> <span class="mf">1334.753576</span><span class="p">]</span> <span class="n">alloc_pcache_rmap</span><span class="p">()</span> <span class="mi">76</span> <span class="o">&amp;</span><span class="n">rmap</span><span class="o">-&gt;</span><span class="n">next</span> <span class="n">ffff88207fcceff8</span> <span class="o">&amp;</span><span class="n">flags</span> <span class="n">ffff88207fccefd8</span>
+</span><span class="hll"><span class="p">[</span> <span class="mf">1334.922067</span><span class="p">]</span> <span class="n">alloc_pcache_rmap</span><span class="p">()</span> <span class="mi">86</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff90207fcce000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff90207fcce000</span>
+</span><span class="p">[</span> <span class="mf">1335.126962</span><span class="p">]</span> <span class="n">alloc_pcache_rmap</span><span class="p">()</span> <span class="mi">98</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff90207fcce000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff90207fcce000</span>
+
+<span class="mi">74</span>         <span class="k">if</span> <span class="p">(</span><span class="n">rmap</span><span class="p">)</span> <span class="p">{</span>
+<span class="mi">75</span>         <span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;%s() %d &amp;rmap-&gt;next %p &amp;flags %p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="mi">76</span>                 <span class="n">__func__</span><span class="p">,</span> <span class="n">__LINE__</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">rmap</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">rmap</span><span class="o">-&gt;</span><span class="n">flags</span><span class="p">);</span>
+<span class="mi">77</span>
+<span class="hll"><span class="mi">78</span>                 <span class="nf">INIT_LIST_HEAD</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rmap</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">);</span>
+</span><span class="mi">79</span>
+<span class="mi">80</span>         <span class="nf">if</span> <span class="p">(</span><span class="n">pall</span><span class="p">)</span> <span class="p">{</span>
+<span class="mi">81</span>                 <span class="n">addr</span> <span class="o">=</span> <span class="mh">0x601008</span><span class="p">;</span>
+<span class="mi">82</span>                 <span class="n">pgd</span> <span class="o">=</span> <span class="n">pgd_offset</span><span class="p">(</span><span class="n">mm</span><span class="p">,</span> <span class="n">addr</span><span class="p">);</span>
+<span class="mi">83</span>                 <span class="n">pud</span> <span class="o">=</span> <span class="n">pud_alloc</span><span class="p">(</span><span class="n">mm</span><span class="p">,</span> <span class="n">pgd</span><span class="p">,</span> <span class="n">addr</span><span class="p">);</span>
+<span class="mi">84</span>                 <span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;%s(): size: %zu, rmap: %p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">__func__</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="o">*</span><span class="n">rmap</span><span class="p">),</span> <span class="n">rmap</span><span class="p">);</span>
+<span class="mi">85</span>                 <span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;%s() %d pgd %p, pgd.cont_va %lx, pud_index=%#lx pud: %p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="mi">86</span>                         <span class="n">__func__</span><span class="p">,</span> <span class="n">__LINE__</span><span class="p">,</span> <span class="n">pgd</span><span class="p">,</span> <span class="n">pgd_page_vaddr</span><span class="p">(</span><span class="o">*</span><span class="n">pgd</span><span class="p">),</span> <span class="n">pud_index</span><span class="p">(</span><span class="n">addr</span><span class="p">),</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">pud</span><span class="p">);</span>
+<span class="mi">87</span>         <span class="p">}</span>
+<span class="mi">88</span>
+<span class="mi">89</span>                 <span class="n">rmap</span><span class="o">-&gt;</span><span class="n">flags</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mi">90</span>         <span class="p">}</span>
+</pre></div>
+</td></tr></table></p>
+<p>Seriously, if this is running on user-level on VM, I would be able to find the bug maybe in 30min. But I spent several hours to find it out with physical machine. Damn you physical machine.</p>
+<p>Hmm, this func is used A LOT. How can it fail at this point? Possible reasons:</p>
+<ul>
+<li>kmalloced area happen to intersect with pgtable?</li>
+<li>one physical page is mapped twice? one to pgtable, one by this rmap.</li>
+<li>tty/serial code has bug? Really ancient code.</li>
+</ul>
+<p>After add a few printk, IB seems stuck. And this happens just with few more lines of code! Why? code size matters?
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span>  <span class="mf">722.381469</span><span class="p">]</span> <span class="n">pcache_handle_fault</span><span class="p">()</span><span class="o">:</span> <span class="n">enter</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff88207fcae000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff88207fcae000</span>
+<span class="p">[</span>  <span class="mf">722.519778</span><span class="p">]</span>     <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7ffff7feffcc</span><span class="p">,</span> <span class="nl">pgd</span><span class="p">:</span> <span class="n">ffff88207fccf7f8</span>
+<span class="p">[</span>  <span class="mf">722.586334</span><span class="p">]</span>     <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7ffff7feffcc</span><span class="p">,</span> <span class="nl">pgd</span><span class="p">:</span> <span class="n">ffff88207fccf7f8</span> <span class="n">pud</span> <span class="n">ffff88207fcafff8</span>
+<span class="p">[</span>  <span class="mf">722.674727</span><span class="p">]</span> <span class="n">Before</span> <span class="n">fill</span> <span class="n">address</span><span class="o">=</span><span class="mh">0x7ffff7feffcc</span> <span class="nl">set_idx</span><span class="p">:</span><span class="mh">0x7fef</span>
+<span class="p">[</span>  <span class="mf">722.743362</span><span class="p">]</span> <span class="nl">pcache</span><span class="p">:</span><span class="n">ffff8801801ffbc0</span> <span class="nl">mapcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">1</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="p">)</span> <span class="n">set_idx</span><span class="o">=</span><span class="mh">0x7fef</span> <span class="nl">kva</span><span class="p">:</span> <span class="n">ffff880107fef000</span>
+<span class="p">[</span>  <span class="mf">722.872312</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">I</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff7feffcc</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x50</span>
+<span class="p">[</span>  <span class="mf">722.967985</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">before</span> <span class="n">net</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff88207fcae000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff88207fcae000</span>
+<span class="n">last</span> <span class="n">line</span>
+</pre></div>
+</td></tr></table></p>
+<p>Well, the following finding finally find the bug line. And it kind of explains the above bug. Probably kmalloc&rsquo;ed area has issues, so IB is touching wrong data. The following bug is related to kmalloc, the rmap is 56 bytes, and it should be within 1 single page, but it is not:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span> <span class="mf">1862.307427</span><span class="p">]</span> <span class="n">pcache_add_rmap</span><span class="p">()</span> <span class="mi">413</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff88207fcae000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff88207fcae000</span>
+<span class="p">[</span> <span class="mf">1862.438477</span><span class="p">]</span> <span class="n">alloc_pcache_rmap</span><span class="p">()</span> <span class="mi">86</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff88207fcae000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff88207fcae000</span>
+<span class="hll"><span class="p">[</span> <span class="mf">1862.570568</span><span class="p">]</span> <span class="n">sp</span><span class="o">-&gt;</span><span class="nl">units</span><span class="p">:</span> <span class="mi">50</span> <span class="nl">SLOB_UNITS</span><span class="p">:</span> <span class="mi">32</span>
+</span><span class="hll"><span class="p">[</span> <span class="mf">1862.617372</span><span class="p">]</span> <span class="n">alloc_pcache_rmap</span><span class="p">()</span><span class="o">:</span> <span class="nl">size</span><span class="p">:</span> <span class="mi">56</span><span class="p">,</span> <span class="nl">rmap</span><span class="p">:</span> <span class="n">ffff88207fccefd0</span>
+</span><span class="p">[</span> <span class="mf">1862.690178</span><span class="p">]</span> <span class="n">alloc_pcache_rmap</span><span class="p">()</span> <span class="mi">97</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff88207fcae000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff88207fcae000</span>
+<span class="p">[</span> <span class="mf">1862.822268</span><span class="p">]</span> <span class="n">alloc_pcache_rmap</span><span class="p">()</span> <span class="mi">104</span> <span class="o">&amp;</span><span class="n">rmap</span><span class="o">-&gt;</span><span class="n">next</span> <span class="n">ffff88207fcceff8</span> <span class="o">&amp;</span><span class="n">flags</span> <span class="n">ffff88207fccefd8</span>
+<span class="p">[</span> <span class="mf">1862.918995</span><span class="p">]</span> <span class="n">__INIT_LIST_HEAD</span><span class="p">()</span><span class="o">:</span> <span class="n">next</span> <span class="n">ffff88207fcceff8</span> <span class="n">prev</span> <span class="n">ffff88207fccf000</span>
+<span class="hll"><span class="p">[</span> <span class="mf">1863.002202</span><span class="p">]</span> <span class="n">__INIT_LIST_HEAD</span><span class="p">()</span> <span class="mi">63</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff88207fcae000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff88207fcae000</span>
+</span><span class="hll"><span class="p">[</span> <span class="mf">1863.133253</span><span class="p">]</span> <span class="n">__INIT_LIST_HEAD</span><span class="p">()</span><span class="o">:</span> <span class="n">next</span> <span class="n">ffff88207fcceff8</span> <span class="n">prev</span> <span class="n">ffff88207fccf000</span>
+</span><span class="hll"><span class="p">[</span> <span class="mf">1863.216459</span><span class="p">]</span> <span class="n">alloc_pcache_rmap</span><span class="p">()</span><span class="o">:</span> <span class="nl">size</span><span class="p">:</span> <span class="mi">56</span><span class="p">,</span> <span class="nl">rmap</span><span class="p">:</span> <span class="n">ffff88207fccefd0</span>
+</span><span class="p">[</span> <span class="mf">1863.289265</span><span class="p">]</span> <span class="n">alloc_pcache_rmap</span><span class="p">()</span> <span class="mi">114</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff90207fcce000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff90207fcce000</span>
+</pre></div>
+</td></tr></table></p>
+<p>Analysis: The @prev field in line 7 has address <code class="codehilite">ffff88207fccf000</code>, which happen to the pgd page (<code class="codehilite">pgd ffff88207fccf000</code>). Thus when we do <code class="codehilite">list-&gt;prev = list</code>, it writes to the first 8 bytes of pgd page, corrupts the original pgd entry. That is why we see a corrupted pgd entry (<code class="codehilite">ffff90207fcce000</code>).</p>
+<p>This roots from kmalloc, which should not allocate such an object that cross two pages.</p>
 <hr />
 <h2 id="0308-thur">03/08 Thur</h2>
 <p>Took several days off. This morning finished the porting of <code class="codehilite">wait4</code> and <code class="codehilite">waitid</code>, which actually has a lot code change. The concept and mechanism is fairly simple, but the legacy UNIX tradition make the implementation quite complex.</p>
