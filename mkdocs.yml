@@ -7,8 +7,9 @@ pages:
 - Lego:
    - 'Log':
            - 'TODO': 'lego/log/TODO.md'
-           - 'Feb 2018':           'lego/log/log-02-2018.md'
+           - 'MISC': 'lego/log/misc.md'
            - 'March 2018':           'lego/log/log-03-2018.md'
+           - 'Feb 2018':           'lego/log/log-02-2018.md'
    - 'Boot':
            - 'GRUB':             'lego/boot/grub.md'
            - 'Trampoline':       'lego/boot/trampoline.md'
