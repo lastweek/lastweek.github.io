@@ -319,6 +319,33 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0310-sat" title="03/10 Sat" class="md-nav__link">
+    03/10 Sat
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#put_pcache-in-pcache_zap_pte" title="put_pcache in pcache_zap_pte" class="md-nav__link">
+    put_pcache in pcache_zap_pte
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-hello-world-run-to-end" title="python hello world run to end" class="md-nav__link">
+    python hello world run to end
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0309-fri" title="03/09 Fri" class="md-nav__link">
     03/09 Fri
   </a>
@@ -834,6 +861,33 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0310-sat" title="03/10 Sat" class="md-nav__link">
+    03/10 Sat
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#put_pcache-in-pcache_zap_pte" title="put_pcache in pcache_zap_pte" class="md-nav__link">
+    put_pcache in pcache_zap_pte
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-hello-world-run-to-end" title="python hello world run to end" class="md-nav__link">
+    python hello world run to end
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0309-fri" title="03/09 Fri" class="md-nav__link">
     03/09 Fri
   </a>
@@ -905,6 +959,312 @@
                 
                 
                 <h1 id="march-2018">March 2018</h1>
+<h2 id="0310-sat">03/10 Sat</h2>
+<p>Running python hello world. Tried to make kmalloc use buddy directly.</p>
+<h3 id="put_pcache-in-pcache_zap_pte">put_pcache in pcache_zap_pte</h3>
+<p>So this time, python keep running for a long time. But P crashed when the first time eviction was triggered.</p>
+<p>Below is log from S side, those libraries do not exist, so these log are fine:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>S:
+[Mar10 10:39] handle_access_request /etc/ld.so.preload 4, -2
+[Mar10 10:44] local_file_open : Cannot open required file [/usr/lib64/python2.7/site.so].
+[  +0.352839] local_file_open : Cannot open required file [/usr/lib64/python2.7/sitemodule.so].
+[ +22.254465] local_file_open : Cannot open required file [/usr/lib64/python2.7/os.so].
+[  +0.350759] local_file_open : Cannot open required file [/usr/lib64/python2.7/osmodule.so].
+[Mar10 10:45] local_file_open : Cannot open required file [/usr/lib64/python2.7/posixpath.so].
+[  +0.358045] local_file_open : Cannot open required file [/usr/lib64/python2.7/posixpathmodule.so].
+[ +13.421033] local_file_open : Cannot open required file [/usr/lib64/python2.7/stat.so].
+[  +0.352838] local_file_open : Cannot open required file [/usr/lib64/python2.7/statmodule.so].
+[Mar10 10:46] local_file_open : Cannot open required file [/usr/lib64/python2.7/genericpath.so].
+[  +0.360126] local_file_open : Cannot open required file [/usr/lib64/python2.7/genericpathmodule.so].
+[ +11.582165] local_file_open : Cannot open required file [/usr/lib64/python2.7/warnings.so].
+[  +0.357003] local_file_open : Cannot open required file [/usr/lib64/python2.7/warningsmodule.so].
+[ +11.989828] local_file_open : Cannot open required file [/usr/lib64/python2.7/linecache.so].
+[  +0.358043] local_file_open : Cannot open required file [/usr/lib64/python2.7/linecachemodule.so].
+[Mar10 10:47] local_file_open : Cannot open required file [/usr/lib64/python2.7/types.so].
+[  +0.353879] local_file_open : Cannot open required file [/usr/lib64/python2.7/typesmodule.so].
+</pre></div>
+</td></tr></table></p>
+<p>Weird P&rsquo;s bug, seems like the pcm returned by evict_find_line has issue. Well, I&rsquo;m trying to debug what is going with this set.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">wuklab13</span> <span class="mo">0310</span><span class="o">-</span><span class="mi">2</span>
+<span class="p">[</span> <span class="mf">1046.880649</span><span class="p">]</span> <span class="n">SYSC_read</span><span class="p">()</span> <span class="n">cpu</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="n">tsk</span><span class="p">(</span><span class="mi">32</span><span class="o">/</span><span class="mi">32</span><span class="o">/</span><span class="n">python</span><span class="p">)</span> <span class="n">user</span><span class="o">-</span><span class="nl">ip</span><span class="p">:</span><span class="mh">0x7ffff6e117e0</span>
+<span class="p">[</span> <span class="mf">1046.959692</span><span class="p">]</span>     <span class="nl">fd</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="nl">buf</span><span class="p">:</span> <span class="mf">00007ff</span><span class="n">ff7ffb000</span><span class="p">,</span> <span class="nl">count</span><span class="p">:</span> <span class="mi">4096</span>
+<span class="p">[</span> <span class="mf">1048.726624</span><span class="p">]</span> <span class="n">pcache_evict_line</span><span class="p">()</span><span class="o">:</span> <span class="nl">pset</span><span class="p">:</span> <span class="n">ffff88207f9ffec0</span><span class="p">,</span> <span class="k">for</span> <span class="nl">uva</span><span class="p">:</span> <span class="mh">0x7ffff7ffb000</span>
+<span class="p">[</span> <span class="mf">1048.813053</span><span class="p">]</span> <span class="o">------------</span><span class="p">[</span> <span class="n">cut</span> <span class="n">here</span> <span class="p">]</span><span class="o">------------</span>
+<span class="p">[</span> <span class="mf">1048.868174</span><span class="p">]</span> <span class="nl">BUG</span><span class="p">:</span> <span class="n">failure</span> <span class="n">at</span> <span class="p">.</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">processor</span><span class="o">/</span><span class="n">pcache</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">284</span><span class="o">/</span><span class="n">pcache_meta_to_pcache_set</span><span class="p">()</span><span class="o">!</span>
+<span class="p">[</span> <span class="mf">1048.965937</span><span class="p">]</span> <span class="n">Kernel</span> <span class="n">Panic</span> <span class="o">-</span> <span class="n">not</span> <span class="nl">syncing</span><span class="p">:</span> <span class="n">BUG</span><span class="o">!</span>
+<span class="p">[</span> <span class="mf">1049.016898</span><span class="p">]</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">5</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">32</span> <span class="nl">Comm</span><span class="p">:</span> <span class="n">python</span> <span class="mf">4.0.0</span><span class="o">-</span><span class="n">lego</span><span class="o">-</span><span class="n">ys</span><span class="o">+</span> <span class="err">#</span><span class="mi">347</span>
+<span class="p">[</span> <span class="mf">1049.083460</span><span class="p">]</span> <span class="nl">Stack</span><span class="p">:</span>
+<span class="p">[</span> <span class="mf">1049.107380</span><span class="p">]</span> <span class="n">ffff88107e18fca8</span> <span class="n">ffffffff81026f1c</span> <span class="mo">000000000000000</span><span class="mi">8</span> <span class="n">ffff88107e18fcb8</span>
+<span class="p">[</span> <span class="mf">1049.194743</span><span class="p">]</span> <span class="n">ffff88107e18fc70</span> <span class="mo">0000000021475542</span> <span class="mo">0000000000000000</span> <span class="mo">0000000000000000</span>
+<span class="p">[</span> <span class="mf">1049.282107</span><span class="p">]</span> <span class="mo">0000000000000000</span> <span class="mo">0000000000000000</span> <span class="mo">0000000000000000</span> <span class="mo">0000000000000000</span>
+<span class="p">[</span> <span class="mf">1049.369468</span><span class="p">]</span> <span class="mo">0000000000000000</span> <span class="mo">0000000000000000</span> <span class="mo">0000000000000000</span> <span class="mo">0000000000000000</span>
+<span class="p">[</span> <span class="mf">1049.456832</span><span class="p">]</span> <span class="mo">0000000000000000</span> <span class="mo">0000000000000000</span> <span class="mo">0000000000000000</span> <span class="mo">0000000000000000</span>
+<span class="p">[</span> <span class="mf">1049.544193</span><span class="p">]</span> <span class="n">Call</span> <span class="nl">Trace</span><span class="p">:</span>
+<span class="p">[</span> <span class="mf">1049.573315</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">TSK</span><span class="o">&gt;</span>
+<span class="p">[</span> <span class="mf">1049.596195</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81026f28</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">panic</span><span class="o">+</span><span class="mh">0xc2</span><span class="o">/</span><span class="mh">0xeb</span>
+<span class="p">[</span> <span class="mf">1049.651318</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101c3fc</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">task_tick_rt</span><span class="o">+</span><span class="mh">0x2c</span><span class="o">/</span><span class="mh">0xd0</span>
+<span class="p">[</span> <span class="mf">1049.715799</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81019a65</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">scheduler_tick</span><span class="o">+</span><span class="mh">0x55</span><span class="o">/</span><span class="mh">0x60</span>
+<span class="p">[</span> <span class="mf">1049.782360</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81017035</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">tick_handle_periodic</span><span class="o">+</span><span class="mh">0x45</span><span class="o">/</span><span class="mh">0x70</span>
+<span class="p">[</span> <span class="mf">1049.855163</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81006764</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">apic_timer_interrupt</span><span class="o">+</span><span class="mh">0x54</span><span class="o">/</span><span class="mh">0x90</span>
+<span class="p">[</span> <span class="mf">1049.927966</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101c3fc</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">task_tick_rt</span><span class="o">+</span><span class="mh">0x2c</span><span class="o">/</span><span class="mh">0xd0</span>
+<span class="p">[</span> <span class="mf">1049.992447</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81019a65</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">scheduler_tick</span><span class="o">+</span><span class="mh">0x55</span><span class="o">/</span><span class="mh">0x60</span>
+<span class="p">[</span> <span class="mf">1050.059009</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81017035</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">tick_handle_periodic</span><span class="o">+</span><span class="mh">0x45</span><span class="o">/</span><span class="mh">0x70</span>
+<span class="p">[</span> <span class="mf">1050.131812</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8103c41a</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">put_dec</span><span class="o">+</span><span class="mh">0x1a</span><span class="o">/</span><span class="mh">0x80</span>
+<span class="p">[</span> <span class="mf">1050.191093</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81006764</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">apic_timer_interrupt</span><span class="o">+</span><span class="mh">0x54</span><span class="o">/</span><span class="mh">0x90</span>
+<span class="p">[</span> <span class="mf">1050.263895</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100e56a</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">smp__apic_timer_interrupt</span><span class="o">+</span><span class="mh">0x6a</span><span class="o">/</span><span class="mh">0x70</span>
+<span class="p">[</span> <span class="mf">1050.341897</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81012ded</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">printk</span><span class="o">+</span><span class="mh">0x11d</span><span class="o">/</span><span class="mh">0x1b0</span>
+<span class="hll"><span class="p">[</span> <span class="mf">1050.402219</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810340c5</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">dump_pcache_meta</span><span class="o">+</span><span class="mh">0xc5</span><span class="o">/</span><span class="mh">0xd0</span>
+</span><span class="hll"><span class="p">[</span> <span class="mf">1050.468782</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81034588</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">pcache_evict_line</span><span class="o">+</span><span class="mh">0x158</span><span class="o">/</span><span class="mh">0x220</span>
+</span><span class="p">[</span> <span class="mf">1050.538463</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81030f5e</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">pcache_alloc</span><span class="o">+</span><span class="mh">0x22e</span><span class="o">/</span><span class="mh">0x2f0</span>
+<span class="p">[</span> <span class="mf">1050.602945</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8103015a</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">common_do_fill_page</span><span class="o">+</span><span class="mh">0x2a</span><span class="o">/</span><span class="mh">0x430</span>
+<span class="p">[</span> <span class="mf">1050.673668</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8102fb20</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">pcache_meta_to_kva</span><span class="o">+</span><span class="mh">0x30</span><span class="o">/</span><span class="mh">0x30</span>
+<span class="p">[</span> <span class="mf">1050.744389</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81030702</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">pcache_handle_fault</span><span class="o">+</span><span class="mh">0x1a2</span><span class="o">/</span><span class="mh">0x6c0</span>
+<span class="p">[</span> <span class="mf">1050.816152</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810103d2</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">do_page_fault</span><span class="o">+</span><span class="mh">0xa2</span><span class="o">/</span><span class="mh">0x1a0</span>
+<span class="p">[</span> <span class="mf">1050.880634</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100db9f</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">page_fault</span><span class="o">+</span><span class="mh">0x1f</span><span class="o">/</span><span class="mh">0x30</span>
+<span class="p">[</span> <span class="mf">1050.940955</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8103bb82</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">copy_user_enhanced_fast_string</span><span class="o">+</span><span class="mh">0x2</span><span class="o">/</span><span class="mh">0x10</span>
+<span class="p">[</span> <span class="mf">1051.023118</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81038423</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">normal_p2m_read</span><span class="o">+</span><span class="mh">0x233</span><span class="o">/</span><span class="mh">0x330</span>
+<span class="p">[</span> <span class="mf">1051.092800</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810363ce</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">sys_read</span><span class="o">+</span><span class="mh">0x9e</span><span class="o">/</span><span class="mh">0x160</span>
+<span class="p">[</span> <span class="mf">1051.152081</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810268d0</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">strace_enter_default</span><span class="o">+</span><span class="mh">0x30</span><span class="o">/</span><span class="mh">0x40</span>
+<span class="p">[</span> <span class="mf">1051.224884</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100e935</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">do_syscall_64</span><span class="o">+</span><span class="mh">0x45</span><span class="o">/</span><span class="mh">0xd0</span>
+<span class="p">[</span> <span class="mf">1051.288326</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100d82c</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">entry_SYSCALL64_slow_path</span><span class="o">+</span><span class="mh">0x25</span><span class="o">/</span><span class="mh">0x25</span>
+</pre></div>
+</td></tr></table></p>
+<p>Interesting, added several debug messages. The bug is I forgot to put_pcache when a rmap was zapped. One rmap counts one refcount (effectively one process), thus when a rmap was zapped, we should decrease the refcount. I found I&rsquo;ve already done so for <code class="codehilite">pcache_remove_rmap</code>, and <code class="codehilite">pcache_move_pte</code>. But damn, forgot this one. I remember this code was written before fork+pcache. So.. I don&rsquo;t have a big picture at that time. <strong>Multithreaded system plus background reclaim really a very rigours design usage of refcount and lock</strong>.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span> <span class="mf">1418.038411</span><span class="p">]</span> <span class="n">CPU5</span> <span class="n">PID32</span> <span class="n">sys_read</span><span class="o">+</span><span class="mh">0x0</span><span class="o">/</span><span class="mh">0xa0</span>
+<span class="p">[</span> <span class="mf">1418.085227</span><span class="p">]</span> <span class="n">pcache_evict_line</span><span class="p">()</span><span class="o">:</span> <span class="nl">pset</span><span class="p">:</span> <span class="n">ffff88207f9ffec0</span><span class="p">,</span> <span class="k">for</span> <span class="nl">uva</span><span class="p">:</span> <span class="mh">0x7ffff7ffb000</span>
+<span class="p">[</span> <span class="mf">1418.173617</span><span class="p">]</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207f9ffec0</span> <span class="nl">set_idx</span><span class="p">:</span> <span class="mi">32763</span> <span class="nl">nr_lru</span><span class="p">:</span><span class="mi">8</span>
+<span class="p">[</span> <span class="mf">1418.238105</span><span class="p">]</span> <span class="nl">pcache</span><span class="p">:</span><span class="n">ffff8801801ffec0</span> <span class="nl">mapcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">1</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="p">)</span> <span class="nl">kva</span><span class="p">:</span> <span class="n">ffff880107ffb000</span>
+<span class="p">[</span> <span class="mf">1418.351476</span><span class="p">]</span> <span class="nl">pcache</span><span class="p">:</span><span class="n">ffff8801805ffec0</span> <span class="nl">mapcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">1</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="p">)</span> <span class="nl">kva</span><span class="p">:</span> <span class="n">ffff880117ffb000</span>
+<span class="p">[</span> <span class="mf">1418.464847</span><span class="p">]</span> <span class="nl">pcache</span><span class="p">:</span><span class="n">ffff8801809ffec0</span> <span class="nl">mapcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">1</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="p">)</span> <span class="nl">kva</span><span class="p">:</span> <span class="n">ffff880127ffb000</span>
+<span class="p">[</span> <span class="mf">1418.578220</span><span class="p">]</span> <span class="nl">pcache</span><span class="p">:</span><span class="n">ffff880180dffec0</span> <span class="nl">mapcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">1</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="p">)</span> <span class="nl">kva</span><span class="p">:</span> <span class="n">ffff880137ffb000</span>
+<span class="p">[</span> <span class="mf">1418.691591</span><span class="p">]</span> <span class="nl">pcache</span><span class="p">:</span><span class="n">ffff8801811ffec0</span> <span class="nl">mapcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">1</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="p">)</span> <span class="nl">kva</span><span class="p">:</span> <span class="n">ffff880147ffb000</span>
+<span class="p">[</span> <span class="mf">1418.804963</span><span class="p">]</span> <span class="nl">pcache</span><span class="p">:</span><span class="n">ffff8801815ffec0</span> <span class="nl">mapcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">1</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="p">)</span> <span class="nl">kva</span><span class="p">:</span> <span class="n">ffff880157ffb000</span>
+<span class="p">[</span> <span class="mf">1418.918334</span><span class="p">]</span> <span class="nl">pcache</span><span class="p">:</span><span class="n">ffff8801819ffec0</span> <span class="nl">mapcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">1</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="p">)</span> <span class="nl">kva</span><span class="p">:</span> <span class="n">ffff880167ffb000</span>
+<span class="p">[</span> <span class="mf">1419.031706</span><span class="p">]</span> <span class="nl">pcache</span><span class="p">:</span><span class="n">ffff880181dffec0</span> <span class="nl">mapcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">1</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="p">)</span> <span class="nl">kva</span><span class="p">:</span> <span class="n">ffff880177ffb000</span>
+<span class="p">[</span> <span class="mf">1419.145077</span><span class="p">]</span> <span class="n">After</span> <span class="n">dump</span> <span class="n">pset</span>
+<span class="p">[</span> <span class="mf">1419.176280</span><span class="p">]</span> <span class="nl">pcache</span><span class="p">:</span><span class="n">ffff8801801ffec0</span> <span class="nl">mapcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">1</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="p">)</span> <span class="nl">kva</span><span class="p">:</span> <span class="n">ffff880107ffb000</span>
+<span class="p">[</span> <span class="mf">1419.289652</span><span class="p">]</span> <span class="n">pcache</span> <span class="n">dumped</span> <span class="nl">because</span><span class="p">:</span> <span class="n">evict_find_line_lru</span>
+<span class="p">[</span> <span class="mf">1419.351018</span><span class="p">]</span> <span class="nl">pcache</span><span class="p">:</span><span class="n">ffff8801805ffec0</span> <span class="nl">mapcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">1</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="p">)</span> <span class="nl">kva</span><span class="p">:</span> <span class="n">ffff880117ffb000</span>
+<span class="p">[</span> <span class="mf">1419.464389</span><span class="p">]</span> <span class="n">pcache</span> <span class="n">dumped</span> <span class="nl">because</span><span class="p">:</span> <span class="n">evict_find_line_lru</span>
+<span class="p">[</span> <span class="mf">1419.525757</span><span class="p">]</span> <span class="nl">pcache</span><span class="p">:</span><span class="n">ffff8801809ffec0</span> <span class="nl">mapcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">1</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="p">)</span> <span class="nl">kva</span><span class="p">:</span> <span class="n">ffff880127ffb000</span>
+<span class="p">[</span> <span class="mf">1419.639127</span><span class="p">]</span> <span class="n">pcache</span> <span class="n">dumped</span> <span class="nl">because</span><span class="p">:</span> <span class="n">evict_find_line_lru</span>
+<span class="p">[</span> <span class="mf">1419.700494</span><span class="p">]</span> <span class="nl">pcache</span><span class="p">:</span><span class="n">ffff880180dffec0</span> <span class="nl">mapcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">1</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="p">)</span> <span class="nl">kva</span><span class="p">:</span> <span class="n">ffff880137ffb000</span>
+<span class="p">[</span> <span class="mf">1419.813865</span><span class="p">]</span> <span class="n">pcache</span> <span class="n">dumped</span> <span class="nl">because</span><span class="p">:</span> <span class="n">evict_find_line_lru</span>
+<span class="p">[</span> <span class="mf">1419.875231</span><span class="p">]</span> <span class="nl">pcache</span><span class="p">:</span><span class="n">ffff8801811ffec0</span> <span class="nl">mapcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">1</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="p">)</span> <span class="nl">kva</span><span class="p">:</span> <span class="n">ffff880147ffb000</span>
+<span class="p">[</span> <span class="mf">1419.988604</span><span class="p">]</span> <span class="n">pcache</span> <span class="n">dumped</span> <span class="nl">because</span><span class="p">:</span> <span class="n">evict_find_line_lru</span>
+<span class="p">[</span> <span class="mf">1420.049969</span><span class="p">]</span> <span class="nl">pcache</span><span class="p">:</span><span class="n">ffff8801815ffec0</span> <span class="nl">mapcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">1</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="p">)</span> <span class="nl">kva</span><span class="p">:</span> <span class="n">ffff880157ffb000</span>
+<span class="p">[</span> <span class="mf">1420.163341</span><span class="p">]</span> <span class="n">pcache</span> <span class="n">dumped</span> <span class="nl">because</span><span class="p">:</span> <span class="n">evict_find_line_lru</span>
+<span class="p">[</span> <span class="mf">1420.224708</span><span class="p">]</span> <span class="nl">pcache</span><span class="p">:</span><span class="n">ffff8801819ffec0</span> <span class="nl">mapcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">1</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="p">)</span> <span class="nl">kva</span><span class="p">:</span> <span class="n">ffff880167ffb000</span>
+<span class="p">[</span> <span class="mf">1420.338079</span><span class="p">]</span> <span class="n">pcache</span> <span class="n">dumped</span> <span class="nl">because</span><span class="p">:</span> <span class="n">evict_find_line_lru</span>
+<span class="p">[</span> <span class="mf">1420.399445</span><span class="p">]</span> <span class="nl">pcache</span><span class="p">:</span><span class="n">ffff880181dffec0</span> <span class="nl">mapcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">1</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="p">)</span> <span class="nl">kva</span><span class="p">:</span> <span class="n">ffff880177ffb000</span>
+<span class="p">[</span> <span class="mf">1420.512817</span><span class="p">]</span> <span class="n">pcache</span> <span class="n">dumped</span> <span class="nl">because</span><span class="p">:</span> <span class="n">evict_find_line_lru</span>
+<span class="p">[</span> <span class="mf">1420.574183</span><span class="p">]</span> <span class="n">evict_find_line_lru</span><span class="p">()</span><span class="o">:</span> <span class="nl">pcm</span><span class="p">:</span> <span class="n">ffff88207f9ffea8</span>
+<span class="p">[</span> <span class="mf">1420.637631</span><span class="p">]</span> <span class="o">------------</span><span class="p">[</span> <span class="n">cut</span> <span class="n">here</span> <span class="p">]</span><span class="o">------------</span>
+<span class="p">[</span> <span class="mf">1420.692756</span><span class="p">]</span> <span class="nl">BUG</span><span class="p">:</span> <span class="n">failure</span> <span class="n">at</span> <span class="p">.</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">processor</span><span class="o">/</span><span class="n">pcache</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">340</span><span class="o">/</span><span class="n">pcache_meta_to_kva</span><span class="p">()</span><span class="o">!</span>
+<span class="p">[</span> <span class="mf">1420.783245</span><span class="p">]</span> <span class="n">Kernel</span> <span class="n">Panic</span> <span class="o">-</span> <span class="n">not</span> <span class="nl">syncing</span><span class="p">:</span> <span class="n">BUG</span><span class="o">!</span>
+<span class="p">[</span> <span class="mf">1420.834210</span><span class="p">]</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">5</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">32</span> <span class="nl">Comm</span><span class="p">:</span> <span class="n">python</span> <span class="mf">4.0.0</span><span class="o">-</span><span class="n">lego</span><span class="o">-</span><span class="n">ys</span><span class="o">+</span> <span class="err">#</span><span class="mi">349</span>
+<span class="p">[</span> <span class="mf">1420.900777</span><span class="p">]</span> <span class="nl">Stack</span><span class="p">:</span>
+</pre></div>
+</td></tr></table></p>
+<h3 id="python-hello-world-run-to-end">python hello world run to end</h3>
+<p>Glad to say, python hello world finished, even with some missed syscalls. Especially the stdin stuff, so the string is actually not printed out. Log is wuklab13:~/ys/0310-4
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span> <span class="mf">3149.540308</span><span class="p">]</span> <span class="n">CPU5</span> <span class="n">PID32</span> <span class="n">sys_ioctl</span><span class="o">+</span><span class="mh">0x0</span><span class="o">/</span><span class="mh">0x10</span>
+<span class="p">[</span> <span class="mf">3149.588144</span><span class="p">]</span> <span class="n">CPU5</span> <span class="n">PID32</span> <span class="n">sys_ioctl</span><span class="o">+</span><span class="mh">0x0</span><span class="o">/</span><span class="mh">0x10</span>
+<span class="p">[</span> <span class="mf">3149.635982</span><span class="p">]</span> <span class="n">CPU5</span> <span class="n">PID32</span> <span class="n">sys_write</span><span class="o">+</span><span class="mh">0x0</span><span class="o">/</span><span class="mh">0xa0</span>
+<span class="p">[</span> <span class="mf">3149.683818</span><span class="p">]</span> <span class="nl">STDOUT</span><span class="p">:</span> <span class="o">---</span><span class="p">[</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="p">]</span><span class="o">---</span>
+<span class="p">[</span> <span class="mf">3149.726456</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">I</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff6d9aeb0</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x150</span>
+<span class="p">[</span> <span class="mf">3149.926247</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">O</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff6d9aeb0</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x150</span> <span class="nl">ret</span><span class="p">:</span><span class="mi">0</span><span class="p">(</span><span class="n">OKAY</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">3150.033464</span><span class="p">]</span> <span class="n">CPU5</span> <span class="n">PID32</span> <span class="n">sys_newfstat</span><span class="o">+</span><span class="mh">0x0</span><span class="o">/</span><span class="mh">0x10</span>
+<span class="p">[</span> <span class="mf">3150.084420</span><span class="p">]</span> <span class="n">CPU5</span> <span class="n">PID32</span> <span class="n">sys_ioctl</span><span class="o">+</span><span class="mh">0x0</span><span class="o">/</span><span class="mh">0x10</span>
+<span class="p">[</span> <span class="mf">3150.132256</span><span class="p">]</span> <span class="n">strace__mmap</span> <span class="n">cpu5</span> <span class="n">addr</span><span class="o">=</span><span class="mh">0x0</span><span class="p">,</span> <span class="n">len</span><span class="o">=</span><span class="mh">0x1000</span><span class="p">,</span> <span class="n">prot</span><span class="p">(</span><span class="mh">0x3</span><span class="p">)</span><span class="o">=</span><span class="n">PROT_READ</span><span class="o">|</span><span class="n">PROT_WRITE</span><span class="p">,</span> <span class="n">flags</span><span class="p">(</span><span class="mh">0x22</span><span class="p">)</span><span class="o">=</span><span class="n">MAP_PRIVATE</span><span class="o">|</span><span class="n">MAP_ANONYMOUS</span><span class="p">,</span> <span class="n">fd</span><span class="o">=</span><span class="mi">18446744073709551615</span><span class="p">(</span> <span class="p">),</span> <span class="n">off</span><span class="o">=</span><span class="mh">0x0</span>
+<span class="p">[</span> <span class="mf">3150.301772</span><span class="p">]</span> <span class="n">CPU5</span> <span class="n">PID32</span> <span class="n">sys_read</span><span class="o">+</span><span class="mh">0x0</span><span class="o">/</span><span class="mh">0xa0</span>
+<span class="p">[</span> <span class="mf">3150.348562</span><span class="p">]</span> <span class="o">------------</span><span class="p">[</span> <span class="n">cut</span> <span class="n">here</span> <span class="p">]</span><span class="o">------------</span>
+<span class="hll"><span class="p">[</span> <span class="mf">3150.403679</span><span class="p">]</span> <span class="nl">WARNING</span><span class="p">:</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">5</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">32</span> <span class="n">at</span> <span class="n">managers</span><span class="o">/</span><span class="n">processor</span><span class="o">/</span><span class="n">fs</span><span class="o">/</span><span class="n">stdio</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">24</span> <span class="n">stdio_file_read</span><span class="o">+</span><span class="mh">0x30</span><span class="o">/</span><span class="mh">0x50</span>
+</span><span class="hll"><span class="p">[</span> <span class="mf">3150.509751</span><span class="p">]</span> <span class="n">Process</span> <span class="n">wants</span> <span class="n">STDIN</span><span class="o">!</span>
+</span><span class="p">[</span> <span class="mf">3150.546149</span><span class="p">]</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">5</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">32</span> <span class="nl">Comm</span><span class="p">:</span> <span class="n">python</span> <span class="mf">4.0.0</span><span class="o">-</span><span class="n">lego</span><span class="o">-</span><span class="n">ys</span><span class="o">+</span> <span class="err">#</span><span class="mi">352</span>
+<span class="p">[</span> <span class="mf">3150.612705</span><span class="p">]</span> <span class="nl">Stack</span><span class="p">:</span>
+<span class="p">[</span> <span class="mf">3150.636624</span><span class="p">]</span> <span class="n">ffff88107e18fe90</span> <span class="n">ffffffff81012b15</span> <span class="n">ffffffff811464e0</span> <span class="mf">00007ff</span><span class="n">ff7ffb000</span>
+<span class="p">[</span> <span class="mf">3150.723977</span><span class="p">]</span> <span class="mo">0000000000000400</span> <span class="mf">00007ff</span><span class="n">ff70e5640</span> <span class="n">ffff88107e18fef0</span> <span class="n">ffffffff81012bd2</span>
+<span class="p">[</span> <span class="mf">3150.811331</span><span class="p">]</span> <span class="n">ffffffff81079d6b</span> <span class="n">ffff881000000018</span> <span class="n">ffff88107e18ff00</span> <span class="n">ffff88107e18fec0</span>
+<span class="p">[</span> <span class="mf">3150.898687</span><span class="p">]</span> <span class="mo">0000000000000020</span> <span class="n">ffffffff810346b0</span> <span class="mo">0000000000000022</span> <span class="n">ffffffff811464f0</span>
+<span class="p">[</span> <span class="mf">3150.986040</span><span class="p">]</span> <span class="mf">00007ff</span><span class="n">ff7fdf740</span> <span class="mo">0000000000000000</span> <span class="n">ffff88107e18ff00</span> <span class="n">ffffffff81035ac0</span>
+<span class="p">[</span> <span class="mf">3151.073394</span><span class="p">]</span> <span class="n">Call</span> <span class="nl">Trace</span><span class="p">:</span>
+<span class="p">[</span> <span class="mf">3151.102514</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">TSK</span><span class="o">&gt;</span>
+<span class="p">[</span> <span class="mf">3151.125392</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81012b21</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">__warn</span><span class="p">.</span><span class="n">constprop</span><span class="mf">.0</span><span class="o">+</span><span class="mh">0x91</span><span class="o">/</span><span class="mh">0xd0</span>
+<span class="p">[</span> <span class="mf">3151.194028</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81012bd2</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">warn_slowpath_fmt</span><span class="o">+</span><span class="mh">0x42</span><span class="o">/</span><span class="mh">0x50</span>
+<span class="p">[</span> <span class="mf">3151.261623</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810346b0</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">sweep_pset_lru</span><span class="o">+</span><span class="mh">0x220</span><span class="o">/</span><span class="mh">0x220</span>
+<span class="p">[</span> <span class="mf">3151.330259</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81035ac0</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">stdio_file_read</span><span class="o">+</span><span class="mh">0x30</span><span class="o">/</span><span class="mh">0x50</span>
+<span class="p">[</span> <span class="mf">3151.395775</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810346e3</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">sys_read</span><span class="o">+</span><span class="mh">0x33</span><span class="o">/</span><span class="mh">0xa0</span>
+<span class="p">[</span> <span class="mf">3151.454010</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100e875</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">do_syscall_64</span><span class="o">+</span><span class="mh">0x45</span><span class="o">/</span><span class="mh">0xd0</span>
+<span class="p">[</span> <span class="mf">3151.517446</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100d76c</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">entry_SYSCALL64_slow_path</span><span class="o">+</span><span class="mh">0x25</span><span class="o">/</span><span class="mh">0x25</span>
+<span class="p">[</span> <span class="mf">3151.593362</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">EOT</span><span class="o">&gt;</span>
+<span class="p">[</span> <span class="mf">3151.616240</span><span class="p">]</span> <span class="o">---</span><span class="p">[</span> <span class="n">end</span> <span class="n">trace</span> <span class="mo">0000000000000000</span> <span class="p">]</span><span class="o">---</span>
+<span class="p">[</span> <span class="mf">3151.671360</span><span class="p">]</span> <span class="n">CPU5</span> <span class="n">PID32</span> <span class="n">sys_write</span><span class="o">+</span><span class="mh">0x0</span><span class="o">/</span><span class="mh">0xa0</span>
+<span class="p">[</span> <span class="mf">3151.719194</span><span class="p">]</span> <span class="nl">STDOUT</span><span class="p">:</span> <span class="o">---</span><span class="p">[</span>
+
+
+<span class="p">]</span><span class="o">---</span>
+<span class="p">[</span> <span class="mf">3151.759756</span><span class="p">]</span> <span class="n">CPU5</span> <span class="n">PID32</span> <span class="n">sys_close</span><span class="o">+</span><span class="mh">0x0</span><span class="o">/</span><span class="mh">0x140</span>
+<span class="p">[</span> <span class="mf">3151.808628</span><span class="p">]</span> <span class="n">SYSC_close</span><span class="p">()</span><span class="o">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">ys</span><span class="o">/</span><span class="n">py_hello</span><span class="p">.</span><span class="n">py</span><span class="p">]</span>
+<span class="p">[</span> <span class="mf">3151.871028</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">I</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff7a79380</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x150</span>
+<span class="p">[</span> <span class="mf">3152.070817</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">O</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff7a79380</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x150</span> <span class="nl">ret</span><span class="p">:</span><span class="mi">0</span><span class="p">(</span><span class="n">OKAY</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">3152.178033</span><span class="p">]</span> <span class="n">CPU5</span> <span class="n">PID32</span> <span class="n">sys_rt_sigaction</span><span class="o">+</span><span class="mh">0x0</span><span class="o">/</span><span class="mh">0xb0</span>
+<span class="p">[</span> <span class="mf">3152.234151</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">I</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff7a77f60</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x150</span>
+<span class="p">[</span> <span class="mf">3152.432941</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">O</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff7a77f60</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x150</span> <span class="nl">ret</span><span class="p">:</span><span class="mi">0</span><span class="p">(</span><span class="n">OKAY</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">3152.540242</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">I</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff73ee794</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x150</span>
+<span class="p">[</span> <span class="mf">3152.739952</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">O</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff73ee794</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x150</span> <span class="nl">ret</span><span class="p">:</span><span class="mi">0</span><span class="p">(</span><span class="n">OKAY</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">3152.847171</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">I</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff715b278</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x150</span>
+<span class="p">[</span> <span class="mf">3153.046958</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">O</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff715b278</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x150</span> <span class="nl">ret</span><span class="p">:</span><span class="mi">0</span><span class="p">(</span><span class="n">OKAY</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">3153.154179</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">I</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff6de74f0</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x150</span>
+<span class="p">[</span> <span class="mf">3153.353965</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">()</span><span class="o">:</span> <span class="n">O</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">address</span><span class="p">:</span><span class="mh">0x7ffff6de74f0</span> <span class="nl">flags</span><span class="p">:</span><span class="mh">0x150</span> <span class="nl">ret</span><span class="p">:</span><span class="mi">0</span><span class="p">(</span><span class="n">OKAY</span><span class="p">)</span>
+<span class="hll"><span class="p">[</span> <span class="mf">3153.461180</span><span class="p">]</span> <span class="n">CPU5</span> <span class="n">PID32</span> <span class="n">sys_exit_group</span><span class="o">+</span><span class="mh">0x0</span><span class="o">/</span><span class="mh">0x10</span>
+</span></pre></div>
+</td></tr></table></p>
+<hr />
 <h2 id="0309-fri">03/09 Fri</h2>
 <h3 id="find-bug-in-kmalloc">Find bug in kmalloc</h3>
 <p>Tried to print pud in every syscall and catch the criminal:
