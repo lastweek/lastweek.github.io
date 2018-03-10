@@ -766,7 +766,6 @@
                 
                 
                 <h1 id="pcache-configuration">Pcache Configuration</h1>
-<p>Last Updated: 02/01/18</p>
 <p>This doc explains what configuration options pcache has, and how to config them properly. Pcache is only enabled in Lego&rsquo;s processor manager and currently it uses DRAM to emulate the last-level cache (or, L4).</p>
 <h1 id="kconfig">Kconfig</h1>
 <h4 id="config_memmap_memblock_reserved">CONFIG_MEMMAP_MEMBLOCK_RESERVED</h4>
@@ -816,6 +815,10 @@ the simple code to do so:
 <p>But why we are having this? Because I think the <code class="codehilite">direct 1GB mapping</code> may have
 better performance: huge page mapping can truly save us a lot TLB misses. However, the real performance number is unknown.</p>
 <p>If unsure, say <code class="codehilite">Y</code>.</p>
+<p>&ndash;<br />
+Yizhou Shan <img alt="🍀" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f340.svg" title=":four_leaf_clover:" /><br />
+Created: Feb 01, 2018<br />
+Last Updated: Feb 01, 2018</p>
                 
                   
                 
