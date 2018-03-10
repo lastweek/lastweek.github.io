@@ -885,8 +885,8 @@ on a single pte.</p>
 </tr>
 <tr>
 <td>Remove</td>
-<td><code class="codehilite">munmap()</code> <br> <code class="codehilite">exit_mmap()</code></td>
-<td><code class="codehilite">zap_pte_range()</code> -&gt; <code class="codehilite">pcache_zap_pte()</code></td>
+<td><code class="codehilite">munmap()</code> <br> <code class="codehilite">exit_mmap()</code> <br> <code class="codehilite">write_protected</code></td>
+<td><code class="codehilite">zap_pte_range()</code> -&gt; <code class="codehilite">pcache_zap_pte()</code> <br> <code class="codehilite">pcache_do_wp</code> -&gt; <code class="codehilite">pcache_remove_rmap</code></td>
 </tr>
 <tr>
 <td>Update</td>
@@ -900,12 +900,14 @@ on a single pte.</p>
 </tr>
 </tbody>
 </table>
+<p>Each rmap holds one refcount of pcache. The refcount is increased after <code class="codehilite">pcache_add_rmap</code>, and must be decreased after removing pcache rmap, can from <code class="codehilite">pcache_remove_rmap</code>, <code class="codehilite">pcache_zap_pte</code> or <code class="codehilite">pcache_move_pte_slowpath</code>.</p>
 <h2 id="thought">Thought</h2>
 <p>One function I personally love the most is <code class="codehilite">rmap_walk()</code>, whose name pretty much tells the story. To use <code class="codehilite">rmap_walk()</code>, caller passes a <code class="codehilite">struct rmap_walk_control</code>, which including caller specific callback for each rmap. This function also isolates the specific data structures used by rmap from various callers. In Lego, a lot pcache functions are built upon <code class="codehilite">rmap_walk()</code>.</p>
 <p><code class="codehilite">struct rmap_walk_control</code>, or <code class="codehilite">struct scan_control</code>, or <code class="codehilite">struct something_control</code> are used a lot by Linux kernel. Personally I do love this way of doing data structure walk, or reuse functions. However, even this way can greatly reduce duplicated code size, it will make the code unnecessary complex. As a system developer, no more expects to see a function longer than 100 lines. People love saying: <em>Do one thing and do it better</em>, while it not always works that perfectly. Coding is nothing different life, it is all about trade-off.</p>
 <p>&ndash;<br />
-Yizhou Shan<br />
-Feb 02, 2018</p>
+Yizhou Shan <img alt="💤" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f4a4.svg" title=":zzz:" /><br />
+Created: Feb 02, 2018<br />
+Last Updated: Mar 10, 2018</p>
                 
                   
                 
