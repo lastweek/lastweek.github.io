@@ -1,7 +1,5 @@
 # Pcache Configuration
 
-Last Updated: 02/01/18
-
 This doc explains what configuration options pcache has, and how to config them properly. Pcache is only enabled in Lego's processor manager and currently it uses DRAM to emulate the last-level cache (or, L4).
 
 # Kconfig
@@ -45,3 +43,8 @@ But why we are having this? Because I think the `direct 1GB mapping` may have
 better performance: huge page mapping can truly save us a lot TLB misses. However, the real performance number is unknown.
 
 If unsure, say `Y`.
+
+--  
+Yizhou Shan :four_leaf_clover:  
+Created: Feb 01, 2018  
+Last Updated: Feb 01, 2018
