@@ -41,9 +41,11 @@ The following table describes different contexts that manipulate rmap data struc
 | rmap operation | Context | Related functions and pcache callback |
 |-|-|-|
 | Add | `fork()` <br>`pgfault` | `copy_pte_range()` -> `pcache_copy_pte()` <br> `pcache_add_rmap()`|
-| Remove | `munmap()` <br> `exit_mmap()` | `zap_pte_range()` -> `pcache_zap_pte()`|
+| Remove | `munmap()` <br> `exit_mmap()` <br> `write_protected` | `zap_pte_range()` -> `pcache_zap_pte()` <br> `pcache_do_wp` -> `pcache_remove_rmap`|
 | Update | `mremap()`| `move_ptes()` -> `pcache_move_pte()`|
 | Lookup | pcache eviction sweep, etc.| `pcache_referenced()`, `pcache_wrprotect()` <br> `pcache_try_to_unmap()` |
+
+Each rmap holds one refcount of pcache. The refcount is increased after `pcache_add_rmap`, and must be decreased after removing pcache rmap, can from `pcache_remove_rmap`, `pcache_zap_pte` or `pcache_move_pte_slowpath`.
 
 ## Thought
 
@@ -51,6 +53,8 @@ One function I personally love the most is `rmap_walk()`, whose name pretty much
 
 `struct rmap_walk_control`, or `struct scan_control`, or `struct something_control` are used a lot by Linux kernel. Personally I do love this way of doing data structure walk, or reuse functions. However, even this way can greatly reduce duplicated code size, it will make the code unnecessary complex. As a system developer, no more expects to see a function longer than 100 lines. People love saying: *Do one thing and do it better*, while it not always works that perfectly. Coding is nothing different life, it is all about trade-off.
 
+
 --  
-Yizhou Shan  
-Feb 02, 2018
+Yizhou Shan :zzz:  
+Created: Feb 02, 2018  
+Last Updated: Mar 10, 2018
