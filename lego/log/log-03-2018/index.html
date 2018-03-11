@@ -1537,6 +1537,28 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 <span class="p">[</span>  <span class="mf">531.352270</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100d76c</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">entry_SYSCALL64_slow_path</span><span class="o">+</span><span class="mh">0x25</span><span class="o">/</span><span class="mh">0x25</span>
 </pre></div>
 </td></tr></table></p>
+<p>7<sup>th</sup> run, add debug info, does not seem that useful:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">]</span><span class="o">---</span>
+<span class="p">[</span><span class="mf">15755.579501</span><span class="p">]</span> <span class="n">SYSC_close</span><span class="p">()</span><span class="o">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="o">/</span><span class="n">sys</span><span class="o">/</span><span class="n">devices</span><span class="o">/</span><span class="n">system</span><span class="o">/</span><span class="n">cpu</span><span class="o">/</span><span class="n">online</span><span class="p">]</span>
+<span class="p">[</span><span class="mf">15755.672760</span><span class="p">]</span> <span class="nl">pte</span><span class="p">:</span><span class="n">ffff88107e1a3dd8</span> <span class="nl">pfn</span><span class="p">:</span><span class="mh">0x8207e80b</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">dirty</span><span class="o">|</span><span class="n">large</span><span class="o">|</span><span class="n">global</span><span class="o">|</span><span class="n">softw4</span><span class="o">|</span><span class="n">pkey0</span><span class="o">|</span><span class="n">pkey1</span><span class="o">|</span><span class="n">pkey2</span><span class="o">|</span><span class="n">pkey3</span><span class="o">|</span><span class="n">nx</span><span class="o">|</span><span class="mh">0x3ff800000000000</span><span class="p">)</span>
+<span class="p">[</span><span class="mf">15755.807015</span><span class="p">]</span> <span class="n">pte</span> <span class="n">dumped</span> <span class="nl">because</span><span class="p">:</span> <span class="n">Invalid</span> <span class="n">pte</span>
+<span class="p">[</span><span class="mf">15755.856932</span><span class="p">]</span> <span class="nl">address</span><span class="p">:</span> <span class="mh">0x7ffefc638000</span>
+<span class="p">[</span><span class="mf">15755.899569</span><span class="p">]</span> <span class="o">------------</span><span class="p">[</span> <span class="n">cut</span> <span class="n">here</span> <span class="p">]</span><span class="o">------------</span>
+<span class="p">[</span><span class="mf">15755.954684</span><span class="p">]</span> <span class="nl">BUG</span><span class="p">:</span> <span class="n">failure</span> <span class="n">at</span> <span class="n">managers</span><span class="o">/</span><span class="n">processor</span><span class="o">/</span><span class="n">pcache</span><span class="o">/</span><span class="n">rmap</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">747</span><span class="o">/</span><span class="n">pcache_zap_pte</span><span class="p">()</span><span class="o">!</span>
+<span class="p">[</span><span class="mf">15756.045159</span><span class="p">]</span> <span class="n">Kernel</span> <span class="n">Panic</span> <span class="o">-</span> <span class="n">not</span> <span class="nl">syncing</span><span class="p">:</span> <span class="n">BUG</span><span class="o">!</span>
+<span class="p">[</span><span class="mf">15756.096114</span><span class="p">]</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">5</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">32</span> <span class="nl">Comm</span><span class="p">:</span> <span class="n">word_count</span><span class="o">-</span><span class="n">pt</span>
+</pre></div>
+</td></tr></table></p>
+<p>Tried several times, even with mmap/munmap debug option on, it crashed at the same point. Key is address <code class="codehilite">0x7ffefc638000</code>, and the mmap() related to it.</p>
+<p>Close to find the bug. Latest log in 0310-18.</p>
 <hr />
 <h2 id="0309-fri">03/09 Fri</h2>
 <h3 id="find-bug-in-kmalloc">Find bug in kmalloc</h3>
