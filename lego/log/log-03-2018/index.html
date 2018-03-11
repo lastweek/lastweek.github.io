@@ -319,6 +319,26 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0310-sun" title="03/10 Sun" class="md-nav__link">
+    03/10 Sun
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fix-bug-from-__unhash_procees" title="Fix bug from __unhash_procees()" class="md-nav__link">
+    Fix bug from __unhash_procees()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0310-sat" title="03/10 Sat" class="md-nav__link">
     03/10 Sat
   </a>
@@ -868,6 +888,26 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0310-sun" title="03/10 Sun" class="md-nav__link">
+    03/10 Sun
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fix-bug-from-__unhash_procees" title="Fix bug from __unhash_procees()" class="md-nav__link">
+    Fix bug from __unhash_procees()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0310-sat" title="03/10 Sat" class="md-nav__link">
     03/10 Sat
   </a>
@@ -973,6 +1013,343 @@
                 
                 
                 <h1 id="march-2018">March 2018</h1>
+<h2 id="0310-sun">03/10 Sun</h2>
+<h3 id="fix-bug-from-__unhash_procees">Fix bug from <code class="codehilite">__unhash_procees()</code></h3>
+<p>Got something going on. Huh.</p>
+<p>Anyway, pick up what left last night.</p>
+<p>8<sup>th</sup> run,
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[  426.595911] SYSC_mmap(cpu5): ret_addr:0x7ffefbeac000
+
+pte page got allocated
+[  426.653216]     pmd is none index 0x1e3 line 567 from_addr 0x7ffefc6acd90
+[  426.734334] __pte_alloc(): for addr: 0x7ffefc6acd90 pte_index: ac
+[  426.807132]     pte is none index 0x38 line 574 from_addr 0x7ffefc6acd90
+[  427.304148]     pte is none index 0x38 line 576 from_addr 0x7ffefc6acd90
+
+this addr seems fine
+[  427.382251]     pte is none index 0x38 line 567 from_addr 0x7ffefc6abe78
+[  427.462329]     pte is none index 0x38 line 574 from_addr 0x7ffefc6abe78
+[  427.644439]     pte is none index 0x38 line 576 from_addr 0x7ffefc6abe78
+
+Something happen in between corrupted pgtable
+[  427.722547] pte:ffff88207e8b51c0 pfn:0x8207e8c3 flags:(dirty|large|global|softw4|pkey0|pkey1|pkey2|pkey3|nx|0x3ff800000000000)
+[  427.858779] line: 567 from_addr: 0x6fc6d8 pte.cont: 0xffff88207e8c31c0
+
+[  427.938858] pte:ffff88207e8b51c0 pfn:0x8207e8c3 flags:(dirty|large|global|softw4|pkey0|pkey1|pkey2|pkey3|nx|0x3ff800000000000)
+[  428.075095] line: 574 from_addr: 0x6fc6d8 pte.cont: 0xffff88207e8c31c0
+</pre></div>
+</td></tr></table></p>
+<p>9<sup>th</sup> run, found actually it created another thread. And it exit. And it corrupted aftet the pid33 exit. Bang, it should be something wrong in exit().
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">wuklab13</span> <span class="mo">0311</span><span class="o">-</span><span class="mi">4</span>
+<span class="hll"><span class="p">[</span>  <span class="mf">813.127325</span><span class="p">]</span> <span class="n">CPU6</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">33</span>     <span class="n">pmd</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x1e3</span> <span class="n">line</span> <span class="mi">586</span> <span class="n">from_addr</span> <span class="mh">0x4b0db0</span>
+</span><span class="p">[</span>  <span class="mf">813.214683</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span>     <span class="n">pmd</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x1e3</span> <span class="n">line</span> <span class="mi">593</span> <span class="n">from_addr</span> <span class="mh">0x6f4768</span>
+<span class="hll"><span class="p">[</span>  <span class="mf">813.302042</span><span class="p">]</span> <span class="n">CPU6</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">33</span>     <span class="n">pmd</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x1e3</span> <span class="n">line</span> <span class="mi">593</span> <span class="n">from_addr</span> <span class="mh">0x4b0db0</span>
+</span><span class="p">[</span>  <span class="mf">813.397836</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span>     <span class="n">pmd</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x1e3</span> <span class="n">line</span> <span class="mi">595</span> <span class="n">from_addr</span> <span class="mh">0x6f4768</span>
+<span class="hll"><span class="p">[</span>  <span class="mf">813.593364</span><span class="p">]</span> <span class="n">CPU6</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">33</span>     <span class="n">pmd</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x1e3</span> <span class="n">line</span> <span class="mi">595</span> <span class="n">from_addr</span> <span class="mh">0x4b0db0</span>
+</span>
+<span class="hll"><span class="p">[</span>  <span class="mf">813.678751</span><span class="p">]</span> <span class="n">do_exit</span><span class="p">()</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">33</span><span class="p">,</span><span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">code</span><span class="p">:</span><span class="mh">0x0</span>
+</span>
+<span class="p">[</span>  <span class="mf">814.474321</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span>     <span class="n">pmd</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x1e3</span> <span class="n">line</span> <span class="mi">567</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6acd90</span>
+<span class="p">[</span>  <span class="mf">814.567918</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span>     <span class="n">pmd</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x1e3</span> <span class="n">line</span> <span class="mi">575</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6acd90</span>
+<span class="p">[</span>  <span class="mf">814.661516</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span>     <span class="n">pmd</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x1e3</span> <span class="n">line</span> <span class="mi">583</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6acd90</span>
+<span class="p">[</span>  <span class="mf">814.755115</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span>     <span class="n">pmd</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x1e3</span> <span class="n">line</span> <span class="mi">586</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6acd90</span>
+<span class="p">[</span>  <span class="mf">814.848714</span><span class="p">]</span> <span class="n">__pte_alloc</span><span class="p">()</span><span class="o">:</span> <span class="k">for</span> <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7ffefc6acd90</span> <span class="nl">pte_index</span><span class="p">:</span> <span class="n">ac</span>
+<span class="p">[</span>  <span class="mf">814.921511</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span>     <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">593</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6acd90</span>
+<span class="p">[</span>  <span class="mf">815.125249</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span>     <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">595</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6acd90</span>
+<span class="p">[</span>  <span class="mf">815.215833</span><span class="p">]</span> <span class="n">After</span> <span class="n">pcache_handle_fault</span>
+<span class="p">[</span>  <span class="mf">815.259511</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span>     <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">726</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6acd90</span>
+
+<span class="p">[</span>  <span class="mf">815.352071</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span>     <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">567</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6abe78</span>
+<span class="p">[</span>  <span class="mf">815.444627</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span>     <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">575</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6abe78</span>
+<span class="p">[</span>  <span class="mf">815.537186</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span>     <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">583</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6abe78</span>
+<span class="p">[</span>  <span class="mf">815.629744</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span>     <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">586</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6abe78</span>
+<span class="p">[</span>  <span class="mf">815.722303</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span>     <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">593</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6abe78</span>
+<span class="p">[</span>  <span class="mf">815.916890</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span>     <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">595</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6abe78</span>
+<span class="p">[</span>  <span class="mf">816.007471</span><span class="p">]</span> <span class="n">After</span> <span class="n">pcache_handle_fault</span>
+<span class="p">[</span>  <span class="mf">816.051151</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span>     <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">726</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6abe78</span>
+
+<span class="p">[</span>  <span class="mf">816.143715</span><span class="p">]</span> <span class="nl">pte</span><span class="p">:</span><span class="n">ffff88207e8b51c0</span> <span class="nl">pfn</span><span class="p">:</span><span class="mh">0x8207e8c3</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">dirty</span><span class="o">|</span><span class="n">large</span><span class="o">|</span><span class="n">global</span><span class="o">|</span><span class="n">softw4</span><span class="o">|</span><span class="n">pkey0</span><span class="o">|</span><span class="n">pkey1</span><span class="o">|</span><span class="n">pkey2</span><span class="o">|</span><span class="n">pkey3</span><span class="o">|</span><span class="n">nx</span><span class="o">|</span><span class="mh">0x3ff800000000000</span><span class="p">)</span>
+<span class="p">[</span>  <span class="mf">816.279946</span><span class="p">]</span> <span class="n">do_exit</span><span class="p">()</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">34</span><span class="p">,</span><span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">code</span><span class="p">:</span><span class="mh">0x0</span>
+<span class="p">[</span>  <span class="mf">816.331945</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">line</span><span class="p">:</span> <span class="mi">567</span> <span class="nl">from_addr</span><span class="p">:</span> <span class="mh">0x6fc6d8</span> <span class="n">pte</span><span class="p">.</span><span class="nl">cont</span><span class="p">:</span> <span class="mh">0xffff88207e8c31c0</span>
+</pre></div>
+</td></tr></table></p>
+<p>10<sup>th</sup> run, actually 2 threads are created. When pid 33 exit, everything stays okay. But after fork of pid 34. It went wrong:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">wuklab13</span> <span class="mo">0311</span><span class="o">-</span><span class="mi">8</span>
+<span class="hll"><span class="p">[</span>  <span class="mf">609.490893</span><span class="p">]</span> <span class="n">do_exit</span><span class="p">()</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">33</span><span class="p">,</span><span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">code</span><span class="p">:</span><span class="mh">0x0</span>
+</span>
+<span class="p">[</span>  <span class="mf">609.542894</span><span class="p">]</span> <span class="n">CPU6</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">33</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">do_exit</span>    <span class="n">pmd</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x1e3</span> <span class="n">line</span> <span class="mi">401</span> <span class="n">from_addr</span> <span class="mh">0x0</span>
+<span class="p">[</span>  <span class="mf">609.640661</span><span class="p">]</span> <span class="n">CPU6</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">33</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">do_exit</span>    <span class="n">pmd</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x1e3</span> <span class="n">line</span> <span class="mi">443</span> <span class="n">from_addr</span> <span class="mh">0x0</span>
+<span class="p">[</span>  <span class="mf">609.738429</span><span class="p">]</span> <span class="n">CPU6</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">33</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">do_exit</span>    <span class="n">pmd</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x1e3</span> <span class="n">line</span> <span class="mi">465</span> <span class="n">from_addr</span> <span class="mh">0x0</span>
+<span class="p">[</span>  <span class="mf">609.836197</span><span class="p">]</span> <span class="nl">exit_mm</span><span class="p">:</span><span class="mi">378</span> <span class="n">mm</span><span class="o">-&gt;</span><span class="n">users</span> <span class="mi">2</span> <span class="n">mm</span><span class="o">-&gt;</span><span class="n">count</span> <span class="mi">1</span>
+<span class="p">[</span>  <span class="mf">609.891320</span><span class="p">]</span> <span class="nl">exit_mm</span><span class="p">:</span><span class="mi">380</span> <span class="n">mm</span><span class="o">-&gt;</span><span class="n">users</span> <span class="mi">1</span> <span class="n">mm</span><span class="o">-&gt;</span><span class="n">count</span> <span class="mi">1</span>
+<span class="p">[</span>  <span class="mf">609.946445</span><span class="p">]</span> <span class="n">CPU6</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">33</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">do_exit</span>    <span class="n">pmd</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x1e3</span> <span class="n">line</span> <span class="mi">468</span> <span class="n">from_addr</span> <span class="mh">0x0</span>
+<span class="p">[</span>  <span class="mf">610.044212</span><span class="p">]</span> <span class="n">CPU6</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">33</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">do_exit</span>    <span class="n">pmd</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x1e3</span> <span class="n">line</span> <span class="mi">471</span> <span class="n">from_addr</span> <span class="mh">0x0</span>
+<span class="p">[</span>  <span class="mf">610.141979</span><span class="p">]</span> <span class="n">CPU6</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">33</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">do_exit</span>    <span class="n">pmd</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x1e3</span> <span class="n">line</span> <span class="mi">474</span> <span class="n">from_addr</span> <span class="mh">0x0</span>
+
+<span class="p">[</span>  <span class="mf">610.239747</span><span class="p">]</span> <span class="n">SYSC_mmap</span><span class="p">(</span><span class="n">cpu5</span><span class="p">)</span><span class="o">:</span> <span class="nl">ret_addr</span><span class="p">:</span><span class="mh">0x7ffefbeac000</span>
+<span class="hll"><span class="p">[</span>  <span class="mf">610.299031</span><span class="p">]</span> <span class="n">CPU6</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">33</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">do_exit</span>    <span class="n">pmd</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x1e3</span> <span class="n">line</span> <span class="mi">482</span> <span class="n">from_addr</span> <span class="mh">0x0</span>
+</span><span class="p">[</span>  <span class="mf">610.396798</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">pcache_handle_fault</span>    <span class="n">pmd</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x1e3</span> <span class="n">line</span> <span class="mi">568</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6acd90</span>
+<span class="p">[</span>  <span class="mf">610.518489</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">pcache_handle_fault</span>    <span class="n">pmd</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x1e3</span> <span class="n">line</span> <span class="mi">576</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6acd90</span>
+<span class="p">[</span>  <span class="mf">610.640178</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">pcache_handle_fault</span>    <span class="n">pmd</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x1e3</span> <span class="n">line</span> <span class="mi">584</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6acd90</span>
+<span class="p">[</span>  <span class="mf">610.761866</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">pcache_handle_fault</span>    <span class="n">pmd</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x1e3</span> <span class="n">line</span> <span class="mi">587</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6acd90</span>
+<span class="p">[</span>  <span class="mf">610.883557</span><span class="p">]</span> <span class="n">__pte_alloc</span><span class="p">()</span><span class="o">:</span> <span class="k">for</span> <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7ffefc6acd90</span> <span class="nl">pte_index</span><span class="p">:</span> <span class="n">ac</span>
+<span class="p">[</span>  <span class="mf">610.956362</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">pcache_handle_fault</span>    <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">594</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6acd90</span>
+<span class="p">[</span>  <span class="mf">611.179051</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">pcache_handle_fault</span>    <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">596</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6acd90</span>
+<span class="p">[</span>  <span class="mf">611.297723</span><span class="p">]</span> <span class="n">After</span> <span class="n">pcache_handle_fault</span>
+<span class="p">[</span>  <span class="mf">611.341406</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">do_page_fault</span>    <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">726</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6acd90</span>
+<span class="p">[</span>  <span class="mf">611.455816</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">pcache_handle_fault</span>    <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">568</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6abe78</span>
+<span class="p">[</span>  <span class="mf">611.576464</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">pcache_handle_fault</span>    <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">576</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6abe78</span>
+<span class="p">[</span>  <span class="mf">611.697113</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">pcache_handle_fault</span>    <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">584</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6abe78</span>
+<span class="p">[</span>  <span class="mf">611.817762</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">pcache_handle_fault</span>    <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">587</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6abe78</span>
+<span class="p">[</span>  <span class="mf">611.938412</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">pcache_handle_fault</span>    <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">594</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6abe78</span>
+<span class="p">[</span>  <span class="mf">612.161103</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">pcache_handle_fault</span>    <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">596</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6abe78</span>
+<span class="p">[</span>  <span class="mf">612.279778</span><span class="p">]</span> <span class="n">After</span> <span class="n">pcache_handle_fault</span>
+<span class="p">[</span>  <span class="mf">612.323461</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">do_page_fault</span>    <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">726</span> <span class="n">from_addr</span> <span class="mh">0x7ffefc6abe78</span>
+
+<span class="hll"><span class="p">[</span>  <span class="mf">612.437875</span><span class="p">]</span> <span class="nl">do_fork</span><span class="p">:</span> <span class="nl">current</span><span class="p">:</span> <span class="mi">32</span> <span class="nl">new</span><span class="p">:</span> <span class="mi">34</span>
+</span><span class="hll">
+</span><span class="hll"><span class="p">[</span>  <span class="mf">612.484676</span><span class="p">]</span> <span class="nl">pte</span><span class="p">:</span><span class="n">ffff88207e8b51c0</span> <span class="nl">pfn</span><span class="p">:</span><span class="mh">0x8207e8c3</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">dirty</span><span class="o">|</span><span class="n">large</span><span class="o">|</span><span class="n">global</span><span class="o">|</span><span class="n">softw4</span><span class="o">|</span><span class="n">pkey0</span><span class="o">|</span><span class="n">pkey1</span><span class="o">|</span><span class="n">pkey2</span><span class="o">|</span><span class="n">pkey3</span><span class="o">|</span><span class="n">nx</span><span class="o">|</span><span class="mh">0x3ff800000000000</span><span class="p">)</span>
+</span><span class="hll"><span class="p">[</span>  <span class="mf">612.620924</span><span class="p">]</span> <span class="n">do_exit</span><span class="p">()</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">34</span><span class="p">,</span><span class="nl">tgid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">code</span><span class="p">:</span><span class="mh">0x0</span>
+</span><span class="hll"><span class="p">[</span>  <span class="mf">612.672928</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="nl">pcache_handle_faultline</span><span class="p">:</span> <span class="mi">568</span> <span class="nl">from_addr</span><span class="p">:</span> <span class="mh">0x6fc6d8</span> <span class="n">pte</span><span class="p">.</span><span class="nl">cont</span><span class="p">:</span> <span class="mh">0xffff88207e8c31c0</span>
+</span>
+<span class="p">[</span>  <span class="mf">612.793577</span><span class="p">]</span> <span class="nl">pte</span><span class="p">:</span><span class="n">ffff88207e8b51c0</span> <span class="nl">pfn</span><span class="p">:</span><span class="mh">0x8207e8c3</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">dirty</span><span class="o">|</span><span class="n">large</span><span class="o">|</span><span class="n">global</span><span class="o">|</span><span class="n">softw4</span><span class="o">|</span><span class="n">pkey0</span><span class="o">|</span><span class="n">pkey1</span><span class="o">|</span><span class="n">pkey2</span><span class="o">|</span><span class="n">pkey3</span><span class="o">|</span><span class="n">nx</span><span class="o">|</span><span class="mh">0x3ff800000000000</span><span class="p">)</span>
+<span class="p">[</span>  <span class="mf">612.929828</span><span class="p">]</span> <span class="nl">pte</span><span class="p">:</span><span class="n">ffff88207e8b51c0</span> <span class="nl">pfn</span><span class="p">:</span><span class="mh">0x8207e8c3</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">dirty</span><span class="o">|</span><span class="n">large</span><span class="o">|</span><span class="n">global</span><span class="o">|</span><span class="n">softw4</span><span class="o">|</span><span class="n">pkey0</span><span class="o">|</span><span class="n">pkey1</span><span class="o">|</span><span class="n">pkey2</span><span class="o">|</span><span class="n">pkey3</span><span class="o">|</span><span class="n">nx</span><span class="o">|</span><span class="mh">0x3ff800000000000</span><span class="p">)</span>
+<span class="p">[</span>  <span class="mf">613.066078</span><span class="p">]</span> <span class="n">CPU7</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">34</span> <span class="nl">caller</span><span class="p">:</span> <span class="nl">do_exitline</span><span class="p">:</span> <span class="mi">401</span> <span class="nl">from_addr</span><span class="p">:</span> <span class="mh">0x0</span> <span class="n">pte</span><span class="p">.</span><span class="nl">cont</span><span class="p">:</span> <span class="mh">0xffff88207e8c31c0</span>
+</pre></div>
+</td></tr></table></p>
+<p>11<sup>th</sup> run, found it orignate from <code class="codehilite">copy_process()</code>. Good.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span>  <span class="mf">869.591729</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">do_fork</span>    <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">886</span> <span class="n">from_addr</span> <span class="mh">0x0</span>
+
+<span class="p">[</span>  <span class="mf">869.688449</span><span class="p">]</span> <span class="nl">pte</span><span class="p">:</span><span class="n">ffff88207e8b51c0</span> <span class="nl">pfn</span><span class="p">:</span><span class="mh">0x8207e8c3</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">dirty</span><span class="o">|</span><span class="n">large</span><span class="o">|</span><span class="n">global</span><span class="o">|</span><span class="n">softw4</span><span class="o">|</span><span class="n">pkey0</span><span class="o">|</span><span class="n">pkey1</span><span class="o">|</span><span class="n">pkey2</span><span class="o">|</span><span class="n">pkey3</span><span class="o">|</span><span class="n">nx</span><span class="o">|</span><span class="mh">0x3ff800000000000</span><span class="p">)</span>
+<span class="p">[</span>  <span class="mf">869.824681</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">do_fork</span> <span class="nl">line</span><span class="p">:</span> <span class="mi">894</span> <span class="nl">from_addr</span><span class="p">:</span> <span class="mh">0x0</span> <span class="n">pte</span><span class="p">.</span><span class="nl">cont</span><span class="p">:</span> <span class="mh">0xffff88207e8c31c0</span>
+</pre></div>
+</td></tr></table></p>
+<p>12<sup>th</sup> run, found the opeation that corrupt pgtable:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span> <span class="mf">1099.974106</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">copy_process</span>    <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">897</span> <span class="n">from_addr</span> <span class="mh">0x0</span>
+<span class="p">[</span> <span class="mf">1100.076032</span><span class="p">]</span> <span class="nl">pte</span><span class="p">:</span><span class="n">ffff88207e8b51c0</span> <span class="nl">pfn</span><span class="p">:</span><span class="mh">0x8207e8c3</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">dirty</span><span class="o">|</span><span class="n">large</span><span class="o">|</span><span class="n">global</span><span class="o">|</span><span class="n">softw4</span><span class="o">|</span><span class="n">pkey0</span><span class="o">|</span><span class="n">pkey1</span><span class="o">|</span><span class="n">pkey2</span><span class="o">|</span><span class="n">pkey3</span><span class="o">|</span><span class="n">nx</span><span class="o">|</span><span class="mh">0x3ff800000000000</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">1100.212282</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">copy_process</span> <span class="nl">line</span><span class="p">:</span> <span class="mi">902</span> <span class="nl">from_addr</span><span class="p">:</span> <span class="mh">0x0</span> <span class="n">pte</span><span class="p">.</span><span class="nl">cont</span><span class="p">:</span> <span class="mh">0xffff88207e8c31c0</span>
+
+<span class="mi">896</span>         <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="o">-&gt;</span><span class="n">tgid</span> <span class="o">==</span> <span class="mi">32</span><span class="p">)</span>
+<span class="mi">897</span>                 <span class="n">jasmine</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">__LINE__</span><span class="p">,</span> <span class="n">__func__</span><span class="p">);</span>
+<span class="mi">898</span>
+<span class="hll"><span class="mi">899</span>                         <span class="nf">list_add_tail</span><span class="p">(</span><span class="o">&amp;</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">thread_group</span><span class="p">,</span>
+</span><span class="hll"><span class="mi">900</span>                                           <span class="o">&amp;</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">group_leader</span><span class="o">-&gt;</span><span class="n">thread_group</span><span class="p">);</span>
+</span><span class="mi">901</span>         <span class="nf">if</span> <span class="p">(</span><span class="n">current</span><span class="o">-&gt;</span><span class="n">tgid</span> <span class="o">==</span> <span class="mi">32</span><span class="p">)</span>
+<span class="mi">902</span>                 <span class="n">jasmine</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">__LINE__</span><span class="p">,</span> <span class="n">__func__</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></p>
+<p>13<sup>th</sup> run, interesting, the list_add_tail write to the pgtable. <code class="codehilite">pte.cont = 0xffff88207e8c31c0, p-&gt;thread_group: 0xffff88207e8c31c0</code>.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span>  <span class="mf">916.269942</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">copy_process</span>    <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">898</span> <span class="n">from_addr</span> <span class="mh">0x0</span>
+
+<span class="p">[</span>  <span class="mf">916.371863</span><span class="p">]</span> <span class="nl">p</span><span class="p">:</span> <span class="n">ffff88207e8c3000</span> <span class="n">p</span><span class="o">-&gt;</span><span class="nl">group_leader</span><span class="p">:</span> <span class="n">ffff88107e190000</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="n">p</span><span class="o">-&gt;</span><span class="nl">thread_group</span><span class="p">:</span> <span class="n">ffff88207e8c31c0</span> <span class="n">leader</span><span class="o">-&gt;</span><span class="nl">thread_grou</span><span class="p">:</span> <span class="n">ffff88107e1901c0</span>
+
+<span class="p">[</span>  <span class="mf">916.523705</span><span class="p">]</span> <span class="nl">pte</span><span class="p">:</span><span class="n">ffff88207e8b51c0</span> <span class="nl">pfn</span><span class="p">:</span><span class="mh">0x8207e8c3</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">dirty</span><span class="o">|</span><span class="n">large</span><span class="o">|</span><span class="n">global</span><span class="o">|</span><span class="n">softw4</span><span class="o">|</span><span class="n">pkey0</span><span class="o">|</span><span class="n">pkey1</span><span class="o">|</span><span class="n">pkey2</span><span class="o">|</span><span class="n">pkey3</span><span class="o">|</span><span class="n">nx</span><span class="o">|</span><span class="mh">0x3ff800000000000</span><span class="p">)</span>
+<span class="p">[</span>  <span class="mf">916.659947</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">copy_process</span> <span class="nl">line</span><span class="p">:</span> <span class="mi">906</span> <span class="nl">from_addr</span><span class="p">:</span> <span class="mh">0x0</span> <span class="n">pte</span><span class="p">.</span><span class="nl">cont</span><span class="p">:</span> <span class="mh">0xffff88207e8c31c0</span>
+
+<span class="p">[</span>  <span class="mf">916.769148</span><span class="p">]</span> <span class="nl">p</span><span class="p">:</span> <span class="n">ffff88207e8c3000</span> <span class="n">p</span><span class="o">-&gt;</span><span class="nl">group_leader</span><span class="p">:</span> <span class="n">ffff88107e190000</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="n">p</span><span class="o">-&gt;</span><span class="nl">thread_group</span><span class="p">:</span> <span class="n">ffff88207e8c31c0</span> <span class="n">leader</span><span class="o">-&gt;</span><span class="nl">thread_grou</span><span class="p">:</span> <span class="n">ffff88107e1901c0</span>
+</pre></div>
+</td></tr></table></p>
+<p>14<sup>th</sup> run, got an log like this. Clearly, the pte is written the value  of p-&gt;thread_group. But the leader&rsquo;s pointer is correct. Weird, going to dig deeper.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>                p: ffff88207e8c3000 p-&gt;group_leader: ffff88107e189000(32)
+
+                p-&gt;thread_group:        ffff88207e8c31c0
+                leader-&gt;thread_group:   ffff88107e1891c0
+
+                pte page:               ffff88207e8b5000
+                pte:                    ffff88207e8b51c0
+
+                pte.cont:               ffff88207e8c31c0
+</pre></div>
+</td></tr></table></p>
+<p>15<sup>th</sup> run, found the bug.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">wuklab13</span> <span class="mo">0311</span><span class="o">-</span><span class="mi">15</span>
+<span class="hll"><span class="p">[</span> <span class="mf">1474.477687</span><span class="p">]</span> <span class="n">dup_task_struct</span><span class="p">()</span><span class="o">:</span> <span class="nl">current</span><span class="p">:</span> <span class="mi">32</span> <span class="nl">new</span><span class="p">:</span> <span class="n">ffff88207e8b5000</span>
+</span><span class="p">..</span>
+<span class="k">while</span> <span class="n">pid</span> <span class="mi">33</span> <span class="n">exit</span>
+<span class="n">so</span> <span class="n">the</span> <span class="n">ffff88207e8b5000</span> <span class="n">is</span> <span class="n">freed</span>
+
+<span class="n">but</span> <span class="n">allocated</span> <span class="n">again</span> <span class="n">by</span> <span class="n">pte_alloc</span>
+<span class="hll"><span class="p">[</span> <span class="mf">1481.420200</span><span class="p">]</span> <span class="n">__pte_alloc</span><span class="p">()</span><span class="o">:</span><span class="n">CPU5</span> <span class="k">for</span> <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7ffefc6acd90</span> <span class="nl">pte_index</span><span class="p">:</span> <span class="n">ac</span> <span class="n">new</span> <span class="n">pte</span> <span class="nl">page</span><span class="p">:</span> <span class="n">ffff88207e8b5000</span>
+</span>
+<span class="n">However</span><span class="p">,</span> <span class="n">we</span> <span class="n">forgot</span> <span class="n">to</span> <span class="n">remove</span> <span class="n">it</span> <span class="n">from</span> <span class="n">group_leader</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">thread_group</span>
+
+<span class="p">[</span> <span class="mf">1485.895938</span><span class="p">]</span>
+                <span class="nl">p</span><span class="p">:</span> <span class="n">ffff88207e8c3000</span>
+                <span class="n">p</span><span class="o">-&gt;</span><span class="nl">group_leader</span><span class="p">:</span> <span class="n">ffff88107e19b000</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+
+                <span class="n">p</span><span class="o">-&gt;</span><span class="nl">thread_group</span><span class="p">:</span>        <span class="n">ffff88207e8c31c0</span>
+                <span class="n">leader</span><span class="o">-&gt;</span><span class="nl">thread_group</span><span class="p">:</span>   <span class="n">ffff88107e19b1c0</span>
+
+<span class="p">[</span> <span class="mf">1486.047784</span><span class="p">]</span>
+                <span class="n">tg</span><span class="o">-&gt;</span><span class="nl">next</span><span class="p">:</span>               <span class="n">ffff88207e8c31c8</span>
+                <span class="n">tg</span><span class="o">-&gt;</span><span class="nl">prev</span><span class="p">:</span>               <span class="n">ffff88207e8c31c0</span>
+                <span class="n">leader</span><span class="o">-&gt;</span><span class="n">tg</span><span class="o">-&gt;</span><span class="n">next</span>        <span class="n">ffff88107e19b1c8</span>
+                <span class="n">leader</span><span class="o">-&gt;</span><span class="n">tg</span><span class="o">-&gt;</span><span class="n">prev</span>        <span class="n">ffff88107e19b1c0</span>
+
+<span class="p">[</span> <span class="mf">1486.191311</span><span class="p">]</span>  <span class="n">next</span>                    <span class="n">ffff88107e19b1c0</span>
+<span class="hll">                <span class="n">prev</span>                    <span class="n">ffff88207e8b51c0</span>
+</span>                <span class="n">next</span>                    <span class="n">ffff88107e19b1c0</span>
+
+<span class="p">[</span> <span class="mf">1486.276594</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">__list_add</span>    <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">61</span> <span class="n">from_addr</span> <span class="mh">0x0</span> <span class="nl">page</span><span class="p">:</span> <span class="mh">0xffff88207e8b5000</span>
+<span class="p">[</span> <span class="mf">1486.401399</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">__list_add</span>    <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">65</span> <span class="n">from_addr</span> <span class="mh">0x0</span> <span class="nl">page</span><span class="p">:</span> <span class="mh">0xffff88207e8b5000</span>
+<span class="p">[</span> <span class="mf">1486.526203</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">__list_add</span>    <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">69</span> <span class="n">from_addr</span> <span class="mh">0x0</span> <span class="nl">page</span><span class="p">:</span> <span class="mh">0xffff88207e8b5000</span>
+<span class="p">[</span> <span class="mf">1486.651010</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">__list_add</span>    <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">73</span> <span class="n">from_addr</span> <span class="mh">0x0</span> <span class="nl">page</span><span class="p">:</span> <span class="mh">0xffff88207e8b5000</span>
+
+<span class="p">[</span> <span class="mf">1486.775814</span><span class="p">]</span> <span class="nl">pte</span><span class="p">:</span><span class="n">ffff88207e8b51c0</span> <span class="nl">pfn</span><span class="p">:</span><span class="mh">0x8207e8c3</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">dirty</span><span class="o">|</span><span class="n">large</span><span class="o">|</span><span class="n">global</span><span class="o">|</span><span class="n">softw4</span><span class="o">|</span><span class="n">pkey0</span><span class="o">|</span><span class="n">pkey1</span><span class="o">|</span><span class="n">pkey2</span><span class="o">|</span><span class="n">pkey3</span><span class="o">|</span><span class="n">nx</span><span class="o">|</span><span class="mh">0x3ff800000000000</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">1486.912060</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">__list_add</span> <span class="nl">line</span><span class="p">:</span> <span class="mi">77</span> <span class="nl">from_addr</span><span class="p">:</span> <span class="mh">0x0</span> <span class="n">pte</span><span class="p">.</span><span class="nl">cont</span><span class="p">:</span> <span class="mh">0xffff88207e8c31c0</span>
+</pre></div>
+</td></tr></table></p>
+<p>16<sup>th</sup> run, damn, after patching <code class="codehilite">__unhash_process()</code>, it finally works. Going to workout, see you tonight.</p>
 <h2 id="0310-sat">03/10 Sat</h2>
 <p>Running python hello world. Tried to make kmalloc use buddy directly.</p>
 <h3 id="put_pcache-in-pcache_zap_pte">put_pcache in pcache_zap_pte</h3>
