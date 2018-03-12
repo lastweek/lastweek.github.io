@@ -771,12 +771,13 @@
 <ul>
 <li>Lego does not have <strong>process group and session</strong><sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup> concept. Each process is within its own process group and session.</li>
 <li>This implies Lego will not have <strong>Orphaned Process Group</strong><sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> when a process exit.</li>
-<li><strong>Orphan process</strong><sup id="fnref2:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup> is adopted by init process (pid 1), which follows the UNIX tradition.</li>
+<li><strong>Orphan process</strong><sup id="fnref2:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup> is adopted by init process (pid 1) if its father is a single-thread process, otherwise it will be adopted by other thread within its father&rsquo;s process. This is performed by function <code class="codehilite">forget_original_parent()</code>.</li>
+<li>wait, signal, exec, fork are close related.</li>
 </ul>
 <p>&ndash;<br />
 Yizhou Shan<br />
 Created: Mar 8, 2018<br />
-Last Updated: Mar 8, 2018</p>
+Last Updated: Mar 10, 2018</p>
 <div class="footnote">
 <hr />
 <ol>
