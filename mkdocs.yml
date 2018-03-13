@@ -34,6 +34,7 @@ pages:
    - Pcache:
            - 'Config': 'lego/pcache/config.md'
            - 'Reverse Mapping': 'lego/pcache/rmap.md'
+           - 'Victim Cache': 'lego/pcache/victim.md'
            - 'SMP Design': 'lego/pcache/smp_design.md'
    - Paper:
            - 'NMP': 'lego/paper/nmp.md'
