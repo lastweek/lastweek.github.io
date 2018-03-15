@@ -319,6 +319,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0315-thur" title="03/15 Thur" class="md-nav__link">
+    03/15 Thur
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0313-wed" title="03/13 Wed" class="md-nav__link">
     03/13 Wed
   </a>
@@ -941,6 +948,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0315-thur" title="03/15 Thur" class="md-nav__link">
+    03/15 Thur
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0313-wed" title="03/13 Wed" class="md-nav__link">
     03/13 Wed
   </a>
@@ -1107,6 +1121,28 @@
                 
                 
                 <h1 id="march-2018">March 2018</h1>
+<h2 id="0315-thur">03/15 Thur</h2>
+<p>Forgot to write the log yesterday. I actually solved the major bug, the refcount and eviction one. That is really nasty. I basically used pte lock, pcache_lock, and refcount to synchronize between eviction routine and other users such as munmap, mremap, write-protected-handler.</p>
+<p>I&rsquo;m really not sure if this mode can be reproduced if I have any other similar systems. But I&rsquo;m glad that I find a way to do this.</p>
+<p>Today I got few tasks going on. First merge storage syscall branch, then add sched_yield syscall, add zone/node counters, and probably patch get_random_number.</p>
+<p><del class="critic">Task 1</del>: Merge Yilun&rsquo;s storage pull request, has bunch syscalls. I&rsquo;m reviewing now.</p>
+<ul>
+<li>truncate</li>
+<li>ftruncate</li>
+<li>getdents</li>
+<li>getcwd</li>
+<li>mkdir</li>
+<li>rmdir</li>
+<li>creat</li>
+<li>unlink</li>
+<li>unlinkat</li>
+<li>readlink</li>
+<li>statfs</li>
+<li>sync</li>
+</ul>
+<p><del class="critic">Task 2</del>: Add <code class="codehilite">sched_yield()</code>. Fairly simple.</p>
+<p><ins class="critic">Task 3</ins>: Add physical memory counter. Fairly complex.</p>
+<p><ins class="critic">Task 4</ins>: Patch get_random_number and /dev/urandom</p>
 <h2 id="0313-wed">03/13 Wed</h2>
 <p>The slow victim flush issue is solved by pinning the thread to a core and remove that core from active_cpu mask.</p>
 <p>Today I&rsquo;m going to solve the SMP object issue. I&rsquo;m hoping by solving this, we can have a complete working pcache and victim cache.</p>

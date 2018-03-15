@@ -877,6 +877,12 @@
 <li>
 <p><code class="codehilite">CPU_NO_HZ</code>: disable timer for some cores, to reduce the overhead of timer interrupts. This is named <code class="codehilite">CPU_NO_HZ</code> and some similar Kconfigs.</p>
 </li>
+<li>
+<p><code class="codehilite">SYSCALL</code>: compared with linux, we are always using the slow path, which pass all arguments. We should consider optimize this. OS-intensive applications may hurt.</p>
+</li>
+<li>
+<p><code class="codehilite">IB</code>: reply is a sg list. Esp benefit pcache.</p>
+</li>
 </ul>
 <h2 id="finished">Finished</h2>
 <ul>
