@@ -1110,6 +1110,110 @@
 <h2 id="0313-wed">03/13 Wed</h2>
 <p>The slow victim flush issue is solved by pinning the thread to a core and remove that core from active_cpu mask.</p>
 <p>Today I&rsquo;m going to solve the SMP object issue. I&rsquo;m hoping by solving this, we can have a complete working pcache and victim cache.</p>
+<p>Continue yesterday&rsquo;s log:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">wuklab13</span> <span class="mo">0313</span><span class="o">-</span><span class="mi">12</span>
+<span class="p">[</span> <span class="mf">1073.616269</span><span class="p">]</span> <span class="nl">pcache</span><span class="p">:</span><span class="n">ffff880180777a80</span> <span class="nl">mapcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">3</span> <span class="nl">flags</span><span class="p">:(</span><span class="n">locked</span><span class="o">|</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="p">)</span> <span class="nl">kva</span><span class="p">:</span> <span class="n">ffff88011ddea000</span>
+<span class="p">[</span> <span class="mf">1073.734941</span><span class="p">]</span> <span class="n">__clflush_one</span><span class="p">()</span><span class="o">:</span> <span class="nl">EFAULT</span><span class="p">:</span><span class="n">bad</span> <span class="n">address</span> <span class="nl">tsk</span><span class="p">:</span> <span class="mi">32</span> <span class="nl">user_va</span><span class="p">:</span> <span class="mh">0x7fff4ddea000</span>
+<span class="p">[</span> <span class="mf">1073.822304</span><span class="p">]</span> <span class="n">pcache</span> <span class="n">dumped</span> <span class="nl">because</span><span class="p">:</span> <span class="n">evict</span><span class="o">/</span><span class="n">ref</span> <span class="n">bug</span>
+
+<span class="p">[</span> <span class="mf">1073.987667</span><span class="p">]</span> <span class="nl">BUG</span><span class="p">:</span> <span class="n">failure</span> <span class="n">at</span> <span class="n">managers</span><span class="o">/</span><span class="n">processor</span><span class="o">/</span><span class="n">pcache</span><span class="o">/</span><span class="n">evict</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">301</span><span class="o">/</span><span class="n">pcache_evict_line</span><span class="p">()</span><span class="o">!</span>
+
+<span class="p">[</span> <span class="mf">1074.082308</span><span class="p">]</span> <span class="nl">BUG</span><span class="p">:</span> <span class="n">failure</span> <span class="n">at</span> <span class="n">managers</span><span class="o">/</span><span class="n">processor</span><span class="o">/</span><span class="n">pcache</span><span class="o">/</span><span class="n">rmap</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">763</span><span class="o">/</span><span class="n">pcache_zap_pte</span><span class="p">()</span><span class="o">!</span>
+<span class="p">[</span> <span class="mf">1074.172789</span><span class="p">]</span> <span class="n">Kernel</span> <span class="n">Panic</span> <span class="o">-</span> <span class="n">not</span> <span class="nl">syncing</span><span class="p">:</span> <span class="n">BUG</span><span class="o">!</span>
+<span class="p">[</span> <span class="mf">1074.223751</span><span class="p">]</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">23</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">50</span> <span class="nl">Comm</span><span class="p">:</span> <span class="n">word_count</span><span class="o">-</span><span class="n">pthr</span> <span class="mf">4.0.0</span><span class="o">-</span><span class="n">lego</span><span class="o">-</span><span class="n">ys</span><span class="o">+</span> <span class="err">#</span><span class="mi">476</span>
+</pre></div>
+</td></tr></table></p>
+<table>
+<thead>
+<tr>
+<th>Time</th>
+<th align="left">CPU0</th>
+<th align="left">CPU1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td align="left">pcache_evict_line()</td>
+<td align="left">zap_pte_range()</td>
+</tr>
+<tr>
+<td>1</td>
+<td align="left">find @pcm to evict</td>
+<td align="left">prepare to unmap pte which points to @pcm</td>
+</tr>
+<tr>
+<td>2</td>
+<td align="left">lock_pcache()</td>
+<td align="left">..</td>
+</tr>
+<tr>
+<td>3</td>
+<td align="left">pcache_try_to_unmap()</td>
+<td align="left">pte_offset_lock()</td>
+</tr>
+<tr>
+<td>4</td>
+<td align="left">try to lock pte</td>
+<td align="left">pcache_zap_pte()</td>
+</tr>
+<tr>
+<td>5</td>
+<td align="left">..spin..</td>
+<td align="left">trylock_pcache (failed)</td>
+</tr>
+<tr>
+<td>6</td>
+<td align="left">..spin..</td>
+<td align="left">unlock pte</td>
+</tr>
+<tr>
+<td>7</td>
+<td align="left">lock pte</td>
+<td align="left">trylock pcache</td>
+</tr>
+<tr>
+<td>8</td>
+<td align="left">clear pte</td>
+<td align="left">..spin..</td>
+</tr>
+<tr>
+<td>9</td>
+<td align="left">unlock pte</td>
+<td align="left">..spin..</td>
+</tr>
+<tr>
+<td>10</td>
+<td align="left">unlock pcache</td>
+<td align="left">..spin..</td>
+</tr>
+<tr>
+<td>11</td>
+<td align="left">..</td>
+<td align="left">lock pcache</td>
+</tr>
+<tr>
+<td>12</td>
+<td align="left">..</td>
+<td align="left">lock pte</td>
+</tr>
+<tr>
+<td>13</td>
+<td align="left">..</td>
+<td align="left"><mark class="critic">HERE, should check if pte changed!</mark></td>
+</tr>
+</tbody>
+</table>
+<p>Huh, patched both eviction and other code. Use refcount, pcache lock, pte lock to synchronize between all users. Make sure a going-to-be-evicted pcm will not be used by others. And others will not have a chance to use such line.</p>
 <h2 id="0312-tue">03/12 Tue</h2>
 <p>Continue victim cache. The current conclusion is victim has a unbalanced input and output rate. That is why some cores timeout and abort.</p>
 <p>Got some more clean log. The log told us that the flushd_victim is too slow at flushing content. Next I going to print the current flush queue content. Make sure that they are really not flushed. If so, I want to add code to flush sync.</p>
