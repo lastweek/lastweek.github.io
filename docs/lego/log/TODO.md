@@ -29,6 +29,10 @@ Last Updated: Mar 7, 2018
 
 - `CPU_NO_HZ`: disable timer for some cores, to reduce the overhead of timer interrupts. This is named `CPU_NO_HZ` and some similar Kconfigs.
 
+- `SYSCALL`: compared with linux, we are always using the slow path, which pass all arguments. We should consider optimize this. OS-intensive applications may hurt.
+
+- `IB`: reply is a sg list. Esp benefit pcache.
+
 ## Finished
 
 - {---`vsyscall`: mostly emulation---}
