@@ -1141,7 +1141,13 @@
 <li>sync</li>
 </ul>
 <p><del class="critic">Task 2</del>: Add <code class="codehilite">sched_yield()</code>. Fairly simple.</p>
-<p><ins class="critic">Task 3</ins>: Add physical memory counter. Fairly complex.</p>
+<p><ins class="critic">Task 3</ins>: Add physical memory counter. Fairly complex. The underlying is built long time ago. Need to pick up some. Well some facts:</p>
+<ul>
+<li>pg_data_t (and zone) is allcoated by alloc_node_data if NUMA is configured.</li>
+<li>all zones are built and initliazed in memory_init() in Lego</li>
+<li>stats are reset to 0 when pg_data_t allocated (DUH?). Played directly in page_alloc.c</li>
+</ul>
+<p>Have to continue tomorrow.</p>
 <p><ins class="critic">Task 4</ins>: Patch get_random_number and /dev/urandom</p>
 <h2 id="0313-wed">03/13 Wed</h2>
 <p>The slow victim flush issue is solved by pinning the thread to a core and remove that core from active_cpu mask.</p>
