@@ -792,15 +792,166 @@
                 <h1 id="mumble-pcache-eviction-and-refcount">Mumble pcache eviction and refcount</h1>
 <p>This is about how Lego is doing eviction against live references of pcache. Unlike the <code class="codehilite">garbage collection</code> where it only reclaims object that has no references, pcache eviction may try to evict a pcache that is currently being used by another thread. Both parties need to be very careful. A tricky business.</p>
 <p>To describe the issue in a high-level, let us consider this case: the system now has two threads running on two different cores. The first thread try to evict a pcache line, and it truly find a candidate and prepare to evict. Meanwhile, the other thread is currently using this pcache line to do some operations such as <code class="codehilite">zap_rmap()</code>. If the first thread evict the pcache line without synchronization with the second thread, oops, the second thread is playing with a wrong pcache.</p>
-<p>The textbook solution is adding refcount. But this is not enough in C. Because, 1) There is no way to prevent the second thread from getting the <code class="codehilite">pointer</code> to that pcm. 2) a simple <code class="codehilite">inc_refcount()</code> from the second thread can happen anytime in the middle of first thread&rsquo;s eviction.</p>
-<p>To actually prevent the second thread from getting the pointer, we should think about how it get the pointer. There is only one entry point, which is from <code class="codehilite">pte to pcm</code> (aka. pcache_meta). So to synchronize pte change becomes very important. Luckily, we are doing pte_lock before getting the pcm. So this simple pte lock ensures the second thread a safe, will-not-be-evicted pcm (of course, with some other checkings).</p>
-<p>Refcount checking is also necessary. In the eviction routine, we need to use  <code class="codehilite">atomic_xchg</code> to reset the refcount. If this fails, it means someone else is using it. Do note, this <code class="codehilite">atomic_xchg</code> is carried out with pcm locked. So you can image, the ordering of locking, get/put matters.</p>
-<p>The code itself tells a much more complete story, I strongly recommend you read the code and comment if you are interested.</p>
-<p>My personal thought: live eviction against live objects/references is very hard. You first need to use refcount to ensure a correct ordering. You also need to have a way to prevent others from using the going-to-be-evicted pointer, or have a way to detect a under-use pointer.  In this Lego pcache case, we use the combination of pte lock, pcache lock, and pcache refcount, to ensure everyone is safe. And all these is quite similar to Linux page operations. I learned a lot from its code. But I still not fully understand how it ensures the page is not used by others, it has way more parties than lego that can use the page at the same time of eviction. Magic kernel folk.</p>
+<p>The textbook idea is adding refcount. However, this is not enough in C. Because:</p>
+<ul>
+<li>There is no way to prevent the second thread from getting the <strong><code class="codehilite">pointer</code></strong> to that pcm.</li>
+<li>A simple <code class="codehilite">inc_refcount()</code> from the second thread can happen anytime in the middle of first thread&rsquo;s eviction.</li>
+</ul>
+<p>Solutions:</p>
+<ul>
+<li>To actually prevent the second thread from getting the pointer, we should think about <em>how</em> it get the pointer? Luckily, in Lego, there is only one entry point, which is from <code class="codehilite">pte to pcm</code> (aka. pcache_meta). So to synchronize pte change becomes very important. Luckily, we are doing pte_lock before getting the pcm. So this simple pte lock ensures the second thread a safe, will-not-be-evicted pcm (of course, with some other checkings). This idea can also be generalized to any data structures that need pointer references: <strong>protect your pointer</strong>!</li>
+<li>Refcount checking is also necessary. In the eviction routine, we need to use  <code class="codehilite">atomic_xchg</code> to reset the refcount. If this fails, it means someone else is using it. Do note, this <code class="codehilite">atomic_xchg</code> is carried out with pcm locked. Thus the ordering of locking, get/put matters in the code.</li>
+</ul>
+<p>The code itself tells a much more complete story, I strongly recommend you read the code if you are interested. Here I will list the most interesting part. For the other users except eviction, they need to do this:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">pcm</span> <span class="o">=</span> <span class="n">pte_to_pcache_meta</span><span class="p">(</span><span class="n">ptent</span><span class="p">);</span>
+<span class="cm">/*   </span>
+<span class="cm"> * We have a strict lock ordering everyone should obey:</span>
+<span class="cm"> *      lock pcache</span>
+<span class="cm"> *      lock pte</span>
+<span class="cm"> * The caller already locked pte, thus we should avoid deadlock here</span>
+<span class="cm"> * by droping pte lock first and then acquire both of them in order.</span>
+<span class="cm"> */</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="o">!</span><span class="n">trylock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">)))</span> <span class="p">{</span>
+    <span class="cm">/* in case it got evicted and @pcm becomes invalid */</span>
+    <span class="n">get_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
+
+    <span class="cm">/*</span>
+<span class="cm">     * Once we release the pte lock, this pcm may be</span>
+<span class="cm">     * unmapped by another thread who is doing eviction.</span>
+<span class="cm">     * Since we have grabbed one extra ref above, so even</span>
+<span class="cm">     * it is unmapped, eviction thread will not fail to free it.</span>
+<span class="cm">     */</span>
+    <span class="n">spin_unlock</span><span class="p">(</span><span class="n">ptl</span><span class="p">);</span>
+
+    <span class="n">lock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
+    <span class="n">spin_lock</span><span class="p">(</span><span class="n">ptl</span><span class="p">);</span>
+
+    <span class="cm">/*   </span>
+<span class="cm">     * Since we dropped the lock, the pcache line might</span>
+<span class="cm">     * be got evicted in the middle.</span>
+<span class="cm">     */</span>
+<span class="hll">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">pte_same</span><span class="p">(</span><span class="o">*</span><span class="n">pte</span><span class="p">,</span> <span class="n">ptent</span><span class="p">))</span> <span class="p">{</span>
+</span>        <span class="n">unlock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
+        <span class="cm">/*   </span>
+<span class="cm">         * This put maybe decreases the ref to 0</span>
+<span class="cm">         * and eventually free the pcache line.</span>
+<span class="cm">         * This happens if the @pcm was selected</span>
+<span class="cm">         * to be evicted at the same time.</span>
+<span class="cm">         */</span>
+        <span class="n">put_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">EAGAIN</span><span class="p">;</span>
+    <span class="p">}</span>    
+    <span class="n">put_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></p>
+<p>As for the eviction thread, it needs to make sure it is the last user using this pcm:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cm">/*  </span>
+<span class="cm"> * Each rmap counts one refcount, plus the one grabbed</span>
+<span class="cm"> * during evict_find_line(), we should have (nr_mapped + 1)</span>
+<span class="cm"> * here if there are no any other users.</span>
+<span class="cm"> *</span>
+<span class="cm"> * Furthurmore, others can not go from munmap/mremap/wp to</span>
+<span class="cm"> * put_pcache() within pcache_zap_pte(), pcache_move_pte()</span>
+<span class="cm"> * or pcache_do_wp_page(). Thus the refcount must larger or</span>
+<span class="cm"> * equal to (nr_mapped + 1).</span>
+<span class="cm"> *</span>
+<span class="cm"> * But if there truly other users (refcount &gt; nr_mapped + 1),</span>
+<span class="cm"> * then we should manually sub the refcount. The other users</span>
+<span class="cm"> * which are currently holding the ref, will free the pcache</span>
+<span class="cm"> * once it call put_pcache.</span>
+<span class="cm"> */</span>
+<span class="n">PCACHE_BUG_ON_PCM</span><span class="p">(</span><span class="n">pcache_ref_count</span><span class="p">(</span><span class="n">pcm</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">nr_mapped</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pcm</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="o">!</span><span class="n">pcache_ref_freeze</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="n">nr_mapped</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="n">pcache_ref_sub_and_test</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="n">nr_mapped</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span> <span class="p">{</span>
+        <span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;BUG: pcm refcount, nr_mapped: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">nr_mapped</span><span class="p">);</span>
+        <span class="n">dump_pcache_meta</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="s">&quot;ref error&quot;</span><span class="p">);</span>
+        <span class="n">BUG</span><span class="p">();</span>
+    <span class="p">}</span>   
+
+    <span class="n">ClearPcacheReclaim</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
+    <span class="n">add_to_lru_list</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="n">pset</span><span class="p">);</span>
+    <span class="n">unlock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
+
+    <span class="n">inc_pcache_event</span><span class="p">(</span><span class="n">PCACHE_EVICTION_EAGAIN_CONCURRENT</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">PCACHE_EVICT_EAGAIN_CONCURRENT</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></p>
+<hr />
+<p>My personal thought: live eviction against live objects/references is very hard. You first need to use refcount to ensure a correct ordering. You also need to have a way to prevent others from using the going-to-be-evicted pointer, or have a way to detect a under-use pointer.  In this Lego pcache case, we use the combination of pte lock, pcache lock, and pcache refcount, to ensure everyone is safe. And all these is quite similar to Linux page operations. I learned a lot from its code. But I still not fully understand how it ensures the page is not used by others, it has way more parties than lego that can use the page at the same time of eviction. Magic kernel folks.</p>
 <p>&ndash;<br />
-Yizhou Shan<br />
-Created: Mar 15, 2018 23:58<br />
-Last Updated: Mar 15, 2018</p>
+Yizhou Shan <img alt="🌿" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f33f.svg" title=":herb:" /><br />
+Created: Mar 15, 2018<br />
+Last Updated: Mar 16, 2018</p>
                 
                   
                 

@@ -319,6 +319,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0316-friday" title="03/16 Friday" class="md-nav__link">
+    03/16 Friday
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0315-thur" title="03/15 Thur" class="md-nav__link">
     03/15 Thur
   </a>
@@ -960,6 +967,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0316-friday" title="03/16 Friday" class="md-nav__link">
+    03/16 Friday
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0315-thur" title="03/15 Thur" class="md-nav__link">
     03/15 Thur
   </a>
@@ -1133,6 +1147,11 @@
                 
                 
                 <h1 id="march-2018">March 2018</h1>
+<h2 id="0316-friday">03/16 Friday</h2>
+<p><del class="critic">Task 1</del>: Add physical memory counter. It is a per-zone based counter, even though there is also some global counters. In Linux, per-cpu counter is first accumlated, global counter is updated only when per-cpu ones overflow. Lego&rsquo;s initial version save the trouble of per-cpu counter, I only port one global counter today, because I&rsquo;m not quite confident about our percpu_alloc&hellip;</p>
+<p>Anway, the info is reported in the format of <code class="codehilite">manager_sysinfo</code>. Do note this is different from the oirginal <code class="codehilite">sysinfo</code> structure, which is used by sysinfo syscall.</p>
+<p><del class="critic">Task 2</del>: Patch get_random_number and /dev/urandom /dev/random. Others wrote the code, but he did not stick to the tradition of format naming. So I have to rewrite some of them. Sigh.</p>
+<p><ins class="critic">Task 3</ins>: optimize sweep</p>
 <h2 id="0315-thur">03/15 Thur</h2>
 <p>Forgot to write the log yesterday. I actually solved the major bug, the refcount and eviction one. That is really nasty. I basically used pte lock, pcache_lock, and refcount to synchronize between eviction routine and other users such as munmap, mremap, write-protected-handler.</p>
 <p>I&rsquo;m really not sure if this mode can be reproduced if I have any other similar systems. But I&rsquo;m glad that I find a way to do this.</p>
