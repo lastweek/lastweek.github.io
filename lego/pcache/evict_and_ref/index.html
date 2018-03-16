@@ -36,7 +36,7 @@
     
     
       
-        <title>Disable pgfault - Yizhou Shan's Home Page</title>
+        <title>Evict and Refcount - Yizhou Shan's Home Page</title>
       
     
     
@@ -69,7 +69,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#the-story-of-pagefault_disableenable" tabindex="1" class="md-skip">
+      <a href="#mumble-pcache-eviction-and-refcount" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -95,7 +95,7 @@
                 Yizhou Shan's Home Page
               </span>
               <span class="md-header-nav__topic">
-                Disable pgfault
+                Evict and Refcount
               </span>
             
           
@@ -365,12 +365,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3">
     
     <label class="md-nav__link" for="nav-3-3">
       Kernel
@@ -388,7 +386,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../kconfig/" title="Kconfig" class="md-nav__link">
+    <a href="../../kernel/kconfig/" title="Kconfig" class="md-nav__link">
       Kconfig
     </a>
   </li>
@@ -400,7 +398,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../debug/" title="Debug" class="md-nav__link">
+    <a href="../../kernel/debug/" title="Debug" class="md-nav__link">
       Debug
     </a>
   </li>
@@ -410,20 +408,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-    <a href="./" title="Disable pgfault" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../kernel/pagefault_disable/" title="Disable pgfault" class="md-nav__link">
       Disable pgfault
     </a>
-    
   </li>
 
         
@@ -433,7 +422,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../stop_machine/" title="Stop machine" class="md-nav__link">
+    <a href="../../kernel/stop_machine/" title="Stop machine" class="md-nav__link">
       Stop machine
     </a>
   </li>
@@ -445,7 +434,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../loader/" title="Program Loader" class="md-nav__link">
+    <a href="../../kernel/loader/" title="Program Loader" class="md-nav__link">
       Program Loader
     </a>
   </li>
@@ -457,7 +446,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../vDSO/" title="vDSO" class="md-nav__link">
+    <a href="../../kernel/vDSO/" title="vDSO" class="md-nav__link">
       vDSO
     </a>
   </li>
@@ -469,7 +458,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../vfs/" title="Virtual File System" class="md-nav__link">
+    <a href="../../kernel/vfs/" title="Virtual File System" class="md-nav__link">
       Virtual File System
     </a>
   </li>
@@ -481,7 +470,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../vm/" title="Process Virtual Memory" class="md-nav__link">
+    <a href="../../kernel/vm/" title="Process Virtual Memory" class="md-nav__link">
       Process Virtual Memory
     </a>
   </li>
@@ -493,7 +482,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../fpu/" title="x86 FPU" class="md-nav__link">
+    <a href="../../kernel/fpu/" title="x86 FPU" class="md-nav__link">
       x86 FPU
     </a>
   </li>
@@ -616,10 +605,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" checked>
     
     <label class="md-nav__link" for="nav-3-5">
       Pcache
@@ -637,7 +628,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../pcache/config/" title="Config" class="md-nav__link">
+    <a href="../config/" title="Config" class="md-nav__link">
       Config
     </a>
   </li>
@@ -649,7 +640,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../pcache/rmap/" title="Reverse Mapping" class="md-nav__link">
+    <a href="../rmap/" title="Reverse Mapping" class="md-nav__link">
       Reverse Mapping
     </a>
   </li>
@@ -661,7 +652,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../pcache/victim/" title="Victim Cache" class="md-nav__link">
+    <a href="../victim/" title="Victim Cache" class="md-nav__link">
       Victim Cache
     </a>
   </li>
@@ -671,11 +662,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../pcache/evict_and_ref/" title="Evict and Refcount" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+    <a href="./" title="Evict and Refcount" class="md-nav__link md-nav__link--active">
       Evict and Refcount
     </a>
+    
   </li>
 
         
@@ -685,7 +685,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../pcache/smp_design/" title="SMP Design" class="md-nav__link">
+    <a href="../smp_design/" title="SMP Design" class="md-nav__link">
       SMP Design
     </a>
   </li>
@@ -789,15 +789,17 @@
               
                 
                 
-                <h1 id="the-story-of-pagefault_disableenable">The story of pagefault_disable/enable</h1>
-<p><code class="codehilite">pagefault_disable()</code> is not really disabling the whole pgfault handling code. It is used to disable only the handling of pgfault that landed from <code class="codehilite">user virtual address</code>. Please note the difference between <code class="codehilite">user virtual address</code> and <code class="codehilite">user mode fault</code>. The first means the faulting address belongs to user virtual address space, while it can come from either user mode (CPL3) or kernel mode (CPL0). The second is a fault come from user mode (CPL3).</p>
-<p>If pgfault is disabled, then <code class="codehilite">do_page_fault()</code> function will <strong>NOT</strong> try to solve the pgfault by calling into <code class="codehilite">pcache</code>, instead, it will go straight to <code class="codehilite">fixup</code> code (in no_context()).</p>
-<p>This function is not intended to be used standalone. Normally, we do <strong>1)</strong> <code class="codehilite">pagefault_disable()</code>, <strong>2)</strong> then use some functions that have <code class="codehilite">fixup</code> code, <strong>3)</strong> then <code class="codehilite">pagefault_enable()</code>. (The <code class="codehilite">fixup</code> code is another magic inside kernel. We will cover it in another document.)</p>
-<p>Currently in Lego, this is only used by <code class="codehilite">futex</code>, which needs something like <code class="codehilite">atomic_cmpxchg()</code> with an user virtual address. If pgfault happens in the middle, then this will not be atomic since kernel need to do pcache operations, which further needs to through network.</p>
-<p>However, do note the difference with <code class="codehilite">uaccess</code> family functions. Most <code class="codehilite">uaccess</code> functions will not disable pgfault handling, which means pcache will be invoked. If pcache returns a <code class="codehilite">SEGFAULT</code>, pgfault code will go into <code class="codehilite">fixup</code> code. And that, my friend, is where <code class="codehilite">uaccess</code> returns <code class="codehilite">-EFAULT</code> to caller.</p>
+                <h1 id="mumble-pcache-eviction-and-refcount">Mumble pcache eviction and refcount</h1>
+<p>This is about how Lego is doing eviction again live references of pcache. Unlike the garbage collection where it only reclaims object that has no references, pcache eviction may try to evict a pcache that is currently being used by another thread. Both party need to be very careful. A tricky business.</p>
+<p>To describe the issue in a high-level, let us consider this case: the system now has two threads running on two different cores. The first thread trys to evict a pcache line, and it truly find a candidate and prepare to evict. Meanwhile, the other thread is currently using this pcache line to do some operations such as zap_rmap. If the first thread evict the pcache line without synchronization with the second thread, oops, the second thread is playing with a wrong pcache.</p>
+<p>The textbook solution is adding refcount. But this is not enough in C. There is no way to prevent the second thread getting the pointer to pcm. To actually prevent the second thread from getting the pointer, we should think about how it get the pointer. There is only one entry point, which is from pte to pcm (aka. pcache_meta).</p>
+<p>So to synchronize pte change becomes very important. Luckily, we are doing pte_lock before getting the pcm. So this simple pte lock ensures the second thread a safe, will-not-be-evicted pcm (of course, with some other checkings).</p>
+<p>My personal thought on this issue: live eviction against live objects/references is very hard to do. You first need to use refcount to ensure a correct ordering. You also need to have a way to prevent others from using the going-to-be-evicted pointer, or have a way to detect a under-use pointer.  In this Lego pcache case, we use the combination of pte lock, pcache lock, and pcache refcount, to ensure everyone is safe.</p>
+<p>This is quite similar to Linux page operations. I learned a lot from its coding. But I still not fully understand how it ensures the page is not used by others, it has way more parties than lego that can use the page at the same time of eviction.</p>
 <p>&ndash;<br />
 Yizhou Shan<br />
-Feb 01, 2018</p>
+Created: Mar 15, 2018 23:58<br />
+Last Updated: Mar 15, 2018</p>
                 
                   
                 
@@ -816,7 +818,7 @@ Feb 01, 2018</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../debug/" title="Debug" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../victim/" title="Victim Cache" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -825,19 +827,19 @@ Feb 01, 2018</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Debug
+                Victim Cache
               </span>
             </div>
           </a>
         
         
-          <a href="../stop_machine/" title="Stop machine" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../smp_design/" title="SMP Design" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Stop machine
+                SMP Design
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
