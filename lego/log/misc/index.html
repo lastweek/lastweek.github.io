@@ -791,7 +791,19 @@
                 
                 <h1 id="misc">MISC</h1>
 <ul>
-<li><code class="codehilite">/etc/ld.so.preload</code>: GLIBC uses <code class="codehilite">access()</code> to check if this file exist (normally it does not exist)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>. This is something related to <code class="codehilite">LD_PRELOAD</code>: If both <code class="codehilite">LD_PRELOAD</code> and <code class="codehilite">/etc/ld.so.preload</code> are employed, the libraries specified by <code class="codehilite">LD_PRELOAD</code> are preloaded first. /<code class="codehilite">etc/ld.so.preload</code> has a system-wide effect, causing the specified libraries to be preloaded for all programs that are executed on the system<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>.</li>
+<li>
+<p><code class="codehilite">/etc/ld.so.preload</code>: GLIBC uses <code class="codehilite">access()</code> to check if this file exist (normally it does not exist)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>. This is something related to <code class="codehilite">LD_PRELOAD</code>: If both <code class="codehilite">LD_PRELOAD</code> and <code class="codehilite">/etc/ld.so.preload</code> are employed, the libraries specified by <code class="codehilite">LD_PRELOAD</code> are preloaded first. /<code class="codehilite">etc/ld.so.preload</code> has a system-wide effect, causing the specified libraries to be preloaded for all programs that are executed on the system<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>.</p>
+</li>
+<li>
+<p>I was reading a FAST18 paper (Fail-Slow Datacenter). I found it quite interesting and some suggestions are very useful for all system designers. Especially:</p>
+<ul>
+<li><strong>Make implicit error-masking explicit. DO NOT FAIL SILENTLY</strong>. Since this is not a fail-stop (<strong>binary</strong>) issue, normally system designers will not raise exceptions. System designers should be aware of uncommon situations, raise explicit exceptions to convert a fail-slow (<strong>non-binary</strong>) case to a fail-stop (<strong>binary</strong>) case .Actually, this also reminds the email by Linus Torvards on BUG_ON usage<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>.</li>
+<li><strong>Exposing performance statistic information for all-level (device, firmware, system software, application)</strong>. However, based on my own experience, do not generate too much useless logs, it will just help to hide the root cause.</li>
+</ul>
+</li>
+<li>
+<p>asd</p>
+</li>
 </ul>
 <div class="footnote">
 <hr />
@@ -801,6 +813,9 @@
 </li>
 <li id="fn:2">
 <p><a href="http://man7.org/linux/man-pages/man8/ld.so.8.html">ld.so.8.html</a>&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://lkml.org/lkml/2016/10/4/337">LKML:BUG_ON</a>&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
