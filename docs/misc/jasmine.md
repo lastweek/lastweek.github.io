@@ -1,6 +1,10 @@
 Cool and good-to-know stuff:
 
-- [linux-mm](https://linux-mm.org/LinuxMM)
+- __Tail-tolerant__ Distributed Systems
+
+- [S.M.A.R.T (Self-Monitoring, Analysis, and Reporting Technology)](https://en.wikipedia.org/wiki/S.M.A.R.T.)
+
+- [linux-mm](https://linux-mm.org/LinuxMM). Actually, not that interesting.
 
 - Serveless
     - AWS Lambda
