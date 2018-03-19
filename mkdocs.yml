@@ -40,8 +40,9 @@ pages:
            - 'SMP Design': 'lego/pcache/smp_design.md'
    - Paper:
            - 'NMP': 'lego/paper/nmp.md'
-           - 'processor_oom': 'lego/paper/processor_oom.md'
-           - 'genz': 'lego/paper/genz.md'
+           - 'Processor OOM': 'lego/paper/processor_oom.md'
+           - 'Gen-Z': 'lego/paper/genz.md'
+           - 'Replication': 'lego/paper/replication.md'
 
 markdown_extensions:
   - tables

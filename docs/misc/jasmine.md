@@ -1,5 +1,9 @@
 Cool and good-to-know stuff:
 
+- [Shared-nothing architecture](https://en.wikipedia.org/wiki/Shared-nothing_architecture) -> [no single point of contention](https://en.wikipedia.org/wiki/Reliability_engineering)
+
+- [ZeptoOS](http://www.mcs.anl.gov/research/projects/zeptoos/)
+
 - __Tail-tolerant__ Distributed Systems
 
 - [S.M.A.R.T (Self-Monitoring, Analysis, and Reporting Technology)](https://en.wikipedia.org/wiki/S.M.A.R.T.)

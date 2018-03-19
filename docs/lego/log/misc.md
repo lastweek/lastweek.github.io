@@ -6,7 +6,9 @@
     - __Make implicit error-masking explicit. DO NOT FAIL SILENTLY__. Since this is not a fail-stop (__binary__) issue, normally system designers will not raise exceptions. System designers should be aware of uncommon situations, raise explicit exceptions to convert a fail-slow (__non-binary__) case to a fail-stop (__binary__) case .Actually, this also reminds the email by Linus Torvards on BUG_ON usage[^3].
     - __Exposing performance statistic information for all-level (device, firmware, system software, application)__. However, based on my own experience, do not generate too much useless logs, it will just help to hide the root cause.
 
-- asd
+- Testing of applications is often done on a testing environment, smaller in size (perhaps only a single server) and less loaded than the "live" environment. The replication behavior of such an installation may differ from a live environment in ways that mean that replication lag is unlikely to be observed in testing - masking replication-sensitive bugs.
+
+-
 
 [^1]: [etc/ld.so.preload](https://unix.stackexchange.com/questions/282057/what-would-suddenly-cause-programs-to-read-etc-ld-so-preload-when-they-start-up)
 
