@@ -319,9 +319,29 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0320-tue" title="03/20 Tue" class="md-nav__link">
+    03/20 Tue
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0319-mon" title="03/19 Mon" class="md-nav__link">
     03/19 Mon
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#random-ib-bug" title="Random IB Bug" class="md-nav__link">
+    Random IB Bug
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -903,6 +923,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../pcache/tlb/" title="TLB Coherence" class="md-nav__link">
+      TLB Coherence
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../pcache/smp_design/" title="SMP Design" class="md-nav__link">
       SMP Design
     </a>
@@ -1012,9 +1044,29 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0320-tue" title="03/20 Tue" class="md-nav__link">
+    03/20 Tue
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0319-mon" title="03/19 Mon" class="md-nav__link">
     03/19 Mon
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#random-ib-bug" title="Random IB Bug" class="md-nav__link">
+    Random IB Bug
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1213,8 +1265,164 @@
                 
                 
                 <h1 id="march-2018">March 2018</h1>
+<h2 id="0320-tue">03/20 Tue</h2>
+<ul>
+<li>Task 1: calculate failure numbers</li>
+<li>Task 2: read 0319-4 Log</li>
+<li>Task 3: opt pte lock</li>
+</ul>
 <h2 id="0319-mon">03/19 Mon</h2>
 <p>Not too many days left!!! Got to design full replication mechanism and algorithm today.</p>
+<p>Merged pull request for <code class="codehilite">pipe</code>, <code class="codehilite">pipe2</code> and <code class="codehilite">/dev/null</code> from Yilun. Our simple file op mgmt concerns me. I left a note at kernel/fork.c.</p>
+<p>Got a bug report from Yilun, syscall execv failed. To be honest, I&rsquo;ve never tried this syscall, always call it directly within kernel.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span>  <span class="mf">943.650712</span><span class="p">]</span> <span class="n">CPU6</span> <span class="n">PID17</span> <span class="n">sys_execve</span><span class="o">+</span><span class="mh">0x0</span><span class="o">/</span><span class="mh">0x10</span>
+<span class="p">[</span>  <span class="mf">943.701899</span><span class="p">]</span> <span class="nl">BUG</span><span class="p">:</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">handle</span> <span class="n">kernel</span> <span class="n">paging</span> <span class="n">request</span> <span class="n">at</span> <span class="mo">00000000004</span><span class="mi">90523</span>
+<span class="p">[</span>  <span class="mf">943.702776</span><span class="p">]</span> <span class="nl">IP</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8103db86</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">strrchr</span><span class="o">+</span><span class="mh">0x6</span><span class="o">/</span><span class="mh">0x20</span>
+<span class="p">[</span>  <span class="mf">943.711501</span><span class="p">]</span> <span class="n">PGD</span> <span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">943.711911</span><span class="p">]</span> <span class="nl">Oops</span><span class="p">:</span> <span class="mo">0000</span> <span class="p">[</span><span class="err">#</span><span class="mi">1</span><span class="p">]</span> <span class="n">SMP</span> <span class="n">PROCESSOR</span>
+<span class="p">[</span>  <span class="mf">943.712433</span><span class="p">]</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">6</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">17</span> <span class="nl">Comm</span><span class="p">:</span> <span class="n">word_count</span><span class="o">-</span><span class="n">pthr</span> <span class="mf">4.0.0</span><span class="o">-</span><span class="n">lego</span><span class="o">+</span> <span class="err">#</span><span class="mi">64</span>
+<span class="p">[</span>  <span class="mf">943.713126</span><span class="p">]</span> <span class="nl">RIP</span><span class="p">:</span> <span class="mo">0010</span><span class="o">:</span><span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8103db86</span><span class="o">&gt;</span><span class="p">]</span>  <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8103db86</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">strrchr</span><span class="o">+</span><span class="mh">0x6</span><span class="o">/</span><span class="mh">0x20</span>
+<span class="p">[</span>  <span class="mf">943.714090</span><span class="p">]</span> <span class="nl">RSP</span><span class="p">:</span> <span class="mo">001</span><span class="mi">8</span><span class="o">:</span><span class="n">ffff88083e4bfe98</span>  <span class="nl">EFLAGS</span><span class="p">:</span> <span class="mo">00010246</span>
+<span class="p">[</span>  <span class="mf">943.714724</span><span class="p">]</span> <span class="nl">RAX</span><span class="p">:</span> <span class="mo">0000000000000000</span> <span class="nl">RBX</span><span class="p">:</span> <span class="n">ffff88083e4b3780</span> <span class="nl">RCX</span><span class="p">:</span> <span class="mo">0000000000000000</span>
+<span class="p">[</span>  <span class="mf">943.715511</span><span class="p">]</span> <span class="nl">RDX</span><span class="p">:</span> <span class="mf">00000000ff</span><span class="n">ffffff</span> <span class="nl">RSI</span><span class="p">:</span> <span class="mf">000000000000002f</span> <span class="nl">RDI</span><span class="p">:</span> <span class="mo">00000000004</span><span class="mi">90523</span>
+<span class="p">[</span>  <span class="mf">943.716297</span><span class="p">]</span> <span class="nl">RBP</span><span class="p">:</span> <span class="n">ffff88083e4bfe98</span> <span class="nl">R08</span><span class="p">:</span> <span class="mo">0000160000000000</span> <span class="nl">R09</span><span class="p">:</span> <span class="n">ffff88083e4b8400</span>
+<span class="p">[</span>  <span class="mf">943.717085</span><span class="p">]</span> <span class="nl">R10</span><span class="p">:</span> <span class="n">ffff880000000000</span> <span class="nl">R11</span><span class="p">:</span> <span class="mi">6</span><span class="n">db6db6db6db6db7</span> <span class="nl">R12</span><span class="p">:</span> <span class="n">ffff88083e4b8000</span>
+<span class="p">[</span>  <span class="mf">943.717871</span><span class="p">]</span> <span class="nl">R13</span><span class="p">:</span> <span class="n">ffff88083e4e6290</span> <span class="nl">R14</span><span class="p">:</span> <span class="mo">00000000004</span><span class="mi">90523</span> <span class="nl">R15</span><span class="p">:</span> <span class="n">ffff88083e4b3920</span>
+<span class="p">[</span>  <span class="mf">943.718683</span><span class="p">]</span> <span class="nl">FS</span><span class="p">:</span>  <span class="mo">0000000000000000</span><span class="p">(</span><span class="mo">0000</span><span class="p">)</span> <span class="nl">GS</span><span class="p">:</span><span class="n">ffff88083fd80000</span><span class="p">(</span><span class="mo">0000</span><span class="p">)</span> <span class="nl">knlGS</span><span class="p">:</span><span class="mo">0000000000000000</span>
+<span class="p">[</span>  <span class="mf">943.719650</span><span class="p">]</span> <span class="nl">CS</span><span class="p">:</span>  <span class="mo">0010</span> <span class="nl">DS</span><span class="p">:</span> <span class="mo">0000</span> <span class="nl">ES</span><span class="p">:</span> <span class="mo">0000</span> <span class="nl">CR0</span><span class="p">:</span> <span class="mo">00000000</span><span class="mi">80050033</span>
+<span class="p">[</span>  <span class="mf">943.720319</span><span class="p">]</span> <span class="nl">CR2</span><span class="p">:</span> <span class="mo">00000000004</span><span class="mi">90523</span> <span class="nl">CR3</span><span class="p">:</span> <span class="mf">000000083e4</span><span class="n">e7000</span> <span class="nl">CR4</span><span class="p">:</span> <span class="mo">00000000000406</span><span class="n">a0</span>
+<span class="p">[</span>  <span class="mf">943.721106</span><span class="p">]</span> <span class="nl">Stack</span><span class="p">:</span>
+<span class="p">[</span>  <span class="mf">943.721459</span><span class="p">]</span> <span class="n">ffff88083e4bff18</span> <span class="n">ffffffff8102c6bf</span> <span class="n">ffff880800000000</span> <span class="mf">0000000000000e10</span>
+<span class="p">[</span>  <span class="mf">943.722541</span><span class="p">]</span> <span class="mf">00007ff</span><span class="n">fffffedb0</span> <span class="mo">0000000000400</span><span class="n">d0d</span> <span class="n">ffff88083e4c0000</span> <span class="mo">00000000004</span><span class="mi">90523</span>
+<span class="p">[</span>  <span class="mf">943.723624</span><span class="p">]</span> <span class="n">ffff88083e4b9008</span> <span class="mf">00007ff</span><span class="n">fffffed30</span> <span class="mo">000000</span><span class="mi">8400000084</span> <span class="n">ffff88083e4bff58</span>
+<span class="p">[</span>  <span class="mf">943.724706</span><span class="p">]</span> <span class="mo">000000000000003</span><span class="n">b</span> <span class="mo">0000000000401</span><span class="mi">9</span><span class="n">d0</span> <span class="mo">0000000000401</span><span class="n">a60</span> <span class="mo">0000000000000000</span>
+<span class="p">[</span>  <span class="mf">943.725789</span><span class="p">]</span> <span class="n">ffff88083e4bff28</span> <span class="n">ffffffff8102c989</span> <span class="n">ffff88083e4bff48</span> <span class="n">ffffffff8100e5f5</span>
+<span class="p">[</span>  <span class="mf">943.726870</span><span class="p">]</span> <span class="n">Call</span> <span class="nl">Trace</span><span class="p">:</span>
+<span class="p">[</span>  <span class="mf">943.727260</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">TSK</span><span class="o">&gt;</span>
+<span class="p">[</span>  <span class="mf">943.727619</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8102c6bf</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">do_execve</span><span class="o">+</span><span class="mh">0x4af</span><span class="o">/</span><span class="mh">0x770</span>
+<span class="p">[</span>  <span class="mf">943.728236</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8102c989</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">sys_execve</span><span class="o">+</span><span class="mh">0x9</span><span class="o">/</span><span class="mh">0x10</span>
+<span class="p">[</span>  <span class="mf">943.728868</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100e5f5</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">do_syscall_64</span><span class="o">+</span><span class="mh">0x45</span><span class="o">/</span><span class="mh">0xd0</span>
+<span class="p">[</span>  <span class="mf">943.729499</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100d4ec</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">entry_SYSCALL64_slow_path</span><span class="o">+</span><span class="mh">0x25</span><span class="o">/</span><span class="mh">0x25</span>
+<span class="p">[</span>  <span class="mf">943.730222</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">EOT</span><span class="o">&gt;</span>
+<span class="p">[</span>  <span class="mf">943.730570</span><span class="p">]</span> <span class="nl">Code</span><span class="p">:</span> <span class="n">d2</span> <span class="mi">74</span> <span class="mi">18</span> <span class="mi">40</span> <span class="mi">38</span> <span class="n">f2</span> <span class="mi">89</span> <span class="n">f1</span> <span class="mi">75</span> <span class="mo">06</span> <span class="n">eb</span> <span class="mf">0f</span> <span class="mi">38</span> <span class="n">ca</span> <span class="mi">74</span> <span class="mi">0</span><span class="n">b</span> <span class="mi">48</span> <span class="mi">83</span> <span class="n">c0</span> <span class="mo">01</span> <span class="mf">0f</span> <span class="n">b6</span> <span class="mi">10</span> <span class="mi">84</span> <span class="n">d2</span> <span class="mi">75</span> <span class="n">f1</span> <span class="mi">5</span><span class="n">d</span> <span class="n">c3</span> <span class="mf">0f</span> <span class="mf">1f</span> <span class="mi">84</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mi">55</span> <span class="mi">31</span> <span class="n">c0</span> <span class="mi">48</span> <span class="mi">89</span> <span class="n">e5</span> <span class="o">&lt;</span><span class="mf">0f</span><span class="o">&gt;</span> <span class="n">b6</span> <span class="mi">17</span> <span class="mi">40</span> <span class="mi">38</span> <span class="n">f2</span> <span class="mi">48</span> <span class="mf">0f</span> <span class="mi">44</span> <span class="n">c7</span> <span class="mi">48</span> <span class="mi">83</span> <span class="n">c7</span> <span class="mo">01</span> <span class="mi">84</span> <span class="n">d2</span> <span class="mi">75</span> <span class="n">ee</span> <span class="mi">5</span><span class="n">d</span> <span class="n">c3</span> <span class="mi">66</span>
+<span class="p">[</span>  <span class="mf">943.735455</span><span class="p">]</span> <span class="n">RIP</span>  <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8103db86</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">strrchr</span><span class="o">+</span><span class="mh">0x6</span><span class="o">/</span><span class="mh">0x20</span>
+<span class="p">[</span>  <span class="mf">943.736120</span><span class="p">]</span>  <span class="n">RSP</span> <span class="o">&lt;</span><span class="n">ffff88083e4bfe98</span><span class="o">&gt;</span>
+<span class="p">[</span>  <span class="mf">943.736598</span><span class="p">]</span> <span class="nl">CR2</span><span class="p">:</span> <span class="mo">00000000004</span><span class="mi">90523</span>
+</pre></div>
+</td></tr></table></p>
+<p>It is <code class="codehilite">setup_new_exec() -&gt; set_task_comm()</code>. I passed the user pointer to <code class="codehilite">set_task_comm()</code>, which I should pass a kernel pointer.</p>
+<p>And I actually found we missed a function: <code class="codehilite">do_close_on_exec()</code>. I also add a note above.</p>
+<h3 id="random-ib-bug">Random IB Bug</h3>
+<p>Another weird bug after pathing loader. Actually, I tried the same setting twice, the second time it works. I guess this is some random IB bug. (Setting: 1P, 1M, 1S. Running a simple exec.c testing program, this have not reach that point yet.)
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">wuklab13</span> <span class="mo">031</span><span class="mi">9</span><span class="o">-</span><span class="mi">2</span>
+<span class="p">[</span>  <span class="mf">496.288272</span><span class="p">]</span> <span class="n">p2m_fork</span><span class="p">(</span><span class="n">cpu0</span><span class="p">)</span><span class="o">:</span> <span class="n">I</span> <span class="nl">cur</span><span class="p">:</span><span class="mi">1</span><span class="o">-</span><span class="n">kernel_init</span> <span class="nl">new</span><span class="p">:</span><span class="mi">31</span>
+<span class="p">[</span>  <span class="mf">496.349624</span><span class="p">]</span> <span class="nl">BUG</span><span class="p">:</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">handle</span> <span class="n">kernel</span> <span class="nb">NULL</span> <span class="n">pointer</span> <span class="n">dereference</span> <span class="n">at</span> <span class="mo">0000000000000004</span>
+<span class="p">[</span>  <span class="mf">496.443216</span><span class="p">]</span> <span class="nl">IP</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81064935</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">fit_send_reply_with_rdma_write_with_imm</span><span class="o">+</span><span class="mh">0x65</span><span class="o">/</span><span class="mh">0x3b0</span>
+<span class="p">[</span>  <span class="mf">496.538892</span><span class="p">]</span> <span class="n">PGD</span> <span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">496.562811</span><span class="p">]</span> <span class="nl">Oops</span><span class="p">:</span> <span class="mo">0002</span> <span class="p">[</span><span class="err">#</span><span class="mi">1</span><span class="p">]</span> <span class="n">PREEMPT</span> <span class="n">SMP</span> <span class="n">PROCESSOR</span>
+<span class="p">[</span>  <span class="mf">496.618968</span><span class="p">]</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">0</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">1</span> <span class="nl">Comm</span><span class="p">:</span> <span class="n">kernel_init</span> <span class="mf">4.0.0</span><span class="o">-</span><span class="n">lego</span><span class="o">-</span><span class="n">ys</span><span class="o">+</span> <span class="err">#</span><span class="mi">559</span>
+<span class="p">[</span>  <span class="mf">496.689684</span><span class="p">]</span> <span class="nl">RIP</span><span class="p">:</span> <span class="mo">0010</span><span class="o">:</span><span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81064935</span><span class="o">&gt;</span><span class="p">]</span>  <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81064935</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">fit_send_reply_with_rdma_write_with_imm</span><span class="o">+</span><span class="mh">0x65</span><span class="o">/</span><span class="mh">0x3b0</span>
+<span class="p">[</span>  <span class="mf">496.814478</span><span class="p">]</span> <span class="nl">RSP</span><span class="p">:</span> <span class="mo">0000</span><span class="o">:</span><span class="n">ffff88107fcf7d00</span>  <span class="nl">EFLAGS</span><span class="p">:</span> <span class="mo">00010202</span>
+<span class="p">[</span>  <span class="mf">496.877915</span><span class="p">]</span> <span class="nl">RAX</span><span class="p">:</span> <span class="mo">000000000000004</span><span class="n">c</span> <span class="nl">RBX</span><span class="p">:</span> <span class="mo">0000000000000004</span> <span class="nl">RCX</span><span class="p">:</span> <span class="mo">000000000000002</span><span class="n">c</span>
+<span class="p">[</span>  <span class="mf">496.963190</span><span class="p">]</span> <span class="nl">RDX</span><span class="p">:</span> <span class="mo">0000000000000004</span> <span class="nl">RSI</span><span class="p">:</span> <span class="mo">0000000000000001</span> <span class="nl">RDI</span><span class="p">:</span> <span class="n">ffff88207ff6d008</span>
+<span class="p">[</span>  <span class="mf">497.048466</span><span class="p">]</span> <span class="nl">RBP</span><span class="p">:</span> <span class="n">ffff88107fcf7d98</span> <span class="nl">R08</span><span class="p">:</span> <span class="n">ffff88107fcf7e3c</span> <span class="nl">R09</span><span class="p">:</span> <span class="mo">0000000000000004</span>
+<span class="p">[</span>  <span class="mf">497.133742</span><span class="p">]</span> <span class="nl">R10</span><span class="p">:</span> <span class="n">ffffffff81145fe0</span> <span class="nl">R11</span><span class="p">:</span> <span class="mo">000000000000001</span><span class="n">c</span> <span class="nl">R12</span><span class="p">:</span> <span class="mo">000000000000002</span><span class="n">c</span>
+<span class="p">[</span>  <span class="mf">497.219018</span><span class="p">]</span> <span class="nl">R13</span><span class="p">:</span> <span class="mo">0000000000000001</span> <span class="nl">R14</span><span class="p">:</span> <span class="n">ffff88107fcf7e40</span> <span class="nl">R15</span><span class="p">:</span> <span class="n">ffff88207ff6d008</span>
+<span class="p">[</span>  <span class="mf">497.304293</span><span class="p">]</span> <span class="nl">FS</span><span class="p">:</span>  <span class="mo">0000000000000000</span><span class="p">(</span><span class="mo">0000</span><span class="p">)</span> <span class="nl">GS</span><span class="p">:</span><span class="n">ffff88107fc00000</span><span class="p">(</span><span class="mo">0000</span><span class="p">)</span> <span class="nl">knlGS</span><span class="p">:</span><span class="mo">0000000000000000</span>
+<span class="p">[</span>  <span class="mf">497.401009</span><span class="p">]</span> <span class="nl">CS</span><span class="p">:</span>  <span class="mo">0010</span> <span class="nl">DS</span><span class="p">:</span> <span class="mo">0000</span> <span class="nl">ES</span><span class="p">:</span> <span class="mo">0000</span> <span class="nl">CR0</span><span class="p">:</span> <span class="mo">00000000</span><span class="mi">80050033</span>
+<span class="p">[</span>  <span class="mf">497.469645</span><span class="p">]</span> <span class="nl">CR2</span><span class="p">:</span> <span class="mo">0000000000000004</span> <span class="nl">CR3</span><span class="p">:</span> <span class="mo">000000000113</span><span class="n">d000</span> <span class="nl">CR4</span><span class="p">:</span> <span class="mo">00000000000406</span><span class="n">b0</span>
+<span class="p">[</span>  <span class="mf">497.554922</span><span class="p">]</span> <span class="nl">Stack</span><span class="p">:</span>
+<span class="p">[</span>  <span class="mf">497.578840</span><span class="p">]</span> <span class="n">ffff88107fcf7d08</span> <span class="mo">0000000000000000</span> <span class="mo">00000000000002</span><span class="mi">82</span> <span class="n">ffffffff81077b10</span>
+<span class="p">[</span>  <span class="mf">497.666195</span><span class="p">]</span> <span class="mo">000000000000003</span><span class="n">a</span> <span class="mf">000000047f</span><span class="n">cf7e18</span> <span class="n">ffff88107fcf7e3c</span> <span class="n">ffff88107fd5ed88</span>
+<span class="p">[</span>  <span class="mf">497.753552</span><span class="p">]</span> <span class="mo">000000010000002</span><span class="n">c</span> <span class="n">ffffff9b00000040</span> <span class="mo">0000000000000034</span> <span class="n">ffffffff81145fe0</span>
+<span class="p">[</span>  <span class="mf">497.840906</span><span class="p">]</span> <span class="n">ffff88107fcf7db0</span> <span class="mo">00000000000002</span><span class="mi">97</span> <span class="n">ffff88107fd5ed88</span> <span class="mo">000000000000002</span><span class="n">c</span>
+<span class="p">[</span>  <span class="mf">497.928263</span><span class="p">]</span> <span class="n">ffff88107fcf7e3c</span> <span class="n">ffff88107fcf7e40</span> <span class="mo">000000000000003</span><span class="mi">9</span> <span class="n">ffff88107fcf7dc8</span>
+<span class="p">[</span>  <span class="mf">498.015618</span><span class="p">]</span> <span class="n">Call</span> <span class="nl">Trace</span><span class="p">:</span>
+<span class="p">[</span>  <span class="mf">498.044736</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">TSK</span><span class="o">&gt;</span>
+<span class="p">[</span>  <span class="mf">498.067615</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810622ff</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">ibapi_send_reply_timeout</span><span class="o">+</span><span class="mh">0x3f</span><span class="o">/</span><span class="mh">0x50</span>
+<span class="p">[</span>  <span class="mf">498.142492</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8103b0d4</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">net_send_reply_timeout</span><span class="o">+</span><span class="mh">0x94</span><span class="o">/</span><span class="mh">0x132</span>
+<span class="p">[</span>  <span class="mf">498.218408</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8103b0d4</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">net_send_reply_timeout</span><span class="o">+</span><span class="mh">0x94</span><span class="o">/</span><span class="mh">0x132</span>
+<span class="p">[</span>  <span class="mf">498.292244</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8102c683</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">p2m_fork</span><span class="o">+</span><span class="mh">0xd3</span><span class="o">/</span><span class="mh">0x200</span>
+<span class="p">[</span>  <span class="mf">498.351521</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101f490</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">do_fork</span><span class="o">+</span><span class="mh">0xf0</span><span class="o">/</span><span class="mh">0x150</span>
+<span class="p">[</span>  <span class="mf">498.409758</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101f514</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">kernel_thread</span><span class="o">+</span><span class="mh">0x24</span><span class="o">/</span><span class="mh">0x30</span>
+<span class="p">[</span>  <span class="mf">498.473195</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8115bf21</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">processor_manager_init</span><span class="o">+</span><span class="mh">0x21</span><span class="o">/</span><span class="mh">0x50</span>
+<span class="p">[</span>  <span class="mf">498.545991</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81000354</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">kernel_init</span><span class="o">+</span><span class="mh">0x94</span><span class="o">/</span><span class="mh">0x120</span>
+<span class="p">[</span>  <span class="mf">498.608388</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810002c0</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="mh">0xffffffff810002c0</span>
+<span class="p">[</span>  <span class="mf">498.668706</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81019b0a</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">schedule_tail</span><span class="o">+</span><span class="mh">0xa</span><span class="o">/</span><span class="mh">0x40</span>
+<span class="p">[</span>  <span class="mf">498.733182</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810002c0</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="mh">0xffffffff810002c0</span>
+<span class="p">[</span>  <span class="mf">498.793499</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100e762</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">ret_from_fork</span><span class="o">+</span><span class="mh">0x22</span><span class="o">/</span><span class="mh">0x30</span>
+<span class="p">[</span>  <span class="mf">498.856936</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">EOT</span><span class="o">&gt;</span>
+</pre></div>
+</td></tr></table></p>
 <h2 id="0318-sun">03/18 Sun</h2>
 <p>Got a bug report after enable preempt and sweep thread
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
