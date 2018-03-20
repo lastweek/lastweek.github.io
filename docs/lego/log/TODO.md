@@ -1,9 +1,10 @@
 # TODO
 
-Last Updated: Mar 7, 2018
+Last Updated: Mar 19, 2018
 
 ## Planned
 
+- `batched TLB flush`
 - `__unhash_process()`: in exit, release pid etc.
 - `de_thread()`: in exec, change pid etc.
 
