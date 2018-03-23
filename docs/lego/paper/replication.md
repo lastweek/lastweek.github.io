@@ -1,4 +1,8 @@
 # Replication, Checkpoint, Logging, and Recovery
+## Discussion
+
+- 03/20/18: when memory is enough, use pessimistic replication, when demand is high, use optimistic to save memory components.
+
 ## Replication
 
 Before started, I spent some time recap, and found Wiki pages[^1][^2][^3] are actually very good.

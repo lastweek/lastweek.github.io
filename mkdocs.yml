@@ -38,6 +38,7 @@ pages:
            - 'Evict and Refcount': 'lego/pcache/evict_and_ref.md'
            - 'Sweep': 'lego/pcache/sweep.md'
            - 'TLB Coherence': 'lego/pcache/tlb.md'
+           - 'PageTable Lock': lego/pcache/pgtable-lock.md
            - 'SMP Design': 'lego/pcache/smp_design.md'
    - Paper:
            - 'NMP': 'lego/paper/nmp.md'
