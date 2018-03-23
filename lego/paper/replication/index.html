@@ -698,6 +698,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../pcache/pgtable-lock/" title="PageTable Lock" class="md-nav__link">
+      PageTable Lock
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../pcache/smp_design/" title="SMP Design" class="md-nav__link">
       SMP Design
     </a>
@@ -799,6 +811,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#discussion" title="Discussion" class="md-nav__link">
+    Discussion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#replication" title="Replication" class="md-nav__link">
     Replication
   </a>
@@ -861,6 +880,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#discussion" title="Discussion" class="md-nav__link">
+    Discussion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#replication" title="Replication" class="md-nav__link">
     Replication
   </a>
@@ -899,6 +925,10 @@
                 
                 
                 <h1 id="replication-checkpoint-logging-and-recovery">Replication, Checkpoint, Logging, and Recovery</h1>
+<h2 id="discussion">Discussion</h2>
+<ul>
+<li>03/20/18: when memory is enough, use pessimistic replication, when demand is high, use optimistic to save memory components.</li>
+</ul>
 <h2 id="replication">Replication</h2>
 <p>Before started, I spent some time recap, and found Wiki pages<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup><sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup><sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup> are actually very good.</p>
 <p>Two main approaches:</p>

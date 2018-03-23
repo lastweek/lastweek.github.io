@@ -36,7 +36,7 @@
     
     
       
-        <title>Config - Yizhou Shan's Home Page</title>
+        <title>PageTable Lock - Yizhou Shan's Home Page</title>
       
     
     
@@ -69,7 +69,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#pcache-configuration" tabindex="1" class="md-skip">
+      <a href="#page-table-lock" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -95,7 +95,7 @@
                 Yizhou Shan's Home Page
               </span>
               <span class="md-header-nav__topic">
-                Config
+                PageTable Lock
               </span>
             
           
@@ -626,20 +626,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-    <a href="./" title="Config" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../config/" title="Config" class="md-nav__link">
       Config
     </a>
-    
   </li>
 
         
@@ -707,11 +698,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../pgtable-lock/" title="PageTable Lock" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+    <a href="./" title="PageTable Lock" class="md-nav__link md-nav__link--active">
       PageTable Lock
     </a>
+    
   </li>
 
         
@@ -837,60 +837,22 @@
               
                 
                 
-                <h1 id="pcache-configuration">Pcache Configuration</h1>
-<p>This doc explains what configuration options pcache has, and how to config them properly. Pcache is only enabled in Lego&rsquo;s processor manager and currently it uses DRAM to emulate the last-level cache (or, L4).</p>
-<h1 id="kconfig">Kconfig</h1>
-<h4 id="config_memmap_memblock_reserved">CONFIG_MEMMAP_MEMBLOCK_RESERVED</h4>
-<p><strong>DEFAULT: Y</strong></p>
-<p>By default, boot command line option <code class="codehilite">memmap $</code> will reserve a range of physical memory.
-This reserved memory will be marked reserved in e820 table, which
-means this range will not be registered into <code class="codehilite">memblock</code>. Only memory that has been
-registered into <code class="codehilite">memblock</code> will be assigned <code class="codehilite">struct page</code> with it (both <code class="codehilite">memblock.memory</code> and <code class="codehilite">memblock.reserve</code> will have). And do note that this part of reserved memory can be mapped as 1GB page at boot time.</p>
-<p>In other words, by default (the linux semantic), users need to <code class="codehilite">ioremap</code>
-the <code class="codehilite">memmap $</code> reserved physical memory, and use the returned kernel virtual address afterwards.
-And do note that the <code class="codehilite">ioremap()</code> only support 4KB mapping.</p>
-<p>In Lego, if this option is enabled, the memory marked by <code class="codehilite">memmap $</code> will <em>NOT</em> be marked
-reserved into e820 table, instead, it will be pushed into <code class="codehilite">memblock</code>, which means
-it is mapped into kernel direct mapping and has <code class="codehilite">struct page</code>.</p>
-<p>For those who have done DAX, or NVM related stuff, you must have struggled with
-<code class="codehilite">memmap $</code>, and complained why it does not have <code class="codehilite">struct page</code>, I guess? So here is
-the simple code to do so:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span> <span class="o">==</span> <span class="sc">&#39;@&#39;</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">start_at</span> <span class="o">=</span> <span class="n">memparse</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">);</span>
-        <span class="n">e820_add_region</span><span class="p">(</span><span class="n">start_at</span><span class="p">,</span> <span class="n">mem_size</span><span class="p">,</span> <span class="n">E820_RAM</span><span class="p">);</span>
-<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span> <span class="o">==</span> <span class="sc">&#39;#&#39;</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">start_at</span> <span class="o">=</span> <span class="n">memparse</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">);</span>
-        <span class="n">e820_add_region</span><span class="p">(</span><span class="n">start_at</span><span class="p">,</span> <span class="n">mem_size</span><span class="p">,</span> <span class="n">E820_ACPI</span><span class="p">);</span>
-<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span> <span class="o">==</span> <span class="sc">&#39;$&#39;</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">start_at</span> <span class="o">=</span> <span class="n">memparse</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">);</span>
-
-<span class="cp">#ifdef CONFIG_MEMMAP_MEMBLOCK_RESERVED</span>
-        <span class="n">memblock_reserve</span><span class="p">(</span><span class="n">start_at</span><span class="p">,</span> <span class="n">mem_size</span><span class="p">);</span>
-<span class="cp">#else</span>
-        <span class="n">e820_add_region</span><span class="p">(</span><span class="n">start_at</span><span class="p">,</span> <span class="n">mem_size</span><span class="p">,</span> <span class="n">E820_RESERVED</span><span class="p">);</span>
-<span class="cp">#endif</span>
-</pre></div>
-</td></tr></table></p>
-<p>But why we are having this? Because I think the <code class="codehilite">direct 1GB mapping</code> may have
-better performance: huge page mapping can truly save us a lot TLB misses. However, the real performance number is unknown.</p>
-<p>If unsure, say <code class="codehilite">Y</code>.</p>
+                <h1 id="page-table-lock">Page Table Lock</h1>
+<p>In old Linux or previous Lego, user page table operations, such as set, clear, are protected by <code class="codehilite">mm-&gt;page_table_lock</code>. This one single lock prohibits a lot parallelisms on big SMP machines. An ideal solution is to have finer-granularity locks, so that faults on different parts of the user address space can be handled with less contention.</p>
+<p>But finer-granularity locks means you need more memory for the locks. This is a simple trade-off. Lego currently mimic the Linux x86 default setting<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>, where each PMD <em>and</em> PTE page table pages has their own lock. The lock is a spinlock embedded in the <code class="codehilite">struct page</code>.</p>
+<p>The night I patched this, I can feel pcache has much more parallelisms. And, IB side, can you feel the pressure now?</p>
 <p>&ndash;<br />
-Yizhou Shan <img alt="🍀" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f340.svg" title=":four_leaf_clover:" /><br />
-Created: Feb 01, 2018<br />
-Last Updated: Feb 01, 2018</p>
+Yizhou Shan<br />
+Created: Mar 22, 2018<br />
+Last Updated: Mar 22, 2018</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><a href="https://www.kernel.org/doc/Documentation/vm/split_page_table_lock">Split page table locks</a>&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
                   
                 
@@ -909,7 +871,7 @@ Last Updated: Feb 01, 2018</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../syscall/wait_and_exit/" title="wait4 and exit()" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../tlb/" title="TLB Coherence" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -918,19 +880,19 @@ Last Updated: Feb 01, 2018</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                wait4 and exit()
+                TLB Coherence
               </span>
             </div>
           </a>
         
         
-          <a href="../rmap/" title="Reverse Mapping" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../smp_design/" title="SMP Design" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Reverse Mapping
+                SMP Design
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
