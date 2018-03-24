@@ -1,8 +1,29 @@
 # FAST'18
 
-Brief read of all FAST18 papers. (Mar 24)
+Brief read of all FAST18 papers, spend two hours in Greyhouse, it is snowy outside. (Mar 24)
 
-- Continue from REFLUSH.
+In all, interesting ones:
+
+- Logical Synchronous Replication in the Tintri VMstore File System
+- Improving Docker Registry Design based on Production Workload Analysis
+- UKSM: Swift Memory Deduplication via Hierarchical and Adaptive Memory Region Distilling
+- Designing a True Direct-Access File System with DevFS
+
+---
+
+- Replication Related:
+    - Replication: Logical Synchronous Replication in the Tintri VMstore File System
+    - Erasure Coding: Clay Codes: Moulding MDS Codes to Yield an MSR Code
+
+- Improving Docker Registry Design based on Production Workload Analysis. Something new about docker trace analysis.
+
+- UKSM: Swift Memory Deduplication via Hierarchical and Adaptive Memory Region Distilling. Also seems a nice read.
+
+- Looks like an interesting one: `Designing a True Direct-Access File System with DevFS`.
+
+- Two fsync related papers. FLush to non-volatile memory is really a daunting task.
+  - Barrier-Enabled IO Stack for Flash Storage
+  - Rethink FLUSH
 
 - One paper is doing PM ordering stuff. Mentioned Total Store Ordering (TSO) again, which is the consistency model I truly love the most: it benefit programmers, make our's life much easier.
 

@@ -1,5 +1,8 @@
 Cool and good-to-know stuff:
 
+- Deduplication: Content Based Page Sharing (CBPS) + COW
+    - Linux’s Kernel Same-page Merging (KSM)
+
 - Multi-Queue SSD, MQ-SSD [^2]
 
 - [Write Anywhere File Layout, WAFL](https://en.wikipedia.org/wiki/Write_Anywhere_File_Layout). NetApp Paper[^1].
