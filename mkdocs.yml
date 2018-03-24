@@ -2,8 +2,10 @@ site_name: Yizhou Shan's Home Page
 pages:
 - Home: index.md
 - Misc:
-   - 'Cheatsheet':             'misc/cheatsheet.md'
    - 'Jasmine':                'misc/jasmine.md'
+   - 'Cheatsheet':             'misc/cheatsheet.md'
+- Read:
+   - 'FAST 18': 'read/fast18.md'
 - Lego:
    - 'Log':
            - 'TODO': 'lego/log/TODO.md'
@@ -45,6 +47,7 @@ pages:
            - 'Processor OOM': 'lego/paper/processor_oom.md'
            - 'Gen-Z': 'lego/paper/genz.md'
            - 'Replication': 'lego/paper/replication.md'
+           - 'Related': 'lego/paper/related.md'
 
 markdown_extensions:
   - tables

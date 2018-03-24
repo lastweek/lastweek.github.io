@@ -1,5 +1,12 @@
 Cool and good-to-know stuff:
 
+- Multi-Queue SSD, MQ-SSD [^2]
+
+- [Write Anywhere File Layout, WAFL](https://en.wikipedia.org/wiki/Write_Anywhere_File_Layout). NetApp Paper[^1].
+    - Journaling
+    - Shadow Paging
+    - Soft Updates
+
 - [Shared-nothing architecture](https://en.wikipedia.org/wiki/Shared-nothing_architecture) -> [no single point of contention](https://en.wikipedia.org/wiki/Reliability_engineering)
 
 - [ZeptoOS](http://www.mcs.anl.gov/research/projects/zeptoos/)
@@ -29,3 +36,7 @@ Cool and good-to-know stuff:
     - linearizability
     - lock-free skip list
     - [blog](https://www.addthis.com/blog/2013/04/25/the-secret-life-of-concurrent-data-structures/)
+
+[^1]: WAFL Iron: Repairing Live Enterprise File Systems, FAST'18
+[^2]: Linux Block IO: Introducing Multi-queue SSD Access on
+Multi-core Systems, SYSTOR'13
