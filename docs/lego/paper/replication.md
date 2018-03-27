@@ -1,6 +1,13 @@
 # Replication, Checkpoint, Logging, and Recovery
 ## Discussion
 
+- 03/25/18:
+    - Revisit RAMCloud, which has a very similar goal with Lego. It keeps a full copy of data in DRAM, use disk to ensure crash consistency. The key assumption of RAMCloud is the battery-backed DRAM or PM on its disk side.
+    - We don't need to provide a 100% recoverable model. Our goal here is to reduce the failure probabilities introduced by more components. Let us say Lego do the persist in a batching fashion, instead of per-page. We are not able to recover if and only if failure happen *while* we do the batch persist. But we are safe if failure happen between batched persist.
+    - That actually also means we need to checkpoint process state in Processor side. We have to save all the process context along with the persisted memory log! Otherwise, the memory content is useless, we don't know the exact IP and other things.
+    - I'm wrong. :-)
+
+
 - 03/20/18: when memory is enough, use pessimistic replication, when demand is high, use optimistic to save memory components.
 
 ## Replication

@@ -4,6 +4,7 @@ Last Updated: Mar 19, 2018
 
 ## Planned
 
+- `TSC deadline mode (one-shot tick)`. What is the performance comparison with periodic mode?
 - `batched TLB flush`
 - `__unhash_process()`: in exit, release pid etc.
 - `de_thread()`: in exec, change pid etc.
