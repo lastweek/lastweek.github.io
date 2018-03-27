@@ -975,7 +975,18 @@
                 <h1 id="replication-checkpoint-logging-and-recovery">Replication, Checkpoint, Logging, and Recovery</h1>
 <h2 id="discussion">Discussion</h2>
 <ul>
-<li>03/20/18: when memory is enough, use pessimistic replication, when demand is high, use optimistic to save memory components.</li>
+<li>
+<p>03/25/18:</p>
+<ul>
+<li>Revisit RAMCloud, which has a very similar goal with Lego. It keeps a full copy of data in DRAM, use disk to ensure crash consistency. The key assumption of RAMCloud is the battery-backed DRAM or PM on its disk side.</li>
+<li>We don&rsquo;t need to provide a 100% recoverable model. Our goal here is to reduce the failure probabilities introduced by more components. Let us say Lego do the persist in a batching fashion, instead of per-page. We are not able to recover if and only if failure happen <em>while</em> we do the batch persist. But we are safe if failure happen between batched persist.</li>
+<li>That actually also means we need to checkpoint process state in Processor side. We have to save all the process context along with the persisted memory log! Otherwise, the memory content is useless, we don&rsquo;t know the exact IP and other things.</li>
+<li>I&rsquo;m wrong. :-)</li>
+</ul>
+</li>
+<li>
+<p>03/20/18: when memory is enough, use pessimistic replication, when demand is high, use optimistic to save memory components.</p>
+</li>
 </ul>
 <h2 id="replication">Replication</h2>
 <p>Before started, I spent some time recap, and found Wiki pages<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup><sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup><sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup> are actually very good.</p>
