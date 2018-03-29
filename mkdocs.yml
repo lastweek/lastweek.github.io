@@ -12,12 +12,11 @@ pages:
            - 'MISC': 'lego/log/misc.md'
            - 'March 2018':           'lego/log/log-03-2018.md'
            - 'Feb 2018':           'lego/log/log-02-2018.md'
-   - 'Boot':
-           - 'GRUB':             'lego/boot/grub.md'
-           - 'Trampoline':       'lego/boot/trampoline.md'
    - 'Kernel':
         - 'Kconfig': 'lego/kernel/kconfig.md'
         - 'Debug': 'lego/kernel/debug.md'
+        - 'GRUB': 'lego/kernel/grub.md'
+        - 'Trampoline': 'lego/kernel/trampoline.md'
         - 'Disable pgfault': 'lego/kernel/pagefault_disable.md'
         - 'Stop machine': 'lego/kernel/stop_machine.md'
         - 'Program Loader': 'lego/kernel/loader.md'
