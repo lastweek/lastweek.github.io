@@ -406,56 +406,6 @@
             "title": "02/05 Mon Sunny"
         }, 
         {
-            "location": "/lego/boot/grub/", 
-            "text": "Use GRUB2 to boot Lego\n\n\nLast Updated: 02/02/2018\n\n\nThis document explains: \n1)\n how Lego itself is written to pretend as a Linux kernel, \n2)\n how to boot Lego kernel with GRUB2, \n3)\n GRUB2 configurations specific to Lego.\n\n\nHow Lego pretend as a Linux kernel\n\n\nasdsad\n\n\nHow to config GRUB2 for Lego\n\n\nasdsa", 
-            "title": "GRUB"
-        }, 
-        {
-            "location": "/lego/boot/grub/#use-grub2-to-boot-lego", 
-            "text": "Last Updated: 02/02/2018  This document explains:  1)  how Lego itself is written to pretend as a Linux kernel,  2)  how to boot Lego kernel with GRUB2,  3)  GRUB2 configurations specific to Lego.", 
-            "title": "Use GRUB2 to boot Lego"
-        }, 
-        {
-            "location": "/lego/boot/grub/#how-lego-pretend-as-a-linux-kernel", 
-            "text": "asdsad", 
-            "title": "How Lego pretend as a Linux kernel"
-        }, 
-        {
-            "location": "/lego/boot/grub/#how-to-config-grub2-for-lego", 
-            "text": "asdsa", 
-            "title": "How to config GRUB2 for Lego"
-        }, 
-        {
-            "location": "/lego/boot/trampoline/", 
-            "text": "How trampoline works in Lego\n\n\nWhat is trampoline code?\n\n\nTrampoline code is used by \nBSP\n to boot other secondary CPUs.\nAt startup, \nBSP\n wakeup secondary CPUs by sending a \nAPIC INIT\n\ncommand, which carry the \n[start_ip]\n where the secondary CPUs should\nstart to run.\n\n\nThe trampoline code is the code starting from \n[start_ip]\n. Used\nby the secondary CPU to jump from \n16-bit realmode\n to \n64-bit\n code\n(the first instruction of 64-bit code will be in \narch/x86/kernel/head_64.S\n).\n\n\nWhere is the trampoline source code?\n\n\nThe source files are all in \narch/x86/realmode/\n. There are two parts: \n1)\n \narch/x86/realmode/rm/trampoline.S\n: which is the code that will run. And it is a mix of 16-bit, 32-bit, 64-bit code (ugh..). \n2)\n \narch/x86/realmode/piggy.S\n: Since the trampoline code can not to linked\ninto kernel image directly. So we have to piggyback the trampoline.bin binary\ncode into a section, which is described by \ntrampoline_start\n and \ntrampoline_end\n. So the kernel can address the trampoline code via these two symbols.\n\n\nThe compile flow is:\n\n1\n2\n3\n4\n5\n6\n    arch/x86/realmode/rm/trmapoline.S\n    -\n CC__ arch/x86/realmode/rm/trmapoline.o\n       -\n LD arch/x86/realmode/rm/trampoline\n          -\n OBJCOPY arch/x86/realmode/rm/trampoline.bin\n             -\n This bin goes into piggy.o\n            -\n piggy.o goes into vmImage\n\n\n\n\n\nWhat happened at runtime?\n\n\nThe setup code was loaded by GRUB below 1MB. Inside \narch/x86/boot/main.c\n, we\nwill save the \ncs()\n into the \nboot_params\n and pass it to kernel. In \nsetup_arch()\n, we will copy the trampoline.bin code to the \ncs()\n address reported by \nboot_param\n. This means we will override setup code, which is okay.\n\n\nAt last, we wake up the secondary CPUs inside \nsmp_init()\n.\n\n\nCompare with Linux\n\n\nI vaguely remember how Linux implement this. The only thing I remember is that Linux use some sort of structure, which is filled by BSP and then passed, or used by secondary CPUs. The mechanism has no difference, though. Linux just has more robust debugging facilities.\n\n\n\nYizhou Shan\n\nMar 3, 2017", 
-            "title": "Trampoline"
-        }, 
-        {
-            "location": "/lego/boot/trampoline/#how-trampoline-works-in-lego", 
-            "text": "", 
-            "title": "How trampoline works in Lego"
-        }, 
-        {
-            "location": "/lego/boot/trampoline/#what-is-trampoline-code", 
-            "text": "Trampoline code is used by  BSP  to boot other secondary CPUs.\nAt startup,  BSP  wakeup secondary CPUs by sending a  APIC INIT \ncommand, which carry the  [start_ip]  where the secondary CPUs should\nstart to run.  The trampoline code is the code starting from  [start_ip] . Used\nby the secondary CPU to jump from  16-bit realmode  to  64-bit  code\n(the first instruction of 64-bit code will be in  arch/x86/kernel/head_64.S ).", 
-            "title": "What is trampoline code?"
-        }, 
-        {
-            "location": "/lego/boot/trampoline/#where-is-the-trampoline-source-code", 
-            "text": "The source files are all in  arch/x86/realmode/ . There are two parts:  1)   arch/x86/realmode/rm/trampoline.S : which is the code that will run. And it is a mix of 16-bit, 32-bit, 64-bit code (ugh..).  2)   arch/x86/realmode/piggy.S : Since the trampoline code can not to linked\ninto kernel image directly. So we have to piggyback the trampoline.bin binary\ncode into a section, which is described by  trampoline_start  and  trampoline_end . So the kernel can address the trampoline code via these two symbols.  The compile flow is: 1\n2\n3\n4\n5\n6     arch/x86/realmode/rm/trmapoline.S\n    -  CC__ arch/x86/realmode/rm/trmapoline.o\n       -  LD arch/x86/realmode/rm/trampoline\n          -  OBJCOPY arch/x86/realmode/rm/trampoline.bin\n             -  This bin goes into piggy.o\n            -  piggy.o goes into vmImage", 
-            "title": "Where is the trampoline source code?"
-        }, 
-        {
-            "location": "/lego/boot/trampoline/#what-happened-at-runtime", 
-            "text": "The setup code was loaded by GRUB below 1MB. Inside  arch/x86/boot/main.c , we\nwill save the  cs()  into the  boot_params  and pass it to kernel. In  setup_arch() , we will copy the trampoline.bin code to the  cs()  address reported by  boot_param . This means we will override setup code, which is okay.  At last, we wake up the secondary CPUs inside  smp_init() .", 
-            "title": "What happened at runtime?"
-        }, 
-        {
-            "location": "/lego/boot/trampoline/#compare-with-linux", 
-            "text": "I vaguely remember how Linux implement this. The only thing I remember is that Linux use some sort of structure, which is filled by BSP and then passed, or used by secondary CPUs. The mechanism has no difference, though. Linux just has more robust debugging facilities.  \nYizhou Shan \nMar 3, 2017", 
-            "title": "Compare with Linux"
-        }, 
-        {
             "location": "/lego/kernel/kconfig/", 
             "text": "Lego Kconfig\n\n\nNetwork\n\n\n\n\nEnable \nCONFIG_INFINIBAND\n\n\nEnable \nCONFIG_FIT\n\n\nSet \nCONFIG_FIT_INITIAL_SLEEP_TIMEOUT\n: boot time connection timeout\n\n\nSet \nCONFIG_FIT_NR_NODES\n: number of Lego nodes in this run\n\n\nSet \nCONFIG_FIT_LOCAL_ID\n: current node id\n\n\n\n\nIn \nnet/lego/fit_machine.c\n, modify the \nlego_cluster_hostnames\n array to match the machines you are using.\n\n\n\n\n\n\nSet \nCONFIG_DEFAULT_MEM_NODE\n in processor manager\n\n\n\n\nSet \nCONFIG_DEFAULT_STORAGE_NODE\n if you are running with storage component.\n\n\n\n\nNetwork configuration is crucial, please make sure all Lego nodes have consistent configurations. Otherwise the system may panic or fail to connect.\n\n\nProcessor\n\n\n\n\nEnable \nCONFIG_COMP_PROCESSOR\n\n\nopen \n.config\n\n\nremove line \n# CONFIG_COMP_PROCESSOR is not set\n\n\nclose \n.config\n\n\ndo \nmake\n, you will see \nConfigure Lego as processor component (COMP_PROCESSOR) [N/y/?] (NEW)\n, select Y\n\n\nChoose default configuration for all new config options\n\n\n\n\n\n\nEnable \nCONFIG_USE_RAMFS\n if you are not using storage components\n\n\n\n\nMemory\n\n\n\n\nEnable \nCONFIG_COMP_MEMORY\n\n\nopen \n.config\n\n\nremove line \n# CONFIG_COMP_MEMORY is not set\n\n\nclose \n.config\n\n\ndo \nmake\n, you will see \nConfigure Lego as memory component manager (COMP_MEMORY) [N/y/?] (NEW)\n, select Y\n\n\nChoose default configuration for all new config options\n\n\n\n\n\n\nEnable \nCONFIG_USE_RAMFS\n if you are not using storage components\n\n\nSet \nCONFIG_RAMFS_OBJECT_FILE\n: points to \nstatic-linked\n ELF file that you want to execute.\n\n\ntips: you can put your test code under \nusr/\n directory, and a simple \nmake\n will compile everything under.\n\n\n\n\n\n\n\n\nRun without Storage Component\n\n\nTo run Lego just with one processor component and one memory component, you need to:\n\n\n\n\nEnable \nCONFIG_USE_RAMFS\n at both sides. And in memory side, you need to set the \nCONFIG_RAMFS_OBJECT_FILE\n, which points to the ELF binary you want to test.\n\n\nmake sure \nCONFIG_DEFAULT_MEM_NODE\n at processor component is pointing to memory component\ns node id.\n\n\n\n\nA typical code snippet and configuration would be:\n\n1\n2\n3\n4\nstatic\n \nconst\n \nchar\n \n*\nlego_cluster_hostnames\n[\nCONFIG_FIT_NR_NODES\n]\n \n=\n \n{\n\n        \n[\n0\n]\n     \n=\n       \nwuklab00\n,\n\n        \n[\n1\n]\n     \n=\n       \nwuklab01\n,\n\n\n};\n\n\n\n\n\n\n 1\n 2\n 3\n 4\n 5\n 6\n 7\n 8\n 9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\nwuklab00 Processor\n\n#\n# Lego Processor Component Configurations\n#\nCONFIG_COMP_PROCESSOR=y\nCONFIG_CHECKPOINT=y\nCONFIG_MEMMAP_MEMBLOCK_RESERVED=y\n# CONFIG_PCACHE_EVICT_RANDOM is not set\n# CONFIG_PCACHE_EVICT_FIFO is not set\nCONFIG_PCACHE_EVICT_LRU=y\nCONFIG_PCACHE_EVICT_GENERIC_SWEEP=y\n# CONFIG_PCACHE_EVICTION_WRITE_PROTECT is not set\n# CONFIG_PCACHE_EVICTION_PERSET_LIST is not set\nCONFIG_PCACHE_EVICTION_VICTIM=y\nCONFIG_PCACHE_EVICTION_VICTIM_NR_ENTRIES=8\nCONFIG_PCACHE_PREFETCH=y\n\n#\n# Processor DEBUG Options\n#\n\n#\n# Lego Memory Component Configurations\n#\n# CONFIG_COMP_MEMORY is not set\n\n#\n# DRAM Cache Options\n#\nCONFIG_PCACHE_LINE_SIZE_SHIFT=12\nCONFIG_PCACHE_ASSOCIATIVITY_SHIFT=3\n\n#\n# General Manager Config/Debug Options\n#\nCONFIG_DEFAULT_MEM_NODE=1\nCONFIG_DEFAULT_STORAGE_NODE=2\nCONFIG_USE_RAMFS=y\n\n#\n# Networking\n#\n# CONFIG_LWIP is not set\nCONFIG_FIT=y\n# CONFIG_FIT_DEBUG is not set\nCONFIG_FIT_INITIAL_SLEEP_TIMEOUT=30\nCONFIG_FIT_NR_NODES=2\nCONFIG_FIT_LOCAL_ID=0\n\n\n\n\n\n\n 1\n 2\n 3\n 4\n 5\n 6\n 7\n 8\n 9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\nwuklab01 Memory\n\n#\n# Lego Memory Component Configurations\n#\nCONFIG_COMP_MEMORY=y\n\n#\n# Memory DEBUG Options\n#\n# CONFIG_MEM_PREFETCH is not set\n\n#\n# DRAM Cache Options\n#\nCONFIG_PCACHE_LINE_SIZE_SHIFT=12\nCONFIG_PCACHE_ASSOCIATIVITY_SHIFT=3\n\n#\n# General Manager Config/Debug Options\n#\nCONFIG_DEFAULT_MEM_NODE=1\nCONFIG_DEFAULT_STORAGE_NODE=2\nCONFIG_USE_RAMFS=y\nCONFIG_RAMFS_OBJECT_FILE=\nusr/pcache_conflict.o\n\n\n#\n# Networking\n#\n# CONFIG_LWIP is not set\nCONFIG_FIT=y\n# CONFIG_FIT_DEBUG is not set\nCONFIG_FIT_INITIAL_SLEEP_TIMEOUT=30\nCONFIG_FIT_NR_NODES=2\nCONFIG_FIT_LOCAL_ID=1", 
             "title": "Kconfig"
@@ -509,6 +459,56 @@
             "location": "/lego/kernel/debug/#memory-manager", 
             "text": "1\n2 void   dump_lego_mm ( const   struct   lego_mm_struct   * mm );  void   dump_vma ( const   struct   vm_area_struct   * vma );   \nThese two functions are used to dump the virtual address space of a process. Use these functions if you developing process VM related things.", 
             "title": "Memory Manager"
+        }, 
+        {
+            "location": "/lego/kernel/grub/", 
+            "text": "Use GRUB2 to boot Lego\n\n\nLast Updated: 02/02/2018\n\n\nThis document explains: \n1)\n how Lego itself is written to pretend as a Linux kernel, \n2)\n how to boot Lego kernel with GRUB2, \n3)\n GRUB2 configurations specific to Lego.\n\n\nHow Lego pretend as a Linux kernel\n\n\nasdsad\n\n\nHow to config GRUB2 for Lego\n\n\nasdsa", 
+            "title": "GRUB"
+        }, 
+        {
+            "location": "/lego/kernel/grub/#use-grub2-to-boot-lego", 
+            "text": "Last Updated: 02/02/2018  This document explains:  1)  how Lego itself is written to pretend as a Linux kernel,  2)  how to boot Lego kernel with GRUB2,  3)  GRUB2 configurations specific to Lego.", 
+            "title": "Use GRUB2 to boot Lego"
+        }, 
+        {
+            "location": "/lego/kernel/grub/#how-lego-pretend-as-a-linux-kernel", 
+            "text": "asdsad", 
+            "title": "How Lego pretend as a Linux kernel"
+        }, 
+        {
+            "location": "/lego/kernel/grub/#how-to-config-grub2-for-lego", 
+            "text": "asdsa", 
+            "title": "How to config GRUB2 for Lego"
+        }, 
+        {
+            "location": "/lego/kernel/trampoline/", 
+            "text": "How trampoline works in Lego\n\n\nWhat is trampoline code?\n\n\nTrampoline code is used by \nBSP\n to boot other secondary CPUs.\nAt startup, \nBSP\n wakeup secondary CPUs by sending a \nAPIC INIT\n\ncommand, which carry the \n[start_ip]\n where the secondary CPUs should\nstart to run.\n\n\nThe trampoline code is the code starting from \n[start_ip]\n. Used\nby the secondary CPU to jump from \n16-bit realmode\n to \n64-bit\n code\n(the first instruction of 64-bit code will be in \narch/x86/kernel/head_64.S\n).\n\n\nWhere is the trampoline source code?\n\n\nThe source files are all in \narch/x86/realmode/\n. There are two parts: \n1)\n \narch/x86/realmode/rm/trampoline.S\n: which is the code that will run. And it is a mix of 16-bit, 32-bit, 64-bit code (ugh..). \n2)\n \narch/x86/realmode/piggy.S\n: Since the trampoline code can not to linked\ninto kernel image directly. So we have to piggyback the trampoline.bin binary\ncode into a section, which is described by \ntrampoline_start\n and \ntrampoline_end\n. So the kernel can address the trampoline code via these two symbols.\n\n\nThe compile flow is:\n\n1\n2\n3\n4\n5\n6\n    arch/x86/realmode/rm/trmapoline.S\n    -\n CC__ arch/x86/realmode/rm/trmapoline.o\n       -\n LD arch/x86/realmode/rm/trampoline\n          -\n OBJCOPY arch/x86/realmode/rm/trampoline.bin\n             -\n This bin goes into piggy.o\n            -\n piggy.o goes into vmImage\n\n\n\n\n\nWhat happened at runtime?\n\n\nThe setup code was loaded by GRUB below 1MB. Inside \narch/x86/boot/main.c\n, we\nwill save the \ncs()\n into the \nboot_params\n and pass it to kernel. In \nsetup_arch()\n, we will copy the trampoline.bin code to the \ncs()\n address reported by \nboot_param\n. This means we will override setup code, which is okay.\n\n\nAt last, we wake up the secondary CPUs inside \nsmp_init()\n.\n\n\nCompare with Linux\n\n\nI vaguely remember how Linux implement this. The only thing I remember is that Linux use some sort of structure, which is filled by BSP and then passed, or used by secondary CPUs. The mechanism has no difference, though. Linux just has more robust debugging facilities.\n\n\n\nYizhou Shan\n\nMar 3, 2017", 
+            "title": "Trampoline"
+        }, 
+        {
+            "location": "/lego/kernel/trampoline/#how-trampoline-works-in-lego", 
+            "text": "", 
+            "title": "How trampoline works in Lego"
+        }, 
+        {
+            "location": "/lego/kernel/trampoline/#what-is-trampoline-code", 
+            "text": "Trampoline code is used by  BSP  to boot other secondary CPUs.\nAt startup,  BSP  wakeup secondary CPUs by sending a  APIC INIT \ncommand, which carry the  [start_ip]  where the secondary CPUs should\nstart to run.  The trampoline code is the code starting from  [start_ip] . Used\nby the secondary CPU to jump from  16-bit realmode  to  64-bit  code\n(the first instruction of 64-bit code will be in  arch/x86/kernel/head_64.S ).", 
+            "title": "What is trampoline code?"
+        }, 
+        {
+            "location": "/lego/kernel/trampoline/#where-is-the-trampoline-source-code", 
+            "text": "The source files are all in  arch/x86/realmode/ . There are two parts:  1)   arch/x86/realmode/rm/trampoline.S : which is the code that will run. And it is a mix of 16-bit, 32-bit, 64-bit code (ugh..).  2)   arch/x86/realmode/piggy.S : Since the trampoline code can not to linked\ninto kernel image directly. So we have to piggyback the trampoline.bin binary\ncode into a section, which is described by  trampoline_start  and  trampoline_end . So the kernel can address the trampoline code via these two symbols.  The compile flow is: 1\n2\n3\n4\n5\n6     arch/x86/realmode/rm/trmapoline.S\n    -  CC__ arch/x86/realmode/rm/trmapoline.o\n       -  LD arch/x86/realmode/rm/trampoline\n          -  OBJCOPY arch/x86/realmode/rm/trampoline.bin\n             -  This bin goes into piggy.o\n            -  piggy.o goes into vmImage", 
+            "title": "Where is the trampoline source code?"
+        }, 
+        {
+            "location": "/lego/kernel/trampoline/#what-happened-at-runtime", 
+            "text": "The setup code was loaded by GRUB below 1MB. Inside  arch/x86/boot/main.c , we\nwill save the  cs()  into the  boot_params  and pass it to kernel. In  setup_arch() , we will copy the trampoline.bin code to the  cs()  address reported by  boot_param . This means we will override setup code, which is okay.  At last, we wake up the secondary CPUs inside  smp_init() .", 
+            "title": "What happened at runtime?"
+        }, 
+        {
+            "location": "/lego/kernel/trampoline/#compare-with-linux", 
+            "text": "I vaguely remember how Linux implement this. The only thing I remember is that Linux use some sort of structure, which is filled by BSP and then passed, or used by secondary CPUs. The mechanism has no difference, though. Linux just has more robust debugging facilities.  \nYizhou Shan \nMar 3, 2017", 
+            "title": "Compare with Linux"
         }, 
         {
             "location": "/lego/kernel/pagefault_disable/", 
