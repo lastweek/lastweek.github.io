@@ -326,6 +326,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../log-04-2018/" title="April 2018" class="md-nav__link">
+      April 2018
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -353,6 +365,13 @@
   
     <label class="md-nav__title" for="toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0330-fri" title="03/30 Fri" class="md-nav__link">
+    03/30 Fri
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#0326-mon" title="03/26 Mon" class="md-nav__link">
@@ -934,42 +953,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../../pcache/rmap/" title="Reverse Mapping" class="md-nav__link">
-      Reverse Mapping
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../pcache/victim/" title="Victim Cache" class="md-nav__link">
-      Victim Cache
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../pcache/evict_and_ref/" title="Evict and Refcount" class="md-nav__link">
-      Evict and Refcount
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../../pcache/sweep/" title="Sweep" class="md-nav__link">
       Sweep
     </a>
@@ -996,6 +979,54 @@
   <li class="md-nav__item">
     <a href="../../pcache/pgtable-lock/" title="PageTable Lock" class="md-nav__link">
       PageTable Lock
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/victim/" title="Victim Cache" class="md-nav__link">
+      Victim Cache
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/virtual_cache/" title="Virtual Cache" class="md-nav__link">
+      Virtual Cache
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/rmap/" title="Reverse Mapping" class="md-nav__link">
+      Reverse Mapping
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/evict_and_ref/" title="Evict and Refcount" class="md-nav__link">
+      Evict and Refcount
     </a>
   </li>
 
@@ -1044,18 +1075,6 @@
   <li class="md-nav__item">
     <a href="../../paper/nmp/" title="NMP" class="md-nav__link">
       NMP
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../paper/pcache/" title="pcache" class="md-nav__link">
-      pcache
     </a>
   </li>
 
@@ -1137,6 +1156,13 @@
   
     <label class="md-nav__title" for="toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0330-fri" title="03/30 Fri" class="md-nav__link">
+    03/30 Fri
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#0326-mon" title="03/26 Mon" class="md-nav__link">
@@ -1407,6 +1433,10 @@
                 
                 
                 <h1 id="march-2018">March 2018</h1>
+<h2 id="0330-fri">03/30 Fri</h2>
+<p>Our scheduling, or IB do have issues. I must revisit this.</p>
+<p>The case is: in P, we boot only 12 cores, and three of them are used by flush, sweep, and IB. So there are 9 cores left for user. Phoenix create 24 threads. During the run, a lot ib timeout will happen. If we have a good scheduling, this should never happen. I probably need to check more on this.</p>
+<p>Anyway. Today I reorganized the opcode things. And now I&rsquo;m adding the final large piece of Lego: replication. It should be much simpler than the pcache part. I will first write down what code I need to add, e.g., opcode, handler, buffer mgmt etc.</p>
 <h2 id="0326-mon">03/26 Mon</h2>
 <p>Spent several days on replication design. Now I&rsquo;m back on coding and debuging track.</p>
 <p>Fixed a bug introduced by per-pte lock. A one hided by previous one big giant page table lock.</p>
@@ -4920,7 +4950,7 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../misc/" title="MISC" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../log-04-2018/" title="April 2018" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -4929,7 +4959,7 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                MISC
+                April 2018
               </span>
             </div>
           </a>
