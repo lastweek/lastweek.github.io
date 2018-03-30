@@ -875,25 +875,25 @@
                 
                 <h1 id="virtual-cache">Virtual Cache</h1>
 <ul>
-<li>
-<p>Synonymous</p>
-<ul>
-<li>Main reason virtual cache is not practical</li>
+<li>Synonymous<ul>
 <li>impact Cache coherence</li>
 <li>impact TLB shootdown</li>
 <li>The good thing is, synonymous actually happen very rare in really workload. But when OS is invoked, it actually creates a lot synonymous. Because the physical page is mapped both low user virtual address and high kernel virtual address.</li>
-<li><strong>TODO: Take look at all cases that lead to synonymous</strong></li>
 <li>What is this?</li>
-<li>
-<p>What is bad about this?</p>
-</li>
-<li>
-<p>When does this happen? (All cases: kernel, shared vma mapping)</p>
-</li>
-<li>How to solve this? (1. PPN-&gt;list-of-VPN + list of cache line. 2. Dynamic synonymous remapping which only keeps the leading virtual address.)</li>
-<li>Homonymous</li>
+<li>What is bad about this?</li>
+<li>When does this happen? (All cases: kernel, shared vma mapping)</li>
+<li>How to solve this?<ul>
+<li>Software solution: OS level detection, global virtual address, identical virtual address etc.</li>
+<li>Hardware solution: detect and manage at runtime. Back pointer, Dynamic synonymous remapping, reverse mapping. Similar ideas.</li>
+<li>A nice summary can be found on <code class="codehilite">A new perspective for efficient virtual-cache coherence, ISCA&#39;13</code>.</li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+<p>Let me share my reading list. I think I&rsquo;ve collected most of the important virtual cache papers:
+<img alt="A" src="../pcache_img_3.png" /></p>
+<ul>
 <li>
 <p>TLB and cache line lifetime:</p>
 <ul>
@@ -915,6 +915,10 @@
 </ul>
 </li>
 </ul>
+<p>&ndash;<br />
+Yizhou Shan<br />
+Created: Mar 28, 2018<br />
+Last Updated: Mar 29, 2018  </p>
                 
                   
                 
