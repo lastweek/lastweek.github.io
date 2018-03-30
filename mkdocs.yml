@@ -10,6 +10,7 @@ pages:
    - 'Log':
            - 'TODO': 'lego/log/TODO.md'
            - 'MISC': 'lego/log/misc.md'
+           - 'April 2018':           'lego/log/log-04-2018.md'
            - 'March 2018':           'lego/log/log-03-2018.md'
            - 'Feb 2018':           'lego/log/log-02-2018.md'
    - 'Kernel':
@@ -34,16 +35,16 @@ pages:
            - 'wait4 and exit()': 'lego/syscall/wait_and_exit.md'
    - Pcache:
            - 'Config': 'lego/pcache/config.md'
-           - 'Reverse Mapping': 'lego/pcache/rmap.md'
-           - 'Victim Cache': 'lego/pcache/victim.md'
-           - 'Evict and Refcount': 'lego/pcache/evict_and_ref.md'
            - 'Sweep': 'lego/pcache/sweep.md'
            - 'TLB Coherence': 'lego/pcache/tlb.md'
            - 'PageTable Lock': lego/pcache/pgtable-lock.md
+           - 'Victim Cache': 'lego/pcache/victim.md'
+           - 'Virtual Cache': 'lego/pcache/virtual_cache.md'
+           - 'Reverse Mapping': 'lego/pcache/rmap.md'
+           - 'Evict and Refcount': 'lego/pcache/evict_and_ref.md'
            - 'SMP Design': 'lego/pcache/smp_design.md'
    - Paper:
            - 'NMP': 'lego/paper/nmp.md'
-           - 'pcache': 'lego/paper/pcache.md'
            - 'Processor OOM': 'lego/paper/processor_oom.md'
            - 'Gen-Z': 'lego/paper/genz.md'
            - 'Replication': 'lego/paper/replication.md'
