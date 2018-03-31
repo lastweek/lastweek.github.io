@@ -10,25 +10,31 @@
     
 
     
-        
     <url>
      <loc>/misc/jasmine/</loc>
      <lastmod>2018-03-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
+    
+
+    
     <url>
      <loc>/misc/cheatsheet/</loc>
      <lastmod>2018-03-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     
 
     
         
     <url>
      <loc>/read/fast18/</loc>
+     <lastmod>2018-03-31</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/read/asplos18/</loc>
      <lastmod>2018-03-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
