@@ -18,12 +18,12 @@ Purdue University
 West Lafayette, IN 47907  
 Office: EE 345  
 
-Email: ys@purdue.edu
+Email: __ys@purdue.edu__
 
 ## Conferences and Workshops
 * [Disaggregating Memory with Software-Managed Virtual Cache]()
 <br> _Yizhou Shan_, Yiying Zhang
-<br> to appear at the 2018 Workshop on Warehouse-scale Memory Systems (__WAMS '18__) (co-located with ASPLOS '18)
+<br> at the 2018 Workshop on Warehouse-scale Memory Systems (__WAMS '18__) (co-located with ASPLOS '18)
 * [Distributed Shared Persistent Memory](https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf)
 <br> _Yizhou Shan_, Shin-Yeh Tsai, Yiying Zhang
 <br> at the 9th Annual Non-Volatile Memories Workshop (__NVMW '18__)
@@ -47,4 +47,4 @@ Email: ys@purdue.edu
 
 ## Social
 * [Github](https://github.com/lastweek)
-* [Instagram](https://www.instagram.com/yizhou.shan/)
+* [LinkedIn](https://www.linkedin.com/in/lastweek/)

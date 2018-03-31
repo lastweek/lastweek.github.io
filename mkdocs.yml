@@ -1,11 +1,11 @@
 site_name: Yizhou Shan's Home Page
 pages:
 - Home: index.md
-- Misc:
-   - 'Jasmine':                'misc/jasmine.md'
-   - 'Cheatsheet':             'misc/cheatsheet.md'
+- Jasmine: 'misc/jasmine.md'
+- Cheatsheet: 'misc/cheatsheet.md'
 - Read:
    - 'FAST 18': 'read/fast18.md'
+   - 'ASPLOS 18': 'read/asplos18.md'
 - Lego:
    - 'Log':
            - 'TODO': 'lego/log/TODO.md'
@@ -43,6 +43,7 @@ pages:
            - 'Reverse Mapping': 'lego/pcache/rmap.md'
            - 'Evict and Refcount': 'lego/pcache/evict_and_ref.md'
            - 'SMP Design': 'lego/pcache/smp_design.md'
+           - 'Replication': 'lego/pcache/replication.md'
    - Paper:
            - 'NMP': 'lego/paper/nmp.md'
            - 'Processor OOM': 'lego/paper/processor_oom.md'
