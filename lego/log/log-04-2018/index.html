@@ -355,6 +355,26 @@
     BUG BUG BUG
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ib_mad_completion_handler" title="ib_mad_completion_handler" class="md-nav__link">
+    ib_mad_completion_handler
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fit_poll_cq" title="fit_poll_cq" class="md-nav__link">
+    fit_poll_cq
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -953,6 +973,26 @@
     BUG BUG BUG
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ib_mad_completion_handler" title="ib_mad_completion_handler" class="md-nav__link">
+    ib_mad_completion_handler
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fit_poll_cq" title="fit_poll_cq" class="md-nav__link">
+    fit_poll_cq
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1003,7 +1043,8 @@
 <h3 id="bug-bug-bug">BUG BUG BUG</h3>
 <p>Finished basic replication mechanism last night.</p>
 <p>Today merged several patches. And both Yilun and I think there is something wrong with <code class="codehilite">ib_mad_completion_handler</code>. It seems it will break things behind our back.</p>
-<p>This is one bug catched today:
+<p>This is one bug catched today:</p>
+<h4 id="ib_mad_completion_handler">ib_mad_completion_handler</h4>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -1016,7 +1057,9 @@
 10
 11
 12
-13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">At</span> <span class="n">very</span> <span class="n">early</span> <span class="nl">stage</span><span class="p">:</span>
+13
+14
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">At</span> <span class="n">very</span> <span class="n">early</span> <span class="nl">stage</span><span class="p">:</span>
 
 <span class="p">[</span> <span class="mf">1174.406177</span><span class="p">]</span> <span class="nl">newpid</span><span class="p">:</span> <span class="mi">20</span> <span class="nl">home</span><span class="p">:</span><span class="mi">1</span> <span class="nl">replica</span><span class="p">:</span> <span class="mi">1</span>
 <span class="p">[</span> <span class="mf">1174.452983</span><span class="p">]</span> <span class="n">p2m_fork</span><span class="p">(</span><span class="n">cpu10</span><span class="p">)</span><span class="o">:</span> <span class="n">I</span> <span class="nl">cur</span><span class="p">:</span><span class="mi">20</span><span class="o">-</span><span class="n">exe</span><span class="p">.</span><span class="n">o</span> <span class="nl">new</span><span class="p">:</span><span class="mi">21</span>
@@ -1024,13 +1067,16 @@
 <span class="p">[</span> <span class="mf">1177.556502</span><span class="p">]</span> <span class="nl">BUG</span><span class="p">:</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">handle</span> <span class="n">kernel</span> <span class="nb">NULL</span> <span class="n">pointer</span> <span class="n">dereference</span> <span class="n">at</span> <span class="mo">0000000000000020</span>
 <span class="p">[</span> <span class="mf">1177.650101</span><span class="p">]</span> <span class="nl">IP</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81059104</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">ib_mad_completion_handler</span><span class="o">+</span><span class="mh">0xb4</span><span class="o">/</span><span class="mh">0x8a0</span>
 
-
 <span class="p">.</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">faddr2line</span> <span class="n">vmImage</span>  <span class="n">ib_mad_completion_handler</span><span class="o">+</span><span class="mh">0xb4</span>
 <span class="n">ib_mad_completion_handler</span><span class="o">+</span><span class="mh">0xb4</span><span class="o">/</span><span class="mh">0x899</span><span class="o">:</span>
 <span class="n">ib_mad_recv_done_handler</span> <span class="n">at</span> <span class="n">drivers</span><span class="o">/</span><span class="n">infiniband</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">mad</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">1899</span>
  <span class="p">(</span><span class="n">inlined</span> <span class="n">by</span><span class="p">)</span> <span class="n">ib_mad_completion_handler</span> <span class="n">at</span> <span class="n">drivers</span><span class="o">/</span><span class="n">infiniband</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">mad</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">2325</span>
+
+<span class="n">ib_mad_recv_done_handler</span><span class="p">()</span><span class="o">:</span>
+<span class="mi">1899</span><span class="o">:</span> <span class="n">qp_info</span> <span class="o">=</span> <span class="n">mad_list</span><span class="o">-&gt;</span><span class="n">mad_queue</span><span class="o">-&gt;</span><span class="n">qp_info</span><span class="p">;</span>
 </pre></div>
-</td></tr></table></p>
+</td></tr></table>
+
 <p>A more scared one after I changed ib_mad_completion_handler. Note that recvcq is the only thread running on cpu4:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -1069,6 +1115,7 @@
 </td></tr></table></p>
 <p>This NEVER happen before. And this part of code should be correct. We&rsquo;ve ran a
 lot things.. I doubt if recent IB merge corrupt things.</p>
+<h4 id="fit_poll_cq">fit_poll_cq</h4>
 <p>Another one:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -1222,7 +1269,7 @@ lot things.. I doubt if recent IB merge corrupt things.</p>
 <span class="p">...</span>
 <span class="n">memcpy</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">reply_ready_indicators</span><span class="p">[</span><span class="n">reply_indicator_index</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">length</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
 <span class="p">...</span>
-<span class="p">(</span><span class="n">This</span> <span class="n">is</span> <span class="n">a</span> <span class="n">bad</span> <span class="nl">memcpy</span><span class="p">:</span> <span class="n">reply_indicator_index</span><span class="p">,</span> <span class="n">ctx</span><span class="p">,</span> <span class="n">etc</span> <span class="n">should</span> <span class="n">be</span> <span class="n">checked</span><span class="p">.</span> <span class="n">Kernel</span> <span class="n">coding</span> <span class="n">ground</span> <span class="n">rule</span><span class="p">.)</span>
+<span class="p">(</span><span class="n">This</span> <span class="n">is</span> <span class="n">a</span> <span class="n">bad</span> <span class="nl">memcpy</span><span class="p">:</span> <span class="n">reply_indicator_index</span><span class="p">,</span> <span class="n">ctx</span><span class="p">,</span> <span class="n">etc</span> <span class="n">should</span> <span class="n">be</span> <span class="n">checked</span><span class="p">.)</span>
 </pre></div>
 </td></tr></table></p>
 <h3 id="ib-spec-qp-cqe-wqe-send">IB Spec: QP, CQE, WQE, SEND</h3>
