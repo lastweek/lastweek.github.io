@@ -25,6 +25,7 @@ pages:
         - 'Virtual File System': 'lego/kernel/vfs.md'
         - 'Process Virtual Memory': 'lego/kernel/vm.md'
         - 'x86 FPU': 'lego/kernel/fpu.md'
+        - 'strace': 'lego/kernel/strace.md'
    - Syscall:
            - 'Facts':         'lego/syscall/facts.md'
            - 'compat':        'lego/syscall/compat.md'
