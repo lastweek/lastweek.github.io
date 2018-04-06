@@ -17,6 +17,7 @@ pages:
         - 'Kconfig': 'lego/kernel/kconfig.md'
         - 'Debug': 'lego/kernel/debug.md'
         - 'GRUB': 'lego/kernel/grub.md'
+        - 'Syscall trace': 'lego/kernel/strace.md'
         - 'Trampoline': 'lego/kernel/trampoline.md'
         - 'Disable pgfault': 'lego/kernel/pagefault_disable.md'
         - 'Stop machine': 'lego/kernel/stop_machine.md'
@@ -25,9 +26,9 @@ pages:
         - 'Virtual File System': 'lego/kernel/vfs.md'
         - 'Process Virtual Memory': 'lego/kernel/vm.md'
         - 'x86 FPU': 'lego/kernel/fpu.md'
-        - 'strace': 'lego/kernel/strace.md'
    - Syscall:
            - 'Facts':         'lego/syscall/facts.md'
+           - 'Syscall trace': 'lego/kernel/strace.md'
            - 'compat':        'lego/syscall/compat.md'
            - 'msync()':       'lego/syscall/msync.md'
            - 'mremap()':      'lego/syscall/mremap.md'

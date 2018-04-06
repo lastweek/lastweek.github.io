@@ -1,5 +1,7 @@
 Cool and good-to-know stuff:
 
+- [AutoML](https://research.googleblog.com/2017/11/automl-for-large-scale-image.html)
+
 - [What is ‘Site Reliability Engineering’?](http://landing.google.com/sre/interview/ben-treynor.html)
 
 - Deduplication: Content Based Page Sharing (CBPS) + COW
