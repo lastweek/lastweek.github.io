@@ -343,6 +343,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0405-thur" title="04/05 Thur" class="md-nav__link">
+    04/05 Thur
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0404-wed" title="04/04 Wed" class="md-nav__link">
     04/04 Wed
   </a>
@@ -531,6 +538,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../kernel/strace/" title="Syscall trace" class="md-nav__link">
+      Syscall trace
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../kernel/trampoline/" title="Trampoline" class="md-nav__link">
       Trampoline
     </a>
@@ -621,18 +640,6 @@
   </li>
 
         
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../kernel/strace/" title="strace" class="md-nav__link">
-      strace
-    </a>
-  </li>
-
-        
       </ul>
     </nav>
   </li>
@@ -665,6 +672,18 @@
   <li class="md-nav__item">
     <a href="../../syscall/facts/" title="Facts" class="md-nav__link">
       Facts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/strace/" title="Syscall trace" class="md-nav__link">
+      Syscall trace
     </a>
   </li>
 
@@ -1000,6 +1019,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0405-thur" title="04/05 Thur" class="md-nav__link">
+    04/05 Thur
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0404-wed" title="04/04 Wed" class="md-nav__link">
     04/04 Wed
   </a>
@@ -1105,6 +1131,12 @@
                 
                 
                 <h1 id="april-2018">April 2018</h1>
+<h2 id="0405-thur">04/05 Thur</h2>
+<p>Discussion with Yilun.
+1. munmap+nr_pgfault figure: count number of pgfaults between munmap, it should be an interesting figure.
+2. track number of pgfault at: since there is no eviction, so any mmaped area at M should only have exactly one pcache fetch.
+3. I probably want to use per-cpu counter.</p>
+<p>Anyway, continue strace work first. Finished.</p>
 <h2 id="0404-wed">04/04 Wed</h2>
 <h3 id="strace-performance">STRACE Performance</h3>
 <p>TF has very bad performance. It is either due to the syscall or pcache. Now I&rsquo;m adding facilities to track syscall activities, including average latency, total time.</p>
