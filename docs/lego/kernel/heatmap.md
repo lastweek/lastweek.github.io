@@ -5,7 +5,7 @@ To get a sense of what is the hottest function within kernel, Lego adds a  count
 ## Mechanism
 General idea: for each possible function/instruction byte in the kernel, we attach to a counter to it. Once we detect this function/instruction was executed, we increment its associated counter.
 
-However, granularity counting will need a lot extra memory, and it is not necessary to track each single instruction byte. Besides, it is hard to track down every time the function was executed. Furthermore, we only need an approximate heatmap.
+However, fine granularity counting will need a lot extra memory, and it is not necessary to track each single instruction byte. Besides, it is hard to track down every time the function was executed. Furthermore, we only need an approximate heatmap.
 
 Thus, kernel's solutions are:
 
@@ -19,7 +19,7 @@ Currently, we only support `CPU_PROFILING`, which profile on each timer interrup
 Of course, we also have a simple dump function `void print_profile_heatmap_nr(int nr)`, which is similar to userspace tool `readprofile`.
 
 ## Example Output
-Workload is: MT-Phoenix word count, with 1GB data.
+Workload is: MT-Phoenix word count, with 1GB data. (We probably want to rule out `cpu_idle()`)
 ```
 [  290.958137] Kernel Heatmap (top #10)
 [  291.000777]          Address              Function          NR    Percent
