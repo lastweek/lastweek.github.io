@@ -30,13 +30,12 @@ Explanation: `DEFINE_PROFILE_POINT()` will define a local structure, that contai
 
 System-wide profile points will be printed together if you invoke `print_profile_points()`:
 ```c
-[ 9956.404635] Kernel Profile Points
-[ 9956.408319]  status              name             total                nr            avg.ns
-[ 9956.417627] -------  ----------------   ----------------  ----------------  ----------------
-[ 9956.426935]     off  flush_tlb_others        0.000154283                56              2756
-[ 9956.436243]     off  pcache_cache_miss      16.981247886            274698             61818
-[ 9956.445649] -------  ----------------   ----------------  ----------------  ----------------
-[ 9956.454957]
+[ 1017.422911] Kernel Profile Points
+[ 1017.426594]  status                  name             total                nr            avg.ns
+[ 1017.436292] -------  --------------------  ----------------  ----------------  ----------------
+[ 1017.445988]     off      flush_tlb_others       0.000153470                55              2791
+[ 1017.455685]     off     pcache_cache_miss      16.147020152            274698             58781
+[ 1017.465381] -------  --------------------  ----------------  ----------------  ----------------
 ```
 
 ## Mechanism

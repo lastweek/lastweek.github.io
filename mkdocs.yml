@@ -17,6 +17,7 @@ pages:
         - 'Kconfig': 'lego/kernel/kconfig.md'
         - 'Debug': 'lego/kernel/debug.md'
         - 'GRUB': 'lego/kernel/grub.md'
+        - 'Profile': 'lego/kernel/profile.md'
         - 'Profile strace': 'lego/kernel/profile_strace.md'
         - 'Profile heatmap': 'lego/kernel/profile_heatmap.md'
         - 'Profile points': 'lego/kernel/profile_points.md'

@@ -20,22 +20,23 @@ Of course, we also have a simple dump function `void print_profile_heatmap_nr(in
 
 ## Example Output
 Workload is: MT-Phoenix word count, with 1GB data. (We probably want to rule out `cpu_idle()`)
-```
-[  290.958137] Kernel Heatmap (top #10)
-[  291.000777]          Address              Function          NR    Percent
-[  291.081898] ----------------  --------------------  ----------  ---------
-[  291.163018] ffffffff8101a5d0              cpu_idle      113746      74.23
-[  291.244140] ffffffff81066410            __schedule       18379      11.15
-[  291.325260] ffffffff8104f220       mlx4_ib_poll_cq        5696       3.10
-[  291.406382] ffffffff8103bc70             delay_tsc        5337       3.73
-[  291.487503] ffffffff81034730    victim_flush_async        4416       2.13
-[  291.568623] ffffffff8102af70  slob_alloc.constprop.2        1876       1.34
-[  291.651825] ffffffff810665f0              schedule        1450       0.14
-[  291.732945] ffffffff81064610  fit_send_reply_with_rdma_write_with_imm         898       0.89
-[  291.833826] ffffffff810124a0                printk         297       0.29
-[  291.914948] ffffffff8103b3e0   check_pinned_status         252       0.25
-[  291.996068] ----------------  --------------------  ----------  ---------
-[  292.077189]                                             153393     100.00
+```c
+[ 1017.309754] Kernel Heatmap (top #10)
+[ 1017.313731]          Address              Function          NR          %
+[ 1017.321294] ----------------  --------------------  ----------  ---------
+[ 1017.328858] ffffffff8101a600              cpu_idle      112082      73.11
+[ 1017.336421] ffffffff810666f0            __schedule       19192      12.95
+[ 1017.343983] ffffffff8104f500       mlx4_ib_poll_cq        5551       3.99
+[ 1017.351546] ffffffff8103bf50             delay_tsc        5393       3.83
+[ 1017.359110] ffffffff81034a10    victim_flush_async        3766       2.72
+[ 1017.366673] ffffffff8102b220   slob_alloc.constpro        1992       1.47
+[ 1017.374235] ffffffff810668d0              schedule        1519       0.15
+[ 1017.381800] ffffffff810648f0   fit_send_reply_with         956       0.95
+[ 1017.389362] ffffffff81062370   ibapi_send_reply_ti         307       0.30
+[ 1017.396925] ffffffff8105a0d0   ib_mad_completion_h         232       0.23
+[ 1017.404487] ----------------  --------------------  ----------  ---------
+[ 1017.412052]                                             151994     100.00
+[ 1017.419613]
 ```
 
 --  
