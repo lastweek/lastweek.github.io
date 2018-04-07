@@ -998,7 +998,7 @@
 <p>To get a sense of what is the hottest function within kernel, Lego adds a  counter based heatmap. It is the same with Linux&rsquo;s <code class="codehilite">/proc/profile</code>.</p>
 <h2 id="mechanism">Mechanism</h2>
 <p>General idea: for each possible function/instruction byte in the kernel, we attach to a counter to it. Once we detect this function/instruction was executed, we increment its associated counter.</p>
-<p>However, granularity counting will need a lot extra memory, and it is not necessary to track each single instruction byte. Besides, it is hard to track down every time the function was executed. Furthermore, we only need an approximate heatmap.</p>
+<p>However, fine granularity counting will need a lot extra memory, and it is not necessary to track each single instruction byte. Besides, it is hard to track down every time the function was executed. Furthermore, we only need an approximate heatmap.</p>
 <p>Thus, kernel&rsquo;s solutions are:</p>
 <ul>
 <li><strong>Coarse granularity</strong>: maintain a counter for each <code class="codehilite">1&lt;&lt;prof_shift</code> bytes.</li>
@@ -1008,7 +1008,7 @@
 <p>Currently, we only support <code class="codehilite">CPU_PROFILING</code>, which profile on each timer interrupt tick. We could also add <code class="codehilite">SCHED_PROFILING</code>, or <code class="codehilite">SLEEP_PROFILING</code>. But we are fine with current setting.</p>
 <p>Of course, we also have a simple dump function <code class="codehilite">void print_profile_heatmap_nr(int nr)</code>, which is similar to userspace tool <code class="codehilite">readprofile</code>.</p>
 <h2 id="example-output">Example Output</h2>
-<p>Workload is: MT-Phoenix word count, with 1GB data.
+<p>Workload is: MT-Phoenix word count, with 1GB data. (We probably want to rule out <code class="codehilite">cpu_idle()</code>)
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
