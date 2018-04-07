@@ -1,13 +1,12 @@
-# Lego Profile
+# Lego Profilers
 
-Lego has three different profilers in kernel:
+Lego has three runtime profilers in kernel:
 
 - [strace](https://lastweek.github.io/lego/kernel/profile_strace)
 - [heatmap](https://lastweek.github.io/lego/kernel/profile_heatmap)
 - [profile points](https://lastweek.github.io/lego/kernel/profile_points)
 
-
-Combined together, they provide this information:
+Combined together, they can provide the following information. Sweet, huh?
 ```c
 [ 1017.047366] Kernel strace
 [ 1017.050276] Task: 20:20 nr_accumulated_threads: 46
