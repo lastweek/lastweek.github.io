@@ -1,4 +1,4 @@
-# Lego syscall tracer
+# Lego Profile strace
 
 Lego has a built-in kernel-version syscall tracer, similar to `strace` utility in the user space. Below we will just call our Lego's syscall tracer as strace for simplicity.
 
