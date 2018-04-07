@@ -18,6 +18,7 @@ pages:
         - 'Debug': 'lego/kernel/debug.md'
         - 'GRUB': 'lego/kernel/grub.md'
         - 'Syscall trace': 'lego/kernel/strace.md'
+        - 'Profile Heatmap': 'lego/kernel/heatmap.md'
         - 'Trampoline': 'lego/kernel/trampoline.md'
         - 'Disable pgfault': 'lego/kernel/pagefault_disable.md'
         - 'Stop machine': 'lego/kernel/stop_machine.md'
