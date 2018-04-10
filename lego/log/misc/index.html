@@ -960,8 +960,10 @@
 <li>
 <p>Testing of applications is often done on a testing environment, smaller in size (perhaps only a single server) and less loaded than the &ldquo;live&rdquo; environment. The replication behavior of such an installation may differ from a live environment in ways that mean that replication lag is unlikely to be observed in testing - masking replication-sensitive bugs.</p>
 </li>
+<li>
+<p>mmap <code class="codehilite">PROT_NONE</code> is really used by applications, or library. They have their special usage.</p>
+</li>
 </ul>
-<p>-</p>
 <div class="footnote">
 <hr />
 <ol>

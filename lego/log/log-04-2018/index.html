@@ -343,6 +343,20 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0409-mon" title="04/09 Mon" class="md-nav__link">
+    04/09 Mon
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0408-sun" title="04/08 Sun" class="md-nav__link">
+    04/08 Sun
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0407-sat" title="04/07 Sat" class="md-nav__link">
     04/07 Sat
   </a>
@@ -1069,6 +1083,20 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0409-mon" title="04/09 Mon" class="md-nav__link">
+    04/09 Mon
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0408-sun" title="04/08 Sun" class="md-nav__link">
+    04/08 Sun
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0407-sat" title="04/07 Sat" class="md-nav__link">
     04/07 Sat
   </a>
@@ -1195,6 +1223,354 @@
                 
                 
                 <h1 id="april-2018">April 2018</h1>
+<h2 id="0409-mon">04/09 Mon</h2>
+<p>thpool testing. 4 workers. MT-phoenix:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">wuklab05</span> <span class="n">ys</span><span class="p">]</span><span class="err">#</span> <span class="n">cat</span> <span class="mo">040</span><span class="mi">9</span><span class="o">-</span><span class="n">p</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">__munmap</span>
+<span class="p">[</span>  <span class="mf">227.054974</span><span class="p">]</span> <span class="n">CPU14</span> <span class="n">PID22</span> <span class="n">strace__munmap</span><span class="p">([</span><span class="mh">0x7fffb0ba9000</span> <span class="o">-</span> <span class="mh">0x7fffb4000000</span><span class="p">],</span> <span class="mi">54882304</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0x0</span>
+<span class="p">[</span>  <span class="mf">227.093466</span><span class="p">]</span> <span class="n">CPU16</span> <span class="n">PID23</span> <span class="n">strace__munmap</span><span class="p">([</span><span class="mh">0x7fffab7ff000</span> <span class="o">-</span> <span class="mh">0x7fffac000000</span><span class="p">],</span> <span class="mi">8392704</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0x0</span>
+<span class="p">[</span>  <span class="mf">227.102773</span><span class="p">]</span> <span class="n">CPU14</span> <span class="n">PID22</span> <span class="n">strace__munmap</span><span class="p">([</span><span class="mh">0x7fffb8000000</span> <span class="o">-</span> <span class="mh">0x7fffb8ba9000</span><span class="p">],</span> <span class="mi">12226560</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0x0</span>
+<span class="p">[</span>  <span class="mf">227.141265</span><span class="p">]</span> <span class="n">CPU18</span> <span class="n">PID24</span> <span class="n">strace__munmap</span><span class="p">([</span><span class="mh">0x7fffa8000000</span> <span class="o">-</span> <span class="mh">0x7fffac000000</span><span class="p">],</span> <span class="mi">67108864</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0x0</span>
+<span class="p">[</span>  <span class="mf">227.150669</span><span class="p">]</span> <span class="n">CPU16</span> <span class="n">PID23</span> <span class="n">strace__munmap</span><span class="p">([</span><span class="mh">0x7fffb0000000</span> <span class="o">-</span> <span class="mh">0x7fffb37ff000</span><span class="p">],</span> <span class="mi">58716160</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0x0</span>
+<span class="p">[</span>  <span class="mf">227.218248</span><span class="p">]</span> <span class="n">CPU22</span> <span class="n">PID26</span> <span class="n">strace__munmap</span><span class="p">([</span><span class="mh">0x7fffa0000000</span> <span class="o">-</span> <span class="mh">0x7fffa4000000</span><span class="p">],</span> <span class="mi">67108864</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0x0</span>
+<span class="p">[</span>  <span class="mf">227.285826</span><span class="p">]</span> <span class="n">CPU2</span> <span class="n">PID28</span> <span class="n">strace__munmap</span><span class="p">([</span><span class="mh">0x7fff98000000</span> <span class="o">-</span> <span class="mh">0x7fff9c000000</span><span class="p">],</span> <span class="mi">67108864</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0x0</span>
+<span class="p">[</span>  <span class="mf">227.440567</span><span class="p">]</span> <span class="n">CPU14</span> <span class="n">PID31</span> <span class="n">strace__munmap</span><span class="p">([</span><span class="mh">0x7fff8a7fd000</span> <span class="o">-</span> <span class="mh">0x7fff8c000000</span><span class="p">],</span> <span class="mi">25178112</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0x0</span>
+<span class="p">[</span>  <span class="mf">227.449972</span><span class="p">]</span> <span class="n">CPU12</span> <span class="n">PID30</span> <span class="n">strace__munmap</span><span class="p">([</span><span class="mh">0x7fff88000000</span> <span class="o">-</span> <span class="mh">0x7fff8c000000</span><span class="p">],</span> <span class="mi">67108864</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0x0</span>
+<span class="p">[</span>  <span class="mf">227.459376</span><span class="p">]</span> <span class="n">CPU14</span> <span class="n">PID31</span> <span class="n">strace__munmap</span><span class="p">([</span><span class="mh">0x7fff90000000</span> <span class="o">-</span> <span class="mh">0x7fff927fd000</span><span class="p">],</span> <span class="mi">41930752</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0x0</span>
+<span class="p">[</span>  <span class="mf">227.490109</span><span class="p">]</span> <span class="n">CPU18</span> <span class="n">PID33</span> <span class="n">strace__munmap</span><span class="p">([</span><span class="mh">0x7fff80000000</span> <span class="o">-</span> <span class="mh">0x7fff84000000</span><span class="p">],</span> <span class="mi">67108864</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0x0</span>
+<span class="p">[</span>  <span class="mf">227.723140</span><span class="p">]</span> <span class="n">word_count</span><span class="o">-</span><span class="n">pthr</span><span class="p">[</span><span class="mi">29</span><span class="p">]</span><span class="o">:</span> <span class="n">segfault</span> <span class="n">at</span> <span class="mh">0x4e842010</span> <span class="n">ip</span> <span class="mo">0000000000420354</span> <span class="n">sp</span> <span class="mf">00007ff</span><span class="n">fb17f9bc0</span> <span class="n">error</span> <span class="mi">6</span>
+<span class="mh">0x4e842010</span>
+</pre></div>
+</td></tr></table>
+
+<ul>
+<li>Print mmap on M, if segfault. Printed, the <code class="codehilite">0x4e842010</code> is never a valid address. thpool makes Memory side SMP. Probably bring some issues.</li>
+</ul>
+<p>Found:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">P</span>
+<span class="n">CPU22</span> <span class="n">PID26</span> <span class="n">strace__mmap</span><span class="p">(</span><span class="n">addr</span><span class="o">=</span><span class="mh">0x0</span><span class="p">,</span> <span class="n">len</span><span class="o">=</span><span class="mh">0xfb000</span><span class="p">,</span> <span class="n">prot</span><span class="p">(</span><span class="mh">0x3</span><span class="p">)</span><span class="o">=</span><span class="n">PROT_READ</span><span class="o">|</span><span class="n">PROT_WRITE</span><span class="p">,</span> <span class="n">flags</span><span class="p">(</span><span class="mh">0x22</span><span class="p">)</span><span class="o">=</span><span class="n">MAP_PRIVATE</span><span class="o">|</span><span class="n">MAP_ANONYMOUS</span><span class="p">,</span> <span class="n">fd</span><span class="o">=</span><span class="mi">18446744073709551615</span><span class="p">(</span> <span class="p">),</span> <span class="n">off</span><span class="o">=</span><span class="mh">0x0</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1317351432</span><span class="p">,</span> <span class="mh">0x4e853008</span>
+<span class="n">word_count</span><span class="o">-</span><span class="n">pthr</span><span class="p">[</span><span class="mi">26</span><span class="p">]</span><span class="o">:</span> <span class="n">segfault</span> <span class="n">at</span> <span class="mh">0x4e853010</span> <span class="n">ip</span> <span class="mo">0000000000420354</span> <span class="n">sp</span> <span class="mf">00007ff</span><span class="n">f972a8bc0</span> <span class="n">error</span> <span class="mi">6</span>
+
+<span class="n">M</span>
+<span class="p">[</span>  <span class="mf">583.120615</span><span class="p">]</span>   <span class="mo">00400000</span><span class="o">-</span><span class="mo">004</span><span class="n">d9000</span> <span class="n">r</span><span class="o">-</span><span class="n">xp</span> <span class="mo">00000000</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">ys</span><span class="o">/</span><span class="n">phoenix</span><span class="o">/</span><span class="n">phoenix</span><span class="o">-</span><span class="mf">2.0</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="n">word_count</span><span class="o">/</span><span class="n">word_count</span><span class="o">-</span><span class="n">pthread</span>
+<span class="p">[</span>  <span class="mf">583.131578</span><span class="p">]</span>   <span class="mo">006</span><span class="n">d9000</span><span class="o">-</span><span class="mo">006</span><span class="n">dc000</span> <span class="n">rw</span><span class="o">-</span><span class="n">p</span> <span class="mo">000</span><span class="n">d9000</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">ys</span><span class="o">/</span><span class="n">phoenix</span><span class="o">/</span><span class="n">phoenix</span><span class="o">-</span><span class="mf">2.0</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="n">word_count</span><span class="o">/</span><span class="n">word_count</span><span class="o">-</span><span class="n">pthread</span>
+<span class="p">[</span>  <span class="mf">583.142729</span><span class="p">]</span>   <span class="mo">006</span><span class="n">dc000</span><span class="o">-</span><span class="mo">00755000</span> <span class="n">rw</span><span class="o">-</span><span class="n">p</span> <span class="mo">00000000</span> <span class="p">[</span><span class="n">heap</span><span class="p">]</span>
+<span class="p">[</span>  <span class="mf">583.148254</span><span class="p">]</span>   <span class="mf">7ff</span><span class="n">f529c9000</span><span class="o">-</span><span class="mf">7ff</span><span class="n">fb93aa000</span> <span class="n">rw</span><span class="o">-</span><span class="n">p</span> <span class="mo">00000000</span>
+<span class="p">[</span>  <span class="mf">583.153974</span><span class="p">]</span>   <span class="mf">7ff</span><span class="n">fb93aa000</span><span class="o">-</span><span class="mf">7ff</span><span class="n">ff7fff000</span> <span class="n">rw</span><span class="o">-</span><span class="n">p</span> <span class="mo">00000000</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">ys</span><span class="o">/</span><span class="n">phoenix</span><span class="o">/</span><span class="n">phoenix</span><span class="o">-</span><span class="mf">2.0</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="n">word_count</span><span class="o">/</span><span class="n">word_count_datafiles</span><span class="o">/</span><span class="n">word_1GB</span><span class="p">.</span><span class="n">txt</span>
+<span class="p">[</span>  <span class="mf">583.167355</span><span class="p">]</span>   <span class="mf">7ff</span><span class="n">ffffde000</span><span class="o">-</span><span class="mf">7ff</span><span class="n">ffffff000</span> <span class="n">rw</span><span class="o">-</span><span class="n">p</span> <span class="mo">00000000</span> <span class="p">[</span><span class="n">stack</span><span class="p">]</span>
+<span class="p">[</span>  <span class="mf">583.173753</span><span class="p">]</span> <span class="o">------------</span><span class="p">[</span> <span class="n">cut</span> <span class="n">here</span> <span class="p">]</span><span class="o">------------</span>
+<span class="p">[</span>  <span class="mf">583.178892</span><span class="p">]</span> <span class="nl">WARNING</span><span class="p">:</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">4</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">31</span> <span class="n">at</span> <span class="n">managers</span><span class="o">/</span><span class="n">memory</span><span class="o">/</span><span class="n">handle_pcache</span><span class="o">/</span><span class="n">fault</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">55</span> <span class="n">handle_p2m_pcache_miss</span><span class="o">+</span><span class="mh">0x18e</span><span class="o">/</span><span class="mh">0x1d0</span>
+<span class="p">[</span>  <span class="mf">583.190430</span><span class="p">]</span> <span class="nl">src_nid</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nl">pid</span><span class="p">:</span><span class="mi">21</span><span class="p">,</span><span class="nl">vaddr</span><span class="p">:</span><span class="mh">0x4e853010</span>
+<span class="p">[</span>  <span class="mf">583.195279</span><span class="p">]</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">4</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">31</span> <span class="nl">Comm</span><span class="p">:</span> <span class="n">thpool</span><span class="o">-</span><span class="n">worker0</span> <span class="mf">4.0.0</span><span class="o">-</span><span class="n">lego</span><span class="o">-</span><span class="n">ys</span><span class="o">+</span> <span class="err">#</span><span class="mi">90</span>
+</pre></div>
+</td></tr></table></p>
+<p>Confirmed. I printed added a number to mmap requests. And the compare the results of both P and M. The data is wrong. Btw, I&rsquo;m only running 1 worker thread at M, which makes it single thread handling. So, I&rsquo;m going to, 1) first use kmalloc to get the reply buffer, and 2) revert back the IB MAX_OUT config, remove the #ifdef COMP_MEMORY. See if it is this patch&rsquo;s issue.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nl">P</span><span class="p">:</span>
+<span class="n">CPU18</span> <span class="n">PID24</span> <span class="n">strace__mmap</span><span class="p">(</span><span class="mi">30</span> <span class="p">..)</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1325940736</span><span class="p">,</span> <span class="mh">0x7fffb0f7c000</span>
+<span class="n">CPU22</span> <span class="n">PID26</span> <span class="n">strace__mmap</span><span class="p">(</span><span class="mi">31</span> <span class="p">..)</span> <span class="o">=</span> <span class="mi">2144269992</span><span class="p">,</span> <span class="mh">0x7fcef6a8</span>
+
+<span class="nl">M</span><span class="p">:</span>
+<span class="p">...</span>
+<span class="n">handle_p2m_mmap</span><span class="p">()</span><span class="o">:</span> <span class="mi">30</span> <span class="mf">7ff</span><span class="n">fb0f7c000</span>
+<span class="n">handle_p2m_mmap</span><span class="p">()</span><span class="o">:</span> <span class="mi">31</span> <span class="mf">7ff</span><span class="n">fb0efe000</span>
+<span class="p">...</span>
+</pre></div>
+</td></tr></table></p>
+<p>Anyway, this is <mark class="critic">temporary</mark> fixed by using kmalloced reply buffer.</p>
+<p>Spent whole afternoon and whole night. Finally figure out why timeout happen in P. It is because somewhere in the middle, M has 1 or more requests stucked/unhandled. Deadlock happen in the middle.</p>
+<p>Like this one. 5 requests queued waiting, 1 is being handled. And that 1 handler stuck. And it is handle_pcache_miss. Now, I need to find out where it stuck!
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>thpool-worker0 nr_queued: 5 1
+</pre></div>
+</td></tr></table></p>
+<p>Oh, I really hope we can have some <mark class="critic">soft/hw lockdep, watchdog stuff</mark>. This should make out life much much much much much easier!</p>
+<h2 id="0408-sun">04/08 Sun</h2>
+<p>Trying the fit_nowait patch.</p>
+<ul>
+<li>First try fit_nowait patch, without any chanegs to other code. See if this patch can work.</li>
+<li>Second, modify pcache to use reply_message_nowait. See if this can work. and improve performance.</li>
+<li>Third, if 2) can improve, perf. Move on to modify thpool patch.</li>
+</ul>
+<p>1<sup>st</sup>, P fail at ib_mad, during boot:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span>  <span class="mf">349.239220</span><span class="p">]</span> <span class="n">Online</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">22</span>
+<span class="p">[</span>  <span class="mf">349.244940</span><span class="p">]</span> <span class="n">Active</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">22</span>
+<span class="p">[</span>  <span class="mf">349.250272</span><span class="p">]</span>   <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">Thread</span><span class="p">[</span><span class="nl">kvictim_flushd</span><span class="p">:</span><span class="mi">19</span><span class="p">]</span> <span class="n">pinned</span> <span class="n">at</span> <span class="n">CPU</span> <span class="mi">8</span>
+<span class="p">[</span>  <span class="mf">349.256478</span><span class="p">]</span>   <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">Thread</span><span class="p">[</span><span class="nl">recvpollcq</span><span class="p">:</span><span class="mi">17</span><span class="p">]</span> <span class="n">pinned</span> <span class="n">at</span> <span class="n">CPU</span> <span class="mi">4</span>
+<span class="p">[</span>  <span class="mf">356.188819</span><span class="p">]</span> <span class="n">ib_mad_completion_handler</span> <span class="mi">2344</span> <span class="n">got</span> <span class="n">successful</span> <span class="n">recv</span> <span class="n">cq</span> <span class="n">op</span> <span class="mi">128</span> <span class="n">mad_got_one</span> <span class="mi">13</span>
+<span class="p">[</span>  <span class="mf">356.197545</span><span class="p">]</span> <span class="nl">BUG</span><span class="p">:</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">handle</span> <span class="n">kernel</span> <span class="nb">NULL</span> <span class="n">pointer</span> <span class="n">dereference</span> <span class="n">at</span> <span class="mo">0000000000000020</span>
+<span class="p">[</span>  <span class="mf">356.206270</span><span class="p">]</span> <span class="nl">IP</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81058287</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">ib_mad_completion_handler</span><span class="o">+</span><span class="mh">0xc7</span><span class="o">/</span><span class="mh">0x810</span>
+</pre></div>
+</td></tr></table></p>
+<p>2st run, P side, config MAX_OUT to 1. Then single-thread pheonix with 1GB data finished. But forgot to turn on the profile point. Run one more time.</p>
+<p>3st run. Same with 2st run setting. But with profile on. Bug shows. Ugh. I still think it is because of ib_mad_handler. It must write to wrong memory locations, and corrupt things randomly.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span>  <span class="mf">456.237913</span><span class="p">]</span> <span class="n">do_close_on_exec</span><span class="p">()</span><span class="o">:</span> <span class="n">TODO</span><span class="p">,</span> <span class="n">not</span> <span class="n">implemented</span><span class="p">.</span>
+<span class="p">...</span>
+<span class="p">[</span>  <span class="mf">456.263274</span><span class="p">]</span> <span class="nl">BUG</span><span class="p">:</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">handle</span> <span class="n">kernel</span> <span class="n">paging</span> <span class="n">request</span> <span class="n">at</span> <span class="mf">00000002f</span><span class="mi">4</span><span class="n">bfbf58</span>
+<span class="p">[</span>  <span class="mf">456.270843</span><span class="p">]</span> <span class="nl">IP</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101bbff</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">task_tick_rt</span><span class="o">+</span><span class="mh">0x1f</span><span class="o">/</span><span class="mh">0xd0</span>
+<span class="p">[</span>  <span class="mf">456.277048</span><span class="p">]</span> <span class="n">PGD</span> <span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">456.279279</span><span class="p">]</span> <span class="n">Thread</span> <span class="n">overran</span> <span class="n">stack</span><span class="p">,</span> <span class="n">or</span> <span class="n">stack</span> <span class="n">corrupted</span>
+<span class="p">[</span>  <span class="mf">456.284804</span><span class="p">]</span> <span class="nl">Oops</span><span class="p">:</span> <span class="mo">0000</span> <span class="p">[</span><span class="err">#</span><span class="mi">1</span><span class="p">]</span> <span class="n">SMP</span> <span class="n">PROCESSOR</span>
+<span class="p">[</span>  <span class="mf">456.289265</span><span class="p">]</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">10</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">20</span> <span class="nl">Comm</span><span class="p">:</span> <span class="n">kevict_sweepd</span> <span class="mf">4.0.0</span><span class="o">-</span><span class="n">lego</span><span class="o">+</span> <span class="err">#</span><span class="mi">40</span>
+<span class="p">[</span>  <span class="mf">456.295858</span><span class="p">]</span> <span class="nl">RIP</span><span class="p">:</span> <span class="mo">0010</span><span class="o">:</span><span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101bbff</span><span class="o">&gt;</span><span class="p">]</span>  <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101bbff</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">task_tick_rt</span><span class="o">+</span><span class="mh">0x1f</span><span class="o">/</span><span class="mh">0xd0</span>
+</pre></div>
+</td></tr></table></p>
+<p>4st run, succeed. But it looks like the perf is very bad. Oh. but 99% of the pcache miss are file-backed, which will go to storage. So the number is actually doubled.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">With</span> <span class="n">fit_nowait</span> <span class="nl">patch</span><span class="p">:</span>
+<span class="p">[</span>  <span class="mf">308.660051</span><span class="p">]</span> <span class="n">Kernel</span> <span class="n">Profile</span> <span class="n">Points</span>
+<span class="p">[</span>  <span class="mf">308.663734</span><span class="p">]</span>  <span class="n">status</span>                  <span class="n">name</span>             <span class="n">total</span>                <span class="n">nr</span>            <span class="n">avg</span><span class="p">.</span><span class="n">ns</span>
+<span class="p">[</span>  <span class="mf">308.673431</span><span class="p">]</span> <span class="o">-------</span>  <span class="o">--------------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>
+<span class="p">[</span>  <span class="mf">308.683128</span><span class="p">]</span>     <span class="n">off</span>      <span class="n">flush_tlb_others</span>       <span class="mf">0.000130715</span>                <span class="mi">53</span>              <span class="mi">2467</span>
+<span class="p">[</span>  <span class="mf">308.692824</span><span class="p">]</span>     <span class="n">off</span>     <span class="n">__do_kmalloc_node</span>       <span class="mf">0.097344056</span>            <span class="mi">265647</span>               <span class="mi">367</span>
+<span class="p">[</span>  <span class="mf">308.702521</span><span class="p">]</span>     <span class="n">off</span>           <span class="n">pcache_miss</span>       <span class="mf">4.504660891</span>            <span class="mi">258211</span>             <span class="mi">17446</span>
+<span class="p">[</span>  <span class="mf">308.712218</span><span class="p">]</span>     <span class="n">off</span>          <span class="n">pcache_flush</span>       <span class="mf">0.000000000</span>                 <span class="mi">0</span>                 <span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">308.721914</span><span class="p">]</span> <span class="o">-------</span>  <span class="o">--------------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>
+</pre></div>
+</td></tr></table></p>
+<p>5st run. Just run large malloc test. Looks better than yesterday&rsquo;s result. But I&rsquo;m using 15 as P today, instead of 13. So, let me try one more time to see if it is the machine.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">With</span> <span class="n">fit_nowait</span> <span class="nl">patch</span><span class="p">:</span>
+<span class="p">[</span>  <span class="mf">674.382592</span><span class="p">]</span> <span class="n">Kernel</span> <span class="n">Profile</span> <span class="n">Points</span>
+<span class="p">[</span>  <span class="mf">674.386277</span><span class="p">]</span>  <span class="n">status</span>                  <span class="n">name</span>             <span class="n">total</span>                <span class="n">nr</span>            <span class="n">avg</span><span class="p">.</span><span class="n">ns</span>
+<span class="p">[</span>  <span class="mf">674.395974</span><span class="p">]</span> <span class="o">-------</span>  <span class="o">--------------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>
+<span class="p">[</span>  <span class="mf">674.405670</span><span class="p">]</span>     <span class="n">off</span>      <span class="n">flush_tlb_others</span>       <span class="mf">0.000130838</span>                <span class="mi">53</span>              <span class="mi">2469</span>
+<span class="p">[</span>  <span class="mf">674.415366</span><span class="p">]</span>     <span class="n">off</span>     <span class="n">__do_kmalloc_node</span>       <span class="mf">1.604700641</span>           <span class="mi">1584917</span>              <span class="mi">1013</span>
+<span class="p">[</span>  <span class="mf">674.425062</span><span class="p">]</span>     <span class="n">off</span>           <span class="n">pcache_miss</span>       <span class="mf">6.467938547</span>            <span class="mi">786571</span>              <span class="mi">8223</span>
+<span class="p">[</span>  <span class="mf">674.434758</span><span class="p">]</span>     <span class="n">off</span>          <span class="n">pcache_flush</span>       <span class="mf">3.342783614</span>            <span class="mi">262225</span>             <span class="mi">12748</span>
+<span class="p">[</span>  <span class="mf">674.444455</span><span class="p">]</span> <span class="o">-------</span>  <span class="o">--------------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>
+<span class="p">[</span>  <span class="mf">674.554497</span><span class="p">]</span> <span class="nl">nr_pgfault</span><span class="p">:</span> <span class="mi">786513</span>
+<span class="p">[</span>  <span class="mf">674.557706</span><span class="p">]</span> <span class="nl">nr_clflush</span><span class="p">:</span> <span class="mi">262225</span>
+<span class="p">[</span>  <span class="mf">674.561099</span><span class="p">]</span> <span class="nl">nr_pgfault_wp</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">674.564299</span><span class="p">]</span> <span class="nl">nr_pgfault_wp_cow</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">674.567887</span><span class="p">]</span> <span class="nl">nr_pgfault_wp_reuse</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">674.571668</span><span class="p">]</span> <span class="nl">nr_pgfault_due_to_concurrent_eviction</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">674.577195</span><span class="p">]</span> <span class="nl">nr_pcache_fill_from_memory</span><span class="p">:</span> <span class="mi">786511</span>
+<span class="p">[</span>  <span class="mf">674.582139</span><span class="p">]</span> <span class="nl">nr_pcache_fill_from_victim</span><span class="p">:</span> <span class="mi">2</span>
+</pre></div>
+</td></tr></table></p>
+<p>6st run. Looks like the above fit_nowait can have 400ns improvement. But how come? I did not even change the pcache handling to use ibapi_nowait!!! Maybe random variation. Let me run more.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">Without</span> <span class="n">fit_nowait</span> <span class="n">patches</span>
+<span class="p">[</span>  <span class="mf">428.546738</span><span class="p">]</span> <span class="n">Kernel</span> <span class="n">Profile</span> <span class="n">Points</span>
+<span class="p">[</span>  <span class="mf">428.550424</span><span class="p">]</span>  <span class="n">status</span>                  <span class="n">name</span>             <span class="n">total</span>                <span class="n">nr</span>            <span class="n">avg</span><span class="p">.</span><span class="n">ns</span>
+<span class="p">[</span>  <span class="mf">428.560119</span><span class="p">]</span> <span class="o">-------</span>  <span class="o">--------------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>
+<span class="p">[</span>  <span class="mf">428.569815</span><span class="p">]</span>     <span class="n">off</span>      <span class="n">flush_tlb_others</span>       <span class="mf">0.000131140</span>                <span class="mi">53</span>              <span class="mi">2475</span>
+<span class="p">[</span>  <span class="mf">428.579510</span><span class="p">]</span>     <span class="n">off</span>     <span class="n">__do_kmalloc_node</span>       <span class="mf">1.758704197</span>           <span class="mi">1331927</span>              <span class="mi">1321</span>
+<span class="p">[</span>  <span class="mf">428.589205</span><span class="p">]</span>     <span class="n">off</span>           <span class="n">pcache_miss</span>       <span class="mf">6.807601189</span>            <span class="mi">786575</span>              <span class="mi">8655</span>
+<span class="p">[</span>  <span class="mf">428.598899</span><span class="p">]</span>     <span class="n">off</span>          <span class="n">pcache_flush</span>       <span class="mf">3.699044847</span>            <span class="mi">262227</span>             <span class="mi">14107</span>
+<span class="p">[</span>  <span class="mf">428.608594</span><span class="p">]</span> <span class="o">-------</span>  <span class="o">--------------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>
+<span class="p">[</span>  <span class="mf">428.618289</span><span class="p">]</span>
+<span class="p">[</span>  <span class="mf">428.718670</span><span class="p">]</span> <span class="nl">nr_pgfault</span><span class="p">:</span> <span class="mi">786515</span>
+<span class="p">[</span>  <span class="mf">428.721878</span><span class="p">]</span> <span class="nl">nr_clflush</span><span class="p">:</span> <span class="mi">262227</span>
+<span class="p">[</span>  <span class="mf">428.725272</span><span class="p">]</span> <span class="nl">nr_pgfault_wp</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">428.728470</span><span class="p">]</span> <span class="nl">nr_pgfault_wp_cow</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">428.732058</span><span class="p">]</span> <span class="nl">nr_pgfault_wp_reuse</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">428.735840</span><span class="p">]</span> <span class="nl">nr_pgfault_due_to_concurrent_eviction</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">428.741365</span><span class="p">]</span> <span class="nl">nr_pcache_fill_from_memory</span><span class="p">:</span> <span class="mi">786515</span>
+<span class="p">[</span>  <span class="mf">428.746310</span><span class="p">]</span> <span class="nl">nr_pcache_fill_from_victim</span><span class="p">:</span> <span class="mi">0</span>
+</pre></div>
+</td></tr></table></p>
+<p>7<sup>th</sup> run. without fit_nowait.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">without</span> <span class="n">fit_nowait</span><span class="p">.</span>
+<span class="p">[</span>  <span class="mf">901.223090</span><span class="p">]</span> <span class="n">Kernel</span> <span class="n">Profile</span> <span class="n">Points</span>
+<span class="p">[</span>  <span class="mf">901.226775</span><span class="p">]</span>  <span class="n">status</span>                  <span class="n">name</span>             <span class="n">total</span>                <span class="n">nr</span>            <span class="n">avg</span><span class="p">.</span><span class="n">ns</span>
+<span class="p">[</span>  <span class="mf">901.236472</span><span class="p">]</span> <span class="o">-------</span>  <span class="o">--------------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>
+<span class="p">[</span>  <span class="mf">901.246168</span><span class="p">]</span>     <span class="n">off</span>      <span class="n">flush_tlb_others</span>       <span class="mf">0.000130802</span>                <span class="mi">53</span>              <span class="mi">2468</span>
+<span class="p">[</span>  <span class="mf">901.255865</span><span class="p">]</span>     <span class="n">off</span>     <span class="n">__do_kmalloc_node</span>       <span class="mf">1.862575608</span>           <span class="mi">1331923</span>              <span class="mi">1399</span>
+<span class="p">[</span>  <span class="mf">901.265560</span><span class="p">]</span>     <span class="n">off</span>           <span class="n">pcache_miss</span>       <span class="mf">6.814540477</span>            <span class="mi">786572</span>              <span class="mi">8664</span>
+<span class="p">[</span>  <span class="mf">901.275257</span><span class="p">]</span>     <span class="n">off</span>          <span class="n">pcache_flush</span>       <span class="mf">3.699187003</span>            <span class="mi">262224</span>             <span class="mi">14107</span>
+<span class="p">[</span>  <span class="mf">901.284953</span><span class="p">]</span> <span class="o">-------</span>  <span class="o">--------------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>
+</pre></div>
+</td></tr></table></p>
+<p>8<sup>th</sup> run. without fit_nowait.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span>  <span class="mf">321.514564</span><span class="p">]</span> <span class="n">Kernel</span> <span class="n">Profile</span> <span class="n">Points</span>
+<span class="p">[</span>  <span class="mf">321.518250</span><span class="p">]</span>  <span class="n">status</span>                  <span class="n">name</span>             <span class="n">total</span>                <span class="n">nr</span>            <span class="n">avg</span><span class="p">.</span><span class="n">ns</span>
+<span class="p">[</span>  <span class="mf">321.527945</span><span class="p">]</span> <span class="o">-------</span>  <span class="o">--------------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>
+<span class="p">[</span>  <span class="mf">321.537639</span><span class="p">]</span>     <span class="n">off</span>      <span class="n">flush_tlb_others</span>       <span class="mf">0.000130934</span>                <span class="mi">53</span>              <span class="mi">2471</span>
+<span class="p">[</span>  <span class="mf">321.547335</span><span class="p">]</span>     <span class="n">off</span>     <span class="n">__do_kmalloc_node</span>       <span class="mf">2.216772665</span>           <span class="mi">1331939</span>              <span class="mi">1665</span>
+<span class="p">[</span>  <span class="mf">321.557031</span><span class="p">]</span>     <span class="n">off</span>           <span class="n">pcache_miss</span>       <span class="mf">6.806060415</span>            <span class="mi">786573</span>              <span class="mi">8653</span>
+<span class="p">[</span>  <span class="mf">321.566726</span><span class="p">]</span>     <span class="n">off</span>          <span class="n">pcache_flush</span>       <span class="mf">3.725455841</span>            <span class="mi">262231</span>             <span class="mi">14207</span>
+<span class="p">[</span>  <span class="mf">321.576421</span><span class="p">]</span> <span class="o">-------</span>  <span class="o">--------------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>
+</pre></div>
+</td></tr></table></p>
+<p>9<sup>th</sup> run. with fit_nowait
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span>  <span class="mf">374.847912</span><span class="p">]</span> <span class="n">Kernel</span> <span class="n">Profile</span> <span class="n">Points</span>
+<span class="p">[</span>  <span class="mf">374.851597</span><span class="p">]</span>  <span class="n">status</span>                  <span class="n">name</span>             <span class="n">total</span>                <span class="n">nr</span>            <span class="n">avg</span><span class="p">.</span><span class="n">ns</span>
+<span class="p">[</span>  <span class="mf">374.861293</span><span class="p">]</span> <span class="o">-------</span>  <span class="o">--------------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>
+<span class="p">[</span>  <span class="mf">374.870989</span><span class="p">]</span>     <span class="n">off</span>      <span class="n">flush_tlb_others</span>       <span class="mf">0.000130858</span>                <span class="mi">53</span>              <span class="mi">2470</span>
+<span class="p">[</span>  <span class="mf">374.880684</span><span class="p">]</span>     <span class="n">off</span>     <span class="n">__do_kmalloc_node</span>       <span class="mf">1.485304454</span>           <span class="mi">1331934</span>              <span class="mi">1116</span>
+<span class="p">[</span>  <span class="mf">374.890381</span><span class="p">]</span>     <span class="n">off</span>           <span class="n">pcache_miss</span>       <span class="mf">6.615317677</span>            <span class="mi">786582</span>              <span class="mi">8411</span>
+<span class="p">[</span>  <span class="mf">374.900076</span><span class="p">]</span>     <span class="n">off</span>          <span class="n">pcache_flush</span>       <span class="mf">3.508328900</span>            <span class="mi">262234</span>             <span class="mi">13379</span>
+<span class="p">[</span>  <span class="mf">374.909772</span><span class="p">]</span> <span class="o">-------</span>  <span class="o">--------------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>
+</pre></div>
+</td></tr></table></p>
+<p>10<sup>th</sup> run, with fit_nowait
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[  225.211058] Kernel Profile Points
+[  225.214743]  status                  name             total                nr            avg.ns
+[  225.224440] -------  --------------------  ----------------  ----------------  ----------------
+[  225.234137]     off      flush_tlb_others       0.000131029                53              2473
+[  225.243833]     off     __do_kmalloc_node       1.211421872           1331984               910  
+[  225.253529]     off           pcache_miss       6.583096125            786574              8370
+[  225.263226]     off          pcache_flush       3.464430818            262227             13212
+[  225.272922] -------  --------------------  ----------------  ----------------  ----------------
+</pre></div>
+</td></tr></table></p>
+<p>Sum:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>with fit_nowait:
+
+[  225.253529]     off           pcache_miss       6.583096125            786574              8370
+[  225.263226]     off          pcache_flush       3.464430818            262227             13212
+
+[  374.890381]     off           pcache_miss       6.615317677            786582              8411
+[  374.900076]     off          pcache_flush       3.508328900            262234             13379
+
+[  674.425062]     off           pcache_miss       6.467938547            786571              8223
+[  674.434758]     off          pcache_flush       3.342783614            262225             12748
+
+Without fit_nowait:
+[  428.589205]     off           pcache_miss       6.807601189            786575              8655
+[  428.598899]     off          pcache_flush       3.699044847            262227             14107
+
+[  901.265560]     off           pcache_miss       6.814540477            786572              8664
+[  901.275257]     off          pcache_flush       3.699187003            262224             14107
+
+[  321.557031]     off           pcache_miss       6.806060415            786573              8653
+[  321.566726]     off          pcache_flush       3.725455841            262231             14207
+</pre></div>
+</td></tr></table></p>
 <h2 id="0407-sat">04/07 Sat</h2>
 <p>Well, now we finished all the profiling stuff. Continue on other work.</p>
 <p>Now I like listening Jazz while coding. Amazing Jazz, really good.</p>
