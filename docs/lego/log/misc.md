@@ -8,7 +8,7 @@
 
 - Testing of applications is often done on a testing environment, smaller in size (perhaps only a single server) and less loaded than the "live" environment. The replication behavior of such an installation may differ from a live environment in ways that mean that replication lag is unlikely to be observed in testing - masking replication-sensitive bugs.
 
--
+- mmap `PROT_NONE` is really used by applications, or library. They have their special usage.
 
 [^1]: [etc/ld.so.preload](https://unix.stackexchange.com/questions/282057/what-would-suddenly-cause-programs-to-read-etc-ld-so-preload-when-they-start-up)
 
