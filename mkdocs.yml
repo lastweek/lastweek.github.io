@@ -1,6 +1,6 @@
 site_name: Yizhou Shan's Home Page
 pages:
-- Home: index.md
+- Home: 'index.md'
 - Jasmine: 'misc/jasmine.md'
 - Cheatsheet: 'misc/cheatsheet.md'
 - Essentials: 'misc/essential.md'
