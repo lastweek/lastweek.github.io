@@ -3,6 +3,7 @@ pages:
 - Home: index.md
 - Jasmine: 'misc/jasmine.md'
 - Cheatsheet: 'misc/cheatsheet.md'
+- Essentials: 'misc/essential.md'
 - Read:
    - 'FAST 18': 'read/fast18.md'
    - 'ASPLOS 18': 'read/asplos18.md'
