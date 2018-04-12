@@ -190,8 +190,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../misc/cheatsheet/" title="Cheatsheet" class="md-nav__link">
-      Cheatsheet
+    <a href="../../../misc/essential/" title="Essential" class="md-nav__link">
+      Essential
     </a>
   </li>
 
@@ -202,8 +202,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../misc/essential/" title="Essentials" class="md-nav__link">
-      Essentials
+    <a href="../../../misc/cheatsheet/" title="Cheatsheet" class="md-nav__link">
+      Cheatsheet
     </a>
   </li>
 
@@ -1265,6 +1265,9 @@
                 <h1 id="april-2018">April 2018</h1>
 <h2 id="0411-wed">04/11 Wed</h2>
 <p>Adding anon first touch opt.</p>
+<p><mark class="critic">0411-p/m-9</mark>: this log indicate M does not have any unhandled requests, but P side has 1 <code class="codehilite">__pcache_fill</code> timeout. It seems the message is lost somewhere.</p>
+<p><mark class="critic">0411-p/m-11</mark>: catch one with the debug msg Yiying added. She says the M side send queue has 2 reqs. But poll does not return any error. Weird.</p>
+<p>Help debugging IB issue.</p>
 <h2 id="0410-tue">04/10 Tue</h2>
 <p>Found. IB stuck. Damn.
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
