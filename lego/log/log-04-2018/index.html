@@ -355,6 +355,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0412-thur" title="04/12 Thur" class="md-nav__link">
+    04/12 Thur
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0411-wed" title="04/11 Wed" class="md-nav__link">
     04/11 Wed
   </a>
@@ -1109,6 +1116,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0412-thur" title="04/12 Thur" class="md-nav__link">
+    04/12 Thur
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0411-wed" title="04/11 Wed" class="md-nav__link">
     04/11 Wed
   </a>
@@ -1263,6 +1277,20 @@
                 
                 
                 <h1 id="april-2018">April 2018</h1>
+<h2 id="0412-thur">04/12 Thur</h2>
+<p>Patched zerofill. All done.</p>
+<p>Testing new driver fix with Phoenix
+- 1<sup>st</sup> run, the mismatch reply is still there. mmap() replied address is different from the one printed. So segfault follows. (0412-w15-4)
+- 2st run, 3st run, succeed.</p>
+<p>0412-w15-9 0412-w14-9  First time testing phoenix with zerofill (no net). Somehow, P has pcache timeout, but M&rsquo;s watchdog show there is no pending requests. This happen once before I remember&hellip;</p>
+<p>0412-w15-10. Have not seen this ib mad thing for a long time. Indeed somewhere is wrong.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[  297.794969] ib_mad_completion_handler 2344 got successful recv cq op 128 mad_got_one 15
+[  297.803706] BUG: unable to handle kernel NULL pointer dereference at 0000000000000020
+[  297.812431] IP: [&lt;ffffffff81058937&gt;] ib_mad_completion_handler+0xc7/0x810
+</pre></div>
+</td></tr></table></p>
 <h2 id="0411-wed">04/11 Wed</h2>
 <p>Adding anon first touch opt.</p>
 <p><mark class="critic">0411-p/m-9</mark>: this log indicate M does not have any unhandled requests, but P side has 1 <code class="codehilite">__pcache_fill</code> timeout. It seems the message is lost somewhere.</p>
