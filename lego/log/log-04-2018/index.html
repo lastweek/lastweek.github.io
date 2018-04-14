@@ -355,6 +355,54 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0414-sat" title="04/14 Sat" class="md-nav__link">
+    04/14 Sat
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0413-fri" title="04/13 Fri" class="md-nav__link">
+    04/13 Fri
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ib_mad_recv_done_handler-may-corrupt-memory-again" title="ib_mad_recv_done_handler may corrupt memory, again." class="md-nav__link">
+    ib_mad_recv_done_handler may corrupt memory, again.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patching-the-handlers-to-use-tx-buffer" title="Patching the handlers to use tx buffer." class="md-nav__link">
+    Patching the handlers to use tx buffer.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-if-page-table-pages-page-themselves-are-freed-in-munmap-at-both-p-and-m-need-to-confirm" title="Check if page table pages, page themselves are freed in munmap, at both P and M. Need to confirm." class="md-nav__link">
+    Check if page table pages, page themselves are freed in munmap, at both P and M. Need to confirm.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tonight-task-think-about-how-to-do-the-vma-replication-how-to-combine-with-the-line-replicaiton" title="Tonight task. Think about how to do the VMA replication, how to combine with the $ line replicaiton." class="md-nav__link">
+    Tonight task. Think about how to do the VMA replication, how to combine with the $ line replicaiton.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0412-thur" title="04/12 Thur" class="md-nav__link">
     04/12 Thur
   </a>
@@ -1116,6 +1164,54 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0414-sat" title="04/14 Sat" class="md-nav__link">
+    04/14 Sat
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0413-fri" title="04/13 Fri" class="md-nav__link">
+    04/13 Fri
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ib_mad_recv_done_handler-may-corrupt-memory-again" title="ib_mad_recv_done_handler may corrupt memory, again." class="md-nav__link">
+    ib_mad_recv_done_handler may corrupt memory, again.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patching-the-handlers-to-use-tx-buffer" title="Patching the handlers to use tx buffer." class="md-nav__link">
+    Patching the handlers to use tx buffer.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-if-page-table-pages-page-themselves-are-freed-in-munmap-at-both-p-and-m-need-to-confirm" title="Check if page table pages, page themselves are freed in munmap, at both P and M. Need to confirm." class="md-nav__link">
+    Check if page table pages, page themselves are freed in munmap, at both P and M. Need to confirm.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tonight-task-think-about-how-to-do-the-vma-replication-how-to-combine-with-the-line-replicaiton" title="Tonight task. Think about how to do the VMA replication, how to combine with the $ line replicaiton." class="md-nav__link">
+    Tonight task. Think about how to do the VMA replication, how to combine with the $ line replicaiton.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0412-thur" title="04/12 Thur" class="md-nav__link">
     04/12 Thur
   </a>
@@ -1277,6 +1373,151 @@
                 
                 
                 <h1 id="april-2018">April 2018</h1>
+<h2 id="0414-sat">04/14 Sat</h2>
+<ol>
+<li>Check if page table pages, page themselves are freed in munmap, at both P and M. Need to confirm. Will they do harm</li>
+<li>Implement replication</li>
+<li>Add IB counter</li>
+</ol>
+<h2 id="0413-fri">04/13 Fri</h2>
+<p>Patched M side pgtable to use per PTE/PMD lock. So thpool in M will not be bottlnecked by the page_table_lock.</p>
+<h3 id="ib_mad_recv_done_handler-may-corrupt-memory-again">ib_mad_recv_done_handler may corrupt memory, again.</h3>
+<p>Somehow, during testing of this patch. Running with MT-Phoenix 1GB, the P side has reported bad pgd entries. I&rsquo;m using fork+execve way. The child(phoenix) already exit. This msg is printed when parent exit_mm. The pgd table should either be 0, or valid pud va. Memory corruption happened&hellip;
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span> <span class="mf">2551.687806</span><span class="p">]</span> <span class="n">Kernel</span> <span class="n">strace</span>
+<span class="p">[</span> <span class="mf">2551.690715</span><span class="p">]</span> <span class="nl">Task</span><span class="p">:</span> <span class="mi">21</span><span class="o">:</span><span class="mi">21</span> <span class="nl">nr_accumulated_threads</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">[</span> <span class="mf">2551.696327</span><span class="p">]</span> <span class="o">%</span> <span class="n">time</span>        <span class="n">seconds</span>  <span class="n">usecs</span><span class="o">/</span><span class="n">call</span>     <span class="n">calls</span>    <span class="n">errors</span> <span class="n">syscall</span>
+<span class="p">[</span> <span class="mf">2551.703704</span><span class="p">]</span> <span class="o">------</span> <span class="o">--------------</span> <span class="o">-----------</span> <span class="o">---------</span> <span class="o">---------</span> <span class="o">----------------</span>
+<span class="p">[</span> <span class="mf">2551.712141</span><span class="p">]</span>  <span class="mf">98.63</span>   <span class="mf">66.942660568</span>    <span class="mi">66942661</span>         <span class="mi">1</span>         <span class="mi">0</span> <span class="n">sys_wait4</span>
+<span class="p">[</span> <span class="mf">2551.719898</span><span class="p">]</span>   <span class="mf">0.45</span>    <span class="mf">0.457060789</span>      <span class="mi">457061</span>         <span class="mi">1</span>         <span class="mi">0</span> <span class="n">sys_clone</span>
+<span class="p">[</span> <span class="mf">2551.727654</span><span class="p">]</span>   <span class="mf">0.20</span>    <span class="mf">0.204320071</span>       <span class="mi">51081</span>         <span class="mi">4</span>         <span class="mi">0</span> <span class="n">sys_brk</span>
+<span class="p">[</span> <span class="mf">2551.735216</span><span class="p">]</span>   <span class="mf">0.40</span>    <span class="mf">0.040378189</span>       <span class="mi">40379</span>         <span class="mi">1</span>         <span class="mi">0</span> <span class="n">sys_mmap</span>
+<span class="p">[</span> <span class="mf">2551.742876</span><span class="p">]</span>   <span class="mf">0.13</span>    <span class="mf">0.013682424</span>        <span class="mi">4561</span>         <span class="mi">3</span>         <span class="mi">0</span> <span class="n">sys_write</span>
+<span class="p">[</span> <span class="mf">2551.750633</span><span class="p">]</span>   <span class="mf">0.10</span>    <span class="mf">0.000001039</span>           <span class="mi">2</span>         <span class="mi">1</span>         <span class="mi">0</span> <span class="n">sys_newfstat</span>
+<span class="p">[</span> <span class="mf">2551.758681</span><span class="p">]</span>   <span class="mf">0.88</span>    <span class="mf">0.000000888</span>           <span class="mi">1</span>         <span class="mi">2</span>         <span class="mi">0</span> <span class="n">sys_rt_sigaction</span>
+<span class="p">[</span> <span class="mf">2551.767114</span><span class="p">]</span>   <span class="mf">0.79</span>    <span class="mf">0.000000792</span>           <span class="mi">1</span>         <span class="mi">2</span>         <span class="mi">0</span> <span class="n">sys_futex</span>
+<span class="p">[</span> <span class="mf">2551.774871</span><span class="p">]</span>   <span class="mf">0.77</span>    <span class="mf">0.000000770</span>           <span class="mi">1</span>         <span class="mi">1</span>         <span class="mi">0</span> <span class="n">sys_rt_sigprocmask</span>
+<span class="p">[</span> <span class="mf">2551.783501</span><span class="p">]</span>   <span class="mf">0.54</span>    <span class="mf">0.000000548</span>           <span class="mi">1</span>         <span class="mi">1</span>         <span class="mi">0</span> <span class="n">sys_arch_prctl</span>
+<span class="p">[</span> <span class="mf">2551.791742</span><span class="p">]</span>   <span class="mf">0.49</span>    <span class="mf">0.000000499</span>           <span class="mi">1</span>         <span class="mi">1</span>         <span class="mi">0</span> <span class="n">sys_newuname</span>
+<span class="p">[</span> <span class="mf">2551.799789</span><span class="p">]</span>   <span class="mf">0.46</span>    <span class="mf">0.000000469</span>           <span class="mi">1</span>         <span class="mi">1</span>         <span class="mi">0</span> <span class="n">sys_getrlimit</span>
+<span class="p">[</span> <span class="mf">2551.807933</span><span class="p">]</span>   <span class="mf">0.19</span>    <span class="mf">0.000000195</span>           <span class="mi">1</span>         <span class="mi">1</span>         <span class="mi">0</span> <span class="n">sys_set_tid_address</span>
+<span class="p">[</span> <span class="mf">2551.816659</span><span class="p">]</span>   <span class="mf">0.19</span>    <span class="mf">0.000000190</span>           <span class="mi">1</span>         <span class="mi">1</span>         <span class="mi">0</span> <span class="n">sys_set_robust_list</span>
+<span class="p">[</span> <span class="mf">2551.825386</span><span class="p">]</span>   <span class="mf">0.18</span>    <span class="mf">0.000000181</span>           <span class="mi">1</span>         <span class="mi">1</span>         <span class="mi">0</span> <span class="n">sys_ioctl</span>
+<span class="p">[</span> <span class="mf">2551.833143</span><span class="p">]</span> <span class="o">------</span> <span class="o">--------------</span> <span class="o">-----------</span> <span class="o">---------</span> <span class="o">---------</span> <span class="o">----------------</span>
+<span class="p">[</span> <span class="mf">2551.841577</span><span class="p">]</span> <span class="mf">100.00</span>   <span class="mf">67.658107612</span>                    <span class="mi">22</span>         <span class="mi">0</span> <span class="n">total</span>
+<span class="p">[</span> <span class="mf">2551.848945</span><span class="p">]</span>
+<span class="p">[</span> <span class="mf">2551.850591</span><span class="p">]</span>
+<span class="p">[</span> <span class="mf">2551.852240</span><span class="p">]</span> <span class="n">Kernel</span> <span class="n">Profile</span> <span class="n">Points</span>
+<span class="p">[</span> <span class="mf">2551.855924</span><span class="p">]</span>  <span class="n">status</span>                  <span class="n">name</span>             <span class="n">total</span>                <span class="n">nr</span>            <span class="n">avg</span><span class="p">.</span><span class="n">ns</span>
+<span class="p">[</span> <span class="mf">2551.865621</span><span class="p">]</span> <span class="o">-------</span>  <span class="o">--------------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>
+<span class="p">[</span> <span class="mf">2551.875317</span><span class="p">]</span>     <span class="n">off</span>      <span class="n">flush_tlb_others</span>       <span class="mf">0.000204992</span>                <span class="mi">58</span>              <span class="mi">3535</span>
+<span class="p">[</span> <span class="mf">2551.885014</span><span class="p">]</span>     <span class="n">off</span>     <span class="n">__do_kmalloc_node</span>       <span class="mf">0.300783843</span>            <span class="mi">281501</span>              <span class="mi">1069</span>
+<span class="p">[</span> <span class="mf">2551.894709</span><span class="p">]</span>     <span class="n">off</span>     <span class="n">__pcache_zerofill</span>       <span class="mf">0.009844770</span>             <span class="mi">16558</span>               <span class="mi">595</span>
+<span class="p">[</span> <span class="mf">2551.904404</span><span class="p">]</span>     <span class="n">off</span>           <span class="n">pcache_miss</span>      <span class="mf">54.414457906</span>            <span class="mi">257869</span>            <span class="mi">211016</span>
+<span class="p">[</span> <span class="mf">2551.914100</span><span class="p">]</span>     <span class="n">off</span>          <span class="n">pcache_flush</span>       <span class="mf">0.000000000</span>                 <span class="mi">0</span>                 <span class="mi">0</span>
+<span class="p">[</span> <span class="mf">2551.923795</span><span class="p">]</span> <span class="o">-------</span>  <span class="o">--------------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>
+<span class="p">[</span> <span class="mf">2551.933490</span><span class="p">]</span>
+<span class="p">[</span> <span class="mf">2552.074985</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e956028</span><span class="p">(</span><span class="n">ffffffff81146ca0</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.084206</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e956030</span><span class="p">(</span><span class="n">ffff88103e956030</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.093611</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e956038</span><span class="p">(</span><span class="n">ffff88103e956030</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.103016</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e956048</span><span class="p">(</span><span class="n">ffff88103cc48740</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.112421</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e956050</span><span class="p">(</span><span class="mo">00000000000001</span><span class="n">c0</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.121825</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e956058</span><span class="p">(</span><span class="n">ffff88103eea2008</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.131230</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e956060</span><span class="p">(</span><span class="n">ffff88103eea17d8</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.140635</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e956068</span><span class="p">(</span><span class="n">ffff88103ee42520</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.150040</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e9560e8</span><span class="p">(</span><span class="mf">000000103e9560</span><span class="n">f0</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.159444</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e956118</span><span class="p">(</span><span class="mo">010200</span><span class="mi">8081018101</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.168849</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e956120</span><span class="p">(</span><span class="mi">3</span><span class="n">c010b0012000000</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.178254</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e956128</span><span class="p">(</span><span class="mo">0000000000001100</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.187659</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e956138</span><span class="p">(</span><span class="mf">00000000ff</span><span class="n">ffffff</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.197064</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e956158</span><span class="p">(</span><span class="mo">0307</span><span class="mi">8</span><span class="n">a2402010101</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.206467</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e956160</span><span class="p">(</span><span class="mo">0307</span><span class="mi">8</span><span class="n">a2453946600</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.215872</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e956168</span><span class="p">(</span><span class="mo">0307</span><span class="mi">8</span><span class="n">a2450946600</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.225277</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e956170</span><span class="p">(</span><span class="mo">0310</span><span class="mi">800051946600</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.234682</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e956178</span><span class="p">(</span><span class="n">c902000100000000</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.244088</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e956198</span><span class="p">(</span><span class="n">bfd0cc054a122000</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.253492</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e9561a0</span><span class="p">(</span><span class="mo">0000000000</span><span class="mi">98</span><span class="n">b9c8</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.262897</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e9561a8</span><span class="p">(</span><span class="n">bfe0fe0610914e01</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.272302</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e9561b0</span><span class="p">(</span><span class="mf">000000000050f</span><span class="mi">2</span><span class="n">c7</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.281706</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e9561b8</span><span class="p">(</span><span class="n">bfd9a30000ec5100</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.291111</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e9561c0</span><span class="p">(</span><span class="n">bffc91d40f20f2c7</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.300516</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e9561c8</span><span class="p">(</span><span class="mf">0f</span><span class="mi">20</span><span class="n">cd054a20f2c7</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.309920</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e9561d0</span><span class="p">(</span><span class="mi">1094</span><span class="n">edcf0f60edcf</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.319325</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e9561d8</span><span class="p">(</span><span class="mo">0000000000000100</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.328730</span><span class="p">]</span> <span class="p">.</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">pgtable</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">579</span><span class="o">:</span> <span class="n">bad</span> <span class="n">pgd</span> <span class="n">ffff88103e956218</span><span class="p">(</span><span class="mo">0000000000005</span><span class="n">aa5</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">2552.338151</span><span class="p">]</span> <span class="nl">nr_pgfault</span><span class="p">:</span> <span class="mi">26</span>
+</pre></div>
+</td></tr></table></p>
+<p>Second run, saw this invalid pointer deference again! Combined with the above log, I think ib_mad is definitely corrupting memory! I have to take a look.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>qp_info = mad_list-&gt;mad_queue-&gt;qp_info;
+</pre></div>
+</td></tr></table></p>
+<h3 id="patching-the-handlers-to-use-tx-buffer">Patching the handlers to use tx buffer.</h3>
+<p>Patched.</p>
+<p>Once race condition: pcache_handle_miss use the page itself as the reply buffer. Assume later on, it changes to use nowait reply. When the reply is buffered in the queue and has not been sent. Another munmap comes in and invalidate this area, then the page will be freed. The data is invalidate.</p>
+<p>But this case seems abnormal. The application will not do so I guess.</p>
+<h3 id="check-if-page-table-pages-page-themselves-are-freed-in-munmap-at-both-p-and-m-need-to-confirm">Check if page table pages, page themselves are freed in munmap, at both P and M. Need to confirm.</h3>
+<h3 id="tonight-task-think-about-how-to-do-the-vma-replication-how-to-combine-with-the-line-replicaiton">Tonight task. Think about how to do the VMA replication, how to combine with the $ line replicaiton.</h3>
 <h2 id="0412-thur">04/12 Thur</h2>
 <p>Patched zerofill. All done.</p>
 <p>Testing new driver fix with Phoenix
@@ -1290,7 +1531,8 @@
 [  297.803706] BUG: unable to handle kernel NULL pointer dereference at 0000000000000020
 [  297.812431] IP: [&lt;ffffffff81058937&gt;] ib_mad_completion_handler+0xc7/0x810
 </pre></div>
-</td></tr></table></p>
+</td></tr></table>
+2</p>
 <h2 id="0411-wed">04/11 Wed</h2>
 <p>Adding anon first touch opt.</p>
 <p><mark class="critic">0411-p/m-9</mark>: this log indicate M does not have any unhandled requests, but P side has 1 <code class="codehilite">__pcache_fill</code> timeout. It seems the message is lost somewhere.</p>
