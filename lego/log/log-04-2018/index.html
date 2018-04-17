@@ -355,6 +355,20 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0417-tue" title="04/17 Tue" class="md-nav__link">
+    04/17 Tue
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0416-mon" title="04/16 Mon" class="md-nav__link">
+    04/16 Mon
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0415-sun" title="04/15 Sun" class="md-nav__link">
     04/15 Sun
   </a>
@@ -1171,6 +1185,20 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0417-tue" title="04/17 Tue" class="md-nav__link">
+    04/17 Tue
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0416-mon" title="04/16 Mon" class="md-nav__link">
+    04/16 Mon
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0415-sun" title="04/15 Sun" class="md-nav__link">
     04/15 Sun
   </a>
@@ -1387,6 +1415,212 @@
                 
                 
                 <h1 id="april-2018">April 2018</h1>
+<h2 id="0417-tue">04/17 Tue</h2>
+<p>Checking list:
+1. pcache: ibapi use va or pa, does it matter?
+2. ib_mad, does it really corrupt Memory
+3. M side per PTE lock, check if the lock is really the same lock!
+4. Mail I20. Check CPT.</p>
+<p>Another first thing, check this weird log.. :
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span> <span class="mf">3850.911144</span><span class="p">]</span> <span class="n">ib_mad_recv_done_handler</span><span class="p">()</span><span class="o">:</span> <span class="nl">c1</span><span class="p">:</span> <span class="mi">2060</span> <span class="nl">c2</span><span class="p">:</span> <span class="mi">12</span> <span class="n">wc</span><span class="o">-&gt;</span><span class="nl">wr_id</span><span class="p">:</span> <span class="mh">0xffff88103eea1398</span>
+<span class="p">[</span> <span class="mf">3850.921881</span><span class="p">]</span> <span class="n">ib_mad_post_receive_mads</span><span class="p">()</span><span class="o">:</span> <span class="nl">c1</span><span class="p">:</span> <span class="mi">2060</span> <span class="nl">c2</span><span class="p">:</span> <span class="mi">13</span> <span class="n">recv_wr</span><span class="p">.</span><span class="nl">wr_id</span><span class="p">:</span> <span class="mh">0xffff88103eea1008</span> <span class="nl">recv_queue</span><span class="p">:</span> <span class="n">ffff88103ee42520</span>
+<span class="p">[</span> <span class="mf">3850.933620</span><span class="p">]</span> <span class="n">ib_mad_completion_handler</span> <span class="mi">2377</span> <span class="n">got</span> <span class="n">successful</span> <span class="n">send</span> <span class="n">cq</span> <span class="n">op</span> <span class="mi">0</span> <span class="n">mad_got_one</span> <span class="mi">13</span>
+<span class="p">[</span> <span class="mf">3850.942346</span><span class="p">]</span> <span class="n">ib_mad_completion_handler</span> <span class="mi">2383</span> <span class="n">got</span> <span class="n">successful</span> <span class="n">recv</span> <span class="n">cq</span> <span class="n">op</span> <span class="mi">128</span> <span class="n">mad_got_one</span> <span class="mi">14</span>
+<span class="p">[</span> <span class="mf">3850.951266</span><span class="p">]</span> <span class="n">ib_mad_recv_done_handler</span><span class="p">()</span><span class="o">:</span> <span class="nl">c1</span><span class="p">:</span> <span class="mi">2061</span> <span class="nl">c2</span><span class="p">:</span> <span class="mi">13</span> <span class="n">wc</span><span class="o">-&gt;</span><span class="nl">wr_id</span><span class="p">:</span> <span class="mh">0xffff88103eea1560</span>
+<span class="p">[</span> <span class="mf">3850.961999</span><span class="p">]</span> <span class="n">ib_mad_post_receive_mads</span><span class="p">()</span><span class="o">:</span> <span class="nl">c1</span><span class="p">:</span> <span class="mi">2061</span> <span class="nl">c2</span><span class="p">:</span> <span class="mi">14</span> <span class="n">recv_wr</span><span class="p">.</span><span class="nl">wr_id</span><span class="p">:</span> <span class="mh">0xffff88103eea11d0</span> <span class="nl">recv_queue</span><span class="p">:</span> <span class="n">ffff88103ee42520</span>
+<span class="p">[</span> <span class="mf">3850.973737</span><span class="p">]</span> <span class="n">ib_mad_completion_handler</span> <span class="mi">2377</span> <span class="n">got</span> <span class="n">successful</span> <span class="n">send</span> <span class="n">cq</span> <span class="n">op</span> <span class="mi">0</span> <span class="n">mad_got_one</span> <span class="mi">14</span>
+<span class="p">[</span> <span class="mf">3851.257563</span><span class="p">]</span> <span class="n">ib_mad_completion_handler</span> <span class="mi">2383</span> <span class="n">got</span> <span class="n">successful</span> <span class="n">recv</span> <span class="n">cq</span> <span class="n">op</span> <span class="mi">128</span> <span class="n">mad_got_one</span> <span class="mi">15</span>
+<span class="p">[</span> <span class="mf">3851.266295</span><span class="p">]</span> <span class="n">ib_mad_recv_done_handler</span><span class="p">()</span><span class="o">:</span> <span class="nl">c1</span><span class="p">:</span> <span class="mi">2062</span> <span class="nl">c2</span><span class="p">:</span> <span class="mi">14</span> <span class="n">wc</span><span class="o">-&gt;</span><span class="nl">wr_id</span><span class="p">:</span> <span class="mh">0xffff88103eea1728</span>
+<span class="p">[</span> <span class="mf">3851.277029</span><span class="p">]</span> <span class="n">ib_mad_post_receive_mads</span><span class="p">()</span><span class="o">:</span> <span class="nl">c1</span><span class="p">:</span> <span class="mi">2062</span> <span class="nl">c2</span><span class="p">:</span> <span class="mi">15</span> <span class="n">recv_wr</span><span class="p">.</span><span class="nl">wr_id</span><span class="p">:</span> <span class="mh">0xffff88103eea1398</span> <span class="nl">recv_queue</span><span class="p">:</span> <span class="n">ffff88103ee42520</span>
+<span class="p">[</span> <span class="mf">3851.288767</span><span class="p">]</span> <span class="n">ib_mad_completion_handler</span> <span class="mi">2377</span> <span class="n">got</span> <span class="n">successful</span> <span class="n">send</span> <span class="n">cq</span> <span class="n">op</span> <span class="mi">0</span> <span class="n">mad_got_one</span> <span class="mi">15</span>
+<span class="p">[</span> <span class="mf">3851.297493</span><span class="p">]</span> <span class="n">ib_mad_completion_handler</span> <span class="mi">2383</span> <span class="n">got</span> <span class="n">successful</span> <span class="n">recv</span> <span class="n">cq</span> <span class="n">op</span> <span class="mi">128</span> <span class="n">mad_got_one</span> <span class="mi">16</span>
+<span class="p">[</span> <span class="mf">3851.306413</span><span class="p">]</span> <span class="n">ib_mad_recv_done_handler</span><span class="p">()</span><span class="o">:</span> <span class="nl">c1</span><span class="p">:</span> <span class="mi">2063</span> <span class="nl">c2</span><span class="p">:</span> <span class="mi">15</span> <span class="n">wc</span><span class="o">-&gt;</span><span class="nl">wr_id</span><span class="p">:</span> <span class="mh">0xffff88103eea18f0</span>
+<span class="p">[</span> <span class="mf">3851.317147</span><span class="p">]</span> <span class="n">ib_mad_post_receive_mads</span><span class="p">()</span><span class="o">:</span> <span class="nl">c1</span><span class="p">:</span> <span class="mi">2063</span> <span class="nl">c2</span><span class="p">:</span> <span class="mi">16</span> <span class="n">recv_wr</span><span class="p">.</span><span class="nl">wr_id</span><span class="p">:</span> <span class="mh">0xffff88103eea1560</span> <span class="nl">recv_queue</span><span class="p">:</span> <span class="n">ffff88103ee42520</span>
+<span class="p">[</span> <span class="mf">3851.328886</span><span class="p">]</span> <span class="n">ib_mad_completion_handler</span> <span class="mi">2377</span> <span class="n">got</span> <span class="n">successful</span> <span class="n">send</span> <span class="n">cq</span> <span class="n">op</span> <span class="mi">0</span> <span class="n">mad_got_one</span> <span class="mi">16</span>
+<span class="p">[</span> <span class="mf">3851.903180</span><span class="p">]</span> <span class="n">ib_mad_completion_handler</span> <span class="mi">2383</span> <span class="n">got</span> <span class="n">successful</span> <span class="n">recv</span> <span class="n">cq</span> <span class="n">op</span> <span class="mi">128</span> <span class="n">mad_got_one</span> <span class="mi">17</span>
+<span class="p">[</span> <span class="mf">3851.911913</span><span class="p">]</span> <span class="n">ib_mad_recv_done_handler</span><span class="p">()</span><span class="o">:</span> <span class="nl">c1</span><span class="p">:</span> <span class="mi">2064</span> <span class="nl">c2</span><span class="p">:</span> <span class="mi">16</span> <span class="n">wc</span><span class="o">-&gt;</span><span class="nl">wr_id</span><span class="p">:</span> <span class="mh">0xffff88103eea1ab8</span>
+<span class="p">[</span> <span class="mf">3851.922646</span><span class="p">]</span> <span class="n">ib_mad_post_receive_mads</span><span class="p">()</span><span class="o">:</span> <span class="nl">c1</span><span class="p">:</span> <span class="mi">2064</span> <span class="nl">c2</span><span class="p">:</span> <span class="mi">17</span> <span class="n">recv_wr</span><span class="p">.</span><span class="nl">wr_id</span><span class="p">:</span> <span class="mh">0xffff88103eea1728</span> <span class="nl">recv_queue</span><span class="p">:</span> <span class="n">ffff88103ee42520</span>
+<span class="p">[</span> <span class="mf">3851.934384</span><span class="p">]</span> <span class="n">ib_mad_completion_handler</span> <span class="mi">2377</span> <span class="n">got</span> <span class="n">successful</span> <span class="n">send</span> <span class="n">cq</span> <span class="n">op</span> <span class="mi">0</span> <span class="n">mad_got_one</span> <span class="mi">17</span>
+<span class="p">[</span> <span class="mf">3851.943110</span><span class="p">]</span> <span class="n">ib_mad_completion_handler</span> <span class="mi">2383</span> <span class="n">got</span> <span class="n">successful</span> <span class="n">recv</span> <span class="n">cq</span> <span class="n">op</span> <span class="mi">128</span> <span class="n">mad_got_one</span> <span class="mi">18</span>
+<span class="p">[</span> <span class="mf">3851.952030</span><span class="p">]</span> <span class="n">ib_mad_recv_done_handler</span><span class="p">()</span><span class="o">:</span> <span class="nl">c1</span><span class="p">:</span> <span class="mi">2065</span> <span class="nl">c2</span><span class="p">:</span> <span class="mi">17</span> <span class="n">wc</span><span class="o">-&gt;</span><span class="nl">wr_id</span><span class="p">:</span> <span class="mh">0xffff88103eea1c80</span>
+<span class="p">[</span> <span class="mf">3851.962764</span><span class="p">]</span> <span class="n">ib_mad_post_receive_mads</span><span class="p">()</span><span class="o">:</span> <span class="nl">c1</span><span class="p">:</span> <span class="mi">2065</span> <span class="nl">c2</span><span class="p">:</span> <span class="mi">18</span> <span class="n">recv_wr</span><span class="p">.</span><span class="nl">wr_id</span><span class="p">:</span> <span class="mh">0xffff88103eea18f0</span> <span class="nl">recv_queue</span><span class="p">:</span> <span class="n">ffff88103ee42520</span>
+<span class="p">[</span> <span class="mf">3851.974502</span><span class="p">]</span> <span class="n">ib_mad_completion_handler</span> <span class="mi">2377</span> <span class="n">got</span> <span class="n">successful</span> <span class="n">send</span> <span class="n">cq</span> <span class="n">op</span> <span class="mi">0</span> <span class="n">mad_got_one</span> <span class="mi">18</span>
+<span class="p">[</span> <span class="mf">3864.723128</span><span class="p">]</span> <span class="o">***</span>  <span class="n">FIT</span> <span class="n">layer</span> <span class="n">ready</span> <span class="n">to</span> <span class="n">go</span><span class="o">!</span>
+<span class="p">[</span> <span class="mf">3864.727206</span><span class="p">]</span> <span class="o">***</span>
+<span class="p">[</span> <span class="mf">3867.339488</span><span class="p">]</span> <span class="n">Processor</span> <span class="n">LLC</span> <span class="nl">Configurations</span><span class="p">:</span>
+<span class="p">[</span> <span class="mf">3867.343760</span><span class="p">]</span>     <span class="nl">PhysStart</span><span class="p">:</span>         <span class="mh">0x100000000</span>
+<span class="p">[</span> <span class="mf">3867.348705</span><span class="p">]</span>     <span class="nl">VirtStart</span><span class="p">:</span>         <span class="mh">0xffff880100000000</span>
+<span class="p">[</span> <span class="mf">3867.354329</span><span class="p">]</span>     <span class="n">Registered</span> <span class="nl">Size</span><span class="p">:</span>   <span class="mh">0x400000000</span>
+<span class="p">[</span> <span class="mf">3867.359274</span><span class="p">]</span>     <span class="n">Actual</span> <span class="n">Used</span> <span class="nl">Size</span><span class="p">:</span>  <span class="mh">0x208000000</span>
+<span class="p">[</span> <span class="mf">3867.364219</span><span class="p">]</span>     <span class="n">NR</span> <span class="nl">cachelines</span><span class="p">:</span>     <span class="mi">2097152</span>
+<span class="p">[</span> <span class="mf">3867.368776</span><span class="p">]</span>     <span class="nl">Associativity</span><span class="p">:</span>     <span class="mi">8</span>
+<span class="p">[</span> <span class="mf">3867.372751</span><span class="p">]</span>     <span class="n">NR</span> <span class="nl">Sets</span><span class="p">:</span>           <span class="mi">262144</span>
+<span class="p">[</span> <span class="mf">3867.377210</span><span class="p">]</span>     <span class="n">Cacheline</span> <span class="nl">size</span><span class="p">:</span>    <span class="mi">4096</span> <span class="n">B</span>
+<span class="p">[</span> <span class="mf">3867.381672</span><span class="p">]</span>     <span class="n">Metadata</span> <span class="nl">size</span><span class="p">:</span>     <span class="mi">64</span> <span class="n">B</span>
+<span class="p">[</span> <span class="mf">3867.385937</span><span class="p">]</span>     <span class="n">NR</span> <span class="n">cacheline</span> <span class="nl">bits</span><span class="p">:</span> <span class="mi">12</span> <span class="p">[</span> <span class="mi">0</span> <span class="o">-</span> <span class="mi">11</span><span class="p">]</span> <span class="mh">0x0000000000000fff</span>
+<span class="p">[</span> <span class="mf">3867.392821</span><span class="p">]</span>     <span class="n">NR</span> <span class="n">set</span><span class="o">-</span><span class="n">index</span> <span class="nl">bits</span><span class="p">:</span> <span class="mi">18</span> <span class="p">[</span><span class="mi">12</span> <span class="o">-</span> <span class="mi">29</span><span class="p">]</span> <span class="mh">0x000000003ffff000</span>
+<span class="p">[</span> <span class="mf">3867.399705</span><span class="p">]</span>     <span class="n">NR</span> <span class="n">tag</span> <span class="nl">bits</span><span class="p">:</span>       <span class="mi">34</span> <span class="p">[</span><span class="mi">30</span> <span class="o">-</span> <span class="mi">63</span><span class="p">]</span> <span class="mh">0xffffffffc0000000</span>
+<span class="p">[</span> <span class="mf">3867.406588</span><span class="p">]</span>     <span class="n">NR</span> <span class="n">pages</span> <span class="k">for</span> <span class="nl">data</span><span class="p">:</span> <span class="mi">2097152</span>
+<span class="p">[</span> <span class="mf">3867.411147</span><span class="p">]</span>     <span class="n">NR</span> <span class="n">pages</span> <span class="k">for</span> <span class="nl">meta</span><span class="p">:</span> <span class="mi">32768</span>
+<span class="p">[</span> <span class="mf">3867.415509</span><span class="p">]</span>     <span class="n">Cacheline</span> <span class="p">(</span><span class="n">pa</span><span class="p">)</span> <span class="nl">range</span><span class="p">:</span>   <span class="p">[</span>       <span class="mh">0x100000000</span> <span class="o">-</span>        <span class="mh">0x2ffffffff</span><span class="p">]</span>
+<span class="p">[</span> <span class="mf">3867.423848</span><span class="p">]</span>     <span class="n">Metadata</span> <span class="p">(</span><span class="n">pa</span><span class="p">)</span> <span class="nl">range</span><span class="p">:</span>    <span class="p">[</span>       <span class="mh">0x300000000</span> <span class="o">-</span>        <span class="mh">0x307ffffff</span><span class="p">]</span>
+<span class="p">[</span> <span class="mf">3867.432186</span><span class="p">]</span>     <span class="n">Cacheline</span> <span class="p">(</span><span class="n">va</span><span class="p">)</span> <span class="nl">range</span><span class="p">:</span>   <span class="p">[</span><span class="mh">0xffff880100000000</span> <span class="o">-</span> <span class="mh">0xffff8802ffffffff</span><span class="p">]</span>
+<span class="p">[</span> <span class="mf">3867.440524</span><span class="p">]</span>     <span class="n">Metadata</span> <span class="p">(</span><span class="n">va</span><span class="p">)</span> <span class="nl">range</span><span class="p">:</span>    <span class="p">[</span>  <span class="n">ffff880300000000</span> <span class="o">-</span> <span class="mh">0xffff880307ffffff</span><span class="p">]</span>
+<span class="p">[</span> <span class="mf">3867.448862</span><span class="p">]</span>     <span class="n">pcache_set_map</span><span class="p">(</span><span class="mo">064</span><span class="n">B</span><span class="p">)</span><span class="o">:</span>   <span class="p">[</span>  <span class="n">ffff88207ec00000</span> <span class="o">-</span> <span class="mh">0xffff88207fbfffff</span><span class="p">]</span>
+<span class="p">[</span> <span class="mf">3867.457201</span><span class="p">]</span>     <span class="n">Way</span> <span class="n">cache</span> <span class="nl">stride</span><span class="p">:</span>  <span class="mh">0x40000000</span>
+<span class="p">[</span> <span class="mf">3867.462048</span><span class="p">]</span>     <span class="n">Memmap</span> <span class="err">$</span> <span class="nl">semantic</span><span class="p">:</span>       <span class="n">memblock</span> <span class="n">reserved</span>
+<span class="p">[</span> <span class="mf">3867.468156</span><span class="p">]</span>     <span class="n">NR</span> <span class="n">victim</span> <span class="err">$</span> <span class="nl">entries</span><span class="p">:</span>     <span class="mi">8</span>
+<span class="p">[</span> <span class="mf">3867.472725</span><span class="p">]</span> <span class="nl">newpid</span><span class="p">:</span> <span class="mi">1</span> <span class="nl">home</span><span class="p">:</span><span class="mi">1</span> <span class="nl">replica</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">[</span> <span class="mf">3867.476980</span><span class="p">]</span> <span class="n">p2m_fork</span><span class="p">(</span><span class="n">cpu0</span><span class="p">)</span><span class="o">:</span> <span class="n">I</span> <span class="nl">cur</span><span class="p">:</span><span class="mi">1</span><span class="o">-</span><span class="n">kernel_init</span> <span class="nl">new</span><span class="p">:</span><span class="mi">20</span>
+<span class="p">[</span> <span class="mf">3867.482718</span><span class="p">]</span> <span class="n">p2m_fork</span><span class="p">(</span><span class="n">cpu0</span><span class="p">)</span><span class="o">:</span> <span class="n">O</span> <span class="n">succeed</span> <span class="nl">cur</span><span class="p">:</span><span class="mi">1</span><span class="o">-</span><span class="n">kernel_init</span> <span class="nl">new</span><span class="p">:</span><span class="mi">20</span>
+<span class="p">[</span> <span class="mf">3867.489197</span><span class="p">]</span> <span class="nl">Processor</span><span class="p">:</span> <span class="n">Processor</span> <span class="n">manager</span> <span class="n">is</span> <span class="n">running</span><span class="p">.</span>
+<span class="p">[</span> <span class="mf">3867.494724</span><span class="p">]</span> <span class="n">Online</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">22</span>
+<span class="p">[</span> <span class="mf">3867.500444</span><span class="p">]</span> <span class="n">Active</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">22</span>
+<span class="p">[</span> <span class="mf">3867.505777</span><span class="p">]</span>   <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">Thread</span><span class="p">[</span><span class="nl">kvictim_flushd</span><span class="p">:</span><span class="mi">19</span><span class="p">]</span> <span class="n">pinned</span> <span class="n">at</span> <span class="n">CPU</span> <span class="mi">8</span>
+<span class="p">[</span> <span class="mf">3867.511982</span><span class="p">]</span>   <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">Thread</span><span class="p">[</span><span class="nl">recvpollcq</span><span class="p">:</span><span class="mi">17</span><span class="p">]</span> <span class="n">pinned</span> <span class="n">at</span> <span class="n">CPU</span> <span class="mi">4</span>
+<span class="p">[</span> <span class="mf">3867.539217</span><span class="p">]</span> <span class="n">do_close_on_exec</span><span class="p">()</span><span class="o">:</span> <span class="n">TODO</span><span class="p">,</span> <span class="n">not</span> <span class="n">implemented</span><span class="p">.</span>
+<span class="p">[</span> <span class="mf">3867.549209</span><span class="p">]</span> <span class="nl">STDOUT</span><span class="p">:</span> <span class="o">---</span><span class="p">[</span>
+<span class="n">Before</span> <span class="n">execv</span><span class="o">^</span><span class="n">V</span>
+<span class="p">]</span><span class="o">---</span>
+<span class="p">[</span> <span class="mf">3867.553870</span><span class="p">]</span> <span class="nl">STDOUT</span><span class="p">:</span> <span class="o">---</span><span class="p">[</span>
+
+<span class="n">e</span>
+<span class="o">---</span>
+<span class="p">[</span> <span class="mf">3867.557880</span><span class="p">]</span> <span class="nl">newpid</span><span class="p">:</span> <span class="mi">20</span> <span class="nl">home</span><span class="p">:</span><span class="mi">1</span> <span class="nl">replica</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">[</span> <span class="mf">3867.562248</span><span class="p">]</span> <span class="n">p2m_fork</span><span class="p">(</span><span class="n">cpu10</span><span class="p">)</span><span class="o">:</span> <span class="n">I</span> <span class="nl">cur</span><span class="p">:</span><span class="mi">20</span><span class="o">-</span><span class="n">exe</span><span class="p">.</span><span class="n">o</span> <span class="nl">new</span><span class="p">:</span><span class="mi">21</span>
+<span class="p">[</span> <span class="mf">3867.567560</span><span class="p">]</span> <span class="n">p2m_fork</span><span class="p">(</span><span class="n">cpu10</span><span class="p">)</span><span class="o">:</span> <span class="n">O</span> <span class="n">succeed</span> <span class="nl">cur</span><span class="p">:</span><span class="mi">20</span><span class="o">-</span><span class="n">exe</span><span class="p">.</span><span class="n">o</span> <span class="nl">new</span><span class="p">:</span><span class="mi">21</span>
+<span class="p">[</span> <span class="mf">3867.573670</span><span class="p">]</span> <span class="n">CPU12</span> <span class="n">PID21</span> <span class="n">sys_execve</span>
+<span class="p">[</span> <span class="mf">3867.578681</span><span class="p">]</span> <span class="n">do_close_on_exec</span><span class="p">()</span><span class="o">:</span> <span class="n">TODO</span><span class="p">,</span> <span class="n">not</span> <span class="n">implemented</span><span class="p">.</span>
+<span class="p">[</span> <span class="mf">3867.584215</span><span class="p">]</span> <span class="n">CPU12</span> <span class="n">PID21</span> <span class="n">sys_execve</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0x0</span>
+<span class="p">[</span> <span class="mf">3867.599867</span><span class="p">]</span> <span class="nl">BUG</span><span class="p">:</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">handle</span> <span class="n">kernel</span> <span class="n">paging</span> <span class="n">request</span> <span class="n">at</span> <span class="mo">000000040</span><span class="mi">8446080</span>
+<span class="p">[</span> <span class="mf">3867.607436</span><span class="p">]</span> <span class="nl">IP</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101bbbf</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">task_tick_rt</span><span class="o">+</span><span class="mh">0x1f</span><span class="o">/</span><span class="mh">0xd0</span>
+</pre></div>
+</td></tr></table></p>
+<h2 id="0416-mon">04/16 Mon</h2>
+<p>Make dist-vma work with TF first. Tough work.</p>
+<p><code class="codehilite">0416-w14-7</code>: 1) do_wp_page triggered, 2) dealock on per pte lock. This really should not happen. It is single worker. Basically means the page-&gt;lock is not intialized. Probabaly our per PTE lock implementation is wrong.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span> <span class="mf">5220.250552</span><span class="p">]</span> <span class="nl">hb</span><span class="p">:</span> <span class="n">worker</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">CPU</span> <span class="mi">4</span> <span class="n">stucked</span>
+<span class="p">[</span> <span class="mf">5220.254819</span><span class="p">]</span> <span class="nl">hb</span><span class="p">:</span>  <span class="n">common_header</span> <span class="p">[</span><span class="n">op</span><span class="o">=</span><span class="mh">0x20000000</span> <span class="nl">src_nid</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">[</span> <span class="mf">5220.260734</span><span class="p">]</span> <span class="nl">hb</span><span class="p">:</span>  <span class="n">msg</span> <span class="p">[</span><span class="n">pid</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span><span class="n">tgid</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span><span class="n">flags</span><span class="o">=</span><span class="mh">0x51</span><span class="p">,</span><span class="n">vaddr</span><span class="o">=</span><span class="mh">0x7fff7b7fdfb8</span><span class="p">]</span>
+<span class="p">[</span> <span class="mf">5220.267911</span><span class="p">]</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">4</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">31</span> <span class="nl">Comm</span><span class="p">:</span> <span class="n">thpool</span><span class="o">-</span><span class="n">worker0</span> <span class="mf">4.0.0</span><span class="o">-</span><span class="n">lego</span><span class="o">-</span><span class="n">ys</span><span class="o">+</span> <span class="err">#</span><span class="mi">237</span>
+<span class="p">[</span> <span class="mf">5220.274890</span><span class="p">]</span> <span class="nl">RIP</span><span class="p">:</span> <span class="mo">0010</span><span class="o">:</span><span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81031aa3</span><span class="o">&gt;</span><span class="p">]</span>  <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81031aa3</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">handle_lego_mm_fault</span><span class="o">+</span><span class="mh">0x373</span><span class="o">/</span><span class="mh">0x4f0</span>
+
+<span class="n">handle_lego_mm_fault</span><span class="o">+</span><span class="mh">0x373</span><span class="o">/</span><span class="mh">0x4ee</span><span class="o">:</span>                                                                                                                                                                                   
+<span class="n">arch_spin_lock</span> <span class="n">at</span> <span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="k">asm</span><span class="o">/</span><span class="n">spinlock</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">21</span>                                                                                                                                                                
+ <span class="p">(</span><span class="n">inlined</span> <span class="n">by</span><span class="p">)</span> <span class="n">spin_lock</span> <span class="n">at</span> <span class="n">include</span><span class="o">/</span><span class="n">lego</span><span class="o">/</span><span class="n">spinlock</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">72</span>                                                                                                                                                               
+ <span class="p">(</span><span class="n">inlined</span> <span class="n">by</span><span class="p">)</span> <span class="n">do_anonymous_page</span> <span class="n">at</span> <span class="n">managers</span><span class="o">/</span><span class="n">memory</span><span class="o">/</span><span class="n">vm</span><span class="o">/</span><span class="n">fault</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">115</span>                                                                                                                                                   
+ <span class="p">(</span><span class="n">inlined</span> <span class="n">by</span><span class="p">)</span> <span class="n">handle_pte_fault</span> <span class="n">at</span> <span class="n">managers</span><span class="o">/</span><span class="n">memory</span><span class="o">/</span><span class="n">vm</span><span class="o">/</span><span class="n">fault</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">142</span>                                                                                                                                                    
+ <span class="p">(</span><span class="n">inlined</span> <span class="n">by</span><span class="p">)</span> <span class="n">handle_lego_mm_fault</span> <span class="n">at</span> <span class="n">managers</span><span class="o">/</span><span class="n">memory</span><span class="o">/</span><span class="n">vm</span><span class="o">/</span><span class="n">fault</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">225</span>
+</pre></div>
+</td></tr></table></p>
+<p>A IB bug during normal run (P M S TF), this is REALLY weird:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span>  <span class="mf">395.259560</span><span class="p">]</span> <span class="n">CPU12</span> <span class="n">PID21</span> <span class="n">sys_execve</span>
+<span class="p">[</span>  <span class="mf">395.263345</span><span class="p">]</span> <span class="nl">BUG</span><span class="p">:</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">handle</span> <span class="n">kernel</span> <span class="nb">NULL</span> <span class="n">pointer</span> <span class="n">dereference</span> <span class="n">at</span> <span class="mo">00000000000001</span><span class="n">a0</span>
+<span class="p">[</span>  <span class="mf">395.272068</span><span class="p">]</span> <span class="nl">IP</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81064c09</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">fit_poll_cq</span><span class="o">+</span><span class="mh">0x39</span><span class="o">/</span><span class="mh">0x530</span>
+
+<span class="n">fit_poll_cq</span><span class="o">+</span><span class="mh">0x39</span><span class="o">/</span><span class="mh">0x523</span><span class="o">:</span><span class="nl">git</span><span class="p">:(</span><span class="n">test_vma</span><span class="p">)]</span> <span class="err">$</span> <span class="p">.</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">faddr2line</span> <span class="n">vmImage</span>  <span class="n">fit_poll_cq</span><span class="o">+</span><span class="mh">0x39</span>
+<span class="n">ib_poll_cq</span> <span class="n">at</span> <span class="n">include</span><span class="o">/</span><span class="n">rdma</span><span class="o">/</span><span class="n">ib_verbs</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">1614</span>
+ <span class="p">(</span><span class="n">inlined</span> <span class="n">by</span><span class="p">)</span> <span class="n">fit_poll_cq</span> <span class="n">at</span> <span class="n">net</span><span class="o">/</span><span class="n">lego</span><span class="o">/</span><span class="n">fit_internal</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">1671</span>
+</pre></div>
+</td></tr></table></p>
+<p>Catch the ib_mad bug once.. and mlx4_error follows. I added more checking to where the mad_queue was assigned.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span>  <span class="mf">787.471385</span><span class="p">]</span> <span class="n">ib_mad_completion_handler</span> <span class="mi">2365</span> <span class="n">got</span> <span class="n">successful</span> <span class="n">recv</span> <span class="n">cq</span> <span class="n">op</span> <span class="mi">128</span> <span class="n">mad_got_one</span> <span class="mi">15</span>
+<span class="p">[</span>  <span class="mf">787.480124</span><span class="p">]</span> <span class="n">BUG</span><span class="o">!</span> <span class="nl">mad_list</span><span class="p">:</span> <span class="n">ffff88103eea1728</span> <span class="nl">mad_queue</span><span class="p">:</span>           <span class="p">(</span><span class="n">null</span><span class="p">)</span>
+<span class="p">[</span>  <span class="mf">787.487491</span><span class="p">]</span> <span class="o">------------</span><span class="p">[</span> <span class="n">cut</span> <span class="n">here</span> <span class="p">]</span><span class="o">------------</span>
+<span class="p">[</span>  <span class="mf">787.492630</span><span class="p">]</span> <span class="nl">WARNING</span><span class="p">:</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">0</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">15</span> <span class="n">at</span> <span class="n">drivers</span><span class="o">/</span><span class="n">infiniband</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">mad</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">1909</span> <span class="n">ib_mad_completion_handler</span><span class="o">+</span><span class="mh">0xa56</span><span class="o">/</span><span class="mh">0xab0</span>
+</pre></div>
+</td></tr></table></p>
 <h2 id="0415-sun">04/15 Sun</h2>
 <p>Trying TF myself.</p>
 <p>Had a bug report on 0415-w15-5, on fork, execve etc.
