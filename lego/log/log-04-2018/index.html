@@ -1416,12 +1416,35 @@
                 
                 <h1 id="april-2018">April 2018</h1>
 <h2 id="0417-tue">04/17 Tue</h2>
-<p>Checking list:
-1. pcache: ibapi use va or pa, does it matter?
-2. ib_mad, does it really corrupt Memory
-3. M side per PTE lock, check if the lock is really the same lock!
-4. Mail I20. Check CPT.</p>
+<p>Checking list:</p>
+<ol>
+<li><del class="critic">-pcache: ibapi use va or pa, does it matter?-</del><ul>
+<li>No, I change it to use the VA. Then we don&rsquo;t have the need to use PA reply any more.</li>
+</ul>
+</li>
+<li><mark class="critic">=ib_mad, does it really corrupt Memory=</mark><ul>
+<li>Still not sure. Should be something come from the <code class="codehilite">ib_poll_cq</code>.</li>
+</ul>
+</li>
+<li>M side per PTE lock, check if the lock is really the same lock!</li>
+<li><del class="critic">-Mail I20. Check CPT.-</del></li>
+<li>Dist-VMA<ul>
+<li>First make sure, TF+no-dist-vma work on my own setting. Though sometimes random bug happen (I doubt it is IB).</li>
+<li>Then turn on dist-vma<ul>
+<li>w/wo zerofill</li>
+<li>w/wo kfree</li>
+<li>w/wo all-zero Debug.</li>
+<li>w/wo M side per PTE lock</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Change most handlers to use TX buffer. Reduce the random mismatched reply case.</li>
+<li>P side watchdog patch: what to print</li>
+<li>It looks like it is more easier to have bug when I turn on those debug counter printing. I probably should check those buffer mgmt.</li>
+</ol>
 <p>Another first thing, check this weird log.. :
+Hmm, this log should be fine. mad_post is after recv_done_handler. So even if we detect corrupted memory in handler, it has nothing to do with mad_post. The root cause should come from ib_poll_cq, that is where we pass wc to, and where the wc.wr_id was filled in.
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
