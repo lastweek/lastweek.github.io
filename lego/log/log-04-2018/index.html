@@ -1441,10 +1441,64 @@
 </li>
 <li>Change most handlers to use TX buffer. Reduce the random mismatched reply case.</li>
 <li>P side watchdog patch: what to print</li>
-<li>It looks like it is more easier to have bug when I turn on those debug counter printing. I probably should check those buffer mgmt.</li>
-</ol>
-<p>Another first thing, check this weird log.. :
-Hmm, this log should be fine. mad_post is after recv_done_handler. So even if we detect corrupted memory in handler, it has nothing to do with mad_post. The root cause should come from ib_poll_cq, that is where we pass wc to, and where the wc.wr_id was filled in.
+<li>
+<p><del class="critic">-It looks like it is more easier to have bug when I turn on those debug counter printing. I probably should check those buffer mgmt. All next test have zerofill:-</del></p>
+<ul>
+<li>w  print<ul>
+<li>F 0417-w15-2(rmap_walk list_for_each_entrry #GP)</li>
+<li>F 0417-w15-3(pcache_copy_page_range corrupted PTE)</li>
+<li>F 0417-w15-4(fit_poll_cq+0x39 ib_poll_cq() &hellip;)</li>
+<li>F 0417-w15-5(pcache_copy_page_range corrupted PTE)</li>
+</ul>
+</li>
+<li>wo strace exit:<ul>
+<li>S 0417-w15-6(each 100 step take ~39s/ Linux is ~34s)</li>
+<li>S 0417-w15-7(filling shuffle data, that works)</li>
+<li>F 0417-w15-8(pcache_copy_page_range+0x5d1)</li>
+<li>F 0417-w15-9(rmap_walk+0x47 #GP)</li>
+</ul>
+</li>
+<li>disable strace:<ul>
+<li>F 0417-w15-10(pcache_copy_page_range+0x5d1)</li>
+</ul>
+</li>
+<li>Conclusion<ul>
+<li>it has nothing to do with the strace thing.</li>
+<li>most of them fail around <code class="codehilite">nr_reqs=19103</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Why the pcache_copy_page_range always happen, after some fork, execve.</p>
+<ul>
+<li>w strace (fork, vfork, clone, execve)<ul>
+<li>F 0417-w15-11 (pcache_cp_pg_range). Understand its flow. Back to make sure P side per PTE lock is correct. If it is pcache_cp fault, it always fail at <code class="codehilite">nr_reqs=19103</code>. And it is: 1) python fork, 2) execve sh.</li>
+<li>S 0417-w15-12. With global PTE lock. Passed the failed stage above.</li>
+<li>F 0417-W15-13. With global PTE lock. Failed at pcache_cp. Same place. (Since global PTE lock also fail, so it is not the lock issue. Still someone write to wrong memory.)</li>
+<li>F 0417-w15-14. With global PTE lock. Same place. Found that I printed a misleading debug info. Modified a little bit to print the actual pte content. Hope can get some valid info next round.</li>
+<li>F 0417-w15-15. Same place. <code class="codehilite"><span class="n">copy</span><span class="o">:</span> <span class="n">addr</span><span class="o">:</span> <span class="mh">0x7fffdca07000</span><span class="o">,</span> <span class="n">ptecont</span><span class="o">:</span> <span class="mh">0x8800000000000</span></code>. <code class="codehilite"><span class="n">zap</span><span class="o">:</span> <span class="n">ptent</span><span class="o">:</span> <span class="mh">0x340</span> <span class="n">address</span><span class="o">:</span> <span class="mh">0x7fffdca08000</span></code>.</li>
+<li>F 0417-w15-16. Well. BUG in ib_mad_send handler. I add the same checking in ib_mad_receive. This is really just used to catch it. Not fixing it.</li>
+<li>F 0417-w15-17. Again, <code class="codehilite"><span class="n">addr</span><span class="o">:</span> <span class="mh">0x7fffdc207000</span><span class="o">,</span> <span class="n">ptecont</span><span class="o">:</span> <span class="mh">0x8800000000000</span></code></li>
+<li>F 0417-w15-18. <code class="codehilite"><span class="n">addr</span><span class="o">:</span> <span class="mh">0x7fffdca07000</span><span class="o">,</span> <span class="n">ptecont</span><span class="o">:</span> <span class="mh">0x8800000000000</span></code></li>
+</ul>
+</li>
+<li>Conclusion<ul>
+<li>Only these two addresses</li>
+<li>addr: 0x7fffdca07000, ptecont: 0x8800000000000</li>
+<li>pte:ffff88103ea87038 (0x8800000000000) pfn:0x0 flags:(0x8800000000000)</li>
+<li>addr: 0x7fffdc207000, ptecont: 0x8800000000000</li>
+<li>pte:ffff88103ea97038 (0x8800000000000) pfn:0x0 flags:(0x8800000000000)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Bug found. In pipe_read/write. It somehow corrupted memory. Damn.</p>
+</li>
+<li>
+<p><del class="critic">-Another first thing, check this weird log.. :
+Hmm, this log should be fine. mad_post is after recv_done_handler. So even if we detect corrupted memory in handler, it has nothing to do with mad_post. The root cause should come from ib_poll_cq, that is where we pass wc to, and where the wc.wr_id was filled in.-</del>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -1590,6 +1644,8 @@ Hmm, this log should be fine. mad_post is after recv_done_handler. So even if we
 <span class="p">[</span> <span class="mf">3867.607436</span><span class="p">]</span> <span class="nl">IP</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101bbbf</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">task_tick_rt</span><span class="o">+</span><span class="mh">0x1f</span><span class="o">/</span><span class="mh">0xd0</span>
 </pre></div>
 </td></tr></table></p>
+</li>
+</ol>
 <h2 id="0416-mon">04/16 Mon</h2>
 <p>Make dist-vma work with TF first. Tough work.</p>
 <p><code class="codehilite">0416-w14-7</code>: 1) do_wp_page triggered, 2) dealock on per pte lock. This really should not happen. It is single worker. Basically means the page-&gt;lock is not intialized. Probabaly our per PTE lock implementation is wrong.
