@@ -198,9 +198,45 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Essential
+      </label>
+    
     <a href="./" title="Essential" class="md-nav__link md-nav__link--active">
       Essential
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tools" title="Tools" class="md-nav__link">
+    Tools
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keep-in-mind" title="Keep in mind" class="md-nav__link">
+    Keep in mind
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -942,6 +978,29 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tools" title="Tools" class="md-nav__link">
+    Tools
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keep-in-mind" title="Keep in mind" class="md-nav__link">
+    Keep in mind
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -954,14 +1013,32 @@
                 
                 
                 <h1 id="system-developing-essentials">System Developing Essentials</h1>
+<h2 id="tools">Tools</h2>
 <ul>
 <li>Stack and Register Dumper</li>
 <li>Software Watchdog</li>
 <li>NMI Watchdog</li>
 <li>Tracepoint and Ring Buffer</li>
 <li>Profilers</li>
-<li>Whiskey, Coffee, Milk, Apple, Banana, and Orange</li>
+<li>Whiskey</li>
 <li>Luck</li>
+</ul>
+<h2 id="keep-in-mind">Keep in mind</h2>
+<ul>
+<li><strong>Stress</strong> your system<ul>
+<li>Every single critical subsystem</li>
+<li>Confident with your base subsystem</li>
+<li>Fix bug/Improve perf in early stage</li>
+</ul>
+</li>
+<li>Plan ahead<ul>
+<li>Single thread, or thread pool?</li>
+<li>How to avoid use <code class="codehilite">lock</code>?</li>
+<li>What lock to use?</li>
+<li>How to reduce <code class="codehilite">lock contention</code>?</li>
+<li>Does this data structure need <code class="codehilite">reference counter</code>?</li>
+</ul>
+</li>
 </ul>
                 
                   
