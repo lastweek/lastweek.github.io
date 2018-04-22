@@ -7,6 +7,7 @@
 - NMI Watchdog
 - Tracepoint and Ring Buffer
 - Profilers
+- Counters
 - Whiskey
 - Luck
 
@@ -22,3 +23,5 @@
     - What lock to use?
     - How to reduce `lock contention`?
     - Does this data structure need `reference counter`?
+
+## Hard

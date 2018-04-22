@@ -29,12 +29,16 @@ static inline int ptep_clear_flush_young(pte_t *ptep)
 
 ## Aggressiveness
 
-An aggresive sweep algorithm will disturb the normal operations a lot. In Lego, there three main factors that define the aggressiveness:
+An aggressive sweep algorithm will disturb the normal operations a lot. In Lego, there 4 main factors that define the aggressiveness:
 
-1. Number of pcache set to look at during each run
-2. Number of pcache lines to look at for each set
-3. Number of pcache lines to adjust for each set
-
+- Time interval between each run
+- Number of sets to look at during each run
+	- Skip if it is not full
+	- Skip if it is under eviction
+- Number of lines to look at for each set
+	- Smaller or equal to associativity
+- Number of lines to adjust for each set
+	- Smaller or equal to lines to look at
 
 --  
 Yizhou Shan  
