@@ -1057,12 +1057,23 @@
 </pre></div>
 </td></tr></table></p>
 <h2 id="aggressiveness">Aggressiveness</h2>
-<p>An aggresive sweep algorithm will disturb the normal operations a lot. In Lego, there three main factors that define the aggressiveness:</p>
-<ol>
-<li>Number of pcache set to look at during each run</li>
-<li>Number of pcache lines to look at for each set</li>
-<li>Number of pcache lines to adjust for each set</li>
-</ol>
+<p>An aggressive sweep algorithm will disturb the normal operations a lot. In Lego, there 4 main factors that define the aggressiveness:</p>
+<ul>
+<li>Time interval between each run</li>
+<li>Number of sets to look at during each run<ul>
+<li>Skip if it is not full</li>
+<li>Skip if it is under eviction</li>
+</ul>
+</li>
+<li>Number of lines to look at for each set<ul>
+<li>Smaller or equal to associativity</li>
+</ul>
+</li>
+<li>Number of lines to adjust for each set<ul>
+<li>Smaller or equal to lines to look at</li>
+</ul>
+</li>
+</ul>
 <p>&ndash;<br />
 Yizhou Shan<br />
 Created: Mar 18, 2018<br />
