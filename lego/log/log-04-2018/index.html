@@ -355,6 +355,20 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0429-sun" title="04/29 Sun" class="md-nav__link">
+    04/29 Sun
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0426-thus" title="04/26 Thus" class="md-nav__link">
+    04/26 Thus
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0425" title="04/25" class="md-nav__link">
     04/25
   </a>
@@ -855,6 +869,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/net_thpool/" title="Network Thpool" class="md-nav__link">
+      Network Thpool
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1234,6 +1260,20 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0429-sun" title="04/29 Sun" class="md-nav__link">
+    04/29 Sun
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0426-thus" title="04/26 Thus" class="md-nav__link">
+    04/26 Thus
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0425" title="04/25" class="md-nav__link">
     04/25
   </a>
@@ -1513,6 +1553,55 @@
                 
                 
                 <h1 id="april-2018">April 2018</h1>
+<h2 id="0429-sun">04/29 Sun</h2>
+<p>Rolling.</p>
+<h2 id="0426-thus">04/26 Thus</h2>
+<p>Fix the victim pte_same issue in SMP race cases. SMP is really pain in the ass, how many times? But&hellip; another victim ref count bug show up in SMP.
+First log in 0426-w15-&frac12;</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="mo">0426</span><span class="o">-</span><span class="n">w15</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span>
+
+<span class="p">[</span>  <span class="mf">206.381646</span><span class="p">]</span> <span class="n">CPU12</span> <span class="n">PID28</span>  <span class="nl">victim</span><span class="p">:</span><span class="n">ffff88207ff69120</span> <span class="nl">index</span><span class="p">:</span><span class="mi">4</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">nr_fill</span><span class="p">:</span><span class="mi">0</span> <span class="nl">locked</span><span class="p">:</span><span class="mi">0</span> <span class="nl">flags</span><span class="p">:(</span><span class="mh">0x2e</span><span class="p">)(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="o">|</span><span class="n">hasdata</span><span class="o">|</span><span class="n">waitflush</span><span class="p">)</span> <span class="nl">pcm</span><span class="p">:</span>          <span class="p">(</span><span class="n">null</span><span class="p">)</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff72000</span>
+<span class="p">[</span>  <span class="mf">206.416658</span><span class="p">]</span> <span class="n">CPU12</span> <span class="n">PID28</span>     <span class="n">hit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="nl">owner</span><span class="p">:</span><span class="mi">21</span> <span class="nl">m_nid</span><span class="p">:</span><span class="mi">1</span> <span class="nl">rep_nid</span><span class="p">:</span><span class="mi">1</span> <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7fffd0000000</span>
+<span class="p">[</span>  <span class="mf">206.433431</span><span class="p">]</span> <span class="n">CPU12</span> <span class="n">PID28</span>  <span class="nl">victim</span><span class="p">:</span><span class="n">ffff88207ff69120</span> <span class="nl">index</span><span class="p">:</span><span class="mi">4</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">nr_fill</span><span class="p">:</span><span class="mi">0</span> <span class="nl">locked</span><span class="p">:</span><span class="mi">0</span> <span class="nl">flags</span><span class="p">:(</span><span class="mh">0x4e</span><span class="p">)(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="o">|</span><span class="n">hasdata</span><span class="o">|</span><span class="n">flushed</span><span class="p">)</span> <span class="nl">pcm</span><span class="p">:</span>          <span class="p">(</span><span class="n">null</span><span class="p">)</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff72000</span>
+<span class="p">[</span>  <span class="mf">206.468429</span><span class="p">]</span> <span class="n">CPU12</span> <span class="n">PID28</span>     <span class="n">rmap</span> <span class="n">to</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff72000</span> <span class="nl">set_idx</span><span class="p">:</span> <span class="mi">0</span> <span class="nl">nr_lru</span><span class="p">:</span><span class="mi">63</span>
+<span class="p">[</span>  <span class="mf">206.484425</span><span class="p">]</span> <span class="n">CPU12</span> <span class="n">PID28</span>     <span class="n">victim</span> <span class="n">dumped</span> <span class="nl">because</span><span class="p">:</span> <span class="n">PCACHE_BUG_ON_VICTIM</span><span class="p">(</span><span class="o">!</span><span class="n">VictimAllocated</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="n">VictimUsable</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="n">VictimFlushed</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">||</span> <span class="n">VictimWriteback</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">||</span> <span class="n">VictimLocked</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+<span class="p">[</span>  <span class="mf">206.543952</span><span class="p">]</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">12</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">28</span> <span class="nl">Comm</span><span class="p">:</span> <span class="n">python</span> <span class="mf">4.0.0</span><span class="o">-</span><span class="n">lego</span><span class="o">+</span> <span class="err">#</span><span class="mi">274</span>
+<span class="p">[</span>  <span class="mf">206.521849</span><span class="p">]</span> <span class="nl">WARNING</span><span class="p">:</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">12</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">28</span> <span class="n">at</span> <span class="n">managers</span><span class="o">/</span><span class="n">processor</span><span class="o">/</span><span class="n">pcache</span><span class="o">/</span><span class="n">victim</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">196</span> <span class="n">__put_victim_nolist</span><span class="o">+</span><span class="mh">0xa5</span><span class="o">/</span><span class="mh">0xd0</span>
+<span class="p">[</span>  <span class="mf">206.722631</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8103b555</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">__put_victim_nolist</span><span class="o">+</span><span class="mh">0xa5</span><span class="o">/</span><span class="mh">0xd0</span>
+<span class="p">[</span>  <span class="mf">206.729127</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8103c419</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">victim_try_fill_pcache</span><span class="o">+</span><span class="mh">0x2d9</span><span class="o">/</span><span class="mh">0x460</span>
+<span class="p">[</span>  <span class="mf">206.736107</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8103b740</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">victim_insert_hit_entry</span><span class="o">+</span><span class="mh">0x170</span><span class="o">/</span><span class="mh">0x170</span>
+<span class="p">[</span>  <span class="mf">206.743378</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810371ea</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">pcache_handle_fault</span><span class="o">+</span><span class="mh">0x18a</span><span class="o">/</span><span class="mh">0x750</span>
+
+<span class="p">[</span>  <span class="mf">206.399206</span><span class="p">]</span> <span class="n">CPU8</span> <span class="n">PID19</span>  <span class="nl">victim</span><span class="p">:</span><span class="n">ffff88207ff69120</span> <span class="nl">index</span><span class="p">:</span><span class="mi">4</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">nr_fill</span><span class="p">:</span><span class="mi">0</span> <span class="nl">locked</span><span class="p">:</span><span class="mi">0</span> <span class="nl">flags</span><span class="p">:(</span><span class="mh">0x4e</span><span class="p">)(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="o">|</span><span class="n">hasdata</span><span class="o">|</span><span class="n">flushed</span><span class="p">)</span> <span class="nl">pcm</span><span class="p">:</span>          <span class="p">(</span><span class="n">null</span><span class="p">)</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff72000</span>
+<span class="p">[</span>  <span class="mf">206.425092</span><span class="p">]</span> <span class="n">CPU8</span> <span class="n">PID19</span>     <span class="n">hit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="nl">owner</span><span class="p">:</span><span class="mi">21</span> <span class="nl">m_nid</span><span class="p">:</span><span class="mi">1</span> <span class="nl">rep_nid</span><span class="p">:</span><span class="mi">1</span> <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7fffd0000000</span>
+<span class="p">[</span>  <span class="mf">206.450977</span><span class="p">]</span> <span class="n">CPU8</span> <span class="n">PID19</span>  <span class="nl">victim</span><span class="p">:</span><span class="n">ffff88207ff69120</span> <span class="nl">index</span><span class="p">:</span><span class="mi">4</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">0</span> <span class="nl">nr_fill</span><span class="p">:</span><span class="mi">0</span> <span class="nl">locked</span><span class="p">:</span><span class="mi">0</span> <span class="nl">flags</span><span class="p">:(</span><span class="mh">0x4e</span><span class="p">)(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="o">|</span><span class="n">hasdata</span><span class="o">|</span><span class="n">flushed</span><span class="p">)</span> <span class="nl">pcm</span><span class="p">:</span>          <span class="p">(</span><span class="n">null</span><span class="p">)</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff72000</span>
+<span class="p">[</span>  <span class="mf">206.476475</span><span class="p">]</span> <span class="n">CPU8</span> <span class="n">PID19</span>     <span class="n">rmap</span> <span class="n">to</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff72000</span> <span class="nl">set_idx</span><span class="p">:</span> <span class="mi">0</span> <span class="nl">nr_lru</span><span class="p">:</span><span class="mi">63</span>
+<span class="p">[</span>  <span class="mf">206.501779</span><span class="p">]</span> <span class="n">CPU8</span> <span class="n">PID19</span>     <span class="n">victim</span> <span class="n">dumped</span> <span class="nl">because</span><span class="p">:</span> <span class="n">PCACHE_BUG_ON_VICTIM</span><span class="p">(</span><span class="n">victim_ref_count</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">[</span>  <span class="mf">206.549963</span><span class="p">]</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">8</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">19</span> <span class="nl">Comm</span><span class="p">:</span> <span class="n">kvictim_flushd</span> <span class="mf">4.0.0</span><span class="o">-</span><span class="n">lego</span><span class="o">+</span> <span class="err">#</span><span class="mi">274</span>
+<span class="p">[</span>  <span class="mf">206.532803</span><span class="p">]</span> <span class="nl">WARNING</span><span class="p">:</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">8</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">19</span> <span class="n">at</span> <span class="p">.</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">processor</span><span class="o">/</span><span class="n">pcache_victim</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span><span class="mi">119</span> <span class="n">__victim_flush_func</span><span class="o">+</span><span class="mh">0x1e4</span><span class="o">/</span><span class="mh">0x1f0</span>
+</pre></div>
+</td></tr></table>
+
 <h2 id="0425">04/25</h2>
 <p>Stay humble. Be real.</p>
 <h2 id="0422-sun">04/22 Sun</h2>
