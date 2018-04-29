@@ -30,6 +30,7 @@ pages:
         - 'Virtual File System': 'lego/kernel/vfs.md'
         - 'Process Virtual Memory': 'lego/kernel/vm.md'
         - 'x86 FPU': 'lego/kernel/fpu.md'
+        - 'Network Thpool': 'lego/kernel/net_thpool.md'
    - Syscall:
            - 'Facts':         'lego/syscall/facts.md'
            - 'strace': 'lego/kernel/profile_strace.md'
