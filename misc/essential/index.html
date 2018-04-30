@@ -230,13 +230,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#hard" title="Hard" class="md-nav__link">
-    Hard
-  </a>
-  
-</li>
-      
       
       
       
@@ -1014,13 +1007,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#hard" title="Hard" class="md-nav__link">
-    Hard
-  </a>
-  
-</li>
-      
       
       
       
@@ -1052,13 +1038,13 @@
 </ul>
 <h2 id="keep-in-mind">Keep in mind</h2>
 <ul>
-<li><strong>Stress</strong> your system<ul>
+<li><strong>Stress your system</strong><ul>
 <li>Every single critical subsystem</li>
 <li>Confident with your base subsystem</li>
 <li>Fix bug/Improve perf in early stage</li>
 </ul>
 </li>
-<li>Plan ahead<ul>
+<li><strong>Plan ahead</strong><ul>
 <li>Single thread, or thread pool?</li>
 <li>How to avoid use <code class="codehilite">lock</code>?</li>
 <li>What lock to use?</li>
@@ -1066,8 +1052,13 @@
 <li>Does this data structure need <code class="codehilite">reference counter</code>?</li>
 </ul>
 </li>
+<li><strong>Decent Cleanup</strong><ul>
+<li>Free buffer/structure</li>
+<li>Remove the <strong>pointer</strong> from friends&rsquo; list/tree. If you forgot to do so, mostly you will have some silent memory corruption. So be kind, cleanup what you have done during intilization.</li>
+<li>Report error. Do not be SILENT.</li>
 </ul>
-<h2 id="hard">Hard</h2>
+</li>
+</ul>
                 
                   
                 
