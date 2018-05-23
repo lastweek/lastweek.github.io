@@ -3,7 +3,7 @@ advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). Our la
 Please find my CV [here](https://lastweek.github.io/pubs/cv.pdf).
 
 ## What's up
-- Will join VMware Research for 2018 summer intern.
+- [05/21/18] Start Internship at [VMware Research](https://research.vmware.com/), with [Stanko Novakovic](https://sites.google.com/site/stankonovakovic/).
 
 ## Research
 

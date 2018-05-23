@@ -7,6 +7,9 @@ pages:
 - Read:
    - 'FAST 18': 'read/fast18.md'
    - 'ASPLOS 18': 'read/asplos18.md'
+- VMware18:
+   - 'MISC': 'vmware18/misc.md'
+   - 'IB': 'vmware18/ib.md'
 - Lego:
    - 'Log':
            - 'TODO': 'lego/log/TODO.md'
