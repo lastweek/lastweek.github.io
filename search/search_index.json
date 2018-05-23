@@ -2,12 +2,12 @@
     "docs": [
         {
             "location": "/", 
-            "text": "My name is \nYizhou Shan\n \n. I\nm a second-year Ph.D. student at \nPurdue ECE\n,\nadvised by Prof. \nYiying Zhang\n. Our lab is \nWuklab.io\n. Yes, the \nMonkey King\n Lab.\nPlease find my CV \nhere\n.\n\n\nWhat\ns up\n\n\n\n\nWill join VMware Research for 2018 summer intern.\n\n\n\n\nResearch\n\n\nMy research interests span Operating System, Distributed Systems,\nand Non-Volatile Memory. I like hacking kernel and no doubt Linux is my\nfavorite open-source project.\n\n\nContact\n\n\n465 Northwestern Ave\n\nPurdue University\n\nWest Lafayette, IN 47907\n\nOffice: EE 345  \n\n\nEmail: \nys@purdue.edu\n\n\nConferences and Workshops\n\n\n\n\nDisaggregating Memory with Software-Managed Virtual Cache\n\n\n \nYizhou Shan\n, Yiying Zhang\n\n at the 2018 Workshop on Warehouse-scale Memory Systems (\nWAMS \n18\n) (co-located with ASPLOS \n18)\n\n\nDistributed Shared Persistent Memory\n\n\n \nYizhou Shan\n, Shin-Yeh Tsai, Yiying Zhang\n\n at the 9\nth\n Annual Non-Volatile Memories Workshop (\nNVMW \n18\n)\n\n\nDisaggregated Operating System\n\n\n Yiying Zhang, \nYizhou Shan\n, Sumukh Hallymysore\n\n at the 17\nth\n International Workshop on High Performance Transaction Systems (\nHPTS \n17\n)\n\n\nDistributed Shared Persistent Memory\n\n\n \nYizhou Shan\n, Shin-Yeh Tsai, Yiying Zhang\n\n Proceedings of the ACM Symposium on Cloud Computing 2017 (\nSoCC \n17\n)\n\n\n\n\nPosters\n\n\n\n\n\n\nLego: A Distributed, Decomposed OS for Resource Disaggregation\n\n\n \nYizhou Shan\n, Yilun Chen, Yutong Huang, Sumukh Hallymysore, Yiying Zhang\n\n Poster at the 26\nth\n ACM Symposium on Operating Systems Principles (\nSOSP \n17\n)\n\n\n\n\n\n\nDisaggregated Operating System\n\n\n \nYizhou Shan\n, Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang\n\n Poster at the ACM Symposium on Cloud Computing 2017 (\nSoCC \n17\n)\n\n\n\n\n\n\nSocial\n\n\n\n\nGithub\n\n\nLinkedIn", 
+            "text": "My name is \nYizhou Shan\n \n. I\nm a second-year Ph.D. student at \nPurdue ECE\n,\nadvised by Prof. \nYiying Zhang\n. Our lab is \nWuklab.io\n. Yes, the \nMonkey King\n Lab.\nPlease find my CV \nhere\n.\n\n\nWhat\ns up\n\n\n\n\n[05/21/18] Start Internship at \nVMware Research\n, with \nStanko Novakovic\n.\n\n\n\n\nResearch\n\n\nMy research interests span Operating System, Distributed Systems,\nand Non-Volatile Memory. I like hacking kernel and no doubt Linux is my\nfavorite open-source project.\n\n\nContact\n\n\n465 Northwestern Ave\n\nPurdue University\n\nWest Lafayette, IN 47907\n\nOffice: EE 345  \n\n\nEmail: \nys@purdue.edu\n\n\nConferences and Workshops\n\n\n\n\nDisaggregating Memory with Software-Managed Virtual Cache\n\n\n \nYizhou Shan\n, Yiying Zhang\n\n at the 2018 Workshop on Warehouse-scale Memory Systems (\nWAMS \n18\n) (co-located with ASPLOS \n18)\n\n\nDistributed Shared Persistent Memory\n\n\n \nYizhou Shan\n, Shin-Yeh Tsai, Yiying Zhang\n\n at the 9\nth\n Annual Non-Volatile Memories Workshop (\nNVMW \n18\n)\n\n\nDisaggregated Operating System\n\n\n Yiying Zhang, \nYizhou Shan\n, Sumukh Hallymysore\n\n at the 17\nth\n International Workshop on High Performance Transaction Systems (\nHPTS \n17\n)\n\n\nDistributed Shared Persistent Memory\n\n\n \nYizhou Shan\n, Shin-Yeh Tsai, Yiying Zhang\n\n Proceedings of the ACM Symposium on Cloud Computing 2017 (\nSoCC \n17\n)\n\n\n\n\nPosters\n\n\n\n\n\n\nLego: A Distributed, Decomposed OS for Resource Disaggregation\n\n\n \nYizhou Shan\n, Yilun Chen, Yutong Huang, Sumukh Hallymysore, Yiying Zhang\n\n Poster at the 26\nth\n ACM Symposium on Operating Systems Principles (\nSOSP \n17\n)\n\n\n\n\n\n\nDisaggregated Operating System\n\n\n \nYizhou Shan\n, Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang\n\n Poster at the ACM Symposium on Cloud Computing 2017 (\nSoCC \n17\n)\n\n\n\n\n\n\nSocial\n\n\n\n\nGithub\n\n\nLinkedIn", 
             "title": "Home"
         }, 
         {
             "location": "/#whats-up", 
-            "text": "Will join VMware Research for 2018 summer intern.", 
+            "text": "[05/21/18] Start Internship at  VMware Research , with  Stanko Novakovic .", 
             "title": "What's up"
         }, 
         {
@@ -124,6 +124,21 @@
             "location": "/read/asplos18/#asplos-18", 
             "text": "GPU virtual cache  TLB coherence", 
             "title": "ASPLOS 18"
+        }, 
+        {
+            "location": "/vmware18/misc/", 
+            "text": "Intel Xeon 6138p, integrated FPGA (check it out!)\n\n\nretpoline (perf impact?)\n\n\n\n\nIntel Total Memory Encryption. Multi-Key Total Memory Encryption (MKTME).\n\n\n\n\n\n\nRDMA + NVM:\n An interesting topic. There are a lot interesting stuff to think about. I discussed this with Sanidhya today, he shared some very valuable findings:\n\n\n\n\nRDMA write: when does it mark a \npersistent\n point?\n\n\nRDMA write followed by a RDMA read, is kind of implicit memory barrier imposed by memory controller.\n\n\n\n\n\n\n\n\nIBA Semantic\n\n\n\n\nChannel (Send/Receive)\n\n\nMemory (RDMA)", 
+            "title": "MISC"
+        }, 
+        {
+            "location": "/vmware18/ib/", 
+            "text": "Learning IB\n\n\nReading IB Spec:\n\n\n\n\n\n\nThe QP is the \nvirtual interface that the hardware provides to an IBA consumer\n; it serves as a virtual communication port for the consumer.\n\n\n\n\n\n\nOne-sided RDMA, two-sided RDMA\n\n\n\n\nIBA Semantic\n\n\nChannel (Send/Receive)\n\n\nMemory (RDMA)", 
+            "title": "IB"
+        }, 
+        {
+            "location": "/vmware18/ib/#learning-ib", 
+            "text": "Reading IB Spec:    The QP is the  virtual interface that the hardware provides to an IBA consumer ; it serves as a virtual communication port for the consumer.    One-sided RDMA, two-sided RDMA   IBA Semantic  Channel (Send/Receive)  Memory (RDMA)", 
+            "title": "Learning IB"
         }, 
         {
             "location": "/lego/log/TODO/", 
