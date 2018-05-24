@@ -1077,10 +1077,12 @@
                 <h1 id="learning-ib">Learning IB</h1>
 <h2 id="q">Q</h2>
 <ul>
-<li>Send: receiver&rsquo;s CPU will be involved? I think so..</li>
+<li>Send: receiver&rsquo;s CPU will be involved? A: I think so.</li>
 <li>Atomic Operations: what exactly does the atomic mean in this context?</li>
 <li>When a RECV was consumed, will a CQE be generated at receiver side? Yes.</li>
-<li>Actually, what is the purpose of <code class="codehilite">ib_poll_cq</code>? For sender, it uses this to check if the msg has been sent. For receiver, does it use this to check if a msg has been received (cos a RECV WQE has been consumed)?</li>
+<li>Actually, what is the purpose of <code class="codehilite">ib_poll_cq</code>? For sender, it uses this to check if the msg has been sent. For receiver, does it use this to check if a msg has been received (cos a RECV WQE has been consumed)? A: Understand now.</li>
+<li>RDMA Write with Immediate Data: according to spec, the remote side will consume a WQE and generate a CQE. Will this involve remote CPU? A:</li>
+<li>RPC: SEND or RDMA Write with Immediate, which is better and why?</li>
 </ul>
 <h2 id="ib-specification">IB Specification</h2>
 <ul>
@@ -1110,7 +1112,6 @@ adapter which uniquely identifies the QP <strong>within the channel adapter</str
 <li>Post Receive Buffer (a channel semantic operation for SEND from remote.)</li>
 </ul>
 </li>
-<li>SEND can carry <strong>4 bytes of Immediate data</strong> for each send message. If included, the Immediate data is contained within an additional header field on the last packet of the SEND Operation (sec 9.4.1 SEND Operation).</li>
 <li>Memory (RDMA)<ul>
 <li>With memory semantics the initiating party directly reads or writes the virtual address space of a remote node. The remote party needs only communicate the location of the buffer; it is not involved with the actual transfer of the data. Hence, this style is sometimes referred to as single-ended communications.</li>
 </ul>
@@ -1118,7 +1119,19 @@ adapter which uniquely identifies the QP <strong>within the channel adapter</str
 <li>L_Key and R_Key used to validate access permission.</li>
 </ul>
 </li>
-<li>QP transport services<ul>
+<li>
+<p>Immediate Data</p>
+<ul>
+<li>RDMA Write and SEND can carry <strong>4 bytes of Immediate data</strong>.</li>
+<li>sec 3.6 SEND can carry Immediate data for each send message. If included, the Immediate data is contained within an additional header field on the last packet of the SEND Operation (sec 9.4.1 SEND Operation).</li>
+<li>sec 3.7.4 <strong>An RDMA Write with immediate data</strong> will consume a receive WQE even though the QP did not place any data into the receive buffer since the IMMDT is placed in a CQE that references the receive WQE and indicates that the WQE has completed.</li>
+<li>sec 9.4.3 If specified by the verbs layer, Immediate data is included in the <strong>last packet of an RDMA WRITE message</strong>. The Immediate data is not written to the target virtual address range, but is passed to the client after the last RDMA WRITE packet is successfully processed.</li>
+<li>sec 10.7.2.2 C10-86: The responder’s Receive Queue shall consume a Work Request when Immediate Data is specified in a successfully completed incoming RDMA Write.</li>
+</ul>
+</li>
+<li>
+<p>QP transport services</p>
+<ul>
 <li>RC</li>
 <li>RD</li>
 <li>UC</li>
