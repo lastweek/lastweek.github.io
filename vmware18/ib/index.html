@@ -303,9 +303,45 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        IB
+      </label>
+    
     <a href="./" title="IB" class="md-nav__link md-nav__link--active">
       IB
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#q" title="Q" class="md-nav__link">
+    Q
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ib-specification" title="IB Specification" class="md-nav__link">
+    IB Specification
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -1004,6 +1040,29 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#q" title="Q" class="md-nav__link">
+    Q
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ib-specification" title="IB Specification" class="md-nav__link">
+    IB Specification
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1016,13 +1075,17 @@
                 
                 
                 <h1 id="learning-ib">Learning IB</h1>
-<p>Reading IB Spec:</p>
+<h2 id="q">Q</h2>
+<ul>
+<li>Send: receiver&rsquo;s CPU will be involved? I think so..</li>
+<li>Atomic Operations: what exactly does the atomic mean in this context?</li>
+<li>When a RECV was consumed, will a CQE be generated at receiver side? Yes.</li>
+<li>Actually, what is the purpose of <code class="codehilite">ib_poll_cq</code>? For sender, it uses this to check if the msg has been sent. For receiver, does it use this to check if a msg has been received (cos a RECV WQE has been consumed)?</li>
+</ul>
+<h2 id="ib-specification">IB Specification</h2>
 <ul>
 <li>
 <p>The QP is the <strong>virtual interface that the hardware provides to an IBA consumer</strong>; it serves as a virtual communication port for the consumer.</p>
-</li>
-<li>
-<p>One-sided RDMA, two-sided RDMA</p>
 </li>
 <li>
 <p>Memory Region, L_Key, R_Key (sec 3.5.3/3.5.4)</p>
@@ -1047,6 +1110,7 @@ adapter which uniquely identifies the QP <strong>within the channel adapter</str
 <li>Post Receive Buffer (a channel semantic operation for SEND from remote.)</li>
 </ul>
 </li>
+<li>SEND can carry <strong>4 bytes of Immediate data</strong> for each send message. If included, the Immediate data is contained within an additional header field on the last packet of the SEND Operation (sec 9.4.1 SEND Operation).</li>
 <li>Memory (RDMA)<ul>
 <li>With memory semantics the initiating party directly reads or writes the virtual address space of a remote node. The remote party needs only communicate the location of the buffer; it is not involved with the actual transfer of the data. Hence, this style is sometimes referred to as single-ended communications.</li>
 </ul>
@@ -1073,6 +1137,7 @@ adapter which uniquely identifies the QP <strong>within the channel adapter</str
 <ul>
 <li>Describe the general flow. A nice read.</li>
 <li>So the WQE of RDMA Write/Read, the sender side&rsquo;s driver will create a CQE when sender get ACK from receiver? And that marks the end of a RDMA Read/Write? For RC, I think so. According to: <strong>When the originator receives an acknowledgment, it creates a CQE on the CQ and retires the WQE from the send queue.</strong></li>
+<li><strong>sec 3.2.1 Each time the remote consumer successfully executes a SEND operation, the hardware takes the next entry from the receive queue, places the received data in the memory location specified in that receive WQE, and places a CQE on the completion queue indicating to the consumer that the receive operation has completed. Thus the execution of a SEND operation causes a receive queue operation at the remote consumer.</strong> That is one important claim, the receiver side can poll the CQ to know if it has received a SEND or not.</li>
 </ul>
 </li>
 <li>
@@ -1080,6 +1145,44 @@ adapter which uniquely identifies the QP <strong>within the channel adapter</str
 <ul>
 <li>Interesting. So, instead of a Host Channel Adapter (HCA), we have Target Channel Adapter (TCA), which is attached to a IO device such as SSD. If we look from the IB layered architecture, everything below <strong>upper level protocols</strong> remain the same. In upper level protocols, which used to be Consumer, now is I/O controller.</li>
 <li>Do we have this kind of hardware on market? Fabric over NVMe?</li>
+</ul>
+</li>
+<li>
+<p>Transport Layer (sec 9)</p>
+<ul>
+<li>The transport header contains the information required by the endnode to complete the specified operation, e.g. delivery of data payload to the appropriate entity within the endnode such as <strong>a thread</strong> or <strong>IO controller</strong>.</li>
+<li>For a host platform, <strong>the client of the transport layer is the Verbs software layer</strong>. The client posts buffers or commands to these queues and hardware transfers data from or into the buffers.</li>
+<li>Reliable transport has response (acknowledge). Unreliable transport does not use acknowledgment messages.</li>
+<li>SEND can carry <strong>4 bytes of Immediate data</strong> for each send message. If included, the Immediate data is contained within an additional header field on the last packet of the SEND Operation (sec 9.4.1 SEND Operation).</li>
+<li><strong>WQ Packet Ordering Stuff</strong> (sec 9.5 Transaction Ordering): A requester shall transmit request messages in the order that the Work Queue Elements (WQEs) were posted.</li>
+<li>Reliable Service (sec 9.7)<ul>
+<li>Before it can consider a WQE completed, the requester must wait for the necessary response(s) to arrive. If the requester requires an explicit response such that it can complete a given WQE, then the requester shall be responsible to take the necessary steps to ensure that the needed response is forthcoming.</li>
+</ul>
+</li>
+<li>This section is still too much details on hardware behavior. But Mel must have more detailed stuff in house.</li>
+</ul>
+</li>
+<li>
+<p>Software Transport interface (sec 10)</p>
+<ul>
+<li>I think this section is trying to describe the various software concepts, such as HCA, Protection domain, and so on. The actual manipulations are carried out by Verbs, which are described in sec 11.</li>
+<li>A QP, which is a component of the channel interface, is NOT directly accessible by the Verbs consumer and can only be manipulated through the use of Verbs.</li>
+<li>A CQ can be used to multiplex work completions from multiple work queues across queue pairs on the same HCA.</li>
+<li>Shared Receive Queue (sec 10.2.9) (Is it used in Lego?)</li>
+<li>Memory Management (sec 10.6)<ul>
+<li>Memory Region</li>
+</ul>
+</li>
+<li>Able to register a <strong>virtually contiguous address range</strong>, even though the physical pages are not contiguous.</li>
+<li>Able to register a <strong>physically contiguous address range</strong>.</li>
+<li>Prior to invoking a Register Physical Memory Region or Reregister Physical Memory Region Verb, the Consumer should <strong>pin down</strong> in physical memory every physical buffer within the Memory Region. (But now Mellanox supports pgfault in their products, right?)</li>
+<li>Work Request (sec 10.7 and sec 10.8)<ul>
+<li>Signaled Completion and Unsignaled Completion (sec 10.7.3.1) Finally meet these two description in tech documents. In Lego, we used to use unsignaled (polling), and then we change that to signaled handler.</li>
+</ul>
+</li>
+<li>Submitting a list of Work Requests.. (10.8.2.1)</li>
+<li>.. <strong>the HCA is notified that one or more WQEs are ready to be processed.</strong> What is the mechanism of this notification? How does HCA got notified? HCA polling, or driver write something into HCA?</li>
+<li>Completion Queue Operations: poll a specified CQ for a Work Completion, that is <code class="codehilite">ib_poll_cq()</code>! (sec 11.4.2)</li>
 </ul>
 </li>
 </ul>
