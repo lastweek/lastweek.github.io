@@ -69,7 +69,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#learning-ib" tabindex="1" class="md-skip">
+      <a href="#restless-dumb-memory-assassinate-rdma" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -324,6 +324,13 @@
         <li class="md-nav__item">
   <a href="#q" title="Q" class="md-nav__link">
     Q
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#except" title="Except" class="md-nav__link">
+    Except
   </a>
   
 </li>
@@ -1051,6 +1058,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#except" title="Except" class="md-nav__link">
+    Except
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ib-specification" title="IB Specification" class="md-nav__link">
     IB Specification
   </a>
@@ -1074,15 +1088,23 @@
               
                 
                 
-                <h1 id="learning-ib">Learning IB</h1>
+                <h1 id="restless-dumb-memory-assassinate-rdma">Restless Dumb Memory Assassinate (RDMA)</h1>
 <h2 id="q">Q</h2>
 <ul>
-<li>Send: receiver&rsquo;s CPU will be involved? A: I think so.</li>
 <li>Atomic Operations: what exactly does the atomic mean in this context?</li>
-<li>When a RECV was consumed, will a CQE be generated at receiver side? Yes.</li>
-<li>Actually, what is the purpose of <code class="codehilite">ib_poll_cq</code>? For sender, it uses this to check if the msg has been sent. For receiver, does it use this to check if a msg has been received (cos a RECV WQE has been consumed)? A: Understand now.</li>
-<li>RDMA Write with Immediate Data: according to spec, the remote side will consume a WQE and generate a CQE. Will this involve remote CPU? A:</li>
 <li>RPC: SEND or RDMA Write with Immediate, which is better and why?</li>
+</ul>
+<h2 id="except">Except</h2>
+<ul>
+<li><code class="codehilite">One-sided v.s. Two sided</code><ul>
+<li>SEND and RECV are two sided as the CPU at the responder needs to post a RECV in order for an incoming SEND to be processed. Unlike memory verbs, the responder&rsquo;s CPU is involved. One thing I do like to note is: the actual data transfer will not bother responder&rsquo;s CPU, the generated CQE will not bother it as well, only the pre-post action need CPU involvement. (HERD)</li>
+</ul>
+</li>
+<li><code class="codehilite">CQE Generation</code><ul>
+<li>Requester side: On completing a verb, the requester&rsquo;s NIC optionally signals completion by DMA-ing a completion entry (CQE) to a completion queue (CQ) associated with the QP. Of course, some WQE can be un-signaled.</li>
+<li>Responder side: NIC must DMA a CQE for completed RECV. (So I think this will not involve responder&rsquo;s CPU, right?)</li>
+</ul>
+</li>
 </ul>
 <h2 id="ib-specification">IB Specification</h2>
 <ul>
@@ -1109,7 +1131,7 @@ adapter which uniquely identifies the QP <strong>within the channel adapter</str
 <ul>
 <li>Channel (Send/Receive), classical I/O channel<ul>
 <li>The message transmitted on the wire only names the destination’s QP, the message does not describe where in the destination consumer’s memory space the message content will be written. Instead, the destination QP contains addressing information used to deliver the message to the appropriate memory location.</li>
-<li>Post Receive Buffer (a channel semantic operation for SEND from remote.)</li>
+<li>Pre-Post Receive Buffer (a channel semantic operation for SEND from remote.)</li>
 </ul>
 </li>
 <li>Memory (RDMA)<ul>
