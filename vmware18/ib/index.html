@@ -1198,6 +1198,15 @@ adapter which uniquely identifies the QP <strong>within the channel adapter</str
 <li>Completion Queue Operations: poll a specified CQ for a Work Completion, that is <code class="codehilite">ib_poll_cq()</code>! (sec 11.4.2)</li>
 </ul>
 </li>
+<li>
+<p>SG list</p>
+<ul>
+<li>Based on discussion with Shin-Yeh and Yiying.</li>
+<li>x3: if a sender uses one-sided RDMA write/read to send a sg-list to remote, the receiver side can only receive a consecutive memory buffer.</li>
+<li>x3: if a sender uses two-sided RDMA to SEND a sg-list to remote, the receiver can get a sg-list of buffers by pre-post RECV to receive queue.</li>
+<li>x4 and x5: looks like the User-Mode Memory Registration (UMR) can help to solve the one-sided RDMA issue (not verified).</li>
+</ul>
+</li>
 </ul>
                 
                   
