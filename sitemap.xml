@@ -34,15 +34,17 @@
     
 
     
-        
     <url>
-     <loc>/read/fast18/</loc>
+     <loc>/vmware-intern/</loc>
      <lastmod>2018-05-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
         
     <url>
-     <loc>/read/asplos18/</loc>
+     <loc>/rdma/rdma/</loc>
      <lastmod>2018-05-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -52,13 +54,13 @@
     
         
     <url>
-     <loc>/vmware18/misc/</loc>
+     <loc>/read/fast18/</loc>
      <lastmod>2018-05-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/vmware18/ib/</loc>
+     <loc>/read/asplos18/</loc>
      <lastmod>2018-05-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
