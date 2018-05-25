@@ -79,3 +79,9 @@ adapter which uniquely identifies the QP __within the channel adapter__.
 	- Submitting a list of Work Requests.. (10.8.2.1)
 	- .. __the HCA is notified that one or more WQEs are ready to be processed.__ What is the mechanism of this notification? How does HCA got notified? HCA polling, or driver write something into HCA?
 	- Completion Queue Operations: poll a specified CQ for a Work Completion, that is `ib_poll_cq()`! (sec 11.4.2)
+
+- SG list
+    - Based on discussion with Shin-Yeh and Yiying.
+    - x3: if a sender uses one-sided RDMA write/read to send a sg-list to remote, the receiver side can only receive a consecutive memory buffer.
+    - x3: if a sender uses two-sided RDMA to SEND a sg-list to remote, the receiver can get a sg-list of buffers by pre-post RECV to receive queue.
+    - x4 and x5: looks like the User-Mode Memory Registration (UMR) can help to solve the one-sided RDMA issue (not verified).
