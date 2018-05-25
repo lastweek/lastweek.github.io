@@ -1,12 +1,15 @@
-# Learning IB
+# Restless Dumb Memory Assassinate (RDMA)
 
 ## Q
-- Send: receiver's CPU will be involved? A: I think so.
 - Atomic Operations: what exactly does the atomic mean in this context?
-- When a RECV was consumed, will a CQE be generated at receiver side? Yes.
-- Actually, what is the purpose of `ib_poll_cq`? For sender, it uses this to check if the msg has been sent. For receiver, does it use this to check if a msg has been received (cos a RECV WQE has been consumed)? A: Understand now.
-- RDMA Write with Immediate Data: according to spec, the remote side will consume a WQE and generate a CQE. Will this involve remote CPU? A:
 - RPC: SEND or RDMA Write with Immediate, which is better and why?
+
+## Except
+- `One-sided v.s. Two sided`
+    - SEND and RECV are two sided as the CPU at the responder needs to post a RECV in order for an incoming SEND to be processed. Unlike memory verbs, the responder's CPU is involved. One thing I do like to note is: the actual data transfer will not bother responder's CPU, the generated CQE will not bother it as well, only the pre-post action need CPU involvement. (HERD)
+- `CQE Generation`
+    - Requester side: On completing a verb, the requester's NIC optionally signals completion by DMA-ing a completion entry (CQE) to a completion queue (CQ) associated with the QP. Of course, some WQE can be un-signaled.
+    - Responder side: NIC must DMA a CQE for completed RECV. (So I think this will not involve responder's CPU, right?)
 
 ## IB Specification
 
@@ -24,7 +27,7 @@ adapter which uniquely identifies the QP __within the channel adapter__.
 - {==__IBA Semantic (sec 3.6)__==}
     - Channel (Send/Receive), classical I/O channel
         - The message transmitted on the wire only names the destination’s QP, the message does not describe where in the destination consumer’s memory space the message content will be written. Instead, the destination QP contains addressing information used to deliver the message to the appropriate memory location.
-        - Post Receive Buffer (a channel semantic operation for SEND from remote.)
+        - Pre-Post Receive Buffer (a channel semantic operation for SEND from remote.)
     - Memory (RDMA)
         - With memory semantics the initiating party directly reads or writes the virtual address space of a remote node. The remote party needs only communicate the location of the buffer; it is not involved with the actual transfer of the data. Hence, this style is sometimes referred to as single-ended communications.
 	- L_Key and R_Key used to validate access permission.
