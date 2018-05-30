@@ -82,3 +82,15 @@ qemu-system-x86_64 -s  \
 
 - Generate keys: `ssh-keygen -t rsa`
 - Copy to remote: `ssh-copy-id -i ~/.ssh/id_rsa.pub username@remotehost -p 22`
+
+## GRUB2 on Ubuntu
+- Nothing like grubby?! Shame on you.
+- Step I: `cat /boot/grub/grub.cfg | grep menuentry`
+```
+menuentry 'Ubuntu, with Linux 4.16.0' --class ubuntu  ...
+menuentry 'Ubuntu, with Linux 4.9.92' --class ubuntu  ...
+```
+- Step II: Open `/etc/default/grub`, change
+    - GRUB_DEFAULT="Advanced options for Ubuntu>Ubuntu, with Linux 4.16.0"
+    - GRUB_DEFAULT="Advanced options for Ubuntu>Ubuntu, with Linux 4.9.92"
+- Step III: `sudo update-grub`

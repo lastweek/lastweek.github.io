@@ -3,7 +3,7 @@ advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). Our la
 Please find my CV [here](https://lastweek.github.io/pubs/cv.pdf).
 
 ## What's up
-- [05/21/18] Start Internship at [VMware Research](https://research.vmware.com/), with [Stanko Novakovic](https://sites.google.com/site/stankonovakovic/).
+- [May 2018] Intern at [VMware Research](https://research.vmware.com/), with [Stanko Novakovic](https://sites.google.com/site/stankonovakovic/).
 
 ## Research
 
@@ -21,7 +21,7 @@ Office: EE 345
 Email: __ys@purdue.edu__
 
 ## Conferences and Workshops
-* [Disaggregating Memory with Software-Managed Virtual Cache]()
+* [Disaggregating Memory with Software-Managed Virtual Cache](http://workshops.inf.ed.ac.uk/wams/)
 <br> _Yizhou Shan_, Yiying Zhang
 <br> at the 2018 Workshop on Warehouse-scale Memory Systems (__WAMS '18__) (co-located with ASPLOS '18)
 * [Distributed Shared Persistent Memory](https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf)
