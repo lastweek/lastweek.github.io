@@ -277,6 +277,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#grub2-on-ubuntu" title="GRUB2 on Ubuntu" class="md-nav__link">
+    GRUB2 on Ubuntu
+  </a>
+  
+</li>
+      
       
       
       
@@ -1125,6 +1132,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#grub2-on-ubuntu" title="GRUB2 on Ubuntu" class="md-nav__link">
+    GRUB2 on Ubuntu
+  </a>
+  
+</li>
+      
       
       
       
@@ -1269,6 +1283,22 @@ qemu-system-x86_64 -s  <span class="se">\</span>
 <ul>
 <li>Generate keys: <code class="codehilite">ssh-keygen -t rsa</code></li>
 <li>Copy to remote: <code class="codehilite">ssh-copy-id -i ~/.ssh/id_rsa.pub username@remotehost -p 22</code></li>
+</ul>
+<h2 id="grub2-on-ubuntu">GRUB2 on Ubuntu</h2>
+<ul>
+<li>Nothing like grubby?! Shame on you.</li>
+<li>Step I: <code class="codehilite">cat /boot/grub/grub.cfg | grep menuentry</code>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>menuentry &#39;Ubuntu, with Linux 4.16.0&#39; --class ubuntu  ...
+menuentry &#39;Ubuntu, with Linux 4.9.92&#39; --class ubuntu  ...
+</pre></div>
+</td></tr></table></li>
+<li>Step II: Open <code class="codehilite">/etc/default/grub</code>, change<ul>
+<li>GRUB_DEFAULT=&rdquo;Advanced options for Ubuntu&gt;Ubuntu, with Linux 4.16.0&rdquo;</li>
+<li>GRUB_DEFAULT=&rdquo;Advanced options for Ubuntu&gt;Ubuntu, with Linux 4.9.92&rdquo;</li>
+</ul>
+</li>
+<li>Step III: <code class="codehilite">sudo update-grub</code></li>
 </ul>
                 
                   
