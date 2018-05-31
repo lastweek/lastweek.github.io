@@ -1,5 +1,11 @@
 Cool and good-to-know stuff:
 
+- GigaIO
+
+- [RSS (Receiver Side Scaling)](https://www.kernel.org/doc/Documentation/networking/scaling.txt)
+- Intel Flow Director
+- E2, ClickOS, NetVM, and Metron.
+
 - [AutoML](https://research.googleblog.com/2017/11/automl-for-large-scale-image.html)
 
 - [What is ‘Site Reliability Engineering’?](http://landing.google.com/sre/interview/ben-treynor.html)
