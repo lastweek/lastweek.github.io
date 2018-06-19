@@ -1098,9 +1098,12 @@
 <li>What lock to use?</li>
 <li>How to reduce <code class="codehilite">lock contention</code>?</li>
 <li>Does this data structure need <code class="codehilite">reference counter</code>?</li>
+<li>Can I use per-cpu data structures?</li>
+<li>Should I make this lock $-line aligned to avoid pingpong?</li>
 </ul>
 </li>
 <li><strong>Decent Cleanup</strong><ul>
+<li>I fucking hate a crap kernel module just kill my machine, either stuck or bug.</li>
 <li>Free buffer/structure</li>
 <li>Remove the <strong>pointer</strong> from friends&rsquo; list/tree. If you forgot to do so, mostly you will have some silent memory corruption. So be kind, cleanup what you have done during intilization.</li>
 <li>Report error. Do not be SILENT.</li>
