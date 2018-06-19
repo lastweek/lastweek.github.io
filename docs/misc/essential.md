@@ -23,7 +23,10 @@
     - What lock to use?
     - How to reduce `lock contention`?
     - Does this data structure need `reference counter`?
+    - Can I use per-cpu data structures?
+    - Should I make this lock $-line aligned to avoid pingpong?
 - __Decent Cleanup__
+    - I fucking hate a crap kernel module just kill my machine, either stuck or bug.
     - Free buffer/structure
     - Remove the __pointer__ from friends' list/tree. If you forgot to do so, mostly you will have some silent memory corruption. So be kind, cleanup what you have done during intilization.
     - Report error. Do not be SILENT.
