@@ -54,6 +54,8 @@ pages:
            - 'Evict and Refcount': 'lego/pcache/evict_and_ref.md'
            - 'SMP Design': 'lego/pcache/smp_design.md'
            - 'Replication': 'lego/pcache/replication.md'
+   - Driver:
+           - 'PCI': 'lego/driver/pci.md'
    - Paper:
            - 'NMP': 'lego/paper/nmp.md'
            - 'Processor OOM': 'lego/paper/processor_oom.md'
