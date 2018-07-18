@@ -36,7 +36,7 @@
     
     
       
-        <title>wait4 and exit() - Yizhou Shan's Home Page</title>
+        <title>Network Thpool - Yizhou Shan's Home Page</title>
       
     
     
@@ -69,7 +69,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#wait4-waitid-and-exit" tabindex="1" class="md-skip">
+      <a href="#thread-pool-model-for-handling-network-requests" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -95,7 +95,7 @@
                 Yizhou Shan's Home Page
               </span>
               <span class="md-header-nav__topic">
-                wait4 and exit()
+                Network Thpool
               </span>
             
           
@@ -413,10 +413,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-2" type="checkbox" id="nav-8-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-2" type="checkbox" id="nav-8-2" checked>
     
     <label class="md-nav__link" for="nav-8-2">
       Kernel
@@ -434,7 +436,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/kconfig/" title="Kconfig" class="md-nav__link">
+    <a href="../kconfig/" title="Kconfig" class="md-nav__link">
       Kconfig
     </a>
   </li>
@@ -446,7 +448,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/debug/" title="Debug" class="md-nav__link">
+    <a href="../debug/" title="Debug" class="md-nav__link">
       Debug
     </a>
   </li>
@@ -458,7 +460,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/grub/" title="GRUB" class="md-nav__link">
+    <a href="../grub/" title="GRUB" class="md-nav__link">
       GRUB
     </a>
   </li>
@@ -470,7 +472,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/profile/" title="Profile" class="md-nav__link">
+    <a href="../profile/" title="Profile" class="md-nav__link">
       Profile
     </a>
   </li>
@@ -482,7 +484,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/profile_strace/" title="Profile strace" class="md-nav__link">
+    <a href="../profile_strace/" title="Profile strace" class="md-nav__link">
       Profile strace
     </a>
   </li>
@@ -494,7 +496,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/profile_heatmap/" title="Profile heatmap" class="md-nav__link">
+    <a href="../profile_heatmap/" title="Profile heatmap" class="md-nav__link">
       Profile heatmap
     </a>
   </li>
@@ -506,7 +508,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/profile_points/" title="Profile points" class="md-nav__link">
+    <a href="../profile_points/" title="Profile points" class="md-nav__link">
       Profile points
     </a>
   </li>
@@ -518,7 +520,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/trampoline/" title="Trampoline" class="md-nav__link">
+    <a href="../trampoline/" title="Trampoline" class="md-nav__link">
       Trampoline
     </a>
   </li>
@@ -530,7 +532,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/pagefault_disable/" title="Disable pgfault" class="md-nav__link">
+    <a href="../pagefault_disable/" title="Disable pgfault" class="md-nav__link">
       Disable pgfault
     </a>
   </li>
@@ -542,7 +544,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/stop_machine/" title="Stop machine" class="md-nav__link">
+    <a href="../stop_machine/" title="Stop machine" class="md-nav__link">
       Stop machine
     </a>
   </li>
@@ -554,7 +556,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/loader/" title="Program Loader" class="md-nav__link">
+    <a href="../loader/" title="Program Loader" class="md-nav__link">
       Program Loader
     </a>
   </li>
@@ -566,7 +568,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/vDSO/" title="vDSO" class="md-nav__link">
+    <a href="../vDSO/" title="vDSO" class="md-nav__link">
       vDSO
     </a>
   </li>
@@ -578,7 +580,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/vfs/" title="Virtual File System" class="md-nav__link">
+    <a href="../vfs/" title="Virtual File System" class="md-nav__link">
       Virtual File System
     </a>
   </li>
@@ -590,7 +592,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/vm/" title="Process Virtual Memory" class="md-nav__link">
+    <a href="../vm/" title="Process Virtual Memory" class="md-nav__link">
       Process Virtual Memory
     </a>
   </li>
@@ -602,130 +604,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/fpu/" title="x86 FPU" class="md-nav__link">
+    <a href="../fpu/" title="x86 FPU" class="md-nav__link">
       x86 FPU
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../kernel/net_thpool/" title="Network Thpool" class="md-nav__link">
-      Network Thpool
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-3" type="checkbox" id="nav-8-3" checked>
-    
-    <label class="md-nav__link" for="nav-8-3">
-      Syscall
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-8-3">
-        Syscall
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../facts/" title="Facts" class="md-nav__link">
-      Facts
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../kernel/profile_strace/" title="strace" class="md-nav__link">
-      strace
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../compat/" title="compat" class="md-nav__link">
-      compat
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../msync/" title="msync()" class="md-nav__link">
-      msync()
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../mremap/" title="mremap()" class="md-nav__link">
-      mremap()
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../fork/" title="fork()" class="md-nav__link">
-      fork()
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../getrusage/" title="getrusage()" class="md-nav__link">
-      getrusage()
     </a>
   </li>
 
@@ -744,10 +624,130 @@
       
     
     
-    <a href="./" title="wait4 and exit()" class="md-nav__link md-nav__link--active">
-      wait4 and exit()
+    <a href="./" title="Network Thpool" class="md-nav__link md-nav__link--active">
+      Network Thpool
     </a>
     
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-3" type="checkbox" id="nav-8-3">
+    
+    <label class="md-nav__link" for="nav-8-3">
+      Syscall
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-8-3">
+        Syscall
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/facts/" title="Facts" class="md-nav__link">
+      Facts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../profile_strace/" title="strace" class="md-nav__link">
+      strace
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/compat/" title="compat" class="md-nav__link">
+      compat
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/msync/" title="msync()" class="md-nav__link">
+      msync()
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/mremap/" title="mremap()" class="md-nav__link">
+      mremap()
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/fork/" title="fork()" class="md-nav__link">
+      fork()
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/getrusage/" title="getrusage()" class="md-nav__link">
+      getrusage()
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/wait_and_exit/" title="wait4 and exit()" class="md-nav__link">
+      wait4 and exit()
+    </a>
   </li>
 
         
@@ -1053,33 +1053,17 @@
               
                 
                 
-                <h1 id="wait4-waitid-and-exit">wait4(), waitid(), and exit()</h1>
-<p>Lego supports <code class="codehilite">wait4()</code> and <code class="codehilite">waitid()</code> syscalls, and they are compatible with Linux programs. These two syscalls rely on <code class="codehilite">exit_notify()</code> function when a thread <code class="codehilite">exit()</code>. Basically, when a thread exit, it will notify its parent, and reparent<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup> its children if necessary.</p>
-<p>Facts in Lego:</p>
+                <h1 id="thread-pool-model-for-handling-network-requests">Thread Pool Model for Handling Network Requests</h1>
 <ul>
-<li>Lego does not have <strong>process group and session</strong><sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup> concept. Each process is within its own process group and session.</li>
-<li>This implies Lego will not have <strong>Orphaned Process Group</strong><sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> when a process exit.</li>
-<li><strong>Orphan process</strong><sup id="fnref2:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup> is adopted by init process (pid 1) if its father is a single-thread process, otherwise it will be adopted by other thread within its father&rsquo;s process. This is performed by function <code class="codehilite">forget_original_parent()</code>.</li>
-<li>wait, signal, exec, fork are close related.</li>
+<li><code class="codehilite">Passive</code>: whenever a network request comes in, callback to thpool.</li>
+<li><code class="codehilite">Active</code>: thpool keep polling if there is new network requests queued.</li>
 </ul>
+<p>Previously, our memory side use the Active mode to handle requests, which has very bad latency. Several days ago we changed to the Passive mode, which has a very good latency! One <code class="codehilite">ib_send_reply</code> RRT drops from <code class="codehilite">~20us</code> to a normal <code class="codehilite">~6us</code> for a TensorFlow run.</p>
+<p>Never thought this could make such a big difference (~3x slowdown)! Dark network!</p>
 <p>&ndash;<br />
 Yizhou Shan<br />
-Created: Mar 8, 2018<br />
-Last Updated: Mar 10, 2018</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p><a href="https://www.gnu.org/software/libc/manual/html_node/Orphaned-Process-Groups.html">Orphaned Process Groups</a>&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p><a href="https://en.wikipedia.org/wiki/Process_group">Process Group</a>&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-<li id="fn:3">
-<p><a href="https://en.wikipedia.org/wiki/Orphan_process">Orphan Process</a>&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
+Created: April 29, 2018<br />
+Last Updated: April 29, 2018</p>
                 
                   
                 
@@ -1098,7 +1082,7 @@ Last Updated: Mar 10, 2018</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../getrusage/" title="getrusage()" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../fpu/" title="x86 FPU" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1107,19 +1091,19 @@ Last Updated: Mar 10, 2018</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                getrusage()
+                x86 FPU
               </span>
             </div>
           </a>
         
         
-          <a href="../../pcache/config/" title="Config" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../syscall/facts/" title="Facts" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Config
+                Facts
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
