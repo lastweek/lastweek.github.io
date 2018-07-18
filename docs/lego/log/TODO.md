@@ -1,9 +1,10 @@
 # TODO
 
-Last Updated: Mar 29, 2018
+Last Updated: July 18, 2018
 
 ## Planned
 
+- Try `fully-associative` pcache, to see how many conflict misses can be removed (got the idea from HPCA18 google search paper)
 - kmem_cache
 - `TSC deadline mode (one-shot tick)`. What is the performance comparison with periodic mode?
 - `batched TLB flush`

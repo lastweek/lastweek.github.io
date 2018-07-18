@@ -20,8 +20,14 @@ Office: EE 345
 
 Email: __ys@purdue.edu__
 
-## Conferences and Workshops
+## Conferences
 
+* [__Distributed Shared Persistent Memory__](https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf)
+<br> __Yizhou Shan__, Shin-Yeh Tsai, Yiying Zhang
+<br> Proceedings of the ACM Symposium on Cloud Computing 2017 (__SoCC '17__)
+<br> [[Source Code]](https://github.com/WukLab/Hotpot)
+
+## Workshops
 * [__Disaggregating Memory with Software-Managed Virtual Cache__](http://workshops.inf.ed.ac.uk/wams/)
 <br> __Yizhou Shan__, Yiying Zhang
 <br> at the 2018 Workshop on Warehouse-scale Memory Systems (__WAMS '18__) (co-located with ASPLOS '18)
@@ -33,11 +39,6 @@ Email: __ys@purdue.edu__
 * [__Disaggregated Operating System__](http://hpts.ws/papers/2017/lego.pdf)
 <br> Yiying Zhang, __Yizhou Shan__, Sumukh Hallymysore
 <br> at the 17th International Workshop on High Performance Transaction Systems (__HPTS '17__)
-
-* [__Distributed Shared Persistent Memory__](https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf)
-<br> __Yizhou Shan__, Shin-Yeh Tsai, Yiying Zhang
-<br> Proceedings of the ACM Symposium on Cloud Computing 2017 (__SoCC '17__)
-<br> [[Source Code]](https://github.com/WukLab/Hotpot)
 
 
 ## Posters
