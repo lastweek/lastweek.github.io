@@ -16,15 +16,15 @@
 - __Stress your system__
     - Every single critical subsystem
     - Confident with your base subsystem
-    - Fix bug/Improve perf in early stage
+    - Fix bug/Improve perf at early stage
 - __Plan ahead__
     - Single thread, or thread pool?
-    - How to avoid use `lock`?
+    - How to avoid using `lock`?
     - What lock to use?
     - How to reduce `lock contention`?
     - Does this data structure need `reference counter`?
-    - Can I use per-cpu data structures?
-    - Should I make this lock $-line aligned to avoid pingpong?
+    - Should I use per-cpu data structures?
+    - Should I pad this lock $-line aligned to avoid pingpong?
 - __Decent Cleanup__
     - I fucking hate a crap kernel module just kill my machine, either stuck or bug.
     - Free buffer/structure
