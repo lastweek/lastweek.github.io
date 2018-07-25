@@ -25,35 +25,35 @@ Email: __ys@purdue.edu__
 
 * [__Lego: A Decomposed, Distributed OS for Hardware Resource Disaggregation__]()
 <br> __Yizhou Shan__, Yutong Huang, Yilun Chen, Yiying Zhang
-<br> to appear at the 13th USENIX Symposium on Operating Systems Design and Implementation (__OSDI'18__)
+<br> _to Appear at the 13th USENIX Symposium on Operating Systems Design and Implementation (__OSDI'18__)_
 
 * [__Distributed Shared Persistent Memory__](https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf)
 <br> __Yizhou Shan__, Shin-Yeh Tsai, Yiying Zhang
-<br> Proceedings of the ACM Symposium on Cloud Computing 2017 (__SoCC '17__)
+<br> _Proceedings of the ACM Symposium on Cloud Computing 2017 (__SoCC'17__)_
 <br> [[Source Code]](https://github.com/WukLab/Hotpot)
 
 ## Workshops
 * [__Disaggregating Memory with Software-Managed Virtual Cache__](http://workshops.inf.ed.ac.uk/wams/)
 <br> __Yizhou Shan__, Yiying Zhang
-<br> at the 2018 Workshop on Warehouse-scale Memory Systems (__WAMS '18__) (co-located with ASPLOS '18)
+<br> _2018 Workshop on Warehouse-scale Memory Systems (__WAMS'18__) (co-located with ASPLOS '18)_
 
 * [__Distributed Shared Persistent Memory__](https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf)
 <br> __Yizhou Shan__, Shin-Yeh Tsai, Yiying Zhang
-<br> at the 9th Annual Non-Volatile Memories Workshop (__NVMW '18__)
+<br> _9th Annual Non-Volatile Memories Workshop (__NVMW'18__)_
 
 * [__Disaggregated Operating System__](http://hpts.ws/papers/2017/lego.pdf)
 <br> Yiying Zhang, __Yizhou Shan__, Sumukh Hallymysore
-<br> at the 17th International Workshop on High Performance Transaction Systems (__HPTS '17__)
+<br> _17th International Workshop on High Performance Transaction Systems (__HPTS'17__)_
 
 
 ## Posters
 * [__Lego: A Distributed, Decomposed OS for Resource Disaggregation__](https://lastweek.github.io/pubs/SOSP17-Lego-Poster.pdf)
 <br> __Yizhou Shan__, Yilun Chen, Yutong Huang, Sumukh Hallymysore, Yiying Zhang
-<br> Poster at the 26th ACM Symposium on Operating Systems Principles (__SOSP '17__)
+<br> _Poster at the 26th ACM Symposium on Operating Systems Principles (__SOSP '17__)_
 
 * [__Disaggregated Operating System__](https://lastweek.github.io/pubs/SoCC17-Lego-Poster.pdf)
 <br> __Yizhou Shan__, Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang
-<br> Poster at the ACM Symposium on Cloud Computing 2017 (__SoCC '17__)
+<br> _Poster at the ACM Symposium on Cloud Computing 2017 (__SoCC '17__)_
 
 
 ## Social
