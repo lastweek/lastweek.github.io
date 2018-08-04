@@ -3,7 +3,7 @@ advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). Our la
 Please find my CV [here](https://lastweek.github.io/pubs/cv.pdf).
 
 ## What's up
-- [Jul 2018] Our paper __Lego: A Decomposed, Distributed OS for Hardware Resource Disaggregation__ has been accepted to OSDI'18
+- [Jul 2018] Our paper __Lego: Disaggregated Operating System__ was accepted to __OSDI'18__
 - [May 2018] Intern at [VMware Research](https://research.vmware.com/), with [Stanko Novakovic](https://sites.google.com/site/stankonovakovic/).
 
 ## Research
