@@ -4,7 +4,6 @@ pages:
 - Jasmine: 'misc/jasmine.md'
 - Essential: 'misc/essential.md'
 - Cheatsheet: 'misc/cheatsheet.md'
-- VMware Intern: 'vmware-intern.md'
 - RDMA:
    - 'RDMA': 'rdma/rdma.md'
 - Papers:
@@ -33,6 +32,7 @@ pages:
         - 'Virtual File System': 'lego/kernel/vfs.md'
         - 'Process Virtual Memory': 'lego/kernel/vm.md'
         - 'x86 FPU': 'lego/kernel/fpu.md'
+        - 'IRQ': 'lego/kernel/irq.md'
         - 'Network Thpool': 'lego/kernel/net_thpool.md'
    - Syscall:
            - 'Facts':         'lego/syscall/facts.md'
@@ -56,6 +56,7 @@ pages:
            - 'Replication': 'lego/pcache/replication.md'
    - Driver:
            - 'PCI': 'lego/driver/pci.md'
+           - 'Infiniband': 'lego/driver/ib.md'
    - Paper:
            - 'NMP': 'lego/paper/nmp.md'
            - 'Processor OOM': 'lego/paper/processor_oom.md'
