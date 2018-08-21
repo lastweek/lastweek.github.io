@@ -988,6 +988,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#init-sequence" title="Init Sequence" class="md-nav__link">
+    Init Sequence
+  </a>
+  
+</li>
+      
       
       
       
@@ -1147,6 +1154,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#init-sequence" title="Init Sequence" class="md-nav__link">
+    Init Sequence
+  </a>
+  
+</li>
+      
       
       
       
@@ -1192,6 +1206,14 @@
 <p>A lot IB verbs are ultimately translated into <code class="codehilite">fw.c __mlx4_cmd()</code>, which actually send commands to device and get the result. There are two ways of getting result: 1) polling: after writing to device memory the command, the same thread keep polling. 2) sleep and wait for interrupt. By default, the interrupt way is used (obviously). But, at the time of writing (Aug 20, 2018), we don&rsquo;t really have a working IRQ subsystem, so we use polling instead. <strong>I&rsquo;m still a little concerned that without interrupt handler, we might lose some events and the NIC may behavave incorrectly if interrupts are not handled.</strong></p>
 </li>
 </ul>
+<h2 id="init-sequence">Init Sequence</h2>
+<ol>
+<li>Init PCI subsystem, build data structures</li>
+<li>Core IB layer register <code class="codehilite">ib_client</code></li>
+<li><code class="codehilite">mlx4_init()</code>: register PCI driver, provide a callback</li>
+<li><code class="codehilite">__mlx4_init_one()</code>: initialize the hardware itself, register interrupt handler.</li>
+<li><code class="codehilite">mlx4_ib_init()</code>: allocate a ib_device, and register, which will callback through all <code class="codehilite">ib_client</code> registered at step 1.</li>
+</ol>
 <p>&ndash;<br />
 Yizhou Shan<br />
 Created: Aug 20, 2018<br />
