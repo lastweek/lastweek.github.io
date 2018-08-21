@@ -28,6 +28,14 @@ Top down
 
 - A lot IB verbs are ultimately translated into `fw.c __mlx4_cmd()`, which actually send commands to device and get the result. There are two ways of getting result: 1) polling: after writing to device memory the command, the same thread keep polling. 2) sleep and wait for interrupt. By default, the interrupt way is used (obviously). But, at the time of writing (Aug 20, 2018), we don't really have a working IRQ subsystem, so we use polling instead. __I'm still a little concerned that without interrupt handler, we might lose some events and the NIC may behavave incorrectly if interrupts are not handled.__
 
+## Init Sequence
+
+0. Init PCI subsystem, build data structures
+1. Core IB layer register `ib_client`
+2. `mlx4_init()`: register PCI driver, provide a callback
+3. `__mlx4_init_one()`: initialize the hardware itself, register interrupt handler.
+4. `mlx4_ib_init()`: allocate a ib_device, and register, which will callback through all `ib_client` registered at step 1.
+
 --  
 Yizhou Shan  
 Created: Aug 20, 2018  
