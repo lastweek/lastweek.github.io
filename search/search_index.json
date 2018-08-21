@@ -2,12 +2,12 @@
     "docs": [
         {
             "location": "/", 
-            "text": "My name is \nYizhou Shan\n \n. I\nm a second-year Ph.D. student at \nPurdue ECE\n,\nadvised by Prof. \nYiying Zhang\n. Our lab is \nWuklab.io\n. Yes, the \nMonkey King\n Lab.\nPlease find my CV \nhere\n.\n\n\nWhat\ns up\n\n\n\n\n[May 2018] Intern at \nVMware Research\n, with \nStanko Novakovic\n.\n\n\n\n\nResearch\n\n\nMy research interests span Operating System, Distributed Systems,\nand Non-Volatile Memory. I like hacking kernel and no doubt Linux is my\nfavorite open-source project.\n\n\nContact\n\n\n465 Northwestern Ave\n\nPurdue University\n\nWest Lafayette, IN 47907\n\nOffice: EE 345  \n\n\nEmail: \nys@purdue.edu\n\n\nConferences\n\n\n\n\nDistributed Shared Persistent Memory\n\n\n \nYizhou Shan\n, Shin-Yeh Tsai, Yiying Zhang\n\n Proceedings of the ACM Symposium on Cloud Computing 2017 (\nSoCC \n17\n)\n\n \n[Source Code]\n\n\n\n\nWorkshops\n\n\n\n\n\n\nDisaggregating Memory with Software-Managed Virtual Cache\n\n\n \nYizhou Shan\n, Yiying Zhang\n\n at the 2018 Workshop on Warehouse-scale Memory Systems (\nWAMS \n18\n) (co-located with ASPLOS \n18)\n\n\n\n\n\n\nDistributed Shared Persistent Memory\n\n\n \nYizhou Shan\n, Shin-Yeh Tsai, Yiying Zhang\n\n at the 9\nth\n Annual Non-Volatile Memories Workshop (\nNVMW \n18\n)\n\n\n\n\n\n\nDisaggregated Operating System\n\n\n Yiying Zhang, \nYizhou Shan\n, Sumukh Hallymysore\n\n at the 17\nth\n International Workshop on High Performance Transaction Systems (\nHPTS \n17\n)\n\n\n\n\n\n\nPosters\n\n\n\n\n\n\nLego: A Distributed, Decomposed OS for Resource Disaggregation\n\n\n \nYizhou Shan\n, Yilun Chen, Yutong Huang, Sumukh Hallymysore, Yiying Zhang\n\n Poster at the 26\nth\n ACM Symposium on Operating Systems Principles (\nSOSP \n17\n)\n\n\n\n\n\n\nDisaggregated Operating System\n\n\n \nYizhou Shan\n, Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang\n\n Poster at the ACM Symposium on Cloud Computing 2017 (\nSoCC \n17\n)\n\n\n\n\n\n\nSocial\n\n\n\n\nGithub\n\n\nLinkedIn", 
+            "text": "My name is \nYizhou Shan\n \n. I\nm a second-year Ph.D. student at \nPurdue ECE\n,\nadvised by Prof. \nYiying Zhang\n. Our lab is \nWuklab.io\n. Yes, the \nMonkey King\n Lab.\nPlease find my CV \nhere\n.\n\n\nWhat\ns up\n\n\n\n\n[Jul 2018] Our paper \nLego: Disaggregated Operating System\n was accepted to \nOSDI\n18\n\n\n[May 2018] Intern at \nVMware Research\n, with \nStanko Novakovic\n.\n\n\n\n\nResearch\n\n\nMy research interests span Operating System, Distributed Systems,\nand Non-Volatile Memory. I like hacking kernel and no doubt Linux is my\nfavorite open-source project.\n\n\nContact\n\n\n465 Northwestern Ave\n\nPurdue University\n\nWest Lafayette, IN 47907\n\nOffice: EE 345  \n\n\nEmail: \nys@purdue.edu\n\n\nConferences\n\n\n\n\n\n\nLego: A Decomposed, Distributed OS for Hardware Resource Disaggregation\n\n\n \nYizhou Shan\n, Yutong Huang, Yilun Chen, Yiying Zhang\n\n \nto Appear at the 13\nth\n USENIX Symposium on Operating Systems Design and Implementation (\nOSDI\n18\n)\n\n\n\n\n\n\nDistributed Shared Persistent Memory\n\n\n \nYizhou Shan\n, Shin-Yeh Tsai, Yiying Zhang\n\n \nProceedings of the ACM Symposium on Cloud Computing 2017 (\nSoCC\n17\n)\n\n\n \n[Source Code]\n\n\n\n\n\n\nWorkshops\n\n\n\n\n\n\nDisaggregating Memory with Software-Managed Virtual Cache\n\n\n \nYizhou Shan\n, Yiying Zhang\n\n \n2018 Workshop on Warehouse-scale Memory Systems (\nWAMS\n18\n) (co-located with ASPLOS \n18)\n\n\n\n\n\n\nDistributed Shared Persistent Memory\n\n\n \nYizhou Shan\n, Shin-Yeh Tsai, Yiying Zhang\n\n \n9\nth\n Annual Non-Volatile Memories Workshop (\nNVMW\n18\n)\n\n\n\n\n\n\nDisaggregated Operating System\n\n\n Yiying Zhang, \nYizhou Shan\n, Sumukh Hallymysore\n\n \n17\nth\n International Workshop on High Performance Transaction Systems (\nHPTS\n17\n)\n\n\n\n\n\n\nPosters\n\n\n\n\n\n\nLego: A Distributed, Decomposed OS for Resource Disaggregation\n\n\n \nYizhou Shan\n, Yilun Chen, Yutong Huang, Sumukh Hallymysore, Yiying Zhang\n\n \nPoster at the 26\nth\n ACM Symposium on Operating Systems Principles (\nSOSP \n17\n)\n\n\n\n\n\n\nDisaggregated Operating System\n\n\n \nYizhou Shan\n, Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang\n\n \nPoster at the ACM Symposium on Cloud Computing 2017 (\nSoCC \n17\n)\n\n\n\n\n\n\nSocial\n\n\n\n\nGithub\n\n\nLinkedIn", 
             "title": "Home"
         }, 
         {
             "location": "/#whats-up", 
-            "text": "[May 2018] Intern at  VMware Research , with  Stanko Novakovic .", 
+            "text": "[Jul 2018] Our paper  Lego: Disaggregated Operating System  was accepted to  OSDI 18  [May 2018] Intern at  VMware Research , with  Stanko Novakovic .", 
             "title": "What's up"
         }, 
         {
@@ -22,17 +22,17 @@
         }, 
         {
             "location": "/#conferences", 
-            "text": "Distributed Shared Persistent Memory    Yizhou Shan , Shin-Yeh Tsai, Yiying Zhang  Proceedings of the ACM Symposium on Cloud Computing 2017 ( SoCC  17 )   [Source Code]", 
+            "text": "Lego: A Decomposed, Distributed OS for Hardware Resource Disaggregation    Yizhou Shan , Yutong Huang, Yilun Chen, Yiying Zhang   to Appear at the 13 th  USENIX Symposium on Operating Systems Design and Implementation ( OSDI 18 )    Distributed Shared Persistent Memory    Yizhou Shan , Shin-Yeh Tsai, Yiying Zhang   Proceedings of the ACM Symposium on Cloud Computing 2017 ( SoCC 17 )    [Source Code]", 
             "title": "Conferences"
         }, 
         {
             "location": "/#workshops", 
-            "text": "Disaggregating Memory with Software-Managed Virtual Cache    Yizhou Shan , Yiying Zhang  at the 2018 Workshop on Warehouse-scale Memory Systems ( WAMS  18 ) (co-located with ASPLOS  18)    Distributed Shared Persistent Memory    Yizhou Shan , Shin-Yeh Tsai, Yiying Zhang  at the 9 th  Annual Non-Volatile Memories Workshop ( NVMW  18 )    Disaggregated Operating System   Yiying Zhang,  Yizhou Shan , Sumukh Hallymysore  at the 17 th  International Workshop on High Performance Transaction Systems ( HPTS  17 )", 
+            "text": "Disaggregating Memory with Software-Managed Virtual Cache    Yizhou Shan , Yiying Zhang   2018 Workshop on Warehouse-scale Memory Systems ( WAMS 18 ) (co-located with ASPLOS  18)    Distributed Shared Persistent Memory    Yizhou Shan , Shin-Yeh Tsai, Yiying Zhang   9 th  Annual Non-Volatile Memories Workshop ( NVMW 18 )    Disaggregated Operating System   Yiying Zhang,  Yizhou Shan , Sumukh Hallymysore   17 th  International Workshop on High Performance Transaction Systems ( HPTS 17 )", 
             "title": "Workshops"
         }, 
         {
             "location": "/#posters", 
-            "text": "Lego: A Distributed, Decomposed OS for Resource Disaggregation    Yizhou Shan , Yilun Chen, Yutong Huang, Sumukh Hallymysore, Yiying Zhang  Poster at the 26 th  ACM Symposium on Operating Systems Principles ( SOSP  17 )    Disaggregated Operating System    Yizhou Shan , Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang  Poster at the ACM Symposium on Cloud Computing 2017 ( SoCC  17 )", 
+            "text": "Lego: A Distributed, Decomposed OS for Resource Disaggregation    Yizhou Shan , Yilun Chen, Yutong Huang, Sumukh Hallymysore, Yiying Zhang   Poster at the 26 th  ACM Symposium on Operating Systems Principles ( SOSP  17 )    Disaggregated Operating System    Yizhou Shan , Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang   Poster at the ACM Symposium on Cloud Computing 2017 ( SoCC  17 )", 
             "title": "Posters"
         }, 
         {
@@ -47,7 +47,7 @@
         }, 
         {
             "location": "/misc/essential/", 
-            "text": "System Developing Essentials\n\n\nTools\n\n\n\n\nStack and Register Dumper\n\n\nSoftware Watchdog\n\n\nNMI Watchdog\n\n\nTracepoint and Ring Buffer\n\n\nProfilers\n\n\nCounters\n\n\nWhiskey\n\n\nLuck\n\n\n\n\nKeep in mind\n\n\n\n\nStress your system\n\n\nEvery single critical subsystem\n\n\nConfident with your base subsystem\n\n\nFix bug/Improve perf in early stage\n\n\n\n\n\n\nPlan ahead\n\n\nSingle thread, or thread pool?\n\n\nHow to avoid use \nlock\n?\n\n\nWhat lock to use?\n\n\nHow to reduce \nlock contention\n?\n\n\nDoes this data structure need \nreference counter\n?\n\n\nCan I use per-cpu data structures?\n\n\nShould I make this lock $-line aligned to avoid pingpong?\n\n\n\n\n\n\nDecent Cleanup\n\n\nI fucking hate a crap kernel module just kill my machine, either stuck or bug.\n\n\nFree buffer/structure\n\n\nRemove the \npointer\n from friends\n list/tree. If you forgot to do so, mostly you will have some silent memory corruption. So be kind, cleanup what you have done during intilization.\n\n\nReport error. Do not be SILENT.", 
+            "text": "System Developing Essentials\n\n\nTools\n\n\n\n\nStack and Register Dumper\n\n\nSoftware Watchdog\n\n\nNMI Watchdog\n\n\nTracepoint and Ring Buffer\n\n\nProfilers\n\n\nCounters\n\n\nWhiskey\n\n\nLuck\n\n\n\n\nKeep in mind\n\n\n\n\nStress your system\n\n\nEvery single critical subsystem\n\n\nConfident with your base subsystem\n\n\nFix bug/Improve perf at early stage\n\n\n\n\n\n\nPlan ahead\n\n\nSingle thread, or thread pool?\n\n\nHow to avoid using \nlock\n?\n\n\nWhat lock to use?\n\n\nHow to reduce \nlock contention\n?\n\n\nDoes this data structure need \nreference counter\n?\n\n\nShould I use per-cpu data structures?\n\n\nShould I pad this lock $-line aligned to avoid pingpong?\n\n\n\n\n\n\nDecent Cleanup\n\n\nI fucking hate a crap kernel module just kill my machine, either stuck or bug.\n\n\nFree buffer/structure\n\n\nRemove the \npointer\n from friends\n list/tree. If you forgot to do so, mostly you will have some silent memory corruption. So be kind, cleanup what you have done during intilization.\n\n\nReport error. Do not be SILENT.", 
             "title": "Essential"
         }, 
         {
@@ -62,7 +62,7 @@
         }, 
         {
             "location": "/misc/essential/#keep-in-mind", 
-            "text": "Stress your system  Every single critical subsystem  Confident with your base subsystem  Fix bug/Improve perf in early stage    Plan ahead  Single thread, or thread pool?  How to avoid use  lock ?  What lock to use?  How to reduce  lock contention ?  Does this data structure need  reference counter ?  Can I use per-cpu data structures?  Should I make this lock $-line aligned to avoid pingpong?    Decent Cleanup  I fucking hate a crap kernel module just kill my machine, either stuck or bug.  Free buffer/structure  Remove the  pointer  from friends  list/tree. If you forgot to do so, mostly you will have some silent memory corruption. So be kind, cleanup what you have done during intilization.  Report error. Do not be SILENT.", 
+            "text": "Stress your system  Every single critical subsystem  Confident with your base subsystem  Fix bug/Improve perf at early stage    Plan ahead  Single thread, or thread pool?  How to avoid using  lock ?  What lock to use?  How to reduce  lock contention ?  Does this data structure need  reference counter ?  Should I use per-cpu data structures?  Should I pad this lock $-line aligned to avoid pingpong?    Decent Cleanup  I fucking hate a crap kernel module just kill my machine, either stuck or bug.  Free buffer/structure  Remove the  pointer  from friends  list/tree. If you forgot to do so, mostly you will have some silent memory corruption. So be kind, cleanup what you have done during intilization.  Report error. Do not be SILENT.", 
             "title": "Keep in mind"
         }, 
         {
@@ -114,11 +114,6 @@
             "location": "/misc/cheatsheet/#grub2-on-ubuntu", 
             "text": "Nothing like grubby?! Shame on you.  Step I:  cat /boot/grub/grub.cfg | grep menuentry  1\n2 menuentry  Ubuntu, with Linux 4.16.0  --class ubuntu  ...\nmenuentry  Ubuntu, with Linux 4.9.92  --class ubuntu  ...   Step II: Open  /etc/default/grub , change  GRUB_DEFAULT= Advanced options for Ubuntu Ubuntu, with Linux 4.16.0  GRUB_DEFAULT= Advanced options for Ubuntu Ubuntu, with Linux 4.9.92    Step III:  sudo update-grub", 
             "title": "GRUB2 on Ubuntu"
-        }, 
-        {
-            "location": "/vmware-intern/", 
-            "text": "Intel Xeon 6138p, integrated FPGA (check it out!)\n\n\nretpoline (perf impact?)\n\n\n\n\nIntel Total Memory Encryption. Multi-Key Total Memory Encryption (MKTME).\n\n\n\n\n\n\nRDMA + NVM:\n An interesting topic. There are a lot interesting stuff to think about. I discussed this with Sanidhya today, he shared some very valuable findings:\n\n\n\n\nRDMA write: when does it mark a \npersistent\n point?\n\n\nRDMA write followed by a RDMA read, is kind of implicit memory barrier imposed by memory controller.", 
-            "title": "VMware Intern"
         }, 
         {
             "location": "/rdma/rdma/", 
@@ -1096,6 +1091,16 @@
             "title": "Thoughts"
         }, 
         {
+            "location": "/lego/kernel/irq/", 
+            "text": "IRQ\n\n\nIRQ is majorly ported based on \nlinux-4.9\n.\n\n\nAug 20, 2018\nWell, I\nve ported the IRQ stuff at early days of Lego. At that time, I mainly ported the low-level APIC, IO-APIC, and ACPI stuff, along with the upper layer irqchip, irqdesc stuff.\n\n\nThese days, I was verifying our IB code and tried to add back mlx4en\ns interrupt handler, somehow, there is no interrupt after \nrequest_irq()\n.\n\n\nTwo possible reasons: 1) I missed something during PCI setup, 2) underlying APIC and IO-APIC need more work.", 
+            "title": "IRQ"
+        }, 
+        {
+            "location": "/lego/kernel/irq/#irq", 
+            "text": "IRQ is majorly ported based on  linux-4.9 .  Aug 20, 2018\nWell, I ve ported the IRQ stuff at early days of Lego. At that time, I mainly ported the low-level APIC, IO-APIC, and ACPI stuff, along with the upper layer irqchip, irqdesc stuff.  These days, I was verifying our IB code and tried to add back mlx4en s interrupt handler, somehow, there is no interrupt after  request_irq() .  Two possible reasons: 1) I missed something during PCI setup, 2) underlying APIC and IO-APIC need more work.", 
+            "title": "IRQ"
+        }, 
+        {
             "location": "/lego/kernel/net_thpool/", 
             "text": "Thread Pool Model for Handling Network Requests\n\n\n\n\nPassive\n: whenever a network request comes in, callback to thpool.\n\n\nActive\n: thpool keep polling if there is new network requests queued.\n\n\n\n\nPreviously, our memory side use the Active mode to handle requests, which has very bad latency. Several days ago we changed to the Passive mode, which has a very good latency! One \nib_send_reply\n RRT drops from \n~20us\n to a normal \n~6us\n for a TensorFlow run.\n\n\nNever thought this could make such a big difference (~3x slowdown)! Dark network!\n\n\n\nYizhou Shan\n\nCreated: April 29, 2018\n\nLast Updated: April 29, 2018", 
             "title": "Network Thpool"
@@ -1484,6 +1489,36 @@
             "location": "/lego/driver/pci/#unfinished-business", 
             "text": "Ways to go through all PCI device.  pci_init_capabilities() : for each PCI device  pci_fixup_device() : a lot quicks, maybe not useful  pcie_aspm_init_link_state() : PCIe link state  pci_iov_bus_range : all SR-IOV support   \nYizhou Shan \nCreated: July 5, 2018 \nLast Updated: July 5, 2018", 
             "title": "Unfinished business"
+        }, 
+        {
+            "location": "/lego/driver/ib/", 
+            "text": "Infiniband Subsystem\n\n\nCurrent Status\n\n\nLego\ns IB stack is ported based on \nlinux-3.11.1\n. We ported:\n\n\n\n\nib_core\n\n\nmlx4_ib\n\n\nmlx4_core\n\n\n\n\nLego does not support uverbs. At the time of writing, Lego IB stack has only been tested on \nMellanox Technologies MT27500 Family [ConnectX-3]\n.\n\n\nRandom summary\n\n\nThe stack is SUPER complex, a lot data structures and pointers fly all over. Good thing is the whole stack is layered clearly.\n\n\nTop down\n\n\nib_core\n\n\n\n\nIB core code is in \ndriver/infiniband/core\n, which exposes the major IB API to both user and kernel applications. Inside, it has two parts. The first part is function callback, that call back to underlying device-specific functions. The second part is the management stack, including communication manager (cm), management datagram (mad), and so on.\n\n\nIn IB, each port\ns QP0 and QP1 are reserved for management purpose. They will receive/send MAD from/to subnet manager, who typically runs on switch. All the IB management stuff is carried out by exchanging MAD.\n\n\nThere are several key data structures: ib_client, ib_device, and mad_agent. MAD, CM, and some others are ib_client, which means they use IB device, and will be called back whenever a device has been added. mad_agent is something that will be called back whenever a device received a MAD message from switch (see \nib_mad_completion_handler()\n). A lot layers, huh?\n\n\nib_mad_completion_handler()\n: we changed the behavior of it. we use busy polling instead of interrupt. Originally, it will be invoked by mlx4_core/eq.c\n\n\n\n\nmlx4_ib and mlx4_core\n\n\n\n\n\n\nmlx4_core is actually the Ethernet driver for Mellanox NIC device (drivers/net/ethernet/mellanox/hw/mlx4), which do the actual dirty work of talking with device. On the other hand, mlx4_ib is the glue code between ib_core and mlx4_core, who do the translation.\n\n\n\n\n\n\nA lot IB verbs are ultimately translated into \nfw.c __mlx4_cmd()\n, which actually send commands to device and get the result. There are two ways of getting result: 1) polling: after writing to device memory the command, the same thread keep polling. 2) sleep and wait for interrupt. By default, the interrupt way is used (obviously). But, at the time of writing (Aug 20, 2018), we don\nt really have a working IRQ subsystem, so we use polling instead. \nI\nm still a little concerned that without interrupt handler, we might lose some events and the NIC may behavave incorrectly if interrupts are not handled.\n\n\n\n\n\n\n\nYizhou Shan\n\nCreated: Aug 20, 2018\n\nLast Updated: Aug 20, 2018", 
+            "title": "Infiniband"
+        }, 
+        {
+            "location": "/lego/driver/ib/#infiniband-subsystem", 
+            "text": "", 
+            "title": "Infiniband Subsystem"
+        }, 
+        {
+            "location": "/lego/driver/ib/#current-status", 
+            "text": "Lego s IB stack is ported based on  linux-3.11.1 . We ported:   ib_core  mlx4_ib  mlx4_core   Lego does not support uverbs. At the time of writing, Lego IB stack has only been tested on  Mellanox Technologies MT27500 Family [ConnectX-3] .", 
+            "title": "Current Status"
+        }, 
+        {
+            "location": "/lego/driver/ib/#random-summary", 
+            "text": "The stack is SUPER complex, a lot data structures and pointers fly all over. Good thing is the whole stack is layered clearly.  Top down", 
+            "title": "Random summary"
+        }, 
+        {
+            "location": "/lego/driver/ib/#ib_core", 
+            "text": "IB core code is in  driver/infiniband/core , which exposes the major IB API to both user and kernel applications. Inside, it has two parts. The first part is function callback, that call back to underlying device-specific functions. The second part is the management stack, including communication manager (cm), management datagram (mad), and so on.  In IB, each port s QP0 and QP1 are reserved for management purpose. They will receive/send MAD from/to subnet manager, who typically runs on switch. All the IB management stuff is carried out by exchanging MAD.  There are several key data structures: ib_client, ib_device, and mad_agent. MAD, CM, and some others are ib_client, which means they use IB device, and will be called back whenever a device has been added. mad_agent is something that will be called back whenever a device received a MAD message from switch (see  ib_mad_completion_handler() ). A lot layers, huh?  ib_mad_completion_handler() : we changed the behavior of it. we use busy polling instead of interrupt. Originally, it will be invoked by mlx4_core/eq.c", 
+            "title": "ib_core"
+        }, 
+        {
+            "location": "/lego/driver/ib/#mlx4_ib-and-mlx4_core", 
+            "text": "mlx4_core is actually the Ethernet driver for Mellanox NIC device (drivers/net/ethernet/mellanox/hw/mlx4), which do the actual dirty work of talking with device. On the other hand, mlx4_ib is the glue code between ib_core and mlx4_core, who do the translation.    A lot IB verbs are ultimately translated into  fw.c __mlx4_cmd() , which actually send commands to device and get the result. There are two ways of getting result: 1) polling: after writing to device memory the command, the same thread keep polling. 2) sleep and wait for interrupt. By default, the interrupt way is used (obviously). But, at the time of writing (Aug 20, 2018), we don t really have a working IRQ subsystem, so we use polling instead.  I m still a little concerned that without interrupt handler, we might lose some events and the NIC may behavave incorrectly if interrupts are not handled.    \nYizhou Shan \nCreated: Aug 20, 2018 \nLast Updated: Aug 20, 2018", 
+            "title": "mlx4_ib and mlx4_core"
         }, 
         {
             "location": "/lego/paper/nmp/", 
