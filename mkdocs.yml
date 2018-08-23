@@ -13,6 +13,7 @@ pages:
    - 'Log':
            - 'TODO': 'lego/log/TODO.md'
            - 'MISC': 'lego/log/misc.md'
+           - 'Aug 2018':           'lego/log/log-08-2018.md'
            - 'April 2018':           'lego/log/log-04-2018.md'
            - 'March 2018':           'lego/log/log-03-2018.md'
            - 'Feb 2018':           'lego/log/log-02-2018.md'
