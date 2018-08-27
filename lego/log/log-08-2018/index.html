@@ -391,6 +391,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#aug-26" title="Aug 26" class="md-nav__link">
+    Aug 26
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#aug-22" title="Aug 22" class="md-nav__link">
     Aug 22
   </a>
@@ -1099,6 +1106,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#aug-26" title="Aug 26" class="md-nav__link">
+    Aug 26
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#aug-22" title="Aug 22" class="md-nav__link">
     Aug 22
   </a>
@@ -1123,6 +1137,95 @@
                 
                 
                 <h1 id="aug-2018">Aug 2018</h1>
+<h2 id="aug-26">Aug 26</h2>
+<p>Oh well. I saw the same damn lost packet issue again. The issue can be desribed as: P use lite rpc to send a request to M. M processed the handled, and called rpc reply to sent back to P. M need to poll send_cq to poll completion. But M fail to get the CQE for the should-be-sent-out WQE.</p>
+<p>This is tested with M&rsquo;s <code class="codehilite">CONFIG_FIT_NOWAIT</code> optimization, which is basically an optimization that M will not poll cq every time a reply was sent out, instead, do batch polling.</p>
+<p>The following stack dump was reported by M side watchdog. It is not necessary mlx4_poll_cq&rsquo;s issue, since there is a while (1) loop at fit code. Oh well.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Log name: 0826-w9-1
+
+[187736.669027] watchdog: worker[0] CPU10 stucked
+[187736.673972] watchdog:  common_header [op=0x30000000 src_nid:0]
+[187736.680566] CPU: 10 PID: 20 Comm: thpool-worker0 4.0.0-lego+ #26
+[187736.687351] RIP: 0010:[&lt;ffffffff810522c3&gt;]  [&lt;ffffffff810522c3&gt;] mlx4_ib_poll_cq+0x1d3/0x850
+[187736.696854] RSP: 0000:ffff88103ef3f750  EFLAGS: 00000286
+[187736.702865] RAX: 00000000fffffff5 RBX: 0000000000000000 RCX: ffff88103ed6b050
+[187736.710913] RDX: 0000000080630000 RSI: 0000000000000001 RDI: ffff88103edb0bf0
+[187736.718961] RBP: ffff88103ef3f7b8 R08: 0000000000000020 R09: 0000000000000002
+[187736.727007] R10: 0000000ffc53fddc R11: 0000000040bf1040 R12: ffff88103ef3f7c8
+[187736.735055] R13: 0000000000000000 R14: 0000000000000000 R15: ffff88103edb0bf0
+[187736.743104] FS:  0000000000000000(0000) GS:ffff88107fca0000(0000) knlGS:0000000000000000
+[187736.752218] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[187736.758714] CR2: 0000000000000000 CR3: 000000000116a000 CR4: 00000000000406a0
+[187736.766762] Stack:
+[187736.769089] 0000000ffc53fddc 0000000000000002 0000000000000020 ffff88103edb0c98
+[187736.777331] 0000000000000286 0000000080630000 ffff88103ef3f7d0 0000638000000018
+[187736.785572] ffff88103edb0bf0 0000000000000001 ffff88103ef25008 0000000000000003
+[187736.793813] 000000000000000c ffff88103ef3fd30 ffffffff8106920c ffff88103ef3fd54
+[187736.802054] 0000000100000000 0000000100000000 ffff88103edb07b0 ffff88103e81b008
+[187736.810296] Call Trace:
+[187736.813108] &lt;TSK&gt;
+[187736.815338] [&lt;ffffffff8106920c&gt;] fit_internal_poll_sendcq+0x6c/0xe0
+[187736.822416] [&lt;ffffffff8106ab2f&gt;] ? fit_send_reply_with_rdma_write_with_imm+0x25f/0x3a0
+[187736.831336] [&lt;ffffffff81033ff0&gt;] ? _lego_copy_to_user+0x110/0x250
+[187736.838220] [&lt;ffffffff81028d65&gt;] ? __free_pages+0x25/0x30
+[187736.844329] [&lt;ffffffff8102e981&gt;] ? __storage_read+0xf1/0x120
+[187736.850728] [&lt;ffffffff81019865&gt;] ? scheduler_tick+0x55/0x60
+[187736.857031] [&lt;ffffffff810693d2&gt;] ? fit_send_message_with_rdma_write_with_imm_request+0x152/0x350
+[187736.866920] [&lt;ffffffff810693d2&gt;] ? fit_send_message_with_rdma_write_with_imm_request+0x152/0x350
+[187736.876810] [&lt;ffffffff8103043f&gt;] ? __vma_adjust+0x38f/0x550
+[187736.883113] [&lt;ffffffff81030944&gt;] ? vma_merge+0x1a4/0x280
+[187736.889123] [&lt;ffffffff81030f20&gt;] ? arch_get_unmapped_area_topdown+0xe0/0x220
+[187736.897075] [&lt;ffffffff810693d2&gt;] fit_send_message_with_rdma_write_with_imm_request+0x152/0x350
+[187736.906771] [&lt;ffffffff81069ab5&gt;] fit_ack_reply_callback+0x185/0x1e0
+[187736.913848] [&lt;ffffffff8102f129&gt;] ? handle_p2m_flush_one+0x69/0x160
+[187736.920830] [&lt;ffffffff8102bde0&gt;] thpool_worker_func+0xe0/0x3a0
+[187736.927424] [&lt;ffffffff8102bd00&gt;] ? handle_bad_request+0x40/0x40
+[187736.934113] [&lt;ffffffff81020ca6&gt;] kthread+0xf6/0x120
+[187736.939639] [&lt;ffffffff81020bb0&gt;] ? __kthread_parkme+0x70/0x70
+[187736.946137] [&lt;ffffffff8100e632&gt;] ret_from_fork+0x22/0x30
+</pre></div>
+</td></tr></table></p>
 <h2 id="aug-22">Aug 22</h2>
 <p>Damn it!!! After so much effort verifying we had a solid IB stack, we still has memory corruption and deadlock issues. Fuck!</p>
 <p>One thing at a time, simple stuff first. Okay, tomorrow first add DEBUG_SPINLOCK to detect possible deadlocks. This, could help to identify some buggy code. After this, I will spend some time looking into the LITE, it&rsquo;s fucking HEAVY. I do found a lot issues during summer.</p>
