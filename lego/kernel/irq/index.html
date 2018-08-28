@@ -624,9 +624,52 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        IRQ
+      </label>
+    
     <a href="./" title="IRQ" class="md-nav__link md-nav__link--active">
       IRQ
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#init" title="Init" class="md-nav__link">
+    Init
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#irq-domain" title="IRQ Domain" class="md-nav__link">
+    IRQ Domain
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aug-20-2018" title="Aug 20, 2018" class="md-nav__link">
+    Aug 20, 2018
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -1066,6 +1109,36 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#init" title="Init" class="md-nav__link">
+    Init
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#irq-domain" title="IRQ Domain" class="md-nav__link">
+    IRQ Domain
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aug-20-2018" title="Aug 20, 2018" class="md-nav__link">
+    Aug 20, 2018
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1078,9 +1151,109 @@
                 
                 
                 <h1 id="irq">IRQ</h1>
-<p>IRQ is majorly ported based on <code class="codehilite">linux-4.9</code>.</p>
-<p>Aug 20, 2018
-Well, I&rsquo;ve ported the IRQ stuff at early days of Lego. At that time, I mainly ported the low-level APIC, IO-APIC, and ACPI stuff, along with the upper layer irqchip, irqdesc stuff.</p>
+<p>IRQ is majorly ported based on <code class="codehilite">linux-4.4</code>. The decision of porting of whole IRQ stack from linux was made at early stage of Lego, when I&rsquo;m not so familiar with this stuff. This technique decision has pros and cons.</p>
+<p>The whole thing is made complicated by having IRQ domain. IRQ domain is introduced to address the multiple interrupt controller issue. And in x86, we kind of have mutiple as well: IO-APIC, REMAP, LAPIC. Although we are not supporting IRQ remap now.</p>
+<h2 id="init">Init</h2>
+<ul>
+<li>The first part of initialization is <code class="codehilite">trap_init()</code> at early <code class="codehilite">setup_arch()</code>.</li>
+<li>The second major entry point is <code class="codehilite">irq_init()</code> at <code class="codehilite">start_kernel()</code>. This <code class="codehilite">irq_init()</code> is actually a combination of linux&rsquo;s:<ul>
+<li><code class="codehilite">early_irq_init()</code>: 1) setup <code class="codehilite">irq_desc[]</code> array, and then call <code class="codehilite">arch_early_irq_init()</code>, which will register two IRQ domains (x86_vector_domain, msi_domain).</li>
+<li><code class="codehilite">init_IRQ()</code>: is actually a callback to low-level x86 interrupt setup. It mainly setup the desc&rsquo;s data/chip etc, and register all different handlers.</li>
+<li>In Lego, you will be able to find all the functionalitis are moved into <code class="codehilite">arch_irq_init()</code>. And, to this point, we have a complete setup.</li>
+</ul>
+</li>
+<li>The third (and last) entry point is <code class="codehilite">smp_prepare_cpus()</code>:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>smp_prepare_cpus()
+-&gt; apic_bsp_setup()
+   -&gt; setup_local_APIC()
+   -&gt; setup_IO_APIC()
+   -&gt; x86_init.timers.setup_percpu_clockev()
+</pre></div>
+</td></tr></table></li>
+</ul>
+<h2 id="irq-domain">IRQ Domain</h2>
+<p>We should have at least 2 or 3 IRQ domains:</p>
+<ul>
+<li>x86_vector</li>
+<li>x86_msi</li>
+<li>x86_ioapic_N (each ioapic has one)</li>
+</ul>
+<p>The first two guys are created during <code class="codehilite">arch_irq_init()</code>. While the latter ioapic ones are created during <code class="codehilite">setup_IO_APIC()</code>. All of them are allocated eventually by <code class="codehilite">__irq_domain_add()</code>, and linked at <code class="codehilite">LIST_HEAD(irq_domain_list)</code>.</p>
+<p>At the time of writing, Lego does not have radix tree. Thus, all domains are using linear reverse mapping between Lego IRQ number and HW IRQ number. The special knob is located at:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">__irq_domain_add</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="hll">        <span class="k">if</span> <span class="p">(</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hll">                <span class="n">size</span> <span class="o">=</span> <span class="n">NR_IRQS</span><span class="p">;</span>
+</span><span class="hll">        <span class="p">}</span>
+</span>
+    <span class="n">domain</span> <span class="o">=</span> <span class="n">kzalloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="o">*</span><span class="n">domain</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="n">size</span><span class="p">),</span> <span class="n">GFP_KERNEL</span><span class="p">);</span>
+
+    <span class="n">domain</span><span class="o">-&gt;</span><span class="n">revmap_size</span> <span class="o">=</span> <span class="n">size</span><span class="p">;</span>
+
+<span class="n">irq_find_mapping</span><span class="p">()</span>
+<span class="n">irq_domain_insert_irq</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></p>
+<p>To dump all IRQ domains, call <code class="codehilite">dump_irq_domain_list()</code>, which give you something like this:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span><span class="mf">91946.721459</span><span class="p">]</span>  <span class="n">IRQ_DOMAIN</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">:</span> <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">2</span>
+<span class="p">[</span><span class="mf">91946.725634</span><span class="p">]</span>     <span class="nl">hwirq_max</span><span class="p">:</span>             <span class="mi">24</span>
+<span class="p">[</span><span class="mf">91946.730094</span><span class="p">]</span>     <span class="nl">revmap_direct_max_irq</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span><span class="mf">91946.734458</span><span class="p">]</span>     <span class="nl">revmap_size</span><span class="p">:</span>           <span class="mi">24</span>   
+<span class="p">[</span><span class="mf">91946.738917</span><span class="p">]</span>  <span class="n">IRQ_DOMAIN</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">:</span> <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">1</span>
+<span class="p">[</span><span class="mf">91946.743280</span><span class="p">]</span>     <span class="nl">hwirq_max</span><span class="p">:</span>             <span class="mi">24</span>   
+<span class="p">[</span><span class="mf">91946.747740</span><span class="p">]</span>     <span class="nl">revmap_direct_max_irq</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span><span class="mf">91946.752103</span><span class="p">]</span>     <span class="nl">revmap_size</span><span class="p">:</span>           <span class="mi">24</span>   
+<span class="p">[</span><span class="mf">91946.756564</span><span class="p">]</span>  <span class="n">IRQ_DOMAIN</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">:</span> <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">0</span>
+<span class="p">[</span><span class="mf">91946.760927</span><span class="p">]</span>     <span class="nl">hwirq_max</span><span class="p">:</span>             <span class="mi">24</span>   
+<span class="p">[</span><span class="mf">91946.765386</span><span class="p">]</span>     <span class="nl">revmap_direct_max_irq</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span><span class="mf">91946.769750</span><span class="p">]</span>     <span class="nl">revmap_size</span><span class="p">:</span>           <span class="mi">24</span>   
+<span class="p">[</span><span class="mf">91946.774210</span><span class="p">]</span>  <span class="n">IRQ_DOMAIN</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">:</span> <span class="n">x86_msi</span>
+<span class="p">[</span><span class="mf">91946.778089</span><span class="p">]</span>     <span class="nl">hwirq_max</span><span class="p">:</span>             <span class="mi">18446744073709551615</span>
+<span class="p">[</span><span class="mf">91946.784294</span><span class="p">]</span>     <span class="nl">revmap_direct_max_irq</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span><span class="mf">91946.788657</span><span class="p">]</span>     <span class="nl">revmap_size</span><span class="p">:</span>           <span class="mi">4352</span>
+<span class="p">[</span><span class="mf">91946.793311</span><span class="p">]</span>  <span class="n">IRQ_DOMAIN</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">:</span> <span class="n">x86_vector</span>
+<span class="p">[</span><span class="mf">91946.797479</span><span class="p">]</span>     <span class="nl">hwirq_max</span><span class="p">:</span>             <span class="mi">18446744073709551615</span>
+<span class="p">[</span><span class="mf">91946.803685</span><span class="p">]</span>     <span class="nl">revmap_direct_max_irq</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span><span class="mf">91946.808048</span><span class="p">]</span>     <span class="nl">revmap_size</span><span class="p">:</span>           <span class="mi">4352</span>
+</pre></div>
+</td></tr></table></p>
+<p>By having a size, the linear map will be allocated as always. Another two functions <code class="codehilite">irq_find_mapping()</code>, <code class="codehilite">irq_domain_insert_irq()</code> are users of revmap_size/revmap, they will be taken care of.</p>
+<h2 id="aug-20-2018">Aug 20, 2018</h2>
+<p>Well, I&rsquo;ve ported the IRQ stuff at early days of Lego. At that time, I mainly ported the low-level APIC, IO-APIC, and ACPI stuff, along with the upper layer irqchip, irqdesc stuff.</p>
 <p>These days, I was verifying our IB code and tried to add back mlx4en&rsquo;s interrupt handler, somehow, there is no interrupt after <code class="codehilite">request_irq()</code>.</p>
 <p>Two possible reasons: 1) I missed something during PCI setup, 2) underlying APIC and IO-APIC need more work.</p>
                 
