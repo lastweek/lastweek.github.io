@@ -25,52 +25,48 @@ We should have at least 2 or 3 IRQ domains:
 
 - x86_vector
 - x86_msi
-- x86_ioapic_N (each ioapic has one)
+- x86_ioapic-N (each ioapic has one)
 
 The first two guys are created during `arch_irq_init()`. While the latter ioapic ones are created during `setup_IO_APIC()`. All of them are allocated eventually by `__irq_domain_add()`, and linked at `LIST_HEAD(irq_domain_list)`.
 
-At the time of writing, Lego does not have radix tree. Thus, all domains are using linear reverse mapping between Lego IRQ number and HW IRQ number. The special knob is located at:
-```c hl_lines="3 4 5"
-__irq_domain_add()
-{
-        if (size == 0) {
-                size = NR_IRQS;
-        }
+So....  Lego or Linux maintains its own IRQ numbers, starting from 0 to NR_IRQs.
+However, this IRQ number MAY not have a identical mapping to hardware's own IRQ number (let us call it hwirq). Given this, we want to know the mapping between IRQ and hwirq. That's the purpose of having `linear_revmap` and `revmap_tree` within each domain, it is used to translate hwirq to IRQ.
 
-	domain = kzalloc(sizeof(*domain) + (sizeof(unsigned int) * size), GFP_KERNEL);
+Why two different data structures? `linear_revmap` is fairly simple, an array, which is indexed by hwirq. However, the hwirq maybe very large, we don't want to waste memory, that's how we want to use trees.
 
-	domain->revmap_size = size;
+These two can be used together. If we fail to insert into `linear_revmap`, we insert into tree. During search time, we need to look up both.
 
-irq_find_mapping()
-irq_domain_insert_irq()
-```
+By default, `x86_vector` and `x86_msi` use radix tree only. `x86_ioapic-N` uses a mix of linear and radix tree.
 
 To dump all IRQ domains, call `dump_irq_domain_list()`, which give you something like this:
 ```c
-[91946.721459]  IRQ_DOMAIN[0]: x86_ioapic-2
-[91946.725634]     hwirq_max:             24
-[91946.730094]     revmap_direct_max_irq: 0
-[91946.734458]     revmap_size:           24   
-[91946.738917]  IRQ_DOMAIN[1]: x86_ioapic-1
-[91946.743280]     hwirq_max:             24   
-[91946.747740]     revmap_direct_max_irq: 0
-[91946.752103]     revmap_size:           24   
-[91946.756564]  IRQ_DOMAIN[2]: x86_ioapic-0
-[91946.760927]     hwirq_max:             24   
-[91946.765386]     revmap_direct_max_irq: 0
-[91946.769750]     revmap_size:           24   
-[91946.774210]  IRQ_DOMAIN[3]: x86_msi
-[91946.778089]     hwirq_max:             18446744073709551615
-[91946.784294]     revmap_direct_max_irq: 0
-[91946.788657]     revmap_size:           4352
-[91946.793311]  IRQ_DOMAIN[4]: x86_vector
-[91946.797479]     hwirq_max:             18446744073709551615
-[91946.803685]     revmap_direct_max_irq: 0
-[91946.808048]     revmap_size:           4352
+[  118.308544]  name              mapped  linear-max  direct-max  devtree-node
+[  118.316114]  x86_ioapic-2          24          24           0    
+[  118.322707]  x86_ioapic-1          24          24           0    
+[  118.329299]  x86_ioapic-0          24          24           0    
+[  118.335893]  x86_msi               25           0           0    
+[  118.342486] *x86_vector            40           0           0    
+[  118.349078] irq    hwirq    chip name        chip data           active  type            domain
+[  118.358775]     1  0x00001  IO-APIC          0xffff88107fcae000        LINEAR          x86_ioapic-0
+[  118.368858]     3  0x00003  IO-APIC          0xffff88107fc8f000        LINEAR          x86_ioapic-0
+[  118.378940]     4  0x00004  IO-APIC          0xffff88107fc6e000        LINEAR          x86_ioapic-0
+[  118.389025]     5  0x00005  IO-APIC          0xffff88107fc6f000        LINEAR          x86_ioapic-0
+[  118.399109]     6  0x00006  IO-APIC          0xffff88107fc4e000        LINEAR          x86_ioapic-0
+[  118.409192]     7  0x00007  IO-APIC          0xffff88107fc4f000        LINEAR          x86_ioapic-0
+[  118.419276]     8  0x00008  IO-APIC          0xffff88107fc2e000        LINEAR          x86_ioapic-0
+[  118.429358]     9  0x00009  IO-APIC          0xffff88107fc2f000        LINEAR          x86_ioapic-0
+[  118.439442]    10  0x0000a  IO-APIC          0xffff88107fc0e000        LINEAR          x86_ioapic-0
+[  118.449525]    11  0x0000b  IO-APIC          0xffff88107fc0f000        LINEAR          x86_ioapic-0
+[  118.459609]    12  0x0000c  IO-APIC          0xffff88107fff0000        LINEAR          x86_ioapic-0
+[  118.469692]    13  0x0000d  IO-APIC          0xffff88107fff1000        LINEAR          x86_ioapic-0
+[  118.479776]    14  0x0000e  IO-APIC          0xffff88107fff2000        LINEAR          x86_ioapic-0
+[  118.489860]    15  0x0000f  IO-APIC          0xffff88107fff3000        LINEAR          x86_ioapic-0
+[  118.499943]    24  0x300000  PCI-MSI                      (null)     *     RADIX          x86_msi
+[  118.509833]    25  0x300001  PCI-MSI                      (null)     *     RADIX          x86_msi
+[  118.519722]    26  0x300002  PCI-MSI                      (null)     *     RADIX          x86_msi
+[  118.529612]    27  0x300003  PCI-MSI                      (null)     *     RADIX          x86_msi
+[  118.539501]    28  0x300004  PCI-MSI                      (null)           RADIX          x86_msi
 ```
-
-By having a size, the linear map will be allocated as always. Another two functions `irq_find_mapping()`, `irq_domain_insert_irq()` are users of revmap_size/revmap, they will be taken care of.
-
 
 ## Aug 20, 2018
 Well, I've ported the IRQ stuff at early days of Lego. At that time, I mainly ported the low-level APIC, IO-APIC, and ACPI stuff, along with the upper layer irqchip, irqdesc stuff.
@@ -78,3 +74,7 @@ Well, I've ported the IRQ stuff at early days of Lego. At that time, I mainly po
 These days, I was verifying our IB code and tried to add back mlx4en's interrupt handler, somehow, there is no interrupt after `request_irq()`.
 
 Two possible reasons: 1) I missed something during PCI setup, 2) underlying APIC and IO-APIC need more work.
+
+
+--
+Last Updated: Aug 28, 2018
