@@ -1180,35 +1180,14 @@
 <ul>
 <li>x86_vector</li>
 <li>x86_msi</li>
-<li>x86_ioapic_N (each ioapic has one)</li>
+<li>x86_ioapic-N (each ioapic has one)</li>
 </ul>
 <p>The first two guys are created during <code class="codehilite">arch_irq_init()</code>. While the latter ioapic ones are created during <code class="codehilite">setup_IO_APIC()</code>. All of them are allocated eventually by <code class="codehilite">__irq_domain_add()</code>, and linked at <code class="codehilite">LIST_HEAD(irq_domain_list)</code>.</p>
-<p>At the time of writing, Lego does not have radix tree. Thus, all domains are using linear reverse mapping between Lego IRQ number and HW IRQ number. The special knob is located at:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">__irq_domain_add</span><span class="p">()</span>
-<span class="p">{</span>
-<span class="hll">        <span class="k">if</span> <span class="p">(</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="hll">                <span class="n">size</span> <span class="o">=</span> <span class="n">NR_IRQS</span><span class="p">;</span>
-</span><span class="hll">        <span class="p">}</span>
-</span>
-    <span class="n">domain</span> <span class="o">=</span> <span class="n">kzalloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="o">*</span><span class="n">domain</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="n">size</span><span class="p">),</span> <span class="n">GFP_KERNEL</span><span class="p">);</span>
-
-    <span class="n">domain</span><span class="o">-&gt;</span><span class="n">revmap_size</span> <span class="o">=</span> <span class="n">size</span><span class="p">;</span>
-
-<span class="n">irq_find_mapping</span><span class="p">()</span>
-<span class="n">irq_domain_insert_irq</span><span class="p">()</span>
-</pre></div>
-</td></tr></table></p>
+<p>So....  Lego or Linux maintains its own IRQ numbers, starting from 0 to NR_IRQs.
+However, this IRQ number MAY not have a identical mapping to hardware&rsquo;s own IRQ number (let us call it hwirq). Given this, we want to know the mapping between IRQ and hwirq. That&rsquo;s the purpose of having <code class="codehilite">linear_revmap</code> and <code class="codehilite">revmap_tree</code> within each domain, it is used to translate hwirq to IRQ.</p>
+<p>Why two different data structures? <code class="codehilite">linear_revmap</code> is fairly simple, an array, which is indexed by hwirq. However, the hwirq maybe very large, we don&rsquo;t want to waste memory, that&rsquo;s how we want to use trees.</p>
+<p>These two can be used together. If we fail to insert into <code class="codehilite">linear_revmap</code>, we insert into tree. During search time, we need to look up both.</p>
+<p>By default, <code class="codehilite">x86_vector</code> and <code class="codehilite">x86_msi</code> use radix tree only. <code class="codehilite">x86_ioapic-N</code> uses a mix of linear and radix tree.</p>
 <p>To dump all IRQ domains, call <code class="codehilite">dump_irq_domain_list()</code>, which give you something like this:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -1229,33 +1208,46 @@
 17
 18
 19
-20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span><span class="mf">91946.721459</span><span class="p">]</span>  <span class="n">IRQ_DOMAIN</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">:</span> <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">2</span>
-<span class="p">[</span><span class="mf">91946.725634</span><span class="p">]</span>     <span class="nl">hwirq_max</span><span class="p">:</span>             <span class="mi">24</span>
-<span class="p">[</span><span class="mf">91946.730094</span><span class="p">]</span>     <span class="nl">revmap_direct_max_irq</span><span class="p">:</span> <span class="mi">0</span>
-<span class="p">[</span><span class="mf">91946.734458</span><span class="p">]</span>     <span class="nl">revmap_size</span><span class="p">:</span>           <span class="mi">24</span>   
-<span class="p">[</span><span class="mf">91946.738917</span><span class="p">]</span>  <span class="n">IRQ_DOMAIN</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">:</span> <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">1</span>
-<span class="p">[</span><span class="mf">91946.743280</span><span class="p">]</span>     <span class="nl">hwirq_max</span><span class="p">:</span>             <span class="mi">24</span>   
-<span class="p">[</span><span class="mf">91946.747740</span><span class="p">]</span>     <span class="nl">revmap_direct_max_irq</span><span class="p">:</span> <span class="mi">0</span>
-<span class="p">[</span><span class="mf">91946.752103</span><span class="p">]</span>     <span class="nl">revmap_size</span><span class="p">:</span>           <span class="mi">24</span>   
-<span class="p">[</span><span class="mf">91946.756564</span><span class="p">]</span>  <span class="n">IRQ_DOMAIN</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">:</span> <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">0</span>
-<span class="p">[</span><span class="mf">91946.760927</span><span class="p">]</span>     <span class="nl">hwirq_max</span><span class="p">:</span>             <span class="mi">24</span>   
-<span class="p">[</span><span class="mf">91946.765386</span><span class="p">]</span>     <span class="nl">revmap_direct_max_irq</span><span class="p">:</span> <span class="mi">0</span>
-<span class="p">[</span><span class="mf">91946.769750</span><span class="p">]</span>     <span class="nl">revmap_size</span><span class="p">:</span>           <span class="mi">24</span>   
-<span class="p">[</span><span class="mf">91946.774210</span><span class="p">]</span>  <span class="n">IRQ_DOMAIN</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">:</span> <span class="n">x86_msi</span>
-<span class="p">[</span><span class="mf">91946.778089</span><span class="p">]</span>     <span class="nl">hwirq_max</span><span class="p">:</span>             <span class="mi">18446744073709551615</span>
-<span class="p">[</span><span class="mf">91946.784294</span><span class="p">]</span>     <span class="nl">revmap_direct_max_irq</span><span class="p">:</span> <span class="mi">0</span>
-<span class="p">[</span><span class="mf">91946.788657</span><span class="p">]</span>     <span class="nl">revmap_size</span><span class="p">:</span>           <span class="mi">4352</span>
-<span class="p">[</span><span class="mf">91946.793311</span><span class="p">]</span>  <span class="n">IRQ_DOMAIN</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">:</span> <span class="n">x86_vector</span>
-<span class="p">[</span><span class="mf">91946.797479</span><span class="p">]</span>     <span class="nl">hwirq_max</span><span class="p">:</span>             <span class="mi">18446744073709551615</span>
-<span class="p">[</span><span class="mf">91946.803685</span><span class="p">]</span>     <span class="nl">revmap_direct_max_irq</span><span class="p">:</span> <span class="mi">0</span>
-<span class="p">[</span><span class="mf">91946.808048</span><span class="p">]</span>     <span class="nl">revmap_size</span><span class="p">:</span>           <span class="mi">4352</span>
+20
+21
+22
+23
+24
+25
+26</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span>  <span class="mf">118.308544</span><span class="p">]</span>  <span class="n">name</span>              <span class="n">mapped</span>  <span class="n">linear</span><span class="o">-</span><span class="n">max</span>  <span class="n">direct</span><span class="o">-</span><span class="n">max</span>  <span class="n">devtree</span><span class="o">-</span><span class="n">node</span>
+<span class="p">[</span>  <span class="mf">118.316114</span><span class="p">]</span>  <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">2</span>          <span class="mi">24</span>          <span class="mi">24</span>           <span class="mi">0</span>    
+<span class="p">[</span>  <span class="mf">118.322707</span><span class="p">]</span>  <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">1</span>          <span class="mi">24</span>          <span class="mi">24</span>           <span class="mi">0</span>    
+<span class="p">[</span>  <span class="mf">118.329299</span><span class="p">]</span>  <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">0</span>          <span class="mi">24</span>          <span class="mi">24</span>           <span class="mi">0</span>    
+<span class="p">[</span>  <span class="mf">118.335893</span><span class="p">]</span>  <span class="n">x86_msi</span>               <span class="mi">25</span>           <span class="mi">0</span>           <span class="mi">0</span>    
+<span class="p">[</span>  <span class="mf">118.342486</span><span class="p">]</span> <span class="o">*</span><span class="n">x86_vector</span>            <span class="mi">40</span>           <span class="mi">0</span>           <span class="mi">0</span>    
+<span class="p">[</span>  <span class="mf">118.349078</span><span class="p">]</span> <span class="n">irq</span>    <span class="n">hwirq</span>    <span class="n">chip</span> <span class="n">name</span>        <span class="n">chip</span> <span class="n">data</span>           <span class="n">active</span>  <span class="n">type</span>            <span class="n">domain</span>
+<span class="p">[</span>  <span class="mf">118.358775</span><span class="p">]</span>     <span class="mi">1</span>  <span class="mh">0x00001</span>  <span class="n">IO</span><span class="o">-</span><span class="n">APIC</span>          <span class="mh">0xffff88107fcae000</span>        <span class="n">LINEAR</span>          <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">118.368858</span><span class="p">]</span>     <span class="mi">3</span>  <span class="mh">0x00003</span>  <span class="n">IO</span><span class="o">-</span><span class="n">APIC</span>          <span class="mh">0xffff88107fc8f000</span>        <span class="n">LINEAR</span>          <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">118.378940</span><span class="p">]</span>     <span class="mi">4</span>  <span class="mh">0x00004</span>  <span class="n">IO</span><span class="o">-</span><span class="n">APIC</span>          <span class="mh">0xffff88107fc6e000</span>        <span class="n">LINEAR</span>          <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">118.389025</span><span class="p">]</span>     <span class="mi">5</span>  <span class="mh">0x00005</span>  <span class="n">IO</span><span class="o">-</span><span class="n">APIC</span>          <span class="mh">0xffff88107fc6f000</span>        <span class="n">LINEAR</span>          <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">118.399109</span><span class="p">]</span>     <span class="mi">6</span>  <span class="mh">0x00006</span>  <span class="n">IO</span><span class="o">-</span><span class="n">APIC</span>          <span class="mh">0xffff88107fc4e000</span>        <span class="n">LINEAR</span>          <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">118.409192</span><span class="p">]</span>     <span class="mi">7</span>  <span class="mh">0x00007</span>  <span class="n">IO</span><span class="o">-</span><span class="n">APIC</span>          <span class="mh">0xffff88107fc4f000</span>        <span class="n">LINEAR</span>          <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">118.419276</span><span class="p">]</span>     <span class="mi">8</span>  <span class="mh">0x00008</span>  <span class="n">IO</span><span class="o">-</span><span class="n">APIC</span>          <span class="mh">0xffff88107fc2e000</span>        <span class="n">LINEAR</span>          <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">118.429358</span><span class="p">]</span>     <span class="mi">9</span>  <span class="mh">0x00009</span>  <span class="n">IO</span><span class="o">-</span><span class="n">APIC</span>          <span class="mh">0xffff88107fc2f000</span>        <span class="n">LINEAR</span>          <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">118.439442</span><span class="p">]</span>    <span class="mi">10</span>  <span class="mh">0x0000a</span>  <span class="n">IO</span><span class="o">-</span><span class="n">APIC</span>          <span class="mh">0xffff88107fc0e000</span>        <span class="n">LINEAR</span>          <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">118.449525</span><span class="p">]</span>    <span class="mi">11</span>  <span class="mh">0x0000b</span>  <span class="n">IO</span><span class="o">-</span><span class="n">APIC</span>          <span class="mh">0xffff88107fc0f000</span>        <span class="n">LINEAR</span>          <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">118.459609</span><span class="p">]</span>    <span class="mi">12</span>  <span class="mh">0x0000c</span>  <span class="n">IO</span><span class="o">-</span><span class="n">APIC</span>          <span class="mh">0xffff88107fff0000</span>        <span class="n">LINEAR</span>          <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">118.469692</span><span class="p">]</span>    <span class="mi">13</span>  <span class="mh">0x0000d</span>  <span class="n">IO</span><span class="o">-</span><span class="n">APIC</span>          <span class="mh">0xffff88107fff1000</span>        <span class="n">LINEAR</span>          <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">118.479776</span><span class="p">]</span>    <span class="mi">14</span>  <span class="mh">0x0000e</span>  <span class="n">IO</span><span class="o">-</span><span class="n">APIC</span>          <span class="mh">0xffff88107fff2000</span>        <span class="n">LINEAR</span>          <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">118.489860</span><span class="p">]</span>    <span class="mi">15</span>  <span class="mh">0x0000f</span>  <span class="n">IO</span><span class="o">-</span><span class="n">APIC</span>          <span class="mh">0xffff88107fff3000</span>        <span class="n">LINEAR</span>          <span class="n">x86_ioapic</span><span class="o">-</span><span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">118.499943</span><span class="p">]</span>    <span class="mi">24</span>  <span class="mh">0x300000</span>  <span class="n">PCI</span><span class="o">-</span><span class="n">MSI</span>                      <span class="p">(</span><span class="n">null</span><span class="p">)</span>     <span class="o">*</span>     <span class="n">RADIX</span>          <span class="n">x86_msi</span>
+<span class="p">[</span>  <span class="mf">118.509833</span><span class="p">]</span>    <span class="mi">25</span>  <span class="mh">0x300001</span>  <span class="n">PCI</span><span class="o">-</span><span class="n">MSI</span>                      <span class="p">(</span><span class="n">null</span><span class="p">)</span>     <span class="o">*</span>     <span class="n">RADIX</span>          <span class="n">x86_msi</span>
+<span class="p">[</span>  <span class="mf">118.519722</span><span class="p">]</span>    <span class="mi">26</span>  <span class="mh">0x300002</span>  <span class="n">PCI</span><span class="o">-</span><span class="n">MSI</span>                      <span class="p">(</span><span class="n">null</span><span class="p">)</span>     <span class="o">*</span>     <span class="n">RADIX</span>          <span class="n">x86_msi</span>
+<span class="p">[</span>  <span class="mf">118.529612</span><span class="p">]</span>    <span class="mi">27</span>  <span class="mh">0x300003</span>  <span class="n">PCI</span><span class="o">-</span><span class="n">MSI</span>                      <span class="p">(</span><span class="n">null</span><span class="p">)</span>     <span class="o">*</span>     <span class="n">RADIX</span>          <span class="n">x86_msi</span>
+<span class="p">[</span>  <span class="mf">118.539501</span><span class="p">]</span>    <span class="mi">28</span>  <span class="mh">0x300004</span>  <span class="n">PCI</span><span class="o">-</span><span class="n">MSI</span>                      <span class="p">(</span><span class="n">null</span><span class="p">)</span>           <span class="n">RADIX</span>          <span class="n">x86_msi</span>
 </pre></div>
 </td></tr></table></p>
-<p>By having a size, the linear map will be allocated as always. Another two functions <code class="codehilite">irq_find_mapping()</code>, <code class="codehilite">irq_domain_insert_irq()</code> are users of revmap_size/revmap, they will be taken care of.</p>
 <h2 id="aug-20-2018">Aug 20, 2018</h2>
 <p>Well, I&rsquo;ve ported the IRQ stuff at early days of Lego. At that time, I mainly ported the low-level APIC, IO-APIC, and ACPI stuff, along with the upper layer irqchip, irqdesc stuff.</p>
 <p>These days, I was verifying our IB code and tried to add back mlx4en&rsquo;s interrupt handler, somehow, there is no interrupt after <code class="codehilite">request_irq()</code>.</p>
 <p>Two possible reasons: 1) I missed something during PCI setup, 2) underlying APIC and IO-APIC need more work.</p>
+<p>&ndash;
+Last Updated: Aug 28, 2018</p>
                 
                   
                 
