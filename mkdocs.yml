@@ -4,11 +4,11 @@ pages:
 - Jasmine: 'misc/jasmine.md'
 - Essential: 'misc/essential.md'
 - Cheatsheet: 'misc/cheatsheet.md'
-- RDMA:
-   - 'RDMA': 'rdma/rdma.md'
-- Papers:
-   - 'FAST 18': 'read/fast18.md'
-   - 'ASPLOS 18': 'read/asplos18.md'
+#- RDMA:
+#   - 'RDMA': 'rdma/rdma.md'
+#- Papers:
+#  - 'FAST 18': 'read/fast18.md'
+#   - 'ASPLOS 18': 'read/asplos18.md'
 - Lego:
    - 'Log':
            - 'TODO': 'lego/log/TODO.md'
