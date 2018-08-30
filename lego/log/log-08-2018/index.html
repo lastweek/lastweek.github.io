@@ -321,8 +321,22 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#rq-lock-deadlock" title="rq-&gt;lock deadlock" class="md-nav__link">
+    rq-&gt;lock deadlock
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aug-29" title="Aug 29" class="md-nav__link">
+    Aug 29
+  </a>
   
 </li>
       
@@ -1063,8 +1077,22 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#rq-lock-deadlock" title="rq-&gt;lock deadlock" class="md-nav__link">
+    rq-&gt;lock deadlock
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aug-29" title="Aug 29" class="md-nav__link">
+    Aug 29
+  </a>
   
 </li>
       
@@ -1112,78 +1140,9 @@
 <h3 id="after-adding-pi_lock">After adding pi_lock</h3>
 <p>Okay. the pi_lock is added. Although it is mostly used by futex-pi and rt-mutex, we lego does not have these two guys. Therefore, it is only used by sched/core.c, exit.c, and kthread.c. 99% is in core.c</p>
 <p>The purpose of having this back is to have the <code class="codehilite">spin_lock_irqsave(&amp;p-&gt;pi_lock)</code> back. Most scheduling code is not recursive, we have to disable interrupt. Of course we can use <code class="codehilite">spin_lock_irqsave(&amp;rq-&gt;lock)</code> instead of <code class="codehilite">spin_lock(&amp;rq-&gt;lock)</code>. But this is too dangerous at this stage. Porting based on Linux now is the fastest and safest way.</p>
+<p><strong>The importance of disabling interrupt in some kernel path!!</strong></p>
 <p>Good. Now I&rsquo;m seeing now debuggable victim issue.</p>
-<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>### rq-&gt;lock deadlock
-
-Alright. We had rq-&gt;lock deadlock issue. Basically, we missed the part of disabling interrupt. A timer interrupt will try to acquire the lock again. Then, bang we have a deadlock. Digging into the code, you will be able to find the cause easily. The root cause we removed all the pi_lock stuff, which actually have a lot irqsave usages... Oh man, maybe it&#39;s time to add it back.
-</pre></div>
-</td></tr></table>
-[ 3367.835389] ------------------- cut here -------------------
-[ 3367.841504] Possible deadlock happend locker_cpu: 0
-[ 3367.846934] Current call stack:
-[ 3367.850425] CPU: 0 PID: 1 Comm: kernel_init 4.0.0-lego+ #437
-[ 3367.856726] Stack:
-[ 3367.858957] ffff88107ff0fa58 ffffffff8101f4b6 ffff88107fc05e00 00000004a817c800
-[ 3367.867101] ffff88107ff0fa80 ffffffff8101f52e ffff88107fc05e00 ffff88107ffb4000
-[ 3367.875246] 0000000000000000 ffff88107ff0faa0 ffffffff8101b1ae ffff88107fc04980
-[ 3367.883390] 0000000000000000 ffff88107ff0fab8 ffffffff810174f5 0000000000000286
-[ 3367.891535] ffff88107ff0fae0 ffffffff81006774 ffff88107ffb9000 ffff88107fc05e00
-[ 3367.899680] Call Trace:
-[ 3367.902396] <TSK>
-[ 3367.904528] [<ffffffff8101f4c2>] report_deadlock+0x62/0x80
-[ 3367.910637] [<ffffffff8101f52e>] debug_spin_lock+0x4e/0x60
-[ 3367.916745] [<ffffffff8101b1ae>] scheduler_tick+0x2e/0x60
-[ 3367.922756] [<ffffffff810174f5>] tick_handle_periodic+0x45/0x70
-[ 3367.929350] [<ffffffff81006774>] apic_timer_interrupt+0x54/0x90
-[ 3367.935943] [<ffffffff8100e8aa>] smp__apic_timer_interrupt+0x6a/0x70
-[ 3367.943021] [<ffffffff8101db99>] ? enqueue_task_rt+0x149/0x250
-[ 3367.949518] [<ffffffff8105908a>] ? __mlx4_write_mtt+0xea/0x140
-[ 3367.956014] [<ffffffff8101ad34>] activate_task+0x44/0x50
-[ 3367.961929] [<ffffffff8101b667>] ttwu_do_activate+0x27/0x50
-[ 3367.968134] [<ffffffff8101b89c>] try_to_wake_up+0xdc/0x1f0
-[ 3367.974243] [<ffffffff8106cc20>] ? ib_mad_send_done_handler.isra.22+0x4d0/0x4d0
-[ 3367.982388] [<ffffffff8101ba80>] wake_up_process+0x10/0x20
-[ 3367.988497] [<ffffffff81023116>] __kthread_create_on_node+0x146/0x230
-[ 3367.995671] [<ffffffff8102329f>] kthread_create_on_node+0x2f/0x40
-[ 3368.002459] [<ffffffff81066873>] ? ib_create_cq+0x23/0x60
-[ 3368.008470] [<ffffffff810695e1>] ib_mad_init_device+0x1f1/0x7b0
-[ 3368.015064] [<ffffffff81067246>] ib_register_device+0x5d6/0x690
-[ 3368.021657] [<ffffffff8105e9d3>] mlx4_ib_add+0x653/0x780
-[ 3368.027571] [<ffffffff8105147d>] mlx4_add_device+0x8d/0x130
-[ 3368.033777] [<ffffffff8105158c>] mlx4_register_interface+0x6c/0xa0
-[ 3368.040661] [<ffffffff811dc660>] mlx4_ib_init+0x10/0x20
-[ 3368.046478] [<ffffffff811dc619>] mlx4_init+0x19/0x50
-[ 3368.052005] [<ffffffff811dc68d>] ib_core_init+0x1d/0x30
-[ 3368.057823] [<ffffffff811db7f9>] device_init+0x9/0x10
-[ 3368.063447] [<ffffffff8100030b>] kernel_init+0x4b/0xc0
-[ 3368.069168] [<ffffffff8101b0ea>] ? schedule_tail+0xa/0x40
-[ 3368.075178] [<ffffffff810002c0>] ? 0xffffffff810002c0
-[ 3368.080803] [<ffffffff8100eb32>] ret_from_fork+0x22/0x30
-[ 3368.086718] <EOT>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>0830-w14-1: I really don&#39;t know how this happen. The refcounter and fill counter should be enough to serialize..
-</pre></div>
-</td></tr></table>
-[37722.177024] CPU20 PID31  victim:ffffffff810c2880 index:0 refcount:0 nr_fill:0 max_fill:4 locked:0 flags:(0x12e)(allocated|usable|hasdata|waitflush|fillfree) pcm:          (null) pset:ffff88207ff5b980
-[37722.196623] CPU20 PID31     hit[0] owner:22 m_nid:1 rep_nid:1 addr: 0x2c33000
-[37722.204572] CPU20 PID31  victim:ffffffff810c2880 index:0 refcount:0 nr_fill:0 max_fill:4 locked:0 flags:(0x14e)(allocated|usable|hasdata|flushed|fillfree) pcm:          (null) pset:ffff88207ff5b980
-[37722.224154] CPU20 PID31     rmap to pset:ffff88207ff5b980 set_idx: 51 nr_lru:63
-[37722.232299] CPU20 PID31     victim dumped because: PCACHE_BUG_ON_VICTIM(!VictimAllocated(v) || !VictimUsable(v) || !VictimFlushed(v) || VictimWriteback(v) || VictimLocked(v))
-[37722.254790] WARNING: CPU: 20 PID: 31 at managers/processor/pcache/victim.c:196 __put_victim_nolist+0xb8/0x140
- ffffffff8103e170[37722.453632] [<ffffffff8103c9c8>] __put_victim_nolist+0xb8/0x140
- 0000000000000000[37722.461873] [<ffffffff8103db18>] victim_try_fill_pcache+0x2f8/0x440</p>
-<p>[37722.265842] CPU10 PID20  victim:ffffffff810c2880 index:0 refcount:0 nr_fill:0 max_fill:4 locked:0 flags:(0x14e)(allocated|usable|hasdata|flushed|fillfree) pcm:          (null) pset:ffff88207ff5b980
-[37722.291438] CPU10 PID20     hit[0] owner:22 m_nid:1 rep_nid:1 addr: 0x2c33000
-[37722.301616] CPU10 PID20  victim:ffffffff810c2880 index:0 refcount:0 nr_fill:0 max_fill:4 locked:0 flags:(0x14e)(allocated|usable|hasdata|flushed|fillfree) pcm:          (null) pset:ffff88207ff5b980
-[37722.324206] CPU10 PID20     rmap to pset:ffff88207ff5b980 set_idx: 51 nr_lru:63
-[37722.332349] CPU10 PID20     victim dumped because: PCACHE_BUG_ON_VICTIM(victim_ref_count(v) == 0)
-[37722.350673] WARNING: CPU: 10 PID: 20 at ./include/processor/pcache_victim.h:127 __victim_flush_func+0x232/0x250
-[37722.363568] CPU: 10 PID: 20 Comm: kvictim_flushd 4.0.0-lego+ #435
-[37722.534003] [<ffffffff8103e152>] __victim_flush_func+0x232/0x250
-[37722.547577] [<ffffffff8103e1d9>] victim_flush_async+0x69/0xb0
-[37722.553975] [<ffffffff81022ec1>] kthread+0x111/0x130
-[37722.565900] [<ffffffff8100eb32>] ret_from_fork+0x22/0x30
+<p>Classical deadlock catched. Now, only two victims.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -1227,62 +1186,268 @@ Alright. We had rq-&gt;lock deadlock issue. Basically, we missed the part of dis
 41
 42
 43
-44
-45
-46
-47
-48</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>## Aug 29
-The only thing left about core_IB is: ib_sa_query, which will be invoked when there is a mlx4 interrupts.
+44</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span> <span class="mf">2819.068997</span><span class="p">]</span> <span class="n">CPU14</span> <span class="n">PID29</span> <span class="n">Abort</span> <span class="n">victim</span> <span class="n">alloc</span> <span class="p">(</span><span class="mi">20010</span><span class="n">ms</span><span class="p">)</span> <span class="nl">nr_usable_victims</span><span class="p">:</span> <span class="mf">2.</span> <span class="n">From</span> <span class="nl">pset_idx</span><span class="p">:</span><span class="mi">532</span> <span class="nl">nr_lru</span><span class="p">:</span><span class="mi">63</span> <span class="nl">fault_uva</span><span class="p">:</span> <span class="mh">0x7fff98614000</span>
+<span class="p">[</span> <span class="mf">2819.094409</span><span class="p">]</span> <span class="n">CPU14</span> <span class="n">PID29</span>   <span class="o">--</span>   <span class="n">Start</span> <span class="n">Dump</span> <span class="n">Victim</span> <span class="n">Cache</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="nl">total</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">[</span> <span class="mf">2819.114188</span><span class="p">]</span> <span class="n">CPU14</span> <span class="n">PID29</span>  <span class="n">victim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">:</span><span class="n">ffffffff810c2880</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">2</span> <span class="nl">nr_fill</span><span class="p">:</span><span class="mi">1</span> <span class="nl">max_fill</span><span class="p">:</span><span class="mi">4</span> <span class="nl">locked</span><span class="p">:</span><span class="mi">0</span> <span class="nl">flags</span><span class="p">:(</span><span class="mh">0x14e</span><span class="p">)(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="o">|</span><span class="n">hasdata</span><span class="o">|</span><span class="n">flushed</span><span class="o">|</span><span class="n">fillfree</span><span class="p">)</span> <span class="nl">pcm</span><span class="p">:</span>          <span class="p">(</span><span class="n">null</span><span class="p">)</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff5a000</span>
+<span class="p">[</span> <span class="mf">2819.133289</span><span class="p">]</span> <span class="n">CPU14</span> <span class="n">PID29</span>     <span class="n">hit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="nl">owner</span><span class="p">:</span><span class="mi">21</span> <span class="nl">m_nid</span><span class="p">:</span><span class="mi">1</span> <span class="nl">rep_nid</span><span class="p">:</span><span class="mi">1</span> <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7fffcc000000</span>
+<span class="p">[</span> <span class="mf">2819.141723</span><span class="p">]</span> <span class="n">CPU14</span> <span class="n">PID29</span>     <span class="n">rmap</span> <span class="n">to</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff5a000</span> <span class="nl">set_idx</span><span class="p">:</span> <span class="mi">0</span> <span class="nl">nr_lru</span><span class="p">:</span><span class="mi">63</span>
+<span class="p">[</span> <span class="mf">2819.149770</span><span class="p">]</span> <span class="n">CPU14</span> <span class="n">PID29</span>  <span class="n">victim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">:</span><span class="n">ffffffff810c2900</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">2</span> <span class="nl">nr_fill</span><span class="p">:</span><span class="mi">1</span> <span class="nl">max_fill</span><span class="p">:</span><span class="mi">4</span> <span class="nl">locked</span><span class="p">:</span><span class="mi">0</span> <span class="nl">flags</span><span class="p">:(</span><span class="mh">0x14e</span><span class="p">)(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="o">|</span><span class="n">hasdata</span><span class="o">|</span><span class="n">flushed</span><span class="o">|</span><span class="n">fillfree</span><span class="p">)</span> <span class="nl">pcm</span><span class="p">:</span>          <span class="p">(</span><span class="n">null</span><span class="p">)</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff5a000</span>
+<span class="p">[</span> <span class="mf">2819.168870</span><span class="p">]</span> <span class="n">CPU14</span> <span class="n">PID29</span>     <span class="n">hit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="nl">owner</span><span class="p">:</span><span class="mi">21</span> <span class="nl">m_nid</span><span class="p">:</span><span class="mi">1</span> <span class="nl">rep_nid</span><span class="p">:</span><span class="mi">1</span> <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7fffb0000000</span>
+<span class="p">[</span> <span class="mf">2819.177306</span><span class="p">]</span> <span class="n">CPU14</span> <span class="n">PID29</span>     <span class="n">rmap</span> <span class="n">to</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff5a000</span> <span class="nl">set_idx</span><span class="p">:</span> <span class="mi">0</span> <span class="nl">nr_lru</span><span class="p">:</span><span class="mi">63</span>
+<span class="p">[</span> <span class="mf">2819.185352</span><span class="p">]</span> <span class="n">CPU14</span> <span class="n">PID29</span>   <span class="o">--</span>   <span class="n">End</span> <span class="n">Dump</span> <span class="n">Victim</span> <span class="n">Cache</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-Not sure if this is important.
+<span class="p">[</span> <span class="mf">2819.081708</span><span class="p">]</span> <span class="n">CPU16</span> <span class="n">PID30</span> <span class="n">Abort</span> <span class="n">victim</span> <span class="n">alloc</span> <span class="p">(</span><span class="mi">20010</span><span class="n">ms</span><span class="p">)</span> <span class="nl">nr_usable_victims</span><span class="p">:</span> <span class="mf">2.</span> <span class="n">From</span> <span class="nl">pset_idx</span><span class="p">:</span><span class="mi">0</span> <span class="nl">nr_lru</span><span class="p">:</span><span class="mi">63</span> <span class="nl">fault_uva</span><span class="p">:</span> <span class="mh">0x7fffcc000024</span>
+<span class="p">[</span> <span class="mf">2819.209008</span><span class="p">]</span> <span class="n">CPU16</span> <span class="n">PID30</span>   <span class="o">--</span>   <span class="n">Start</span> <span class="n">Dump</span> <span class="n">Victim</span> <span class="n">Cache</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="nl">total</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">[</span> <span class="mf">2819.223358</span><span class="p">]</span> <span class="n">CPU16</span> <span class="n">PID30</span>  <span class="n">victim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">:</span><span class="n">ffffffff810c2880</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">2</span> <span class="nl">nr_fill</span><span class="p">:</span><span class="mi">1</span> <span class="nl">max_fill</span><span class="p">:</span><span class="mi">4</span> <span class="nl">locked</span><span class="p">:</span><span class="mi">0</span> <span class="nl">flags</span><span class="p">:(</span><span class="mh">0x14e</span><span class="p">)(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="o">|</span><span class="n">hasdata</span><span class="o">|</span><span class="n">flushed</span><span class="o">|</span><span class="n">fillfree</span><span class="p">)</span> <span class="nl">pcm</span><span class="p">:</span>          <span class="p">(</span><span class="n">null</span><span class="p">)</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff5a000</span>
+<span class="p">[</span> <span class="mf">2819.252443</span><span class="p">]</span> <span class="n">CPU16</span> <span class="n">PID30</span>     <span class="n">hit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="nl">owner</span><span class="p">:</span><span class="mi">21</span> <span class="nl">m_nid</span><span class="p">:</span><span class="mi">1</span> <span class="nl">rep_nid</span><span class="p">:</span><span class="mi">1</span> <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7fffcc000000</span>
+<span class="p">[</span> <span class="mf">2819.260879</span><span class="p">]</span> <span class="n">CPU16</span> <span class="n">PID30</span>     <span class="n">rmap</span> <span class="n">to</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff5a000</span> <span class="nl">set_idx</span><span class="p">:</span> <span class="mi">0</span> <span class="nl">nr_lru</span><span class="p">:</span><span class="mi">63</span>
+<span class="p">[</span> <span class="mf">2819.268926</span><span class="p">]</span> <span class="n">CPU16</span> <span class="n">PID30</span>  <span class="n">victim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">:</span><span class="n">ffffffff810c2900</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">2</span> <span class="nl">nr_fill</span><span class="p">:</span><span class="mi">1</span> <span class="nl">max_fill</span><span class="p">:</span><span class="mi">4</span> <span class="nl">locked</span><span class="p">:</span><span class="mi">0</span> <span class="nl">flags</span><span class="p">:(</span><span class="mh">0x14e</span><span class="p">)(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="o">|</span><span class="n">hasdata</span><span class="o">|</span><span class="n">flushed</span><span class="o">|</span><span class="n">fillfree</span><span class="p">)</span> <span class="nl">pcm</span><span class="p">:</span>          <span class="p">(</span><span class="n">null</span><span class="p">)</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff5a000</span>
+<span class="p">[</span> <span class="mf">2819.288026</span><span class="p">]</span> <span class="n">CPU16</span> <span class="n">PID30</span>     <span class="n">hit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="nl">owner</span><span class="p">:</span><span class="mi">21</span> <span class="nl">m_nid</span><span class="p">:</span><span class="mi">1</span> <span class="nl">rep_nid</span><span class="p">:</span><span class="mi">1</span> <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7fffb0000000</span>
+<span class="p">[</span> <span class="mf">2819.296461</span><span class="p">]</span> <span class="n">CPU16</span> <span class="n">PID30</span>     <span class="n">rmap</span> <span class="n">to</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff5a000</span> <span class="nl">set_idx</span><span class="p">:</span> <span class="mi">0</span> <span class="nl">nr_lru</span><span class="p">:</span><span class="mi">63</span>
+<span class="p">[</span> <span class="mf">2819.304508</span><span class="p">]</span> <span class="n">CPU16</span> <span class="n">PID30</span>   <span class="o">--</span>   <span class="n">End</span> <span class="n">Dump</span> <span class="n">Victim</span> <span class="n">Cache</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
-Anyway. Testing TF 4 threads MNIST again.
+<span class="p">[</span> <span class="mf">2819.101391</span><span class="p">]</span> <span class="n">CPU18</span> <span class="n">PID31</span> <span class="n">Abort</span> <span class="n">victim</span> <span class="n">alloc</span> <span class="p">(</span><span class="mi">20010</span><span class="n">ms</span><span class="p">)</span> <span class="nl">nr_usable_victims</span><span class="p">:</span> <span class="mf">2.</span> <span class="n">From</span> <span class="nl">pset_idx</span><span class="p">:</span><span class="mi">15</span> <span class="nl">nr_lru</span><span class="p">:</span><span class="mi">63</span> <span class="nl">fault_uva</span><span class="p">:</span> <span class="mh">0x7fff98c0f000</span>
+<span class="p">[</span> <span class="mf">2819.328165</span><span class="p">]</span> <span class="n">CPU18</span> <span class="n">PID31</span>   <span class="o">--</span>   <span class="n">Start</span> <span class="n">Dump</span> <span class="n">Victim</span> <span class="n">Cache</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="nl">total</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">[</span> <span class="mf">2819.335146</span><span class="p">]</span> <span class="n">CPU18</span> <span class="n">PID31</span>  <span class="n">victim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">:</span><span class="n">ffffffff810c2880</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">1</span> <span class="nl">nr_fill</span><span class="p">:</span><span class="mi">0</span> <span class="nl">max_fill</span><span class="p">:</span><span class="mi">4</span> <span class="nl">locked</span><span class="p">:</span><span class="mi">0</span> <span class="nl">flags</span><span class="p">:(</span><span class="mh">0x14e</span><span class="p">)(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="o">|</span><span class="n">hasdata</span><span class="o">|</span><span class="n">flushed</span><span class="o">|</span><span class="n">fillfree</span><span class="p">)</span> <span class="nl">pcm</span><span class="p">:</span>          <span class="p">(</span><span class="n">null</span><span class="p">)</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff5a000</span>
+<span class="p">[</span> <span class="mf">2819.354246</span><span class="p">]</span> <span class="n">CPU18</span> <span class="n">PID31</span>     <span class="n">hit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="nl">owner</span><span class="p">:</span><span class="mi">21</span> <span class="nl">m_nid</span><span class="p">:</span><span class="mi">1</span> <span class="nl">rep_nid</span><span class="p">:</span><span class="mi">1</span> <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7fffcc000000</span>
+<span class="p">[</span> <span class="mf">2819.362680</span><span class="p">]</span> <span class="n">CPU18</span> <span class="n">PID31</span>     <span class="n">rmap</span> <span class="n">to</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff5a000</span> <span class="nl">set_idx</span><span class="p">:</span> <span class="mi">0</span> <span class="nl">nr_lru</span><span class="p">:</span><span class="mi">63</span>
+<span class="p">[</span> <span class="mf">2819.370728</span><span class="p">]</span> <span class="n">CPU18</span> <span class="n">PID31</span>  <span class="n">victim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">:</span><span class="n">ffffffff810c2900</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">2</span> <span class="nl">nr_fill</span><span class="p">:</span><span class="mi">1</span> <span class="nl">max_fill</span><span class="p">:</span><span class="mi">4</span> <span class="nl">locked</span><span class="p">:</span><span class="mi">0</span> <span class="nl">flags</span><span class="p">:(</span><span class="mh">0x14e</span><span class="p">)(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="o">|</span><span class="n">hasdata</span><span class="o">|</span><span class="n">flushed</span><span class="o">|</span><span class="n">fillfree</span><span class="p">)</span> <span class="nl">pcm</span><span class="p">:</span>          <span class="p">(</span><span class="n">null</span><span class="p">)</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff5a000</span>
+<span class="p">[</span> <span class="mf">2819.389828</span><span class="p">]</span> <span class="n">CPU18</span> <span class="n">PID31</span>     <span class="n">hit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="nl">owner</span><span class="p">:</span><span class="mi">21</span> <span class="nl">m_nid</span><span class="p">:</span><span class="mi">1</span> <span class="nl">rep_nid</span><span class="p">:</span><span class="mi">1</span> <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7fffb0000000</span>
+<span class="p">[</span> <span class="mf">2819.398262</span><span class="p">]</span> <span class="n">CPU18</span> <span class="n">PID31</span>     <span class="n">rmap</span> <span class="n">to</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff5a000</span> <span class="nl">set_idx</span><span class="p">:</span> <span class="mi">0</span> <span class="nl">nr_lru</span><span class="p">:</span><span class="mi">63</span>
+<span class="p">[</span> <span class="mf">2819.406310</span><span class="p">]</span> <span class="n">CPU18</span> <span class="n">PID31</span>   <span class="o">--</span>   <span class="n">End</span> <span class="n">Dump</span> <span class="n">Victim</span> <span class="n">Cache</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 
-When I enable SEQ_IBAPI：
+<span class="cp">#</span>
+<span class="cp"># This guy grabbed the fill counter right before the first timout</span>
+<span class="cp"># That&#39;s why the above three timeout happen. And this one is 20s later</span>
+<span class="cp"># which equals to the timeout second.</span>
+<span class="cp">#</span>
+<span class="p">[</span> <span class="mf">2839.327457</span><span class="p">]</span> <span class="n">CPU12</span> <span class="n">PID28</span> <span class="n">Abort</span> <span class="n">victim</span> <span class="n">alloc</span> <span class="p">(</span><span class="mi">20010</span><span class="n">ms</span><span class="p">)</span> <span class="nl">nr_usable_victims</span><span class="p">:</span> <span class="mf">2.</span> <span class="n">From</span> <span class="nl">pset_idx</span><span class="p">:</span><span class="mi">0</span> <span class="nl">nr_lru</span><span class="p">:</span><span class="mi">63</span> <span class="nl">fault_uva</span><span class="p">:</span> <span class="mh">0x7fffb0000f00</span>
+<span class="p">[</span> <span class="mf">2839.339964</span><span class="p">]</span> <span class="n">CPU12</span> <span class="n">PID28</span>   <span class="o">--</span>   <span class="n">Start</span> <span class="n">Dump</span> <span class="n">Victim</span> <span class="n">Cache</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="nl">total</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">[</span> <span class="mf">2839.346945</span><span class="p">]</span> <span class="n">CPU12</span> <span class="n">PID28</span>  <span class="n">victim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">:</span><span class="n">ffffffff810c2880</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">1</span> <span class="nl">nr_fill</span><span class="p">:</span><span class="mi">0</span> <span class="nl">max_fill</span><span class="p">:</span><span class="mi">4</span> <span class="nl">locked</span><span class="p">:</span><span class="mi">0</span> <span class="nl">flags</span><span class="p">:(</span><span class="mh">0x14e</span><span class="p">)(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="o">|</span><span class="n">hasdata</span><span class="o">|</span><span class="n">flushed</span><span class="o">|</span><span class="n">fillfree</span><span class="p">)</span> <span class="nl">pcm</span><span class="p">:</span>          <span class="p">(</span><span class="n">null</span><span class="p">)</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff5a000</span>
+<span class="p">[</span> <span class="mf">2839.366046</span><span class="p">]</span> <span class="n">CPU12</span> <span class="n">PID28</span>     <span class="n">hit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="nl">owner</span><span class="p">:</span><span class="mi">21</span> <span class="nl">m_nid</span><span class="p">:</span><span class="mi">1</span> <span class="nl">rep_nid</span><span class="p">:</span><span class="mi">1</span> <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7fffcc000000</span>
+<span class="p">[</span> <span class="mf">2839.374480</span><span class="p">]</span> <span class="n">CPU12</span> <span class="n">PID28</span>     <span class="n">rmap</span> <span class="n">to</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff5a000</span> <span class="nl">set_idx</span><span class="p">:</span> <span class="mi">0</span> <span class="nl">nr_lru</span><span class="p">:</span><span class="mi">63</span>
+<span class="p">[</span> <span class="mf">2839.382527</span><span class="p">]</span> <span class="n">CPU12</span> <span class="n">PID28</span>  <span class="n">victim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">:</span><span class="n">ffffffff810c2900</span> <span class="nl">refcount</span><span class="p">:</span><span class="mi">2</span> <span class="nl">nr_fill</span><span class="p">:</span><span class="mi">1</span> <span class="nl">max_fill</span><span class="p">:</span><span class="mi">4</span> <span class="nl">locked</span><span class="p">:</span><span class="mi">0</span> <span class="nl">flags</span><span class="p">:(</span><span class="mh">0x14e</span><span class="p">)(</span><span class="n">allocated</span><span class="o">|</span><span class="n">usable</span><span class="o">|</span><span class="n">hasdata</span><span class="o">|</span><span class="n">flushed</span><span class="o">|</span><span class="n">fillfree</span><span class="p">)</span> <span class="nl">pcm</span><span class="p">:</span>          <span class="p">(</span><span class="n">null</span><span class="p">)</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff5a000</span>
+<span class="p">[</span> <span class="mf">2839.401628</span><span class="p">]</span> <span class="n">CPU12</span> <span class="n">PID28</span>     <span class="n">hit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="nl">owner</span><span class="p">:</span><span class="mi">21</span> <span class="nl">m_nid</span><span class="p">:</span><span class="mi">1</span> <span class="nl">rep_nid</span><span class="p">:</span><span class="mi">1</span> <span class="nl">addr</span><span class="p">:</span> <span class="mh">0x7fffb0000000</span>
+<span class="p">[</span> <span class="mf">2839.410062</span><span class="p">]</span> <span class="n">CPU12</span> <span class="n">PID28</span>     <span class="n">rmap</span> <span class="n">to</span> <span class="nl">pset</span><span class="p">:</span><span class="n">ffff88207ff5a000</span> <span class="nl">set_idx</span><span class="p">:</span> <span class="mi">0</span> <span class="nl">nr_lru</span><span class="p">:</span><span class="mi">63</span>
+<span class="p">[</span> <span class="mf">2839.418109</span><span class="p">]</span> <span class="n">CPU12</span> <span class="n">PID28</span>   <span class="o">--</span>   <span class="n">End</span> <span class="n">Dump</span> <span class="n">Victim</span> <span class="n">Cache</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</td></tr></table>
 
-- 0829-w14-11 (0829-w09-11) succeed
-- 0829-w14-12: P side seems have deadlock. Let me enable DEBUG_SPINLOCK.
-- 0829-w14-13: SEQ_IBAPI, DEBUG_SPINLOCK, this is a very useful log:
-```c
-[  531.495545] STDOUT: ---[
-INFO:tensorflow:loss = 0.5256375, step = 101 (25.166 sec)
+<h3 id="rq-lock-deadlock">rq-&gt;lock deadlock</h3>
+<p>Alright. We had rq-&gt;lock deadlock issue. Basically, we missed the part of disabling interrupt. A timer interrupt will try to acquire the lock again. Then, bang we have a deadlock. Digging into the code, you will be able to find the cause easily. The root cause we removed all the pi_lock stuff, which actually have a lot irqsave usages&hellip; Oh man, maybe it&rsquo;s time to add it back.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[ 3367.835389] ------------------- cut here -------------------
+[ 3367.841504] Possible deadlock happend locker_cpu: 0
+[ 3367.846934] Current call stack:
+[ 3367.850425] CPU: 0 PID: 1 Comm: kernel_init 4.0.0-lego+ #437
+[ 3367.856726] Stack:
+[ 3367.858957] ffff88107ff0fa58 ffffffff8101f4b6 ffff88107fc05e00 00000004a817c800
+[ 3367.867101] ffff88107ff0fa80 ffffffff8101f52e ffff88107fc05e00 ffff88107ffb4000
+[ 3367.875246] 0000000000000000 ffff88107ff0faa0 ffffffff8101b1ae ffff88107fc04980
+[ 3367.883390] 0000000000000000 ffff88107ff0fab8 ffffffff810174f5 0000000000000286
+[ 3367.891535] ffff88107ff0fae0 ffffffff81006774 ffff88107ffb9000 ffff88107fc05e00
+[ 3367.899680] Call Trace:
+[ 3367.902396] &lt;TSK&gt;
+[ 3367.904528] [&lt;ffffffff8101f4c2&gt;] report_deadlock+0x62/0x80
+[ 3367.910637] [&lt;ffffffff8101f52e&gt;] debug_spin_lock+0x4e/0x60
+[ 3367.916745] [&lt;ffffffff8101b1ae&gt;] scheduler_tick+0x2e/0x60
+[ 3367.922756] [&lt;ffffffff810174f5&gt;] tick_handle_periodic+0x45/0x70
+[ 3367.929350] [&lt;ffffffff81006774&gt;] apic_timer_interrupt+0x54/0x90
+[ 3367.935943] [&lt;ffffffff8100e8aa&gt;] smp__apic_timer_interrupt+0x6a/0x70
+[ 3367.943021] [&lt;ffffffff8101db99&gt;] ? enqueue_task_rt+0x149/0x250
+[ 3367.949518] [&lt;ffffffff8105908a&gt;] ? __mlx4_write_mtt+0xea/0x140
+[ 3367.956014] [&lt;ffffffff8101ad34&gt;] activate_task+0x44/0x50
+[ 3367.961929] [&lt;ffffffff8101b667&gt;] ttwu_do_activate+0x27/0x50
+[ 3367.968134] [&lt;ffffffff8101b89c&gt;] try_to_wake_up+0xdc/0x1f0
+[ 3367.974243] [&lt;ffffffff8106cc20&gt;] ? ib_mad_send_done_handler.isra.22+0x4d0/0x4d0
+[ 3367.982388] [&lt;ffffffff8101ba80&gt;] wake_up_process+0x10/0x20
+[ 3367.988497] [&lt;ffffffff81023116&gt;] __kthread_create_on_node+0x146/0x230
+[ 3367.995671] [&lt;ffffffff8102329f&gt;] kthread_create_on_node+0x2f/0x40
+[ 3368.002459] [&lt;ffffffff81066873&gt;] ? ib_create_cq+0x23/0x60
+[ 3368.008470] [&lt;ffffffff810695e1&gt;] ib_mad_init_device+0x1f1/0x7b0
+[ 3368.015064] [&lt;ffffffff81067246&gt;] ib_register_device+0x5d6/0x690
+[ 3368.021657] [&lt;ffffffff8105e9d3&gt;] mlx4_ib_add+0x653/0x780
+[ 3368.027571] [&lt;ffffffff8105147d&gt;] mlx4_add_device+0x8d/0x130
+[ 3368.033777] [&lt;ffffffff8105158c&gt;] mlx4_register_interface+0x6c/0xa0
+[ 3368.040661] [&lt;ffffffff811dc660&gt;] mlx4_ib_init+0x10/0x20
+[ 3368.046478] [&lt;ffffffff811dc619&gt;] mlx4_init+0x19/0x50
+[ 3368.052005] [&lt;ffffffff811dc68d&gt;] ib_core_init+0x1d/0x30
+[ 3368.057823] [&lt;ffffffff811db7f9&gt;] device_init+0x9/0x10
+[ 3368.063447] [&lt;ffffffff8100030b&gt;] kernel_init+0x4b/0xc0
+[ 3368.069168] [&lt;ffffffff8101b0ea&gt;] ? schedule_tail+0xa/0x40
+[ 3368.075178] [&lt;ffffffff810002c0&gt;] ? 0xffffffff810002c0
+[ 3368.080803] [&lt;ffffffff8100eb32&gt;] ret_from_fork+0x22/0x30
+[ 3368.086718] &lt;EOT&gt;
+</pre></div>
+</td></tr></table>
 
-]---
-[  531.624474] BUG: unable to handle kernel NULL pointer dereference at 0000000000000064
-[  531.633016] IP: [&lt;ffffffff8103b60e&gt;] __put_victim_nolist+0xe/0xa0
-[  531.639803] PGD 0
-[  531.642032] Oops: 0002 [#1] SMP PROCESSOR
-[  531.646493] CPU: 10 PID: 20 Comm: kvictim_flushd 4.0.0-lego+ #426
-[  531.653279] RIP: 0010:[&lt;ffffffff8103b60e&gt;]  [&lt;ffffffff8103b60e&gt;] __put_victim_nolist+0xe/0xa0
-[  531.662781] RSP: 0000:ffff880fe392fde0  EFLAGS: 00010006
-[  531.668696] RAX: 0000000000000000 RBX: ffffffff810c2b00 RCX: ffffffff810c2b70
-[  531.676646] RDX: ffffffff810c2b70 RSI: 0000007aea3f42fa RDI: ffffffff810c2b00
-[  531.684597] RBP: ffff880fe392fdf0 R08: 000000000000001f R09: 0000000000000002
-[  531.692548] R10: 0000000080000000 R11: 00000000000664c3 R12: ffff88207ff57000
-[  531.700498] R13: ffffffff810c2b60 R14: ffff880a72555000 R15: ffffffff810c2b48
-[  531.708449] FS:  0000000000000000(0000) GS:ffff88107fca0000(0000) knlGS:0000000000000000
-[  531.717466] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  531.723865] CR2: 0000000000000064 CR3: 00000000011b9000 CR4: 00000000000406a0
-[  531.731816] Stack:
-[  531.734046] ffffffff810c2b00 ffff88207ff57000 ffff880fe392fe08 ffffffff8103bbea
-[  531.742190] ffffffff810c2b00 ffff880fe392fe48 ffffffff8103c729 000000008103d7c2
-[  531.750335] ffff880a72555060 ffff88107ff0fdc8 0000000000000000 ffffffff8103c780
-[  531.758479] 0000000000000000 ffff880fe392fe60 ffffffff8103c7e6 ffff880fe391c000
-[  531.766623] ffff880fe392ff48 ffffffff81022e81 0000000000000000 0000000000000000
-[  531.774768] Call Trace:
-[  531.777483] &lt;TSK&gt;
-[  531.779617] [&lt;ffffffff8103bbea&gt;] __put_victim+0x4a/0x50
-[  531.785433] [&lt;ffffffff8103c729&gt;] __victim_flush_func+0xb9/0x110
-[  531.792027] [&lt;ffffffff8103c780&gt;] ? __victim_flush_func+0x110/0x110
-[  531.798911] [&lt;ffffffff8103c7e6&gt;] victim_flush_async+0x66/0x90
-[  531.805310] [&lt;ffffffff81022e81&gt;] kthread+0x111/0x130
-[  531.810836] [&lt;ffffffff81022d70&gt;] ? __kthread_parkme+0x70/0x70
-[  531.817236] [&lt;ffffffff8100eb32&gt;] ret_from_fork+0x22/0x30
-[  531.823151] &lt;EOT&gt;
+<p>0830-w14-1: I really don&rsquo;t know how this happen. The refcounter and fill counter should be enough to serialize..
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[37722.177024] CPU20 PID31  victim:ffffffff810c2880 index:0 refcount:0 nr_fill:0 max_fill:4 locked:0 flags:(0x12e)(allocated|usable|hasdata|waitflush|fillfree) pcm:          (null) pset:ffff88207ff5b980
+[37722.196623] CPU20 PID31     hit[0] owner:22 m_nid:1 rep_nid:1 addr: 0x2c33000
+[37722.204572] CPU20 PID31  victim:ffffffff810c2880 index:0 refcount:0 nr_fill:0 max_fill:4 locked:0 flags:(0x14e)(allocated|usable|hasdata|flushed|fillfree) pcm:          (null) pset:ffff88207ff5b980
+[37722.224154] CPU20 PID31     rmap to pset:ffff88207ff5b980 set_idx: 51 nr_lru:63
+[37722.232299] CPU20 PID31     victim dumped because: PCACHE_BUG_ON_VICTIM(!VictimAllocated(v) || !VictimUsable(v) || !VictimFlushed(v) || VictimWriteback(v) || VictimLocked(v))
+[37722.254790] WARNING: CPU: 20 PID: 31 at managers/processor/pcache/victim.c:196 __put_victim_nolist+0xb8/0x140
+ ffffffff8103e170[37722.453632] [&lt;ffffffff8103c9c8&gt;] __put_victim_nolist+0xb8/0x140
+ 0000000000000000[37722.461873] [&lt;ffffffff8103db18&gt;] victim_try_fill_pcache+0x2f8/0x440
+
+[37722.265842] CPU10 PID20  victim:ffffffff810c2880 index:0 refcount:0 nr_fill:0 max_fill:4 locked:0 flags:(0x14e)(allocated|usable|hasdata|flushed|fillfree) pcm:          (null) pset:ffff88207ff5b980
+[37722.291438] CPU10 PID20     hit[0] owner:22 m_nid:1 rep_nid:1 addr: 0x2c33000
+[37722.301616] CPU10 PID20  victim:ffffffff810c2880 index:0 refcount:0 nr_fill:0 max_fill:4 locked:0 flags:(0x14e)(allocated|usable|hasdata|flushed|fillfree) pcm:          (null) pset:ffff88207ff5b980
+[37722.324206] CPU10 PID20     rmap to pset:ffff88207ff5b980 set_idx: 51 nr_lru:63
+[37722.332349] CPU10 PID20     victim dumped because: PCACHE_BUG_ON_VICTIM(victim_ref_count(v) == 0)
+[37722.350673] WARNING: CPU: 10 PID: 20 at ./include/processor/pcache_victim.h:127 __victim_flush_func+0x232/0x250
+[37722.363568] CPU: 10 PID: 20 Comm: kvictim_flushd 4.0.0-lego+ #435
+[37722.534003] [&lt;ffffffff8103e152&gt;] __victim_flush_func+0x232/0x250
+[37722.547577] [&lt;ffffffff8103e1d9&gt;] victim_flush_async+0x69/0xb0
+[37722.553975] [&lt;ffffffff81022ec1&gt;] kthread+0x111/0x130
+[37722.565900] [&lt;ffffffff8100eb32&gt;] ret_from_fork+0x22/0x30
 </pre></div>
 </td></tr></table></p>
+<h2 id="aug-29">Aug 29</h2>
+<p>The only thing left about core_IB is: ib_sa_query, which will be invoked when there is a mlx4 interrupts.</p>
+<p>Not sure if this is important.</p>
+<p>Anyway. Testing TF 4 threads MNIST again.</p>
+<p>When I enable SEQ_IBAPI：</p>
 <ul>
-<li>0829-w14-14: this looks like a double free, or concurrent eviction. But if you look into the evict code, we will check the Flushed flag. It means another eviction routine should have skipped this line, and will not pick this line to do eviction. Some other possibilities?</li>
+<li>0829-w14-11 (0829-w09-11) succeed</li>
+<li>0829-w14-12: P side seems have deadlock. Let me enable DEBUG_SPINLOCK.</li>
+<li>
+<p>0829-w14-13: SEQ_IBAPI, DEBUG_SPINLOCK, this is a very useful log:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span>  <span class="mf">531.495545</span><span class="p">]</span> <span class="nl">STDOUT</span><span class="p">:</span> <span class="o">---</span><span class="p">[</span>
+<span class="nl">INFO</span><span class="p">:</span><span class="nl">tensorflow</span><span class="p">:</span><span class="n">loss</span> <span class="o">=</span> <span class="mf">0.5256375</span><span class="p">,</span> <span class="n">step</span> <span class="o">=</span> <span class="mi">101</span> <span class="p">(</span><span class="mf">25.166</span> <span class="n">sec</span><span class="p">)</span>
+
+<span class="p">]</span><span class="o">---</span>
+<span class="p">[</span>  <span class="mf">531.624474</span><span class="p">]</span> <span class="nl">BUG</span><span class="p">:</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">handle</span> <span class="n">kernel</span> <span class="nb">NULL</span> <span class="n">pointer</span> <span class="n">dereference</span> <span class="n">at</span> <span class="mo">0000000000000064</span>
+<span class="p">[</span>  <span class="mf">531.633016</span><span class="p">]</span> <span class="nl">IP</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8103b60e</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">__put_victim_nolist</span><span class="o">+</span><span class="mh">0xe</span><span class="o">/</span><span class="mh">0xa0</span>
+<span class="p">[</span>  <span class="mf">531.639803</span><span class="p">]</span> <span class="n">PGD</span> <span class="mi">0</span>
+<span class="p">[</span>  <span class="mf">531.642032</span><span class="p">]</span> <span class="nl">Oops</span><span class="p">:</span> <span class="mo">0002</span> <span class="p">[</span><span class="err">#</span><span class="mi">1</span><span class="p">]</span> <span class="n">SMP</span> <span class="n">PROCESSOR</span>
+<span class="p">[</span>  <span class="mf">531.646493</span><span class="p">]</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">10</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">20</span> <span class="nl">Comm</span><span class="p">:</span> <span class="n">kvictim_flushd</span> <span class="mf">4.0.0</span><span class="o">-</span><span class="n">lego</span><span class="o">+</span> <span class="err">#</span><span class="mi">426</span>
+<span class="p">[</span>  <span class="mf">531.653279</span><span class="p">]</span> <span class="nl">RIP</span><span class="p">:</span> <span class="mo">0010</span><span class="o">:</span><span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8103b60e</span><span class="o">&gt;</span><span class="p">]</span>  <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8103b60e</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">__put_victim_nolist</span><span class="o">+</span><span class="mh">0xe</span><span class="o">/</span><span class="mh">0xa0</span>
+<span class="p">[</span>  <span class="mf">531.662781</span><span class="p">]</span> <span class="nl">RSP</span><span class="p">:</span> <span class="mo">0000</span><span class="o">:</span><span class="n">ffff880fe392fde0</span>  <span class="nl">EFLAGS</span><span class="p">:</span> <span class="mo">00010006</span>
+<span class="p">[</span>  <span class="mf">531.668696</span><span class="p">]</span> <span class="nl">RAX</span><span class="p">:</span> <span class="mo">0000000000000000</span> <span class="nl">RBX</span><span class="p">:</span> <span class="n">ffffffff810c2b00</span> <span class="nl">RCX</span><span class="p">:</span> <span class="n">ffffffff810c2b70</span>
+<span class="p">[</span>  <span class="mf">531.676646</span><span class="p">]</span> <span class="nl">RDX</span><span class="p">:</span> <span class="n">ffffffff810c2b70</span> <span class="nl">RSI</span><span class="p">:</span> <span class="mo">0000007</span><span class="n">aea3f42fa</span> <span class="nl">RDI</span><span class="p">:</span> <span class="n">ffffffff810c2b00</span>
+<span class="p">[</span>  <span class="mf">531.684597</span><span class="p">]</span> <span class="nl">RBP</span><span class="p">:</span> <span class="n">ffff880fe392fdf0</span> <span class="nl">R08</span><span class="p">:</span> <span class="mf">000000000000001f</span> <span class="nl">R09</span><span class="p">:</span> <span class="mo">0000000000000002</span>
+<span class="p">[</span>  <span class="mf">531.692548</span><span class="p">]</span> <span class="nl">R10</span><span class="p">:</span> <span class="mo">00000000</span><span class="mi">80000000</span> <span class="nl">R11</span><span class="p">:</span> <span class="mo">00000000000664</span><span class="n">c3</span> <span class="nl">R12</span><span class="p">:</span> <span class="n">ffff88207ff57000</span>
+<span class="p">[</span>  <span class="mf">531.700498</span><span class="p">]</span> <span class="nl">R13</span><span class="p">:</span> <span class="n">ffffffff810c2b60</span> <span class="nl">R14</span><span class="p">:</span> <span class="n">ffff880a72555000</span> <span class="nl">R15</span><span class="p">:</span> <span class="n">ffffffff810c2b48</span>
+<span class="p">[</span>  <span class="mf">531.708449</span><span class="p">]</span> <span class="nl">FS</span><span class="p">:</span>  <span class="mo">0000000000000000</span><span class="p">(</span><span class="mo">0000</span><span class="p">)</span> <span class="nl">GS</span><span class="p">:</span><span class="n">ffff88107fca0000</span><span class="p">(</span><span class="mo">0000</span><span class="p">)</span> <span class="nl">knlGS</span><span class="p">:</span><span class="mo">0000000000000000</span>
+<span class="p">[</span>  <span class="mf">531.717466</span><span class="p">]</span> <span class="nl">CS</span><span class="p">:</span>  <span class="mo">0010</span> <span class="nl">DS</span><span class="p">:</span> <span class="mo">0000</span> <span class="nl">ES</span><span class="p">:</span> <span class="mo">0000</span> <span class="nl">CR0</span><span class="p">:</span> <span class="mo">00000000</span><span class="mi">80050033</span>
+<span class="p">[</span>  <span class="mf">531.723865</span><span class="p">]</span> <span class="nl">CR2</span><span class="p">:</span> <span class="mo">0000000000000064</span> <span class="nl">CR3</span><span class="p">:</span> <span class="mo">00000000011</span><span class="n">b9000</span> <span class="nl">CR4</span><span class="p">:</span> <span class="mo">00000000000406</span><span class="n">a0</span>
+<span class="p">[</span>  <span class="mf">531.731816</span><span class="p">]</span> <span class="nl">Stack</span><span class="p">:</span>
+<span class="p">[</span>  <span class="mf">531.734046</span><span class="p">]</span> <span class="n">ffffffff810c2b00</span> <span class="n">ffff88207ff57000</span> <span class="n">ffff880fe392fe08</span> <span class="n">ffffffff8103bbea</span>
+<span class="p">[</span>  <span class="mf">531.742190</span><span class="p">]</span> <span class="n">ffffffff810c2b00</span> <span class="n">ffff880fe392fe48</span> <span class="n">ffffffff8103c729</span> <span class="mo">00000000</span><span class="mi">8103</span><span class="n">d7c2</span>
+<span class="p">[</span>  <span class="mf">531.750335</span><span class="p">]</span> <span class="n">ffff880a72555060</span> <span class="n">ffff88107ff0fdc8</span> <span class="mo">0000000000000000</span> <span class="n">ffffffff8103c780</span>
+<span class="p">[</span>  <span class="mf">531.758479</span><span class="p">]</span> <span class="mo">0000000000000000</span> <span class="n">ffff880fe392fe60</span> <span class="n">ffffffff8103c7e6</span> <span class="n">ffff880fe391c000</span>
+<span class="p">[</span>  <span class="mf">531.766623</span><span class="p">]</span> <span class="n">ffff880fe392ff48</span> <span class="n">ffffffff81022e81</span> <span class="mo">0000000000000000</span> <span class="mo">0000000000000000</span>
+<span class="p">[</span>  <span class="mf">531.774768</span><span class="p">]</span> <span class="n">Call</span> <span class="nl">Trace</span><span class="p">:</span>
+<span class="p">[</span>  <span class="mf">531.777483</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">TSK</span><span class="o">&gt;</span>
+<span class="p">[</span>  <span class="mf">531.779617</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8103bbea</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">__put_victim</span><span class="o">+</span><span class="mh">0x4a</span><span class="o">/</span><span class="mh">0x50</span>
+<span class="p">[</span>  <span class="mf">531.785433</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8103c729</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">__victim_flush_func</span><span class="o">+</span><span class="mh">0xb9</span><span class="o">/</span><span class="mh">0x110</span>
+<span class="p">[</span>  <span class="mf">531.792027</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8103c780</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">__victim_flush_func</span><span class="o">+</span><span class="mh">0x110</span><span class="o">/</span><span class="mh">0x110</span>
+<span class="p">[</span>  <span class="mf">531.798911</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8103c7e6</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">victim_flush_async</span><span class="o">+</span><span class="mh">0x66</span><span class="o">/</span><span class="mh">0x90</span>
+<span class="p">[</span>  <span class="mf">531.805310</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81022e81</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">kthread</span><span class="o">+</span><span class="mh">0x111</span><span class="o">/</span><span class="mh">0x130</span>
+<span class="p">[</span>  <span class="mf">531.810836</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81022d70</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">__kthread_parkme</span><span class="o">+</span><span class="mh">0x70</span><span class="o">/</span><span class="mh">0x70</span>
+<span class="p">[</span>  <span class="mf">531.817236</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100eb32</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">ret_from_fork</span><span class="o">+</span><span class="mh">0x22</span><span class="o">/</span><span class="mh">0x30</span>
+<span class="p">[</span>  <span class="mf">531.823151</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">EOT</span><span class="o">&gt;</span>
+</pre></div>
+</td></tr></table></p>
+</li>
+<li>
+<p>0829-w14-14: this looks like a double free, or concurrent eviction. But if you look into the evict code, we will check the Flushed flag. It means another eviction routine should have skipped this line, and will not pick this line to do eviction. Some other possibilities?</p>
+</li>
 <li>
 <p>check until 0829-w14-18
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
