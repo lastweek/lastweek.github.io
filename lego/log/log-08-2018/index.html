@@ -1250,7 +1250,8 @@
 <li>
 <p>0829-w14-14: this looks like a double free, or concurrent eviction. But if you look into the evict code, we will check the Flushed flag. It means another eviction routine should have skipped this line, and will not pick this line to do eviction. Some other possibilities?</p>
 </li>
-<li>check until 0829-w14-18
+<li>
+<p>check until 0829-w14-18
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -1323,7 +1324,66 @@
 <span class="p">[</span> <span class="mf">1671.879398</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101006f</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">do_page_fault</span><span class="o">+</span><span class="mh">0xaf</span><span class="o">/</span><span class="mh">0x1c0</span>
 <span class="p">[</span> <span class="mf">1671.885410</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100dedf</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">page_fault</span><span class="o">+</span><span class="mh">0x1f</span><span class="o">/</span><span class="mh">0x30</span>
 </pre></div>
-</td></tr></table></li>
+</td></tr></table></p>
+</li>
+<li>
+<p>0829-w14-16: we got this by having debug_spinlock, and seq_ibapi. This is interesting and serious. I think our general C code is fine.. Should I go check the assembly part? This is the rq-&gt;lock? come on&hellip;
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span>  <span class="mf">683.748135</span><span class="p">]</span> <span class="o">-------------------</span> <span class="n">cut</span> <span class="n">here</span> <span class="o">-------------------</span>
+<span class="p">[</span>  <span class="mf">683.754252</span><span class="p">]</span> <span class="n">Possible</span> <span class="n">deadlock</span> <span class="n">happend</span>
+<span class="p">[</span>  <span class="mf">683.758323</span><span class="p">]</span> <span class="n">Current</span> <span class="n">call</span> <span class="nl">stack</span><span class="p">:</span>
+<span class="p">[</span>  <span class="mf">683.761815</span><span class="p">]</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">4</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">39</span> <span class="nl">Comm</span><span class="p">:</span> <span class="n">python</span> <span class="mf">4.0.0</span><span class="o">-</span><span class="n">lego</span><span class="o">+</span> <span class="err">#</span><span class="mi">428</span>
+<span class="p">[</span>  <span class="mf">683.767728</span><span class="p">]</span> <span class="nl">Stack</span><span class="p">:</span>
+<span class="p">[</span>  <span class="mf">683.769959</span><span class="p">]</span> <span class="n">ffff880fc1c1fc38</span> <span class="n">ffffffff8101f48c</span> <span class="n">ffff88107fc45e00</span> <span class="n">ffff880fc1c1fc60</span>
+<span class="p">[</span>  <span class="mf">683.778103</span><span class="p">]</span> <span class="n">ffffffff8101f4e4</span> <span class="n">ffff88107fc45e00</span> <span class="n">ffff880fc23fb000</span> <span class="mo">0000000000000000</span>
+<span class="p">[</span>  <span class="mf">683.786247</span><span class="p">]</span> <span class="n">ffff880fc1c1fc80</span> <span class="n">ffffffff8101b18e</span> <span class="n">ffff88107fc44980</span> <span class="mo">0000000000000004</span>
+<span class="p">[</span>  <span class="mf">683.794391</span><span class="p">]</span> <span class="n">ffff880fc1c1fc98</span> <span class="n">ffffffff810174d5</span> <span class="n">ffffffff8101dddb</span> <span class="n">ffff880fc1c1fcc0</span>
+<span class="p">[</span>  <span class="mf">683.802537</span><span class="p">]</span> <span class="n">ffffffff81006774</span> <span class="n">ffff88107fc45e00</span> <span class="mo">00000004</span><span class="n">a817c800</span> <span class="mo">000000</span><span class="mi">9</span><span class="n">a8a78c5e7</span>
+<span class="p">[</span>  <span class="mf">683.810680</span><span class="p">]</span> <span class="n">Call</span> <span class="nl">Trace</span><span class="p">:</span>
+<span class="p">[</span>  <span class="mf">683.813396</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">TSK</span><span class="o">&gt;</span>
+<span class="p">[</span>  <span class="mf">683.815528</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101f498</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">report_deadlock</span><span class="o">+</span><span class="mh">0x58</span><span class="o">/</span><span class="mh">0x60</span>
+<span class="p">[</span>  <span class="mf">683.821637</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101f4e4</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">debug_spin_lock</span><span class="o">+</span><span class="mh">0x44</span><span class="o">/</span><span class="mh">0x50</span>
+<span class="p">[</span>  <span class="mf">683.827745</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101b18e</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">scheduler_tick</span><span class="o">+</span><span class="mh">0x2e</span><span class="o">/</span><span class="mh">0x60</span>
+<span class="p">[</span>  <span class="mf">683.833758</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810174d5</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">tick_handle_periodic</span><span class="o">+</span><span class="mh">0x45</span><span class="o">/</span><span class="mh">0x70</span>
+<span class="p">[</span>  <span class="mf">683.840351</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101dddb</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">dequeue_task_rt</span><span class="o">+</span><span class="mh">0x1b</span><span class="o">/</span><span class="mh">0x180</span>
+<span class="p">[</span>  <span class="mf">683.846750</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81006774</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">apic_timer_interrupt</span><span class="o">+</span><span class="mh">0x54</span><span class="o">/</span><span class="mh">0x90</span>
+<span class="p">[</span>  <span class="mf">683.853343</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100e8aa</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">smp__apic_timer_interrupt</span><span class="o">+</span><span class="mh">0x6a</span><span class="o">/</span><span class="mh">0x70</span>
+<span class="p">[</span>  <span class="mf">683.860421</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101f4d1</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">debug_spin_lock</span><span class="o">+</span><span class="mh">0x31</span><span class="o">/</span><span class="mh">0x50</span>
+<span class="p">[</span>  <span class="mf">683.866723</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101b86e</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">try_to_wake_up</span><span class="o">+</span><span class="mh">0xce</span><span class="o">/</span><span class="mh">0x1f0</span>
+<span class="p">[</span>  <span class="mf">683.872832</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101b9e4</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">wake_up_q</span><span class="o">+</span><span class="mh">0x54</span><span class="o">/</span><span class="mh">0xc0</span>
+<span class="p">[</span>  <span class="mf">683.878358</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81028487</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">do_futex</span><span class="o">+</span><span class="mh">0x407</span><span class="o">/</span><span class="mh">0x620</span>
+<span class="p">[</span>  <span class="mf">683.883982</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8103a941</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">pcache_add_rmap</span><span class="o">+</span><span class="mh">0xb1</span><span class="o">/</span><span class="mh">0x600</span>
+<span class="p">[</span>  <span class="mf">683.890381</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8102870c</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">sys_futex</span><span class="o">+</span><span class="mh">0x6c</span><span class="o">/</span><span class="mh">0x130</span>
+<span class="p">[</span>  <span class="mf">683.896005</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100ec66</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">do_syscall_64</span><span class="o">+</span><span class="mh">0x36</span><span class="o">/</span><span class="mh">0xc0</span>
+<span class="p">[</span>  <span class="mf">683.901919</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100db6c</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">entry_SYSCALL64_slow_path</span><span class="o">+</span><span class="mh">0x25</span><span class="o">/</span><span class="mh">0x25</span>
+</pre></div>
+</td></tr></table></p>
+</li>
 </ul>
 <h2 id="aug-27">Aug 27</h2>
 <p>There a lot lost CQE cases. This one is about P-&gt;M-&gt;S. And M lost the CQE for the WQE sent to S.
