@@ -315,6 +315,20 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#one-major-todo" title="One major TODO" class="md-nav__link">
+    One major TODO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#try-max_send_wr-and-number-of-qps" title="Try max_send_wr and number of QPs" class="md-nav__link">
+    Try max_send_wr and number of QPs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#after-victim-bug-fix" title="After Victim bug fix" class="md-nav__link">
     After Victim bug fix
   </a>
@@ -1098,6 +1112,20 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#one-major-todo" title="One major TODO" class="md-nav__link">
+    One major TODO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#try-max_send_wr-and-number-of-qps" title="Try max_send_wr and number of QPs" class="md-nav__link">
+    Try max_send_wr and number of QPs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#after-victim-bug-fix" title="After Victim bug fix" class="md-nav__link">
     After Victim bug fix
   </a>
@@ -1190,12 +1218,24 @@
                 
                 <h1 id="aug-2018">Aug 2018</h1>
 <h2 id="aug-31">Aug 31</h2>
+<h3 id="one-major-todo">One major TODO</h3>
+<p>Check <code class="codehilite">do_handle_p2m_pcache_miss()</code>. We MUST remove that mempcy, maybe by using another flag in thpool. This is just no acceptable.</p>
+<h3 id="try-max_send_wr-and-number-of-qps">Try max_send_wr and number of QPs</h3>
+<p>without lock_ib, with debug_mm.
+Change max_send_wr at all P M S.
+- QP=4, max_send_wr = 1: always fail
+- QP=4, max_send_wr = 256: always fail
+- QP=24, max_send_wr = 1: succeed (0831-w14-18 0831-w14-20)
+- QP=24, max_send_wr = 256: succeed (0831-w14-16 0831-w14-17)</p>
+<p>Pay attention to the <code class="codehilite">0831-w14-15</code>： something wrong with our timekeeping code? QP=24, max_send_wr = 1 case.</p>
 <h3 id="after-victim-bug-fix">After Victim bug fix</h3>
 <p>MNIST 4 threads</p>
 <ul>
 <li>With lock_ib, debug_mm etc: 3 successful runs</li>
-<li>Only with debug_mm:</li>
+<li>Only with debug_mm: Well fit failed. Lost CQE.</li>
 </ul>
+<p>Now the debug scope is limited. Let me try the micro test suite, to stress ibapi_send_reply itself.</p>
+<p>Potential: read/write buffer.</p>
 <h2 id="aug-30">Aug 30</h2>
 <p>Be humble.</p>
 <h3 id="identified-victim-bug">Identified victim bug.</h3>
