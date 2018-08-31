@@ -307,6 +307,26 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#aug-31" title="Aug 31" class="md-nav__link">
+    Aug 31
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#after-victim-bug-fix" title="After Victim bug fix" class="md-nav__link">
+    After Victim bug fix
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#aug-30" title="Aug 30" class="md-nav__link">
     Aug 30
   </a>
@@ -1070,6 +1090,26 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#aug-31" title="Aug 31" class="md-nav__link">
+    Aug 31
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#after-victim-bug-fix" title="After Victim bug fix" class="md-nav__link">
+    After Victim bug fix
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#aug-30" title="Aug 30" class="md-nav__link">
     Aug 30
   </a>
@@ -1149,9 +1189,16 @@
                 
                 
                 <h1 id="aug-2018">Aug 2018</h1>
+<h2 id="aug-31">Aug 31</h2>
+<h3 id="after-victim-bug-fix">After Victim bug fix</h3>
+<p>MNIST 4 threads</p>
+<ul>
+<li>With lock_ib, debug_mm etc: 3 successful runs</li>
+<li>Only with debug_mm:</li>
+</ul>
 <h2 id="aug-30">Aug 30</h2>
 <p>Be humble.</p>
-<h4 id="identified-victim-bug">Identified victim bug.</h4>
+<h3 id="identified-victim-bug">Identified victim bug.</h3>
 <p>Finally. I thought it through, and with the help of this <code class="codehilite">0830-w14-12</code>.
 The bug is in <code class="codehilite">victim_try_fill_pcache()</code>, when there are multiple hits to the same victim. Since we released the <code class="codehilite">usable_victim_lock</code> after a hit. There might a be race case where: 1) CPU0 reached <code class="codehilite">dec_and_test_filling</code>, and passed to free the line. 2) CPU1 just got to the <code class="codehilite">victim_check_hit</code>, and increment the fill counter to 1 again. When CPU1 finished filling, and do <code class="codehilite">dec_and_test_filling</code>, it will do the free again!!! What a double free.</p>
 <p>Tomorrow, let me do the fix. Thought: adding more sync in victim_check_hit part. Basically we want to ensure only one CPU can do the final free.</p>

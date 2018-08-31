@@ -230,6 +230,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#system-building-advice" title="System Building Advice" class="md-nav__link">
+    System Building Advice
+  </a>
+  
+</li>
+      
       
       
       
@@ -1031,6 +1038,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#system-building-advice" title="System Building Advice" class="md-nav__link">
+    System Building Advice
+  </a>
+  
+</li>
+      
       
       
       
@@ -1052,13 +1066,11 @@
 <h2 id="tools">Tools</h2>
 <ul>
 <li>Stack and Register Dumper</li>
-<li>Software Watchdog</li>
-<li>NMI Watchdog</li>
+<li>NMI and software Watchdog</li>
 <li>Tracepoint and Ring Buffer</li>
 <li>Profilers</li>
 <li>Counters</li>
-<li>Whiskey</li>
-<li>Luck</li>
+<li>Whiskey and Luck</li>
 </ul>
 <h2 id="keep-in-mind">Keep in mind</h2>
 <ul>
@@ -1079,10 +1091,18 @@
 </ul>
 </li>
 <li><strong>Decent Cleanup</strong><ul>
-<li>I fucking hate a crap kernel module just kill my machine, either stuck or bug.</li>
+<li>I&rsquo;m fucking hate a crap kernel module just kill my machine, either stuck or bug.</li>
 <li>Free buffer/structure</li>
 <li>Remove the <strong>pointer</strong> from friends&rsquo; list/tree. If you forgot to do so, mostly you will have some silent memory corruption. So be kind, cleanup what you have done during intilization.</li>
 <li>Report error. Do not be SILENT.</li>
+</ul>
+</li>
+</ul>
+<h2 id="system-building-advice">System Building Advice</h2>
+<ul>
+<li><a href="http://web.stanford.edu/~ouster/cgi-bin/sayings.php">John Ousterhout</a><ul>
+<li>If you don&rsquo;t know what the problem was, you haven&rsquo;t fixed it</li>
+<li>If it hasn&rsquo;t been used, it doesn&rsquo;t work</li>
 </ul>
 </li>
 </ul>
