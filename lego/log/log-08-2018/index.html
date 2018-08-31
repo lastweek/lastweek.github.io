@@ -315,6 +315,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#identified-victim-bug" title="Identified victim bug." class="md-nav__link">
+    Identified victim bug.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#after-adding-pi_lock" title="After adding pi_lock" class="md-nav__link">
     After adding pi_lock
   </a>
@@ -1071,6 +1078,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#identified-victim-bug" title="Identified victim bug." class="md-nav__link">
+    Identified victim bug.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#after-adding-pi_lock" title="After adding pi_lock" class="md-nav__link">
     After adding pi_lock
   </a>
@@ -1137,6 +1151,10 @@
                 <h1 id="aug-2018">Aug 2018</h1>
 <h2 id="aug-30">Aug 30</h2>
 <p>Be humble.</p>
+<h4 id="identified-victim-bug">Identified victim bug.</h4>
+<p>Finally. I thought it through, and with the help of this <code class="codehilite">0830-w14-12</code>.
+The bug is in <code class="codehilite">victim_try_fill_pcache()</code>, when there are multiple hits to the same victim. Since we released the <code class="codehilite">usable_victim_lock</code> after a hit. There might a be race case where: 1) CPU0 reached <code class="codehilite">dec_and_test_filling</code>, and passed to free the line. 2) CPU1 just got to the <code class="codehilite">victim_check_hit</code>, and increment the fill counter to 1 again. When CPU1 finished filling, and do <code class="codehilite">dec_and_test_filling</code>, it will do the free again!!! What a double free.</p>
+<p>Tomorrow, let me do the fix. Thought: adding more sync in victim_check_hit part. Basically we want to ensure only one CPU can do the final free.</p>
 <h3 id="after-adding-pi_lock">After adding pi_lock</h3>
 <p>Okay. the pi_lock is added. Although it is mostly used by futex-pi and rt-mutex, we lego does not have these two guys. Therefore, it is only used by sched/core.c, exit.c, and kthread.c. 99% is in core.c</p>
 <p>The purpose of having this back is to have the <code class="codehilite">spin_lock_irqsave(&amp;p-&gt;pi_lock)</code> back. Most scheduling code is not recursive, we have to disable interrupt. Of course we can use <code class="codehilite">spin_lock_irqsave(&amp;rq-&gt;lock)</code> instead of <code class="codehilite">spin_lock(&amp;rq-&gt;lock)</code>. But this is too dangerous at this stage. Porting based on Linux now is the fastest and safest way.</p>
