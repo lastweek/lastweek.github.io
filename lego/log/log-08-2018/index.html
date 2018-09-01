@@ -322,6 +322,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#ugh" title="Ugh" class="md-nav__link">
+    Ugh
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#try-max_send_wr-and-number-of-qps" title="Try max_send_wr and number of QPs" class="md-nav__link">
     Try max_send_wr and number of QPs
   </a>
@@ -1119,6 +1126,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#ugh" title="Ugh" class="md-nav__link">
+    Ugh
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#try-max_send_wr-and-number-of-qps" title="Try max_send_wr and number of QPs" class="md-nav__link">
     Try max_send_wr and number of QPs
   </a>
@@ -1220,13 +1234,17 @@
 <h2 id="aug-31">Aug 31</h2>
 <h3 id="one-major-todo">One major TODO</h3>
 <p>Check <code class="codehilite">do_handle_p2m_pcache_miss()</code>. We MUST remove that mempcy, maybe by using another flag in thpool. This is just no acceptable.</p>
+<h3 id="ugh">Ugh</h3>
+<p>Fuck. Without debug_mm, there is still memory corruption.</p>
 <h3 id="try-max_send_wr-and-number-of-qps">Try max_send_wr and number of QPs</h3>
 <p>without lock_ib, with debug_mm.
-Change max_send_wr at all P M S.
-- QP=4, max_send_wr = 1: always fail
-- QP=4, max_send_wr = 256: always fail
-- QP=24, max_send_wr = 1: succeed (0831-w14-18 0831-w14-20)
-- QP=24, max_send_wr = 256: succeed (0831-w14-16 0831-w14-17)</p>
+Change max_send_wr at all P M S.</p>
+<ul>
+<li>QP=4, max_send_wr = 1: always fail</li>
+<li>QP=4, max_send_wr = 256: always fail</li>
+<li>QP=24, max_send_wr = 1: succeed (0831-w14-18 0831-w14-20)</li>
+<li>QP=24, max_send_wr = 256: succeed (0831-w14-16 0831-w14-17)</li>
+</ul>
 <p>Pay attention to the <code class="codehilite">0831-w14-15</code>： something wrong with our timekeeping code? QP=24, max_send_wr = 1 case.</p>
 <h3 id="after-victim-bug-fix">After Victim bug fix</h3>
 <p>MNIST 4 threads</p>
