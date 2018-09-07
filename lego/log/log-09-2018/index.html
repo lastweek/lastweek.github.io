@@ -307,6 +307,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#sep-06" title="Sep 06" class="md-nav__link">
+    Sep 06
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sep-05" title="Sep 05" class="md-nav__link">
     Sep 05
   </a>
@@ -1048,6 +1055,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#sep-06" title="Sep 06" class="md-nav__link">
+    Sep 06
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sep-05" title="Sep 05" class="md-nav__link">
     Sep 05
   </a>
@@ -1093,6 +1107,17 @@
                 
                 
                 <h1 id="sep-2018">Sep 2018</h1>
+<h2 id="sep-06">Sep 06</h2>
+<p>Did two optimizations on pcache, both are buffer management.
+Especially the pcache rmap case. In both opts, we kind of use static/pre-allocated array to serve dynamic allocation.</p>
+<p>This is a better solution than using kmem_cache, faster. kmem_cache will be a more general solution here.</p>
+<p>kmem_cache, FIFO queue (thpool buffer), static preallocated array (rmap, clflush)&hellip; Buffer management is really a very important thing in system building. I should be aware at the beginning next time.</p>
+<p>These changes are in commits:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>6e0cf6c5c64edbe445a27cf55f86ac51f8a897b3
+73377cafce95ffa0cfb155f77cac97456a5e4a71
+</pre></div>
+</td></tr></table></p>
 <h2 id="sep-05">Sep 05</h2>
 <p>Alright. Besides some flaws/bugs in some kfree stuff, LegoOS now actually is very robust! Ran a quick git summary:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1

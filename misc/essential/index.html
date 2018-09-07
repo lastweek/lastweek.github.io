@@ -1102,11 +1102,22 @@
 <li>Should I pad this lock $-line aligned to avoid pingpong?</li>
 </ul>
 </li>
-<li><strong>Decent Cleanup</strong><ul>
+<li>
+<p><strong>Decent Cleanup</strong></p>
+<ul>
 <li>I&rsquo;m fucking hate a crap kernel module just kill my machine, either stuck or bug.</li>
 <li>Free buffer/structure</li>
 <li>Remove the <strong>pointer</strong> from friends&rsquo; list/tree. If you forgot to do so, mostly you will have some silent memory corruption. So be kind, cleanup what you have done during intilization.</li>
 <li>Report error. Do not be SILENT.</li>
+</ul>
+</li>
+<li>
+<p><strong>Clever Buffer Management</strong></p>
+<ul>
+<li>kmem_cache?</li>
+<li>static pre-allocated array?</li>
+<li>Ring buffer?</li>
+<li>Other than kmem_cache, I used other two solutions to optimize various dynamic allocation in LegoOS. The motivation is very simple: some data structures will be allocated/free very very frequently at runtime. So we want to speed it up!</li>
 </ul>
 </li>
 </ul>
