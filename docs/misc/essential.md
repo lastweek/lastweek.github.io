@@ -29,6 +29,12 @@
     - Remove the __pointer__ from friends' list/tree. If you forgot to do so, mostly you will have some silent memory corruption. So be kind, cleanup what you have done during intilization.
     - Report error. Do not be SILENT.
 
+- __Clever Buffer Management__
+    - kmem_cache?
+    - static pre-allocated array?
+    - Ring buffer?
+    - Other than kmem_cache, I used other two solutions to optimize various dynamic allocation in LegoOS. The motivation is very simple: some data structures will be allocated/free very very frequently at runtime. So we want to speed it up!
+
 ## System Building Advice
 
 - [John Ousterhout](http://web.stanford.edu/~ouster/cgi-bin/sayings.php)
