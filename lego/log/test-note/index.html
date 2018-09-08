@@ -1178,6 +1178,29 @@ modprobe nbdx
 <li><code class="codehilite">MLNX_OFED_LINUX-3.3-1.0.4.0-rhel7.2-x86_64</code></li>
 <li><code class="codehilite">kernel 3.13.1</code></li>
 </ul>
+<p>Note</p>
+<p>1.
+At server side, use server ib0&rsquo;s IP address:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp"># ifconfig</span>
+<span class="nl">ib0</span><span class="p">:</span> <span class="n">flags</span><span class="o">=</span><span class="mi">4163</span><span class="o">&lt;</span><span class="n">UP</span><span class="p">,</span><span class="n">BROADCAST</span><span class="p">,</span><span class="n">RUNNING</span><span class="p">,</span><span class="n">MULTICAST</span><span class="o">&gt;</span>  <span class="n">mtu</span> <span class="mi">2044</span>
+        <span class="n">inet</span> <span class="mf">10.0.0.67</span>  <span class="n">netmask</span> <span class="mf">255.255.255.0</span>  <span class="n">broadcast</span> <span class="mf">10.0.0.255</span>
+
+<span class="p">.</span><span class="o">/</span><span class="n">infiniswap</span><span class="o">-</span><span class="n">daemon</span> <span class="mf">10.0.0.67</span> <span class="mi">9400</span>
+</pre></div>
+</td></tr></table>
+
+<p>At client side, use server ib0&rsquo;s IP in portal.list:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>1
+10.0.0.67:9400
+</pre></div>
+</td></tr></table></p>
+<p>2.
+At client side, change the <code class="codehilite">BACKUP_DISK</code> to an unused disk, and use a CORRECT one! Otherwise, wait for kernel panic, ugh.</p>
                 
                   
                 
