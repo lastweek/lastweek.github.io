@@ -307,6 +307,33 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#sep-07" title="Sep 07" class="md-nav__link">
+    Sep 07
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#swap-to-ssd" title="swap-to-ssd" class="md-nav__link">
+    swap-to-ssd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swap-to-ramdisk" title="swap-to-ramdisk" class="md-nav__link">
+    swap-to-ramdisk
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sep-06" title="Sep 06" class="md-nav__link">
     Sep 06
   </a>
@@ -1055,6 +1082,33 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#sep-07" title="Sep 07" class="md-nav__link">
+    Sep 07
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#swap-to-ssd" title="swap-to-ssd" class="md-nav__link">
+    swap-to-ssd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swap-to-ramdisk" title="swap-to-ramdisk" class="md-nav__link">
+    swap-to-ramdisk
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sep-06" title="Sep 06" class="md-nav__link">
     Sep 06
   </a>
@@ -1107,6 +1161,32 @@
                 
                 
                 <h1 id="sep-2018">Sep 2018</h1>
+<h2 id="sep-07">Sep 07</h2>
+<p>Set up Infiniswap again. What a fucking crap code, and crash the kernel out of nowhere. crap crap crap.</p>
+<p>Hmm, Linux will tune the CPU freq during runtime, will be higher than 2.4GHz. So disable it, make it a fair comparison with Lego.</p>
+<p><code class="codehilite">intel_pstate=disable.</code></p>
+<h3 id="swap-to-ssd">swap-to-ssd</h3>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>echo 3 &gt; /proc/sys/vm/drop_caches
+rm -rf /tmp/mnist_model/
+lxc-execute -n test -s lxc.cgroup.memory.limit_in_bytes=128M -- python mnist.py
+</pre></div>
+</td></tr></table>
+
+<h3 id="swap-to-ramdisk">swap-to-ramdisk</h3>
+<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>modprobe brd rd_size=16777216
+dd if=/dev/zero of=/dev/ram0 bs=4K
+mkswap /dev/ram0
+swapon /dev/ram0
+swapoff others
+</pre></div>
+</td></tr></table>
+Q: difference between this BLK_DEV_RAM (RAM block device)?</p>
 <h2 id="sep-06">Sep 06</h2>
 <p>Did two optimizations on pcache, both are buffer management.
 Especially the pcache rmap case. In both opts, we kind of use static/pre-allocated array to serve dynamic allocation.</p>
