@@ -35,20 +35,38 @@ swapoff others
 
 Follow [this](https://community.mellanox.com/docs/DOC-2113), and [this](https://community.mellanox.com/docs/DOC-1528).
 
-At client, don't forget to:
+Tested with
+
+- `CentOS 7.2`
+- `kernel 3.13.1`
+- `wuklab14, wuklab18`
+
+Side notes
+
+ - Server side, the block device created for client, can not be raw disk/SSD. I created a file from SSD
+ - Stick with 3.13 at both client and server. Client with 3.19 will crash
+
+Server:
+```
+touch /mnt/ssd/swap
+truncate -s +4G /mnt/ssd/swap
+
+raio_server -a 10.0.0.X -p 5555 -t rdma -f 0
+```
+
+Client:
 ```
 modprobe xio_rdma; modprobe xio_tcp
 modprobe nbdx
-```
 
-Side note, at nbdX server side, the block device created for client, can not be raw disk/SSD. I created a file from SSD
-```c
-Server:
-    touch /mnt/ssd/swap
-    truncate -s +4G /mnt/ssd/swap
+nbdxadm -o create_host -i 0 -p "10.0.0.X:5555"
+nbdxadm -o create_device -i 0 -d 0 -f "/mnt/ssd/swap"
 
-Client:
-    nbdxadm -o create_device -i 0 -d 0 -f "/mnt/ssd/swap"
+nbdxadm -o show_all_devices
+
+mkswap /dev/nbdx0
+swapon /dev/nbdx0
+swapoff others
 ```
 
 ## Infiniswap
