@@ -1150,24 +1150,49 @@ swapoff others
 </td></tr></table></p>
 <h2 id="accelio-and-nbdx">Accelio and nbdX</h2>
 <p>Follow <a href="https://community.mellanox.com/docs/DOC-2113">this</a>, and <a href="https://community.mellanox.com/docs/DOC-1528">this</a>.</p>
-<p>At client, don&rsquo;t forget to:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>modprobe xio_rdma; modprobe xio_tcp
-modprobe nbdx
-</pre></div>
-</td></tr></table></p>
-<p>Side note, at nbdX server side, the block device created for client, can not be raw disk/SSD. I created a file from SSD
+<p>Tested with</p>
+<ul>
+<li><code class="codehilite">CentOS 7.2</code></li>
+<li><code class="codehilite">kernel 3.13.1</code></li>
+<li><code class="codehilite">wuklab14, wuklab18</code></li>
+</ul>
+<p>Side notes</p>
+<ul>
+<li>Server side, the block device created for client, can not be raw disk/SSD. I created a file from SSD</li>
+<li>Stick with 3.13 at both client and server. Client with 3.19 will crash</li>
+</ul>
+<p>Server:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4
-5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nl">Server</span><span class="p">:</span>
-    <span class="n">touch</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">ssd</span><span class="o">/</span><span class="n">swap</span>
-    <span class="n">truncate</span> <span class="o">-</span><span class="n">s</span> <span class="o">+</span><span class="mi">4</span><span class="n">G</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">ssd</span><span class="o">/</span><span class="n">swap</span>
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>touch /mnt/ssd/swap
+truncate -s +4G /mnt/ssd/swap
 
-<span class="nl">Client</span><span class="p">:</span>
-    <span class="n">nbdxadm</span> <span class="o">-</span><span class="n">o</span> <span class="n">create_device</span> <span class="o">-</span><span class="n">i</span> <span class="mi">0</span> <span class="o">-</span><span class="n">d</span> <span class="mi">0</span> <span class="o">-</span><span class="n">f</span> <span class="s">&quot;/mnt/ssd/swap&quot;</span>
+raio_server -a 10.0.0.X -p 5555 -t rdma -f 0
+</pre></div>
+</td></tr></table></p>
+<p>Client:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>modprobe xio_rdma; modprobe xio_tcp
+modprobe nbdx
+
+nbdxadm -o create_host -i 0 -p &quot;10.0.0.X:5555&quot;
+nbdxadm -o create_device -i 0 -d 0 -f &quot;/mnt/ssd/swap&quot;
+
+nbdxadm -o show_all_devices
+
+mkswap /dev/nbdx0
+swapon /dev/nbdx0
+swapoff others
 </pre></div>
 </td></tr></table></p>
 <h2 id="infiniswap">Infiniswap</h2>
