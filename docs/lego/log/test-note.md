@@ -100,3 +100,10 @@ At client side, use server ib0's IP in portal.list:
 
 2.
 At client side, change the `BACKUP_DISK` to an unused disk, and use a CORRECT one! Otherwise, wait for kernel panic, ugh.
+```
+Use HDD such as /dev/sdb
+A SSD will kill Infiniswap.
+```
+
+3.
+Also, looks like we need to remove `memmap` from kernel parameter.

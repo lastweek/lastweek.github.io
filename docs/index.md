@@ -1,6 +1,10 @@
-My name is __Yizhou Shan__ :zzz:. I'm a third-year Ph.D. student at __Purdue ECE__,
+Yes, this is __Yizhou Shan__ :zzz:, a third-year Ph.D. student at __Purdue ECE__,
 advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). Our lab is [Wuklab.io](http://wuklab.io). Yes, the [Monkey King](https://en.wikipedia.org/wiki/Sun_Wukong) Lab.
-Please find my CV [here](https://lastweek.github.io/pubs/cv.pdf).
+
+## Social
+* [Github](https://github.com/lastweek)
+* [Twitter](https://twitter.com/Yizhou_Shan)
+* [LinkedIn](https://www.linkedin.com/in/lastweek/)
 
 ## What's up
 - [Jul 2018] Our paper __LegoOS: Disaggregated Operating System__ was accepted to __OSDI'18__
@@ -9,9 +13,7 @@ Please find my CV [here](https://lastweek.github.io/pubs/cv.pdf).
 ## Research
 
 My research interests span Operating System, Distributed Systems,
-and Non-Volatile Memory. I like hacking kernel and no doubt Linux is my
-favorite open-source project.
-
+and Non-Volatile Memory. I like hardcore hacking.
 
 ## Contact
 465 Northwestern Ave  
@@ -54,8 +56,3 @@ Email: __ys@purdue.edu__
 * [__Disaggregated Operating System__](https://lastweek.github.io/pubs/SoCC17-Lego-Poster.pdf)
 <br> __Yizhou Shan__, Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang
 <br> _Poster at the ACM Symposium on Cloud Computing 2017 (__SoCC '17__)_
-
-
-## Social
-* [Github](https://github.com/lastweek)
-* [LinkedIn](https://www.linkedin.com/in/lastweek/)
