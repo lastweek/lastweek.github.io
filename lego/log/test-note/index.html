@@ -1225,7 +1225,14 @@ At server side, use server ib0&rsquo;s IP address:</p>
 </pre></div>
 </td></tr></table></p>
 <p>2.
-At client side, change the <code class="codehilite">BACKUP_DISK</code> to an unused disk, and use a CORRECT one! Otherwise, wait for kernel panic, ugh.</p>
+At client side, change the <code class="codehilite">BACKUP_DISK</code> to an unused disk, and use a CORRECT one! Otherwise, wait for kernel panic, ugh.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Use HDD such as /dev/sdb
+A SSD will kill Infiniswap.
+</pre></div>
+</td></tr></table></p>
+<p>3.
+Also, looks like we need to remove <code class="codehilite">memmap</code> from kernel parameter.</p>
                 
                   
                 
