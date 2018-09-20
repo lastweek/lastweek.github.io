@@ -319,6 +319,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#sep-20" title="Sep 20" class="md-nav__link">
+    Sep 20
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sep-17" title="Sep 17" class="md-nav__link">
     Sep 17
   </a>
@@ -1109,6 +1116,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#sep-20" title="Sep 20" class="md-nav__link">
+    Sep 20
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sep-17" title="Sep 17" class="md-nav__link">
     Sep 17
   </a>
@@ -1203,6 +1217,111 @@
                 
                 
                 <h1 id="sep-2018">Sep 2018</h1>
+<h2 id="sep-20">Sep 20</h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span>   <span class="mf">54.602054</span><span class="p">]</span> <span class="nl">nr_pcache_pee_free</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span>   <span class="mf">54.602537</span><span class="p">]</span> <span class="nl">nr_pcache_pee_free_kmalloc</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span> <span class="mf">1468.765410</span><span class="p">]</span> <span class="n">mlx4_msi_x_interrupt</span><span class="p">()</span><span class="o">:</span> <span class="nl">IRQ</span><span class="p">:</span> <span class="mi">27</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">[</span> <span class="mf">1468.766956</span><span class="p">]</span> <span class="n">event</span> <span class="n">PORT_MNG_CHG</span> <span class="n">arrived</span>
+<span class="p">[</span> <span class="mf">1468.768193</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">mlx4_ib</span><span class="o">&gt;</span> <span class="nl">handle_port_mgmt_change_event</span><span class="p">:</span> <span class="n">rereg</span>  
+<span class="p">[</span> <span class="mf">1468.813660</span><span class="p">]</span> <span class="nl">ib_cache</span><span class="p">:</span> <span class="n">ib_cache_update</span><span class="p">()</span><span class="o">:</span> <span class="n">Updated</span> <span class="n">port</span> <span class="mi">1</span> <span class="n">of</span> <span class="n">dev</span> <span class="mo">0000</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mf">08.0</span>
+<span class="p">[</span> <span class="mf">1468.815097</span><span class="p">]</span> <span class="n">ib_sa_event</span><span class="p">()</span><span class="o">:</span> <span class="n">TODO</span>
+<span class="p">[</span> <span class="mf">1479.178651</span><span class="p">]</span> <span class="n">mlx4_msi_x_interrupt</span><span class="p">()</span><span class="o">:</span> <span class="nl">IRQ</span><span class="p">:</span> <span class="mi">27</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">[</span> <span class="mf">1479.180201</span><span class="p">]</span> <span class="n">event</span> <span class="n">PORT_MNG_CHG</span> <span class="n">arrived</span>
+<span class="p">[</span> <span class="mf">1479.181430</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">mlx4_ib</span><span class="o">&gt;</span> <span class="nl">handle_port_mgmt_change_event</span><span class="p">:</span> <span class="n">rereg</span>
+<span class="p">[</span> <span class="mf">1479.190813</span><span class="p">]</span> <span class="nl">bad</span><span class="p">:</span> <span class="n">scheduling</span> <span class="n">from</span> <span class="n">the</span> <span class="n">idle</span> <span class="kr">thread</span><span class="o">!</span>
+<span class="p">[</span> <span class="mf">1479.192158</span><span class="p">]</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">1</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">0</span> <span class="nl">Comm</span><span class="p">:</span> <span class="n">swapper</span><span class="o">/</span><span class="mi">1</span> <span class="mf">4.0.0</span><span class="o">-</span><span class="n">lego</span><span class="o">+</span> <span class="err">#</span><span class="mi">146</span>
+<span class="p">[</span> <span class="mf">1479.193622</span><span class="p">]</span> <span class="nl">Stack</span><span class="p">:</span>
+<span class="p">[</span> <span class="mf">1479.194408</span><span class="p">]</span> <span class="n">ffff88083fddf980</span> <span class="n">ffffffff8101eefc</span> <span class="n">ffff88083fc45d80</span> <span class="n">ffff88083fc45d80</span>
+<span class="p">[</span> <span class="mf">1479.196826</span><span class="p">]</span> <span class="n">ffff88083fddf9a8</span> <span class="n">ffffffff8101ace4</span> <span class="mo">00000001</span><span class="mi">810067</span><span class="n">d4</span> <span class="n">ffff88083fe43000</span>
+<span class="p">[</span> <span class="mf">1479.199226</span><span class="p">]</span> <span class="n">ffffffffffff0000</span> <span class="n">ffff88083fddf9e0</span> <span class="n">ffffffff81078bf6</span> <span class="n">ffffffff8100e8ea</span>
+<span class="p">[</span> <span class="mf">1479.203615</span><span class="p">]</span> <span class="n">ffffffffffff0000</span> <span class="mo">0000000000000000</span> <span class="n">ffff88083fe43000</span> <span class="n">ffff88083fe43000</span>
+<span class="p">[</span> <span class="mf">1479.206532</span><span class="p">]</span> <span class="n">ffff88083fddf9f8</span> <span class="n">ffffffff81078ca3</span> <span class="mf">7ff</span><span class="n">fffffffffffff</span> <span class="n">ffff88083fddfa68</span>
+<span class="p">[</span> <span class="mf">1479.208791</span><span class="p">]</span> <span class="n">Call</span> <span class="nl">Trace</span><span class="p">:</span>
+<span class="p">[</span> <span class="mf">1479.209606</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">TSK</span><span class="o">&gt;</span>
+<span class="p">[</span> <span class="mf">1479.210322</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101ef08</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">dequeue_task_idle</span><span class="o">+</span><span class="mh">0x48</span><span class="o">/</span><span class="mh">0x60</span>
+<span class="p">[</span> <span class="mf">1479.211726</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101ace4</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">deactivate_task</span><span class="o">+</span><span class="mh">0x44</span><span class="o">/</span><span class="mh">0x50</span>
+<span class="p">[</span> <span class="mf">1479.213092</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81078bf6</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">__schedule</span><span class="o">+</span><span class="mh">0x146</span><span class="o">/</span><span class="mh">0x1e0</span>
+<span class="p">[</span> <span class="mf">1479.214410</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100e8ea</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">smp__apic_timer_interrupt</span><span class="o">+</span><span class="mh">0x6a</span><span class="o">/</span><span class="mh">0x70</span>
+<span class="p">[</span> <span class="mf">1479.215960</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81078ca3</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">schedule</span><span class="o">+</span><span class="mh">0x13</span><span class="o">/</span><span class="mh">0x30</span>
+<span class="p">[</span> <span class="mf">1479.217211</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810789da</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">schedule_timeout</span><span class="o">+</span><span class="mh">0x12a</span><span class="o">/</span><span class="mh">0x1a0</span>
+<span class="p">[</span> <span class="mf">1479.218625</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81079e54</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">__down_common</span><span class="o">+</span><span class="mh">0xaa</span><span class="o">/</span><span class="mh">0x103</span>
+<span class="p">[</span> <span class="mf">1479.219904</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81079ec5</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">__down</span><span class="o">+</span><span class="mh">0x18</span><span class="o">/</span><span class="mh">0x1a</span>
+<span class="p">[</span> <span class="mf">1479.221046</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101f24c</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">down</span><span class="o">+</span><span class="mh">0x3c</span><span class="o">/</span><span class="mh">0x40</span>
+<span class="p">[</span> <span class="mf">1479.222163</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8104dba7</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">__mlx4_cmd</span><span class="o">+</span><span class="mh">0x1d7</span><span class="o">/</span><span class="mh">0x3c0</span>
+<span class="p">[</span> <span class="mf">1479.223397</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810619de</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">mlx4_MAD_IFC</span><span class="o">+</span><span class="mh">0x22e</span><span class="o">/</span><span class="mh">0x490</span>
+<span class="p">[</span> <span class="mf">1479.224666</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8105d321</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">__mlx4_ib_query_pkey</span><span class="o">+</span><span class="mh">0x181</span><span class="o">/</span><span class="mh">0x240</span>
+<span class="p">[</span> <span class="mf">1479.226045</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8105d3f3</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">mlx4_ib_query_pkey</span><span class="o">+</span><span class="mh">0x13</span><span class="o">/</span><span class="mh">0x20</span>
+<span class="p">[</span> <span class="mf">1479.227365</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81064cb4</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">ib_query_pkey</span><span class="o">+</span><span class="mh">0x14</span><span class="o">/</span><span class="mh">0x20</span>
+<span class="p">[</span> <span class="mf">1479.228617</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810651a7</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">ib_cache_update</span><span class="o">+</span><span class="mh">0x237</span><span class="o">/</span><span class="mh">0x480</span>
+<span class="p">[</span> <span class="mf">1479.229862</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810657f8</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">ib_cache_event</span><span class="o">+</span><span class="mh">0x28</span><span class="o">/</span><span class="mh">0x30</span>
+<span class="p">[</span> <span class="mf">1479.231026</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81064bf0</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">ib_dispatch_event</span><span class="o">+</span><span class="mh">0x40</span><span class="o">/</span><span class="mh">0x70</span>
+<span class="p">[</span> <span class="mf">1479.232222</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810627c8</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">handle_port_mgmt_change_event</span><span class="o">+</span><span class="mh">0x158</span><span class="o">/</span><span class="mh">0x1c0</span>
+<span class="p">[</span> <span class="mf">1479.233602</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8105b5ac</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">mlx4_ib_event</span><span class="o">+</span><span class="mh">0x7c</span><span class="o">/</span><span class="mh">0xa0</span>
+<span class="p">[</span> <span class="mf">1479.234744</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8104ee55</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">mlx4_dispatch_event</span><span class="o">+</span><span class="mh">0x65</span><span class="o">/</span><span class="mh">0x90</span>
+<span class="p">[</span> <span class="mf">1479.235968</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8104f2c3</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">mlx4_eq_int</span><span class="o">+</span><span class="mh">0x273</span><span class="o">/</span><span class="mh">0x4f0</span>
+<span class="p">[</span> <span class="mf">1479.237113</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8104f616</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">mlx4_msi_x_interrupt</span><span class="o">+</span><span class="mh">0x36</span><span class="o">/</span><span class="mh">0x40</span>
+<span class="p">[</span> <span class="mf">1479.238352</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81017894</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">handle_irq_event_percpu</span><span class="o">+</span><span class="mh">0x24</span><span class="o">/</span><span class="mh">0xa0</span>
+<span class="p">[</span> <span class="mf">1479.239584</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81017938</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">handle_irq_event</span><span class="o">+</span><span class="mh">0x28</span><span class="o">/</span><span class="mh">0x50</span>
+<span class="p">[</span> <span class="mf">1479.240696</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810180fe</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">handle_edge_irq</span><span class="o">+</span><span class="mh">0x5e</span><span class="o">/</span><span class="mh">0xc0</span>
+<span class="p">[</span> <span class="mf">1479.241794</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810054c3</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">do_IRQ</span><span class="o">+</span><span class="mh">0x43</span><span class="o">/</span><span class="mh">0xd0</span>
+<span class="p">[</span> <span class="mf">1479.242779</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810067d4</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">apic_timer_interrupt</span><span class="o">+</span><span class="mh">0x54</span><span class="o">/</span><span class="mh">0x90</span>
+<span class="p">[</span> <span class="mf">1479.243971</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100e0aa</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">common_interrupt</span><span class="o">+</span><span class="mh">0x6a</span><span class="o">/</span><span class="mh">0x6a</span>
+<span class="p">[</span> <span class="mf">1479.245084</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101c6b0</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">cpu_idle</span><span class="o">+</span><span class="mh">0x10</span><span class="o">/</span><span class="mh">0x30</span>
+<span class="p">[</span> <span class="mf">1479.246123</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81003425</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">start_secondary_cpu</span><span class="o">+</span><span class="mh">0x55</span><span class="o">/</span><span class="mh">0x60</span>
+<span class="p">[</span> <span class="mf">1479.247278</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">EOT</span><span class="o">&gt;</span>
+</pre></div>
+</td></tr></table>
+
 <h2 id="sep-17">Sep 17</h2>
 <p>Can not believe I&rsquo;m wasting time on this crap infiniswap again. Fuck. 5 kernel panics out of nowhere already???</p>
 <h2 id="sep-16">Sep 16</h2>
