@@ -1,5 +1,5 @@
 I'm __Yizhou Shan__ :zzz:, a third-year Ph.D. student at __Purdue ECE__,
-advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). I work at [Wuklab.io](http://wuklab.io). Yes, the [Monkey King](https://en.wikipedia.org/wiki/Sun_Wukong) Lab. [CV])(http://lastweek.io/pubs/cv.pdf).
+advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). I work at [Wuklab.io](http://wuklab.io). Yes, the [Monkey King](https://en.wikipedia.org/wiki/Sun_Wukong) Lab. [CV](http://lastweek.io/pubs/cv.pdf).
 
 ## Social
 * [Github](https://github.com/lastweek)
@@ -27,7 +27,7 @@ Email: __ys@purdue.edu__
 
 * [__LegoOS: A Disseminated, Distributed OS for Hardware Resource Disaggregation__](https://www.usenix.org/conference/osdi18/presentation/shan)
 <br> __Yizhou Shan__, Yutong Huang, Yilun Chen, Yiying Zhang
-<br> _to Appear at the 13th USENIX Symposium on Operating Systems Design and Implementation (__OSDI'18__)_
+<br> 13th USENIX Symposium on Operating Systems Design and Implementation (__OSDI'18__)_
 
 * [__Distributed Shared Persistent Memory__](https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf)
 <br> __Yizhou Shan__, Shin-Yeh Tsai, Yiying Zhang
