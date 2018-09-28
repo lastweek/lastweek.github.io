@@ -1,5 +1,5 @@
-Yes, this is __Yizhou Shan__ :zzz:, a third-year Ph.D. student at __Purdue ECE__,
-advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). Our lab is [Wuklab.io](http://wuklab.io). Yes, the [Monkey King](https://en.wikipedia.org/wiki/Sun_Wukong) Lab.
+I'm __Yizhou Shan__ :zzz:, a third-year Ph.D. student at __Purdue ECE__,
+advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). I work at [Wuklab.io](http://wuklab.io). Yes, the [Monkey King](https://en.wikipedia.org/wiki/Sun_Wukong) Lab. [CV])(http://lastweek.io/pubs/cv.pdf).
 
 ## Social
 * [Github](https://github.com/lastweek)
