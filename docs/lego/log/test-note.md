@@ -71,8 +71,6 @@ swapoff others
 
 ## Infiniswap
 
-What a crap kernel module. Kill machine randomly?
-
 Tested with
 
 - `CentOS 7.2`
