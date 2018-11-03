@@ -1,7 +1,7 @@
 site_name: Yizhou Shan's Home Page
 pages:
 - Home: 'index.md'
-- Jasmine: 'misc/jasmine.md'
+#- Jasmine: 'misc/jasmine.md'
 - Essential: 'misc/essential.md'
 - Cheatsheet: 'misc/cheatsheet.md'
 #- RDMA:
@@ -9,7 +9,7 @@ pages:
 #- Papers:
 #  - 'FAST 18': 'read/fast18.md'
 #   - 'ASPLOS 18': 'read/asplos18.md'
-- Lego:
+- LegoOS:
    - 'Log':
            - 'TODO': 'lego/log/TODO.md'
            - 'MISC': 'lego/log/misc.md'

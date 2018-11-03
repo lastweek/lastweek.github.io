@@ -7,6 +7,7 @@ advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). I work
 * [LinkedIn](https://www.linkedin.com/in/lastweek/)
 
 ## What's up
+- [Oct 2018] Let's talk about FPGA
 - [Jul 2018] Our paper __LegoOS: Disaggregated Operating System__ was accepted to __OSDI'18__
 - [May 2018] Intern at [VMware Research](https://research.vmware.com/), with [Stanko Novakovic](https://sites.google.com/site/stankonovakovic/).
 
@@ -16,10 +17,10 @@ My research interests span Operating System, Distributed Systems,
 and Non-Volatile Memory. I like hardcore hacking.
 
 ## Contact
-465 Northwestern Ave  
-Purdue University  
-West Lafayette, IN 47907  
-Office: EE 345  
+465 Northwestern Ave
+Purdue University
+West Lafayette, IN 47907
+Office: EE 345
 
 Email: __ys@purdue.edu__
 
@@ -27,7 +28,8 @@ Email: __ys@purdue.edu__
 
 * [__LegoOS: A Disseminated, Distributed OS for Hardware Resource Disaggregation__](https://www.usenix.org/conference/osdi18/presentation/shan)
 <br> __Yizhou Shan__, Yutong Huang, Yilun Chen, Yiying Zhang
-<br> 13th USENIX Symposium on Operating Systems Design and Implementation (__OSDI'18__)_
+<br> _13th USENIX Symposium on Operating Systems Design and Implementation (__OSDI'18__) __(Best Paper Award)___
+<br> [[Source Code]](https://github.com/WukLab/LegoOS)
 
 * [__Distributed Shared Persistent Memory__](https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf)
 <br> __Yizhou Shan__, Shin-Yeh Tsai, Yiying Zhang
