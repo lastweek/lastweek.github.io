@@ -28,7 +28,7 @@ Email: __ys@purdue.edu__
 
 * [__LegoOS: A Disseminated, Distributed OS for Hardware Resource Disaggregation__](https://www.usenix.org/conference/osdi18/presentation/shan)
 <br> __Yizhou Shan__, Yutong Huang, Yilun Chen, Yiying Zhang
-<br> _13th USENIX Symposium on Operating Systems Design and Implementation (__OSDI'18__) __(Best Paper Award)___
+<br> _13th USENIX Symposium on Operating Systems Design and Implementation (__OSDI'18__)_ __(Best Paper Award)__
 <br> [[Source Code]](https://github.com/WukLab/LegoOS)
 
 * [__Distributed Shared Persistent Memory__](https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf)
