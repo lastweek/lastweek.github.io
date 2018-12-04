@@ -9,6 +9,8 @@ pages:
 #- Papers:
 #  - 'FAST 18': 'read/fast18.md'
 #   - 'ASPLOS 18': 'read/asplos18.md'
+- Notes:
+   - 'cgroup swap': 'notes/cgroup-swap.md'
 - LegoOS:
    - 'Log':
            - 'TODO': 'lego/log/TODO.md'
