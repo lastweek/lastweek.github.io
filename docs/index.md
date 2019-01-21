@@ -37,6 +37,10 @@ Email: __ys@purdue.edu__
 <br> [[Source Code]](https://github.com/WukLab/Hotpot)
 
 ## Workshops
+* [__Challenges in Building and Deploying Disaggregated Persistent Memory__]()
+<br> __Yizhou Shan__, Yutong Huang, Yiying Zhang
+<br> _10th Annual Non-Volatile Memories Workshop (__NVMW'19__)_
+
 * [__Disaggregating Memory with Software-Managed Virtual Cache__](http://workshops.inf.ed.ac.uk/wams/)
 <br> __Yizhou Shan__, Yiying Zhang
 <br> _2018 Workshop on Warehouse-scale Memory Systems (__WAMS'18__) (co-located with ASPLOS '18)_
