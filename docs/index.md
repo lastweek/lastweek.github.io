@@ -7,6 +7,7 @@ advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). I work
 * [LinkedIn](https://www.linkedin.com/in/lastweek/)
 
 ## What's up
+- [Jan 2019] Short paper on Disaggregated Persistent Memory was accpeted to NVMW'19
 - [Oct 2018] Let's talk about FPGA
 - [Jul 2018] Our paper __LegoOS: Disaggregated Operating System__ was accepted to __OSDI'18__
 - [May 2018] Intern at [VMware Research](https://research.vmware.com/), with [Stanko Novakovic](https://sites.google.com/site/stankonovakovic/).
