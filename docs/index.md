@@ -1,21 +1,16 @@
 I'm __Yizhou Shan__ :zzz:, a third-year Ph.D. student at __Purdue ECE__,
 advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). I work at [Wuklab.io](http://wuklab.io). Yes, the [Monkey King](https://en.wikipedia.org/wiki/Sun_Wukong) Lab. [CV](http://lastweek.io/pubs/cv.pdf).
 
-## Social
-* [Github](https://github.com/lastweek)
-* [Twitter](https://twitter.com/Yizhou_Shan)
-* [LinkedIn](https://www.linkedin.com/in/lastweek/)
-
 ## What's up
-- [Jan 2019] Short paper on Disaggregated Persistent Memory was accpeted to NVMW'19
+- [Jan 2019] Short paper on __Disaggregated Persistent Memory__ was accpeted to __NVMW'19__
 - [Oct 2018] Let's talk about FPGA
 - [Jul 2018] Our paper __LegoOS: Disaggregated Operating System__ was accepted to __OSDI'18__
 - [May 2018] Intern at [VMware Research](https://research.vmware.com/), with [Stanko Novakovic](https://sites.google.com/site/stankonovakovic/).
 
 ## Research
 
-My research interests span Operating System, Distributed Systems,
-and Non-Volatile Memory. I like hardcore hacking.
+My research interests span Operating System, Distributed Systems, and Computer
+Architecture. I like hardcore hacking.
 
 ## Contact
 465 Northwestern Ave
@@ -28,7 +23,7 @@ Email: __ys@purdue.edu__
 ## Publications
 
 * [__Storm: a fast transactional dataplane for remote data structures__](https://arxiv.org/pdf/1902.02411.pdf)
-<br> Stanko Novakovic, __Yizhou Shan__, Aasheesh Kolli, Michael Cui, Yiying Zhang, Haggai Eran, Liran Liss, Michael Wei, Dan Tsafrir, Marcos Aguilera
+<br> Stanko Novakovic, __Yizhou Shan__, Aasheesh Kolli, Michael Cui, Yiying Zhang, Haggai Eran, Liran Liss, Michael Wei, Dan Tsafrir, Marcos Aguilera (Work done while intern at VMware Research)
 <br> arXiv, 2019
 
 * [__LegoOS: A Disseminated, Distributed OS for Hardware Resource Disaggregation__](https://www.usenix.org/conference/osdi18/presentation/shan)
@@ -67,3 +62,8 @@ Email: __ys@purdue.edu__
 * [__Disaggregated Operating System__](https://lastweek.github.io/pubs/SoCC17-Lego-Poster.pdf)
 <br> __Yizhou Shan__, Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang
 <br> _Poster at the ACM Symposium on Cloud Computing 2017 (__SoCC '17__)_
+
+## Social
+* [Github](https://github.com/lastweek)
+* [Twitter](https://twitter.com/Yizhou_Shan)
+* [LinkedIn](https://www.linkedin.com/in/lastweek/)
