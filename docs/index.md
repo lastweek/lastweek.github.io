@@ -25,7 +25,11 @@ Office: EE 345
 
 Email: __ys@purdue.edu__
 
-## Conferences
+## Publications
+
+* [__Storm: a fast transactional dataplane for remote data structures__](https://arxiv.org/pdf/1902.02411.pdf)
+<br> Stanko Novakovic, __Yizhou Shan__, Aasheesh Kolli, Michael Cui, Yiying Zhang, Haggai Eran, Liran Liss, Michael Wei, Dan Tsafrir, Marcos Aguilera
+<br> arXiv, 2019
 
 * [__LegoOS: A Disseminated, Distributed OS for Hardware Resource Disaggregation__](https://www.usenix.org/conference/osdi18/presentation/shan)
 <br> __Yizhou Shan__, Yutong Huang, Yilun Chen, Yiying Zhang
