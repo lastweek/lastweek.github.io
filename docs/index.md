@@ -2,10 +2,10 @@ I'm __Yizhou Shan__ :zzz:, a third-year Ph.D. student at __Purdue ECE__,
 advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). I work at [Wuklab.io](http://wuklab.io). Yes, the [Monkey King](https://en.wikipedia.org/wiki/Sun_Wukong) Lab. [CV](http://lastweek.io/pubs/cv.pdf).
 
 ## What's up
-- [Jan 2019] Short paper on __Disaggregated Persistent Memory__ was accpeted to __NVMW'19__
-- [Oct 2018] Let's talk about FPGA
-- [Jul 2018] Our paper __LegoOS: Disaggregated Operating System__ was accepted to __OSDI'18__
-- [May 2018] Intern at [VMware Research](https://research.vmware.com/), with [Stanko Novakovic](https://sites.google.com/site/stankonovakovic/).
+- [_Jan 2019_] Short paper on __Disaggregated Persistent Memory__ was accpeted to __NVMW'19__
+- [_Oct 2018_] Let's talk about FPGA
+- [_Jul 2018_] Our paper __LegoOS: Disaggregated Operating System__ was accepted to __OSDI'18__
+- [_May 2018_] Intern at [VMware Research](https://research.vmware.com/), with [Stanko Novakovic](https://sites.google.com/site/stankonovakovic/).
 
 ## Research
 
@@ -13,10 +13,10 @@ My research interests span Operating System, Distributed Systems, and Computer
 Architecture. I like hardcore hacking.
 
 ## Contact
-465 Northwestern Ave
-Purdue University
-West Lafayette, IN 47907
-Office: EE 345
+465 Northwestern Ave  
+Purdue University  
+West Lafayette, IN 47907  
+Office: EE 345  
 
 Email: __ys@purdue.edu__
 
