@@ -2,9 +2,9 @@ I'm __Yizhou Shan__ :zzz:, a third-year Ph.D. student at __Purdue ECE__,
 advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). I work at [Wuklab.io](http://wuklab.io). Yes, the [Monkey King](https://en.wikipedia.org/wiki/Sun_Wukong) Lab. [CV](http://lastweek.io/pubs/cv.pdf).
 
 ## What's up
+- [_Apr 2019_] __Strom__ accpeted to __SYSTOR'19__
 - [_Jan 2019_] Short paper on __Disaggregated Persistent Memory__ was accpeted to __NVMW'19__
-- [_Oct 2018_] Let's talk about FPGA
-- [_Jul 2018_] Our paper __LegoOS: Disaggregated Operating System__ was accepted to __OSDI'18__
+- [_Jul 2018_] __LegoOS: Disaggregated Operating System__ was accepted to __OSDI'18__
 - [_May 2018_] Intern at [VMware Research](https://research.vmware.com/), with [Stanko Novakovic](https://sites.google.com/site/stankonovakovic/).
 
 ## Research
@@ -24,7 +24,7 @@ Email: __ys@purdue.edu__
 
 * [__Storm: a fast transactional dataplane for remote data structures__](https://arxiv.org/pdf/1902.02411.pdf)
 <br> Stanko Novakovic, __Yizhou Shan__, Aasheesh Kolli, Michael Cui, Yiying Zhang, Haggai Eran, Liran Liss, Michael Wei, Dan Tsafrir, Marcos Aguilera (Work done while intern at VMware Research)
-<br> arXiv, 2019
+<br> _12th ACM International Systems and Storage Conference(__SYSTOR'19__)_
 
 * [__LegoOS: A Disseminated, Distributed OS for Hardware Resource Disaggregation__](https://www.usenix.org/conference/osdi18/presentation/shan)
 <br> __Yizhou Shan__, Yutong Huang, Yilun Chen, Yiying Zhang
