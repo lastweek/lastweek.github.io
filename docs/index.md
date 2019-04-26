@@ -2,7 +2,7 @@ I'm __Yizhou Shan__ :zzz:, a third-year Ph.D. student at __Purdue ECE__,
 advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). I work at [Wuklab.io](http://wuklab.io). Yes, the [Monkey King](https://en.wikipedia.org/wiki/Sun_Wukong) Lab. [CV](http://lastweek.io/pubs/cv.pdf).
 
 ## What's up
-- [_Apr 2019_] __Strom__ accpeted to __SYSTOR'19__
+- [_Apr 2019_] __Storm__ accpeted to __SYSTOR'19__
 - [_Jan 2019_] Short paper on __Disaggregated Persistent Memory__ was accpeted to __NVMW'19__
 - [_Jul 2018_] __LegoOS: Disaggregated Operating System__ was accepted to __OSDI'18__
 - [_May 2018_] Intern at [VMware Research](https://research.vmware.com/), with [Stanko Novakovic](https://sites.google.com/site/stankonovakovic/).
