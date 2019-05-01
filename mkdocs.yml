@@ -68,6 +68,9 @@ pages:
            - 'Gen-Z': 'lego/paper/genz.md'
            - 'Replication': 'lego/paper/replication.md'
            - 'Related': 'lego/paper/related.md'
+- FPGA:
+   - 'HLS: Usage of AXI-Stream': 'fpga/hls_axi.md'
+   - 'HLS: High-performance AXI-MM': 'fpga/hls_axi.md'
 
 markdown_extensions:
   - tables
