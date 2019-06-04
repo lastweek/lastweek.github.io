@@ -16,10 +16,15 @@ Okay, now at `mm/memcontrol.c`, the checking and swap code path:
 		- `page_counter_try_charge()`: check if we hit `limit_in_bytes` counter
 		- `try_to_free_mem_cgroup_pages()`: callback to `mm/vmscan.c` to shrink the list (Bingo!)
 
-Of course there are still tons of LRU related code at `mm/memcontrol.c` that I don't understand yet. But I think they are mostly hooks/helpers for vmscan.c. Be careful about shirnk node code now, it has many hooks for cgroup, and I hope you can understand why they are there by now. It's super complex. Although I've implemented swap twice, there are still many tricks I don't get yet.
 
+- `mem_cgroup_lruvec()`
+	- Other than the global zone-wide LRU lists vector, each cgroup has its own LRU lists vector.
+	- This function determines which LRU lists vector should be used. The
+	chosed one will be passed down to do `shrink_page_list()` etc.
+	- That being said, it's all about algorithm, and data structures!
+  
 
 --  
 Yizhou Shan  
 Created: Dec 3, 2018  
-Last Updated: Dec 4, 2018
+Last Updated: Jun 4, 2019
