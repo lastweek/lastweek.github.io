@@ -147,12 +147,12 @@
         }, 
         {
             "location": "/notes/xperf/", 
-            "text": "Measure user/kernel space crossing overhead\n\n\nThis \nrepo\n can help us\nto measure the pure user/kernel space crossing overhead in CPU cycles.\n\n\nThe mechanism is described in its README. Check it out!\n\n\nSome quick takeaways:\n- It ain\nt cheap! It usually take ~400 cycles from user to kernel space.\n- User-to-kernel crossing is more expansive than kernel-to-user crossing!\n- Virtilization adds more overhead", 
+            "text": "Measure user/kernel space crossing overhead\n\n\nThis \nrepo\n can help us\nto measure the pure user/kernel space crossing overhead in CPU cycles.\n\n\nThe mechanism is described in its README. Check it out!\n\n\nSome quick takeaways:\n\n\n\n\nIt ain\nt cheap! It usually take ~400 cycles from user to kernel space.\n\n\nUser-to-kernel crossing is more expansive than kernel-to-user crossing!\n\n\nVirtilization adds more overhead", 
             "title": "Linux: user/kern cross perf"
         }, 
         {
             "location": "/notes/xperf/#measure-userkernel-space-crossing-overhead", 
-            "text": "This  repo  can help us\nto measure the pure user/kernel space crossing overhead in CPU cycles.  The mechanism is described in its README. Check it out!  Some quick takeaways:\n- It ain t cheap! It usually take ~400 cycles from user to kernel space.\n- User-to-kernel crossing is more expansive than kernel-to-user crossing!\n- Virtilization adds more overhead", 
+            "text": "This  repo  can help us\nto measure the pure user/kernel space crossing overhead in CPU cycles.  The mechanism is described in its README. Check it out!  Some quick takeaways:   It ain t cheap! It usually take ~400 cycles from user to kernel space.  User-to-kernel crossing is more expansive than kernel-to-user crossing!  Virtilization adds more overhead", 
             "title": "Measure user/kernel space crossing overhead"
         }, 
         {
