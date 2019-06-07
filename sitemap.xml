@@ -4,7 +4,7 @@
     
     <url>
      <loc>/</loc>
-     <lastmod>2019-06-06</lastmod>
+     <lastmod>2019-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,7 +12,7 @@
     
     <url>
      <loc>/misc/essential/</loc>
-     <lastmod>2019-06-06</lastmod>
+     <lastmod>2019-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -20,7 +20,7 @@
     
     <url>
      <loc>/misc/cheatsheet/</loc>
-     <lastmod>2019-06-06</lastmod>
+     <lastmod>2019-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -29,19 +29,25 @@
         
     <url>
      <loc>/notes/cgroup-swap/</loc>
-     <lastmod>2019-06-06</lastmod>
+     <lastmod>2019-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/notes/userfaultfd/</loc>
-     <lastmod>2019-06-06</lastmod>
+     <lastmod>2019-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/notes/kvm-basic/</loc>
-     <lastmod>2019-06-06</lastmod>
+     <lastmod>2019-06-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/notes/xperf/</loc>
+     <lastmod>2019-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -91,13 +97,13 @@
         
     <url>
      <loc>/fpga/hls_axi/</loc>
-     <lastmod>2019-06-06</lastmod>
+     <lastmod>2019-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/fpga/hls_axi/</loc>
-     <lastmod>2019-06-06</lastmod>
+     <lastmod>2019-06-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
