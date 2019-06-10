@@ -1151,7 +1151,7 @@ which is able to profile arbitray code piece is still my favorite thing.</p>
 </ul>
 <p>I tend to think this way:</p>
 <ul>
-<li>Tracing needs two parts, <code class="codehilite">1)</code> <strong>Mechanims to do callback.</strong> This means we need a way
+<li>Tracing needs two parts, <code class="codehilite">1)</code> <strong>Mechanims to do callback.</strong> This means we need a way to
     let our tracing/profiling code got invoked on a running system. This can be static
     or dynamic. Static means we added our tracing code to source code, like tracepoints.
     Dynamic means we added our tracing code when system is running, like ftrace and kprobe.
@@ -1167,14 +1167,19 @@ which is able to profile arbitray code piece is still my favorite thing.</p>
 <li>Mechanism<ul>
 <li>For each un-inlined function, gcc inserts a <code class="codehilite">call mcount</code>, or a <code class="codehilite">call fentry</code>
 instruction at the very beginning. This means whenever a function is called,
-the <code class="codehilite">mcount()</code> or the <code class="codehilite">fentry()</code> callback will be invoked, and they will be
-able to do some bookkeeping.</li>
+the <code class="codehilite">mcount()</code> or the <code class="codehilite">fentry()</code> callback will be invoked.</li>
 <li>Having these <code class="codehilite">call</code> instructions introduce a lot overheads. So by default kernel
 replace <code class="codehilite">call</code> with <code class="codehilite">nop</code>. Only after we <code class="codehilite">echo something &gt; setup_filter_functions</code>
-will the ftrace code replace <code class="codehilite">nop</code> with <code class="codehilite">call</code>.</li>
+will the ftrace code replace <code class="codehilite">nop</code> with <code class="codehilite">call</code>. Do note, Linux uses the linker
+magic again here, check Steven&rsquo;s slides.</li>
 <li>You can do a <code class="codehilite">objdump vmlinux -d</code>, and able to see the following instructions for
 almost all functions: <code class="codehilite">callq  ffffffff81a01560 &lt;__fentry__&gt;</code>.</li>
 <li>x86 related code: <code class="codehilite">arch/x86/kernel/ftrace_64.S</code>, <code class="codehilite">arch/x86/kernel/ftrace.c</code></li>
+<li>Questions: it seems we can know when a function got called by using fentry, but
+how can we know the function has returned? The trick is: the returning address
+is pushed to stack when a function got called. So ftrace, again, can replace
+that return address, so it can catch the exit time, and calculate the latency
+of a function. Neat!!</li>
 </ul>
 </li>
 <li>Resources<ul>
