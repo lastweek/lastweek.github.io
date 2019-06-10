@@ -17,7 +17,7 @@ In Linux kernel, we have:
 
 I tend to think this way:
 
-  - Tracing needs two parts, `1)` __Mechanims to do callback.__ This means we need a way
+  - Tracing needs two parts, `1)` __Mechanims to do callback.__ This means we need a way to
     let our tracing/profiling code got invoked on a running system. This can be static
     or dynamic. Static means we added our tracing code to source code, like tracepoints.
     Dynamic means we added our tracing code when system is running, like ftrace and kprobe.
@@ -33,14 +33,19 @@ I tend to think this way:
   - Mechanism
     - For each un-inlined function, gcc inserts a `call mcount`, or a `call fentry`
     instruction at the very beginning. This means whenever a function is called,
-    the `mcount()` or the `fentry()` callback will be invoked, and they will be
-    able to do some bookkeeping.
+    the `mcount()` or the `fentry()` callback will be invoked.
     - Having these `call` instructions introduce a lot overheads. So by default kernel
     replace `call` with `nop`. Only after we `echo something > setup_filter_functions`
-    will the ftrace code replace `nop` with `call`.
+    will the ftrace code replace `nop` with `call`. Do note, Linux uses the linker
+    magic again here, check Steven's slides.
     - You can do a `objdump vmlinux -d`, and able to see the following instructions for
     almost all functions: `callq  ffffffff81a01560 <__fentry__>`.
     - x86 related code: `arch/x86/kernel/ftrace_64.S`, `arch/x86/kernel/ftrace.c`
+    - Questions: it seems we can know when a function got called by using fentry, but
+    how can we know the function has returned? The trick is: the returning address
+    is pushed to stack when a function got called. So ftrace, again, can replace
+    that return address, so it can catch the exit time, and calculate the latency
+    of a function. Neat!!
   - Resources
     - [ftrace internal from Steven](https://blog.linuxplumbersconf.org/2014/ocw/system/presentations/1773/original/ftrace-kernel-hooks-2014.pdf)
 
