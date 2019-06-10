@@ -69,8 +69,10 @@ I tend to think this way:
     The program can be user-written eBPF code. Other articles explained it well.
   - Resources
     - [Brendan D. Gregg Blog](http://www.brendangregg.com/index.html)
-    - [Bcc](https://github.com/iovisor/bcc)
-    - [An eBPF overview](https://www.collabora.com/news-and-blog/blog/2019/04/05/an-ebpf-overview-part-1-introduction/)
+    - [Github: Awesome-eBPF](https://github.com/zoidbergwill/awesome-ebpf)
+    - [Cilium: BPF and XDP Reference Guide](https://cilium.readthedocs.io/en/latest/bpf/)
+    - [Blog: An eBPF overview](https://www.collabora.com/news-and-blog/blog/2019/04/05/an-ebpf-overview-part-1-introduction/)
+    - [Github: Bcc](https://github.com/iovisor/bcc)
 
 --  
 Yizhou Shan  
