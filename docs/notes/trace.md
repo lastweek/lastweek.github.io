@@ -23,9 +23,11 @@ I tend to think this way:
     Dynamic means we added our tracing code when system is running, like ftrace and kprobe.
     `2)` __Do stuff within callback.__ All of them provide some sort of handling. But eBPF is the
     most extensive one.
-  - `ftrace`, `kprobe`, and `perf_event` implements the callback facilities.
-    For example, ftrace has the `call mount` way to do callback on function invocation.
-    kprobe dynamically patch instructions and to do callback within exception handlers.
+  - For example, `ftrace`, `kprobe`, and `perf_event` include the callback facilities,
+    although they are not just limited to this.
+    `ftrace` has the `call mount` way to do callback on every single function invocation.
+    `kprobe` dynamically patch instructions and to do callback within exception handlers.
+    `perf_event` can let CPU fire NMI interrupt. Those are all mechanisms to catch perf data.
   - The blog from Julia explains it well: [Linux tracing systems & how they fit together](https://jvns.ca/blog/2017/07/05/linux-tracing-systems/)
 
 `ftrace`:
@@ -48,15 +50,18 @@ I tend to think this way:
     of a function. Neat!!
   - Resources
     - [ftrace internal from Steven](https://blog.linuxplumbersconf.org/2014/ocw/system/presentations/1773/original/ftrace-kernel-hooks-2014.pdf)
+  - Usage
+    - `Files under /sys/kernel/debug/tracing/*`
+    - `perf help ftrace`
 
 `kprobe`:
 
   - Mechanism
-    - Kprobe replaces the original assembly instruction with a int3 trap instruction.
-      So when we ran into the original instruction, a int3 CPU exception will happen.
-      Within `do_in3()`, kernel will callback to core kprobe layer to do pre-handler.
+    - Kprobe replaces the original assembly instruction with an `int3` trap instruction.
+      So when we ran into the PC of the original instruction, an int3 CPU exception will happen.
+      Within `do_in3()`, kernel will callback to core kprobe layer to do `pre-handler`.
       After singlestep, CPU have debug exception. Kernel walks into `do_debug()`,
-      where kprobe run post-handler.
+      where kprobe run `post-handler`.
     - Kprobe is powerful, because it's able to trace almost everything at instruction level.
     - Kprobe can NOT touch things inside `entry.S`. It needs a valid `pt_regs` to operate.
   - Resources
@@ -78,6 +83,12 @@ I tend to think this way:
     - [Cilium: BPF and XDP Reference Guide](https://cilium.readthedocs.io/en/latest/bpf/)
     - [Blog: An eBPF overview](https://www.collabora.com/news-and-blog/blog/2019/04/05/an-ebpf-overview-part-1-introduction/)
     - [Github: Bcc](https://github.com/iovisor/bcc)
+
+`perf`:
+
+  - perf tool is simply amazing. It not only use CPU PMU, but also integrated with ftrace/kprobe/eBPF.
+  - perf is a tool to present data, but also a tool to collect data.
+  - Read this: http://www.brendangregg.com/perf.html
 
 --  
 Yizhou Shan  
