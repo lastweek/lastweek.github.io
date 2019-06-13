@@ -1157,9 +1157,11 @@ which is able to profile arbitray code piece is still my favorite thing.</p>
     Dynamic means we added our tracing code when system is running, like ftrace and kprobe.
     <code class="codehilite">2)</code> <strong>Do stuff within callback.</strong> All of them provide some sort of handling. But eBPF is the
     most extensive one.</li>
-<li><code class="codehilite">ftrace</code>, <code class="codehilite">kprobe</code>, and <code class="codehilite">perf_event</code> implements the callback facilities.
-    For example, ftrace has the <code class="codehilite">call mount</code> way to do callback on function invocation.
-    kprobe dynamically patch instructions and to do callback within exception handlers.</li>
+<li>For example, <code class="codehilite">ftrace</code>, <code class="codehilite">kprobe</code>, and <code class="codehilite">perf_event</code> include the callback facilities,
+    although they are not just limited to this.
+    <code class="codehilite">ftrace</code> has the <code class="codehilite">call mount</code> way to do callback on every single function invocation.
+    <code class="codehilite">kprobe</code> dynamically patch instructions and to do callback within exception handlers.
+    <code class="codehilite">perf_event</code> can let CPU fire NMI interrupt. Those are all mechanisms to catch perf data.</li>
 <li>The blog from Julia explains it well: <a href="https://jvns.ca/blog/2017/07/05/linux-tracing-systems/">Linux tracing systems &amp; how they fit together</a></li>
 </ul>
 <p><code class="codehilite">ftrace</code>:</p>
@@ -1186,15 +1188,20 @@ of a function. Neat!!</li>
 <li><a href="https://blog.linuxplumbersconf.org/2014/ocw/system/presentations/1773/original/ftrace-kernel-hooks-2014.pdf">ftrace internal from Steven</a></li>
 </ul>
 </li>
+<li>Usage<ul>
+<li><code class="codehilite">Files under /sys/kernel/debug/tracing/*</code></li>
+<li><code class="codehilite">perf help ftrace</code></li>
+</ul>
+</li>
 </ul>
 <p><code class="codehilite">kprobe</code>:</p>
 <ul>
 <li>Mechanism<ul>
-<li>Kprobe replaces the original assembly instruction with a int3 trap instruction.
-  So when we ran into the original instruction, a int3 CPU exception will happen.
-  Within <code class="codehilite">do_in3()</code>, kernel will callback to core kprobe layer to do pre-handler.
+<li>Kprobe replaces the original assembly instruction with an <code class="codehilite">int3</code> trap instruction.
+  So when we ran into the PC of the original instruction, an int3 CPU exception will happen.
+  Within <code class="codehilite">do_in3()</code>, kernel will callback to core kprobe layer to do <code class="codehilite">pre-handler</code>.
   After singlestep, CPU have debug exception. Kernel walks into <code class="codehilite">do_debug()</code>,
-  where kprobe run post-handler.</li>
+  where kprobe run <code class="codehilite">post-handler</code>.</li>
 <li>Kprobe is powerful, because it&rsquo;s able to trace almost everything at instruction level.</li>
 <li>Kprobe can NOT touch things inside <code class="codehilite">entry.S</code>. It needs a valid <code class="codehilite">pt_regs</code> to operate.</li>
 </ul>
@@ -1224,6 +1231,12 @@ The program can be user-written eBPF code. Other articles explained it well.</li
 <li><a href="https://github.com/iovisor/bcc">Github: Bcc</a></li>
 </ul>
 </li>
+</ul>
+<p><code class="codehilite">perf</code>:</p>
+<ul>
+<li>perf tool is simply amazing. It not only use CPU PMU, but also integrated with ftrace/kprobe/eBPF.</li>
+<li>perf is a tool to present data, but also a tool to collect data.</li>
+<li>Read this: <a href="http://www.brendangregg.com/perf.html">http://www.brendangregg.com/perf.html</a></li>
 </ul>
 <p>&ndash;<br />
 Yizhou Shan<br />
