@@ -14,6 +14,7 @@ pages:
    - 'Linux: cgroup swap': 'notes/cgroup-swap.md'
    - 'Linux: userfaultfd': 'notes/userfaultfd.md'
    - 'Linux: user/kern cross perf': 'notes/xperf.md'
+   - 'Linux: rmap': 'notes/rmap.md'
    - 'KVM:   basics':      'notes/kvm-basic.md'
 - LegoOS:
    - 'Log':
