@@ -103,4 +103,6 @@ markdown_extensions:
       guess_lang: true
 
 theme:
-  name: 'material'
+  #name: 'bootstrap386'
+  name: 'rtd-dropdown'
+  #name: 'readthedocs'
