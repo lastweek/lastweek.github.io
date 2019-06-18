@@ -10,12 +10,12 @@ pages:
 #  - 'FAST 18': 'read/fast18.md'
 #   - 'ASPLOS 18': 'read/asplos18.md'
 - Notes:
-   - 'Linux: tracing': 'notes/trace.md'
-   - 'Linux: cgroup swap': 'notes/cgroup-swap.md'
-   - 'Linux: userfaultfd': 'notes/userfaultfd.md'
-   - 'Linux: user/kern cross perf': 'notes/xperf.md'
-   - 'Linux: rmap': 'notes/rmap.md'
-   - 'KVM:   basics':      'notes/kvm-basic.md'
+   - 'Linux: Reverse Mmap': 'notes/rmap.md'
+   - 'Linux: Tracing': 'notes/trace.md'
+   - 'Linux: Cgroup and Swap': 'notes/cgroup-swap.md'
+   - 'Linux: Userfaultfd': 'notes/userfaultfd.md'
+   - 'Linux: User/kern Cross Perf': 'notes/xperf.md'
+   - 'KVM:   Basics':      'notes/kvm-basic.md'
 - LegoOS:
    - 'Log':
            - 'TODO': 'lego/log/TODO.md'

@@ -25,7 +25,7 @@ it's just easy to understand. I will check later on.
 The code suggests:
 
 - The offset of a page is saved in `page->index`.
-- For anonmouys pages, the `page->index` is saved by [`__page_set_anon_rmap()`](https://github.com/torvalds/linux/blob/e93c9c99a629c61837d5a7fc2120cd2b6c70dbdd/mm/rmap.c#L1027).
+- For anonmouys pages, the `page->index` is saved by [page_set_anon_rmap()](https://github.com/torvalds/linux/blob/e93c9c99a629c61837d5a7fc2120cd2b6c70dbdd/mm/rmap.c#L1027).
 - When doing rmap walk over multiple VMAs:
   - For [anon](https://github.com/torvalds/linux/blob/e93c9c99a629c61837d5a7fc2120cd2b6c70dbdd/mm/rmap.c#L1824): `unsigned long address = vma_address(page, vma);`
   - For [file](https://github.com/torvalds/linux/blob/e93c9c99a629c61837d5a7fc2120cd2b6c70dbdd/mm/rmap.c#L1878): `unsigned long address = vma_address(page, vma);`
@@ -44,8 +44,8 @@ Compared to basic PTE-chain based solution, object-based rmap:
 
 __The real benefit__
 
-- During page fault, we only need to set `page->mapping` to `anon_vma`,
-  rather than allocating a new list_head and insert.
+- During page fault, we only need to set `page->mapping` to point to `struct anon_vma`,
+  rather than allocating a new structure and insert.
 
 __The downside__
 
@@ -56,7 +56,13 @@ Adding `struct anon_vma` is really similar to the idea of reusing `address_space
 i.e., having a data structure trampoline.
 
 
+Some more boring details:
+
+- All pages within a single VMA share just one `anon_vma`.
+  `vma->anon_vma` indicates if a VMA has attached or note.
+  Related function is `anon_vma_prepare()` within `do_anonymous_fault()` [1](https://github.com/torvalds/linux/blob/e93c9c99a629c61837d5a7fc2120cd2b6c70dbdd/mm/memory.c#L2948).
+
 --  
-Yizhou Shan  
+Yizhou Shan :copyright:  
 Created: Jun 16, 2019  
-Last Updated: Jun 16, 2019
+Last Updated: Jun 17, 2019
