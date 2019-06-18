@@ -36,7 +36,7 @@
     
     
       
-        <title>Linux: rmap - Yizhou Shan's Home Page</title>
+        <title>Linux: Reverse Mmap - Yizhou Shan's Home Page</title>
       
     
     
@@ -95,7 +95,7 @@
                 Yizhou Shan's Home Page
               </span>
               <span class="md-header-nav__topic">
-                Linux: rmap
+                Linux: Reverse Mmap
               </span>
             
           
@@ -221,54 +221,6 @@
           
           
 
-
-  <li class="md-nav__item">
-    <a href="../trace/" title="Linux: tracing" class="md-nav__link">
-      Linux: tracing
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../cgroup-swap/" title="Linux: cgroup swap" class="md-nav__link">
-      Linux: cgroup swap
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../userfaultfd/" title="Linux: userfaultfd" class="md-nav__link">
-      Linux: userfaultfd
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../xperf/" title="Linux: user/kern cross perf" class="md-nav__link">
-      Linux: user/kern cross perf
-    </a>
-  </li>
-
-        
-          
-          
-          
-
   
 
 
@@ -279,8 +231,8 @@
       
     
     
-    <a href="./" title="Linux: rmap" class="md-nav__link md-nav__link--active">
-      Linux: rmap
+    <a href="./" title="Linux: Reverse Mmap" class="md-nav__link md-nav__link--active">
+      Linux: Reverse Mmap
     </a>
     
   </li>
@@ -292,8 +244,56 @@
 
 
   <li class="md-nav__item">
-    <a href="../kvm-basic/" title="KVM:   basics" class="md-nav__link">
-      KVM:   basics
+    <a href="../trace/" title="Linux: Tracing" class="md-nav__link">
+      Linux: Tracing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cgroup-swap/" title="Linux: Cgroup and Swap" class="md-nav__link">
+      Linux: Cgroup and Swap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../userfaultfd/" title="Linux: Userfaultfd" class="md-nav__link">
+      Linux: Userfaultfd
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../xperf/" title="Linux: User/kern Cross Perf" class="md-nav__link">
+      Linux: User/kern Cross Perf
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kvm-basic/" title="KVM:   Basics" class="md-nav__link">
+      KVM:   Basics
     </a>
   </li>
 
@@ -1170,7 +1170,7 @@ it&rsquo;s just easy to understand. I will check later on.</p>
 <p>The code suggests:</p>
 <ul>
 <li>The offset of a page is saved in <code class="codehilite">page-&gt;index</code>.</li>
-<li>For anonmouys pages, the <code class="codehilite">page-&gt;index</code> is saved by <a href="https://github.com/torvalds/linux/blob/e93c9c99a629c61837d5a7fc2120cd2b6c70dbdd/mm/rmap.c#L1027"><code class="codehilite">__page_set_anon_rmap()</code></a>.</li>
+<li>For anonmouys pages, the <code class="codehilite">page-&gt;index</code> is saved by <a href="https://github.com/torvalds/linux/blob/e93c9c99a629c61837d5a7fc2120cd2b6c70dbdd/mm/rmap.c#L1027">page_set_anon_rmap()</a>.</li>
 <li>When doing rmap walk over multiple VMAs:</li>
 <li>For <a href="https://github.com/torvalds/linux/blob/e93c9c99a629c61837d5a7fc2120cd2b6c70dbdd/mm/rmap.c#L1824">anon</a>: <code class="codehilite">unsigned long address = vma_address(page, vma);</code></li>
 <li>For <a href="https://github.com/torvalds/linux/blob/e93c9c99a629c61837d5a7fc2120cd2b6c70dbdd/mm/rmap.c#L1878">file</a>: <code class="codehilite">unsigned long address = vma_address(page, vma);</code></li>
@@ -1193,8 +1193,8 @@ it&rsquo;s just easy to understand. I will check later on.</p>
 <p>Compared to basic PTE-chain based solution, object-based rmap:</p>
 <p><strong>The real benefit</strong></p>
 <ul>
-<li>During page fault, we only need to set <code class="codehilite">page-&gt;mapping</code> to <code class="codehilite">anon_vma</code>,
-  rather than allocating a new list_head and insert.</li>
+<li>During page fault, we only need to set <code class="codehilite">page-&gt;mapping</code> to point to <code class="codehilite">struct anon_vma</code>,
+  rather than allocating a new structure and insert.</li>
 </ul>
 <p><strong>The downside</strong></p>
 <ul>
@@ -1203,10 +1203,16 @@ it&rsquo;s just easy to understand. I will check later on.</p>
 </ul>
 <p>Adding <code class="codehilite">struct anon_vma</code> is really similar to the idea of reusing <code class="codehilite">address_space</code>,
 i.e., having a data structure trampoline.</p>
+<p>Some more boring details:</p>
+<ul>
+<li>All pages within a single VMA share just one <code class="codehilite">anon_vma</code>.
+  <code class="codehilite">vma-&gt;anon_vma</code> indicates if a VMA has attached or note.
+  Related function is <code class="codehilite">anon_vma_prepare()</code> within <code class="codehilite">do_anonymous_fault()</code> <a href="https://github.com/torvalds/linux/blob/e93c9c99a629c61837d5a7fc2120cd2b6c70dbdd/mm/memory.c#L2948">1</a>.</li>
+</ul>
 <p>&ndash;<br />
-Yizhou Shan<br />
+Yizhou Shan <img alt="©️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/00a9.svg" title=":copyright:" /><br />
 Created: Jun 16, 2019<br />
-Last Updated: Jun 16, 2019</p>
+Last Updated: Jun 17, 2019</p>
                 
                   
                 
@@ -1225,7 +1231,7 @@ Last Updated: Jun 16, 2019</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../xperf/" title="Linux: user/kern cross perf" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../misc/cheatsheet/" title="Cheatsheet" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1234,19 +1240,19 @@ Last Updated: Jun 16, 2019</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Linux: user/kern cross perf
+                Cheatsheet
               </span>
             </div>
           </a>
         
         
-          <a href="../kvm-basic/" title="KVM:   basics" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../trace/" title="Linux: Tracing" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                KVM:   basics
+                Linux: Tracing
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
