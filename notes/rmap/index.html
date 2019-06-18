@@ -1154,13 +1154,17 @@
 <li><a href="https://lwn.net/Articles/75198/">LWN: Virtual Memory II: the return of objrmap</a></li>
 <li><a href="https://lwn.net/Articles/23732/">LWN: The object-based reverse-mapping VM</a></li>
 </ul>
-<p>I mostly understand how object-based rmap works,
-but there is still one thing that I haven&rsquo;t thought it through:
-for a page that is shared among multiple VMAs, the source code
+<p>I used to implement the basic <a href="http://lastweek.io/lego/pcache/rmap/">PTE-chain based rmap for LegoOS</a>.
+I can see the downsides of it. I tried to understand the
+linux rmap before, somehow gave up because I couldn&rsquo;t fully
+understand one thing:
+for a page that is shared among multiple processes&rsquo; VMAs, the source code
 suggests it will always have same offset from the beginning of
 <em>all</em> VMA (i.e., <code class="codehilite">vm_start</code>). But does it actually works like this
 for ALL cases? I just think it&rsquo;s possible that a page is mapped
 by an VMA which has a slightly different starting address.</p>
+<p>I still have doubt about it. But after accepting this assumption,
+it&rsquo;s just easy to understand. I will check later on.</p>
 <p>The code suggests:</p>
 <ul>
 <li>The offset of a page is saved in <code class="codehilite">page-&gt;index</code>.</li>
