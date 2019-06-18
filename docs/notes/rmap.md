@@ -6,6 +6,9 @@ Read those carefully, you will understand:
 - [LWN: Virtual Memory II: the return of objrmap](https://lwn.net/Articles/75198/)
 - [LWN: The object-based reverse-mapping VM](https://lwn.net/Articles/23732/)
 
+![img_1](notes_rmap1.png)
+![img_2](notes_rmap2.png)
+
 I used to implement the basic [PTE-chain based rmap for LegoOS](http://lastweek.io/lego/pcache/rmap/).
 I can see the downsides of it. I tried to understand the
 linux rmap before, somehow gave up because I couldn't fully
