@@ -1,1 +1,1 @@
-mkdocs gh-deloy -b master
+mkdocs gh-deploy -b master
