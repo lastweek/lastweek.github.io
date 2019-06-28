@@ -199,11 +199,23 @@
                 <h1 id="cache-coherence">Cache Coherence</h1>
 <h2 id="references">References</h2>
 <ul>
+<li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.455.4198&amp;rep=rep1&amp;type=pdf">The Architecture of the Nehalem Processor and Nehalem-EP SMP Platforms</a>, chapter 5.2 Cache-Coherence Protocol for Multi-Processors.<ul>
+<li>This serves an entry-level description about how x86 MESIF works.</li>
+</ul>
+</li>
 <li><a href="https://www.elsevier.com/books-and-journals/book-companion/9780128119051">Appendix I: Large-Scale Multiprocessors and Scientific Applications</a>,
   chapter 7 Implementing Cache Coherence.<ul>
 <li>This is probably some most insightful discussion about real implementation of cache coherence.
   With the distributed nature and Network-on-Chip, implementing cache coherence in modern
   processors is no different than implementing a distributed transaction protocol.</li>
+<li>Cache activities like read miss or write miss have multi-step operations, but they
+  need to appear as &ldquo;atomic&rdquo; to users. Put in another way, misses are like transactions,
+  they have multiple steps but they must be atomic. They can be retried.</li>
+<li>Having directory for cache coherence will make implementation easier. Because
+  the place (e.g., L3) where directory resides can serve as the serialization point.
+  They can solve write races.</li>
+<li><code class="codehilite">Home directory controller</code> and <code class="codehilite">cache controller</code> will exchange messages like a set of distributed machines.
+  In fact, with NoC, they are actually distributed system.</li>
 </ul>
 </li>
 </ul>
