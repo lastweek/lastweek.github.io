@@ -16,6 +16,7 @@ pages:
    - 'Linux: Userfaultfd': 'notes/userfaultfd.md'
    - 'Linux: User/kern Cross Perf': 'notes/xperf.md'
    - 'KVM:   Basics':      'notes/kvm-basic.md'
+   - 'Arch:  Cache Coherence': 'notes/cache_coherence.md'
 - LegoOS:
    - 'Log':
            - 'TODO': 'lego/log/TODO.md'
