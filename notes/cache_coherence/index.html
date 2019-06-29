@@ -105,6 +105,10 @@
     <ul class="">
     
         <li class="toctree-l3 toc-item" >
+          <a class="toctree-l3" href="#summary-and-thoughs">Summary and Thoughs</a>
+        </li>
+    
+        <li class="toctree-l3 toc-item" >
           <a class="toctree-l3" href="#references">References</a>
         </li>
     
@@ -202,8 +206,10 @@
               
                 <h1 id="cache-coherence">Cache Coherence</h1>
 <p>A general collection of resources on cache coherence.
-I started this when I was having a hard time optimizing lock delegation.</p>
-<p>Thoughs:</p>
+I started this when I was having a hard time optimizing lock delegation.
+This note is not about acadamic new ideas, but rather for
+a concrete understanding of current cache coherence implementations.</p>
+<h2 id="summary-and-thoughs">Summary and Thoughs</h2>
 <ul>
 <li>The textbooks tough us the basic concept of MESI. And realizations
   like snoop and directory. But what usually missing is the implementation
@@ -231,6 +237,13 @@ I started this when I was having a hard time optimizing lock delegation.</p>
   implementations will have different trade-offs and performance,
   you can check <a href="https://frankdenneman.nl/2016/07/11/numa-deep-dive-part-3-cache-coherency/">Frank&rsquo;s post</a>
   for more details.</li>
+<li>Directory-based cache coherence procotol and implementation will
+  be the future for multicore machines. Because it incurs much less
+  coherence traffic than snoop-based ones, thus more scalable.
+  The trend is confirmed by recent Intel UPI directory-based approach.
+  Related readings:
+  [1]: <a href="http://www.cis.upenn.edu/acg/papers/cacm12_why_coherence.pdf">Why On-Chip Cache Coherence Is Here to Stay</a>
+  [2]: <a href="https://www.realworldtech.com/qpi-evolved/3/">QPI 1.1 Invovled</a></li>
 </ul>
 <p>Left questions:
 - Do cache coherence implementations ensure <strong>fairness</strong> among cores?</p>
@@ -273,7 +286,16 @@ I started this when I was having a hard time optimizing lock delegation.</p>
 </ul>
 </li>
 <li><a href="http://www.cis.upenn.edu/acg/papers/cacm12_why_coherence.pdf">Why On-Chip Cache Coherence Is Here to Stay</a><ul>
-<li>TODO</li>
+<li>This paper discusses why cache coherence can scale. A nice read.</li>
+<li>R1: Coherence’s interconnection network traffic per miss scales
+      when precisely tracking sharers. (Okay increased directory bits,
+  what about those storage cost? See R2).</li>
+<li>R2: Hierarchy combined with inclusion enables efficient scaling
+      of the storage cost for exact encoding of sharers.</li>
+<li>R3: private evictions should send explict messages to shared cache
+      to enable precise tracking. Thus the recall (<em>back invalidation</em>) traffic can be
+  reduced when shared cache is evicting (assume inclusion cache).</li>
+<li>R4: Latencies of cache request can be amotized. </li>
 </ul>
 </li>
 <li><a href="https://www.elsevier.com/books-and-journals/book-companion/9780128119051">Appendix I: Large-Scale Multiprocessors and Scientific Applications</a>,
@@ -316,6 +338,8 @@ I started this when I was having a hard time optimizing lock delegation.</p>
 <li><a href="https://software.intel.com/en-us/articles/intel-xeon-processor-scalable-family-technical-overview">Intel® Xeon® Processor Scalable Family Technical Overview</a></li>
 </ul>
 </li>
+<li>To provide sufficient bandwidth, shared caches are typically interleaved
+  by addresses with banks physically distibuted across the chip.</li>
 </ul>
 <p>&ndash;<br />
 Yizhou Shan<br />
