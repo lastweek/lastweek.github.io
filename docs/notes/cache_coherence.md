@@ -7,6 +7,10 @@ I started this when I was having a hard time optimizing lock delegation.
 
 ## References
 
+- [The Architecture of the Nehalem Processor and Nehalem-EP SMP Platforms](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.455.4198&rep=rep1&type=pdf), chapter 5.2 Cache-Coherence Protocol for Multi-Processors.
+    - This serves an entry-level description about how x86 MESIF works.
+    - Also this is a very good paper about general x86 microarchitectures.
+
 - [NUMA Deep Dive Part 3: Cache Coherency](https://frankdenneman.nl/2016/07/11/numa-deep-dive-part-3-cache-coherency/)
     - By far the BEST blog I've seen on the topic of Intel snoop models! Frank's other articles are also amazing.
     - Intel is using MESIF cache coherence protocl, but it has multiple cache coherence implementations.
@@ -18,14 +22,27 @@ I started this when I was having a hard time optimizing lock delegation.
       There are other implementations like Cluster-on-Die.
       Intel UPI rid of all this complexity, it is only using directory-based, in the hope to reduce
       cache coherence traffic, which make sense.
-    - [Broadwell EP Snoop Models](https://software.intel.com/en-us/articles/intel-xeon-processor-e5-2600-v4-product-family-technical-overview)
+    - Related: [Broadwell EP Snoop Models](https://software.intel.com/en-us/articles/intel-xeon-processor-e5-2600-v4-product-family-technical-overview)
+    - Related: [Skylay UPI](https://software.intel.com/en-us/articles/intel-xeon-processor-scalable-family-technical-overview)
+
 - [MESIF: A Two-Hop Cache Coherency Protocol for Point-to-Point Interconnects (2009)](https://researchspace.auckland.ac.nz/bitstream/handle/2292/11594/MESIF-2009.pdf?sequence=6)
-    - TODO
+    - This paper has the most extensive description of the MESIF protocol implementation.
+      It has many __timing diagrams__ than describe how cache requests actually proceed.
+      Those diagrams can help us understand what is needed to finish a cache request.
+    - Their [slides](https://parlab.eecs.berkeley.edu/sites/all/parlab/files/20091029-goodman-ssccp.pdf)
+      has more timing diagrams.
+    - But do note: the implementation described by this paper is different from
+      what [Intel QPI](https://www.intel.ca/content/dam/doc/white-paper/quick-path-interconnect-introduction-paper.pdf)
+      has in products. The difference is discussed at chapter 4. MESIF and QPI, namely,
+      other caching agents will send responses to Home agent rather than to requesting agent.
+      QPI relies on Home agent to solve conflict.
+    - Also note: this is just one of the possible implementations to realize MESIF protocol.
+      There could be many other ways, e.g., QPI source snooping, QPI home snooping.
+      But all of them share the essential and general concepts and ideas.
+
 - [Why On-Chip Cache Coherence Is Here to Stay](http://www.cis.upenn.edu/acg/papers/cacm12_why_coherence.pdf)
     - TODO
-- [The Architecture of the Nehalem Processor and Nehalem-EP SMP Platforms](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.455.4198&rep=rep1&type=pdf), chapter 5.2 Cache-Coherence Protocol for Multi-Processors.
-    - This serves an entry-level description about how x86 MESIF works.
-    - Also this is a very good paper about general x86 microarchitectures.
+
 - [Appendix I: Large-Scale Multiprocessors and Scientific Applications](https://www.elsevier.com/books-and-journals/book-companion/9780128119051),
   chapter 7 Implementing Cache Coherence.
     - This is probably some most insightful discussion about real implementation of cache coherence.
@@ -42,7 +59,7 @@ I started this when I was having a hard time optimizing lock delegation.
 
 - [An Introduction to the Intel® QuickPath Interconnect](https://www.intel.ca/content/dam/doc/white-paper/quick-path-interconnect-introduction-paper.pdf),
   page 15 MESIF.
-      - It explains `Home Snoop` and `Source Snoop` used by Intel.
+      - It explains the `Home Snoop` and `Source Snoop` used by Intel.
       - Based on their explanation, it seems both `Home Snoop` and `Source Snoop` are using a combination of
         snoop and directory. The Processor#4 (pg 17 and 18) maintains the directory.
       - And this is a perfect demonstration of the details described in [Appendix I: Large-Scale Multiprocessors and Scientific Applications](https://www.elsevier.com/books-and-journals/book-companion/9780128119051).
