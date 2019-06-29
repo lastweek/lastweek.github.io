@@ -2,8 +2,10 @@
 
 A general collection of resources on cache coherence.
 I started this when I was having a hard time optimizing lock delegation.
+This note is not about acadamic new ideas, but rather for
+a concrete understanding of current cache coherence implementations.
 
-Thoughs:
+## Summary and Thoughs
 
 - The textbooks tough us the basic concept of MESI. And realizations
   like snoop and directory. But what usually missing is the implementation
@@ -31,6 +33,13 @@ Thoughs:
   implementations will have different trade-offs and performance,
   you can check [Frank's post](https://frankdenneman.nl/2016/07/11/numa-deep-dive-part-3-cache-coherency/)
   for more details.
+- Directory-based cache coherence procotol and implementation will
+  be the future for multicore machines. Because it incurs much less
+  coherence traffic than snoop-based ones, thus more scalable.
+  The trend is confirmed by recent Intel UPI directory-based approach.
+  Related readings:
+  [1]: [Why On-Chip Cache Coherence Is Here to Stay](http://www.cis.upenn.edu/acg/papers/cacm12_why_coherence.pdf)
+  [2]: [QPI 1.1 Invovled](https://www.realworldtech.com/qpi-evolved/3/)
 
 Left questions:
 - Do cache coherence implementations ensure __fairness__ among cores?
@@ -68,7 +77,16 @@ Left questions:
       There could be many other ways, e.g., QPI source snooping, QPI home snooping.
       But all of them share the essential and general concepts and ideas.
 - [Why On-Chip Cache Coherence Is Here to Stay](http://www.cis.upenn.edu/acg/papers/cacm12_why_coherence.pdf)
-    - TODO
+    - This paper discusses why cache coherence can scale. A nice read.
+    - R1: Coherence’s interconnection network traffic per miss scales
+          when precisely tracking sharers. (Okay increased directory bits,
+	  what about those storage cost? See R2).
+    - R2: Hierarchy combined with inclusion enables efficient scaling
+          of the storage cost for exact encoding of sharers.
+    - R3: private evictions should send explict messages to shared cache
+          to enable precise tracking. Thus the recall (_back invalidation_) traffic can be
+	  reduced when shared cache is evicting (assume inclusion cache).
+    - R4: Latencies of cache request can be amotized. 
 - [Appendix I: Large-Scale Multiprocessors and Scientific Applications](https://www.elsevier.com/books-and-journals/book-companion/9780128119051),
   chapter 7 Implementing Cache Coherence.
     - This is probably some most insightful discussion about real implementation of cache coherence.
@@ -99,7 +117,8 @@ Left questions:
     - This makes sense because 1) inter socket bandwidth is precious, 2) snoop will consume a lot bandwidth.
 - Intel UPI is using directory-based home snoop coherency protocol
     - [Intel® Xeon® Processor Scalable Family Technical Overview](https://software.intel.com/en-us/articles/intel-xeon-processor-scalable-family-technical-overview)
-
+- To provide sufficient bandwidth, shared caches are typically interleaved
+  by addresses with banks physically distibuted across the chip.
 
 --  
 Yizhou Shan  
