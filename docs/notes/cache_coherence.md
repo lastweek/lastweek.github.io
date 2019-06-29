@@ -21,12 +21,19 @@ a concrete understanding of current cache coherence implementations.
   will perform a _cache read transaction_ to read the data from
   either other caches or memory. This transaction consists multiple
   steps such as: send requests, collect responses, send ACKs.
-- Those transactions will conflict. Someone has to resolve it.
+- Those transactions will conflict if multiple reads and writes
+  happen at the same time. Someone has to resolve it.
   It can be resolved by different cache controllers, or by a single
   serialization point like home agent.
 - Just like you can have many ways to implement transactions
   for distributed systems, there are also many ways to do
   cache coherence transactions. And there are many.
+- Atomic Read-Modify-Write (RMW) instructions will make cache coherence
+  implementations even more complex. Those instructions include
+  `read-and-inc`, `test-and-set`, and `lock; `-prefixed.
+  I think, there will some "lock the bus", or "locked state" at the
+  home agent per cache line. Having atomic RMW instructions
+  will add more complexity to the overall transaction desgin.
 - While reading Intel related cache coherence diagrams/transactions,
   you might find many different descriptions. Don't panic. They are
   just different implementations proposed by Intel. Different
@@ -107,6 +114,9 @@ Left questions:
         snoop and directory. The Processor#4 (pg 17 and 18) maintains the directory.
       - And this is a perfect demonstration of the details described in [Appendix I: Large-Scale Multiprocessors and Scientific Applications](https://www.elsevier.com/books-and-journals/book-companion/9780128119051).
       - Related patent: [Extending a cache coherency snoop broadcast protocol with directory information](https://patents.google.com/patent/US20150081977)
+- AMD HyperTransport Assit for Cache Coherence
+    - [Slide](https://www.hotchips.org/wp-content/uploads/hc_archives/hc14/3_Tue/28_AMD_Hammer_MP_HC_v8.pdf)
+    - [Slide](http://www.hotchips.org/wp-content/uploads/hc_archives/hc21/2_mon/HC21.24.100.ServerSystemsI-Epub/HC21.24.110.Conway-AMD-Magny-Cours.pdf)
 
 ## Misc Small Facts
 
