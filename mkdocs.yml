@@ -10,13 +10,13 @@ pages:
 #  - 'FAST 18': 'read/fast18.md'
 #   - 'ASPLOS 18': 'read/asplos18.md'
 - Notes:
+   - 'Arch:  Cache Coherence': 'notes/cache_coherence.md'
    - 'Linux: Reverse Mmap': 'notes/rmap.md'
    - 'Linux: Tracing': 'notes/trace.md'
    - 'Linux: Cgroup and Swap': 'notes/cgroup-swap.md'
    - 'Linux: Userfaultfd': 'notes/userfaultfd.md'
    - 'Linux: User/kern Cross Perf': 'notes/xperf.md'
    - 'KVM:   Basics':      'notes/kvm-basic.md'
-   - 'Arch:  Cache Coherence': 'notes/cache_coherence.md'
 - LegoOS:
    - 'Log':
            - 'TODO': 'lego/log/TODO.md'
@@ -104,6 +104,8 @@ markdown_extensions:
       guess_lang: true
 
 theme:
+  #name: 'material'
   #name: 'bootstrap386'
   name: 'rtd-dropdown'
   #name: 'readthedocs'
+  #name: 'mkdocs'

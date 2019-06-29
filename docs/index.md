@@ -1,7 +1,8 @@
-I'm __Yizhou Shan__ :zzz:, a third-year Ph.D. student at __Purdue ECE__,
+I'm __Yizhou Shan__, a third-year Ph.D. student at __Purdue ECE__,
 advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). I work at [Wuklab.io](http://wuklab.io). Yes, the [Monkey King](https://en.wikipedia.org/wiki/Sun_Wukong) Lab. [CV](http://lastweek.io/pubs/cv.pdf).
 
 ## What's up
+- [_May 2019_] Intern at [VMware Research](https://research.vmware.com/), with [Marcos K. Aguilera](http://mkaguilera.kawazoe.org/)
 - [_Apr 2019_] __Storm__ accpeted to __SYSTOR'19__. Awarded Best Paper.
 - [_Jan 2019_] Short paper on __Disaggregated Persistent Memory__ accpeted to __NVMW'19__
 - [_Jul 2018_] __LegoOS__ accepted to __OSDI'18__. Awarded Best Paper.
@@ -20,7 +21,7 @@ Office: EE 345
 
 Email: __ys@purdue.edu__
 
-## Publications
+## Publications :zzz:
 
 * [__Storm: a fast transactional dataplane for remote data structures__](https://dl.acm.org/citation.cfm?id=3325827)
 <br> Stanko Novakovic, __Yizhou Shan__, Aasheesh Kolli, Michael Cui, Yiying Zhang, Haggai Eran, Liran Liss, Michael Wei, Dan Tsafrir, Marcos Aguilera

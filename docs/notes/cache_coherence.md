@@ -69,7 +69,8 @@ Left questions:
       cache coherence traffic, which make sense.
     - Related: [Broadwell EP Snoop Models](https://software.intel.com/en-us/articles/intel-xeon-processor-e5-2600-v4-product-family-technical-overview)
     - Related: [Skylay UPI](https://software.intel.com/en-us/articles/intel-xeon-processor-scalable-family-technical-overview)
-- [MESIF: A Two-Hop Cache Coherency Protocol for Point-to-Point Interconnects (2009)](https://researchspace.auckland.ac.nz/bitstream/handle/2292/11594/MESIF-2009.pdf?sequence=6)
+- [__MESIF: A Two-Hop Cache Coherency Protocol for Point-to-Point Interconnects (2009)__](https://researchspace.auckland.ac.nz/bitstream/handle/2292/11594/MESIF-2009.pdf?sequence=6)
+    - A MUST read.
     - This paper has the most extensive description of the MESIF protocol implementation.
       It has many __timing diagrams__ than describe how cache requests actually proceed.
       Those diagrams can help us understand what is needed to finish a cache request.
