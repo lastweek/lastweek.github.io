@@ -28,6 +28,12 @@
     
         
     <url>
+     <loc>/notes/cache_coherence/</loc>
+     <lastmod>2019-06-29</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>/notes/rmap/</loc>
      <lastmod>2019-06-29</lastmod>
      <changefreq>daily</changefreq>
@@ -59,12 +65,6 @@
         
     <url>
      <loc>/notes/kvm-basic/</loc>
-     <lastmod>2019-06-29</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/notes/cache_coherence/</loc>
      <lastmod>2019-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
