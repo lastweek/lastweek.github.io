@@ -4,6 +4,7 @@ A general collection of resources on cache coherence.
 I started this when I was having a hard time optimizing lock delegation.
 
 Thoughs:
+
 - The textbooks tough us the basic concept of MESI. And realizations
   like snoop and directory. But what usually missing is the implementation
   details when it comes to: 1) conflicts, 2) no single shared bus.
@@ -39,7 +40,6 @@ Left questions:
 - [The Architecture of the Nehalem Processor and Nehalem-EP SMP Platforms](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.455.4198&rep=rep1&type=pdf), chapter 5.2 Cache-Coherence Protocol for Multi-Processors.
     - This serves an entry-level description about how x86 MESIF works.
     - Also this is a very good paper about general x86 microarchitectures.
-
 - [NUMA Deep Dive Part 3: Cache Coherency](https://frankdenneman.nl/2016/07/11/numa-deep-dive-part-3-cache-coherency/)
     - By far the BEST blog I've seen on the topic of Intel snoop models! Frank's other articles are also amazing.
     - Intel is using MESIF cache coherence protocol, but it has multiple cache coherence implementations.
@@ -53,7 +53,6 @@ Left questions:
       cache coherence traffic, which make sense.
     - Related: [Broadwell EP Snoop Models](https://software.intel.com/en-us/articles/intel-xeon-processor-e5-2600-v4-product-family-technical-overview)
     - Related: [Skylay UPI](https://software.intel.com/en-us/articles/intel-xeon-processor-scalable-family-technical-overview)
-
 - [MESIF: A Two-Hop Cache Coherency Protocol for Point-to-Point Interconnects (2009)](https://researchspace.auckland.ac.nz/bitstream/handle/2292/11594/MESIF-2009.pdf?sequence=6)
     - This paper has the most extensive description of the MESIF protocol implementation.
       It has many __timing diagrams__ than describe how cache requests actually proceed.
@@ -68,10 +67,8 @@ Left questions:
     - Also note: this is just one of the possible implementations to realize MESIF protocol.
       There could be many other ways, e.g., QPI source snooping, QPI home snooping.
       But all of them share the essential and general concepts and ideas.
-
 - [Why On-Chip Cache Coherence Is Here to Stay](http://www.cis.upenn.edu/acg/papers/cacm12_why_coherence.pdf)
     - TODO
-
 - [Appendix I: Large-Scale Multiprocessors and Scientific Applications](https://www.elsevier.com/books-and-journals/book-companion/9780128119051),
   chapter 7 Implementing Cache Coherence.
     - This is probably some most insightful discussion about real implementation of cache coherence.
@@ -85,7 +82,6 @@ Left questions:
       They can solve write races.
     - `Home directory controller` and `cache controller` will exchange messages like a set of distributed machines.
       In fact, with NoC, they are actually distributed system.
-
 - [An Introduction to the Intel® QuickPath Interconnect](https://www.intel.ca/content/dam/doc/white-paper/quick-path-interconnect-introduction-paper.pdf),
   page 15 MESIF.
       - It explains the `Home Snoop` and `Source Snoop` used by Intel.
