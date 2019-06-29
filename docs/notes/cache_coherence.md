@@ -18,7 +18,10 @@ I started this when I was having a hard time optimizing lock delegation.
       There are other implementations like Cluster-on-Die.
       Intel UPI rid of all this complexity, it is only using directory-based, in the hope to reduce
       cache coherence traffic, which make sense.
+    - [Broadwell EP Snoop Models](https://software.intel.com/en-us/articles/intel-xeon-processor-e5-2600-v4-product-family-technical-overview)
 - [MESIF: A Two-Hop Cache Coherency Protocol for Point-to-Point Interconnects (2009)](https://researchspace.auckland.ac.nz/bitstream/handle/2292/11594/MESIF-2009.pdf?sequence=6)
+    - TODO
+- [Why On-Chip Cache Coherence Is Here to Stay](http://www.cis.upenn.edu/acg/papers/cacm12_why_coherence.pdf)
     - TODO
 - [The Architecture of the Nehalem Processor and Nehalem-EP SMP Platforms](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.455.4198&rep=rep1&type=pdf), chapter 5.2 Cache-Coherence Protocol for Multi-Processors.
     - This serves an entry-level description about how x86 MESIF works.
