@@ -33,20 +33,21 @@ a concrete understanding of current cache coherence implementations.
   `read-and-inc`, `test-and-set`, and `lock; `-prefixed.
   I think, there will some "lock the bus", or "locked state" at the
   home agent per cache line. Having atomic RMW instructions
-  will add more complexity to the overall transaction desgin.
+  will add more complexity to the overall transaction design.
 - While reading Intel related cache coherence diagrams/transactions,
   you might find many different descriptions. Don't panic. They are
   just different implementations proposed by Intel. Different
   implementations will have different trade-offs and performance,
   you can check [Frank's post](https://frankdenneman.nl/2016/07/11/numa-deep-dive-part-3-cache-coherency/)
   for more details.
-- Directory-based cache coherence procotol and implementation will
+- Directory-based cache coherence protocol and implementation will
   be the future for multicore machines. Because it incurs much less
   coherence traffic than snoop-based ones, thus more scalable.
   The trend is confirmed by recent Intel UPI directory-based approach.
   Related readings:
   [1]: [Why On-Chip Cache Coherence Is Here to Stay](http://www.cis.upenn.edu/acg/papers/cacm12_why_coherence.pdf)
   [2]: [QPI 1.1 Invovled](https://www.realworldtech.com/qpi-evolved/3/)
+  [3]: [Paper: Multicast Snooping: A New Coherence Method Using a Multicast Address Network, ISCA '99](http://research.cs.wisc.edu/multifacet/papers/isca99_multicast_talk_pdf.pdf)
 
 Left questions:
 - Do cache coherence implementations ensure __fairness__ among cores?
@@ -69,7 +70,7 @@ Left questions:
       cache coherence traffic, which make sense.
     - Related: [Broadwell EP Snoop Models](https://software.intel.com/en-us/articles/intel-xeon-processor-e5-2600-v4-product-family-technical-overview)
     - Related: [Skylay UPI](https://software.intel.com/en-us/articles/intel-xeon-processor-scalable-family-technical-overview)
-- [__MESIF: A Two-Hop Cache Coherency Protocol for Point-to-Point Interconnects (2009)__](https://researchspace.auckland.ac.nz/bitstream/handle/2292/11594/MESIF-2009.pdf?sequence=6)
+- [Paper: MESIF: A Two-Hop Cache Coherency Protocol for Point-to-Point Interconnects (2009)__](https://researchspace.auckland.ac.nz/bitstream/handle/2292/11594/MESIF-2009.pdf?sequence=6)
     - A MUST read.
     - This paper has the most extensive description of the MESIF protocol implementation.
       It has many __timing diagrams__ than describe how cache requests actually proceed.
@@ -84,17 +85,6 @@ Left questions:
     - Also note: this is just one of the possible implementations to realize MESIF protocol.
       There could be many other ways, e.g., QPI source snooping, QPI home snooping.
       But all of them share the essential and general concepts and ideas.
-- [Why On-Chip Cache Coherence Is Here to Stay](http://www.cis.upenn.edu/acg/papers/cacm12_why_coherence.pdf)
-    - This paper discusses why cache coherence can scale. A nice read.
-    - R1: Coherence’s interconnection network traffic per miss scales
-          when precisely tracking sharers. (Okay increased directory bits,
-	  what about those storage cost? See R2).
-    - R2: Hierarchy combined with inclusion enables efficient scaling
-          of the storage cost for exact encoding of sharers.
-    - R3: private evictions should send explict messages to shared cache
-          to enable precise tracking. Thus the recall (_back invalidation_) traffic can be
-	  reduced when shared cache is evicting (assume inclusion cache).
-    - R4: Latencies of cache request can be amotized. 
 - [Appendix I: Large-Scale Multiprocessors and Scientific Applications](https://www.elsevier.com/books-and-journals/book-companion/9780128119051),
   chapter 7 Implementing Cache Coherence.
     - This is probably some most insightful discussion about real implementation of cache coherence.
@@ -118,6 +108,27 @@ Left questions:
 - AMD HyperTransport Assit for Cache Coherence
     - [Slide](https://www.hotchips.org/wp-content/uploads/hc_archives/hc14/3_Tue/28_AMD_Hammer_MP_HC_v8.pdf)
     - [Slide](http://www.hotchips.org/wp-content/uploads/hc_archives/hc21/2_mon/HC21.24.100.ServerSystemsI-Epub/HC21.24.110.Conway-AMD-Magny-Cours.pdf)
+- [Paper: Why On-Chip Cache Coherence Is Here to Stay, Communications of ACM'02](http://www.cis.upenn.edu/acg/papers/cacm12_why_coherence.pdf)
+    - This paper discusses why cache coherence can scale. A nice read.
+    - R1: Coherence’s interconnection network traffic per miss scales
+          when precisely tracking sharers. (Okay increased directory bits,
+	  what about those storage cost? See R2).
+    - R2: Hierarchy combined with inclusion enables efficient scaling
+          of the storage cost for exact encoding of sharers.
+    - R3: private evictions should send explicit messages to shared cache
+          to enable precise tracking. Thus the recall (_back invalidation_) traffic can be
+	  reduced when shared cache is evicting (assume inclusion cache).
+    - R4: Latencies of cache request can be amortized.
+- [Paper: Multicast Snooping: A New Coherence Method Using a Multicast Address Network, ISCA '99](http://research.cs.wisc.edu/multifacet/papers/isca99_multicast_talk_pdf.pdf)
+    - A hybrid snoop and directory cache coherence implementation. The insight is snoop
+      cause too much bandwidth, directory incurs longer latency.
+    - So this paper proposed `Multicast snoop`, where it multicasts coherence transactions
+      to selected processors, lowering the address bandwidth required for snooping.
+- [Book: Parallel Computer Organization and Design](https://www.amazon.com/Parallel-Computer-Organization-Design-Professor/dp/0521886759), Chapter 7.
+    - Links coherence and consistency together. This chapter uses detailed graphs to show
+      how different cache coherence implementations affect consistency.
+- [Book: A Primer on Memory Consistency and Cache Coherence](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.225.9278&rep=rep1&type=pdf)
+    - Best book for this topic.
 
 ## Misc Small Facts
 
@@ -129,9 +140,9 @@ Left questions:
 - Intel UPI is using directory-based home snoop coherency protocol
     - [Intel® Xeon® Processor Scalable Family Technical Overview](https://software.intel.com/en-us/articles/intel-xeon-processor-scalable-family-technical-overview)
 - To provide sufficient bandwidth, shared caches are typically interleaved
-  by addresses with banks physically distibuted across the chip.
+  by addresses with banks physically distributed across the chip.
 
---  
-Yizhou Shan  
-Created: Jun 28, 2019  
+--
+Yizhou Shan
+Created: Jun 28, 2019
 Last Updated: Jun 29, 2019
