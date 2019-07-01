@@ -54,18 +54,6 @@
   </li></ul>
           
 		  
-  <ul class="" href="../../misc/essential/">
-    <li class="toctree-l1">
-  <a class="" href="../../misc/essential/">Essential</a>
-  </li></ul>
-          
-		  
-  <ul class="" href="../../misc/cheatsheet/">
-    <li class="toctree-l1">
-  <a class="" href="../../misc/cheatsheet/">Cheatsheet</a>
-  </li></ul>
-          
-		  
   <p class="caption">Notes</p>
   <ul class="current">
           <li class="toctree-l1 current">
@@ -100,7 +88,7 @@
         </li>
           <li class="toctree-l1">
             
-  <a class="" href="../rmap/">Linux: Reverse Mmap</a>
+  <a class="" href="../rmap/">Linux: Reverse Mmap (rmap)</a>
         </li>
           <li class="toctree-l1">
             
@@ -120,7 +108,15 @@
         </li>
           <li class="toctree-l1">
             
-  <a class="" href="../kvm-basic/">KVM:   Basics</a>
+  <a class="" href="../kvm-basic/">Linux: KVM</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../misc/essential/">Misc:  Essential</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../misc/cheatsheet/">Misc:  Cheatsheet</a>
         </li>
   </ul>
 
@@ -237,20 +233,21 @@ a concrete understanding of current cache coherence implementations.</p>
   <code class="codehilite">read-and-inc</code>, <code class="codehilite">test-and-set</code>, and <code class="codehilite">lock;</code>-prefixed.
   I think, there will some &ldquo;lock the bus&rdquo;, or &ldquo;locked state&rdquo; at the
   home agent per cache line. Having atomic RMW instructions
-  will add more complexity to the overall transaction desgin.</li>
+  will add more complexity to the overall transaction design.</li>
 <li>While reading Intel related cache coherence diagrams/transactions,
   you might find many different descriptions. Don&rsquo;t panic. They are
   just different implementations proposed by Intel. Different
   implementations will have different trade-offs and performance,
   you can check <a href="https://frankdenneman.nl/2016/07/11/numa-deep-dive-part-3-cache-coherency/">Frank&rsquo;s post</a>
   for more details.</li>
-<li>Directory-based cache coherence procotol and implementation will
+<li>Directory-based cache coherence protocol and implementation will
   be the future for multicore machines. Because it incurs much less
   coherence traffic than snoop-based ones, thus more scalable.
   The trend is confirmed by recent Intel UPI directory-based approach.
   Related readings:
   [1]: <a href="http://www.cis.upenn.edu/acg/papers/cacm12_why_coherence.pdf">Why On-Chip Cache Coherence Is Here to Stay</a>
-  [2]: <a href="https://www.realworldtech.com/qpi-evolved/3/">QPI 1.1 Invovled</a></li>
+  [2]: <a href="https://www.realworldtech.com/qpi-evolved/3/">QPI 1.1 Invovled</a>
+  [3]: <a href="http://research.cs.wisc.edu/multifacet/papers/isca99_multicast_talk_pdf.pdf">Paper: Multicast Snooping: A New Coherence Method Using a Multicast Address Network, ISCA &lsquo;99</a></li>
 </ul>
 <p>Left questions:
 - Do cache coherence implementations ensure <strong>fairness</strong> among cores?</p>
@@ -276,7 +273,7 @@ a concrete understanding of current cache coherence implementations.</p>
 <li>Related: <a href="https://software.intel.com/en-us/articles/intel-xeon-processor-scalable-family-technical-overview">Skylay UPI</a></li>
 </ul>
 </li>
-<li><a href="https://researchspace.auckland.ac.nz/bitstream/handle/2292/11594/MESIF-2009.pdf?sequence=6"><strong>MESIF: A Two-Hop Cache Coherency Protocol for Point-to-Point Interconnects (2009)</strong></a><ul>
+<li><a href="https://researchspace.auckland.ac.nz/bitstream/handle/2292/11594/MESIF-2009.pdf?sequence=6">Paper: MESIF: A Two-Hop Cache Coherency Protocol for Point-to-Point Interconnects (2009)__</a><ul>
 <li>A MUST read.</li>
 <li>This paper has the most extensive description of the MESIF protocol implementation.
   It has many <strong>timing diagrams</strong> than describe how cache requests actually proceed.
@@ -291,19 +288,6 @@ a concrete understanding of current cache coherence implementations.</p>
 <li>Also note: this is just one of the possible implementations to realize MESIF protocol.
   There could be many other ways, e.g., QPI source snooping, QPI home snooping.
   But all of them share the essential and general concepts and ideas.</li>
-</ul>
-</li>
-<li><a href="http://www.cis.upenn.edu/acg/papers/cacm12_why_coherence.pdf">Why On-Chip Cache Coherence Is Here to Stay</a><ul>
-<li>This paper discusses why cache coherence can scale. A nice read.</li>
-<li>R1: Coherence’s interconnection network traffic per miss scales
-      when precisely tracking sharers. (Okay increased directory bits,
-  what about those storage cost? See R2).</li>
-<li>R2: Hierarchy combined with inclusion enables efficient scaling
-      of the storage cost for exact encoding of sharers.</li>
-<li>R3: private evictions should send explict messages to shared cache
-      to enable precise tracking. Thus the recall (<em>back invalidation</em>) traffic can be
-  reduced when shared cache is evicting (assume inclusion cache).</li>
-<li>R4: Latencies of cache request can be amotized. </li>
 </ul>
 </li>
 <li><a href="https://www.elsevier.com/books-and-journals/book-companion/9780128119051">Appendix I: Large-Scale Multiprocessors and Scientific Applications</a>,
@@ -335,6 +319,35 @@ a concrete understanding of current cache coherence implementations.</p>
 <li><a href="http://www.hotchips.org/wp-content/uploads/hc_archives/hc21/2_mon/HC21.24.100.ServerSystemsI-Epub/HC21.24.110.Conway-AMD-Magny-Cours.pdf">Slide</a></li>
 </ul>
 </li>
+<li><a href="http://www.cis.upenn.edu/acg/papers/cacm12_why_coherence.pdf">Paper: Why On-Chip Cache Coherence Is Here to Stay, Communications of ACM&lsquo;02</a><ul>
+<li>This paper discusses why cache coherence can scale. A nice read.</li>
+<li>R1: Coherence’s interconnection network traffic per miss scales
+      when precisely tracking sharers. (Okay increased directory bits,
+  what about those storage cost? See R2).</li>
+<li>R2: Hierarchy combined with inclusion enables efficient scaling
+      of the storage cost for exact encoding of sharers.</li>
+<li>R3: private evictions should send explicit messages to shared cache
+      to enable precise tracking. Thus the recall (<em>back invalidation</em>) traffic can be
+  reduced when shared cache is evicting (assume inclusion cache).</li>
+<li>R4: Latencies of cache request can be amortized.</li>
+</ul>
+</li>
+<li><a href="http://research.cs.wisc.edu/multifacet/papers/isca99_multicast_talk_pdf.pdf">Paper: Multicast Snooping: A New Coherence Method Using a Multicast Address Network, ISCA &lsquo;99</a><ul>
+<li>A hybrid snoop and directory cache coherence implementation. The insight is snoop
+  cause too much bandwidth, directory incurs longer latency.</li>
+<li>So this paper proposed <code class="codehilite">Multicast snoop</code>, where it multicasts coherence transactions
+  to selected processors, lowering the address bandwidth required for snooping.</li>
+</ul>
+</li>
+<li><a href="https://www.amazon.com/Parallel-Computer-Organization-Design-Professor/dp/0521886759">Book: Parallel Computer Organization and Design</a>, Chapter 7.<ul>
+<li>Links coherence and consistency together. This chapter uses detailed graphs to show
+  how different cache coherence implementations affect consistency.</li>
+</ul>
+</li>
+<li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.225.9278&amp;rep=rep1&amp;type=pdf">Book: A Primer on Memory Consistency and Cache Coherence</a><ul>
+<li>Best book for this topic.</li>
+</ul>
+</li>
 </ul>
 <h2 id="misc-small-facts">Misc Small Facts</h2>
 <ul>
@@ -352,11 +365,11 @@ a concrete understanding of current cache coherence implementations.</p>
 </ul>
 </li>
 <li>To provide sufficient bandwidth, shared caches are typically interleaved
-  by addresses with banks physically distibuted across the chip.</li>
+  by addresses with banks physically distributed across the chip.</li>
 </ul>
-<p>&ndash;<br />
-Yizhou Shan<br />
-Created: Jun 28, 2019<br />
+<p>&ndash;
+Yizhou Shan
+Created: Jun 28, 2019
 Last Updated: Jun 29, 2019</p>
               
             </div>
@@ -365,10 +378,10 @@ Last Updated: Jun 29, 2019</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../rmap/" class="btn btn-neutral float-right" title="Linux: Reverse Mmap">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../rmap/" class="btn btn-neutral float-right" title="Linux: Reverse Mmap (rmap)">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../misc/cheatsheet/" class="btn btn-neutral" title="Cheatsheet"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../.." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -394,7 +407,7 @@ Last Updated: Jun 29, 2019</p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../../misc/cheatsheet/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../rmap/" style="color: #fcfcfc">Next &raquo;</a></span>
