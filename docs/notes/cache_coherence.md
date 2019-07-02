@@ -100,6 +100,7 @@ Left questions:
       In fact, with NoC, they are actually distributed system.
 - [An Introduction to the Intel® QuickPath Interconnect](https://www.intel.ca/content/dam/doc/white-paper/quick-path-interconnect-introduction-paper.pdf),
   page 15 MESIF.
+      - [HotChips slide](https://www.hotchips.org/wp-content/uploads/hc_archives/hc21/1_sun/HC21.23.1.SystemInterconnectTutorial-Epub/HC21.23.120.Safranek-Intel-QPI.pdf), has timing diagrams.
       - It explains the `Home Snoop` and `Source Snoop` used by Intel.
       - Based on their explanation, it seems both `Home Snoop` and `Source Snoop` are using a combination of
         snoop and directory. The Processor#4 (pg 17 and 18) maintains the directory.
@@ -156,7 +157,7 @@ collecting snoop responses from the local cores when the MESIF protocol requires
 - To provide sufficient bandwidth, shared caches are typically interleaved
   by addresses with banks physically distributed across the chip.
 
---
-Yizhou Shan
-Created: Jun 28, 2019
-Last Updated: Jun 29, 2019
+--  
+Yizhou Shan  
+Created: Jun 28, 2019  
+Last Updated: Jul 2, 2019
