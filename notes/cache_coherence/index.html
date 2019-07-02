@@ -262,11 +262,8 @@ a concrete understanding of current cache coherence implementations.</p>
 - Do cache coherence implementations ensure <strong>fairness</strong> among cores?</p>
 <h2 id="references">References</h2>
 <ul>
-<li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.455.4198&amp;rep=rep1&amp;type=pdf">The Architecture of the Nehalem Processor and Nehalem-EP SMP Platforms</a>, chapter 5.2 Cache-Coherence Protocol for Multi-Processors.<ul>
-<li>This serves an entry-level description about how x86 MESIF works.</li>
-<li>Also this is a very good paper about general x86 microarchitectures.</li>
-</ul>
-</li>
+<li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.455.4198&amp;rep=rep1&amp;type=pdf">The Architecture of the Nehalem Processor and Nehalem-EP SMP Platforms</a>, chapter 5.2 Cache-Coherence Protocol for Multi-Processors.</li>
+<li><a href="https://software.intel.com/sites/products/collateral/hpc/vtune/performance_analysis_guide.pdf">Intel: Performance Analysis Guide for Intel® Core™ i7 Processor and Intel® Xeon™ 5500 processors</a></li>
 <li><a href="https://frankdenneman.nl/2016/07/11/numa-deep-dive-part-3-cache-coherency/">Blog: NUMA Deep Dive Part 3: Cache Coherency</a><ul>
 <li>By far the BEST blog I&rsquo;ve seen on the topic of <code class="codehilite">Intel snoop models</code>. Frank&rsquo;s other articles are also amazing.</li>
 <li>Intel is using MESIF cache coherence protocol, but it has multiple cache coherence implementations.
@@ -314,7 +311,7 @@ a concrete understanding of current cache coherence implementations.</p>
   In fact, with NoC, they are actually distributed system.</li>
 </ul>
 </li>
-<li><a href="https://www.intel.ca/content/dam/doc/white-paper/quick-path-interconnect-introduction-paper.pdf">An Introduction to the Intel® QuickPath Interconnect</a>,
+<li><a href="https://www.intel.ca/content/dam/doc/white-paper/quick-path-interconnect-introduction-paper.pdf">Intel: An Introduction to the Intel® QuickPath Interconnect</a>,
   page 15 MESIF.<ul>
 <li><a href="https://www.hotchips.org/wp-content/uploads/hc_archives/hc21/1_sun/HC21.23.1.SystemInterconnectTutorial-Epub/HC21.23.120.Safranek-Intel-QPI.pdf">HotChips slide</a>, has timing diagrams.</li>
 <li>It explains the <code class="codehilite">Home Snoop</code> and <code class="codehilite">Source Snoop</code> used by Intel.</li>
