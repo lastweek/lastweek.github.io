@@ -59,8 +59,7 @@ Left questions:
 ## References
 
 - [The Architecture of the Nehalem Processor and Nehalem-EP SMP Platforms](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.455.4198&rep=rep1&type=pdf), chapter 5.2 Cache-Coherence Protocol for Multi-Processors.
-    - This serves an entry-level description about how x86 MESIF works.
-    - Also this is a very good paper about general x86 microarchitectures.
+- [Intel: Performance Analysis Guide for Intel® Core™ i7 Processor and Intel® Xeon™ 5500 processors](https://software.intel.com/sites/products/collateral/hpc/vtune/performance_analysis_guide.pdf)
 - [Blog: NUMA Deep Dive Part 3: Cache Coherency](https://frankdenneman.nl/2016/07/11/numa-deep-dive-part-3-cache-coherency/)
     - By far the BEST blog I've seen on the topic of `Intel snoop models`. Frank's other articles are also amazing.
     - Intel is using MESIF cache coherence protocol, but it has multiple cache coherence implementations.
@@ -102,7 +101,7 @@ Left questions:
       They can solve write races.
     - `Home directory controller` and `cache controller` will exchange messages like a set of distributed machines.
       In fact, with NoC, they are actually distributed system.
-- [An Introduction to the Intel® QuickPath Interconnect](https://www.intel.ca/content/dam/doc/white-paper/quick-path-interconnect-introduction-paper.pdf),
+- [Intel: An Introduction to the Intel® QuickPath Interconnect](https://www.intel.ca/content/dam/doc/white-paper/quick-path-interconnect-introduction-paper.pdf),
   page 15 MESIF.
       - [HotChips slide](https://www.hotchips.org/wp-content/uploads/hc_archives/hc21/1_sun/HC21.23.1.SystemInterconnectTutorial-Epub/HC21.23.120.Safranek-Intel-QPI.pdf), has timing diagrams.
       - It explains the `Home Snoop` and `Source Snoop` used by Intel.
