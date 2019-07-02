@@ -258,8 +258,8 @@ a concrete understanding of current cache coherence implementations.</p>
 <li>Also this is a very good paper about general x86 microarchitectures.</li>
 </ul>
 </li>
-<li><a href="https://frankdenneman.nl/2016/07/11/numa-deep-dive-part-3-cache-coherency/">NUMA Deep Dive Part 3: Cache Coherency</a><ul>
-<li>By far the BEST blog I&rsquo;ve seen on the topic of Intel snoop models! Frank&rsquo;s other articles are also amazing.</li>
+<li><a href="https://frankdenneman.nl/2016/07/11/numa-deep-dive-part-3-cache-coherency/">Blog: NUMA Deep Dive Part 3: Cache Coherency</a><ul>
+<li>By far the BEST blog I&rsquo;ve seen on the topic of <code class="codehilite">Intel snoop models</code>. Frank&rsquo;s other articles are also amazing.</li>
 <li>Intel is using MESIF cache coherence protocol, but it has multiple cache coherence implementations.
   The first one is <code class="codehilite">Source Snoop</code> (or <code class="codehilite">Early Snoop</code>), which is more like a traditional snoop-based
   cache coherence implementation. Upon miss, the caching agent will broadcast to other agents.
@@ -276,7 +276,7 @@ a concrete understanding of current cache coherence implementations.</p>
 <li><a href="https://researchspace.auckland.ac.nz/bitstream/handle/2292/11594/MESIF-2009.pdf?sequence=6">Paper: MESIF: A Two-Hop Cache Coherency Protocol for Point-to-Point Interconnects (2009)__</a><ul>
 <li>A MUST read.</li>
 <li>This paper has the most extensive description of the MESIF protocol implementation.
-  It has many <strong>timing diagrams</strong> than describe how cache requests actually proceed.
+  It has many <code class="codehilite">timing diagrams</code> than describe how cache requests actually proceed.
   Those diagrams can help us understand what is needed to finish a cache request.</li>
 <li>Their <a href="https://parlab.eecs.berkeley.edu/sites/all/parlab/files/20091029-goodman-ssccp.pdf">slides</a>
   has more timing diagrams.</li>
@@ -346,6 +346,12 @@ a concrete understanding of current cache coherence implementations.</p>
 </li>
 <li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.225.9278&amp;rep=rep1&amp;type=pdf">Book: A Primer on Memory Consistency and Cache Coherence</a><ul>
 <li>Best book for this topic.</li>
+</ul>
+</li>
+<li><a href="https://software.intel.com/en-us/forums/intel-moderncode-for-parallel-architectures/topic/700477">Dr.Bandwidth on explaining core-to-core communication transactions!</a><ul>
+<li>Seriously, it&rsquo;s so good!</li>
+<li>Although, I just feel there are so many unpublished details about the exact coherence transactions.
+  Dr.Bandwidth himself used a lot &ldquo;maybe&rdquo;, and listed possible actions.</li>
 </ul>
 </li>
 </ul>
