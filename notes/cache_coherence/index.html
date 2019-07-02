@@ -80,6 +80,10 @@
           <a class="toctree-l3" href="#misc-small-facts">Misc Small Facts</a>
         </li>
     
+        <li class="toctree-l3 toc-item" >
+          <a class="toctree-l3" href="#examples">Examples</a>
+        </li>
+    
     </ul>
   
   </li>
@@ -244,10 +248,14 @@ a concrete understanding of current cache coherence implementations.</p>
   be the future for multicore machines. Because it incurs much less
   coherence traffic than snoop-based ones, thus more scalable.
   The trend is confirmed by recent Intel UPI directory-based approach.
-  Related readings:
-  [1]: <a href="http://www.cis.upenn.edu/acg/papers/cacm12_why_coherence.pdf">Why On-Chip Cache Coherence Is Here to Stay</a>
-  [2]: <a href="https://www.realworldtech.com/qpi-evolved/3/">QPI 1.1 Invovled</a>
-  [3]: <a href="http://research.cs.wisc.edu/multifacet/papers/isca99_multicast_talk_pdf.pdf">Paper: Multicast Snooping: A New Coherence Method Using a Multicast Address Network, ISCA &lsquo;99</a></li>
+  Related readings:<ul>
+<li>[1]: <a href="http://www.cis.upenn.edu/acg/papers/cacm12_why_coherence.pdf">Why On-Chip Cache Coherence Is Here to Stay</a></li>
+<li>[2]: <a href="https://www.realworldtech.com/qpi-evolved/3/">QPI 1.1 Invovled</a></li>
+<li>[3]: <a href="http://research.cs.wisc.edu/multifacet/papers/isca99_multicast_talk_pdf.pdf">Paper: Multicast Snooping: A New Coherence Method Using a Multicast Address Network, ISCA &lsquo;99</a></li>
+<li>[4]: <a href="https://www.cis.upenn.edu/~milom/papers/isca03_destination_set_prediction.pdf">Paper: Using Destination-Set Prediction to Improve the Latency/Bandwidth Tradeoff in Shared-Memory Multiprocessors, ISCA&lsquo;03</a></li>
+<li>[5]: The trade-off: <img alt="img_1" src="../cache_coherence_img1.png" /></li>
+</ul>
+</li>
 </ul>
 <p>Left questions:
 - Do cache coherence implementations ensure <strong>fairness</strong> among cores?</p>
@@ -384,6 +392,9 @@ collecting snoop responses from the local cores when the MESIF protocol requires
 <li>To provide sufficient bandwidth, shared caches are typically interleaved
   by addresses with banks physically distributed across the chip.</li>
 </ul>
+<h2 id="examples">Examples</h2>
+<p>Fill me in.
+Plot diagrams.</p>
 <p>&ndash;<br />
 Yizhou Shan<br />
 Created: Jun 28, 2019<br />
