@@ -1,4 +1,6 @@
-# Cache Coherence
+# A Random Dive of Cache Coherence Implementations
+
+:surfer: :ocean:
 
 A general collection of resources on cache coherence.
 I started this when I was having a hard time optimizing lock delegation.
