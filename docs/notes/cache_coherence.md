@@ -133,6 +133,16 @@ Left questions:
 ## Misc Small Facts
 
 - Intel Caching Agent (Cbox) is per core (or per LLC slice). Intel Home Agent is per memory controller.
+    - "The LLC coherence engine (CBo) manages the interface between the core and the last
+level cache (LLC). All core transactions that access the LLC are directed from the core
+to a CBo via the ring interconnect. The CBo is responsible for managing data delivery
+from the LLC to the requesting core. It is also responsible for maintaining coherence
+between the cores within the socket that share the LLC; generating snoops and
+collecting snoop responses from the local cores when the MESIF protocol requires it."
+    - "Every physical memory address in the system is uniquely associated with a single Cbox
+      instance via a proprietary hashing algorithm that is designed to keep the distribution of
+      traffic across the CBox instances relatively uniform for a wide range of possible address patterns."
+    - Read more [here, chapter 2.3](https://www.intel.com/content/dam/www/public/us/en/documents/manuals/xeon-e5-2600-v2-uncore-manual.pdf).
     - Starting from Intel UPI, Caching Agent and Home Agent are combined as CHA.
 - A good [discussion](https://www.realworldtech.com/qpi-evolved/3/) about why QPI gradually drop `Source Snoop` and solely use `Home Snoop`.
     - The motivation is scalability. It turns out the new UPI only supports directory-based protocol.
