@@ -45,9 +45,11 @@ a concrete understanding of current cache coherence implementations.
   coherence traffic than snoop-based ones, thus more scalable.
   The trend is confirmed by recent Intel UPI directory-based approach.
   Related readings:
-  [1]: [Why On-Chip Cache Coherence Is Here to Stay](http://www.cis.upenn.edu/acg/papers/cacm12_why_coherence.pdf)
-  [2]: [QPI 1.1 Invovled](https://www.realworldtech.com/qpi-evolved/3/)
-  [3]: [Paper: Multicast Snooping: A New Coherence Method Using a Multicast Address Network, ISCA '99](http://research.cs.wisc.edu/multifacet/papers/isca99_multicast_talk_pdf.pdf)
+    - [1]: [Why On-Chip Cache Coherence Is Here to Stay](http://www.cis.upenn.edu/acg/papers/cacm12_why_coherence.pdf)
+    - [2]: [QPI 1.1 Invovled](https://www.realworldtech.com/qpi-evolved/3/)
+    - [3]: [Paper: Multicast Snooping: A New Coherence Method Using a Multicast Address Network, ISCA '99](http://research.cs.wisc.edu/multifacet/papers/isca99_multicast_talk_pdf.pdf)
+    - [4]: [Paper: Using Destination-Set Prediction to Improve the Latency/Bandwidth Tradeoff in Shared-Memory Multiprocessors, ISCA'03](https://www.cis.upenn.edu/~milom/papers/isca03_destination_set_prediction.pdf)
+    - [5]: The trade-off: ![img_1](cache_coherence_img1.png)
 
 Left questions:
 - Do cache coherence implementations ensure __fairness__ among cores?
@@ -156,6 +158,11 @@ collecting snoop responses from the local cores when the MESIF protocol requires
     - [Intel® Xeon® Processor Scalable Family Technical Overview](https://software.intel.com/en-us/articles/intel-xeon-processor-scalable-family-technical-overview)
 - To provide sufficient bandwidth, shared caches are typically interleaved
   by addresses with banks physically distributed across the chip.
+
+## Examples
+
+Fill me in.
+Plot diagrams.
 
 --  
 Yizhou Shan  
