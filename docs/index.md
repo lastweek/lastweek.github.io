@@ -1,5 +1,9 @@
-I'm __Yizhou Shan__, a third-year Ph.D. student at __Purdue ECE__,
-advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). I work at [Wuklab.io](http://wuklab.io). Yes, the [Monkey King](https://en.wikipedia.org/wiki/Sun_Wukong) Lab. [CV](http://lastweek.io/pubs/cv.pdf).
+:cactus:
+
+Hi! I'm Yizhou Shan, a Ph.D. student at Purdue,
+advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). I work at [Wuklab.io](http://wuklab.io). Yes, the [Monkey King](https://en.wikipedia.org/wiki/Sun_Wukong) Lab.
+The best way to reach me is email: [__ys@purdue.edu__].
+My [CV](http://lastweek.io/pubs/cv.pdf).
 
 ## What's up
 - [_May 2019_] Intern at [VMware Research](https://research.vmware.com/), with [Marcos K. Aguilera](http://mkaguilera.kawazoe.org/)
@@ -13,15 +17,7 @@ advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). I work
 My research interests span Operating System, Distributed Systems, and Computer
 Architecture. I like hardcore hacking.
 
-## Contact
-465 Northwestern Ave  
-Purdue University  
-West Lafayette, IN 47907  
-Office: EE 345  
-
-Email: __ys@purdue.edu__
-
-## Publications :zzz:
+## Publications
 
 * [__Storm: a fast transactional dataplane for remote data structures__](https://dl.acm.org/citation.cfm?id=3325827)
 <br> Stanko Novakovic, __Yizhou Shan__, Aasheesh Kolli, Michael Cui, Yiying Zhang, Haggai Eran, Liran Liss, Michael Wei, Dan Tsafrir, Marcos Aguilera
@@ -66,6 +62,7 @@ Email: __ys@purdue.edu__
 <br> _Poster at the ACM Symposium on Cloud Computing 2017 (__SoCC '17__)_
 
 ## Social
+
 * [Github](https://github.com/lastweek)
 * [Twitter](https://twitter.com/Yizhou_Shan)
 * [LinkedIn](https://www.linkedin.com/in/lastweek/)

@@ -1,4 +1,4 @@
-# A Random Dive of Cache Coherence Implementations
+# Practical Cache Coherence
 
 :surfer: :ocean:
 
