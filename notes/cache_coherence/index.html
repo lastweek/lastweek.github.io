@@ -77,11 +77,11 @@
         </li>
     
         <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#misc-small-facts">Misc Small Facts</a>
+          <a class="toctree-l3" href="#misc-facts">Misc Facts</a>
         </li>
     
         <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#examples">Examples</a>
+          <a class="toctree-l3" href="#intel-cache-coherence">Intel Cache Coherence</a>
         </li>
     
     </ul>
@@ -362,7 +362,7 @@ a concrete understanding of current cache coherence implementations.</p>
 </ul>
 </li>
 </ul>
-<h2 id="misc-small-facts">Misc Small Facts</h2>
+<h2 id="misc-facts">Misc Facts</h2>
 <ul>
 <li>Intel Caching Agent (Cbox) is per core (or per LLC slice). Intel Home Agent is per memory controller.<ul>
 <li>&ldquo;The LLC coherence engine (CBo) manages the interface between the core and the last
@@ -390,9 +390,50 @@ collecting snoop responses from the local cores when the MESIF protocol requires
 <li>To provide sufficient bandwidth, shared caches are typically interleaved
   by addresses with banks physically distributed across the chip.</li>
 </ul>
-<h2 id="examples">Examples</h2>
-<p>Fill me in.
-Plot diagrams.</p>
+<h2 id="intel-cache-coherence">Intel Cache Coherence</h2>
+<p>Intel does not disclose too much details about their cache coherence implementations.
+The most valuable information is extracted from uncore PMU manuals, and discussions
+from Dr. Bandwidth. According to Dr. Bandwidth, the Intel CPU could dynamically
+adapt its coherence strategy during runtime according to workload. There won&rsquo;t
+be one fixed cache coherence implementation, there will be many. It depends on
+workload which one is used at runtime.</p>
+<p>List below might not be completely true. Just my understanding.</p>
+<ul>
+<li>Physical addresses are uniquely hashed into L3 slices. That means each individual
+  physical address belongs to a L3 slice, and also belongs to a home agent.</li>
+<li>Upon L2 miss, it will send requests to corresponding L3 slice. If the L3 slice
+  is in the local socket, the request can be delievered within the same socket.
+  If the L3 slice belongs to another remote socket, the L2 miss request will
+  be sent over QPI/UPI. Also note that the L2 controller will not send snoop requests.
+  (This is answering the question of &ldquo;why using local memory is faster than remote&rdquo;
+   from the cache coherence perspective.)</li>
+<li>At L3, when received the request from a L2,<ul>
+<li>If it&rsquo;s in source snoop model, it will send <code class="codehilite">snoop messages</code> to other sockets.</li>
+<li>If it&rsquo;s in home snoop model, it will send <code class="codehilite">read message</code> to other sockets.
+  The another socket will generate snoop and collect responses. (R3QPI or home?)</li>
+<li>Quote Dr. Bandwidth: Maintaining consistency is easier if the data is sent
+  to the L3 first, and then to the requesting core, but it is also possible to
+  send to both at the same time (e.g., &ldquo;Direct2Core&rdquo;). In recent processors,
+  these return paths are chosen dynamically based on undocumented states and
+  settings of the processor.</li>
+<li>I&rsquo;m not sure who will ACK L2 at last. L3 or home agent? Both are possible.</li>
+</ul>
+</li>
+<li>I think both L3 and home agent have directory information. They know where
+  to send snoop/read messages. And both of them can serialize coherence transactions!
+  It&rsquo;s just undocumented who is doing what.</li>
+<li>In generall, we need to bear the fact that we cannot just figure out how Intel
+  cache coherence works underlying. We maybe just need to &ldquo;vaguely&rdquo; know the fact that:<ul>
+<li>Both directory and snoop will be used in combination.</li>
+<li>L3/home agent will serialize conflicting transactions</li>
+<li>L3/home agent will send data to requesting core</li>
+<li>L3/home agent will send final ACK to requesting L2</li>
+<li>A coherence transaction is a multi-step distributed transaction.
+  It involes sending requests, serialize conflicts, receiving responses/ACKs.</li>
+</ul>
+</li>
+</ul>
+<p>When in doubt, read the <a href="https://software.intel.com/en-us/forums/intel-moderncode-for-parallel-architectures/topic/700477">discussion</a> posted by Dr. Bandwidth.</p>
 <p>&ndash;<br />
 Yizhou Shan<br />
 Created: Jun 28, 2019<br />
