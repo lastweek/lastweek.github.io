@@ -138,7 +138,7 @@ Left questions:
     - Although, I just feel there are so many unpublished details about the exact coherence transactions.
       Dr.Bandwidth himself used a lot "maybe", and listed possible actions.
 
-## Misc Small Facts
+## Misc Facts
 
 - Intel Caching Agent (Cbox) is per core (or per LLC slice). Intel Home Agent is per memory controller.
     - "The LLC coherence engine (CBo) manages the interface between the core and the last
@@ -160,10 +160,48 @@ collecting snoop responses from the local cores when the MESIF protocol requires
 - To provide sufficient bandwidth, shared caches are typically interleaved
   by addresses with banks physically distributed across the chip.
 
-## Examples
+## Intel Cache Coherence
 
-Fill me in.
-Plot diagrams.
+Intel does not disclose too much details about their cache coherence implementations.
+The most valuable information is extracted from uncore PMU manuals, and discussions
+from Dr. Bandwidth. According to Dr. Bandwidth, the Intel CPU could dynamically
+adapt its coherence strategy during runtime according to workload. There won't
+be one fixed cache coherence implementation, there will be many. It depends on
+workload which one is used at runtime.
+
+List below might not be completely true. Just my understanding.
+
+- Physical addresses are uniquely hashed into L3 slices. That means each individual
+  physical address belongs to a L3 slice, and also belongs to a home agent.
+- Upon L2 miss, it will send requests to corresponding L3 slice. If the L3 slice
+  is in the local socket, the request can be delievered within the same socket.
+  If the L3 slice belongs to another remote socket, the L2 miss request will
+  be sent over QPI/UPI. Also note that the L2 controller will not send snoop requests.
+  (This is answering the question of "why using local memory is faster than remote"
+   from the cache coherence perspective.)
+- At L3, when received the request from a L2,
+    - If it's in source snoop model, it will send `snoop messages` to other sockets.
+    - If it's in home snoop model, it will send `read message` to other sockets.
+      The another socket will generate snoop and collect responses. (R3QPI or home?)
+    - Quote Dr. Bandwidth: Maintaining consistency is easier if the data is sent
+      to the L3 first, and then to the requesting core, but it is also possible to
+      send to both at the same time (e.g., "Direct2Core"). In recent processors,
+      these return paths are chosen dynamically based on undocumented states and
+      settings of the processor.
+    - I'm not sure who will ACK L2 at last. L3 or home agent? Both are possible.
+- I think both L3 and home agent have directory information. They know where
+  to send snoop/read messages. And both of them can serialize coherence transactions!
+  It's just undocumented who is doing what.
+- In generall, we need to bear the fact that we cannot just figure out how Intel
+  cache coherence works underlying. We maybe just need to "vaguely" know the fact that:
+    - Both directory and snoop will be used in combination.
+    - L3/home agent will serialize conflicting transactions
+    - L3/home agent will send data to requesting core
+    - L3/home agent will send final ACK to requesting L2
+    - A coherence transaction is a multi-step distributed transaction.
+      It involes sending requests, serialize conflicts, receiving responses/ACKs.
+
+When in doubt, read the [discussion](https://software.intel.com/en-us/forums/intel-moderncode-for-parallel-architectures/topic/700477) posted by Dr. Bandwidth.
 
 --  
 Yizhou Shan  
