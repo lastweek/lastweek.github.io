@@ -17,6 +17,8 @@ My [CV](http://lastweek.io/pubs/cv.pdf).
 My research interests span Operating System, Distributed Systems, and Computer
 Architecture. I like hardcore hacking.
 
+[Work-In-Progress]: Disaggregated FPGA Platform
+
 ## Publications
 
 * [__Storm: a fast transactional dataplane for remote data structures__](https://dl.acm.org/citation.cfm?id=3325827)
