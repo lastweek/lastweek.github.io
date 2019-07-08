@@ -1,6 +1,6 @@
 # Practical Cache Coherence
 
-:surfer: :ocean:
+:sake:
 
 - [Practical Cache Coherence](#practical-cache-coherence)
 	- [Summary and Thoughs](#summary-and-thoughs)
