@@ -73,6 +73,8 @@
         
             <li><a class="toctree-l4" href="#intel-cache-coherence">Intel Cache Coherence</a></li>
         
+            <li><a class="toctree-l4" href="#openpiton">OpenPiton</a></li>
+        
         </ul>
     
 
@@ -637,10 +639,20 @@ workload which one is used at runtime.</p>
 </li>
 </ul>
 <p>When in doubt, read the <a href="https://software.intel.com/en-us/forums/intel-moderncode-for-parallel-architectures/topic/700477">discussion</a> posted by Dr. Bandwidth.</p>
+<h2 id="openpiton">OpenPiton</h2>
+<ul>
+<li><a href="https://parallel.princeton.edu/openpiton/docs/micro_arch.pdf">OpenPiton Microarchitecture Specification</a><ul>
+<li>Directory-based MESI</li>
+<li>This spec has detailed coherence message packet format and type. Unfortunately,
+  it does not say anything about how they deal with coherence transaction conflicts.
+  E.g., some timeline diagrams like Figrue &#8532; in this <a href="https://researchspace.auckland.ac.nz/bitstream/handle/2292/11594/MESIF-2009.pdf?sequence=6">paper</a>.</li>
+</ul>
+</li>
+</ul>
 <p>&ndash;<br />
 Yizhou Shan<br />
 Created: Jun 28, 2019<br />
-Last Updated: Jul 2, 2019</p>
+Last Updated: Jul 8, 2019</p>
               
             </div>
           </div>
