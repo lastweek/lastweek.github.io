@@ -1,5 +1,7 @@
 # Linux Reverse Map
 
+:octopus:
+
 Read those carefully, you will understand:
 
 - [PDF: Object-based Reverse Mapping](https://landley.net/kdocs/ols/2004/ols2004v2-pages-71-74.pdf)
