@@ -71,11 +71,7 @@
         
             <li><a class="toctree-l4" href="#misc-facts">Misc Facts</a></li>
         
-            <li><a class="toctree-l4" href="#intel-cache-coherence">Intel Cache Coherence</a></li>
-        
-            <li><a class="toctree-l4" href="#openpiton">OpenPiton</a></li>
-        
-            <li><a class="toctree-l4" href="#opencapi-and-ccix">OpenCAPI and CCIX</a></li>
+            <li><a class="toctree-l4" href="#case-study">Case Study</a></li>
         
         </ul>
     
@@ -597,7 +593,8 @@ collecting snoop responses from the local cores when the MESIF protocol requires
 <li>To provide sufficient bandwidth, shared caches are typically interleaved
   by addresses with banks physically distributed across the chip.</li>
 </ul>
-<h2 id="intel-cache-coherence">Intel Cache Coherence</h2>
+<h2 id="case-study">Case Study</h2>
+<h3 id="intel-cache-coherence">Intel Cache Coherence</h3>
 <p>Intel does not disclose too much details about their cache coherence implementations.
 The most valuable information is extracted from uncore PMU manuals, and discussions
 from Dr. Bandwidth. According to Dr. Bandwidth, the Intel CPU could dynamically
@@ -641,7 +638,23 @@ workload which one is used at runtime.</p>
 </li>
 </ul>
 <p>When in doubt, read the <a href="https://software.intel.com/en-us/forums/intel-moderncode-for-parallel-architectures/topic/700477">discussion</a> posted by Dr. Bandwidth.</p>
-<h2 id="openpiton">OpenPiton</h2>
+<h3 id="arm">ARM</h3>
+<ul>
+<li><a href="https://developer.arm.com/architectures/system-architectures/amba/documentation?_ga=2.147594999.1797165765.1562530195-129127748.1561485892">AMBA CHI Specifications</a><ul>
+<li>This is probabaly the most comprehensive document I&rsquo;ve ever seen about cache coherence.
+  Although terms used by ARM differs from the ones used by Intel, still, you can map them.
+  Chapter 5 Interconnect Protocol Flows has a lot timing diagrams regarding read/write/atomic
+  coherence transactions.</li>
+<li>It&rsquo;s a good reference to know, but it would be hard to actually understand the details.</li>
+</ul>
+</li>
+</ul>
+<h3 id="opencapi-and-ccix">OpenCAPI and CCIX</h3>
+<ul>
+<li><a href="https://docs.wixstatic.com/ugd/0c1418_c6d7ec2210ae47f99f58042df0006c3d.pdf">CCIX White Paper</a></li>
+<li><a href="">OpenCAPI</a></li>
+</ul>
+<h3 id="openpiton">OpenPiton</h3>
 <ul>
 <li><a href="https://parallel.princeton.edu/openpiton/docs/micro_arch.pdf">OpenPiton Microarchitecture Specification</a><ul>
 <li>Directory-based MESI</li>
@@ -650,11 +663,6 @@ workload which one is used at runtime.</p>
   E.g., some timeline diagrams like Figrue &#8532; in this <a href="https://researchspace.auckland.ac.nz/bitstream/handle/2292/11594/MESIF-2009.pdf?sequence=6">paper</a>.</li>
 </ul>
 </li>
-</ul>
-<h2 id="opencapi-and-ccix">OpenCAPI and CCIX</h2>
-<ul>
-<li><a href="https://docs.wixstatic.com/ugd/0c1418_c6d7ec2210ae47f99f58042df0006c3d.pdf">CCIX White Paper</a></li>
-<li><a href="">OpenCAPI</a></li>
 </ul>
 <p>&ndash;<br />
 Yizhou Shan<br />
