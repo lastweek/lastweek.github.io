@@ -67,7 +67,7 @@
         
             <li><a class="toctree-l4" href="#summary-and-thoughs">Summary and Thoughs</a></li>
         
-            <li><a class="toctree-l4" href="#references">References</a></li>
+            <li><a class="toctree-l4" href="#readings">Readings</a></li>
         
             <li><a class="toctree-l4" href="#misc-facts">Misc Facts</a></li>
         
@@ -409,6 +409,21 @@
               
                 <h1 id="practical-cache-coherence">Practical Cache Coherence</h1>
 <p><img alt="🏄" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f3c4.svg" title=":surfer:" /> <img alt="🌊" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f30a.svg" title=":ocean:" /></p>
+<ul>
+<li><a href="#practical-cache-coherence">Practical Cache Coherence</a><ul>
+<li><a href="#summary-and-thoughs">Summary and Thoughs</a></li>
+<li><a href="#readings">Readings</a></li>
+<li><a href="#misc-facts">Misc Facts</a></li>
+<li><a href="#case-study">Case Study</a><ul>
+<li><a href="#intel">Intel</a></li>
+<li><a href="#arm">ARM</a></li>
+<li><a href="#opencapi-and-ccix">OpenCAPI and CCIX</a></li>
+<li><a href="#openpiton">OpenPiton</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <p>A general collection of resources on cache coherence.
 I started this when I was having a hard time optimizing lock delegation.
 This note is not about acadamic new ideas, but rather for
@@ -463,7 +478,7 @@ a concrete understanding of current cache coherence implementations.</p>
 </ul>
 <p>Left questions:
 - Do cache coherence implementations ensure <strong>fairness</strong> among cores?</p>
-<h2 id="references">References</h2>
+<h2 id="readings">Readings</h2>
 <ul>
 <li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.455.4198&amp;rep=rep1&amp;type=pdf">The Architecture of the Nehalem Processor and Nehalem-EP SMP Platforms</a>, chapter 5.2 Cache-Coherence Protocol for Multi-Processors.</li>
 <li><a href="https://software.intel.com/sites/products/collateral/hpc/vtune/performance_analysis_guide.pdf">Intel: Performance Analysis Guide for Intel® Core™ i7 Processor and Intel® Xeon™ 5500 processors</a></li>
@@ -594,7 +609,7 @@ collecting snoop responses from the local cores when the MESIF protocol requires
   by addresses with banks physically distributed across the chip.</li>
 </ul>
 <h2 id="case-study">Case Study</h2>
-<h3 id="intel-cache-coherence">Intel Cache Coherence</h3>
+<h3 id="intel">Intel</h3>
 <p>Intel does not disclose too much details about their cache coherence implementations.
 The most valuable information is extracted from uncore PMU manuals, and discussions
 from Dr. Bandwidth. According to Dr. Bandwidth, the Intel CPU could dynamically
