@@ -203,7 +203,16 @@ List below might not be completely true. Just my understanding.
 
 When in doubt, read the [discussion](https://software.intel.com/en-us/forums/intel-moderncode-for-parallel-architectures/topic/700477) posted by Dr. Bandwidth.
 
+## OpenPiton
+
+- [OpenPiton Microarchitecture Specification](https://parallel.princeton.edu/openpiton/docs/micro_arch.pdf)
+    - Directory-based MESI
+    - This spec has detailed coherence message packet format and type. Unfortunately,
+      it does not say anything about how they deal with coherence transaction conflicts.
+      E.g., some timeline diagrams like Figrue 2/3 in this [paper](https://researchspace.auckland.ac.nz/bitstream/handle/2292/11594/MESIF-2009.pdf?sequence=6).
+
+
 --  
 Yizhou Shan  
 Created: Jun 28, 2019  
-Last Updated: Jul 2, 2019
+Last Updated: Jul 8, 2019

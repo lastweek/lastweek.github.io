@@ -1,4 +1,4 @@
-:cactus:
+:surfer:
 
 Hi! I'm Yizhou Shan, a Ph.D. student at Purdue,
 advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). I work at [Wuklab.io](http://wuklab.io). Yes, the [Monkey King](https://en.wikipedia.org/wiki/Sun_Wukong) Lab.
