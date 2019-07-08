@@ -2,6 +2,16 @@
 
 :surfer: :ocean:
 
+- [Practical Cache Coherence](#practical-cache-coherence)
+	- [Summary and Thoughs](#summary-and-thoughs)
+	- [Readings](#readings)
+	- [Misc Facts](#misc-facts)
+	- [Case Study](#case-study)
+		- [Intel](#intel)
+		- [ARM](#arm)
+		- [OpenCAPI and CCIX](#opencapi-and-ccix)
+		- [OpenPiton](#openpiton)
+
 A general collection of resources on cache coherence.
 I started this when I was having a hard time optimizing lock delegation.
 This note is not about acadamic new ideas, but rather for
@@ -56,7 +66,7 @@ a concrete understanding of current cache coherence implementations.
 Left questions:
 - Do cache coherence implementations ensure __fairness__ among cores?
 
-## References
+## Readings
 
 - [The Architecture of the Nehalem Processor and Nehalem-EP SMP Platforms](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.455.4198&rep=rep1&type=pdf), chapter 5.2 Cache-Coherence Protocol for Multi-Processors.
 - [Intel: Performance Analysis Guide for Intel® Core™ i7 Processor and Intel® Xeon™ 5500 processors](https://software.intel.com/sites/products/collateral/hpc/vtune/performance_analysis_guide.pdf)
@@ -162,7 +172,7 @@ collecting snoop responses from the local cores when the MESIF protocol requires
 
 ## Case Study
 
-### Intel Cache Coherence
+### Intel
 
 Intel does not disclose too much details about their cache coherence implementations.
 The most valuable information is extracted from uncore PMU manuals, and discussions
