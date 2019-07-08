@@ -17,18 +17,19 @@ My [CV](http://lastweek.io/pubs/cv.pdf).
 My research interests span Operating System, Distributed Systems, and Computer
 Architecture. I like hardcore hacking.
 
-[Work-In-Progress]: Disaggregated FPGA Platform
+- <font color='green'>__[Work-In-Progress]__</font>: Disaggregated FPGA Platform
+- <font color='green'>__[Work-In-Progress]__</font>: Retrofit Page Fault Resolving For the Killer Microseconds
 
 ## Publications
 
 * [__Storm: a fast transactional dataplane for remote data structures__](https://dl.acm.org/citation.cfm?id=3325827)
 <br> Stanko Novakovic, __Yizhou Shan__, Aasheesh Kolli, Michael Cui, Yiying Zhang, Haggai Eran, Liran Liss, Michael Wei, Dan Tsafrir, Marcos Aguilera
-<br> _12th ACM International Systems and Storage Conference (__SYSTOR'19__)_ __(Best Paper Award)__
+<br> _12th ACM International Systems and Storage Conference (__SYSTOR'19__)_ <font color='red'>__(Best Paper Award)__</font>
 <br> [[Preprint]](https://arxiv.org/pdf/1902.02411.pdf)
 
 * [__LegoOS: A Disseminated, Distributed OS for Hardware Resource Disaggregation__](https://www.usenix.org/conference/osdi18/presentation/shan)
 <br> __Yizhou Shan__, Yutong Huang, Yilun Chen, Yiying Zhang
-<br> _13th USENIX Symposium on Operating Systems Design and Implementation (__OSDI'18__)_ __(Best Paper Award)__
+<br> _13th USENIX Symposium on Operating Systems Design and Implementation (__OSDI'18__)_ <font color='red'>__(Best Paper Award)__</font>
 <br> [[Source Code]](https://github.com/WukLab/LegoOS)
 
 * [__Distributed Shared Persistent Memory__](https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf)
