@@ -160,7 +160,9 @@ collecting snoop responses from the local cores when the MESIF protocol requires
 - To provide sufficient bandwidth, shared caches are typically interleaved
   by addresses with banks physically distributed across the chip.
 
-## Intel Cache Coherence
+## Case Study
+
+### Intel Cache Coherence
 
 Intel does not disclose too much details about their cache coherence implementations.
 The most valuable information is extracted from uncore PMU manuals, and discussions
@@ -203,7 +205,21 @@ List below might not be completely true. Just my understanding.
 
 When in doubt, read the [discussion](https://software.intel.com/en-us/forums/intel-moderncode-for-parallel-architectures/topic/700477) posted by Dr. Bandwidth.
 
-## OpenPiton
+### ARM
+
+- [AMBA CHI Specifications](https://developer.arm.com/architectures/system-architectures/amba/documentation?_ga=2.147594999.1797165765.1562530195-129127748.1561485892)
+    - This is probabaly the most comprehensive document I've ever seen about cache coherence.
+      Although terms used by ARM differs from the ones used by Intel, still, you can map them.
+      Chapter 5 Interconnect Protocol Flows has a lot timing diagrams regarding read/write/atomic
+      coherence transactions.
+    - It's a good reference to know, but it would be hard to actually understand the details.
+
+### OpenCAPI and CCIX
+
+- [CCIX White Paper](https://docs.wixstatic.com/ugd/0c1418_c6d7ec2210ae47f99f58042df0006c3d.pdf)
+- [OpenCAPI]()
+
+### OpenPiton
 
 - [OpenPiton Microarchitecture Specification](https://parallel.princeton.edu/openpiton/docs/micro_arch.pdf)
     - Directory-based MESI
@@ -211,10 +227,6 @@ When in doubt, read the [discussion](https://software.intel.com/en-us/forums/int
       it does not say anything about how they deal with coherence transaction conflicts.
       E.g., some timeline diagrams like Figrue 2/3 in this [paper](https://researchspace.auckland.ac.nz/bitstream/handle/2292/11594/MESIF-2009.pdf?sequence=6).
 
-## OpenCAPI and CCIX
-
-- [CCIX White Paper](https://docs.wixstatic.com/ugd/0c1418_c6d7ec2210ae47f99f58042df0006c3d.pdf)
-- [OpenCAPI]()
 
 --  
 Yizhou Shan  
