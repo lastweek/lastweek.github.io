@@ -211,6 +211,10 @@ When in doubt, read the [discussion](https://software.intel.com/en-us/forums/int
       it does not say anything about how they deal with coherence transaction conflicts.
       E.g., some timeline diagrams like Figrue 2/3 in this [paper](https://researchspace.auckland.ac.nz/bitstream/handle/2292/11594/MESIF-2009.pdf?sequence=6).
 
+## OpenCAPI and CCIX
+
+- [CCIX White Paper](https://docs.wixstatic.com/ugd/0c1418_c6d7ec2210ae47f99f58042df0006c3d.pdf)
+- [OpenCAPI]()
 
 --  
 Yizhou Shan  
