@@ -8,6 +8,7 @@
 	- [Misc Facts](#misc-facts)
 	- [Case Study](#case-study)
 		- [Intel](#intel)
+		- [AMD](#amd)
 		- [ARM](#arm)
 		- [OpenCAPI and CCIX](#opencapi-and-ccix)
 		- [OpenPiton](#openpiton)
@@ -119,9 +120,11 @@ Left questions:
         snoop and directory. The Processor#4 (pg 17 and 18) maintains the directory.
       - And this is a perfect demonstration of the details described in [Appendix I: Large-Scale Multiprocessors and Scientific Applications](https://www.elsevier.com/books-and-journals/book-companion/9780128119051).
       - Related patent: [Extending a cache coherency snoop broadcast protocol with directory information](https://patents.google.com/patent/US20150081977)
-- AMD HyperTransport Assit for Cache Coherence
-    - [Slide](https://www.hotchips.org/wp-content/uploads/hc_archives/hc14/3_Tue/28_AMD_Hammer_MP_HC_v8.pdf)
-    - [Slide](http://www.hotchips.org/wp-content/uploads/hc_archives/hc21/2_mon/HC21.24.100.ServerSystemsI-Epub/HC21.24.110.Conway-AMD-Magny-Cours.pdf)
+- [Paper: Multicast Snooping: A New Coherence Method Using a Multicast Address Network, ISCA '99](http://research.cs.wisc.edu/multifacet/papers/isca99_multicast_talk_pdf.pdf)
+    - A hybrid snoop and directory cache coherence implementation. The insight is snoop
+      cause too much bandwidth, directory incurs longer latency.
+    - So this paper proposed `Multicast snoop`, where it multicasts coherence transactions
+      to selected processors, lowering the address bandwidth required for snooping.
 - [Paper: Why On-Chip Cache Coherence Is Here to Stay, Communications of ACM'02](http://www.cis.upenn.edu/acg/papers/cacm12_why_coherence.pdf)
     - This paper discusses why cache coherence can scale. A nice read.
     - R1: Coherence’s interconnection network traffic per miss scales
@@ -133,11 +136,6 @@ Left questions:
           to enable precise tracking. Thus the recall (_back invalidation_) traffic can be
 	  reduced when shared cache is evicting (assume inclusion cache).
     - R4: Latencies of cache request can be amortized.
-- [Paper: Multicast Snooping: A New Coherence Method Using a Multicast Address Network, ISCA '99](http://research.cs.wisc.edu/multifacet/papers/isca99_multicast_talk_pdf.pdf)
-    - A hybrid snoop and directory cache coherence implementation. The insight is snoop
-      cause too much bandwidth, directory incurs longer latency.
-    - So this paper proposed `Multicast snoop`, where it multicasts coherence transactions
-      to selected processors, lowering the address bandwidth required for snooping.
 - [Book: Parallel Computer Organization and Design](https://www.amazon.com/Parallel-Computer-Organization-Design-Professor/dp/0521886759), Chapter 7.
     - Links coherence and consistency together. This chapter uses detailed graphs to show
       how different cache coherence implementations affect consistency.
@@ -214,6 +212,12 @@ List below might not be completely true. Just my understanding.
       It involes sending requests, serialize conflicts, receiving responses/ACKs.
 
 When in doubt, read the [discussion](https://software.intel.com/en-us/forums/intel-moderncode-for-parallel-architectures/topic/700477) posted by Dr. Bandwidth.
+
+### AMD
+
+- AMD HyperTransport Assit for Cache Coherence
+    - [Slide](https://www.hotchips.org/wp-content/uploads/hc_archives/hc14/3_Tue/28_AMD_Hammer_MP_HC_v8.pdf)
+    - [Slide](http://www.hotchips.org/wp-content/uploads/hc_archives/hc21/2_mon/HC21.24.100.ServerSystemsI-Epub/HC21.24.110.Conway-AMD-Magny-Cours.pdf)
 
 ### ARM
 
