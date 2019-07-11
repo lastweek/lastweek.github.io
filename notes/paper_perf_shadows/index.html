@@ -209,16 +209,24 @@
 <p>There are shadows under the sun.<br />
 There are shadows in your life.<br />
 There are shadows in your computer.  </p>
+<p>This note is about latency tolerance techniques,
+ranging from nanoseconds to seconds. We will look at some
+interesting academic ideas.</p>
 <h2 id="nanoseconds">Nanoseconds</h2>
-<p>Mostly architecture level solutions.</p>
+<p>Architecture solutions to attack nanosecond-level performance shadows
+that are mostly created by lower level data and instruction cache misses.
+OoO and SMT are the base to hide these latencies, but they fall short
+when ROB is full (or some other reasons).
+When that happens, these academic ideas come in rescue.</p>
 <h3 id="runahead">Runahead</h3>
+<p><strong>Quote</strong></p>
 <blockquote>
-<p>In runahead, once the processor stalls, it uses the instruction window to
+<p><em>&ldquo;In runahead, once the processor stalls, it uses the instruction window to
 continue to fetch and execute operations. The goal of runahead is to generate
 new cache misses, thereby turning subsequent demand requests into cache hits
-instead of cache misses.”</p>
+instead of cache misses.[5]&rdquo;</em></p>
 </blockquote>
-<p><em>Papers</em></p>
+<p><strong>Papers</strong></p>
 <ol>
 <li>Improving Data Cache Performance by Pre-executing Instructions Under a Cache Miss, ICS’97</li>
 <li>Runahead Execution: An Alternative to Very Large Instruction Windows for Out-of-order Processors, HPCA’03</li>
@@ -231,11 +239,12 @@ instead of cache misses.”</p>
 </ul>
 </li>
 <li>Continuous Runahead: Transparent Hardware Acceleration for Memory Intensive Workloads, MICRO’16<ul>
-<li>A nice read by itself.</li>
+<li>Nice idea to tackle the issue that runahead does not get enough time to run.</li>
+<li>Also has the notion of ideal runahead coverage.</li>
 </ul>
 </li>
 </ol>
-<p><em>Comments</em></p>
+<p><strong>Comments</strong></p>
 <ul>
 <li>We should separate mechanism and policy.</li>
 <li>Runahead is the mechanism. It includes:<ul>
@@ -247,8 +256,72 @@ instead of cache misses.”</p>
 <li>Prefetch is one of the policy, a major one. It&rsquo;s the side effect of running instructions in the execution phase of runahead mode.</li>
 <li>QoS control is another policy. This means adding specific rules to the execution phase. More specifically: limit the core resource usage of the runahead thread, thus reduce the impact on the co-running HW thread.</li>
 </ul>
-<h3 id="helper-threads">Helper Threads</h3>
-<p>Fill me in</p>
+<h3 id="helper-threads-or-precomputation">Helper Threads (or Precomputation)</h3>
+<p><strong>Quote</strong></p>
+<blockquote>
+<p><em>&ldquo;Precomputation uses idle thread contexts in a multithreaded architecture
+to improve performance of single-threaded applications.
+It attacks program stalls from data cache misses by
+pre-computing future memory accesses in available thread
+contexts, and prefetching these data.[1]&rdquo;</em></p>
+<p><em>&ldquo;Such pre-execution threads are
+purely speculative, and their instructions are never committed
+into the main computation. Instead, the pre-execution
+threads run code designed to trigger cache misses. As long
+as the pre-execution threads execute far enough in front of
+the main thread, they effectively hide the latency of the
+cache misses so that the main thread experiences signicantly fewer memory stalls.[5]&rdquo;</em></p>
+</blockquote>
+<p><strong>Papers</strong></p>
+<ol>
+<li>Speculative Precomputation: Long-range Prefetching of Delinquent Loads, ISCA&lsquo;01</li>
+<li><em>Dynamic</em> Speculative Precomputation, Micro&lsquo;01<ul>
+<li>Take a step further by using HW to construct the offloaded code slice automatically.</li>
+</ul>
+</li>
+<li>Execution-based Prediction Using Speculative Slices, ISCA&lsquo;01</li>
+<li>Tolerating Memory Latency through <em>Software-Controlled</em> Pre-Execution in Simultaneous Multithreading Processors, ISCA&lsquo;01<ul>
+<li>What&rsquo;s up with ISCA&lsquo;01? This paper proposed to use software to control
+when to start running precomputation and when to exit. It uses compiler&rsquo;s
+help to generate those code slices, and insert special start/end instructions.
+On the contrast, hardware-controller precomputation relies on hints such
+as cache misses.</li>
+</ul>
+</li>
+<li>Design and Evaluation of Compiler Algorithms for PreExecution, ASPLOS&lsquo;02<ul>
+<li>5.1 A Study of Source-Level Compiler Algorithms for Automatic Construction of Pre-Execution Code, TOCS&lsquo;04</li>
+</ul>
+</li>
+<li>Dynamic Helper Threaded Prefetching on the Sun UltraSPARC® CMP Processor, Micro&lsquo;05<ul>
+<li>The <strong>function table</strong> at helper thread seems nice and useful.</li>
+</ul>
+</li>
+<li>Accelerating and Adapting Precomputation Threads for Effcient Prefetching, HPCA&lsquo;07<ul>
+<li>Dynamically construct precomputation code, called p-slices. They can adapt
+the same program differently depending on the program&rsquo;s data input and the underlying
+hardware architecture.</li>
+</ul>
+</li>
+<li>Inter-core Prefetching for Multicore Processors Using Migrating Helper Threads, ASPLOS&lsquo;11</li>
+<li>Bootstrapping: Using SMT Hardware to Improve Single-Thread Performance, ASPLOS&lsquo;19</li>
+</ol>
+<p><strong>Comments</strong></p>
+<ul>
+<li>The catch about precomputation is that it must create lightweight threads
+  that can actually proceed faster than the main thread, so that they
+  stay out in front.</li>
+<li>Also, same thing here, we should separate mechanisma and policies.
+  Helper thread (or precomputation) is mainly used as a vehicle
+  for speculatively generating data addresses and prefetching.</li>
+</ul>
+<h3 id="put-it-all-together">Put it all together</h3>
+<ul>
+<li>Both runahead and helper thread were proposed to do prefetch.
+  But they have a key difference. Runahead is invoked in the <em>same core</em>, and is invoked
+  when ROB is full (not always though). Helper thread is invoked at <em>another core</em>.</li>
+<li>For runahead, it can just fetch the instructions and run, no need to cook another code snipppt.
+  For helper thread, it needs to extract a code slice that will run on another core.</li>
+</ul>
 <h2 id="microseconds">Microseconds</h2>
 <p>Fill me in</p>
 <h2 id="milliseconds">Milliseconds</h2>
