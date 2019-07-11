@@ -7,7 +7,7 @@ pages:
 #- Papers:
 #  - 'FAST 18': 'read/fast18.md'
 #   - 'ASPLOS 18': 'read/asplos18.md'
-- Impl Notes:
+- Notes:
    - 'Perf Shadows':                     'notes/paper_perf_shadows.md'
    - '[Arch] Cache Coherence':           'notes/cache_coherence.md'
    - '[Linux] Reverse Mmap (rmap)':      'notes/rmap.md'
@@ -18,7 +18,10 @@ pages:
    - '[Linux] KVM':                      'notes/kvm-basic.md'
    - '[Misc] Essential':                 'misc/essential.md'
    - '[Misc] Cheatsheet':                'misc/cheatsheet.md'
-- LegoOS:
+- FPGA:
+   - 'HLS: Usage of AXI-Stream':         'fpga/hls_axi.md'
+   - 'HLS: High-performance AXI-MM':     'fpga/hls_axi.md'
+- LegoOS Dev Note:
    - 'Log':
            - 'TODO':                    'lego/log/TODO.md'
            - 'MISC':                    'lego/log/misc.md'
@@ -75,9 +78,6 @@ pages:
            - 'Gen-Z': 'lego/paper/genz.md'
            - 'Replication': 'lego/paper/replication.md'
            - 'Related': 'lego/paper/related.md'
-- FPGA:
-   - 'HLS: Usage of AXI-Stream': 'fpga/hls_axi.md'
-   - 'HLS: High-performance AXI-MM': 'fpga/hls_axi.md'
 
 markdown_extensions:
   - tables
