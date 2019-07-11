@@ -7,24 +7,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>Process Virtual Memory - Yizhou Shan's Home Page</title>
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Perf Shadows - Yizhou Shan's Home Page</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../../css/highlight.css">
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Process Virtual Memory";
-    var mkdocs_page_input_path = "lego/kernel/vm.md";
-    var mkdocs_page_url = "/lego/kernel/vm/";
+    var mkdocs_page_name = "Perf Shadows";
+    var mkdocs_page_input_path = "notes/paper_perf_shadows.md";
+    var mkdocs_page_url = "/notes/paper_perf_shadows/";
   </script>
   
-  <script src="../../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
   
 </head>
 
@@ -35,9 +35,9 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> Yizhou Shan's Home Page</a>
+        <a href="../.." class="icon icon-home"> Yizhou Shan's Home Page</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
   </form>
 </div>
@@ -49,52 +49,70 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../../..">Home</a>
+    <a class="" href="../..">Home</a>
 	    </li>
           
             <li class="toctree-l1">
 		
     <span class="caption-text">Impl Notes</span>
     <ul class="subnav">
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
+    <a class="current" href="./">Perf Shadows</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#hiding-in-the-performance-shadows">Hiding In The Performance Shadows</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#nanosecond">Nanosecond</a></li>
+        
+            <li><a class="toctree-l4" href="#runahead">Runahead</a></li>
+        
+            <li><a class="toctree-l4" href="#microsecond">Microsecond</a></li>
+        
+            <li><a class="toctree-l4" href="#millisecond">Millisecond</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../../notes/cache_coherence/">[Arch] Cache Coherence</a>
+    <a class="" href="../cache_coherence/">[Arch] Cache Coherence</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
+    <a class="" href="../rmap/">[Linux] Reverse Mmap (rmap)</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../../notes/trace/">[Linux] Tracing</a>
+    <a class="" href="../trace/">[Linux] Tracing</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
+    <a class="" href="../cgroup-swap/">[Linux] Cgroup and Swap</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
+    <a class="" href="../userfaultfd/">[Linux] Userfaultfd</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
+    <a class="" href="../xperf/">[Linux] User/kern Cross Perf</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
+    <a class="" href="../kvm-basic/">[Linux] KVM</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../../misc/essential/">[Misc] Essential</a>
+    <a class="" href="../../misc/essential/">[Misc] Essential</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../../misc/cheatsheet/">[Misc] Cheatsheet</a>
+    <a class="" href="../../misc/cheatsheet/">[Misc] Cheatsheet</a>
                 </li>
     </ul>
 	    </li>
@@ -109,123 +127,109 @@
     <ul class="subnav">
                 <li class="toctree-l3">
                     
-    <a class="" href="../../log/TODO/">TODO</a>
+    <a class="" href="../../lego/log/TODO/">TODO</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../log/misc/">MISC</a>
+    <a class="" href="../../lego/log/misc/">MISC</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../log/test-note/">Test Script</a>
+    <a class="" href="../../lego/log/test-note/">Test Script</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../log/log-09-2018/">Sep 2018</a>
+    <a class="" href="../../lego/log/log-09-2018/">Sep 2018</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../log/log-08-2018/">Aug 2018</a>
+    <a class="" href="../../lego/log/log-08-2018/">Aug 2018</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../log/log-04-2018/">April 2018</a>
+    <a class="" href="../../lego/log/log-04-2018/">April 2018</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../log/log-03-2018/">March 2018</a>
+    <a class="" href="../../lego/log/log-03-2018/">March 2018</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../log/log-02-2018/">Feb 2018</a>
+    <a class="" href="../../lego/log/log-02-2018/">Feb 2018</a>
                 </li>
     </ul>
                 </li>
-                <li class=" current">
+                <li class="">
                     
     <span class="caption-text">Kernel</span>
     <ul class="subnav">
                 <li class="toctree-l3">
                     
-    <a class="" href="../kconfig/">Kconfig</a>
+    <a class="" href="../../lego/kernel/kconfig/">Kconfig</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../debug/">Debug</a>
+    <a class="" href="../../lego/kernel/debug/">Debug</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../grub/">GRUB</a>
+    <a class="" href="../../lego/kernel/grub/">GRUB</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../profile/">Profile</a>
+    <a class="" href="../../lego/kernel/profile/">Profile</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../profile_strace/">Profile strace</a>
+    <a class="" href="../../lego/kernel/profile_strace/">Profile strace</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../profile_heatmap/">Profile heatmap</a>
+    <a class="" href="../../lego/kernel/profile_heatmap/">Profile heatmap</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../profile_points/">Profile points</a>
+    <a class="" href="../../lego/kernel/profile_points/">Profile points</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../trampoline/">Trampoline</a>
+    <a class="" href="../../lego/kernel/trampoline/">Trampoline</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../pagefault_disable/">Disable pgfault</a>
+    <a class="" href="../../lego/kernel/pagefault_disable/">Disable pgfault</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../stop_machine/">Stop machine</a>
+    <a class="" href="../../lego/kernel/stop_machine/">Stop machine</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../loader/">Program Loader</a>
+    <a class="" href="../../lego/kernel/loader/">Program Loader</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../vDSO/">vDSO</a>
+    <a class="" href="../../lego/kernel/vDSO/">vDSO</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../vfs/">Virtual File System</a>
-                </li>
-                <li class="toctree-l3 current">
-                    
-    <a class="current" href="./">Process Virtual Memory</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l4"><a href="#process-virtual-memory">Process Virtual Memory</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l5" href="#limits">Limits</a></li>
-        
-            <li><a class="toctree-l5" href="#facts">Facts</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../../lego/kernel/vfs/">Virtual File System</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../fpu/">x86 FPU</a>
+    <a class="" href="../../lego/kernel/vm/">Process Virtual Memory</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../irq/">IRQ</a>
+    <a class="" href="../../lego/kernel/fpu/">x86 FPU</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../net_thpool/">Network Thpool</a>
+    <a class="" href="../../lego/kernel/irq/">IRQ</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../lego/kernel/net_thpool/">Network Thpool</a>
                 </li>
     </ul>
                 </li>
@@ -235,35 +239,35 @@
     <ul class="subnav">
                 <li class="toctree-l3">
                     
-    <a class="" href="../../syscall/facts/">Facts</a>
+    <a class="" href="../../lego/syscall/facts/">Facts</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../profile_strace/">strace</a>
+    <a class="" href="../../lego/kernel/profile_strace/">strace</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../syscall/compat/">compat</a>
+    <a class="" href="../../lego/syscall/compat/">compat</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../syscall/msync/">msync()</a>
+    <a class="" href="../../lego/syscall/msync/">msync()</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../syscall/mremap/">mremap()</a>
+    <a class="" href="../../lego/syscall/mremap/">mremap()</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../syscall/fork/">fork()</a>
+    <a class="" href="../../lego/syscall/fork/">fork()</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../syscall/getrusage/">getrusage()</a>
+    <a class="" href="../../lego/syscall/getrusage/">getrusage()</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../syscall/wait_and_exit/">wait4 and exit()</a>
+    <a class="" href="../../lego/syscall/wait_and_exit/">wait4 and exit()</a>
                 </li>
     </ul>
                 </li>
@@ -273,43 +277,43 @@
     <ul class="subnav">
                 <li class="toctree-l3">
                     
-    <a class="" href="../../pcache/config/">Config</a>
+    <a class="" href="../../lego/pcache/config/">Config</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../pcache/sweep/">Sweep</a>
+    <a class="" href="../../lego/pcache/sweep/">Sweep</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../pcache/tlb/">TLB Coherence</a>
+    <a class="" href="../../lego/pcache/tlb/">TLB Coherence</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../pcache/pgtable-lock/">PageTable Lock</a>
+    <a class="" href="../../lego/pcache/pgtable-lock/">PageTable Lock</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../pcache/victim/">Victim Cache</a>
+    <a class="" href="../../lego/pcache/victim/">Victim Cache</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../pcache/virtual_cache/">Virtual Cache</a>
+    <a class="" href="../../lego/pcache/virtual_cache/">Virtual Cache</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../pcache/rmap/">Reverse Mapping</a>
+    <a class="" href="../../lego/pcache/rmap/">Reverse Mapping</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../pcache/evict_and_ref/">Evict and Refcount</a>
+    <a class="" href="../../lego/pcache/evict_and_ref/">Evict and Refcount</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../pcache/smp_design/">SMP Design</a>
+    <a class="" href="../../lego/pcache/smp_design/">SMP Design</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../pcache/replication/">Replication</a>
+    <a class="" href="../../lego/pcache/replication/">Replication</a>
                 </li>
     </ul>
                 </li>
@@ -319,11 +323,11 @@
     <ul class="subnav">
                 <li class="toctree-l3">
                     
-    <a class="" href="../../driver/pci/">PCI</a>
+    <a class="" href="../../lego/driver/pci/">PCI</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../driver/ib/">Infiniband</a>
+    <a class="" href="../../lego/driver/ib/">Infiniband</a>
                 </li>
     </ul>
                 </li>
@@ -333,23 +337,23 @@
     <ul class="subnav">
                 <li class="toctree-l3">
                     
-    <a class="" href="../../paper/nmp/">NMP</a>
+    <a class="" href="../../lego/paper/nmp/">NMP</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../paper/processor_oom/">Processor OOM</a>
+    <a class="" href="../../lego/paper/processor_oom/">Processor OOM</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../paper/genz/">Gen-Z</a>
+    <a class="" href="../../lego/paper/genz/">Gen-Z</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../paper/replication/">Replication</a>
+    <a class="" href="../../lego/paper/replication/">Replication</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../../paper/related/">Related</a>
+    <a class="" href="../../lego/paper/related/">Related</a>
                 </li>
     </ul>
                 </li>
@@ -362,11 +366,11 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
+    <a class="" href="../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
+    <a class="" href="../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
                 </li>
     </ul>
 	    </li>
@@ -381,7 +385,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">Yizhou Shan's Home Page</a>
+        <a href="../..">Yizhou Shan's Home Page</a>
       </nav>
 
       
@@ -389,19 +393,15 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../../..">Docs</a> &raquo;</li>
+    <li><a href="../..">Docs</a> &raquo;</li>
     
       
         
-          <li>LegoOS &raquo;</li>
-        
-      
-        
-          <li>Kernel &raquo;</li>
+          <li>Impl Notes &raquo;</li>
         
       
     
-    <li>Process Virtual Memory</li>
+    <li>Perf Shadows</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -411,30 +411,37 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="process-virtual-memory">Process Virtual Memory</h1>
-<h2 id="limits">Limits</h2>
-<h3 id="max-number-of-vmas">Max Number of VMAs</h3>
-<p>By default, the maximum number of VMAs is: <code class="codehilite">65530</code>. It is defined by the following variable:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#define MAPCOUNT_ELF_CORE_MARGIN        (5)</span>
-<span class="cp">#define DEFAULT_MAX_MAP_COUNT   (USHRT_MAX - MAPCOUNT_ELF_CORE_MARGIN)</span>
-
-<span class="kt">int</span> <span class="n">sysctl_max_map_count</span> <span class="n">__read_mostly</span> <span class="o">=</span> <span class="n">DEFAULT_MAX_MAP_COUNT</span><span class="p">;</span>
-</pre></div>
-</td></tr></table></p>
-<h2 id="facts">Facts</h2>
-<h3 id="munmap-can-split-vma"><code class="codehilite">munmap</code> can split vma</h3>
-<p><code class="codehilite">munmap</code> can create a hole with an existing vma, thus divide one existing vma to two new vmas. Do note that, <code class="codehilite">munmap</code> can create hole for both anonymous vma <em><strong>and</strong></em> file-backed vma.</p>
-<h3 id="msync-is-not-atomic"><code class="codehilite">msync()</code> is not atomic</h3>
-<p>During <code class="codehilite">msync()</code>, pages are being written back to disk one by one (or batched). Consider the case where few pages have been flushed back, while some other few pages are still in the memory. This premature writeback is not atomic and will be affected by failure.</p>
-<h3 id="msync-need-concurrency-control"><code class="codehilite">msync()</code> need concurrency control</h3>
-<p>With a multi-threaded application, does msync() provide the synchronization semantic? The answer is NO. Other threads within the same process are able to write to pages currently under <code class="codehilite">msync()</code>. This implies that application need to handle concurrency by themselves, e.g., rwlocks.</p>
-<p>&ndash;<br />
-Yizhou Shan<br />
-Created: Feb 19, 2018<br />
-Last Updated: Feb 19, 2018</p>
+                <h1 id="hiding-in-the-performance-shadows">Hiding In The Performance Shadows</h1>
+<p><img alt="🚦" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f6a6.svg" title=":vertical_traffic_light:" /></p>
+<p>There are shadows under the sun.
+There are shadows in your life.
+There are shadows in your computer.</p>
+<h3 id="nanosecond">Nanosecond</h3>
+<h2 id="runahead">Runahead</h2>
+<p>“In runahead, once the processor stalls, it uses the instruction window to continue to fetch and execute operations. The goal of runahead is to generate new cache misses, thereby turning subsequent demand requests into cache hits instead of cache misses.”</p>
+<p>Papers
+- Improving Data Cache Performance by Pre-executing Instructions Under a Cache Miss, ICS’97
+- Runahead Execution: An Alternative to Very Large Instruction Windows for Out-of-order Processors, HPCA’03
+- Efficient Runahead Execution: Power-Efficient Memory Latency Tolerance, IEEE Micro’06
+  - Good timeline graphs show the benefit of Runahead.
+- Runahead Threads to Improve SMT Performance, HPCA’08
+  - QoS control policy.
+- Continuous Runahead: Transparent Hardware Acceleration for Memory Intensive Workloads, MICRO’16
+  - A nice read by itself.</p>
+<p>In a mechanism and policy separation view:
+- Runahead is the mechanism, which includes <code class="codehilite">a)</code> enter runahead, <code class="codehilite">b)</code> execution in runahead context (most important thing is to maintain those INV bits and pseudo-retires), <code class="codehilite">c)</code> exit runahead.
+- Prefetch is one of the policy, a major one. It&rsquo;s the side effect of running instructions in the execution phase of runahead mode.
+- QoS control is another policy. This means adding specific rules to the execution phase. More specifically: limit the core resource usage of the runahead thread, thus reduce the impact on the co-running HW thread.</p>
+<h3 id="helper-threads">Helper Threads</h3>
+<p>Fill me in</p>
+<h2 id="microsecond">Microsecond</h2>
+<p>Fill me in</p>
+<h2 id="millisecond">Millisecond</h2>
+<p>Fill me in.</p>
+<p>&ndash;
+Yizhou Shan
+Created: Jul 11, 2019
+Last Updated: Jul 11, 2019</p>
               
             </div>
           </div>
@@ -442,10 +449,10 @@ Last Updated: Feb 19, 2018</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../fpu/" class="btn btn-neutral float-right" title="x86 FPU">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../cache_coherence/" class="btn btn-neutral float-right" title="[Arch] Cache Coherence">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../vfs/" class="btn btn-neutral" title="Virtual File System"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../.." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -471,17 +478,17 @@ Last Updated: Feb 19, 2018</p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../vfs/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../fpu/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../cache_coherence/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
-    <script>var base_url = '../../..';</script>
-    <script src="../../../js/theme.js"></script>
-      <script src="../../../search/require.js"></script>
-      <script src="../../../search/search.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
 
 </body>
 </html>
