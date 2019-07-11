@@ -107,6 +107,6 @@ markdown_extensions:
 theme:
   #name: 'material'
   #name: 'bootstrap386'
-  #name: 'rtd-dropdown'
-  name: 'readthedocs'
+  name: 'rtd-dropdown'
+  #name: 'readthedocs'
   #name: 'mkdocs'
