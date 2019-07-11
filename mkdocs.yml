@@ -8,7 +8,7 @@ pages:
 #  - 'FAST 18': 'read/fast18.md'
 #   - 'ASPLOS 18': 'read/asplos18.md'
 - Impl Notes:
-   - 'Perf Shadows':                     'nots/paper_perf_shadows.md'
+   - 'Perf Shadows':                     'notes/paper_perf_shadows.md'
    - '[Arch] Cache Coherence':           'notes/cache_coherence.md'
    - '[Linux] Reverse Mmap (rmap)':      'notes/rmap.md'
    - '[Linux] Tracing':                  'notes/trace.md'
