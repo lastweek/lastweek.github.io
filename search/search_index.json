@@ -261,6 +261,26 @@
             "title": "GRUB2 on Ubuntu"
         }, 
         {
+            "location": "/fpga/hls_axi/", 
+            "text": "High-performance AXI-MM in HLS\n\n\nThis post is about how to achieve the maximum AXI bandwidth in HLS.", 
+            "title": "HLS: Usage of AXI-Stream"
+        }, 
+        {
+            "location": "/fpga/hls_axi/#high-performance-axi-mm-in-hls", 
+            "text": "This post is about how to achieve the maximum AXI bandwidth in HLS.", 
+            "title": "High-performance AXI-MM in HLS"
+        }, 
+        {
+            "location": "/fpga/hls_axi/", 
+            "text": "High-performance AXI-MM in HLS\n\n\nThis post is about how to achieve the maximum AXI bandwidth in HLS.", 
+            "title": "HLS: High-performance AXI-MM"
+        }, 
+        {
+            "location": "/fpga/hls_axi/#high-performance-axi-mm-in-hls", 
+            "text": "This post is about how to achieve the maximum AXI bandwidth in HLS.", 
+            "title": "High-performance AXI-MM in HLS"
+        }, 
+        {
             "location": "/lego/log/TODO/", 
             "text": "TODO\n\n\nLast Updated: July 18, 2018\n\n\nPlanned\n\n\n\n\nTry \nfully-associative\n pcache, to see how many conflict misses can be removed (got the idea from HPCA18 google search paper)\n\n\nkmem_cache\n\n\nTSC deadline mode (one-shot tick)\n. What is the performance comparison with periodic mode?\n\n\nbatched TLB flush\n\n\n__unhash_process()\n: in exit, release pid etc.\n\n\n\n\nde_thread()\n: in exec, change pid etc.\n\n\n\n\n\n\nposix timers\n: used by exit(), wait() and others. Functions like \nposix_cpu_timers_exit_group\n.\n\n\n\n\n\n\nvDSO\n: if later we find applications are using \ngettimeofday\n, \ntime\n, and \ngetcpu\n a lot, and it truly hurt performance, then we should consider adding this in the processor side. (Check Processor Loader document for code that needs to be patched). (02/27/18)\n\n\n\n\n\n\nVA randomization\n: our loader does not add any randomization. For security reasons, we probably want to add this.\n\n\n\n\n\n\nVM Organization\n: multiple vm choice at M side, on a per-vma basis.\n\n\n\n\n\n\nfork\n:\n \ndup\n \nfree\n \npool\n: duplicate the free VA pool at both P and M.\n\n\n\n\n\n\npcache\n: send each page\ns type back. something like PcacheAnon, PcacheFile. So the pcache_evict/do_exit routine can be optimized.\n\n\n\n\n\n\nmm alloc\n: don\nt use the kmalloc to get a new mm_struct. This is a hot data structure, use get_free_page instead maybe. Like task_struct.\n\n\n\n\n\n\nfork_dup_pcache\n: have real \nvm_flags\n to guide write-protect. Get vm ranges from memory to optimize the duplication. Currently, all pages will be downgraded to read-only.\n\n\n\n\n\n\nP side mm sem\n: check if we need the sem in P side. pgfault need read, fork and others need W. Even though M side also serialize this, but  out ops are divided.\n\n\n\n\n\n\nmprotect\n: it is empty now. We assume applications are well-written. But does any of them rely on this COW feature?\n\n\n\n\n\n\nCPU_NO_HZ\n: disable timer for some cores, to reduce the overhead of timer interrupts. This is named \nCPU_NO_HZ\n and some similar Kconfigs.\n\n\n\n\n\n\nSYSCALL\n: compared with linux, we are always using the slow path, which pass all arguments. We should consider optimize this. OS-intensive applications may hurt.\n\n\n\n\n\n\nIB\n: reply is a sg list. Esp benefit pcache.\n\n\n\n\n\n\nFinished\n\n\n\n\n-\nvsyscall\n: mostly emulation-", 
             "title": "TODO"
@@ -1889,26 +1909,6 @@
             "location": "/lego/paper/related/#dredbox", 
             "text": "news  IBM Advancing cloud with memory disaggregation  [Slides: Open Source Cloud Ecosystem for Next-Gen Disaggregated Datacenters] ( https://schd.ws/hosted_files/osseu17/60/dReDBox.CloudOpen2017.talk.pdf )  Slides: Demo", 
             "title": "dRedBox"
-        }, 
-        {
-            "location": "/fpga/hls_axi/", 
-            "text": "High-performance AXI-MM in HLS\n\n\nThis post is about how to achieve the maximum AXI bandwidth in HLS.", 
-            "title": "HLS: Usage of AXI-Stream"
-        }, 
-        {
-            "location": "/fpga/hls_axi/#high-performance-axi-mm-in-hls", 
-            "text": "This post is about how to achieve the maximum AXI bandwidth in HLS.", 
-            "title": "High-performance AXI-MM in HLS"
-        }, 
-        {
-            "location": "/fpga/hls_axi/", 
-            "text": "High-performance AXI-MM in HLS\n\n\nThis post is about how to achieve the maximum AXI bandwidth in HLS.", 
-            "title": "HLS: High-performance AXI-MM"
-        }, 
-        {
-            "location": "/fpga/hls_axi/#high-performance-axi-mm-in-hls", 
-            "text": "This post is about how to achieve the maximum AXI bandwidth in HLS.", 
-            "title": "High-performance AXI-MM in HLS"
         }
     ]
 }
