@@ -65,13 +65,11 @@
     
         <ul>
         
-            <li><a class="toctree-l4" href="#nanosecond">Nanosecond</a></li>
+            <li><a class="toctree-l4" href="#nanoseconds">Nanoseconds</a></li>
         
-            <li><a class="toctree-l4" href="#runahead">Runahead</a></li>
+            <li><a class="toctree-l4" href="#microseconds">Microseconds</a></li>
         
-            <li><a class="toctree-l4" href="#microsecond">Microsecond</a></li>
-        
-            <li><a class="toctree-l4" href="#millisecond">Millisecond</a></li>
+            <li><a class="toctree-l4" href="#milliseconds">Milliseconds</a></li>
         
         </ul>
     
@@ -413,34 +411,56 @@
               
                 <h1 id="hiding-in-the-performance-shadows">Hiding In The Performance Shadows</h1>
 <p><img alt="🚦" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f6a6.svg" title=":vertical_traffic_light:" /></p>
-<p>There are shadows under the sun.
-There are shadows in your life.
-There are shadows in your computer.</p>
-<h3 id="nanosecond">Nanosecond</h3>
-<h2 id="runahead">Runahead</h2>
-<p>“In runahead, once the processor stalls, it uses the instruction window to continue to fetch and execute operations. The goal of runahead is to generate new cache misses, thereby turning subsequent demand requests into cache hits instead of cache misses.”</p>
-<p>Papers
-- Improving Data Cache Performance by Pre-executing Instructions Under a Cache Miss, ICS’97
-- Runahead Execution: An Alternative to Very Large Instruction Windows for Out-of-order Processors, HPCA’03
-- Efficient Runahead Execution: Power-Efficient Memory Latency Tolerance, IEEE Micro’06
-  - Good timeline graphs show the benefit of Runahead.
-- Runahead Threads to Improve SMT Performance, HPCA’08
-  - QoS control policy.
-- Continuous Runahead: Transparent Hardware Acceleration for Memory Intensive Workloads, MICRO’16
-  - A nice read by itself.</p>
-<p>In a mechanism and policy separation view:
-- Runahead is the mechanism, which includes <code class="codehilite">a)</code> enter runahead, <code class="codehilite">b)</code> execution in runahead context (most important thing is to maintain those INV bits and pseudo-retires), <code class="codehilite">c)</code> exit runahead.
-- Prefetch is one of the policy, a major one. It&rsquo;s the side effect of running instructions in the execution phase of runahead mode.
-- QoS control is another policy. This means adding specific rules to the execution phase. More specifically: limit the core resource usage of the runahead thread, thus reduce the impact on the co-running HW thread.</p>
+<p>There are shadows under the sun.<br />
+There are shadows in your life.<br />
+There are shadows in your computer.  </p>
+<h2 id="nanoseconds">Nanoseconds</h2>
+<p>Mostly architecture level solutions.</p>
+<h3 id="runahead">Runahead</h3>
+<blockquote>
+<p>In runahead, once the processor stalls, it uses the instruction window to
+continue to fetch and execute operations. The goal of runahead is to generate
+new cache misses, thereby turning subsequent demand requests into cache hits
+instead of cache misses.”</p>
+</blockquote>
+<p><em>Papers</em></p>
+<ol>
+<li>Improving Data Cache Performance by Pre-executing Instructions Under a Cache Miss, ICS’97</li>
+<li>Runahead Execution: An Alternative to Very Large Instruction Windows for Out-of-order Processors, HPCA’03</li>
+<li>Efficient Runahead Execution: Power-Efficient Memory Latency Tolerance, IEEE Micro’06<ul>
+<li>Good timeline graphs show the benefit of Runahead.</li>
+</ul>
+</li>
+<li>Runahead Threads to Improve SMT Performance, HPCA’08<ul>
+<li>QoS control policy.</li>
+</ul>
+</li>
+<li>Continuous Runahead: Transparent Hardware Acceleration for Memory Intensive Workloads, MICRO’16<ul>
+<li>A nice read by itself.</li>
+</ul>
+</li>
+</ol>
+<p><em>Comments</em></p>
+<ul>
+<li>We should separate mechanism and policy.</li>
+<li>Runahead is the mechanism. It includes:<ul>
+<li>Enter runahead</li>
+<li>Execution in runahead context (most important thing is to maintain those INV bits and pseudo-retires)</li>
+<li>Exit runahead</li>
+</ul>
+</li>
+<li>Prefetch is one of the policy, a major one. It&rsquo;s the side effect of running instructions in the execution phase of runahead mode.</li>
+<li>QoS control is another policy. This means adding specific rules to the execution phase. More specifically: limit the core resource usage of the runahead thread, thus reduce the impact on the co-running HW thread.</li>
+</ul>
 <h3 id="helper-threads">Helper Threads</h3>
 <p>Fill me in</p>
-<h2 id="microsecond">Microsecond</h2>
+<h2 id="microseconds">Microseconds</h2>
 <p>Fill me in</p>
-<h2 id="millisecond">Millisecond</h2>
+<h2 id="milliseconds">Milliseconds</h2>
 <p>Fill me in.</p>
-<p>&ndash;
-Yizhou Shan
-Created: Jul 11, 2019
+<p>&ndash;<br />
+Yizhou Shan<br />
+Created: Jul 11, 2019<br />
 Last Updated: Jul 11, 2019</p>
               
             </div>

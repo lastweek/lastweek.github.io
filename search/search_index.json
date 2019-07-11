@@ -37,22 +37,22 @@
         }, 
         {
             "location": "/notes/paper_perf_shadows/", 
-            "text": "Hiding In The Performance Shadows\n\n\n\n\nThere are shadows under the sun.\nThere are shadows in your life.\nThere are shadows in your computer.\n\n\nNanosecond\n\n\nRunahead\n\n\n\u201cIn runahead, once the processor stalls, it uses the instruction window to continue to fetch and execute operations. The goal of runahead is to generate new cache misses, thereby turning subsequent demand requests into cache hits instead of cache misses.\u201d\n\n\nPapers\n- Improving Data Cache Performance by Pre-executing Instructions Under a Cache Miss, ICS\u201997\n- Runahead Execution: An Alternative to Very Large Instruction Windows for Out-of-order Processors, HPCA\u201903\n- Efficient Runahead Execution: Power-Efficient Memory Latency Tolerance, IEEE Micro\u201906\n  - Good timeline graphs show the benefit of Runahead.\n- Runahead Threads to Improve SMT Performance, HPCA\u201908\n  - QoS control policy.\n- Continuous Runahead: Transparent Hardware Acceleration for Memory Intensive Workloads, MICRO\u201916\n  - A nice read by itself.\n\n\nIn a mechanism and policy separation view:\n- Runahead is the mechanism, which includes \na)\n enter runahead, \nb)\n execution in runahead context (most important thing is to maintain those INV bits and pseudo-retires), \nc)\n exit runahead.\n- Prefetch is one of the policy, a major one. It\ns the side effect of running instructions in the execution phase of runahead mode.\n- QoS control is another policy. This means adding specific rules to the execution phase. More specifically: limit the core resource usage of the runahead thread, thus reduce the impact on the co-running HW thread.\n\n\nHelper Threads\n\n\nFill me in\n\n\nMicrosecond\n\n\nFill me in\n\n\nMillisecond\n\n\nFill me in.\n\n\n\nYizhou Shan\nCreated: Jul 11, 2019\nLast Updated: Jul 11, 2019", 
+            "text": "Hiding In The Performance Shadows\n\n\n\n\nThere are shadows under the sun.\n\nThere are shadows in your life.\n\nThere are shadows in your computer.  \n\n\nNanoseconds\n\n\nMostly architecture level solutions.\n\n\nRunahead\n\n\n\n\nIn runahead, once the processor stalls, it uses the instruction window to\ncontinue to fetch and execute operations. The goal of runahead is to generate\nnew cache misses, thereby turning subsequent demand requests into cache hits\ninstead of cache misses.\u201d\n\n\n\n\nPapers\n\n\n\n\nImproving Data Cache Performance by Pre-executing Instructions Under a Cache Miss, ICS\u201997\n\n\nRunahead Execution: An Alternative to Very Large Instruction Windows for Out-of-order Processors, HPCA\u201903\n\n\nEfficient Runahead Execution: Power-Efficient Memory Latency Tolerance, IEEE Micro\u201906\n\n\nGood timeline graphs show the benefit of Runahead.\n\n\n\n\n\n\nRunahead Threads to Improve SMT Performance, HPCA\u201908\n\n\nQoS control policy.\n\n\n\n\n\n\nContinuous Runahead: Transparent Hardware Acceleration for Memory Intensive Workloads, MICRO\u201916\n\n\nA nice read by itself.\n\n\n\n\n\n\n\n\nComments\n\n\n\n\nWe should separate mechanism and policy.\n\n\nRunahead is the mechanism. It includes:\n\n\nEnter runahead\n\n\nExecution in runahead context (most important thing is to maintain those INV bits and pseudo-retires)\n\n\nExit runahead\n\n\n\n\n\n\nPrefetch is one of the policy, a major one. It\ns the side effect of running instructions in the execution phase of runahead mode.\n\n\nQoS control is another policy. This means adding specific rules to the execution phase. More specifically: limit the core resource usage of the runahead thread, thus reduce the impact on the co-running HW thread.\n\n\n\n\nHelper Threads\n\n\nFill me in\n\n\nMicroseconds\n\n\nFill me in\n\n\nMilliseconds\n\n\nFill me in.\n\n\n\nYizhou Shan\n\nCreated: Jul 11, 2019\n\nLast Updated: Jul 11, 2019", 
             "title": "Perf Shadows"
         }, 
         {
             "location": "/notes/paper_perf_shadows/#hiding-in-the-performance-shadows", 
-            "text": "There are shadows under the sun.\nThere are shadows in your life.\nThere are shadows in your computer.", 
+            "text": "There are shadows under the sun. \nThere are shadows in your life. \nThere are shadows in your computer.", 
             "title": "Hiding In The Performance Shadows"
         }, 
         {
-            "location": "/notes/paper_perf_shadows/#nanosecond", 
-            "text": "", 
-            "title": "Nanosecond"
+            "location": "/notes/paper_perf_shadows/#nanoseconds", 
+            "text": "Mostly architecture level solutions.", 
+            "title": "Nanoseconds"
         }, 
         {
             "location": "/notes/paper_perf_shadows/#runahead", 
-            "text": "\u201cIn runahead, once the processor stalls, it uses the instruction window to continue to fetch and execute operations. The goal of runahead is to generate new cache misses, thereby turning subsequent demand requests into cache hits instead of cache misses.\u201d  Papers\n- Improving Data Cache Performance by Pre-executing Instructions Under a Cache Miss, ICS\u201997\n- Runahead Execution: An Alternative to Very Large Instruction Windows for Out-of-order Processors, HPCA\u201903\n- Efficient Runahead Execution: Power-Efficient Memory Latency Tolerance, IEEE Micro\u201906\n  - Good timeline graphs show the benefit of Runahead.\n- Runahead Threads to Improve SMT Performance, HPCA\u201908\n  - QoS control policy.\n- Continuous Runahead: Transparent Hardware Acceleration for Memory Intensive Workloads, MICRO\u201916\n  - A nice read by itself.  In a mechanism and policy separation view:\n- Runahead is the mechanism, which includes  a)  enter runahead,  b)  execution in runahead context (most important thing is to maintain those INV bits and pseudo-retires),  c)  exit runahead.\n- Prefetch is one of the policy, a major one. It s the side effect of running instructions in the execution phase of runahead mode.\n- QoS control is another policy. This means adding specific rules to the execution phase. More specifically: limit the core resource usage of the runahead thread, thus reduce the impact on the co-running HW thread.", 
+            "text": "In runahead, once the processor stalls, it uses the instruction window to\ncontinue to fetch and execute operations. The goal of runahead is to generate\nnew cache misses, thereby turning subsequent demand requests into cache hits\ninstead of cache misses.\u201d   Papers   Improving Data Cache Performance by Pre-executing Instructions Under a Cache Miss, ICS\u201997  Runahead Execution: An Alternative to Very Large Instruction Windows for Out-of-order Processors, HPCA\u201903  Efficient Runahead Execution: Power-Efficient Memory Latency Tolerance, IEEE Micro\u201906  Good timeline graphs show the benefit of Runahead.    Runahead Threads to Improve SMT Performance, HPCA\u201908  QoS control policy.    Continuous Runahead: Transparent Hardware Acceleration for Memory Intensive Workloads, MICRO\u201916  A nice read by itself.     Comments   We should separate mechanism and policy.  Runahead is the mechanism. It includes:  Enter runahead  Execution in runahead context (most important thing is to maintain those INV bits and pseudo-retires)  Exit runahead    Prefetch is one of the policy, a major one. It s the side effect of running instructions in the execution phase of runahead mode.  QoS control is another policy. This means adding specific rules to the execution phase. More specifically: limit the core resource usage of the runahead thread, thus reduce the impact on the co-running HW thread.", 
             "title": "Runahead"
         }, 
         {
@@ -61,14 +61,14 @@
             "title": "Helper Threads"
         }, 
         {
-            "location": "/notes/paper_perf_shadows/#microsecond", 
+            "location": "/notes/paper_perf_shadows/#microseconds", 
             "text": "Fill me in", 
-            "title": "Microsecond"
+            "title": "Microseconds"
         }, 
         {
-            "location": "/notes/paper_perf_shadows/#millisecond", 
-            "text": "Fill me in.  \nYizhou Shan\nCreated: Jul 11, 2019\nLast Updated: Jul 11, 2019", 
-            "title": "Millisecond"
+            "location": "/notes/paper_perf_shadows/#milliseconds", 
+            "text": "Fill me in.  \nYizhou Shan \nCreated: Jul 11, 2019 \nLast Updated: Jul 11, 2019", 
+            "title": "Milliseconds"
         }, 
         {
             "location": "/notes/cache_coherence/", 
