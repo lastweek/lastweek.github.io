@@ -7,26 +7,27 @@ pages:
 #- Papers:
 #  - 'FAST 18': 'read/fast18.md'
 #   - 'ASPLOS 18': 'read/asplos18.md'
-- Notes:
-   - '[Arch] Cache Coherence':                 'notes/cache_coherence.md'
+- Impl Notes:
+   - 'Perf Shadows':                     'nots/paper_perf_shadows.md'
+   - '[Arch] Cache Coherence':           'notes/cache_coherence.md'
    - '[Linux] Reverse Mmap (rmap)':      'notes/rmap.md'
    - '[Linux] Tracing':                  'notes/trace.md'
    - '[Linux] Cgroup and Swap':          'notes/cgroup-swap.md'
    - '[Linux] Userfaultfd':              'notes/userfaultfd.md'
    - '[Linux] User/kern Cross Perf':     'notes/xperf.md'
    - '[Linux] KVM':                      'notes/kvm-basic.md'
-   - '[Misc] Essential':                'misc/essential.md'
-   - '[Misc] Cheatsheet':               'misc/cheatsheet.md'
+   - '[Misc] Essential':                 'misc/essential.md'
+   - '[Misc] Cheatsheet':                'misc/cheatsheet.md'
 - LegoOS:
    - 'Log':
-           - 'TODO': 'lego/log/TODO.md'
-           - 'MISC': 'lego/log/misc.md'
+           - 'TODO':                    'lego/log/TODO.md'
+           - 'MISC':                    'lego/log/misc.md'
            - 'Test Script':             'lego/log/test-note.md'
-           - 'Sep 2018':           'lego/log/log-09-2018.md'
-           - 'Aug 2018':           'lego/log/log-08-2018.md'
-           - 'April 2018':           'lego/log/log-04-2018.md'
-           - 'March 2018':           'lego/log/log-03-2018.md'
-           - 'Feb 2018':           'lego/log/log-02-2018.md'
+           - 'Sep 2018':                'lego/log/log-09-2018.md'
+           - 'Aug 2018':                'lego/log/log-08-2018.md'
+           - 'April 2018':              'lego/log/log-04-2018.md'
+           - 'March 2018':              'lego/log/log-03-2018.md'
+           - 'Feb 2018':                'lego/log/log-02-2018.md'
    - 'Kernel':
         - 'Kconfig': 'lego/kernel/kconfig.md'
         - 'Debug': 'lego/kernel/debug.md'
