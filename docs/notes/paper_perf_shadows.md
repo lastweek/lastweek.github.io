@@ -1,20 +1,5 @@
 # Hiding In The Performance Shadows
 
-<!-- vscode-markdown-toc -->
-* 1. [Nanoseconds](#Nanoseconds)
-	* 1.1. [Runahead](#Runahead)
-	* 1.2. [Helper Threads (or Precomputation)](#HelperThreadsorPrecomputation)
-	* 1.3. [Put it all together](#Putitalltogether)
-	* 1.4. [Locks](#Locks)
-* 2. [Microseconds](#Microseconds)
-* 3. [Milliseconds](#Milliseconds)
-
-<!-- vscode-markdown-toc-config
-	numbering=true
-	autoSave=true
-	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->
-
 :vertical_traffic_light:
 
 There are shadows under the sun.  
