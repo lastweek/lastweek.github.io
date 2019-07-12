@@ -24,7 +24,7 @@ pages:
 - FPGA:
    - 'HLS: Usage of AXI-Stream':         'fpga/hls_axi.md'
    - 'HLS: High-performance AXI-MM':     'fpga/hls_axi.md'
-- LegoOS Dev Note:
+- LegoOS-Dev:
    - 'Log':
            - 'TODO':                    'lego/log/TODO.md'
            - 'MISC':                    'lego/log/misc.md'
@@ -112,7 +112,7 @@ markdown_extensions:
 theme:
   name: 'material'
   #palette:
-  #  primary: 'blue'
+  #  primary: 'deep purple'
   #  accent: 'red'
   #font:
   #  text: 'Times new roman'
