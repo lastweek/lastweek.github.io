@@ -6,7 +6,7 @@ There are shadows under the sun.
 There are shadows in your life.  
 There are shadows in your computer.  
 
-This note is about latency tolerance techniques.  
+This note is about ==latency tolerance techniques==.  
 This note is about how to get the most out of the otherwise-wasted resource.
 
 ## Nanoseconds
@@ -19,11 +19,11 @@ When that happens, these academic ideas come in rescue.
 
 ### Runahead
 
-**Quote**
-> *"In runahead, once the processor stalls, it uses the instruction window to
-> continue to fetch and execute operations. The goal of runahead is to generate
-> new cache misses, thereby turning subsequent demand requests into cache hits
-> instead of cache misses.[5]"*
+!!! quote
+    In runahead, once the processor stalls, it uses the instruction window to
+    continue to fetch and execute operations. The goal of runahead is to generate
+    new cache misses, thereby turning subsequent demand requests into cache hits
+    instead of cache misses.[5]
 
 **Papers**
 
@@ -50,24 +50,26 @@ When that happens, these academic ideas come in rescue.
 
 ### Helper Threads (or Precomputation)
 
-**Quote**
-> *"A helper thread is a stripped down version of the main thread that
-> only includes the necessary instructions to generate memory accesses,
-> including control flow instructions [10]."*
+!!! quote
+    A helper thread is a stripped down version of the main thread that
+    only includes the necessary instructions to generate memory accesses,
+    including control flow instructions [10].
 
-> *"Precomputation uses idle thread contexts in a multithreaded architecture
-> to improve performance of single-threaded applications.
-> It attacks program stalls from data cache misses by
-> pre-computing future memory accesses in available thread
-> contexts, and prefetching these data.[1]"*
+!!! quote
+    Precomputation uses idle thread contexts in a multithreaded architecture
+    to improve performance of single-threaded applications.
+    It attacks program stalls from data cache misses by
+    pre-computing future memory accesses in available thread
+    contexts, and prefetching these data.[1]
 
-> *"Such pre-execution threads are
-> purely speculative, and their instructions are never committed
-> into the main computation. Instead, the pre-execution
-> threads run code designed to trigger cache misses. As long
-> as the pre-execution threads execute far enough in front of
-> the main thread, they effectively hide the latency of the
-> cache misses so that the main thread experiences signicantly fewer memory stalls.[5]"*
+!!! quote
+    Such pre-execution threads are
+    purely speculative, and their instructions are never committed
+    into the main computation. Instead, the pre-execution
+    threads run code designed to trigger cache misses. As long
+    as the pre-execution threads execute far enough in front of
+    the main thread, they effectively hide the latency of the
+    cache misses so that the main thread experiences signicantly fewer memory stalls.[5]
 
 **Papers**
 

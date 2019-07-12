@@ -83,9 +83,15 @@ pages:
            - 'Related': 'lego/paper/related.md'
 
 markdown_extensions:
+  - admonition
   - tables
   - smarty
   - footnotes
+  - codehilite:
+      linenums: true
+      guess_lang: true
+  - toc:
+      permalink: true
   - pymdownx.arithmatex
   - pymdownx.betterem:
       smart_enable: all
@@ -103,11 +109,6 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
   - pymdownx.progressbar
-  - codehilite:
-      linenums: true
-      guess_lang: true
-  - toc:
-      permalink: true
 
 theme:
   name: 'material'
