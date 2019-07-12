@@ -327,7 +327,10 @@ work for realistic applications.</li>
   Helper thread (or precomputation) is mainly used as a vehicle
   for speculatively generating data addresses and prefetching.</li>
 </ul>
-<h3 id="13-put-it-all-together">1.3. <a name='Putitalltogether'></a>Put it all together</h3>
+<h3 id="13-locks">1.3. <a name='Locks'></a>Locks</h3>
+<p>Applying the insight of &ldquo;get the most out of the otherwise-wasted resource&rdquo;
+to the lock area. I will wait for Sanidhya&rsquo;s SOSP&lsquo;19 paper. :-)</p>
+<h3 id="14-put-it-all-together">1.4. <a name='Putitalltogether'></a>Put it all together</h3>
 <ul>
 <li>Both runahead and helper thread were proposed to do prefetch.
   But they have a key difference. Runahead is invoked in the <em>same core</em>, and is invoked when ROB is full (not always though). Helper thread is invoked at <em>another core</em>. Besides, runahead can just fetch the instructions and run, no need to cook another code slice. But for helper thread, it needs to extract a code slice that will run on another core.</li>
@@ -340,9 +343,6 @@ work for realistic applications.</li>
   The simple insight itself is not interesting enough, usually
   where it&rsquo;s applied make things quite interesting.</li>
 </ul>
-<h3 id="14-locks">1.4. <a name='Locks'></a>Locks</h3>
-<p>Applying the insight of &ldquo;get the most out of the otherwise-wasted resource&rdquo;
-to the lock area. I will wait for Sanidhya&rsquo;s SOSP&lsquo;19 paper. :-)</p>
 <h2 id="2-microseconds">2. <a name='Microseconds'></a>Microseconds</h2>
 <p>Fill me in</p>
 <h2 id="3-milliseconds">3. <a name='Milliseconds'></a>Milliseconds</h2>
