@@ -66,7 +66,6 @@ When that happens, these academic ideas come in rescue.
 > the main thread, they effectively hide the latency of the
 > cache misses so that the main thread experiences signicantly fewer memory stalls.[5]"*
 
-
 **Papers**
 
 1. Speculative Precomputation: Long-range Prefetching of Delinquent Loads, ISCA'01
@@ -87,7 +86,10 @@ When that happens, these academic ideas come in rescue.
     - Dynamically construct precomputation code, called p-slices. They can adapt
     the same program differently depending on the program's data input and the underlying
     hardware architecture.
-8. Inter-core Prefetching for Multicore Processors Using Migrating Helper Threads, ASPLOS'11
+8. Inter-core Prefetching for Multicore Processors Using *Migrating Helper Threads*, ASPLOS'11
+    - Pure software solution. I like the idea. But I don't think it will
+    work for realistic applications.
+    - Learned `setcontext(), getcontext(), and swapcontext()`.
 9. Bootstrapping: Using SMT Hardware to Improve Single-Thread Performance, ASPLOS'19
 
 **Comments**
@@ -95,7 +97,16 @@ When that happens, these academic ideas come in rescue.
 - The catch about precomputation is that it must create lightweight threads
   that can actually proceed faster than the main thread, so that they
   stay out in front.
-- Also, same thing here, we should separate mechanisma and policies.
+- Other catch is: you also need to create the code slice that will
+  run on another core context. First of all, how is this code slice different
+  from the original code? The extracted code will be simplified in the sense
+  that it will only access memory without doing other computations.
+  The second question is how this code slice is extracted and then constructed?
+  There are many ways. You can handwrite, or use a static compiler to pre-generate
+  them (by using techniques in above papers), or use hardware to dynamically
+  generate them during runtime, or use software to dynamically generate them during runtime.
+  There are ways to it, but I don't think this is the core of precomputation.
+- Also, same thing here, we should separate mechanism and policies.
   Helper thread (or precomputation) is mainly used as a vehicle
   for speculatively generating data addresses and prefetching.
 
@@ -113,7 +124,8 @@ Fill me in
 
 ## Milliseconds
 
-Fill me in.
+Sleep. And wake me up when september ends. And this seems to be enough. ;-)
+This is true for OS to handle slow HDD and slow network.
 
 
 --  
