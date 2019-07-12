@@ -1347,7 +1347,7 @@
 <p>There are shadows under the sun.<br />
 There are shadows in your life.<br />
 There are shadows in your computer.  </p>
-<p>This note is about latency tolerance techniques.<br />
+<p>This note is about <mark>latency tolerance techniques</mark>.<br />
 This note is about how to get the most out of the otherwise-wasted resource.</p>
 <h2 id="nanoseconds">Nanoseconds<a class="headerlink" href="#nanoseconds" title="Permanent link">&para;</a></h2>
 <p>Architecture solutions to attack nanosecond-level performance shadows
@@ -1356,13 +1356,13 @@ OoO and SMT are the base to hide these latencies, but they fall short
 when ROB is full (or some other reasons).
 When that happens, these academic ideas come in rescue.</p>
 <h3 id="runahead">Runahead<a class="headerlink" href="#runahead" title="Permanent link">&para;</a></h3>
-<p><strong>Quote</strong></p>
-<blockquote>
-<p><em>&ldquo;In runahead, once the processor stalls, it uses the instruction window to
+<div class="admonition quote">
+<p class="admonition-title">Quote</p>
+<p>In runahead, once the processor stalls, it uses the instruction window to
 continue to fetch and execute operations. The goal of runahead is to generate
 new cache misses, thereby turning subsequent demand requests into cache hits
-instead of cache misses.[5]&rdquo;</em></p>
-</blockquote>
+instead of cache misses.[5]</p>
+</div>
 <p><strong>Papers</strong></p>
 <ol>
 <li>Improving Data Cache Performance by Pre-executing Instructions Under a Cache Miss, ICS’97</li>
@@ -1394,24 +1394,30 @@ instead of cache misses.[5]&rdquo;</em></p>
 <li>QoS control is another policy. This means adding specific rules to the execution phase. More specifically: limit the core resource usage of the runahead thread, thus reduce the impact on the co-running HW thread.</li>
 </ul>
 <h3 id="helper-threads-or-precomputation">Helper Threads (or Precomputation)<a class="headerlink" href="#helper-threads-or-precomputation" title="Permanent link">&para;</a></h3>
-<p><strong>Quote</strong></p>
-<blockquote>
-<p><em>&ldquo;A helper thread is a stripped down version of the main thread that
+<div class="admonition quote">
+<p class="admonition-title">Quote</p>
+<p>A helper thread is a stripped down version of the main thread that
 only includes the necessary instructions to generate memory accesses,
-including control flow instructions [10].&rdquo;</em></p>
-<p><em>&ldquo;Precomputation uses idle thread contexts in a multithreaded architecture
+including control flow instructions [10].</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Quote</p>
+<p>Precomputation uses idle thread contexts in a multithreaded architecture
 to improve performance of single-threaded applications.
 It attacks program stalls from data cache misses by
 pre-computing future memory accesses in available thread
-contexts, and prefetching these data.[1]&rdquo;</em></p>
-<p><em>&ldquo;Such pre-execution threads are
+contexts, and prefetching these data.[1]</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Quote</p>
+<p>Such pre-execution threads are
 purely speculative, and their instructions are never committed
 into the main computation. Instead, the pre-execution
 threads run code designed to trigger cache misses. As long
 as the pre-execution threads execute far enough in front of
 the main thread, they effectively hide the latency of the
-cache misses so that the main thread experiences signicantly fewer memory stalls.[5]&rdquo;</em></p>
-</blockquote>
+cache misses so that the main thread experiences signicantly fewer memory stalls.[5]</p>
+</div>
 <p><strong>Papers</strong></p>
 <ol>
 <li>Speculative Precomputation: Long-range Prefetching of Delinquent Loads, ISCA&lsquo;01</li>
