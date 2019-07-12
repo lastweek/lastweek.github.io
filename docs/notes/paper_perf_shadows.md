@@ -1,16 +1,30 @@
 # Hiding In The Performance Shadows
 
+<!-- vscode-markdown-toc -->
+* 1. [Nanoseconds](#Nanoseconds)
+	* 1.1. [Runahead](#Runahead)
+	* 1.2. [Helper Threads (or Precomputation)](#HelperThreadsorPrecomputation)
+	* 1.3. [Put it all together](#Putitalltogether)
+	* 1.4. [Locks](#Locks)
+* 2. [Microseconds](#Microseconds)
+* 3. [Milliseconds](#Milliseconds)
+
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+
 :vertical_traffic_light:
 
 There are shadows under the sun.  
 There are shadows in your life.  
 There are shadows in your computer.  
 
-This note is about latency tolerance techniques,
-ranging from nanoseconds to seconds. We will look at some
-interesting academic ideas.
+This note is about latency tolerance techniques.  
+This note is about how to get the most out of the otherwise-wasted resource.
 
-## Nanoseconds
+##  1. <a name='Nanoseconds'></a>Nanoseconds
 
 Architecture solutions to attack nanosecond-level performance shadows
 that are mostly created by lower level data and instruction cache misses.
@@ -18,7 +32,7 @@ OoO and SMT are the base to hide these latencies, but they fall short
 when ROB is full (or some other reasons).
 When that happens, these academic ideas come in rescue.
 
-### Runahead
+###  1.1. <a name='Runahead'></a>Runahead
 
 **Quote**
 > *"In runahead, once the processor stalls, it uses the instruction window to
@@ -49,7 +63,7 @@ When that happens, these academic ideas come in rescue.
 - QoS control is another policy. This means adding specific rules to the execution phase. More specifically: limit the core resource usage of the runahead thread, thus reduce the impact on the co-running HW thread.
 
 
-### Helper Threads (or Precomputation)
+###  1.2. <a name='HelperThreadsorPrecomputation'></a>Helper Threads (or Precomputation)
 
 **Quote**
 > *"Precomputation uses idle thread contexts in a multithreaded architecture
@@ -110,19 +124,29 @@ When that happens, these academic ideas come in rescue.
   Helper thread (or precomputation) is mainly used as a vehicle
   for speculatively generating data addresses and prefetching.
 
-### Put it all together
+###  1.3. <a name='Putitalltogether'></a>Put it all together
 
 - Both runahead and helper thread were proposed to do prefetch.
-  But they have a key difference. Runahead is invoked in the *same core*, and is invoked
-  when ROB is full (not always though). Helper thread is invoked at *another core*.
-- For runahead, it can just fetch the instructions and run, no need to cook another code snipppt.
-  For helper thread, it needs to extract a code slice that will run on another core.
+  But they have a key difference. Runahead is invoked in the *same core*, and is invoked when ROB is full (not always though). Helper thread is invoked at *another core*. Besides, runahead can just fetch the instructions and run, no need to cook another code slice. But for helper thread, it needs to extract a code slice that will run on another core.
+- I think the most important thing is to realize their insight.
+  In the most straightforward and plain way: they are trying to
+  get the most out of the otherwise-wasted resource. For example,
+  in runahead, they realize that with some help, the CPU is still
+  able to generate cache misses even if the instruction table is full.
+  For precomputation, obviously it is using the other idle cores.
+  The simple insight itself is not interesting enough, usually
+  where it's applied make things quite interesting.
 
-## Microseconds
+###  1.4. <a name='Locks'></a>Locks
+
+Applying the insight of "get the most out of the otherwise-wasted resource"
+to the lock area. I will wait for Sanidhya's SOSP'19 paper. :-)
+
+##  2. <a name='Microseconds'></a>Microseconds
 
 Fill me in
 
-## Milliseconds
+##  3. <a name='Milliseconds'></a>Milliseconds
 
 Sleep. And wake me up when september ends. And this seems to be enough. ;-)
 This is true for OS to handle slow HDD and slow network.
