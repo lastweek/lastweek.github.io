@@ -302,7 +302,12 @@ the same program differently depending on the program&rsquo;s data input and the
 hardware architecture.</li>
 </ul>
 </li>
-<li>Inter-core Prefetching for Multicore Processors Using Migrating Helper Threads, ASPLOS&lsquo;11</li>
+<li>Inter-core Prefetching for Multicore Processors Using <em>Migrating Helper Threads</em>, ASPLOS&lsquo;11<ul>
+<li>Pure software solution. I like the idea. But I don&rsquo;t think it will
+work for realistic applications.</li>
+<li>Learned <code class="codehilite">setcontext(), getcontext(), and swapcontext()</code>.</li>
+</ul>
+</li>
 <li>Bootstrapping: Using SMT Hardware to Improve Single-Thread Performance, ASPLOS&lsquo;19</li>
 </ol>
 <p><strong>Comments</strong></p>
@@ -310,7 +315,16 @@ hardware architecture.</li>
 <li>The catch about precomputation is that it must create lightweight threads
   that can actually proceed faster than the main thread, so that they
   stay out in front.</li>
-<li>Also, same thing here, we should separate mechanisma and policies.
+<li>Other catch is: you also need to create the code slice that will
+  run on another core context. First of all, how is this code slice different
+  from the original code? The extracted code will be simplified in the sense
+  that it will only access memory without doing other computations.
+  The second question is how this code slice is extracted and then constructed?
+  There are many ways. You can handwrite, or use a static compiler to pre-generate
+  them (by using techniques in above papers), or use hardware to dynamically
+  generate them during runtime, or use software to dynamically generate them during runtime.
+  There are ways to it, but I don&rsquo;t think this is the core of precomputation.</li>
+<li>Also, same thing here, we should separate mechanism and policies.
   Helper thread (or precomputation) is mainly used as a vehicle
   for speculatively generating data addresses and prefetching.</li>
 </ul>
@@ -325,7 +339,8 @@ hardware architecture.</li>
 <h2 id="microseconds">Microseconds</h2>
 <p>Fill me in</p>
 <h2 id="milliseconds">Milliseconds</h2>
-<p>Fill me in.</p>
+<p>Sleep. And wake me up when september ends. And this seems to be enough. ;-)
+This is true for OS to handle slow HDD and slow network.</p>
 <p>&ndash;<br />
 Yizhou Shan<br />
 Created: Jul 11, 2019<br />
