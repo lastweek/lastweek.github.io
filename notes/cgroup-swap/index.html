@@ -73,7 +73,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#swap-with-cgroup" tabindex="1" class="md-skip">
+      <a href="#how-cgroup-trigger-swap" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -1175,23 +1175,43 @@
               
                 
                 
-                <h1 id="swap-with-cgroup">swap with cgroup<a class="headerlink" href="#swap-with-cgroup" title="Permanent link">&para;</a></h1>
+                <h1 id="how-cgroup-trigger-swap">How Cgroup Trigger Swap<a class="headerlink" href="#how-cgroup-trigger-swap" title="Permanent link">&para;</a></h1>
 <p>Notes on how cgroup mm triggers swap on a user-defined <code class="codehilite">limit_in_bytes</code>.
-This notes assume you have adequate knowledge on overall linux mm code.</p>
-<p>There are several cgroup callbacks at <code class="codehilite">mm/memory.c</code>. Those functions are called to check if cgroup can honor this page allocation.</p>
+This notes assume you have adequate knowledge on overall linux mm code.
+For more information about cgroup in general, please check the <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/resource_management_guide/ch01">document from RedHat</a>.</p>
+<p>There are several cgroup callbacks at <code class="codehilite">mm/memory.c</code>. Those functions are called to check if cgroup can honor this page allocation.
+All of these functions are located in <code class="codehilite">mm/memcontrol.c</code></p>
 <ul>
 <li><code class="codehilite">mem_cgroup_try_charge()</code></li>
 <li><code class="codehilite">mem_cgroup_commit_charge()</code></li>
 <li><code class="codehilite">mem_cgroup_cancel_charge()</code></li>
 </ul>
-<p>Okay, now at <code class="codehilite">mm/memcontrol.c</code>, the checking and swap code path:</p>
+<p>Some facts about the implementation (up to linux 5.2)</p>
+<ul>
+<li>Each memory cgroup has its own LRU list vector</li>
+<li>All memory cgroup&rsquo;s LRU lists and even the global LRU lists, they share a global LRU lock on a per-node basis. (Weird!).</li>
+</ul>
+<p>Take a closer look of <code class="codehilite">mem_cgroup_try_charge()</code>, whose behavior is actually
+quite similar to the case of a real OOM: check if we still available
+memory (here means memory usage is smaller than limit_in_bytes),
+if unfortunately we run out of memory, it will then try to reclaim
+form the memory cgroup&rsquo;s LRU lists. If that did not work either,
+final step would be do OOM actions.</p>
 <ul>
 <li>
 <p><code class="codehilite">mem_cgroup_try_charge()</code></p>
 <ul>
-<li><code class="codehilite">try_charge()</code><ul>
-<li><code class="codehilite">page_counter_try_charge()</code>: check if we hit <code class="codehilite">limit_in_bytes</code> counter</li>
-<li><code class="codehilite">try_to_free_mem_cgroup_pages()</code>: callback to <code class="codehilite">mm/vmscan.c</code> to shrink the list (Bingo!)</li>
+<li>try_charge()<ul>
+<li>page_counter_try_charge():<ul>
+<li>Check if we hit <code class="codehilite">limit_in_bytes</code> counter.</li>
+<li>Hierarchically charge pages, costly.</li>
+</ul>
+</li>
+<li>try_to_free_mem_cgroup_pages()<ul>
+<li>Callback to <code class="codehilite">mm/vmscan.c</code> to shrink the list (<em>Bingo!</em>)</li>
+</ul>
+</li>
+<li>mem_cgroup_oom()</li>
 </ul>
 </li>
 </ul>
@@ -1199,17 +1219,15 @@ This notes assume you have adequate knowledge on overall linux mm code.</p>
 <li>
 <p><code class="codehilite">mem_cgroup_lruvec()</code></p>
 <ul>
-<li>Other than the global zone-wide LRU lists vector, each cgroup has its own LRU lists vector.</li>
-<li>This function determines which LRU lists vector should be used. The
-chosed one will be passed down to do <code class="codehilite">shrink_page_list()</code> etc.</li>
-<li>That being said, it&rsquo;s all about algorithm, and data structures!</li>
+<li>Other than the global zone-wide LRU lists vector, each cgroup has its own LRU lists vector.
+Choose the vector that will be passed down to do <code class="codehilite">shrink_page_list()</code> etc.</li>
 </ul>
 </li>
 </ul>
 <p>&ndash;<br />
 Yizhou Shan<br />
 Created: Dec 3, 2018<br />
-Last Updated: Jun 4, 2019</p>
+Last Updated: Jul 11, 2019</p>
                 
                   
                 
