@@ -1,4 +1,6 @@
-# Hiding In The Performance Shadows
+<font face="Times New Roman">
+
+# Hiding In The Shadows
 
 :vertical_traffic_light:
 
@@ -9,7 +11,7 @@ There are shadows in your computer.
 This note is about latency tolerance techniques.  
 This note is about how to get the most out of the otherwise-wasted resource.
 
-##  1. <a name='Nanoseconds'></a>Nanoseconds
+## Nanoseconds
 
 Architecture solutions to attack nanosecond-level performance shadows
 that are mostly created by lower level data and instruction cache misses.
@@ -17,7 +19,7 @@ OoO and SMT are the base to hide these latencies, but they fall short
 when ROB is full (or some other reasons).
 When that happens, these academic ideas come in rescue.
 
-###  1.1. <a name='Runahead'></a>Runahead
+### Runahead
 
 **Quote**
 > *"In runahead, once the processor stalls, it uses the instruction window to
@@ -48,9 +50,13 @@ When that happens, these academic ideas come in rescue.
 - QoS control is another policy. This means adding specific rules to the execution phase. More specifically: limit the core resource usage of the runahead thread, thus reduce the impact on the co-running HW thread.
 
 
-###  1.2. <a name='HelperThreadsorPrecomputation'></a>Helper Threads (or Precomputation)
+### Helper Threads (or Precomputation)
 
 **Quote**
+> *"A helper thread is a stripped down version of the main thread that
+> only includes the necessary instructions to generate memory accesses,
+> including control flow instructions [10]."*
+
 > *"Precomputation uses idle thread contexts in a multithreaded architecture
 > to improve performance of single-threaded applications.
 > It attacks program stalls from data cache misses by
@@ -90,6 +96,10 @@ When that happens, these academic ideas come in rescue.
     work for realistic applications.
     - Learned `setcontext(), getcontext(), and swapcontext()`.
 9. Bootstrapping: Using SMT Hardware to Improve Single-Thread Performance, ASPLOS'19
+10. Freeway: Maximizing MLP for slice-out-of-order execution, HPCA'19
+    - Strictly speaking this is not in this catogory. But it is this paper
+      that lead me to Runahead and Helper thread topic. I was doing
+      something similar so those techniques caught my eye.
 
 **Comments**
 
@@ -109,15 +119,43 @@ When that happens, these academic ideas come in rescue.
   Helper thread (or precomputation) is mainly used as a vehicle
   for speculatively generating data addresses and prefetching.
 
-###  1.3. <a name='Locks'></a>Locks
+###  Locks
 
 Applying the insight of "get the most out of the otherwise-wasted resource"
 to the lock area. I will wait for Sanidhya's SOSP'19 paper. :-)
 
-###  1.4. <a name='Putitalltogether'></a>Put it all together
+
+### Misc
+
+- Stretch: Balancing QoS and throughput for colocated server workloads on SMT cores (Best Paper), HPCA'19
+    - Keyword: `ROB`, `Co-location QoS`.
+    - This paper tackles the perf interference when running co-running two SMT threads
+      on a single physical core, which is the common case in datacenters.
+      However co-running latency-sensitive jobs and batch jobs will
+      have huge impact on the perf of both.
+    - This paper found: *"Latency-sensitive workloads show little benefit
+      from large ROB capacities in modern server processors .. because frequent
+      cache misses and data-dependent computation limit both instruction
+      and memory-level parallelisms (ILP and MLP). In contrast, many batch
+      workloads benefit from a large ROB that helps unlock higher ILP and MLP."*
+    - So they propose to have a ROB partition scheme rather than static equal
+      partition. Of course they also did some very extensive studies before
+      deciding to scale ROB. They first found shared ROB has the biggest
+      impact on perf interference than any other resources such as branch
+      predictor, cache, and so on. They further found that latency-sensitive
+      workload can tolerate some perf slack, which means they will not
+      violate their QoS even with a smaller ROB.
+    - Anyway, I think this is a very nice paper. Good reasoning, simple solution,
+      but works effectively.
+
+###  Put it all together
 
 - Both runahead and helper thread were proposed to do prefetch.
-  But they have a key difference. Runahead is invoked in the *same core*, and is invoked when ROB is full (not always though). Helper thread is invoked at *another core*. Besides, runahead can just fetch the instructions and run, no need to cook another code slice. But for helper thread, it needs to extract a code slice that will run on another core.
+  But they have a key difference. Runahead is invoked in the *same core*,
+  and is invoked when ROB is full (not always though). Helper thread is
+  invoked at *another core*. Besides, runahead can just fetch the
+  instructions and run, no need to cook another code slice. But for
+  helper thread, it needs to extract a code slice that will run on another core.
 - I think the most important thing is to realize their insight.
   In the most straightforward and plain way: they are trying to
   get the most out of the otherwise-wasted resource. For example,
@@ -127,11 +165,11 @@ to the lock area. I will wait for Sanidhya's SOSP'19 paper. :-)
   The simple insight itself is not interesting enough, usually
   where it's applied make things quite interesting.
 
-##  2. <a name='Microseconds'></a>Microseconds
+##  Microseconds
 
 Fill me in
 
-##  3. <a name='Milliseconds'></a>Milliseconds
+##  Milliseconds
 
 Sleep. And wake me up when september ends. And this seems to be enough. ;-)
 This is true for OS to handle slow HDD and slow network.
@@ -141,3 +179,5 @@ This is true for OS to handle slow HDD and slow network.
 Yizhou Shan  
 Created: Jul 11, 2019  
 Last Updated: Jul 11, 2019
+
+</font>

@@ -1,9 +1,14 @@
+<font face="Times New Roman">
+
 :surfer:
 
 Hi! I'm Yizhou Shan, a Ph.D. student at Purdue,
 advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). I work at [Wuklab.io](http://wuklab.io). Yes, the [Monkey King](https://en.wikipedia.org/wiki/Sun_Wukong) Lab.
 The best way to reach me is email: [__ys@purdue.edu__].
 My [CV](http://lastweek.io/pubs/cv.pdf).
+
+I keep some random technical notes about implementation, papers, ideas in this blog.
+Feel free to reach out and discuss.
 
 ## What's up
 - [_May 2019_] Intern at [VMware Research](https://research.vmware.com/), with [Marcos K. Aguilera](http://mkaguilera.kawazoe.org/)
@@ -69,3 +74,5 @@ Architecture. I like hardcore hacking.
 * [Github](https://github.com/lastweek)
 * [Twitter](https://twitter.com/Yizhou_Shan)
 * [LinkedIn](https://www.linkedin.com/in/lastweek/)
+
+</font>

@@ -1,3 +1,5 @@
+<font face="Times New Roman">
+
 # Practical Cache Coherence
 
 :sake:
@@ -246,3 +248,5 @@ When in doubt, read the [discussion](https://software.intel.com/en-us/forums/int
 Yizhou Shan  
 Created: Jun 28, 2019  
 Last Updated: Jul 8, 2019
+
+</font>
