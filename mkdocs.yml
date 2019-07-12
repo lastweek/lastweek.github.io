@@ -1,4 +1,7 @@
 site_name: Yizhou Shan's Home Page
+site_author: 'Yizhou Shan'
+site_url: 'http//lastweek.io'
+
 pages:
 - Home: 'index.md'
 #- Jasmine: 'misc/jasmine.md'
