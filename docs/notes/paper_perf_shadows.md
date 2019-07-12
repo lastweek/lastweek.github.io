@@ -109,7 +109,12 @@ When that happens, these academic ideas come in rescue.
   Helper thread (or precomputation) is mainly used as a vehicle
   for speculatively generating data addresses and prefetching.
 
-###  1.3. <a name='Putitalltogether'></a>Put it all together
+###  1.3. <a name='Locks'></a>Locks
+
+Applying the insight of "get the most out of the otherwise-wasted resource"
+to the lock area. I will wait for Sanidhya's SOSP'19 paper. :-)
+
+###  1.4. <a name='Putitalltogether'></a>Put it all together
 
 - Both runahead and helper thread were proposed to do prefetch.
   But they have a key difference. Runahead is invoked in the *same core*, and is invoked when ROB is full (not always though). Helper thread is invoked at *another core*. Besides, runahead can just fetch the instructions and run, no need to cook another code slice. But for helper thread, it needs to extract a code slice that will run on another core.
@@ -121,11 +126,6 @@ When that happens, these academic ideas come in rescue.
   For precomputation, obviously it is using the other idle cores.
   The simple insight itself is not interesting enough, usually
   where it's applied make things quite interesting.
-
-###  1.4. <a name='Locks'></a>Locks
-
-Applying the insight of "get the most out of the otherwise-wasted resource"
-to the lock area. I will wait for Sanidhya's SOSP'19 paper. :-)
 
 ##  2. <a name='Microseconds'></a>Microseconds
 
