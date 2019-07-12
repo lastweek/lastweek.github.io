@@ -1,5 +1,3 @@
-<font face="Times New Roman">
-
 # Hiding In The Shadows
 
 :vertical_traffic_light:
@@ -179,5 +177,3 @@ This is true for OS to handle slow HDD and slow network.
 Yizhou Shan  
 Created: Jul 11, 2019  
 Last Updated: Jul 11, 2019
-
-</font>

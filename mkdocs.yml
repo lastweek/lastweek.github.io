@@ -103,10 +103,30 @@ markdown_extensions:
   - codehilite:
       linenums: true
       guess_lang: true
+  - toc:
+      permalink: true
 
 theme:
-  #name: 'material'
+  name: 'material'
+  #palette:
+  #  primary: 'blue'
+  #  accent: 'red'
+  #font:
+  #  text: 'Times new roman'
+  #  code: 'Courier'
   #name: 'bootstrap386'
-  name: 'rtd-dropdown'
+  #name: 'rtd-dropdown'
   #name: 'readthedocs'
   #name: 'mkdocs'
+
+google_analytics:
+  - 'UA-143772066-1'
+  - 'auto'
+
+# Options
+extra:
+  #logo: 'images/logo.svg'
+  social:
+    - type: 'github'
+      link: 'https://github.com/lastweek'
+  disqus: 'lastweek-io'

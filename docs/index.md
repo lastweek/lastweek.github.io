@@ -1,5 +1,3 @@
-<font face="Times New Roman">
-
 :surfer:
 
 Hi! I'm Yizhou Shan, a Ph.D. student at Purdue,
@@ -74,5 +72,3 @@ Architecture. I like hardcore hacking.
 * [Github](https://github.com/lastweek)
 * [Twitter](https://twitter.com/Yizhou_Shan)
 * [LinkedIn](https://www.linkedin.com/in/lastweek/)
-
-</font>
