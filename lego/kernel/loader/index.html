@@ -1,286 +1,1564 @@
+
+
+
+
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>Program Loader - Yizhou Shan's Home Page</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-  <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
-
-  <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../../css/highlight.css">
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Program Loader";
-    var mkdocs_page_input_path = "lego/kernel/loader.md";
-    var mkdocs_page_url = "/lego/kernel/loader/";
-  </script>
-  
-  <script src="../../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../../js/highlight.pack.js"></script> 
-  
-</head>
-
-<body class="wy-body-for-nav" role="document">
-
-  <div class="wy-grid-for-nav">
-
+<html lang="en" class="no-js">
+  <head>
     
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-      <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> Yizhou Shan's Home Page</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-  </form>
-</div>
-      </div>
-
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	  
-          
-		  
-  <ul class="" href="../../..">
-    <li class="toctree-l1">
-  <a class="" href="../../..">Home</a>
-  </li></ul>
-          
-		  
-  <p class="caption">Notes</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/cache_coherence/">[Arch] Cache Coherence</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/trace/">[Linux] Tracing</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../misc/essential/">[Misc] Essential</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../misc/cheatsheet/">[Misc] Cheatsheet</a>
-        </li>
-  </ul>
-
-          
-		  
-  <p class="caption">FPGA</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
-        </li>
-  </ul>
-
-          
-		  
-  <p class="caption">LegoOS Dev Note</p>
-  <ul class="current">
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/log/TODO">Log</a>
-        </li>
-          <li class="toctree-l1 current">
-            
-  <a class="current" href="/lego/kernel/kconfig">Kernel</a>
-  <ul class="subnav">
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../kconfig/">Kconfig</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../debug/">Debug</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../grub/">GRUB</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../profile/">Profile</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../profile_strace/">Profile strace</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../profile_heatmap/">Profile heatmap</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../profile_points/">Profile points</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../trampoline/">Trampoline</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../pagefault_disable/">Disable pgfault</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../stop_machine/">Stop machine</a>
-        </li>
-        <li class="toctree-l2 current 1">
-            
-  <a class="current" href="./">Program Loader</a>
-  <ul class="subnav">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
       
-  <li class="toctree-l2 current">
-  
-    <a class="current"  href="#lego-program-loader">Lego Program Loader</a>
-  
-  
-    <ul class="">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.6.2">
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#status">Status</a>
-        </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#overall">Overall</a>
-        </li>
+      
+        <title>Program Loader - Yizhou Shan's Home Page</title>
+      
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#legos-loader">Lego's Loader</a>
-        </li>
     
-    </ul>
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.9b572555.css">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
   
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <a href="#lego-program-loader" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../../.." title="Yizhou Shan's Home Page" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Yizhou Shan's Home Page
+              </span>
+              <span class="md-header-nav__topic">
+                Program Loader
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </span>
+    Yizhou Shan's Home Page
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
   </li>
 
-  </ul>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../vDSO/">vDSO</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../vfs/">Virtual File System</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../vm/">Process Virtual Memory</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../fpu/">x86 FPU</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../irq/">IRQ</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../net_thpool/">Network Thpool</a>
-        </li>
-  </ul>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/syscall/facts">Syscall</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/pcache/config">Pcache</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/driver/pci">Driver</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/paper/nmp">Paper</a>
-        </li>
-  </ul>
+    
+      
+      
+      
 
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Notes
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Notes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
           
-      </div>
-      &nbsp;
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../notes/paper_perf_shadows/" title="Perf Shadows" class="md-nav__link">
+      Perf Shadows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../notes/cache_coherence/" title="[Arch] Cache Coherence" class="md-nav__link">
+      [Arch] Cache Coherence
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../notes/rmap/" title="[Linux] Reverse Mmap (rmap)" class="md-nav__link">
+      [Linux] Reverse Mmap (rmap)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../notes/trace/" title="[Linux] Tracing" class="md-nav__link">
+      [Linux] Tracing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../notes/cgroup-swap/" title="[Linux] Cgroup and Swap" class="md-nav__link">
+      [Linux] Cgroup and Swap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../notes/userfaultfd/" title="[Linux] Userfaultfd" class="md-nav__link">
+      [Linux] Userfaultfd
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../notes/xperf/" title="[Linux] User/kern Cross Perf" class="md-nav__link">
+      [Linux] User/kern Cross Perf
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../notes/kvm-basic/" title="[Linux] KVM" class="md-nav__link">
+      [Linux] KVM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../misc/essential/" title="[Misc] Essential" class="md-nav__link">
+      [Misc] Essential
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../misc/cheatsheet/" title="[Misc] Cheatsheet" class="md-nav__link">
+      [Misc] Cheatsheet
+    </a>
+  </li>
+
+        
+      </ul>
     </nav>
+  </li>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">Yizhou Shan's Home Page</a>
-      </nav>
-
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="../../..">Docs</a> &raquo;</li>
     
       
-        
-          <li>LegoOS Dev Note &raquo;</li>
-        
       
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      FPGA
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        FPGA
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
         
-          <li>Kernel &raquo;</li>
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../fpga/hls_axi/" title="HLS: Usage of AXI-Stream" class="md-nav__link">
+      HLS: Usage of AXI-Stream
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../fpga/hls_axi/" title="HLS: High-performance AXI-MM" class="md-nav__link">
+      HLS: High-performance AXI-MM
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      LegoOS Dev Note
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        LegoOS Dev Note
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
+    
+    <label class="md-nav__link" for="nav-4-1">
+      Log
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        Log
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../log/TODO/" title="TODO" class="md-nav__link">
+      TODO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../log/misc/" title="MISC" class="md-nav__link">
+      MISC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../log/test-note/" title="Test Script" class="md-nav__link">
+      Test Script
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../log/log-09-2018/" title="Sep 2018" class="md-nav__link">
+      Sep 2018
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../log/log-08-2018/" title="Aug 2018" class="md-nav__link">
+      Aug 2018
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../log/log-04-2018/" title="April 2018" class="md-nav__link">
+      April 2018
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../log/log-03-2018/" title="March 2018" class="md-nav__link">
+      March 2018
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../log/log-02-2018/" title="Feb 2018" class="md-nav__link">
+      Feb 2018
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2" checked>
+    
+    <label class="md-nav__link" for="nav-4-2">
+      Kernel
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        Kernel
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kconfig/" title="Kconfig" class="md-nav__link">
+      Kconfig
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../debug/" title="Debug" class="md-nav__link">
+      Debug
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../grub/" title="GRUB" class="md-nav__link">
+      GRUB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../profile/" title="Profile" class="md-nav__link">
+      Profile
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../profile_strace/" title="Profile strace" class="md-nav__link">
+      Profile strace
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../profile_heatmap/" title="Profile heatmap" class="md-nav__link">
+      Profile heatmap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../profile_points/" title="Profile points" class="md-nav__link">
+      Profile points
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../trampoline/" title="Trampoline" class="md-nav__link">
+      Trampoline
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pagefault_disable/" title="Disable pgfault" class="md-nav__link">
+      Disable pgfault
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../stop_machine/" title="Stop machine" class="md-nav__link">
+      Stop machine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
       
     
-    <li>Program Loader</li>
-    <li class="wy-breadcrumbs-aside">
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Program Loader
+      </label>
+    
+    <a href="./" title="Program Loader" class="md-nav__link md-nav__link--active">
+      Program Loader
+    </a>
+    
       
-    </li>
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" title="Status" class="md-nav__link">
+    Status
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overall" title="Overall" class="md-nav__link">
+    Overall
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legos-loader" title="Lego's Loader" class="md-nav__link">
+    Lego's Loader
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entry-point" title="Entry Point" class="md-nav__link">
+    Entry Point
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-managers-job" title="Memory Manager's Job" class="md-nav__link">
+    Memory Manager's Job
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-ld-linux" title="Load ld-linux" class="md-nav__link">
+    Load ld-linux
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processor-managers-job" title="Processor Manager's Job" class="md-nav__link">
+    Processor Manager's Job
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#destroy-old-context-flush_old_exec" title="Destroy old context: flush_old_exec()" class="md-nav__link">
+    Destroy old context: flush_old_exec()
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zap-other-threads" title="Zap other threads" class="md-nav__link">
+    Zap other threads
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switch-to-new-address-space" title="Switch to new address space" class="md-nav__link">
+    Switch to new address space
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clear-architecture-specific-state" title="Clear Architecture-Specific state" class="md-nav__link">
+    Clear Architecture-Specific state
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-new-context-setup_new_exec" title="Setup new context: setup_new_exec()" class="md-nav__link">
+    Setup new context: setup_new_exec()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-return-frame-in-stack" title="Change return frame in stack" class="md-nav__link">
+    Change return frame in stack
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features" title="Features" class="md-nav__link">
+    Features
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#virtual-address-space-range" title="Virtual Address Space Range" class="md-nav__link">
+    Virtual Address Space Range
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-populated-bss-and-brk" title="Pre-Populated .bss and .brk" class="md-nav__link">
+    Pre-Populated .bss and .brk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-populated-stack" title="Un-Populated stack" class="md-nav__link">
+    Un-Populated stack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-populated-text-and-data" title="Un-Populated .text and .data" class="md-nav__link">
+    Un-Populated .text and .data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disabled-randomized-top-of-stack" title="Disabled Randomized Top of Stack" class="md-nav__link">
+    Disabled Randomized Top of Stack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-vdso" title="No vDSO" class="md-nav__link">
+    No vDSO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../vDSO/" title="vDSO" class="md-nav__link">
+      vDSO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../vfs/" title="Virtual File System" class="md-nav__link">
+      Virtual File System
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../vm/" title="Process Virtual Memory" class="md-nav__link">
+      Process Virtual Memory
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fpu/" title="x86 FPU" class="md-nav__link">
+      x86 FPU
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../irq/" title="IRQ" class="md-nav__link">
+      IRQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../net_thpool/" title="Network Thpool" class="md-nav__link">
+      Network Thpool
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      Syscall
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-3">
+        Syscall
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/facts/" title="Facts" class="md-nav__link">
+      Facts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../profile_strace/" title="strace" class="md-nav__link">
+      strace
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/compat/" title="compat" class="md-nav__link">
+      compat
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/msync/" title="msync()" class="md-nav__link">
+      msync()
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/mremap/" title="mremap()" class="md-nav__link">
+      mremap()
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/fork/" title="fork()" class="md-nav__link">
+      fork()
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/getrusage/" title="getrusage()" class="md-nav__link">
+      getrusage()
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/wait_and_exit/" title="wait4 and exit()" class="md-nav__link">
+      wait4 and exit()
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4">
+    
+    <label class="md-nav__link" for="nav-4-4">
+      Pcache
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-4">
+        Pcache
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/config/" title="Config" class="md-nav__link">
+      Config
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/sweep/" title="Sweep" class="md-nav__link">
+      Sweep
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/tlb/" title="TLB Coherence" class="md-nav__link">
+      TLB Coherence
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/pgtable-lock/" title="PageTable Lock" class="md-nav__link">
+      PageTable Lock
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/victim/" title="Victim Cache" class="md-nav__link">
+      Victim Cache
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/virtual_cache/" title="Virtual Cache" class="md-nav__link">
+      Virtual Cache
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/rmap/" title="Reverse Mapping" class="md-nav__link">
+      Reverse Mapping
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/evict_and_ref/" title="Evict and Refcount" class="md-nav__link">
+      Evict and Refcount
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/smp_design/" title="SMP Design" class="md-nav__link">
+      SMP Design
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/replication/" title="Replication" class="md-nav__link">
+      Replication
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-5" type="checkbox" id="nav-4-5">
+    
+    <label class="md-nav__link" for="nav-4-5">
+      Driver
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-5">
+        Driver
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../driver/pci/" title="PCI" class="md-nav__link">
+      PCI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../driver/ib/" title="Infiniband" class="md-nav__link">
+      Infiniband
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-6" type="checkbox" id="nav-4-6">
+    
+    <label class="md-nav__link" for="nav-4-6">
+      Paper
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-6">
+        Paper
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/nmp/" title="NMP" class="md-nav__link">
+      NMP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/processor_oom/" title="Processor OOM" class="md-nav__link">
+      Processor OOM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/genz/" title="Gen-Z" class="md-nav__link">
+      Gen-Z
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/replication/" title="Replication" class="md-nav__link">
+      Replication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/related/" title="Related" class="md-nav__link">
+      Related
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
   </ul>
-  <hr/>
-</div>
-          <div role="main">
-            <div class="section">
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" title="Status" class="md-nav__link">
+    Status
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overall" title="Overall" class="md-nav__link">
+    Overall
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legos-loader" title="Lego's Loader" class="md-nav__link">
+    Lego's Loader
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entry-point" title="Entry Point" class="md-nav__link">
+    Entry Point
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-managers-job" title="Memory Manager's Job" class="md-nav__link">
+    Memory Manager's Job
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-ld-linux" title="Load ld-linux" class="md-nav__link">
+    Load ld-linux
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processor-managers-job" title="Processor Manager's Job" class="md-nav__link">
+    Processor Manager's Job
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#destroy-old-context-flush_old_exec" title="Destroy old context: flush_old_exec()" class="md-nav__link">
+    Destroy old context: flush_old_exec()
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zap-other-threads" title="Zap other threads" class="md-nav__link">
+    Zap other threads
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switch-to-new-address-space" title="Switch to new address space" class="md-nav__link">
+    Switch to new address space
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clear-architecture-specific-state" title="Clear Architecture-Specific state" class="md-nav__link">
+    Clear Architecture-Specific state
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-new-context-setup_new_exec" title="Setup new context: setup_new_exec()" class="md-nav__link">
+    Setup new context: setup_new_exec()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-return-frame-in-stack" title="Change return frame in stack" class="md-nav__link">
+    Change return frame in stack
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features" title="Features" class="md-nav__link">
+    Features
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#virtual-address-space-range" title="Virtual Address Space Range" class="md-nav__link">
+    Virtual Address Space Range
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-populated-bss-and-brk" title="Pre-Populated .bss and .brk" class="md-nav__link">
+    Pre-Populated .bss and .brk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-populated-stack" title="Un-Populated stack" class="md-nav__link">
+    Un-Populated stack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-populated-text-and-data" title="Un-Populated .text and .data" class="md-nav__link">
+    Un-Populated .text and .data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disabled-randomized-top-of-stack" title="Disabled Randomized Top of Stack" class="md-nav__link">
+    Disabled Randomized Top of Stack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-vdso" title="No vDSO" class="md-nav__link">
+    No vDSO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
               
-                <h1 id="lego-program-loader">Lego Program Loader</h1>
+                
+                
+                <h1 id="lego-program-loader">Lego Program Loader<a class="headerlink" href="#lego-program-loader" title="Permanent link">&para;</a></h1>
 <p>This document explains the high-level workflow of Lego&rsquo;s program loader, and how we change the normal loader to fit the disaggregated operating system model. Background on linking and loading is recommended.</p>
-<h2 id="status">Status</h2>
+<h2 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -299,11 +1577,11 @@
 </tr>
 </tbody>
 </table>
-<h2 id="overall">Overall</h2>
+<h2 id="overall">Overall<a class="headerlink" href="#overall" title="Permanent link">&para;</a></h2>
 <p>In order to support different executable formats, Lego has a <code class="codehilite">virtual loader layer</code> above all specific formats, which is quite similar to <code class="codehilite">virtual file system</code>. In Lego, <code class="codehilite">execve()</code> is divided into two parts: <code class="codehilite">1)</code> syscall hook at processor side, <code class="codehilite">2)</code> real loader at memory side. Combined together, they provide the same semantic of <code class="codehilite">execve()</code> as described in Linux man page. Also for the code, we divide the Linux implementation into parts. But our emulation model introduces several interesting workarounds.</p>
-<h2 id="legos-loader">Lego&rsquo;s Loader</h2>
+<h2 id="legos-loader">Lego&rsquo;s Loader<a class="headerlink" href="#legos-loader" title="Permanent link">&para;</a></h2>
 <p>Lego basically divide the Linux loader into two parts, one in memory manager and other in processor manager. Most dirty work is done by memory manager. Processor manager only needs to make sure the new execution has a fresh environment to start.</p>
-<h3 id="entry-point">Entry Point</h3>
+<h3 id="entry-point">Entry Point<a class="headerlink" href="#entry-point" title="Permanent link">&para;</a></h3>
 <p>So the normal entry point is <code class="codehilite">do_execve()</code>. Above that, it can be invoked by syscall from user space, or from kernel space by calling <code class="codehilite">do_execve()</code> directly. There are not too many places that will call <code class="codehilite">do_execve</code> within kernel. One notable case is how kernel starts the <code class="codehilite">pid 1</code> user program. This happens after kernel finished all initialization. The code is:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -316,9 +1594,9 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></p>
-<h3 id="memory-managers-job">Memory Manager&rsquo;s Job</h3>
+<h3 id="memory-managers-job">Memory Manager&rsquo;s Job<a class="headerlink" href="#memory-managers-job" title="Permanent link">&para;</a></h3>
 <p>Memory manager side will do most of the dirty loading work. It will parse the ELF image, create new VMAs based on ELF information. After that, it only pass <code class="codehilite">start_ip</code> and <code class="codehilite">start_stack</code> back to processor manager. Once processor manager starts running this new execution, pages will be fetched from memory component on demand.</p>
-<h4 id="load-ld-linux">Load ld-linux</h4>
+<h4 id="load-ld-linux">Load ld-linux<a class="headerlink" href="#load-ld-linux" title="Permanent link">&para;</a></h4>
 <p>For dynamically-linked images, kernel ELF loader needs to load the <code class="codehilite">ld-linux.so</code> as well. It will first try to map the <code class="codehilite">ld-linux.so</code> into this process&rsquo;s virtual address space. Furthermore, the first user instruction that will run is no longer <code class="codehilite">__libc_main_start</code>, kernel will transfer the kernel to <code class="codehilite">ld-linux.so</code> instead. Thus, for a normal user program, <code class="codehilite">ld-linux.so</code> will load all the shared libraries before running glibc.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -410,12 +1688,12 @@
 </pre></div>
 </td></tr></table>
 
-<h3 id="processor-managers-job">Processor Manager&rsquo;s Job</h3>
+<h3 id="processor-managers-job">Processor Manager&rsquo;s Job<a class="headerlink" href="#processor-managers-job" title="Permanent link">&para;</a></h3>
 <p>It needs to flush old execution environment, and setup the new execution environment, such as signal, FPU. Notably, processor manager need to run <code class="codehilite">flush_old_exec()</code>, and <code class="codehilite">setup_new_exec()</code>.</p>
-<h4 id="destroy-old-context-flush_old_exec">Destroy old context: flush_old_exec()</h4>
-<h5 id="zap-other-threads">Zap other threads</h5>
+<h4 id="destroy-old-context-flush_old_exec">Destroy old context: flush_old_exec()<a class="headerlink" href="#destroy-old-context-flush_old_exec" title="Permanent link">&para;</a></h4>
+<h5 id="zap-other-threads">Zap other threads<a class="headerlink" href="#zap-other-threads" title="Permanent link">&para;</a></h5>
 <p><code class="codehilite">de_thread</code> is used to kill other threads within the same thread group, thus make sure this process has its own signal table. Furthermore, A <code class="codehilite">exec</code> starts a new thread group with the same TGID of the previous thread group, so we probably also need to switch PID if calling thread is not a leader.</p>
-<h5 id="switch-to-new-address-space">Switch to new address space</h5>
+<h5 id="switch-to-new-address-space">Switch to new address space<a class="headerlink" href="#switch-to-new-address-space" title="Permanent link">&para;</a></h5>
 <p>We also need to release the old mm, and allocate a new mm. The new mm only has the high address kernel mapping established. Do note that in Lego, pgtable is used to emulate the processor cache:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -466,7 +1744,7 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></p>
-<h5 id="clear-architecture-specific-state">Clear Architecture-Specific state</h5>
+<h5 id="clear-architecture-specific-state">Clear Architecture-Specific state<a class="headerlink" href="#clear-architecture-specific-state" title="Permanent link">&para;</a></h5>
 <p>This is performed by <code class="codehilite">flush_thread()</code>, which is an architecture-specific callback. In x86, we need to clear FPU state, and reset TLS array:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -483,7 +1761,7 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></p>
-<h4 id="setup-new-context-setup_new_exec">Setup new context: setup_new_exec()</h4>
+<h4 id="setup-new-context-setup_new_exec">Setup new context: setup_new_exec()<a class="headerlink" href="#setup-new-context-setup_new_exec" title="Permanent link">&para;</a></h4>
 <p>Lego&rsquo;s <code class="codehilite">setup_new_exec()</code> is quite different from Linux&rsquo;s default implementation. Lego moves several functions to memory component, like the <code class="codehilite">arch_pick_mmap_layout</code> stuff. Thus, Lego only flush the signal handlers and reset the signal stack stuff:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -504,7 +1782,7 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></p>
-<h4 id="change-return-frame-in-stack">Change return frame in stack</h4>
+<h4 id="change-return-frame-in-stack">Change return frame in stack<a class="headerlink" href="#change-return-frame-in-stack" title="Permanent link">&para;</a></h4>
 <p>We do not return to user mode here, we simply replace the return IP of the regs frame. While the kernel thread returns, it will simply merge to syscall return path (check ret_from_fork() in entry.S for detail).
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -613,10 +1891,10 @@
 </td></tr></table>
 
 <p>This is such a typical control flow hijacking. :-)</p>
-<h3 id="features">Features</h3>
+<h3 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h3>
 <p>This section lists various features, or behaviors and Lego&rsquo;s program loader.</p>
 <hr />
-<h4 id="virtual-address-space-range">Virtual Address Space Range</h4>
+<h4 id="virtual-address-space-range">Virtual Address Space Range<a class="headerlink" href="#virtual-address-space-range" title="Permanent link">&para;</a></h4>
 <p>User&rsquo;s virtual address falls into this range:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[sysctl_mmap_min_addr, TASK_SIZE)
 </pre></div>
@@ -652,7 +1930,7 @@
 </pre></div>
 </td></tr></table></p>
 <hr />
-<h4 id="pre-populated-bss-and-brk">Pre-Populated <code class="codehilite"><span class="na">.bss</span></code> and <code class="codehilite"><span class="na">.brk</span></code></h4>
+<h4 id="pre-populated-bss-and-brk">Pre-Populated <code class="codehilite"><span class="na">.bss</span></code> and <code class="codehilite"><span class="na">.brk</span></code><a class="headerlink" href="#pre-populated-bss-and-brk" title="Permanent link">&para;</a></h4>
 <p>The heap vma created at loading time is a combination of <code class="codehilite"><span class="na">.bss</span></code> and <code class="codehilite"><span class="na">.brk</span></code> segments. Since brk usage is 0 (will it be non-zero?) at this moment, so the heap vma is essentially just <code class="codehilite"><span class="na">.bss</span></code> pages. Normally, Linux kernel does not populate pages for this vma during loading, but Lego does. It can save several page allocation cost for heap pcache miss. It is controlled by <code class="codehilite">vm_brk()</code>.
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -692,7 +1970,7 @@
 </pre></div>
 </td></tr></table></p>
 <hr />
-<h4 id="un-populated-stack">Un-Populated stack</h4>
+<h4 id="un-populated-stack">Un-Populated stack<a class="headerlink" href="#un-populated-stack" title="Permanent link">&para;</a></h4>
 <p>Stack vma is manually expanded to <code class="codehilite">32 pages + pages for argv info</code> by loader to accommodate future usage. Only pages for argv are populated by default, the extra 32 pages are not. A typical program may need 1 page for saving argv info, plus the 32 extra, the layout will be:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>7ffffffde000-7ffffffff000 rw-p 00000000 [stack]
 </pre></div>
@@ -730,10 +2008,10 @@
 </pre></div>
 </td></tr></table></p>
 <hr />
-<h4 id="un-populated-text-and-data">Un-Populated <code class="codehilite"><span class="na">.text</span></code> and <code class="codehilite"><span class="na">.data</span></code></h4>
+<h4 id="un-populated-text-and-data">Un-Populated <code class="codehilite"><span class="na">.text</span></code> and <code class="codehilite"><span class="na">.data</span></code><a class="headerlink" href="#un-populated-text-and-data" title="Permanent link">&para;</a></h4>
 <p>In essence, all PT_LOAD segments of ELF image are not pre-populated. They will be fetched from storage on demand. This is the traditional on-demand paging way. If we want to reduce the overhead of code and data&rsquo;s on-demand paging, we can prefault them in the future.</p>
 <hr />
-<h4 id="disabled-randomized-top-of-stack">Disabled Randomized Top of Stack</h4>
+<h4 id="disabled-randomized-top-of-stack">Disabled Randomized Top of Stack<a class="headerlink" href="#disabled-randomized-top-of-stack" title="Permanent link">&para;</a></h4>
 <p>Lego currently does not randomize the stack top. The stack vma is allocated by <code class="codehilite">bprm_mm_init()</code> at early execve time. There is no randomization at the allocation time, and this applies to all exectuable formats. The end of vma is just <code class="codehilite">TASK_SIZE</code>:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -827,7 +2105,7 @@
 </pre></div>
 </td></tr></table></p>
 <hr />
-<h4 id="no-vdso">No vDSO</h4>
+<h4 id="no-vdso">No vDSO<a class="headerlink" href="#no-vdso" title="Permanent link">&para;</a></h4>
 <p>Currently, Lego does not have <code class="codehilite">vDSO</code> support. There are not too many syscalls mapped in the vDSO, for <a href="http://man7.org/linux/man-pages/man7/vdso.7.html">x86-64</a>:</p>
 <ul>
 <li>clock_gettime</li>
@@ -924,53 +2202,112 @@
 Yizhou Shan<br />
 Created: Feb 16, 2018<br />
 Last Updated: Feb 27, 2018</p>
+                
+                  
+                
               
-            </div>
+              
+                
+                  
+
+
+  <h2 id="__comments">Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = "None";
+      this.page.identifier =
+        "None";
+    };
+    (function() {
+      var d = document, s = d.createElement("script");
+      s.src = "//lastweek-io.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+                
+              
+            </article>
           </div>
-          <footer>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../vDSO/" class="btn btn-neutral float-right" title="vDSO">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../stop_machine/" class="btn btn-neutral" title="Stop machine"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../stop_machine/" title="Stop machine" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Stop machine
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../vDSO/" title="vDSO" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                vDSO
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
     </div>
   
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+  <div class="md-footer-social">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <a href="https://github.com/lastweek" class="md-footer-social__link fa fa-github"></a>
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+      
+    </div>
+  </div>
 </footer>
       
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
+    </div>
+    
+      <script src="../../../assets/javascripts/application.abd7b172.js"></script>
       
+      <script>app.initialize({version:"0.17.2",url:{base:"../../.."}})</script>
       
-        <span><a href="../stop_machine/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+    
+    
       
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-143772066-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
       
-        <span style="margin-left: 15px"><a href="../vDSO/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
-</div>
-    <script>var base_url = '../../..';</script>
-    <script src="../../../js/theme.js"></script>
-      <script src="../../../search/require.js"></script>
-      <script src="../../../search/search.js"></script>
-
-</body>
+    
+  </body>
 </html>

@@ -1,328 +1,1766 @@
+
+
+
+
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>March 2018 - Yizhou Shan's Home Page</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-  <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
-
-  <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../../css/highlight.css">
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "March 2018";
-    var mkdocs_page_input_path = "lego/log/log-03-2018.md";
-    var mkdocs_page_url = "/lego/log/log-03-2018/";
-  </script>
-  
-  <script src="../../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../../js/highlight.pack.js"></script> 
-  
-</head>
-
-<body class="wy-body-for-nav" role="document">
-
-  <div class="wy-grid-for-nav">
-
+<html lang="en" class="no-js">
+  <head>
     
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-      <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> Yizhou Shan's Home Page</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-  </form>
-</div>
-      </div>
-
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	  
-          
-		  
-  <ul class="" href="../../..">
-    <li class="toctree-l1">
-  <a class="" href="../../..">Home</a>
-  </li></ul>
-          
-		  
-  <p class="caption">Notes</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/cache_coherence/">[Arch] Cache Coherence</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/trace/">[Linux] Tracing</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../misc/essential/">[Misc] Essential</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../misc/cheatsheet/">[Misc] Cheatsheet</a>
-        </li>
-  </ul>
-
-          
-		  
-  <p class="caption">FPGA</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
-        </li>
-  </ul>
-
-          
-		  
-  <p class="caption">LegoOS Dev Note</p>
-  <ul class="current">
-          <li class="toctree-l1 current">
-            
-  <a class="current" href="/lego/log/TODO">Log</a>
-  <ul class="subnav">
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../TODO/">TODO</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../misc/">MISC</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../test-note/">Test Script</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../log-09-2018/">Sep 2018</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../log-08-2018/">Aug 2018</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../log-04-2018/">April 2018</a>
-        </li>
-        <li class="toctree-l2 current 1">
-            
-  <a class="current" href="./">March 2018</a>
-  <ul class="subnav">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
       
-  <li class="toctree-l2 current">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.6.2">
+    
+    
+      
+        <title>March 2018 - Yizhou Shan's Home Page</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.9b572555.css">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
   
+    <body dir="ltr">
   
-    <ul class="">
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0331-sat">03/31 Sat</a>
-        </li>
+      <a href="#march-2018" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0330-fri">03/30 Fri</a>
-        </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0326-mon">03/26 Mon</a>
-        </li>
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../../.." title="Yizhou Shan's Home Page" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Yizhou Shan's Home Page
+              </span>
+              <span class="md-header-nav__topic">
+                March 2018
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0322-thur">03/22 Thur</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0321-wed">03/21 Wed</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0320-tue">03/20 Tue</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0319-mon">03/19 Mon</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0318-sun">03/18 Sun</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0317-sat">03/17 Sat</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0316-friday">03/16 Friday</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0315-thur">03/15 Thur</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0313-wed">03/13 Wed</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0312-tue">03/12 Tue</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0311-mon">03/11 Mon</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0310-sun">03/10 Sun</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0310-sat">03/10 Sat</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0309-fri">03/09 Fri</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0308-thur">03/08 Thur</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0302-fri">03/02 Fri</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0301-thur">03/01 Thur</a>
-        </li>
-    
-    </ul>
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </span>
+    Yizhou Shan's Home Page
+  </label>
   
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
   </li>
 
-  </ul>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../log-02-2018/">Feb 2018</a>
-        </li>
-  </ul>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/kernel/kconfig">Kernel</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/syscall/facts">Syscall</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/pcache/config">Pcache</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/driver/pci">Driver</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/paper/nmp">Paper</a>
-        </li>
-  </ul>
+    
+      
+      
+      
 
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Notes
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Notes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
           
-      </div>
-      &nbsp;
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../notes/paper_perf_shadows/" title="Perf Shadows" class="md-nav__link">
+      Perf Shadows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../notes/cache_coherence/" title="[Arch] Cache Coherence" class="md-nav__link">
+      [Arch] Cache Coherence
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../notes/rmap/" title="[Linux] Reverse Mmap (rmap)" class="md-nav__link">
+      [Linux] Reverse Mmap (rmap)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../notes/trace/" title="[Linux] Tracing" class="md-nav__link">
+      [Linux] Tracing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../notes/cgroup-swap/" title="[Linux] Cgroup and Swap" class="md-nav__link">
+      [Linux] Cgroup and Swap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../notes/userfaultfd/" title="[Linux] Userfaultfd" class="md-nav__link">
+      [Linux] Userfaultfd
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../notes/xperf/" title="[Linux] User/kern Cross Perf" class="md-nav__link">
+      [Linux] User/kern Cross Perf
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../notes/kvm-basic/" title="[Linux] KVM" class="md-nav__link">
+      [Linux] KVM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../misc/essential/" title="[Misc] Essential" class="md-nav__link">
+      [Misc] Essential
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../misc/cheatsheet/" title="[Misc] Cheatsheet" class="md-nav__link">
+      [Misc] Cheatsheet
+    </a>
+  </li>
+
+        
+      </ul>
     </nav>
+  </li>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">Yizhou Shan's Home Page</a>
-      </nav>
-
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="../../..">Docs</a> &raquo;</li>
     
       
-        
-          <li>LegoOS Dev Note &raquo;</li>
-        
       
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      FPGA
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        FPGA
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
         
-          <li>Log &raquo;</li>
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../fpga/hls_axi/" title="HLS: Usage of AXI-Stream" class="md-nav__link">
+      HLS: Usage of AXI-Stream
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../fpga/hls_axi/" title="HLS: High-performance AXI-MM" class="md-nav__link">
+      HLS: High-performance AXI-MM
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      LegoOS Dev Note
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        LegoOS Dev Note
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1" checked>
+    
+    <label class="md-nav__link" for="nav-4-1">
+      Log
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        Log
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../TODO/" title="TODO" class="md-nav__link">
+      TODO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../misc/" title="MISC" class="md-nav__link">
+      MISC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../test-note/" title="Test Script" class="md-nav__link">
+      Test Script
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../log-09-2018/" title="Sep 2018" class="md-nav__link">
+      Sep 2018
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../log-08-2018/" title="Aug 2018" class="md-nav__link">
+      Aug 2018
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../log-04-2018/" title="April 2018" class="md-nav__link">
+      April 2018
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
       
     
-    <li>March 2018</li>
-    <li class="wy-breadcrumbs-aside">
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        March 2018
+      </label>
+    
+    <a href="./" title="March 2018" class="md-nav__link md-nav__link--active">
+      March 2018
+    </a>
+    
       
-    </li>
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0331-sat" title="03/31 Sat" class="md-nav__link">
+    03/31 Sat
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0330-fri" title="03/30 Fri" class="md-nav__link">
+    03/30 Fri
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0326-mon" title="03/26 Mon" class="md-nav__link">
+    03/26 Mon
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0322-thur" title="03/22 Thur" class="md-nav__link">
+    03/22 Thur
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clear-registers-for-execve" title="Clear Registers for execve()" class="md-nav__link">
+    Clear Registers for execve()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0321-wed" title="03/21 Wed" class="md-nav__link">
+    03/21 Wed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0320-tue" title="03/20 Tue" class="md-nav__link">
+    03/20 Tue
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ib-bug-again" title="IB Bug again" class="md-nav__link">
+    IB Bug again
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0319-mon" title="03/19 Mon" class="md-nav__link">
+    03/19 Mon
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#random-ib-bug" title="Random IB Bug" class="md-nav__link">
+    Random IB Bug
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0318-sun" title="03/18 Sun" class="md-nav__link">
+    03/18 Sun
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0317-sat" title="03/17 Sat" class="md-nav__link">
+    03/17 Sat
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0316-friday" title="03/16 Friday" class="md-nav__link">
+    03/16 Friday
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0315-thur" title="03/15 Thur" class="md-nav__link">
+    03/15 Thur
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0313-wed" title="03/13 Wed" class="md-nav__link">
+    03/13 Wed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0312-tue" title="03/12 Tue" class="md-nav__link">
+    03/12 Tue
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0311-mon" title="03/11 Mon" class="md-nav__link">
+    03/11 Mon
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debug-victim-cache" title="Debug victim cache" class="md-nav__link">
+    Debug victim cache
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0310-sun" title="03/10 Sun" class="md-nav__link">
+    03/10 Sun
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fix-bug-from-__unhash_procees" title="Fix bug from __unhash_procees()" class="md-nav__link">
+    Fix bug from __unhash_procees()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#victim-report-error" title="victim report error" class="md-nav__link">
+    victim report error
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0310-sat" title="03/10 Sat" class="md-nav__link">
+    03/10 Sat
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#put_pcache-in-pcache_zap_pte" title="put_pcache in pcache_zap_pte" class="md-nav__link">
+    put_pcache in pcache_zap_pte
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-hello-world-run-to-end" title="python hello world run to end" class="md-nav__link">
+    python hello world run to end
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trying-phoenix-pthread-again" title="Trying phoenix pthread again" class="md-nav__link">
+    Trying phoenix pthread again
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0309-fri" title="03/09 Fri" class="md-nav__link">
+    03/09 Fri
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-bug-in-kmalloc" title="Find bug in kmalloc" class="md-nav__link">
+    Find bug in kmalloc
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0308-thur" title="03/08 Thur" class="md-nav__link">
+    03/08 Thur
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python" title="python" class="md-nav__link">
+    python
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0302-fri" title="03/02 Fri" class="md-nav__link">
+    03/02 Fri
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0301-thur" title="03/01 Thur" class="md-nav__link">
+    03/01 Thur
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../log-02-2018/" title="Feb 2018" class="md-nav__link">
+      Feb 2018
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+    
+    <label class="md-nav__link" for="nav-4-2">
+      Kernel
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        Kernel
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/kconfig/" title="Kconfig" class="md-nav__link">
+      Kconfig
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/debug/" title="Debug" class="md-nav__link">
+      Debug
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/grub/" title="GRUB" class="md-nav__link">
+      GRUB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/profile/" title="Profile" class="md-nav__link">
+      Profile
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/profile_strace/" title="Profile strace" class="md-nav__link">
+      Profile strace
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/profile_heatmap/" title="Profile heatmap" class="md-nav__link">
+      Profile heatmap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/profile_points/" title="Profile points" class="md-nav__link">
+      Profile points
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/trampoline/" title="Trampoline" class="md-nav__link">
+      Trampoline
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/pagefault_disable/" title="Disable pgfault" class="md-nav__link">
+      Disable pgfault
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/stop_machine/" title="Stop machine" class="md-nav__link">
+      Stop machine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/loader/" title="Program Loader" class="md-nav__link">
+      Program Loader
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/vDSO/" title="vDSO" class="md-nav__link">
+      vDSO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/vfs/" title="Virtual File System" class="md-nav__link">
+      Virtual File System
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/vm/" title="Process Virtual Memory" class="md-nav__link">
+      Process Virtual Memory
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/fpu/" title="x86 FPU" class="md-nav__link">
+      x86 FPU
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/irq/" title="IRQ" class="md-nav__link">
+      IRQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/net_thpool/" title="Network Thpool" class="md-nav__link">
+      Network Thpool
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      Syscall
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-3">
+        Syscall
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/facts/" title="Facts" class="md-nav__link">
+      Facts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/profile_strace/" title="strace" class="md-nav__link">
+      strace
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/compat/" title="compat" class="md-nav__link">
+      compat
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/msync/" title="msync()" class="md-nav__link">
+      msync()
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/mremap/" title="mremap()" class="md-nav__link">
+      mremap()
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/fork/" title="fork()" class="md-nav__link">
+      fork()
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/getrusage/" title="getrusage()" class="md-nav__link">
+      getrusage()
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../syscall/wait_and_exit/" title="wait4 and exit()" class="md-nav__link">
+      wait4 and exit()
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4">
+    
+    <label class="md-nav__link" for="nav-4-4">
+      Pcache
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-4">
+        Pcache
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/config/" title="Config" class="md-nav__link">
+      Config
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/sweep/" title="Sweep" class="md-nav__link">
+      Sweep
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/tlb/" title="TLB Coherence" class="md-nav__link">
+      TLB Coherence
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/pgtable-lock/" title="PageTable Lock" class="md-nav__link">
+      PageTable Lock
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/victim/" title="Victim Cache" class="md-nav__link">
+      Victim Cache
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/virtual_cache/" title="Virtual Cache" class="md-nav__link">
+      Virtual Cache
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/rmap/" title="Reverse Mapping" class="md-nav__link">
+      Reverse Mapping
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/evict_and_ref/" title="Evict and Refcount" class="md-nav__link">
+      Evict and Refcount
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/smp_design/" title="SMP Design" class="md-nav__link">
+      SMP Design
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pcache/replication/" title="Replication" class="md-nav__link">
+      Replication
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-5" type="checkbox" id="nav-4-5">
+    
+    <label class="md-nav__link" for="nav-4-5">
+      Driver
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-5">
+        Driver
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../driver/pci/" title="PCI" class="md-nav__link">
+      PCI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../driver/ib/" title="Infiniband" class="md-nav__link">
+      Infiniband
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-6" type="checkbox" id="nav-4-6">
+    
+    <label class="md-nav__link" for="nav-4-6">
+      Paper
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-6">
+        Paper
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/nmp/" title="NMP" class="md-nav__link">
+      NMP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/processor_oom/" title="Processor OOM" class="md-nav__link">
+      Processor OOM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/genz/" title="Gen-Z" class="md-nav__link">
+      Gen-Z
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/replication/" title="Replication" class="md-nav__link">
+      Replication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../paper/related/" title="Related" class="md-nav__link">
+      Related
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
   </ul>
-  <hr/>
-</div>
-          <div role="main">
-            <div class="section">
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0331-sat" title="03/31 Sat" class="md-nav__link">
+    03/31 Sat
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0330-fri" title="03/30 Fri" class="md-nav__link">
+    03/30 Fri
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0326-mon" title="03/26 Mon" class="md-nav__link">
+    03/26 Mon
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0322-thur" title="03/22 Thur" class="md-nav__link">
+    03/22 Thur
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clear-registers-for-execve" title="Clear Registers for execve()" class="md-nav__link">
+    Clear Registers for execve()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0321-wed" title="03/21 Wed" class="md-nav__link">
+    03/21 Wed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0320-tue" title="03/20 Tue" class="md-nav__link">
+    03/20 Tue
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ib-bug-again" title="IB Bug again" class="md-nav__link">
+    IB Bug again
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0319-mon" title="03/19 Mon" class="md-nav__link">
+    03/19 Mon
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#random-ib-bug" title="Random IB Bug" class="md-nav__link">
+    Random IB Bug
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0318-sun" title="03/18 Sun" class="md-nav__link">
+    03/18 Sun
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0317-sat" title="03/17 Sat" class="md-nav__link">
+    03/17 Sat
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0316-friday" title="03/16 Friday" class="md-nav__link">
+    03/16 Friday
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0315-thur" title="03/15 Thur" class="md-nav__link">
+    03/15 Thur
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0313-wed" title="03/13 Wed" class="md-nav__link">
+    03/13 Wed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0312-tue" title="03/12 Tue" class="md-nav__link">
+    03/12 Tue
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0311-mon" title="03/11 Mon" class="md-nav__link">
+    03/11 Mon
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debug-victim-cache" title="Debug victim cache" class="md-nav__link">
+    Debug victim cache
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0310-sun" title="03/10 Sun" class="md-nav__link">
+    03/10 Sun
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fix-bug-from-__unhash_procees" title="Fix bug from __unhash_procees()" class="md-nav__link">
+    Fix bug from __unhash_procees()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#victim-report-error" title="victim report error" class="md-nav__link">
+    victim report error
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0310-sat" title="03/10 Sat" class="md-nav__link">
+    03/10 Sat
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#put_pcache-in-pcache_zap_pte" title="put_pcache in pcache_zap_pte" class="md-nav__link">
+    put_pcache in pcache_zap_pte
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-hello-world-run-to-end" title="python hello world run to end" class="md-nav__link">
+    python hello world run to end
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trying-phoenix-pthread-again" title="Trying phoenix pthread again" class="md-nav__link">
+    Trying phoenix pthread again
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0309-fri" title="03/09 Fri" class="md-nav__link">
+    03/09 Fri
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-bug-in-kmalloc" title="Find bug in kmalloc" class="md-nav__link">
+    Find bug in kmalloc
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0308-thur" title="03/08 Thur" class="md-nav__link">
+    03/08 Thur
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python" title="python" class="md-nav__link">
+    python
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0302-fri" title="03/02 Fri" class="md-nav__link">
+    03/02 Fri
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0301-thur" title="03/01 Thur" class="md-nav__link">
+    03/01 Thur
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
               
-                <h1 id="march-2018">March 2018</h1>
-<h2 id="0331-sat">03/31 Sat</h2>
+                
+                
+                <h1 id="march-2018">March 2018<a class="headerlink" href="#march-2018" title="Permanent link">&para;</a></h1>
+<h2 id="0331-sat">03/31 Sat<a class="headerlink" href="#0331-sat" title="Permanent link">&para;</a></h2>
 <p>Stay humble. Be real.</p>
-<h2 id="0330-fri">03/30 Fri</h2>
+<h2 id="0330-fri">03/30 Fri<a class="headerlink" href="#0330-fri" title="Permanent link">&para;</a></h2>
 <p>Our scheduling, or IB do have issues. I must revisit this.</p>
 <p>The case is: in P, we boot only 12 cores, and three of them are used by flush, sweep, and IB. So there are 9 cores left for user. Phoenix create 24 threads. During the run, a lot ib timeout will happen. If we have a good scheduling, this should never happen. I probably need to check more on this.</p>
 <p>Anyway. Today I reorganized the opcode things. And now I&rsquo;m adding the final large piece of Lego: replication. It should be much simpler than the pcache part. I will first write down what code I need to add, e.g., opcode, handler, buffer mgmt etc.</p>
 <p>End of day. Want to write down some simple thoughts on building system. Building system is fun, but you have to know that devil is in the details. And, you may end up debugging for many many hours on a very very little issue. But that is how it is. Building system does not mean you are always working on fantastic beautiful ideas. It is always about those little bugs, little things, trivial fixes, that make your system robust and usable. For example, the patch Yilun sent me today is about handling special cases of stat and lseek. The patch does not improve any performance or adding fancy features, it is a minor fix to make user progam run. But this enable us to run TF. I think it is a great patch and it stands for 90% of building systems in middle or late stage.</p>
 <p>Of course, there are other trivial things on building systems: 1) initialize every possible used variables, can be local variables, malloced buffers. 2) have decent cleanup, which is a counterpart of your initialization, like dequeue list, decrease counter etc. 3) Clear coding style, write code for others, for yourself when you read the code two weeks later. This one is hard, need experience. But can be learned. I think Yilun and Yutong both improved a lot during this project. Me? I learned this from NVM emulator protect. It is a painful one, but also a valuable one. 4) Decent protect source file organization. 5) Remember, draw, the connections between subsystems. By adding this new feature to this subsystem A, will it broke subsystem B, which is using subsystem A. Something like this. 6) clear mind on lock usage, multithread issue. This is the most difficult one. I would say I learned this by coding pcache, or mm. I would say, mm is the most difficult multithread issue one can encounter.</p>
-<h2 id="0326-mon">03/26 Mon</h2>
+<h2 id="0326-mon">03/26 Mon<a class="headerlink" href="#0326-mon" title="Permanent link">&para;</a></h2>
 <p>Spent several days on replication design. Now I&rsquo;m back on coding and debuging track.</p>
 <p>Fixed a bug introduced by per-pte lock. A one hided by previous one big giant page table lock.</p>
 <p>Also add an option to boot socket 0 only if Processor is configured. This is because pcache is normally registered at socket 0, if we schedule user threads to sockets other than socket 0, that will have bad performance.</p>
-<h2 id="0322-thur">03/22 Thur</h2>
-<h3 id="clear-registers-for-execve">Clear Registers for execve()</h3>
+<h2 id="0322-thur">03/22 Thur<a class="headerlink" href="#0322-thur" title="Permanent link">&para;</a></h2>
+<h3 id="clear-registers-for-execve">Clear Registers for execve()<a class="headerlink" href="#clear-registers-for-execve" title="Permanent link">&para;</a></h3>
 <p>Want to figure out execve problem today.</p>
 <ol>
 <li>Check if pcache is clean after process_exit.</li>
@@ -430,7 +1868,7 @@
 <p>After I cleaned up all registers (except IP, SP, CS, SS, FLAGS) within start_thread, the execve&rsquo;ed program can run to end successfully.</p>
 <p>I did not clear the registers because linux does not clear it. I thought this is fine. Glibc should clear it anyway, right?</p>
 <p>But anyway, this works.</p>
-<h2 id="0321-wed">03/21 Wed</h2>
+<h2 id="0321-wed">03/21 Wed<a class="headerlink" href="#0321-wed" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Task 1: add some checking in ib, flush, sweep thread. 1) If cpu changed, 2) if nr_threads on this core &gt; 1.</li>
 </ul>
@@ -502,7 +1940,7 @@
 <span class="p">[</span> <span class="mf">1103.616964</span><span class="p">]</span> <span class="n">Call</span> <span class="nl">Trace</span><span class="p">:</span>
 </pre></div>
 </td></tr></table></p>
-<h2 id="0320-tue">03/20 Tue</h2>
+<h2 id="0320-tue">03/20 Tue<a class="headerlink" href="#0320-tue" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Task 1: calculate failure numbers</li>
 <li>Task 2: read 0319-4 Log</li>
@@ -511,7 +1949,7 @@
 <p>Hmm, I finished the per-pte per-pmd lock patch. I think it works.
 But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I marked 3 CPUs inactive, so all new 24 threads will be scheduled to other cores (I may need to check this!). At some point, Lego P either stuck, or a lot ibapi_send_reply timeout.</p>
 <p>When I change the cpu_online to may <code class="codehilite">0-6</code>, it finished. When I change it to <code class="codehilite">0-18</code>, also succeed. I really doubt if actually those pinned threads are not pinned. Need to check.</p>
-<h3 id="ib-bug-again">IB Bug again</h3>
+<h3 id="ib-bug-again">IB Bug again<a class="headerlink" href="#ib-bug-again" title="Permanent link">&para;</a></h3>
 <p>Running MT-phoenix, 2GB, somehow crashed in the middle:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -720,7 +2158,7 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 <span class="p">[</span> <span class="mf">1005.264773</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100e472</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">ret_from_fork</span><span class="o">+</span><span class="mh">0x22</span><span class="o">/</span><span class="mh">0x30</span>
 </pre></div>
 </td></tr></table></p>
-<h2 id="0319-mon">03/19 Mon</h2>
+<h2 id="0319-mon">03/19 Mon<a class="headerlink" href="#0319-mon" title="Permanent link">&para;</a></h2>
 <p>Not too many days left!!! Got to design full replication mechanism and algorithm today.</p>
 <p>Merged pull request for <code class="codehilite">pipe</code>, <code class="codehilite">pipe2</code> and <code class="codehilite">/dev/null</code> from Yilun. Our simple file op mgmt concerns me. I left a note at kernel/fork.c.</p>
 <p>Got a bug report from Yilun, syscall execv failed. To be honest, I&rsquo;ve never tried this syscall, always call it directly within kernel.
@@ -793,7 +2231,7 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 </td></tr></table></p>
 <p>It is <code class="codehilite">setup_new_exec() -&gt; set_task_comm()</code>. I passed the user pointer to <code class="codehilite">set_task_comm()</code>, which I should pass a kernel pointer.</p>
 <p>And I actually found we missed a function: <code class="codehilite">do_close_on_exec()</code>. I also add a note above.</p>
-<h3 id="random-ib-bug">Random IB Bug</h3>
+<h3 id="random-ib-bug">Random IB Bug<a class="headerlink" href="#random-ib-bug" title="Permanent link">&para;</a></h3>
 <p>Another weird bug after pathing loader. Actually, I tried the same setting twice, the second time it works. I guess this is some random IB bug. (Setting: 1P, 1M, 1S. Running a simple exec.c testing program, this have not reach that point yet.)
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -872,7 +2310,7 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 <span class="p">[</span>  <span class="mf">498.856936</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">EOT</span><span class="o">&gt;</span>
 </pre></div>
 </td></tr></table></p>
-<h2 id="0318-sun">03/18 Sun</h2>
+<h2 id="0318-sun">03/18 Sun<a class="headerlink" href="#0318-sun" title="Permanent link">&para;</a></h2>
 <p>Got a bug report after enable preempt and sweep thread
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -1025,15 +2463,15 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 <span class="p">[</span>  <span class="mf">629.642774</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81033329</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">pcache_referenced_trylock</span><span class="o">+</span><span class="mh">0x59</span><span class="o">/</span><span class="mh">0xd0</span>
 </pre></div>
 </td></tr></table></p>
-<h2 id="0317-sat">03/17 Sat</h2>
+<h2 id="0317-sat">03/17 Sat<a class="headerlink" href="#0317-sat" title="Permanent link">&para;</a></h2>
 <p>I&rsquo;m too tired today.</p>
 <p>Coding side, I will only optimize sweep. Besides, I will book tickets for Iceland trip.</p>
-<h2 id="0316-friday">03/16 Friday</h2>
+<h2 id="0316-friday">03/16 Friday<a class="headerlink" href="#0316-friday" title="Permanent link">&para;</a></h2>
 <p><del class="critic">Task 1</del>: Add physical memory counter. It is a per-zone based counter, even though there is also some global counters. In Linux, per-cpu counter is first accumlated, global counter is updated only when per-cpu ones overflow. Lego&rsquo;s initial version save the trouble of per-cpu counter, I only port one global counter today, because I&rsquo;m not quite confident about our percpu_alloc&hellip;</p>
 <p>Anway, the info is reported in the format of <code class="codehilite">manager_sysinfo</code>. Do note this is different from the oirginal <code class="codehilite">sysinfo</code> structure, which is used by sysinfo syscall.</p>
 <p><del class="critic">Task 2</del>: Patch get_random_number and /dev/urandom /dev/random. Others wrote the code, but he did not stick to the tradition of format naming. So I have to rewrite some of them. Sigh.</p>
 <p><ins class="critic">Task 3</ins>: optimize sweep</p>
-<h2 id="0315-thur">03/15 Thur</h2>
+<h2 id="0315-thur">03/15 Thur<a class="headerlink" href="#0315-thur" title="Permanent link">&para;</a></h2>
 <p>Forgot to write the log yesterday. I actually solved the major bug, the refcount and eviction one. That is really nasty. I basically used pte lock, pcache_lock, and refcount to synchronize between eviction routine and other users such as munmap, mremap, write-protected-handler.</p>
 <p>I&rsquo;m really not sure if this mode can be reproduced if I have any other similar systems. But I&rsquo;m glad that I find a way to do this.</p>
 <p>Today I got few tasks going on. First merge storage syscall branch, then add sched_yield syscall, add zone/node counters, and probably patch get_random_number.</p>
@@ -1061,7 +2499,7 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 </ul>
 <p>Have to continue tomorrow.</p>
 <p><ins class="critic">Task 4</ins>: Patch get_random_number and /dev/urandom</p>
-<h2 id="0313-wed">03/13 Wed</h2>
+<h2 id="0313-wed">03/13 Wed<a class="headerlink" href="#0313-wed" title="Permanent link">&para;</a></h2>
 <p>The slow victim flush issue is solved by pinning the thread to a core and remove that core from active_cpu mask.</p>
 <p>Today I&rsquo;m going to solve the SMP object issue. I&rsquo;m hoping by solving this, we can have a complete working pcache and victim cache.</p>
 <p>Continue yesterday&rsquo;s log:
@@ -1168,7 +2606,7 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 </tbody>
 </table>
 <p>Huh, patched both eviction and other code. Use refcount, pcache lock, pte lock to synchronize between all users. Make sure a going-to-be-evicted pcm will not be used by others. And others will not have a chance to use such line.</p>
-<h2 id="0312-tue">03/12 Tue</h2>
+<h2 id="0312-tue">03/12 Tue<a class="headerlink" href="#0312-tue" title="Permanent link">&para;</a></h2>
 <p>Continue victim cache. The current conclusion is victim has a unbalanced input and output rate. That is why some cores timeout and abort.</p>
 <p>Got some more clean log. The log told us that the flushd_victim is too slow at flushing content. Next I going to print the current flush queue content. Make sure that they are really not flushed. If so, I want to add code to flush sync.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -1700,8 +3138,8 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 </pre></div>
 </td></tr></table>
 
-<h2 id="0311-mon">03/11 Mon</h2>
-<h3 id="debug-victim-cache">Debug victim cache</h3>
+<h2 id="0311-mon">03/11 Mon<a class="headerlink" href="#0311-mon" title="Permanent link">&para;</a></h2>
+<h3 id="debug-victim-cache">Debug victim cache<a class="headerlink" href="#debug-victim-cache" title="Permanent link">&para;</a></h3>
 <p>Morning. Today I will continue debugging victim and clflush, running with MT phoenix+2GB, seq+4GB. Sounds good.</p>
 <p>Digging into yesterday&rsquo;s 21th run log. The warning comes from <code class="codehilite">victim_alloc_slowpath</code>. The allocation abort after 10 seconds timeout. And interestingly, a lot threads abort. (The case is, <code class="codehilite">pset</code> is full, so <code class="codehilite">pcache_alloc</code> will try to evict one to victim cache. But victim cache is full as well. So it needs to evict one victim cache line too. Somehow this does not proceed as planned.) I guess somewhere deadlock happens.
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -1977,8 +3415,8 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 </span></pre></div>
 </td></tr></table>
 
-<h2 id="0310-sun">03/10 Sun</h2>
-<h3 id="fix-bug-from-__unhash_procees">Fix bug from <code class="codehilite">__unhash_procees()</code></h3>
+<h2 id="0310-sun">03/10 Sun<a class="headerlink" href="#0310-sun" title="Permanent link">&para;</a></h2>
+<h3 id="fix-bug-from-__unhash_procees">Fix bug from <code class="codehilite">__unhash_procees()</code><a class="headerlink" href="#fix-bug-from-__unhash_procees" title="Permanent link">&para;</a></h3>
 <p>[Summary]: a bug cause by laziness. When fork happens, the new thread is added into parent&rsquo;s thread_group list. However, we forgot to remove it when the new thread exit. Thus, the field in parent&rsquo;s thread_group will point to a freed page. To make it worse, the freed page got allocated again. In our case, the page was used by pgtable. So, when the parent tries to use that field, it simply corrupts pgtable. This bug is fixed by this commit: 64d43fc.</p>
 <p>Got something going on. Huh.</p>
 <p>Anyway, pick up what left last night.</p>
@@ -2315,7 +3753,7 @@ Something happen in between corrupted pgtable
 </pre></div>
 </td></tr></table></p>
 <p>16<sup>th</sup> run, damn, after patching <code class="codehilite">__unhash_process()</code>, it finally works. Going to workout, see you tonight.</p>
-<h3 id="victim-report-error">victim report error</h3>
+<h3 id="victim-report-error">victim report error<a class="headerlink" href="#victim-report-error" title="Permanent link">&para;</a></h3>
 <p>17<sup>th</sup> run. The phoenix program has bug itself, it is not able to run with 4GB dataset. So try it with 2GB dataset. Uuh, the log is too long. <code class="codehilite">__put_vicim</code> report a victim that has wrong flags. Going to disable the evict log and try again.</p>
 <p>18<sup>th</sup> run. Happen to run seq with 100MB&hellip; It actually half finished. But the printf of phoenix has funny chars. I guess memory is corrupted. The log shows it is ib_mad_completion.
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -2601,9 +4039,9 @@ Something happen in between corrupted pgtable
 </pre></div>
 </td></tr></table></p>
 <p>21th run. Do not have time and energy to debug the clflush issue. I just want to run MT+2GB again. Well victim has issues! Some warning are triggered. Log is <code class="codehilite">wuklab13:~/ys/0311-22</code>. Continue tomorrow! Good night world. (Such a lonly phd.)</p>
-<h2 id="0310-sat">03/10 Sat</h2>
+<h2 id="0310-sat">03/10 Sat<a class="headerlink" href="#0310-sat" title="Permanent link">&para;</a></h2>
 <p>Running python hello world. Tried to make kmalloc use buddy directly.</p>
-<h3 id="put_pcache-in-pcache_zap_pte">put_pcache in pcache_zap_pte</h3>
+<h3 id="put_pcache-in-pcache_zap_pte">put_pcache in pcache_zap_pte<a class="headerlink" href="#put_pcache-in-pcache_zap_pte" title="Permanent link">&para;</a></h3>
 <p>So this time, python keep running for a long time. But P crashed when the first time eviction was triggered.</p>
 <p>Below is log from S side, those libraries do not exist, so these log are fine:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -2799,7 +4237,7 @@ Something happen in between corrupted pgtable
 <span class="p">[</span> <span class="mf">1420.900777</span><span class="p">]</span> <span class="nl">Stack</span><span class="p">:</span>
 </pre></div>
 </td></tr></table></p>
-<h3 id="python-hello-world-run-to-end">python hello world run to end</h3>
+<h3 id="python-hello-world-run-to-end">python hello world run to end<a class="headerlink" href="#python-hello-world-run-to-end" title="Permanent link">&para;</a></h3>
 <p>Glad to say, python hello world finished, even with some missed syscalls. Especially the stdin stuff, so the string is actually not printed out. Log is wuklab13:~/ys/0310-4
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -2906,7 +4344,7 @@ Something happen in between corrupted pgtable
 <span class="hll"><span class="p">[</span> <span class="mf">3153.461180</span><span class="p">]</span> <span class="n">CPU5</span> <span class="n">PID32</span> <span class="n">sys_exit_group</span><span class="o">+</span><span class="mh">0x0</span><span class="o">/</span><span class="mh">0x10</span>
 </span></pre></div>
 </td></tr></table></p>
-<h3 id="trying-phoenix-pthread-again">Trying phoenix pthread again</h3>
+<h3 id="trying-phoenix-pthread-again">Trying phoenix pthread again<a class="headerlink" href="#trying-phoenix-pthread-again" title="Permanent link">&para;</a></h3>
 <p>4GB pcache, 1GB dataset.</p>
 <p>1<sup>th</sup> run with CONFIG_STRACE on, 1GB dataset finished, result is correct.</p>
 <p>2<sup>th</sup> run without CONFIG_STRACE, 1GB dataset stuck. Two weird things:</p>
@@ -3188,8 +4626,8 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 <p>Tried several times, even with mmap/munmap debug option on, it crashed at the same point. Key is address <code class="codehilite">0x7ffefc638000</code>, and the mmap() related to it.</p>
 <p>Close to find the bug. Latest log in 0310-18.</p>
 <hr />
-<h2 id="0309-fri">03/09 Fri</h2>
-<h3 id="find-bug-in-kmalloc">Find bug in kmalloc</h3>
+<h2 id="0309-fri">03/09 Fri<a class="headerlink" href="#0309-fri" title="Permanent link">&para;</a></h2>
+<h3 id="find-bug-in-kmalloc">Find bug in kmalloc<a class="headerlink" href="#find-bug-in-kmalloc" title="Permanent link">&para;</a></h3>
 <p>Tried to print pud in every syscall and catch the criminal:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -3539,10 +4977,10 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 <p>Analysis: The @prev field in line 7 has address <code class="codehilite">ffff88207fccf000</code>, which happen to the pgd page (<code class="codehilite">pgd ffff88207fccf000</code>). Thus when we do <code class="codehilite">list-&gt;prev = list</code>, it writes to the first 8 bytes of pgd page, corrupts the original pgd entry. That is why we see a corrupted pgd entry (<code class="codehilite">ffff90207fcce000</code>).</p>
 <p>This roots from kmalloc, which should not allocate such an object that cross two pages.</p>
 <hr />
-<h2 id="0308-thur">03/08 Thur</h2>
+<h2 id="0308-thur">03/08 Thur<a class="headerlink" href="#0308-thur" title="Permanent link">&para;</a></h2>
 <p>Took several days off. This morning finished the porting of <code class="codehilite">wait4</code> and <code class="codehilite">waitid</code>, which actually has a lot code change. The concept and mechanism is fairly simple, but the legacy UNIX tradition make the implementation quite complex.</p>
 <p>Now, look back to finish debugging the pcache issue. It must be fixed this week.</p>
-<h3 id="python">python</h3>
+<h3 id="python">python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h3>
 <p>Tried <code class="codehilite">python hello_world.py</code>, the program runs for a while and crashes at a deterministic point:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -3714,7 +5152,7 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 <li>all other memcpy strcpy etc stuff</li>
 </ul>
 <hr />
-<h2 id="0302-fri">03/02 Fri</h2>
+<h2 id="0302-fri">03/02 Fri<a class="headerlink" href="#0302-fri" title="Permanent link">&para;</a></h2>
 <p>TODO:</p>
 <ul>
 <li><del class="critic">-add vsyscall-</del></li>
@@ -3792,7 +5230,7 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 </pre></div>
 </td></tr></table></p>
 <hr />
-<h2 id="0301-thur">03/01 Thur</h2>
+<h2 id="0301-thur">03/01 Thur<a class="headerlink" href="#0301-thur" title="Permanent link">&para;</a></h2>
 <p>Weird.
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -3812,53 +5250,112 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 <p>After all, it is TLB issue. I forgot to flush tlb after making the original pte read-only during fork. So the parent will be also to continue RW some pages, which should be process-private.</p>
 <p>Lego&rsquo;s current TLB flush is very native, we do tlbflush after each pte changes. This will have worse performance compared to linux&rsquo;s batch flush.</p>
 <p>Today&rsquo;s case is flush tlb after making pte read-only. And this really has to be performed one by one</p>
+                
+                  
+                
               
-            </div>
+              
+                
+                  
+
+
+  <h2 id="__comments">Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = "None";
+      this.page.identifier =
+        "None";
+    };
+    (function() {
+      var d = document, s = d.createElement("script");
+      s.src = "//lastweek-io.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+                
+              
+            </article>
           </div>
-          <footer>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../log-02-2018/" class="btn btn-neutral float-right" title="Feb 2018">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../log-04-2018/" class="btn btn-neutral" title="April 2018"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../log-04-2018/" title="April 2018" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                April 2018
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../log-02-2018/" title="Feb 2018" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Feb 2018
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
     </div>
   
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+  <div class="md-footer-social">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <a href="https://github.com/lastweek" class="md-footer-social__link fa fa-github"></a>
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+      
+    </div>
+  </div>
 </footer>
       
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
+    </div>
+    
+      <script src="../../../assets/javascripts/application.abd7b172.js"></script>
       
+      <script>app.initialize({version:"0.17.2",url:{base:"../../.."}})</script>
       
-        <span><a href="../log-04-2018/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+    
+    
       
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-143772066-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
       
-        <span style="margin-left: 15px"><a href="../log-02-2018/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
-</div>
-    <script>var base_url = '../../..';</script>
-    <script src="../../../js/theme.js"></script>
-      <script src="../../../search/require.js"></script>
-      <script src="../../../search/search.js"></script>
-
-</body>
+    
+  </body>
 </html>
