@@ -20,8 +20,8 @@ Feel free to reach out and discuss.
 My research interests span Operating System, Distributed Systems, and Computer
 Architecture. I like hardcore hacking.
 
-- <font color='green' face="courier">__[Work-In-Progress]__</font>: Disaggregated FPGA Platform
-- <font color='green' face="courier">__[Work-In-Progress]__</font>: Retrofit Page Fault Resolving For the Killer Microseconds
+- <font color='green' face="courier">__[Work-In-Progress]__</font>: Disaggregated FPGA Platform.
+- <font color='green' face="courier">__[Work-In-Progress]__</font>: Optimize Page Fault Handling.
 
 ## Publications
 
