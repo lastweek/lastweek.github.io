@@ -1176,6 +1176,7 @@
                 
                 
                 <h1 id="linux-tracing">Linux Tracing<a class="headerlink" href="#linux-tracing" title="Permanent link">&para;</a></h1>
+<p><img alt="👀" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f440.svg" title=":eyes:" /><img alt="👀" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f440.svg" title=":eyes:" /><img alt="👀" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f440.svg" title=":eyes:" /></p>
 <p>Some general notes about the various tracers inside Linux kernel.</p>
 <p>Link to my old notes about the profilers/tracers in LegoOS: <a href="http://lastweek.io/lego/kernel/profile/">notes</a>.
 The <a href="http://lastweek.io/lego/kernel/profile_points/">profile points</a>,
@@ -1278,10 +1279,19 @@ The program can be user-written eBPF code. Other articles explained it well.</li
 <li>perf is a tool to present data, but also a tool to collect data.</li>
 <li>Read this: <a href="http://www.brendangregg.com/perf.html">http://www.brendangregg.com/perf.html</a></li>
 </ul>
+<p>Trace in real time:</p>
+<p>Print the number of page faults happen in every one second:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>perf stat -e &quot;page-faults&quot; -I 1000 -a -- sleep 10
+</pre></div>
+</td></tr></table></p>
+<p>Print the numberf of <code class="codehilite">mmap</code> syscall happen in every one second:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>perf stat -e &quot;syscalls:sys_enter_mmap&quot; -I 1000 -a -- sleep 10
+</pre></div>
+</td></tr></table></p>
 <p>&ndash;<br />
 Yizhou Shan<br />
 Created: Jun 10, 2019<br />
-Last Updated: Jun 10, 2019</p>
+Last Updated: July 18, 2019</p>
                 
                   
                 
