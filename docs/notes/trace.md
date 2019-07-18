@@ -1,5 +1,7 @@
 # Linux Tracing
 
+:eyes::eyes::eyes:
+
 Some general notes about the various tracers inside Linux kernel.
 
 Link to my old notes about the profilers/tracers in LegoOS: [notes](http://lastweek.io/lego/kernel/profile/).
@@ -90,7 +92,20 @@ I tend to think this way:
   - perf is a tool to present data, but also a tool to collect data.
   - Read this: http://www.brendangregg.com/perf.html
 
+Trace in real time:
+
+Print the number of page faults happen in every one second:
+```
+perf stat -e "page-faults" -I 1000 -a -- sleep 10
+```
+
+Print the numberf of `mmap` syscall happen in every one second:
+```
+perf stat -e "syscalls:sys_enter_mmap" -I 1000 -a -- sleep 10
+```
+
+
 --  
 Yizhou Shan  
 Created: Jun 10, 2019  
-Last Updated: Jun 10, 2019
+Last Updated: July 18, 2019
