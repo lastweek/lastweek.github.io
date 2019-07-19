@@ -1,6 +1,6 @@
 # Linux Tracing
 
-:eyes::eyes::eyes:
+:yum::yum::yum:
 
 Some general notes about the various tracers inside Linux kernel.
 
@@ -90,7 +90,9 @@ I tend to think this way:
 
   - perf tool is simply amazing. It not only use CPU PMU, but also integrated with ftrace/kprobe/eBPF.
   - perf is a tool to present data, but also a tool to collect data.
-  - Read this: http://www.brendangregg.com/perf.html
+  - Good references
+      - http://www.brendangregg.com/perf.html
+      - https://developers.redhat.com/blog/2019/04/23/how-to-use-the-linux-perf-tool-to-count-software-events/
 
 Trace in real time:
 
