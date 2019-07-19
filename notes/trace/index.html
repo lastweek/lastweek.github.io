@@ -40,7 +40,7 @@
     
     
       
-        <title>[Linux] Tracing - Yizhou Shan's Home Page</title>
+        <title>[Linux] Trace/Profile - Yizhou Shan's Home Page</title>
       
     
     
@@ -99,7 +99,7 @@
                 Yizhou Shan's Home Page
               </span>
               <span class="md-header-nav__topic">
-                [Linux] Tracing
+                [Linux] Trace/Profile
               </span>
             
           
@@ -247,8 +247,8 @@
       
     
     
-    <a href="./" title="[Linux] Tracing" class="md-nav__link md-nav__link--active">
-      [Linux] Tracing
+    <a href="./" title="[Linux] Trace/Profile" class="md-nav__link md-nav__link--active">
+      [Linux] Trace/Profile
     </a>
     
   </li>
@@ -1176,7 +1176,7 @@
                 
                 
                 <h1 id="linux-tracing">Linux Tracing<a class="headerlink" href="#linux-tracing" title="Permanent link">&para;</a></h1>
-<p><img alt="👀" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f440.svg" title=":eyes:" /><img alt="👀" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f440.svg" title=":eyes:" /><img alt="👀" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f440.svg" title=":eyes:" /></p>
+<p><img alt="😋" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f60b.svg" title=":yum:" /><img alt="😋" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f60b.svg" title=":yum:" /><img alt="😋" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f60b.svg" title=":yum:" /></p>
 <p>Some general notes about the various tracers inside Linux kernel.</p>
 <p>Link to my old notes about the profilers/tracers in LegoOS: <a href="http://lastweek.io/lego/kernel/profile/">notes</a>.
 The <a href="http://lastweek.io/lego/kernel/profile_points/">profile points</a>,
@@ -1277,7 +1277,11 @@ The program can be user-written eBPF code. Other articles explained it well.</li
 <ul>
 <li>perf tool is simply amazing. It not only use CPU PMU, but also integrated with ftrace/kprobe/eBPF.</li>
 <li>perf is a tool to present data, but also a tool to collect data.</li>
-<li>Read this: <a href="http://www.brendangregg.com/perf.html">http://www.brendangregg.com/perf.html</a></li>
+<li>Good references<ul>
+<li><a href="http://www.brendangregg.com/perf.html">http://www.brendangregg.com/perf.html</a></li>
+<li><a href="https://developers.redhat.com/blog/2019/04/23/how-to-use-the-linux-perf-tool-to-count-software-events/">https://developers.redhat.com/blog/2019/04/23/how-to-use-the-linux-perf-tool-to-count-software-events/</a></li>
+</ul>
+</li>
 </ul>
 <p>Trace in real time:</p>
 <p>Print the number of page faults happen in every one second:
