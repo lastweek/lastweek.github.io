@@ -1280,22 +1280,31 @@ The program can be user-written eBPF code. Other articles explained it well.</li
 <li>Good references<ul>
 <li><a href="http://www.brendangregg.com/perf.html">http://www.brendangregg.com/perf.html</a></li>
 <li><a href="https://developers.redhat.com/blog/2019/04/23/how-to-use-the-linux-perf-tool-to-count-software-events/">https://developers.redhat.com/blog/2019/04/23/how-to-use-the-linux-perf-tool-to-count-software-events/</a></li>
+<li><a href="https://opensource.com/article/18/7/fun-perf-and-python">https://opensource.com/article/18/7/fun-perf-and-python</a></li>
 </ul>
 </li>
 </ul>
 <p>Trace in real time:</p>
 <p>Print the number of page faults happen in every one second:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>perf stat -e &quot;page-faults&quot; -I 1000 -a -- sleep 10
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>perf stat -e <span class="s2">&quot;page-faults&quot;</span> -I <span class="m">1000</span> -a -- sleep <span class="m">10</span>
 </pre></div>
 </td></tr></table></p>
 <p>Print the numberf of <code class="codehilite">mmap</code> syscall happen in every one second:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>perf stat -e &quot;syscalls:sys_enter_mmap&quot; -I 1000 -a -- sleep 10
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>perf stat -e <span class="s2">&quot;syscalls:sys_enter_mmap&quot;</span> -I <span class="m">1000</span> -a -- sleep <span class="m">10</span>
+</pre></div>
+</td></tr></table></p>
+<p>Dynamically trace kernel functions:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>perf probe --add do_anonymous_page
+perf stat -I <span class="m">5000</span> -e <span class="s2">&quot;page-faults,probe:do_anonymous_page&quot;</span> -- sleep <span class="m">10</span>
+perf probe --del<span class="o">=</span>probe:do_anonymous_page
 </pre></div>
 </td></tr></table></p>
 <p>&ndash;<br />
 Yizhou Shan<br />
 Created: Jun 10, 2019<br />
-Last Updated: July 18, 2019</p>
+Last Updated: Jul 21, 2019</p>
                 
                   
                 

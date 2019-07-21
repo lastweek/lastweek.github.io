@@ -1524,6 +1524,20 @@ a concrete understanding of current cache coherence implementations.</p>
   Dr.Bandwidth himself used a lot &ldquo;maybe&rdquo;, and listed possible actions.</li>
 </ul>
 </li>
+<li><a href="https://dl.acm.org/citation.cfm?id=1006711">Transactional Memory Coherence and Consistency, ISCA&lsquo;04</a><ul>
+<li>Awarded the most influential paper at ISCA 2019. I took a read today (Jul 21, 2019).</li>
+<li>I feels like it&rsquo;s using the &ldquo;batch&rdquo; optimization for all time. The TCC design,
+  kind of combines both cache coherence and memory consistency: how transactions
+  commit or orders, determins the coherence and consistency.</li>
+<li>It seems the load/store speculative execution used in their context is so similar
+  to what Dr.Bandwidth said about Intel&rsquo;s implementation. Basically, the processor
+  might read some data from L1/L2 and continue execution, but there is a chance,
+  that the data is modifed by others, and the L3 caching agent or home agent
+  could decide to revoke it. Once receiving such revoke message,
+  the processor must cancel all executions that use the speculatively read data. </li>
+<li>It mentions couple Thread-Level Speculation papers, I think they should on this topic.</li>
+</ul>
+</li>
 </ul>
 <h2 id="misc-facts">Misc Facts<a class="headerlink" href="#misc-facts" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1635,7 +1649,7 @@ workload which one is used at runtime.</p>
 <p>&ndash;<br />
 Yizhou Shan<br />
 Created: Jun 28, 2019<br />
-Last Updated: Jul 8, 2019</p>
+Last Updated: Jul 21, 2019</p>
                 
                   
                 
