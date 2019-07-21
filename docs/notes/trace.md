@@ -93,21 +93,28 @@ I tend to think this way:
   - Good references
       - http://www.brendangregg.com/perf.html
       - https://developers.redhat.com/blog/2019/04/23/how-to-use-the-linux-perf-tool-to-count-software-events/
+      - https://opensource.com/article/18/7/fun-perf-and-python
 
 Trace in real time:
 
 Print the number of page faults happen in every one second:
-```
+```bash
 perf stat -e "page-faults" -I 1000 -a -- sleep 10
 ```
 
 Print the numberf of `mmap` syscall happen in every one second:
-```
+```bash
 perf stat -e "syscalls:sys_enter_mmap" -I 1000 -a -- sleep 10
 ```
 
+Dynamically trace kernel functions:
+```bash
+perf probe --add do_anonymous_page
+perf stat -I 5000 -e "page-faults,probe:do_anonymous_page" -- sleep 10
+perf probe --del=probe:do_anonymous_page
+```
 
 --  
 Yizhou Shan  
 Created: Jun 10, 2019  
-Last Updated: July 18, 2019
+Last Updated: Jul 21, 2019
