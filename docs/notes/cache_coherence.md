@@ -145,7 +145,9 @@ Left questions:
     - Seriously, it's so good!
     - Although, I just feel there are so many unpublished details about the exact coherence transactions.
       Dr.Bandwidth himself used a lot "maybe", and listed possible actions.
-- [Transactional Memory Coherence and Consistency, ISCA'04](https://dl.acm.org/citation.cfm?id=1006711)
+- [Transactional Memory Coherence and Consistency, ISCA'04](http://www.mavam.com/lance/publications/tcc_ISCA04.pdf)
+- [Programming with Transactional Coherence and Consistency (TCC)](http://www.mavam.com/lance/publications/tcc_ASPLOS04.pdf)
+    - [Slide1](http://www.mavam.com/lance/publications/tcc_ASPLOS04Talk.pdf)
     - Awarded the most influential paper at ISCA 2019. I took a read today (Jul 21, 2019).
     - I feels like it's using the "batch" optimization for all time. The TCC design,
       kind of combines both cache coherence and memory consistency: how transactions
