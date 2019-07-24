@@ -119,11 +119,14 @@ When that happens, these academic ideas come in rescue.
   Helper thread (or precomputation) is mainly used as a vehicle
   for speculatively generating data addresses and prefetching.
 
-###  Locks
+### Thread-Level Speculation
+
+Fill me in.
+
+### Locks
 
 Applying the insight of "get the most out of the otherwise-wasted resource"
 to the lock area. I will wait for Sanidhya's SOSP'19 paper. :-)
-
 
 ### Misc
 

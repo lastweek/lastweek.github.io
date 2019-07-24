@@ -21,6 +21,8 @@ pages:
    - '[Linux] KVM':                      'notes/kvm-basic.md'
    - '[Misc] Essential':                 'misc/essential.md'
    - '[Misc] Cheatsheet':                'misc/cheatsheet.md'
+   - 'Log':
+           - 'Jul 2019':                 'general_log/0719.md'
 - FPGA:
    - 'HLS: Usage of AXI-Stream':         'fpga/hls_axi.md'
    - 'HLS: High-performance AXI-MM':     'fpga/hls_axi.md'
