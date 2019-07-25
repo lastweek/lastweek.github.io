@@ -371,6 +371,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0725" title="0725" class="md-nav__link">
+    0725
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0724" title="0724" class="md-nav__link">
     0724
   </a>
@@ -1248,6 +1255,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0725" title="0725" class="md-nav__link">
+    0725
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0724" title="0724" class="md-nav__link">
     0724
   </a>
@@ -1285,6 +1299,18 @@
                 
                 
                 <h1 id="jul-2019">Jul 2019<a class="headerlink" href="#jul-2019" title="Permanent link">&para;</a></h1>
+<h2 id="0725">0725<a class="headerlink" href="#0725" title="Permanent link">&para;</a></h2>
+<p>HA. I leaned about <code class="codehilite">perf lock</code>, which requies a kernel with <code class="codehilite">CONFIG_LOCKDEP</code> and <code class="codehilite">CONFIG_LOCK_STAT</code>.
+Not sure exactly how these options work, but they should insert some code inside each lock acquire and release.
+Anyway, with <code class="codehilite">perf lock</code>, we are able to know what <em>specific locks</em> are hot. This is fantastic.</p>
+<p>Note that normal <code class="codehilite">perf record -e &#39;cycles:k&#39;</code> can tell use how much time is spent on <code class="codehilite">spin_lock</code>,
+but it does not say how much time each specific lock uses. Cool.</p>
+<p>Ah, side note, <code class="codehilite">make nconfig</code> is really powerful!! Even though I&rsquo;ve been playing with Linux
+for many years, I haven&rsquo;t actually played with linux config manually.</p>
+<p>Tried once. Our spinlock for pgadvance list shouldn&rsquo;t be the issue.
+Now disable it and reboot.</p>
+<p>254 pg
+252 nopg</p>
 <h2 id="0724">0724<a class="headerlink" href="#0724" title="Permanent link">&para;</a></h2>
 <p>Bagel Day.</p>
 <p>First replot the figrue, adding an avg/95P/99P figure.
@@ -1312,6 +1338,8 @@ They seem to be very stable.
 </td></tr></table></p>
 <p>DAMN. Forgot to turn off huge page.
 Now use <code class="codehilite">perf</code> to make sure <code class="codehilite">do_anonymous_page</code> got enough cycles..</p>
+<p>22/23 down, no pgadvance, 163, 161, 161
+22/23 down, no pgadvance, no perf, 159</p>
 <h2 id="0723">0723<a class="headerlink" href="#0723" title="Permanent link">&para;</a></h2>
 <p><em>11:59pm</em></p>
 <p>End of day. Learned how to plot Violin.
