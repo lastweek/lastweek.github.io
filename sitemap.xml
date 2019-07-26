@@ -24,6 +24,12 @@
     </url>
         
     <url>
+     <loc>http://lastweek.io/notes/proc/</loc>
+     <lastmod>2019-07-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>http://lastweek.io/notes/rmap/</loc>
      <lastmod>2019-07-25</lastmod>
      <changefreq>daily</changefreq>
