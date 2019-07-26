@@ -13,6 +13,7 @@ pages:
 - Notes:
    - 'Perf Shadows':                     'notes/paper_perf_shadows.md'
    - '[Arch] Cache Coherence':           'notes/cache_coherence.md'
+   - '[Linux] Special Files':            'notes/proc.md'
    - '[Linux] Reverse Mmap (rmap)':      'notes/rmap.md'
    - '[Linux] Trace/Profile':            'notes/trace.md'
    - '[Linux] Cgroup and Swap':          'notes/cgroup-swap.md'
