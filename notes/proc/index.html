@@ -1224,9 +1224,12 @@
                 
                 
                 <h1 id="special-files">Special Files<a class="headerlink" href="#special-files" title="Permanent link">&para;</a></h1>
+<p>Special files include <code class="codehilite">/proc</code> and <code class="codehilite">/sys</code>.
+I document some weird usages of them.</p>
 <ul>
 <li><code class="codehilite">/sys/devices/system/&lt;name&gt;</code><ul>
 <li>Creation: <code class="codehilite">subsys_system_register()</code>, @ <a href="https://github.com/torvalds/linux/blob/0ecfebd2b52404ae0c54a878c872bb93363ada36/drivers/base/bus.c#L1180">drivers/base/bus.c</a></li>
+<li>Note that this subdirectory is a legacy. Newer stuffer are added into other folders inside <code class="codehilite">/sys</code>.</li>
 <li><code class="codehilite">/sys/devices/system/cpu/*</code>, @ <a href="https://github.com/torvalds/linux/blob/0ecfebd2b52404ae0c54a878c872bb93363ada36/drivers/base/cpu.c">drivers/base/cpu.c</a><ul>
 <li>Root Object is <a href="https://github.com/torvalds/linux/blob/0ecfebd2b52404ae0c54a878c872bb93363ada36/drivers/base/cpu.c#L467">cpu_root_attrs</a>. The <code class="codehilite">online</code> file belongs to another <a href="https://github.com/torvalds/linux/blob/0ecfebd2b52404ae0c54a878c872bb93363ada36/drivers/base/cpu.c#L222">sub-object</a></li>
 <li>And this <a href="https://github.com/torvalds/linux/blob/0ecfebd2b52404ae0c54a878c872bb93363ada36/drivers/base/cpu.c#L366">register_cpu()</a> function is used to setup the directories for each cpu.</li>
@@ -1266,6 +1269,10 @@ will confuse CPU idle routine and panic.)
  };
 </pre></div>
 </td></tr></table></p>
+<p>&ndash;<br />
+Yizhou Shan<br />
+Created: Jul 26, 2019<br />
+Last Updated: Jul 27, 2019</p>
                 
                   
                 

@@ -383,6 +383,20 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0727-sat" title="0727 Sat" class="md-nav__link">
+    0727 Sat
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0726-friday" title="0726 Friday" class="md-nav__link">
+    0726 Friday
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0725" title="0725" class="md-nav__link">
     0725
   </a>
@@ -1267,6 +1281,20 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0727-sat" title="0727 Sat" class="md-nav__link">
+    0727 Sat
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0726-friday" title="0726 Friday" class="md-nav__link">
+    0726 Friday
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0725" title="0725" class="md-nav__link">
     0725
   </a>
@@ -1311,6 +1339,18 @@
                 
                 
                 <h1 id="jul-2019">Jul 2019<a class="headerlink" href="#jul-2019" title="Permanent link">&para;</a></h1>
+<h2 id="0727-sat">0727 Sat<a class="headerlink" href="#0727-sat" title="Permanent link">&para;</a></h2>
+<p>bug fixed, we need to do the &ldquo;prep_new_page&rdquo;
+before return the page back into our lists.
+Obviously, pages in our lists are in &ldquo;allocated&rdquo; state.</p>
+<p>Okay. Eval perf also. Looks like the direct invocation
+of cb_alloc_zero_page is not good..</p>
+<p>Although the perf stat show that using pgadvance help
+to reduce the handlemmfault overhead by 15%, the actual
+runtime is the same.. weird.</p>
+<h2 id="0726-friday">0726 Friday<a class="headerlink" href="#0726-friday" title="Permanent link">&para;</a></h2>
+<p>Stuck at the BUG: bad mm counter and <code class="codehilite">print_bad_pte</code>.
+Issues identified: looks like I must use pcp lists?</p>
 <h2 id="0725">0725<a class="headerlink" href="#0725" title="Permanent link">&para;</a></h2>
 <p>HA. I leaned about <code class="codehilite">perf lock</code>, which requies a kernel with <code class="codehilite">CONFIG_LOCKDEP</code> and <code class="codehilite">CONFIG_LOCK_STAT</code>.
 Not sure exactly how these options work, but they should insert some code inside each lock acquire and release.
