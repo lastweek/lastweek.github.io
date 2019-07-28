@@ -1,7 +1,11 @@
 # Special Files
 
+Special files include `/proc` and `/sys`.
+I document some weird usages of them.
+
 - `/sys/devices/system/<name>`
     - Creation: `subsys_system_register()`, @ [drivers/base/bus.c](https://github.com/torvalds/linux/blob/0ecfebd2b52404ae0c54a878c872bb93363ada36/drivers/base/bus.c#L1180)
+    - Note that this subdirectory is a legacy. Newer stuffer are added into other folders inside `/sys`.
     - `/sys/devices/system/cpu/*`, @ [drivers/base/cpu.c](https://github.com/torvalds/linux/blob/0ecfebd2b52404ae0c54a878c872bb93363ada36/drivers/base/cpu.c)
         - Root Object is [cpu_root_attrs](https://github.com/torvalds/linux/blob/0ecfebd2b52404ae0c54a878c872bb93363ada36/drivers/base/cpu.c#L467). The `online` file belongs to another [sub-object](https://github.com/torvalds/linux/blob/0ecfebd2b52404ae0c54a878c872bb93363ada36/drivers/base/cpu.c#L222)
         - And this [register_cpu()](https://github.com/torvalds/linux/blob/0ecfebd2b52404ae0c54a878c872bb93363ada36/drivers/base/cpu.c#L366) function is used to setup the directories for each cpu.
@@ -26,3 +30,9 @@ diff --git a/drivers/base/cpu.c b/drivers/base/cpu.c
         _CPU_ATTR(present, &__cpu_present_mask),
  };
 ```
+
+
+--  
+Yizhou Shan  
+Created: Jul 26, 2019  
+Last Updated: Jul 27, 2019
