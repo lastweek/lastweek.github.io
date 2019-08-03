@@ -1,7 +1,5 @@
 # Special Files
 
-Special files include `/proc` and `/sys`.
-I document some weird usages of them.
 
 - `/sys/devices/system/<name>`
     - Creation: `subsys_system_register()`, @ [drivers/base/bus.c](https://github.com/torvalds/linux/blob/0ecfebd2b52404ae0c54a878c872bb93363ada36/drivers/base/bus.c#L1180)
@@ -31,8 +29,10 @@ diff --git a/drivers/base/cpu.c b/drivers/base/cpu.c
  };
 ```
 
+- `/proc/pressure`
+    - https://lwn.net/Articles/759658/
 
 --  
 Yizhou Shan  
 Created: Jul 26, 2019  
-Last Updated: Jul 27, 2019
+Last Updated: Aug 03, 2019
