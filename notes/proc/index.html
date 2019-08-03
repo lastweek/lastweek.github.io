@@ -1224,8 +1224,6 @@
                 
                 
                 <h1 id="special-files">Special Files<a class="headerlink" href="#special-files" title="Permanent link">&para;</a></h1>
-<p>Special files include <code class="codehilite">/proc</code> and <code class="codehilite">/sys</code>.
-I document some weird usages of them.</p>
 <ul>
 <li><code class="codehilite">/sys/devices/system/&lt;name&gt;</code><ul>
 <li>Creation: <code class="codehilite">subsys_system_register()</code>, @ <a href="https://github.com/torvalds/linux/blob/0ecfebd2b52404ae0c54a878c872bb93363ada36/drivers/base/bus.c#L1180">drivers/base/bus.c</a></li>
@@ -1269,10 +1267,16 @@ will confuse CPU idle routine and panic.)
  };
 </pre></div>
 </td></tr></table></p>
+<ul>
+<li><code class="codehilite">/proc/pressure</code><ul>
+<li><a href="https://lwn.net/Articles/759658/">https://lwn.net/Articles/759658/</a></li>
+</ul>
+</li>
+</ul>
 <p>&ndash;<br />
 Yizhou Shan<br />
 Created: Jul 26, 2019<br />
-Last Updated: Jul 27, 2019</p>
+Last Updated: Aug 03, 2019</p>
                 
                   
                 
