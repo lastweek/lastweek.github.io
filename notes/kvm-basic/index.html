@@ -203,6 +203,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../benchmark/" title="Benchmarks" class="md-nav__link">
+      Benchmarks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../paper_perf_shadows/" title="Perf Shadows" class="md-nav__link">
       Perf Shadows
     </a>
@@ -215,8 +227,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../cache_coherence/" title="[Arch] Cache Coherence" class="md-nav__link">
-      [Arch] Cache Coherence
+    <a href="../cache_coherence/" title="Cache Coherence" class="md-nav__link">
+      Cache Coherence
     </a>
   </li>
 
@@ -307,9 +319,51 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        [Linux] KVM
+      </label>
+    
     <a href="./" title="[Linux] KVM" class="md-nav__link md-nav__link--active">
       [Linux] KVM
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resources" title="Resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hacking-notes" title="Hacking Notes" class="md-nav__link">
+    Hacking Notes
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -320,8 +374,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../misc/essential/" title="[Misc] Essential" class="md-nav__link">
-      [Misc] Essential
+    <a href="../../misc/essential/" title="Essential" class="md-nav__link">
+      Essential
     </a>
   </li>
 
@@ -332,8 +386,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../misc/cheatsheet/" title="[Misc] Cheatsheet" class="md-nav__link">
-      [Misc] Cheatsheet
+    <a href="../../misc/cheatsheet/" title="Cheatsheet" class="md-nav__link">
+      Cheatsheet
     </a>
   </li>
 
@@ -345,17 +399,29 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-12" type="checkbox" id="nav-2-12">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-13" type="checkbox" id="nav-2-13">
     
-    <label class="md-nav__link" for="nav-2-12">
+    <label class="md-nav__link" for="nav-2-13">
       Log
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-2-12">
+      <label class="md-nav__title" for="nav-2-13">
         Log
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../general_log/0819/" title="Aug 2019" class="md-nav__link">
+      Aug 2019
+    </a>
+  </li>
+
         
           
           
@@ -1212,6 +1278,35 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resources" title="Resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hacking-notes" title="Hacking Notes" class="md-nav__link">
+    Hacking Notes
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1224,17 +1319,26 @@
                 
                 
                 <h1 id="just-some-basics-about-kvm">Just some basics about KVM<a class="headerlink" href="#just-some-basics-about-kvm" title="Permanent link">&para;</a></h1>
+<h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://binarydebt.wordpress.com/2018/10/14/intel-virtualisation-how-vt-x-kvm-and-qemu-work-together/">Intel Virtualisation: How VT-x, KVM and QEMU Work Together</a></li>
+</ul>
+<h2 id="hacking-notes">Hacking Notes<a class="headerlink" href="#hacking-notes" title="Permanent link">&para;</a></h2>
 <p>If you are hacking some low-level stuff that is running as a VM,
 pay close attention if KVM is involved. I started this note because
-I spent sometime twist <code class="codehilite">page_fault</code> IDT entry, but it turns out
-KVM uses <code class="codehilite">async_page_fault</code>. Well.</p>
+I spent sometime twisting <code class="codehilite">page_fault</code> IDT entry, but it turns out
+KVM uses <code class="codehilite">async_page_fault</code>. Oh, well.</p>
 <ul>
-<li>KVM page fault entry. File: <code class="codehilite">arch/x86/entry/entry_64.S</code><ul>
+<li>KVM page fault entry (<code class="codehilite">arch/x86/entry/entry_64.S</code>)<ul>
 <li>It is <code class="codehilite">idtentry async_page_fault       do_async_page_fault     has_error_code=1</code></li>
 <li>..not <code class="codehilite">idtentry page_fault             do_page_fault           has_error_code=1</code></li>
 </ul>
 </li>
 </ul>
+<p>&ndash;<br />
+Yizhou Shan<br />
+Created: May 20, 2019<br />
+Last Updated: Aug 03, 2019</p>
                 
                   
                 
@@ -1288,13 +1392,13 @@ KVM uses <code class="codehilite">async_page_fault</code>. Well.</p>
           </a>
         
         
-          <a href="../../misc/essential/" title="[Misc] Essential" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../misc/essential/" title="Essential" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                [Misc] Essential
+                Essential
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

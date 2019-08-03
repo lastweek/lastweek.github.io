@@ -12,6 +12,12 @@
     
         
     <url>
+     <loc>http://lastweek.io/notes/benchmark/</loc>
+     <lastmod>2019-08-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>http://lastweek.io/notes/paper_perf_shadows/</loc>
      <lastmod>2019-08-03</lastmod>
      <changefreq>daily</changefreq>
