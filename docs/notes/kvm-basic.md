@@ -1,8 +1,8 @@
 # Just some basics about KVM
 
-
-
 ## Resources
+
+- [Intel Virtualisation: How VT-x, KVM and QEMU Work Together](https://binarydebt.wordpress.com/2018/10/14/intel-virtualisation-how-vt-x-kvm-and-qemu-work-together/)
 
 ## Hacking Notes
 
