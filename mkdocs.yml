@@ -11,8 +11,9 @@ pages:
 #  - 'FAST 18': 'read/fast18.md'
 #   - 'ASPLOS 18': 'read/asplos18.md'
 - Notes:
+   - 'Benchmarks':                       'notes/benchmark.md'
    - 'Perf Shadows':                     'notes/paper_perf_shadows.md'
-   - '[Arch] Cache Coherence':           'notes/cache_coherence.md'
+   - 'Cache Coherence':                  'notes/cache_coherence.md'
    - '[Linux] Special Files':            'notes/proc.md'
    - '[Linux] Reverse Mmap (rmap)':      'notes/rmap.md'
    - '[Linux] Trace/Profile':            'notes/trace.md'
@@ -20,9 +21,10 @@ pages:
    - '[Linux] Userfaultfd':              'notes/userfaultfd.md'
    - '[Linux] User/kern Cross Perf':     'notes/xperf.md'
    - '[Linux] KVM':                      'notes/kvm-basic.md'
-   - '[Misc] Essential':                 'misc/essential.md'
-   - '[Misc] Cheatsheet':                'misc/cheatsheet.md'
+   - 'Essential':                        'misc/essential.md'
+   - 'Cheatsheet':                       'misc/cheatsheet.md'
    - 'Log':
+           - 'Aug 2019':                 'general_log/0819.md'
            - 'Jul 2019':                 'general_log/0719.md'
 - FPGA:
    - 'HLS: Usage of AXI-Stream':         'fpga/hls_axi.md'
