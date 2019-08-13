@@ -1,4 +1,4 @@
-# Practical Cache Coherence
+# Practical Cache Coherence Implementation
 
 :sake:
 
