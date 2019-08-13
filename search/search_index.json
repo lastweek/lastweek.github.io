@@ -37,13 +37,18 @@
         }, 
         {
             "location": "/notes/benchmark/", 
-            "text": "Benchmarks\n\n\nSynchronization/concurrency\n community:\n\n\n\n\nPhoenix (mm)\n\n\nMOSBENCH/Metis (mm)\n\n\nLevelDB\n\n\nwill-it-scale\n\n\nLinux locktorture\n\n\nFilesystems (fs)\n\n\nLiTL, ATC\n16, \nhttps://github.com/multicore-locks/litl\n\n\nReferences\n\n\nShuffleLock, SOSP\n19\n\n\nCompact NUMA-aware Locks, EuroSys\n19\n\n\nfill me in\n\n\n\n\n\n\n\n\n\nYizhou Shan\n\nCreated: Aug 03, 2019\n\nLast Updated: Aug 03, 2019", 
+            "text": "Benchmarks\n\n\nSynchronization/concurrency\n community:\n\n\n\n\nPhoenix (mm)\n\n\nMOSBENCH/Metis (mm)\n\n\nLevelDB\n\n\nwill-it-scale\n\n\nLinux locktorture\n\n\nFilesystems (fs)\n\n\nLiTL, ATC\n16, \nhttps://github.com/multicore-locks/litl\n\n\nReferences\n\n\nShuffleLock, SOSP\n19\n\n\nCompact NUMA-aware Locks, EuroSys\n19\n\n\nfill me in\n\n\n\n\n\n\n\n\nResources\n\n\n\n\nSystems Benchmarking Crimes\n\n\n\n\n\nYizhou Shan\n\nCreated: Aug 03, 2019\n\nLast Updated: Aug 13, 2019", 
             "title": "Benchmarks"
         }, 
         {
             "location": "/notes/benchmark/#benchmarks", 
-            "text": "Synchronization/concurrency  community:   Phoenix (mm)  MOSBENCH/Metis (mm)  LevelDB  will-it-scale  Linux locktorture  Filesystems (fs)  LiTL, ATC 16,  https://github.com/multicore-locks/litl  References  ShuffleLock, SOSP 19  Compact NUMA-aware Locks, EuroSys 19  fill me in     \nYizhou Shan \nCreated: Aug 03, 2019 \nLast Updated: Aug 03, 2019", 
+            "text": "Synchronization/concurrency  community:   Phoenix (mm)  MOSBENCH/Metis (mm)  LevelDB  will-it-scale  Linux locktorture  Filesystems (fs)  LiTL, ATC 16,  https://github.com/multicore-locks/litl  References  ShuffleLock, SOSP 19  Compact NUMA-aware Locks, EuroSys 19  fill me in", 
             "title": "Benchmarks"
+        }, 
+        {
+            "location": "/notes/benchmark/#resources", 
+            "text": "Systems Benchmarking Crimes   \nYizhou Shan \nCreated: Aug 03, 2019 \nLast Updated: Aug 13, 2019", 
+            "title": "Resources"
         }, 
         {
             "location": "/notes/paper_perf_shadows/", 
