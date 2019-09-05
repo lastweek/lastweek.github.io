@@ -9,7 +9,7 @@ I keep some random technical notes about implementation, papers, ideas in this b
 Feel free to reach out and discuss.
 
 ## What's up
-- [Jul 2019] Wuklab is moving to UCSD CS starting from Fall 2019.
+- [Sep 2019] Moved to UCSD.
 - [_May 2019_] Intern at [VMware Research](https://research.vmware.com/), with [Marcos K. Aguilera](http://mkaguilera.kawazoe.org/)
 - [_Apr 2019_] __Storm__ accpeted to __SYSTOR'19__. Awarded Best Paper.
 - [_Jan 2019_] Short paper on __Disaggregated Persistent Memory__ accpeted to __NVMW'19__
@@ -21,8 +21,9 @@ Feel free to reach out and discuss.
 My research interests span Operating System, Distributed Systems, and Computer
 Architecture. I like hardcore hacking.
 
-- <font color='green' face="courier">__[Work-In-Progress]__</font>: Disaggregated FPGA Platform.
-- <font color='green' face="courier">__[Work-In-Progress]__</font>: Optimize Page Fault Handling.
+- <font color='green' face="courier">__[WIP]__</font>: Virtualization and OS in FPGA.
+- <font color='green' face="courier">__[WIP]__</font>: Disaggregated Datacenter.
+- <font color='green' face="courier">__[WIP]__</font>: Optimize Page Faults.
 
 ## Publications
 
