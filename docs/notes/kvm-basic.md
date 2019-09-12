@@ -16,7 +16,13 @@ KVM uses `async_page_fault`. Oh, well.
     - ..not `idtentry page_fault             do_page_fault           has_error_code=1`
 
 
+## More on Virturlization
+
+Well. I swear I want to learn more about Virturlization..
+
+- Intel SDM, volume 3, Chapter 23 - Chapter 33.
+
 --  
 Yizhou Shan  
 Created: May 20, 2019  
-Last Updated: Aug 03, 2019
+Last Updated: Sep 11, 2019

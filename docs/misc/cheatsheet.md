@@ -1,5 +1,25 @@
 # cheatsheet
 
+Last Updated: Sep 12, 2019
+
+## VNC
+
+* Server side: Start server on certain port with certain geometry:
+```
+vncserver :66 -geometry 1920x1080
+```
+
+* Client side: for safety, use SSH tunnel.
+    * `-p 22`: ssh port is 22
+    * `-L 7777:localhost:5966`: Forward localhost's 7777 to server's 5966
+```
+Step 1)
+ssh -p 22 -v -C -L 7777:localhost:5966 root@yourserver.com
+
+Step 2)
+Use VNC client to establish connection with localhost:7777
+```
+
 ## virsh
 * Pass commands to QEMU in the virsh bash:
 ```
