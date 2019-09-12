@@ -362,6 +362,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#vnc" title="VNC" class="md-nav__link">
+    VNC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#virsh" title="virsh" class="md-nav__link">
     virsh
   </a>
@@ -1324,6 +1331,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#vnc" title="VNC" class="md-nav__link">
+    VNC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#virsh" title="virsh" class="md-nav__link">
     virsh
   </a>
@@ -1403,6 +1417,34 @@
                 
                 
                 <h1 id="cheatsheet">cheatsheet<a class="headerlink" href="#cheatsheet" title="Permanent link">&para;</a></h1>
+<p>Last Updated: Sep 12, 2019</p>
+<h2 id="vnc">VNC<a class="headerlink" href="#vnc" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Server side: Start server on certain port with certain geometry:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">vncserver</span> <span class="o">:</span><span class="mi">66</span> <span class="o">-</span><span class="n">geometry</span> <span class="mi">1920</span><span class="n">x1080</span>
+</pre></div>
+</td></tr></table></p>
+</li>
+<li>
+<p>Client side: for safety, use SSH tunnel.</p>
+<ul>
+<li><code class="codehilite">-p 22</code>: ssh port is 22</li>
+<li><code class="codehilite">-L 7777:localhost:5966</code>: Forward localhost&rsquo;s 7777 to server&rsquo;s 5966
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Step 1)
+ssh -p 22 -v -C -L 7777:localhost:5966 root@yourserver.com
+
+Step 2)
+Use VNC client to establish connection with localhost:7777
+</pre></div>
+</td></tr></table></li>
+</ul>
+</li>
+</ul>
 <h2 id="virsh">virsh<a class="headerlink" href="#virsh" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Pass commands to QEMU in the virsh bash:
