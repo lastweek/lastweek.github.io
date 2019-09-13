@@ -1,8 +1,8 @@
 :surfer:
 
-Hi! I'm Yizhou Shan, a Ph.D. student at Purdue,
+Hi! I'm Yizhou Shan, a PhD student at UCSD.
 advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). I work at [Wuklab.io](http://wuklab.io). Yes, the [Monkey King](https://en.wikipedia.org/wiki/Sun_Wukong) Lab.
-The best way to reach me is email: [__ys@purdue.edu__].
+The best way to reach me is email: [__ys@ucsd.edu__].
 My [CV](http://lastweek.io/pubs/cv.pdf).
 
 I keep some random technical notes about implementation, papers, ideas in this blog.
