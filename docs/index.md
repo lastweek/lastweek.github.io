@@ -21,9 +21,9 @@ Feel free to reach out and discuss.
 My research interests span Operating System, Distributed Systems, and Computer
 Architecture. I like hardcore hacking.
 
-- <font color='green' face="courier">__[WIP]__</font>: Virtualization and OS in FPGA.
-- <font color='green' face="courier">__[WIP]__</font>: Disaggregated Datacenter FPGA.
-- <font color='green' face="courier">__[WIP]__</font>: Optimize Page Faults.
+- <font color='green' face="courier">__[WIP]__</font>: Virtualization of FPGA.
+- <font color='green' face="courier">__[WIP]__</font>: Disaggregated Datacenter Hardware.
+- <font color='green' face="courier">__[WIP]__</font>: Optimizing Page Faults.
 
 ## Publications
 
