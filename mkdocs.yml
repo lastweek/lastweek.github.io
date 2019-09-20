@@ -4,12 +4,6 @@ site_url: 'http://lastweek.io'
 
 pages:
 - Home: 'index.md'
-#- Jasmine: 'misc/jasmine.md'
-#- RDMA:
-#   - 'RDMA': 'rdma/rdma.md'
-#- Papers:
-#  - 'FAST 18': 'read/fast18.md'
-#   - 'ASPLOS 18': 'read/asplos18.md'
 - Notes:
    - 'Benchmarks':                       'notes/benchmark.md'
    - 'Perf Shadows':                     'notes/paper_perf_shadows.md'
@@ -24,11 +18,13 @@ pages:
    - 'Essential':                        'misc/essential.md'
    - 'Cheatsheet':                       'misc/cheatsheet.md'
    - 'Log':
+           - 'Sep 2019':                 'general_log/0919.md'
            - 'Aug 2019':                 'general_log/0819.md'
            - 'Jul 2019':                 'general_log/0719.md'
 - FPGA:
    - 'HLS: Usage of AXI-Stream':         'fpga/hls_axi.md'
    - 'HLS: High-performance AXI-MM':     'fpga/hls_axi.md'
+   - 'Vivado Tricks':                    'fpga/vivado_tricks.md'
 - LegoOS-Dev:
    - 'Log':
            - 'TODO':                    'lego/log/TODO.md'
@@ -117,12 +113,12 @@ markdown_extensions:
 
 theme:
   name: 'material'
-  #palette:
-  #  primary: 'deep purple'
-  #  accent: 'red'
-  #font:
-  #  text: 'Times new roman'
-  #  code: 'Courier'
+  palette:
+    primary: 'White'
+    #accent: 'Green'
+  font:
+    text: 'Roboto'
+    code: 'Courier'
   #name: 'bootstrap386'
   #name: 'rtd-dropdown'
   #name: 'readthedocs'
