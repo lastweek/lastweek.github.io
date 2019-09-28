@@ -1279,6 +1279,30 @@
                 
                 <h1 id="sep-2019">Sep 2019<a class="headerlink" href="#sep-2019" title="Permanent link">&para;</a></h1>
 <p>Log range 0920 - 0930.</p>
+<h1 id="92619">9/26/19<a class="headerlink" href="#92619" title="Permanent link">&para;</a></h1>
+<p>Check out PR today.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>create_pblock
+</pre></div>
+</td></tr></table>
+
+<h1 id="92519">9/25/19<a class="headerlink" href="#92519" title="Permanent link">&para;</a></h1>
+<p>Singularity and Helios</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>- I&#39;ve been reading Singularity today. It has many insights on extension and isolation. Something we might be interested: 1) application has a manifest. We may want to have a similar one for each FPGA app. 2) Seal OS architecture, where the OS or app remain invariant after install. This is the nature of FPGA..
+- Also, I think it&#39;s important to figure out a way to do IP sharing. The same thing is also beneficial for PR.
+- Scheduling: preemptive or non-preemptive..
+</pre></div>
+</td></tr></table>
+
+<p>Thoughts after reading Singularity papers
+    - The contract-based channel is promising
+    - The manifest-based program approach is also promising. Similarly, the AmoghOS has some Resource Vector associated with each FPGA application. I think it&rsquo;s valid and beneficial to attach such a spec with FPGA applications.</p>
+<p>I think I need to think more on the applications. Cannot wait till its too late!</p>
+<p>If an app is too big to fit into a FPGA, can we do &ldquo;bitstream&rdquo; swap?
+    - App need to conform to some sort of model (e.g., msg-based)
+    - Fast PR
+    - Must be slow from app&rsquo;s point, but a solution.,</p>
 <h1 id="0923-monday">0923 Monday<a class="headerlink" href="#0923-monday" title="Permanent link">&para;</a></h1>
 <p>Continue working on FPGA stuff. Let&rsquo;s focus on writing possible design ideas. I should also read some related work. </p>
 <h1 id="0921-weekends">0921 Weekends<a class="headerlink" href="#0921-weekends" title="Permanent link">&para;</a></h1>
