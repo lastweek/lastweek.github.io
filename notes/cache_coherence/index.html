@@ -321,6 +321,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#fpga" title="FPGA" class="md-nav__link">
+    FPGA
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1428,6 +1435,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#fpga" title="FPGA" class="md-nav__link">
+    FPGA
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1748,10 +1762,36 @@ workload which one is used at runtime.</p>
 </ul>
 </li>
 </ul>
+<h3 id="fpga">FPGA<a class="headerlink" href="#fpga" title="Permanent link">&para;</a></h3>
+<ul>
+<li>LEAP Shared Memories: Automating the Construction of FPGA Coherent Memories, FCCM&lsquo;14.<ul>
+<li>This work is built on their earlier work, which basically add the data caching
+  concept to FPGA: using BRAM as L1, on-board DRAM as L2, host or remote DRAM as L3.</li>
+<li>In their earlier work, each FPGA application (or bitstream) has a private L1 cache.</li>
+<li>In this work, the add MESI coherence to these private L1 caches, as in they can make
+  multiple L1 cache cache-coherent.</li>
+<li>The techniques and protocols from this paper are similar to the exisiting ones. For example,
+  1) they use a global serializing point to serialize transactions, 2) they designed a lot
+  messaging types such as INV, RESP and so on.</li>
+</ul>
+</li>
+<li><a href="https://research.vmware.com/publications/project-pberry-fpga-acceleration-for-remote-memory">VMware Research Project PBerry</a><ul>
+<li>A very interesting and promising project.</li>
+</ul>
+</li>
+<li><a href="https://www.intel.com/content/www/us/en/programmable/documentation/bfr1522087299048.html">Intel FPGA PAC</a><ul>
+<li>Intel itself is building a FPGA-CPU cache coherent setting. They use the Intel UPI interconnect
+  to natually the spectrum. The FPGA shell has some modules to handle this.</li>
+</ul>
+</li>
+</ul>
 <p>&ndash;<br />
 Yizhou Shan<br />
 Created: Jun 28, 2019<br />
-Last Updated: Jul 21, 2019</p>
+Last Updated: Oct 3, 2019  </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Oct 3, 2019: Add FPGA related discussions.
+</pre></div>
+</td></tr></table>
                 
                   
                 
