@@ -255,8 +255,28 @@ When in doubt, read the [discussion](https://software.intel.com/en-us/forums/int
       it does not say anything about how they deal with coherence transaction conflicts.
       E.g., some timeline diagrams like Figrue 2/3 in this [paper](https://researchspace.auckland.ac.nz/bitstream/handle/2292/11594/MESIF-2009.pdf?sequence=6).
 
+### FPGA
+
+- LEAP Shared Memories: Automating the Construction of FPGA Coherent Memories, FCCM'14.
+    - This work is built on their earlier work, which basically add the data caching
+      concept to FPGA: using BRAM as L1, on-board DRAM as L2, host or remote DRAM as L3.
+    - In their earlier work, each FPGA application (or bitstream) has a private L1 cache.
+    - In this work, the add MESI coherence to these private L1 caches, as in they can make
+      multiple L1 cache cache-coherent.
+    - The techniques and protocols from this paper are similar to the exisiting ones. For example,
+      1) they use a global serializing point to serialize transactions, 2) they designed a lot
+      messaging types such as INV, RESP and so on.
+- [VMware Research Project PBerry](https://research.vmware.com/publications/project-pberry-fpga-acceleration-for-remote-memory)
+    - A very interesting and promising project.
+- [Intel FPGA PAC](https://www.intel.com/content/www/us/en/programmable/documentation/bfr1522087299048.html)
+    - Intel itself is building a FPGA-CPU cache coherent setting. They use the Intel UPI interconnect
+      to natually the spectrum. The FPGA shell has some modules to handle this.
 
 --  
 Yizhou Shan  
 Created: Jun 28, 2019  
-Last Updated: Jul 21, 2019
+Last Updated: Oct 3, 2019  
+
+```
+Oct 3, 2019: Add FPGA related discussions.
+```
