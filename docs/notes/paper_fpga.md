@@ -135,16 +135,20 @@ Innovations in the toolchain space.
 
 - [Just-in-Time Compilation for Verilog, ASPLOS'19](https://research.vmware.com/publications/just-in-time-compilation-for-verilog-a-new-technique-for-improving-the-fpga-programming-experience)
     - You need this dope.
-- [Lime: a Java-Compatible and Synthesizable Language for Heterogeneous Architectures, OOPSLA'10](https://www.cl.cam.ac.uk/research/srg/han/ACS-P35/readinglist/bacon-lime-p89-auerbach.pdf)
-	- Research idea. Lime is designed to be executable across a broad range of architectures, from FPGAs to conventional CPUs
 - Chisel: Constructing Hardware in a Scala Embedded Language, DAC'12
 	- Chisel is being actively improved and used by UCB folks.
-- [Spatial: A Language and Compiler for Application Accelerators, PLDI'18](http://csl.stanford.edu/~christos/publications/2018.spatial.pldi.pdf)
 - Rosetta: A Realistic High-Level Synthesis Benchmark Suite for Software Programmable FPGAs, FPGA'18
 - From JVM to FPGA: Bridging Abstraction Hierarchy via Optimized Deep Pipelining, HotCloud'18
 - [ST-Accel: A High-Level Programming Platform for Streaming Applications on FPGA, FCCM'18](https://vast.cs.ucla.edu/sites/default/files/publications/st-accel-high.pdf)
     - Yum.
 - [HeteroCL: A Multi-Paradigm Programming Infrastructure for Software-Defined Reconfigurable Computing, FPGA'19](https://vast.cs.ucla.edu/~chiyuze/pub/fpga19-heterocl.pdf)
+
+- [Lime: a Java-Compatible and Synthesizable Language for Heterogeneous Architectures, OOPSLA'10](https://www.cl.cam.ac.uk/research/srg/han/ACS-P35/readinglist/bacon-lime-p89-auerbach.pdf)
+	- Research idea. Lime is designed to be executable across a broad range of architectures, from FPGAs to conventional CPUs
+- [LINQits: Big Data on Little Clients, ISCA'13]()
+- [Generating configurable hardware from parallel patterns, ASPLOS'16]()
+- [Plasticine: A Reconfigurable Architecture For Parallel Patterns, ISCA'17]()
+- [Spatial: A Language and Compiler for Application Accelerators, PLDI'18](http://csl.stanford.edu/~christos/publications/2018.spatial.pldi.pdf)
 
 ### Integrate with Frameworks
 - [Map-reduce as a Programming Model for Custom Computing Machines, FCCM'08](https://ieeexplore.ieee.org/document/4724898)
