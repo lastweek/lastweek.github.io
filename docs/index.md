@@ -1,31 +1,24 @@
 :surfer:
 
 Hi! I'm Yizhou Shan, a PhD student at UCSD.
-advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). I work at [Wuklab.io](http://wuklab.io). Yes, the [Monkey King](https://en.wikipedia.org/wiki/Sun_Wukong) Lab.
-The best way to reach me is email: [__ys@ucsd.edu__].
-My [CV](http://lastweek.io/pubs/cv.pdf).
+advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/). I work at [Wuklab.io](http://wuklab.io).
+This site has some random technical notes, feel free to reach out and discuss.
 
-I keep some random technical notes about implementation, papers, ideas in this blog.
-Feel free to reach out and discuss.
+Contact: __ys@ucsd.edu__
 
-## What's up
-- [Sep 2019] Moved to UCSD.
-- [_May 2019_] Intern at [VMware Research](https://research.vmware.com/), with [Marcos K. Aguilera](http://mkaguilera.kawazoe.org/)
-- [_Apr 2019_] __Storm__ accpeted to __SYSTOR'19__. Awarded Best Paper.
-- [_Jan 2019_] Short paper on __Disaggregated Persistent Memory__ accpeted to __NVMW'19__
-- [_Jul 2018_] __LegoOS__ accepted to __OSDI'18__. Awarded Best Paper.
-- [_May 2018_] Intern at [VMware Research](https://research.vmware.com/), with [Stanko Novakovic](https://sites.google.com/site/stankonovakovic/).
+??? note "News"
+	- [_Sep 2019_] Moved to UCSD.
+	- [_May 2019_] Intern at [VMware Research](https://research.vmware.com/), with [Marcos K. Aguilera](http://mkaguilera.kawazoe.org/)
+	- [_Apr 2019_] __Storm__ accpeted to __SYSTOR'19__. Awarded Best Paper.
+	- [_Jan 2019_] Short paper on __Disaggregated Persistent Memory__ accpeted to __NVMW'19__
+	- [_Jul 2018_] __LegoOS__ accepted to __OSDI'18__. Awarded Best Paper.
+	- [_May 2018_] Intern at [VMware Research](https://research.vmware.com/), with [Stanko Novakovic](https://sites.google.com/site/stankonovakovic/).
 
 ## Research
 
-My research interests span Operating System, Distributed Systems, and Computer
-Architecture. I like hardcore hacking.
+I do distributed system, kernel, and FPGA related research.
 
-- <font color='green' face="courier">__[WIP]__</font>: Virtualization of FPGA.
-- <font color='green' face="courier">__[WIP]__</font>: Disaggregated Datacenter Hardware.
-- <font color='green' face="courier">__[WIP]__</font>: Optimizing Page Faults.
-
-## Publications
+### Publications
 
 * [__Storm: a fast transactional dataplane for remote data structures__](https://dl.acm.org/citation.cfm?id=3325827)
 <br> Stanko Novakovic, __Yizhou Shan__, Aasheesh Kolli, Michael Cui, Yiying Zhang, Haggai Eran, Liran Liss, Michael Wei, Dan Tsafrir, Marcos Aguilera
@@ -42,7 +35,7 @@ Architecture. I like hardcore hacking.
 <br> _Proceedings of the ACM Symposium on Cloud Computing 2017 (__SoCC'17__)_
 <br> [[Source Code]](https://github.com/WukLab/Hotpot)
 
-## Workshops
+### Workshops
 * [__Challenges in Building and Deploying Disaggregated Persistent Memory__]()
 <br> __Yizhou Shan__, Yutong Huang, Yiying Zhang
 <br> _10th Annual Non-Volatile Memories Workshop (__NVMW'19__)_
@@ -60,7 +53,7 @@ Architecture. I like hardcore hacking.
 <br> _17th International Workshop on High Performance Transaction Systems (__HPTS'17__)_
 
 
-## Posters
+### Posters
 * [__Lego: A Distributed, Decomposed OS for Resource Disaggregation__](https://lastweek.github.io/pubs/SOSP17-Lego-Poster.pdf)
 <br> __Yizhou Shan__, Yilun Chen, Yutong Huang, Sumukh Hallymysore, Yiying Zhang
 <br> _Poster at the 26th ACM Symposium on Operating Systems Principles (__SOSP '17__)_

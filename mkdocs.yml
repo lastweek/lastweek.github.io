@@ -115,10 +115,10 @@ markdown_extensions:
 theme:
   name: 'material'
   palette:
-    primary: 'White'
+    #primary: 'Teal'
     #accent: 'Green'
   font:
-    text: 'Roboto'
+    #text: 'Times New Roman'
     code: 'Courier'
   #name: 'bootstrap386'
   #name: 'rtd-dropdown'
