@@ -1,30 +1,33 @@
-# Papers
+# List of FPGA Papers
 
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Oct 4, 2019| Add more papers extracted from AmophOS|
 	|Oct 3, 2019| Initial version from [Github](https://github.com/lastweek/FPGA)|
 
 A list of academic papers. Enjoy.
 
 ## Virtualization
 
-How to apply Operating System concept to FPGA? How to virtualize on-board memory and on-chip logic?
-And, how is FPGA ultimately different from CPU in items of resource sharing?
-Papers in this section could give us some hints.
+- How to create abstractions for FPGA resources(BRAM, DRAM, LUTs, and DSPs)?
+- How to schedule bitstreams (spatial and time sharing)?
+- How to interact with host OS?
 
 ### Memory Hierarchy
-- (Papers deal with BRAM, registers, on-board DRAM, and system DRAM)
+Papers deal with BRAM, registers, on-board DRAM, and host DRAM.
+
 - [LEAP Scratchpads: Automatic Memory and Cache Management for Reconfigurable Logic, FPGA'11](https://people.csail.mit.edu/emer/papers/2011.02.isfpga.leap_scratchpads.pdf)
 	- Main design hierarchy: Use BRAM as L1 cache, use on-board DRAM as L2 cache, and host memory as the backing store. Everthing is abstracted away through their interface (similar to load/store). Programming is pretty much the same as if you are writing for CPU.
 	- According to sec 2.2.2, its scratchpad controller, is using simple segment-based mapping scheme. Like AmorphOS's one.
 - [LEAP Shared Memories: Automating the Construction of FPGA Coherent Memories, FCCM'14](http://people.csail.mit.edu/hjyang/papers/yang-fccm2014.pdf)
 	- Follow up work on LEAP Scratchpads, extends the work to have cache coherence between multiple FPGAs.
 	- Coherent Scatchpads with MOSI protocol.
+- [MATCHUP: Memory Abstractions for Heap Manipulating Programs, FPGA'15](http://cas.ee.ic.ac.uk/people/fw1811/papers/FPGA15_Felix.pdf)
 - [CoRAM: An In-Fabric Memory Architecture for FPGA-Based Computing](https://users.ece.cmu.edu/~jhoe/distribution/2011/chung.pdf)
 	- CoRAM provides an interface for managing the on- and off-chip memory resource of an FPGA. It use "control threads" enforce low-level control on data movement.
 	- Seriously, the CoRAM is just like Processor L1-L3 caches.
-- [CoRAM Prototype and evaluation of the CoRAM memory architecture for FPGA-based computing, FPGA'12]
+- [CoRAM Prototype and evaluation of the CoRAM memory architecture for FPGA-based computing, FPGA'12]()
 	- Prototype on FPGA.
 - [Sharing, Protection, and Compatibility for Reconfigurable Fabric with AMORPHOS, OSDI'18](https://www.usenix.org/conference/osdi18/presentation/khawaja)
 	- Hull: provides memory protection for on-board DRAM using __segment-based__ address translation.
@@ -38,7 +41,11 @@ Papers in this section could give us some hints.
 - [Hi-DMM: High-Performance Dynamic Memory Management in High-Level Synthesis, IEEE'18](https://github.com/zslwyuan/Hi-DMM)
 
 ### Integrate with Host Virtual Memory
-- (Papers deal with OS Virtual Memory System. Note that, all these papers, they introduce some form of MMU into FPGA to let FPGA work with host virtual memory systems. This added MMU is similar to CPU's MMU in the sense that they both do address translation. But, do note that the virtual memory system still runs in Linux, these include page fault handling, swapping, TLB shootdown stuff. What could really stands out, is to implement virtual memory system in FPGA. :-/ )
+Papers deal with OS Virtual Memory System (VMS). Note that, all these papers introduce some form of MMU into the FPGA
+to let FPGA be able to work with host VMS.
+This added MMU is similar to CPU's MMU and [RDMA NIC's internal cache](https://www.usenix.org/conference/usenixsecurity19/presentation/tsai).
+Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootdown and so on. What could really stands out, is to implement VMS inside FPGA.)
+
 - [Virtual Memory Window for Application-Specific Reconfigurable Coprocessors, DAC'04](https://ieeexplore.ieee.org/document/1664911)
 	- Early work that adds a new MMU to FPGA to let FPGA logic access `on-chip DRAM`. Note, it's not the system main memory. Thus the translation pgtable is different.
 	- Has some insights on prefetching and MMU CAM design.
@@ -60,16 +67,29 @@ Papers in this section could give us some hints.
 	- Part of the PULP project.
 	- Essentially a software-managed IOMMU. The control path is running as a Linux kernel module. The datapath is a lightweight AXI transation translation.
 
-### Scheduling Related
+### Scheduling
 
+- [Preemptive multitasking on fpgas, FCCM'00]()
+- [Operating Systems for Reconfigurable Embedded Platforms: Online Scheduling of Real-Time Tasks, 2004]()
+- [Context saving and restoring for multitasking in reconfigurable systems, FPL'05]()
+- [Tartan: Evaluating Spatial Computation for Whole Program Execution, ASPLOS'06]()
+- [Scheduling intervals for reconfigurable computing, FCCM'08]()
+- [ReconOS Cooperative multithreading in dynamically reconfigurable systems, FPL'09]()
+- [Block, drop or roll(back): Alternative preemption methods for RH multi-tasking, FCCM'09]()
+- [Hardware context-switch methodology for dynamically partially reconfigurable systems, 2010]()
+- [Online Scheduling for Multi-core Shared Reconfigurable Fabric, DATE'12]()
+- [ReMAP: A reconfigurable heterogeneous multicore architecture, Micro'10]()
+- [Scheduling mixed-architecture processes in tightly coupled FPGA-CPU reconfigurable computers, FCCM'14]()
+
+- [Multi-shape Tasks Scheduling for Online Multitasking on FPGAs, 2014]()
 - [hthreads: a hardware/software co-designed multithreaded RTOS kernel, 2005](https://ieeexplore.ieee.org/document/1612697)
-- [hthreads: Enabling a Uniform Programming Model Across the Software/Hardware Boundary, FCCM'16]
-- [ReconOS Cooperative multithreading in dynamically reconfigurable systems, FPL'09]
+- [hthreads: Enabling a Uniform Programming Model Across the Software/Hardware Boundary, FCCM'16]()
     - Let FPGA apps use `yield()`.
     - A lot issues, but, sure.
  - AmophOS, OSDI'18
 
-### Integrate with Host OS
+### Integrate with Host OSs
+
 - [A Virtual Hardware Operating System for the Xilinx XC6200, FPL'96](https://link.springer.com/chapter/10.1007/3-540-61730-2_35)
 - [Operating systems for reconfigurable embedded platforms: online scheduling of real-time tasks, IEEE'04](https://ieeexplore.ieee.org/document/1336761)
 - [hthreads: a hardware/software co-designed multithreaded RTOS kernel, 2005](https://ieeexplore.ieee.org/document/1612697)
@@ -80,15 +100,14 @@ Papers in this section could give us some hints.
 	- Invoke kernel from FPGA. They built a shell in FPGA and delegation threads in CPU to achieve this.
 	- They implemented their own MMU (using pre-established pgtables) to let FPGA logic to access system memory. [Ref](https://ieeexplore.ieee.org/document/6044806).
 	- Read the "Operating Systems for Reconfigurable Computing" sidebar, nice summary.
-- LEAP
-	- LEAP Soft connections: Addressing the hardware-design modularity problem, DAC'09
-		- Channel concept. Good.
-	- LEAP Scratchpads: Automatic Memory and Cache Management for Reconfigurable Logic, FPGA'11
-		- BRAM/on-board DRAM/host DRAM layering. Caching.
-	- LEAP Shared Memories: Automating the Construction of FPGA Coherent Memories
-		- Add cache-coherence on top of previous work.
-		- Also check out my note on [Cache Coherence](http://lastweek.io/notes/cache_coherence/).
-	- LEAP FPGA Operating System, FPL'14.
+- LEAP Soft connections: Addressing the hardware-design modularity problem, DAC'09
+	- Channel concept. Good.
+- LEAP Scratchpads: Automatic Memory and Cache Management for Reconfigurable Logic, FPGA'11
+	- BRAM/on-board DRAM/host DRAM layering. Caching.
+- LEAP Shared Memories: Automating the Construction of FPGA Coherent Memories
+	- Add cache-coherence on top of previous work.
+	- Also check out my note on [Cache Coherence](http://lastweek.io/notes/cache_coherence/).
+- LEAP FPGA Operating System, FPL'14.
 
 ### Summary on current FPGA Virtualization Status
 
@@ -96,22 +115,36 @@ Prior art mainly focus on: 1) How to virtualize on-chip BRAM (e.g., CoRAM, LEAP 
 2) How to work with host, specifically, how to use the host DRAM, how to use host virtual memory.
 3) How to schedule bitstreams inside a FPGA chip. 4) How to provide certain services to make FPGA programming easier (mostly work with host OS).
 
-## Language, Runtime, and Application
+## Languages, Runtime, and Application
 
-### Languages and Platforms
+Innovations in the toolchain space.
+
+### Xilinx HLS Related
+
 - [Design Patterns for Code Reuse in HLS Packet Processing Pipelines, FCCM'19](https://zistvan.github.io/doc/ntl-fccm19.pdf)
-    - A very good HLS library. Haggai rocks as always. Read and learn something.
+	- A very good HLS library.
+- [Templatised Soft Floating-Point for High-Level Synthesis, FCCM'19](https://github.com/template-hls/template-hls-floa)
+- [Separation Logic-Assisted Code Transformations for Efficient High-Level Synthesis, FCCM'14](http://cas.ee.ic.ac.uk/people/fw1811/papers/FelixFCCM14.pdf)
+	- An HLS design aids that analyze the original program at _compile time_ and perform automated code transformations. The tool analysis pointer-manipulating programs and automatically splits heap-allocated data structures into disjoint, independent regions.
+	- The tool is for C++ heap operations.
+	- To put in another way: the tool looks at your BRAM usage, found any false-dependencies, and make multiple independent regions, then your II is improved.
+- [MATCHUP: Memory Abstractions for Heap Manipulating Programs, FPGA'15](http://cas.ee.ic.ac.uk/people/fw1811/papers/FPGA15_Felix.pdf)
+	- Follow-up work of the above FCCM'14 one. This time they use LEAP scracchpads as the underlying caching block.
+
+### High-Level Languages and Platforms
+
 - [Just-in-Time Compilation for Verilog, ASPLOS'19](https://research.vmware.com/publications/just-in-time-compilation-for-verilog-a-new-technique-for-improving-the-fpga-programming-experience)
     - You need this dope.
-- [Templatised Soft Floating-Point for High-Level Synthesis, FCCM'19](https://github.com/template-hls/template-hls-floa)
-    - Of course FP is evil. But you need it for lift. Yummy.
-- [ST-Accel: A High-Level Programming Platform for Streaming Applications on FPGA, FCCM'18](https://vast.cs.ucla.edu/sites/default/files/publications/st-accel-high.pdf)
-    - Yum.
+- [Lime: a Java-Compatible and Synthesizable Language for Heterogeneous Architectures, OOPSLA'10](https://www.cl.cam.ac.uk/research/srg/han/ACS-P35/readinglist/bacon-lime-p89-auerbach.pdf)
+	- Research idea. Lime is designed to be executable across a broad range of architectures, from FPGAs to conventional CPUs
 - Chisel: Constructing Hardware in a Scala Embedded Language, DAC'12
-    - The good.
-- HeteroCL: A Multi-Paradigm Programming Infrastructure for Software-Defined Reconfigurable Computing, FPGA'19
+	- Chisel is being actively improved and used by UCB folks.
+- [Spatial: A Language and Compiler for Application Accelerators, PLDI'18](http://csl.stanford.edu/~christos/publications/2018.spatial.pldi.pdf)
 - Rosetta: A Realistic High-Level Synthesis Benchmark Suite for Software Programmable FPGAs, FPGA'18
 - From JVM to FPGA: Bridging Abstraction Hierarchy via Optimized Deep Pipelining, HotCloud'18
+- [ST-Accel: A High-Level Programming Platform for Streaming Applications on FPGA, FCCM'18](https://vast.cs.ucla.edu/sites/default/files/publications/st-accel-high.pdf)
+    - Yum.
+- [HeteroCL: A Multi-Paradigm Programming Infrastructure for Software-Defined Reconfigurable Computing, FPGA'19](https://vast.cs.ucla.edu/~chiyuze/pub/fpga19-heterocl.pdf)
 
 ### Integrate with Frameworks
 - [Map-reduce as a Programming Model for Custom Computing Machines, FCCM'08](https://ieeexplore.ieee.org/document/4724898)
