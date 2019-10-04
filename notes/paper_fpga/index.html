@@ -274,6 +274,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#scheduling" title="Scheduling" class="md-nav__link">
+    Scheduling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#memory-hierarchy" title="Memory Hierarchy" class="md-nav__link">
     Memory Hierarchy
   </a>
@@ -295,13 +302,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#scheduling" title="Scheduling" class="md-nav__link">
-    Scheduling
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#integrate-with-host-oss" title="Integrate with Host OSs" class="md-nav__link">
     Integrate with Host OSs
   </a>
@@ -309,8 +309,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#summary-on-current-fpga-virtualization-status" title="Summary on current FPGA Virtualization Status" class="md-nav__link">
-    Summary on current FPGA Virtualization Status
+  <a href="#summary" title="Summary" class="md-nav__link">
+    Summary
   </a>
   
 </li>
@@ -1546,6 +1546,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#scheduling" title="Scheduling" class="md-nav__link">
+    Scheduling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#memory-hierarchy" title="Memory Hierarchy" class="md-nav__link">
     Memory Hierarchy
   </a>
@@ -1567,13 +1574,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#scheduling" title="Scheduling" class="md-nav__link">
-    Scheduling
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#integrate-with-host-oss" title="Integrate with Host OSs" class="md-nav__link">
     Integrate with Host OSs
   </a>
@@ -1581,8 +1581,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#summary-on-current-fpga-virtualization-status" title="Summary on current FPGA Virtualization Status" class="md-nav__link">
-    Summary on current FPGA Virtualization Status
+  <a href="#summary" title="Summary" class="md-nav__link">
+    Summary
   </a>
   
 </li>
@@ -1799,12 +1799,12 @@
 <p>Table of Contents</p>
 <ul>
 <li><a href="#virtualization">Virtualization</a><ul>
+<li><a href="#scheduling">Scheduling</a></li>
 <li><a href="#memory-hierarchy">Memory Hierarchy</a></li>
 <li><a href="#dynamic-memory-allocation">Dynamic Memory Allocation</a></li>
 <li><a href="#integrate-with-host-virtual-memory">Integrate with Host Virtual Memory</a></li>
-<li><a href="#scheduling">Scheduling</a></li>
 <li><a href="#integrate-with-host-oss">Integrate with Host OSs</a></li>
-<li><a href="#summary-on-current-fpga-virtualization-status">Summary on current FPGA Virtualization Status</a></li>
+<li><a href="#summary">Summary</a></li>
 </ul>
 </li>
 <li><a href="#languages-runtime-and-framework">Languages, Runtime, and Framework</a><ul>
@@ -1842,6 +1842,39 @@
 <li>How to create abstractions for FPGA resources(BRAM, DRAM, LUTs, and DSPs)?</li>
 <li>How to schedule bitstreams (spatial and time sharing)?</li>
 <li>How to interact with host OS?</li>
+</ul>
+<h3 id="scheduling">Scheduling<a class="headerlink" href="#scheduling" title="Permanent link">&para;</a></h3>
+<p>TODO:</p>
+<ul>
+<li><a href="">Operating Systems for Reconfigurable Embedded Platforms: Online Scheduling of Real-Time Tasks, 2004</a></li>
+<li><a href="">Context saving and restoring for multitasking in reconfigurable systems, FPL&lsquo;05</a></li>
+<li><a href="">Scheduling intervals for reconfigurable computing, FCCM&lsquo;08</a></li>
+<li><a href="">Block, drop or roll(back): Alternative preemption methods for RH multi-tasking, FCCM&lsquo;09</a></li>
+<li><a href="">Hardware context-switch methodology for dynamically partially reconfigurable systems, 2010</a></li>
+<li><a href="">ReMAP: A reconfigurable heterogeneous multicore architecture, Micro&lsquo;10</a></li>
+<li><a href="">Online Scheduling for Multi-core Shared Reconfigurable Fabric, DATE&lsquo;12</a></li>
+<li><a href="">Scheduling mixed-architecture processes in tightly coupled FPGA-CPU reconfigurable computers, FCCM&lsquo;14</a></li>
+<li><a href="">Multi-shape Tasks Scheduling for Online Multitasking on FPGAs, 2014</a></li>
+</ul>
+<p>FPGA and CPU co-scheduling:</p>
+<ul>
+<li><a href="https://ieeexplore.ieee.org/document/1612697">hthreads: A hardware/software co-designed multithreaded RTOS kernel, 2005</a></li>
+<li><a href="">hthreads: Enabling a Uniform Programming Model Across the Software/Hardware Boundary, FCCM&lsquo;16</a></li>
+<li><a href="">Tartan: Evaluating Spatial Computation for Whole Program Execution, ASPLOS&lsquo;06</a></li>
+</ul>
+<p>Pure FPGA:</p>
+<ul>
+<li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.35.4462&amp;rep=rep1&amp;type=pdf">Preemptive multitasking on fpgas, FCCM&lsquo;00</a><ul>
+<li>Some very practical technique discussions about doing preemptive scheduling on FPGA.</li>
+</ul>
+</li>
+<li><a href="">ReconOS Cooperative multithreading in dynamically reconfigurable systems, FPL&lsquo;09</a><ul>
+<li>Middle of preemptive and non-preemptive scheduling: let FPGA apps use <code class="codehilite">yield()</code>.</li>
+<li>It could save cost if and only if FPGA app is already doing the right thing,
+  which, is not somehting an OS should have in mind.</li>
+</ul>
+</li>
+<li><a href="https://www.usenix.org/system/files/osdi18-khawaja.pdf">AmophOS, OSDI&lsquo;18</a></li>
 </ul>
 <h3 id="memory-hierarchy">Memory Hierarchy<a class="headerlink" href="#memory-hierarchy" title="Permanent link">&para;</a></h3>
 <p>Papers deal with BRAM, registers, on-board DRAM, and host DRAM.</p>
@@ -1920,37 +1953,6 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
 </ul>
 </li>
 </ul>
-<h3 id="scheduling">Scheduling<a class="headerlink" href="#scheduling" title="Permanent link">&para;</a></h3>
-<p>TODO:</p>
-<ul>
-<li><a href="">Operating Systems for Reconfigurable Embedded Platforms: Online Scheduling of Real-Time Tasks, 2004</a></li>
-<li><a href="">Context saving and restoring for multitasking in reconfigurable systems, FPL&lsquo;05</a></li>
-<li><a href="">Scheduling intervals for reconfigurable computing, FCCM&lsquo;08</a></li>
-<li><a href="">ReconOS Cooperative multithreading in dynamically reconfigurable systems, FPL&lsquo;09</a></li>
-<li><a href="">Block, drop or roll(back): Alternative preemption methods for RH multi-tasking, FCCM&lsquo;09</a></li>
-<li><a href="">Hardware context-switch methodology for dynamically partially reconfigurable systems, 2010</a></li>
-<li><a href="">ReMAP: A reconfigurable heterogeneous multicore architecture, Micro&lsquo;10</a></li>
-<li><a href="">Online Scheduling for Multi-core Shared Reconfigurable Fabric, DATE&lsquo;12</a></li>
-<li><a href="">Scheduling mixed-architecture processes in tightly coupled FPGA-CPU reconfigurable computers, FCCM&lsquo;14</a></li>
-<li><a href="">Multi-shape Tasks Scheduling for Online Multitasking on FPGAs, 2014</a></li>
-</ul>
-<p>FPGA and CPU co-scheduling:</p>
-<ul>
-<li><a href="https://ieeexplore.ieee.org/document/1612697">hthreads: a hardware/software co-designed multithreaded RTOS kernel, 2005</a></li>
-<li><a href="">Tartan: Evaluating Spatial Computation for Whole Program Execution, ASPLOS&lsquo;06</a></li>
-</ul>
-<p>Pure FPGA:</p>
-<ul>
-<li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.35.4462&amp;rep=rep1&amp;type=pdf">Preemptive multitasking on fpgas, FCCM&lsquo;00</a><ul>
-<li>Some very practical technique discussions about doing preemptive scheduling on FPGA.</li>
-</ul>
-</li>
-<li><a href="">hthreads: Enabling a Uniform Programming Model Across the Software/Hardware Boundary, FCCM&lsquo;16</a><ul>
-<li>Let FPGA apps use <code class="codehilite">yield()</code>.</li>
-</ul>
-</li>
-<li><a href="https://www.usenix.org/system/files/osdi18-khawaja.pdf">AmophOS, OSDI&lsquo;18</a></li>
-</ul>
 <h3 id="integrate-with-host-oss">Integrate with Host OSs<a class="headerlink" href="#integrate-with-host-oss" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://link.springer.com/chapter/10.1007/3-540-61730-2_35">A Virtual Hardware Operating System for the Xilinx XC6200, FPL&lsquo;96</a></li>
@@ -1980,8 +1982,8 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
 </li>
 <li>LEAP FPGA Operating System, FPL&lsquo;14.</li>
 </ul>
-<h3 id="summary-on-current-fpga-virtualization-status">Summary on current FPGA Virtualization Status<a class="headerlink" href="#summary-on-current-fpga-virtualization-status" title="Permanent link">&para;</a></h3>
-<p>Prior art mainly focus on: 1) How to virtualize on-chip BRAM (e.g., CoRAM, LEAP Scratchpad),
+<h3 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<p>Summary on current FPGA Virtualization Status. Prior art mainly focus on: 1) How to virtualize on-chip BRAM (e.g., CoRAM, LEAP Scratchpad),
 2) How to work with host, specifically, how to use the host DRAM, how to use host virtual memory.
 3) How to schedule bitstreams inside a FPGA chip. 4) How to provide certain services to make FPGA programming easier (mostly work with host OS).</p>
 <h2 id="languages-runtime-and-framework">Languages, Runtime, and Framework<a class="headerlink" href="#languages-runtime-and-framework" title="Permanent link">&para;</a></h2>
