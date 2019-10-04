@@ -1,5 +1,11 @@
 # Benchmarks
 
+??? note "Version History"
+	|Date|Description|
+	|:---|-----------|
+	|Aug 13, 2019| Update|
+	|Aug 03, 2019| Initial draft|
+
 *Synchronization/concurrency* community:
 
 - Phoenix (mm)
@@ -17,8 +23,3 @@
 ## Resources
 
 - [Systems Benchmarking Crimes](https://www.cse.unsw.edu.au/~gernot/benchmarking-crimes.html)
-
---  
-Yizhou Shan  
-Created: Aug 03, 2019  
-Last Updated: Aug 13, 2019

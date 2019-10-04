@@ -1,5 +1,10 @@
 # Hiding In The Shadows
 
+??? note "Version History"
+	|Date|Description|
+	|:---|-----------|
+	|Jul 11, 2019| Initial draft|
+
 :vertical_traffic_light:
 
 There are shadows under the sun.  
@@ -176,9 +181,3 @@ Fill me in
 
 Sleep. And wake me up when september ends. And this seems to be enough. ;-)
 This is true for OS to handle slow HDD and slow network.
-
-
---  
-Yizhou Shan  
-Created: Jul 11, 2019  
-Last Updated: Jul 11, 2019

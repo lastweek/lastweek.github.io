@@ -1,5 +1,11 @@
 # Practical Cache Coherence Implementation
 
+??? note "Version History"
+	|Date|Description|
+	|:---|-----------|
+	|Oct 3, 2019| Add FPGA related discussion|
+	|Jun 28, 2019| Initial draft|
+
 :sake:
 
 - [Practical Cache Coherence](#practical-cache-coherence)
@@ -271,12 +277,3 @@ When in doubt, read the [discussion](https://software.intel.com/en-us/forums/int
 - [Intel FPGA PAC](https://www.intel.com/content/www/us/en/programmable/documentation/bfr1522087299048.html)
     - Intel itself is building a FPGA-CPU cache coherent setting. They use the Intel UPI interconnect
       to natually the spectrum. The FPGA shell has some modules to handle this.
-
---  
-Yizhou Shan  
-Created: Jun 28, 2019  
-Last Updated: Oct 3, 2019  
-
-```
-Oct 3, 2019: Add FPGA related discussions.
-```

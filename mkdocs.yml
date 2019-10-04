@@ -8,6 +8,7 @@ pages:
    - 'Benchmarks':                       'notes/benchmark.md'
    - 'Perf Shadows':                     'notes/paper_perf_shadows.md'
    - 'Cache Coherence':                  'notes/cache_coherence.md'
+   - 'Papers of FPGA':                   'notes/paper_fpga.md'
    - '[Linux] Special Files':            'notes/proc.md'
    - '[Linux] Reverse Mmap (rmap)':      'notes/rmap.md'
    - '[Linux] Trace/Profile':            'notes/trace.md'
