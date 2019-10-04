@@ -321,16 +321,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#languages-runtime-and-application" title="Languages, Runtime, and Application" class="md-nav__link">
-    Languages, Runtime, and Application
+  <a href="#languages-runtime-and-framework" title="Languages, Runtime, and Framework" class="md-nav__link">
+    Languages, Runtime, and Framework
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#xilinx-hls-related" title="Xilinx HLS Related" class="md-nav__link">
-    Xilinx HLS Related
+  <a href="#xilinx-hls" title="Xilinx HLS" class="md-nav__link">
+    Xilinx HLS
   </a>
   
 </li>
@@ -355,6 +355,19 @@
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#applications" title="Applications" class="md-nav__link">
+    Applications
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#programmable-network" title="Programmable Network" class="md-nav__link">
@@ -1580,16 +1593,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#languages-runtime-and-application" title="Languages, Runtime, and Application" class="md-nav__link">
-    Languages, Runtime, and Application
+  <a href="#languages-runtime-and-framework" title="Languages, Runtime, and Framework" class="md-nav__link">
+    Languages, Runtime, and Framework
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#xilinx-hls-related" title="Xilinx HLS Related" class="md-nav__link">
-    Xilinx HLS Related
+  <a href="#xilinx-hls" title="Xilinx HLS" class="md-nav__link">
+    Xilinx HLS
   </a>
   
 </li>
@@ -1614,6 +1627,19 @@
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#applications" title="Applications" class="md-nav__link">
+    Applications
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#programmable-network" title="Programmable Network" class="md-nav__link">
@@ -1770,6 +1796,47 @@
                 
                 <h1 id="list-of-fpga-papers">List of FPGA Papers<a class="headerlink" href="#list-of-fpga-papers" title="Permanent link">&para;</a></h1>
 <details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Oct 4, 2019</td><td>Add more papers extracted from AmophOS</td></tr><tr><td align="left">Oct 3, 2019</td><td>Initial version from <a href="https://github.com/lastweek/FPGA">Github</a></td></tr></tbody></table></details><p>A list of academic papers. Enjoy.</p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#virtualization">Virtualization</a><ul>
+<li><a href="#memory-hierarchy">Memory Hierarchy</a></li>
+<li><a href="#dynamic-memory-allocation">Dynamic Memory Allocation</a></li>
+<li><a href="#integrate-with-host-virtual-memory">Integrate with Host Virtual Memory</a></li>
+<li><a href="#scheduling">Scheduling</a></li>
+<li><a href="#integrate-with-host-oss">Integrate with Host OSs</a></li>
+<li><a href="#summary-on-current-fpga-virtualization-status">Summary on current FPGA Virtualization Status</a></li>
+</ul>
+</li>
+<li><a href="#languages-runtime-and-framework">Languages, Runtime, and Framework</a><ul>
+<li><a href="#xilinx-hls-related">Xilinx HLS Related</a></li>
+<li><a href="#high-level-languages-and-platforms">High-Level Languages and Platforms</a></li>
+<li><a href="#integrate-with-frameworks">Integrate with Frameworks</a></li>
+<li><a href="#cloud-infrastructure">Cloud Infrastructure</a></li>
+</ul>
+</li>
+<li><a href="#applications">Applications</a><ul>
+<li><a href="#programmable-network">Programmable Network</a></li>
+<li><a href="#database">Database</a></li>
+<li><a href="#storage">Storage</a></li>
+<li><a href="#machine-learning">Machine Learning</a></li>
+<li><a href="#graph">Graph</a></li>
+<li><a href="#key-value-store">Key-Value Store</a></li>
+<li><a href="#bio">Bio</a></li>
+<li><a href="#consensus">Consensus</a></li>
+<li><a href="#video-processing">Video Processing</a></li>
+<li><a href="#blockchain">Blockchain</a></li>
+<li><a href="#micro-services">Micro-services</a></li>
+</ul>
+</li>
+<li><a href="#fpga-internal">FPGA Internal</a><ul>
+<li><a href="#general">General</a></li>
+<li><a href="#partial-reconfiguration">Partial Reconfiguration</a></li>
+<li><a href="#logical-optimization-and-technology-mapping">Logical Optimization and Technology Mapping</a></li>
+<li><a href="#place-and-route">Place and Route</a></li>
+<li><a href="#rtl2fpga">RTL2FPGA</a></li>
+</ul>
+</li>
+</ul>
 <h2 id="virtualization">Virtualization<a class="headerlink" href="#virtualization" title="Permanent link">&para;</a></h2>
 <ul>
 <li>How to create abstractions for FPGA resources(BRAM, DRAM, LUTs, and DSPs)?</li>
@@ -1854,30 +1921,35 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
 </li>
 </ul>
 <h3 id="scheduling">Scheduling<a class="headerlink" href="#scheduling" title="Permanent link">&para;</a></h3>
+<p>TODO:</p>
 <ul>
-<li><a href="">Preemptive multitasking on fpgas, FCCM&lsquo;00</a></li>
 <li><a href="">Operating Systems for Reconfigurable Embedded Platforms: Online Scheduling of Real-Time Tasks, 2004</a></li>
 <li><a href="">Context saving and restoring for multitasking in reconfigurable systems, FPL&lsquo;05</a></li>
-<li><a href="">Tartan: Evaluating Spatial Computation for Whole Program Execution, ASPLOS&lsquo;06</a></li>
 <li><a href="">Scheduling intervals for reconfigurable computing, FCCM&lsquo;08</a></li>
 <li><a href="">ReconOS Cooperative multithreading in dynamically reconfigurable systems, FPL&lsquo;09</a></li>
 <li><a href="">Block, drop or roll(back): Alternative preemption methods for RH multi-tasking, FCCM&lsquo;09</a></li>
 <li><a href="">Hardware context-switch methodology for dynamically partially reconfigurable systems, 2010</a></li>
-<li><a href="">Online Scheduling for Multi-core Shared Reconfigurable Fabric, DATE&lsquo;12</a></li>
 <li><a href="">ReMAP: A reconfigurable heterogeneous multicore architecture, Micro&lsquo;10</a></li>
-<li>
-<p><a href="">Scheduling mixed-architecture processes in tightly coupled FPGA-CPU reconfigurable computers, FCCM&lsquo;14</a></p>
-</li>
-<li>
-<p><a href="">Multi-shape Tasks Scheduling for Online Multitasking on FPGAs, 2014</a></p>
-</li>
+<li><a href="">Online Scheduling for Multi-core Shared Reconfigurable Fabric, DATE&lsquo;12</a></li>
+<li><a href="">Scheduling mixed-architecture processes in tightly coupled FPGA-CPU reconfigurable computers, FCCM&lsquo;14</a></li>
+<li><a href="">Multi-shape Tasks Scheduling for Online Multitasking on FPGAs, 2014</a></li>
+</ul>
+<p>FPGA and CPU co-scheduling:</p>
+<ul>
 <li><a href="https://ieeexplore.ieee.org/document/1612697">hthreads: a hardware/software co-designed multithreaded RTOS kernel, 2005</a></li>
-<li><a href="">hthreads: Enabling a Uniform Programming Model Across the Software/Hardware Boundary, FCCM&lsquo;16</a><ul>
-<li>Let FPGA apps use <code class="codehilite">yield()</code>.</li>
-<li>A lot issues, but, sure.</li>
+<li><a href="">Tartan: Evaluating Spatial Computation for Whole Program Execution, ASPLOS&lsquo;06</a></li>
+</ul>
+<p>Pure FPGA:</p>
+<ul>
+<li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.35.4462&amp;rep=rep1&amp;type=pdf">Preemptive multitasking on fpgas, FCCM&lsquo;00</a><ul>
+<li>Some very practical technique discussions about doing preemptive scheduling on FPGA.</li>
 </ul>
 </li>
-<li>AmophOS, OSDI&lsquo;18</li>
+<li><a href="">hthreads: Enabling a Uniform Programming Model Across the Software/Hardware Boundary, FCCM&lsquo;16</a><ul>
+<li>Let FPGA apps use <code class="codehilite">yield()</code>.</li>
+</ul>
+</li>
+<li><a href="https://www.usenix.org/system/files/osdi18-khawaja.pdf">AmophOS, OSDI&lsquo;18</a></li>
 </ul>
 <h3 id="integrate-with-host-oss">Integrate with Host OSs<a class="headerlink" href="#integrate-with-host-oss" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1912,15 +1984,16 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
 <p>Prior art mainly focus on: 1) How to virtualize on-chip BRAM (e.g., CoRAM, LEAP Scratchpad),
 2) How to work with host, specifically, how to use the host DRAM, how to use host virtual memory.
 3) How to schedule bitstreams inside a FPGA chip. 4) How to provide certain services to make FPGA programming easier (mostly work with host OS).</p>
-<h2 id="languages-runtime-and-application">Languages, Runtime, and Application<a class="headerlink" href="#languages-runtime-and-application" title="Permanent link">&para;</a></h2>
+<h2 id="languages-runtime-and-framework">Languages, Runtime, and Framework<a class="headerlink" href="#languages-runtime-and-framework" title="Permanent link">&para;</a></h2>
 <p>Innovations in the toolchain space.</p>
-<h3 id="xilinx-hls-related">Xilinx HLS Related<a class="headerlink" href="#xilinx-hls-related" title="Permanent link">&para;</a></h3>
+<h3 id="xilinx-hls">Xilinx HLS<a class="headerlink" href="#xilinx-hls" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://zistvan.github.io/doc/ntl-fccm19.pdf">Design Patterns for Code Reuse in HLS Packet Processing Pipelines, FCCM&lsquo;19</a><ul>
-<li>A very good HLS library.</li>
+<li>A very good HLS library from Mellanox folks.</li>
 </ul>
 </li>
 <li><a href="https://github.com/template-hls/template-hls-floa">Templatised Soft Floating-Point for High-Level Synthesis, FCCM&lsquo;19</a></li>
+<li><a href="https://vast.cs.ucla.edu/sites/default/files/publications/st-accel-high.pdf">ST-Accel: A High-Level Programming Platform for Streaming Applications on FPGA, FCCM&lsquo;18</a></li>
 <li><a href="http://cas.ee.ic.ac.uk/people/fw1811/papers/FelixFCCM14.pdf">Separation Logic-Assisted Code Transformations for Efficient High-Level Synthesis, FCCM&lsquo;14</a><ul>
 <li>An HLS design aids that analyze the original program at <em>compile time</em> and perform automated code transformations. The tool analysis pointer-manipulating programs and automatically splits heap-allocated data structures into disjoint, independent regions.</li>
 <li>The tool is for C++ heap operations.</li>
@@ -1928,39 +2001,41 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
 </ul>
 </li>
 <li><a href="http://cas.ee.ic.ac.uk/people/fw1811/papers/FPGA15_Felix.pdf">MATCHUP: Memory Abstractions for Heap Manipulating Programs, FPGA&lsquo;15</a><ul>
+<li>This is an HLS toolchain aid.</li>
 <li>Follow-up work of the above FCCM&lsquo;14 one. This time they use LEAP scracchpads as the underlying caching block.</li>
 </ul>
 </li>
 </ul>
 <h3 id="high-level-languages-and-platforms">High-Level Languages and Platforms<a class="headerlink" href="#high-level-languages-and-platforms" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="https://research.vmware.com/publications/just-in-time-compilation-for-verilog-a-new-technique-for-improving-the-fpga-programming-experience">Just-in-Time Compilation for Verilog, ASPLOS&lsquo;19</a><ul>
-<li>You need this dope.</li>
-</ul>
-</li>
-<li>Chisel: Constructing Hardware in a Scala Embedded Language, DAC&lsquo;12<ul>
+<li><a href="https://research.vmware.com/publications/just-in-time-compilation-for-verilog-a-new-technique-for-improving-the-fpga-programming-experience">Just-in-Time Compilation for Verilog, ASPLOS&lsquo;19</a></li>
+<li><a href="">Chisel: Constructing Hardware in a Scala Embedded Language, DAC&lsquo;12</a><ul>
 <li>Chisel is being actively improved and used by UCB folks.</li>
 </ul>
 </li>
-<li>Rosetta: A Realistic High-Level Synthesis Benchmark Suite for Software Programmable FPGAs, FPGA&lsquo;18</li>
-<li>From JVM to FPGA: Bridging Abstraction Hierarchy via Optimized Deep Pipelining, HotCloud&lsquo;18</li>
-<li><a href="https://vast.cs.ucla.edu/sites/default/files/publications/st-accel-high.pdf">ST-Accel: A High-Level Programming Platform for Streaming Applications on FPGA, FCCM&lsquo;18</a><ul>
-<li>Yum.</li>
+<li><a href="https://hj424.github.io/papers/rosetta_fpga2018.pdf">Rosetta: A Realistic High-Level Synthesis Benchmark Suite for Software Programmable FPGAs, FPGA&lsquo;18</a></li>
+<li><a href="">From JVM to FPGA: Bridging Abstraction Hierarchy via Optimized Deep Pipelining, HotCloud&lsquo;18</a></li>
+<li><a href="https://vast.cs.ucla.edu/~chiyuze/pub/fpga19-heterocl.pdf">HeteroCL: A Multi-Paradigm Programming Infrastructure for Software-Defined Reconfigurable Computing, FPGA&lsquo;19</a></li>
+<li><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2013/06/ISCA13_linqits.pdf">LINQits: Big Data on Little Clients, ISCA&lsquo;13</a><ul>
+<li>From Microsoft, used to express SQL-like functions (thus big data) and runs on ZYNQ (thus little client),</li>
+<li>You wrote C#, LINQits translate it to verilog, and run the whole thing at a ZYNQ (ARM+FPGA) board.</li>
 </ul>
 </li>
-<li>
-<p><a href="https://vast.cs.ucla.edu/~chiyuze/pub/fpga19-heterocl.pdf">HeteroCL: A Multi-Paradigm Programming Infrastructure for Software-Defined Reconfigurable Computing, FPGA&lsquo;19</a></p>
-</li>
-<li>
-<p><a href="https://www.cl.cam.ac.uk/research/srg/han/ACS-P35/readinglist/bacon-lime-p89-auerbach.pdf">Lime: a Java-Compatible and Synthesizable Language for Heterogeneous Architectures, OOPSLA&lsquo;10</a></p>
-<ul>
-<li>Research idea. Lime is designed to be executable across a broad range of architectures, from FPGAs to conventional CPUs</li>
+<li><a href="https://www.cl.cam.ac.uk/research/srg/han/ACS-P35/readinglist/bacon-lime-p89-auerbach.pdf">Lime: a Java-Compatible and Synthesizable Language for Heterogeneous Architectures, OOPSLA&lsquo;10</a><ul>
+<li>Lime is a Java-based programming model and runtime from IBM which aims to provide a single unified
+  language to program heterogeneous architectures, from FPGAs to conventional CPUs</li>
 </ul>
 </li>
-<li><a href="">LINQits: Big Data on Little Clients, ISCA&lsquo;13</a></li>
-<li><a href="">Generating configurable hardware from parallel patterns, ASPLOS&lsquo;16</a></li>
-<li><a href="">Plasticine: A Reconfigurable Architecture For Parallel Patterns, ISCA&lsquo;17</a></li>
-<li><a href="http://csl.stanford.edu/~christos/publications/2018.spatial.pldi.pdf">Spatial: A Language and Compiler for Application Accelerators, PLDI&lsquo;18</a></li>
+<li>A line of work from Standord<ul>
+<li><a href="http://csl.stanford.edu/~christos/publications/2016.delitehw.asplos.pdf">Generating configurable hardware from parallel patterns, ASPLOS&lsquo;16</a></li>
+<li><a href="https://stanford-ppl.github.io/website/papers/isca17-raghu-plasticine.pdf">Plasticine: A Reconfigurable Architecture For Parallel Patterns, ISCA&lsquo;17</a></li>
+<li><a href="http://csl.stanford.edu/~christos/publications/2018.spatial.pldi.pdf">Spatial: A Language and Compiler for Application Accelerators, PLDI&lsquo;18</a><ul>
+<li>Spatial generates <em>Chisel</em> code along with C++ code which can be used on a host CPU to control the execution of the accelerator on the target FPGA.</li>
+<li>This kind of academic papers must have a lot good ideas. But the truth is it will not be reliable because it&rsquo;s from academic labs.</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h3 id="integrate-with-frameworks">Integrate with Frameworks<a class="headerlink" href="#integrate-with-frameworks" title="Permanent link">&para;</a></h3>
 <ul>
@@ -2036,6 +2111,7 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
 </li>
 <li><a href="https://cseweb.ucsd.edu/~mbtaylor/papers/ASIC_Cloud_ISCA_2016_Proceedings.pdf">ASIC Clouds: Specializing the Datacenter, ISCA&lsquo;16</a></li>
 </ul>
+<h2 id="applications">Applications<a class="headerlink" href="#applications" title="Permanent link">&para;</a></h2>
 <h3 id="programmable-network">Programmable Network<a class="headerlink" href="#programmable-network" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/main-4.pdf">MS: ClickNP: Highly Flexible and High Performance Network Processing with Reconfigurable Hardware, SIGCOMM&lsquo;16</a></li>
