@@ -1,0 +1,2215 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+        <link rel="canonical" href="http://lastweek.io/notes/paper_fpga/">
+      
+      
+        <meta name="author" content="Yizhou Shan">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.6.2">
+    
+    
+      
+        <title>Papers of FPGA - Yizhou Shan's Home Page</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.9b572555.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.6079476c.css">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Courier">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Courier","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="white" data-md-color-accent="">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <a href="#papers" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://lastweek.io" title="Yizhou Shan's Home Page" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Yizhou Shan's Home Page
+              </span>
+              <span class="md-header-nav__topic">
+                Papers of FPGA
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </span>
+    Yizhou Shan's Home Page
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Notes
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Notes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../benchmark/" title="Benchmarks" class="md-nav__link">
+      Benchmarks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../paper_perf_shadows/" title="Perf Shadows" class="md-nav__link">
+      Perf Shadows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cache_coherence/" title="Cache Coherence" class="md-nav__link">
+      Cache Coherence
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Papers of FPGA
+      </label>
+    
+    <a href="./" title="Papers of FPGA" class="md-nav__link md-nav__link--active">
+      Papers of FPGA
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#virtualization" title="Virtualization" class="md-nav__link">
+    Virtualization
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#memory-hierarchy" title="Memory Hierarchy" class="md-nav__link">
+    Memory Hierarchy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-memory-allocation" title="Dynamic Memory Allocation" class="md-nav__link">
+    Dynamic Memory Allocation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integrate-with-host-virtual-memory" title="Integrate with Host Virtual Memory" class="md-nav__link">
+    Integrate with Host Virtual Memory
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduling-related" title="Scheduling Related" class="md-nav__link">
+    Scheduling Related
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integrate-with-host-os" title="Integrate with Host OS" class="md-nav__link">
+    Integrate with Host OS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-on-current-fpga-virtualization-status" title="Summary on current FPGA Virtualization Status" class="md-nav__link">
+    Summary on current FPGA Virtualization Status
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#language-runtime-and-application" title="Language, Runtime, and Application" class="md-nav__link">
+    Language, Runtime, and Application
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#languages-and-platforms" title="Languages and Platforms" class="md-nav__link">
+    Languages and Platforms
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integrate-with-frameworks" title="Integrate with Frameworks" class="md-nav__link">
+    Integrate with Frameworks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloud-infrastructure" title="Cloud Infrastructure" class="md-nav__link">
+    Cloud Infrastructure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmable-network" title="Programmable Network" class="md-nav__link">
+    Programmable Network
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database" title="Database" class="md-nav__link">
+    Database
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage" title="Storage" class="md-nav__link">
+    Storage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#machine-learning" title="Machine Learning" class="md-nav__link">
+    Machine Learning
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph" title="Graph" class="md-nav__link">
+    Graph
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-value-store" title="Key-Value Store" class="md-nav__link">
+    Key-Value Store
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bio" title="Bio" class="md-nav__link">
+    Bio
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consensus" title="Consensus" class="md-nav__link">
+    Consensus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-processing" title="Video Processing" class="md-nav__link">
+    Video Processing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blockchain" title="Blockchain" class="md-nav__link">
+    Blockchain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#micro-services" title="Micro-services" class="md-nav__link">
+    Micro-services
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fpga-internal" title="FPGA Internal" class="md-nav__link">
+    FPGA Internal
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general" title="General" class="md-nav__link">
+    General
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partial-reconfiguration" title="Partial Reconfiguration" class="md-nav__link">
+    Partial Reconfiguration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logical-optimization-and-technology-mapping" title="Logical Optimization and Technology Mapping" class="md-nav__link">
+    Logical Optimization and Technology Mapping
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#place-and-route" title="Place and Route" class="md-nav__link">
+    Place and Route
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rtl2fpga" title="RTL2FPGA" class="md-nav__link">
+    RTL2FPGA
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../proc/" title="[Linux] Special Files" class="md-nav__link">
+      [Linux] Special Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rmap/" title="[Linux] Reverse Mmap (rmap)" class="md-nav__link">
+      [Linux] Reverse Mmap (rmap)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../trace/" title="[Linux] Trace/Profile" class="md-nav__link">
+      [Linux] Trace/Profile
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cgroup-swap/" title="[Linux] Cgroup and Swap" class="md-nav__link">
+      [Linux] Cgroup and Swap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../userfaultfd/" title="[Linux] Userfaultfd" class="md-nav__link">
+      [Linux] Userfaultfd
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../xperf/" title="[Linux] User/kern Cross Perf" class="md-nav__link">
+      [Linux] User/kern Cross Perf
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kvm-basic/" title="[Linux] KVM" class="md-nav__link">
+      [Linux] KVM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../misc/essential/" title="Essential" class="md-nav__link">
+      Essential
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../misc/cheatsheet/" title="Cheatsheet" class="md-nav__link">
+      Cheatsheet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-14" type="checkbox" id="nav-2-14">
+    
+    <label class="md-nav__link" for="nav-2-14">
+      Log
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-14">
+        Log
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../general_log/0919/" title="Sep 2019" class="md-nav__link">
+      Sep 2019
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../general_log/0819/" title="Aug 2019" class="md-nav__link">
+      Aug 2019
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../general_log/0719/" title="Jul 2019" class="md-nav__link">
+      Jul 2019
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      FPGA
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        FPGA
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../fpga/hls_axi/" title="HLS: Usage of AXI-Stream" class="md-nav__link">
+      HLS: Usage of AXI-Stream
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../fpga/hls_axi/" title="HLS: High-performance AXI-MM" class="md-nav__link">
+      HLS: High-performance AXI-MM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../fpga/vivado_tricks/" title="Vivado Tricks" class="md-nav__link">
+      Vivado Tricks
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      LegoOS-Dev
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        LegoOS-Dev
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
+    
+    <label class="md-nav__link" for="nav-4-1">
+      Log
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        Log
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/log/TODO/" title="TODO" class="md-nav__link">
+      TODO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/log/misc/" title="MISC" class="md-nav__link">
+      MISC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/log/test-note/" title="Test Script" class="md-nav__link">
+      Test Script
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/log/log-09-2018/" title="Sep 2018" class="md-nav__link">
+      Sep 2018
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/log/log-08-2018/" title="Aug 2018" class="md-nav__link">
+      Aug 2018
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/log/log-04-2018/" title="April 2018" class="md-nav__link">
+      April 2018
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/log/log-03-2018/" title="March 2018" class="md-nav__link">
+      March 2018
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/log/log-02-2018/" title="Feb 2018" class="md-nav__link">
+      Feb 2018
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+    
+    <label class="md-nav__link" for="nav-4-2">
+      Kernel
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        Kernel
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/kernel/kconfig/" title="Kconfig" class="md-nav__link">
+      Kconfig
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/kernel/debug/" title="Debug" class="md-nav__link">
+      Debug
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/kernel/grub/" title="GRUB" class="md-nav__link">
+      GRUB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/kernel/profile/" title="Profile" class="md-nav__link">
+      Profile
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/kernel/profile_strace/" title="Profile strace" class="md-nav__link">
+      Profile strace
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/kernel/profile_heatmap/" title="Profile heatmap" class="md-nav__link">
+      Profile heatmap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/kernel/profile_points/" title="Profile points" class="md-nav__link">
+      Profile points
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/kernel/trampoline/" title="Trampoline" class="md-nav__link">
+      Trampoline
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/kernel/pagefault_disable/" title="Disable pgfault" class="md-nav__link">
+      Disable pgfault
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/kernel/stop_machine/" title="Stop machine" class="md-nav__link">
+      Stop machine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/kernel/loader/" title="Program Loader" class="md-nav__link">
+      Program Loader
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/kernel/vDSO/" title="vDSO" class="md-nav__link">
+      vDSO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/kernel/vfs/" title="Virtual File System" class="md-nav__link">
+      Virtual File System
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/kernel/vm/" title="Process Virtual Memory" class="md-nav__link">
+      Process Virtual Memory
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/kernel/fpu/" title="x86 FPU" class="md-nav__link">
+      x86 FPU
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/kernel/irq/" title="IRQ" class="md-nav__link">
+      IRQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/kernel/net_thpool/" title="Network Thpool" class="md-nav__link">
+      Network Thpool
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      Syscall
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-3">
+        Syscall
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/syscall/facts/" title="Facts" class="md-nav__link">
+      Facts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/kernel/profile_strace/" title="strace" class="md-nav__link">
+      strace
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/syscall/compat/" title="compat" class="md-nav__link">
+      compat
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/syscall/msync/" title="msync()" class="md-nav__link">
+      msync()
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/syscall/mremap/" title="mremap()" class="md-nav__link">
+      mremap()
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/syscall/fork/" title="fork()" class="md-nav__link">
+      fork()
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/syscall/getrusage/" title="getrusage()" class="md-nav__link">
+      getrusage()
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/syscall/wait_and_exit/" title="wait4 and exit()" class="md-nav__link">
+      wait4 and exit()
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4">
+    
+    <label class="md-nav__link" for="nav-4-4">
+      Pcache
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-4">
+        Pcache
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/pcache/config/" title="Config" class="md-nav__link">
+      Config
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/pcache/sweep/" title="Sweep" class="md-nav__link">
+      Sweep
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/pcache/tlb/" title="TLB Coherence" class="md-nav__link">
+      TLB Coherence
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/pcache/pgtable-lock/" title="PageTable Lock" class="md-nav__link">
+      PageTable Lock
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/pcache/victim/" title="Victim Cache" class="md-nav__link">
+      Victim Cache
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/pcache/virtual_cache/" title="Virtual Cache" class="md-nav__link">
+      Virtual Cache
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/pcache/rmap/" title="Reverse Mapping" class="md-nav__link">
+      Reverse Mapping
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/pcache/evict_and_ref/" title="Evict and Refcount" class="md-nav__link">
+      Evict and Refcount
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/pcache/smp_design/" title="SMP Design" class="md-nav__link">
+      SMP Design
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/pcache/replication/" title="Replication" class="md-nav__link">
+      Replication
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-5" type="checkbox" id="nav-4-5">
+    
+    <label class="md-nav__link" for="nav-4-5">
+      Driver
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-5">
+        Driver
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/driver/pci/" title="PCI" class="md-nav__link">
+      PCI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/driver/ib/" title="Infiniband" class="md-nav__link">
+      Infiniband
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-6" type="checkbox" id="nav-4-6">
+    
+    <label class="md-nav__link" for="nav-4-6">
+      Paper
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-6">
+        Paper
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/paper/nmp/" title="NMP" class="md-nav__link">
+      NMP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/paper/processor_oom/" title="Processor OOM" class="md-nav__link">
+      Processor OOM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/paper/genz/" title="Gen-Z" class="md-nav__link">
+      Gen-Z
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/paper/replication/" title="Replication" class="md-nav__link">
+      Replication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lego/paper/related/" title="Related" class="md-nav__link">
+      Related
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#virtualization" title="Virtualization" class="md-nav__link">
+    Virtualization
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#memory-hierarchy" title="Memory Hierarchy" class="md-nav__link">
+    Memory Hierarchy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-memory-allocation" title="Dynamic Memory Allocation" class="md-nav__link">
+    Dynamic Memory Allocation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integrate-with-host-virtual-memory" title="Integrate with Host Virtual Memory" class="md-nav__link">
+    Integrate with Host Virtual Memory
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduling-related" title="Scheduling Related" class="md-nav__link">
+    Scheduling Related
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integrate-with-host-os" title="Integrate with Host OS" class="md-nav__link">
+    Integrate with Host OS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-on-current-fpga-virtualization-status" title="Summary on current FPGA Virtualization Status" class="md-nav__link">
+    Summary on current FPGA Virtualization Status
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#language-runtime-and-application" title="Language, Runtime, and Application" class="md-nav__link">
+    Language, Runtime, and Application
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#languages-and-platforms" title="Languages and Platforms" class="md-nav__link">
+    Languages and Platforms
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integrate-with-frameworks" title="Integrate with Frameworks" class="md-nav__link">
+    Integrate with Frameworks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloud-infrastructure" title="Cloud Infrastructure" class="md-nav__link">
+    Cloud Infrastructure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmable-network" title="Programmable Network" class="md-nav__link">
+    Programmable Network
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database" title="Database" class="md-nav__link">
+    Database
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage" title="Storage" class="md-nav__link">
+    Storage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#machine-learning" title="Machine Learning" class="md-nav__link">
+    Machine Learning
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph" title="Graph" class="md-nav__link">
+    Graph
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-value-store" title="Key-Value Store" class="md-nav__link">
+    Key-Value Store
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bio" title="Bio" class="md-nav__link">
+    Bio
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consensus" title="Consensus" class="md-nav__link">
+    Consensus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-processing" title="Video Processing" class="md-nav__link">
+    Video Processing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blockchain" title="Blockchain" class="md-nav__link">
+    Blockchain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#micro-services" title="Micro-services" class="md-nav__link">
+    Micro-services
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fpga-internal" title="FPGA Internal" class="md-nav__link">
+    FPGA Internal
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general" title="General" class="md-nav__link">
+    General
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partial-reconfiguration" title="Partial Reconfiguration" class="md-nav__link">
+    Partial Reconfiguration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logical-optimization-and-technology-mapping" title="Logical Optimization and Technology Mapping" class="md-nav__link">
+    Logical Optimization and Technology Mapping
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#place-and-route" title="Place and Route" class="md-nav__link">
+    Place and Route
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rtl2fpga" title="RTL2FPGA" class="md-nav__link">
+    RTL2FPGA
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="papers">Papers<a class="headerlink" href="#papers" title="Permanent link">&para;</a></h1>
+<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Oct 3, 2019</td><td>Initial version from <a href="https://github.com/lastweek/FPGA">Github</a></td></tr></tbody></table></details><p>A list of academic papers. Enjoy.</p>
+<h2 id="virtualization">Virtualization<a class="headerlink" href="#virtualization" title="Permanent link">&para;</a></h2>
+<p>How to apply Operating System concept to FPGA? How to virtualize on-board memory and on-chip logic?
+And, how is FPGA ultimately different from CPU in items of resource sharing?
+Papers in this section could give us some hints.</p>
+<h3 id="memory-hierarchy">Memory Hierarchy<a class="headerlink" href="#memory-hierarchy" title="Permanent link">&para;</a></h3>
+<ul>
+<li>(Papers deal with BRAM, registers, on-board DRAM, and system DRAM)</li>
+<li><a href="https://people.csail.mit.edu/emer/papers/2011.02.isfpga.leap_scratchpads.pdf">LEAP Scratchpads: Automatic Memory and Cache Management for Reconfigurable Logic, FPGA&lsquo;11</a><ul>
+<li>Main design hierarchy: Use BRAM as L1 cache, use on-board DRAM as L2 cache, and host memory as the backing store. Everthing is abstracted away through their interface (similar to load/store). Programming is pretty much the same as if you are writing for CPU.</li>
+<li>According to sec 2.2.2, its scratchpad controller, is using simple segment-based mapping scheme. Like AmorphOS&rsquo;s one.</li>
+</ul>
+</li>
+<li><a href="http://people.csail.mit.edu/hjyang/papers/yang-fccm2014.pdf">LEAP Shared Memories: Automating the Construction of FPGA Coherent Memories, FCCM&lsquo;14</a><ul>
+<li>Follow up work on LEAP Scratchpads, extends the work to have cache coherence between multiple FPGAs.</li>
+<li>Coherent Scatchpads with MOSI protocol.</li>
+</ul>
+</li>
+<li><a href="https://users.ece.cmu.edu/~jhoe/distribution/2011/chung.pdf">CoRAM: An In-Fabric Memory Architecture for FPGA-Based Computing</a><ul>
+<li>CoRAM provides an interface for managing the on- and off-chip memory resource of an FPGA. It use &ldquo;control threads&rdquo; enforce low-level control on data movement.</li>
+<li>Seriously, the CoRAM is just like Processor L1-L3 caches.</li>
+</ul>
+</li>
+<li>[CoRAM Prototype and evaluation of the CoRAM memory architecture for FPGA-based computing, FPGA&lsquo;12]<ul>
+<li>Prototype on FPGA.</li>
+</ul>
+</li>
+<li><a href="https://www.usenix.org/conference/osdi18/presentation/khawaja">Sharing, Protection, and Compatibility for Reconfigurable Fabric with AMORPHOS, OSDI&lsquo;18</a><ul>
+<li>Hull: provides memory protection for on-board DRAM using <strong>segment-based</strong> address translation.</li>
+</ul>
+</li>
+<li><a href="https://ieeexplore.ieee.org/abstract/document/7840018">Virtualized Execution Runtime for FPGA Accelerators in the Cloud, IEEE Access&lsquo;17</a></li>
+</ul>
+<h3 id="dynamic-memory-allocation">Dynamic Memory Allocation<a class="headerlink" href="#dynamic-memory-allocation" title="Permanent link">&para;</a></h3>
+<p><code class="codehilite">malloc()</code> and <code class="codehilite">free()</code> for FPGA on-board DRAM.</p>
+<ul>
+<li><a href="https://ieeexplore.ieee.org/document/485574/">A High-Performance Memory Allocator for Object-Oriented Systems, IEEE&lsquo;96</a></li>
+<li><a href="https://ieeexplore.ieee.org/document/7293959">SysAlloc: A Hardware Manager for Dynamic Memory Allocation in Heterogeneous Systems, FPL&lsquo;15</a></li>
+<li><a href="https://github.com/zslwyuan/Hi-DMM">Hi-DMM: High-Performance Dynamic Memory Management in High-Level Synthesis, IEEE&lsquo;18</a></li>
+</ul>
+<h3 id="integrate-with-host-virtual-memory">Integrate with Host Virtual Memory<a class="headerlink" href="#integrate-with-host-virtual-memory" title="Permanent link">&para;</a></h3>
+<ul>
+<li>(Papers deal with OS Virtual Memory System. Note that, all these papers, they introduce some form of MMU into FPGA to let FPGA work with host virtual memory systems. This added MMU is similar to CPU&rsquo;s MMU in the sense that they both do address translation. But, do note that the virtual memory system still runs in Linux, these include page fault handling, swapping, TLB shootdown stuff. What could really stands out, is to implement virtual memory system in FPGA. :-/ )</li>
+<li><a href="https://ieeexplore.ieee.org/document/1664911">Virtual Memory Window for Application-Specific Reconfigurable Coprocessors, DAC&lsquo;04</a><ul>
+<li>Early work that adds a new MMU to FPGA to let FPGA logic access <code class="codehilite">on-chip DRAM</code>. Note, it&rsquo;s not the system main memory. Thus the translation pgtable is different.</li>
+<li>Has some insights on prefetching and MMU CAM design.</li>
+</ul>
+</li>
+<li><a href="https://ieeexplore.ieee.org/document/1413143">Seamless Hardware Software Integration in Reconfigurable Computing Systems, 2005</a><ul>
+<li>Follow up summary on previous DAC&lsquo;04 Virtual Memory Window.</li>
+</ul>
+</li>
+<li><a href="https://ieeexplore.ieee.org/document/4297245">A Reconfigurable Hardware Interface for a Modern Computing System, FCCM&lsquo;07</a><ul>
+<li>This work adds a new MMU which includes a 16-entry TLB to FPGA. FPGA and CPU shares the same user virtual address space, use the same physical memory. FPGA and CPU share memory at <strong>cacheline granularity</strong>, FPGA is just another core in this sense. Upon a TLB miss at FPGA MMU, the FPGA sends interrupt to CPU, to let <em>software to handle the TLB miss</em>. Using software-managed TLB miss is not efficient. But they made cache coherence between FPGA and CPU easy.</li>
+</ul>
+</li>
+<li><a href="https://ieeexplore.ieee.org/abstract/document/4629945">Low-Latency High-Bandwidth HW/SW Communication in a Virtual Memory Environment, FPL&lsquo;08</a><ul>
+<li>This work actually add a new MMU to FPGA, which works just like CPU MMU. It&rsquo;s similar to IOMMU, in some sense.</li>
+<li>But I think they missed one important aspect: cache coherence between CPU and FPGA. There is not too much information about this in the paper, it seems they do not have cache at FPGA. Anyhow, this is why recently CCIX and OpenCAPI are proposed.</li>
+</ul>
+</li>
+<li><a href="https://ieeexplore.ieee.org/document/6044806">Memory Virtualization for Multithreaded Reconfigurable Hardware, FPL&lsquo;11</a><ul>
+<li>Part of the ReconOS project</li>
+<li>They implemented a simple MMU inside FPGA that includes a TLB. On protection violation or page invalid access cases, their MMU just hand over to CPU pgfault routines. How is this different from the FPL&lsquo;08 one? Actually, IMO, they are the same.</li>
+</ul>
+</li>
+<li><a href="https://ieeexplore.ieee.org/abstract/document/7840018">S4 Virtualized Execution Runtime for FPGA Accelerators in the Cloud, IEEE Access&lsquo;17</a><ul>
+<li>This paper also implemented a hardware MMU, but the virtual memory system still run on Linux.</li>
+<li>Also listed in <code class="codehilite">Cloud Infrastructure</code> part.</li>
+</ul>
+</li>
+<li><a href="https://ieeexplore.ieee.org/document/7331367">Lightweight Virtual Memory Support for Many-Core Accelerators in Heterogeneous Embedded SoCs, 2015</a></li>
+<li><a href="https://ieeexplore.ieee.org/document/7797491">Lightweight Virtual Memory Support for Zero-Copy Sharing of Pointer-Rich Data Structures in Heterogeneous Embedded SoCs, IEEE&lsquo;17</a><ul>
+<li>Part of the PULP project.</li>
+<li>Essentially a software-managed IOMMU. The control path is running as a Linux kernel module. The datapath is a lightweight AXI transation translation.</li>
+</ul>
+</li>
+</ul>
+<h3 id="scheduling-related">Scheduling Related<a class="headerlink" href="#scheduling-related" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://ieeexplore.ieee.org/document/1612697">hthreads: a hardware/software co-designed multithreaded RTOS kernel, 2005</a></li>
+<li>[hthreads: Enabling a Uniform Programming Model Across the Software/Hardware Boundary, FCCM&lsquo;16]</li>
+<li>[ReconOS Cooperative multithreading in dynamically reconfigurable systems, FPL&lsquo;09]<ul>
+<li>Let FPGA apps use <code class="codehilite">yield()</code>.</li>
+<li>A lot issues, but, sure.</li>
+</ul>
+</li>
+<li>AmophOS, OSDI&lsquo;18</li>
+</ul>
+<h3 id="integrate-with-host-os">Integrate with Host OS<a class="headerlink" href="#integrate-with-host-os" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://link.springer.com/chapter/10.1007/3-540-61730-2_35">A Virtual Hardware Operating System for the Xilinx XC6200, FPL&lsquo;96</a></li>
+<li><a href="https://ieeexplore.ieee.org/document/1336761">Operating systems for reconfigurable embedded platforms: online scheduling of real-time tasks, IEEE&lsquo;04</a></li>
+<li><a href="https://ieeexplore.ieee.org/document/1612697">hthreads: a hardware/software co-designed multithreaded RTOS kernel, 2005</a></li>
+<li><a href="http://www.doc.ic.ac.uk/~wl/papers/05/iee05tjt.pdf">Reconfigurable computing: architectures and design methods, IEE&lsquo;05</a></li>
+<li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.472.6667&amp;rep=rep1&amp;type=pdf">BORPH: An Operating System for FPGA-Based Reconfigurable Computers. PhD Thesis.</a></li>
+<li><a href="https://ieeexplore.ieee.org/document/5771269">FUSE: Front-end user framework for O/S abstraction of hardware accelerators, FCCM&lsquo;11</a></li>
+<li><a href="http://www.reconos.de/publications/">ReconOS – an Operating System Approach for Reconfigurable Computing, IEEE Micro&lsquo;14</a><ul>
+<li>Invoke kernel from FPGA. They built a shell in FPGA and delegation threads in CPU to achieve this.</li>
+<li>They implemented their own MMU (using pre-established pgtables) to let FPGA logic to access system memory. <a href="https://ieeexplore.ieee.org/document/6044806">Ref</a>.</li>
+<li>Read the &ldquo;Operating Systems for Reconfigurable Computing&rdquo; sidebar, nice summary.</li>
+</ul>
+</li>
+<li>LEAP<ul>
+<li>LEAP Soft connections: Addressing the hardware-design modularity problem, DAC&lsquo;09<ul>
+<li>Channel concept. Good.</li>
+</ul>
+</li>
+<li>LEAP Scratchpads: Automatic Memory and Cache Management for Reconfigurable Logic, FPGA&lsquo;11<ul>
+<li>BRAM/on-board DRAM/host DRAM layering. Caching.</li>
+</ul>
+</li>
+<li>LEAP Shared Memories: Automating the Construction of FPGA Coherent Memories<ul>
+<li>Add cache-coherence on top of previous work.</li>
+<li>Also check out my note on <a href="http://lastweek.io/notes/cache_coherence/">Cache Coherence</a>.</li>
+</ul>
+</li>
+<li>LEAP FPGA Operating System, FPL&lsquo;14.</li>
+</ul>
+</li>
+</ul>
+<h3 id="summary-on-current-fpga-virtualization-status">Summary on current FPGA Virtualization Status<a class="headerlink" href="#summary-on-current-fpga-virtualization-status" title="Permanent link">&para;</a></h3>
+<p>Prior art mainly focus on: 1) How to virtualize on-chip BRAM (e.g., CoRAM, LEAP Scratchpad),
+2) How to work with host, specifically, how to use the host DRAM, how to use host virtual memory.
+3) How to schedule bitstreams inside a FPGA chip. 4) How to provide certain services to make FPGA programming easier (mostly work with host OS).</p>
+<h2 id="language-runtime-and-application">Language, Runtime, and Application<a class="headerlink" href="#language-runtime-and-application" title="Permanent link">&para;</a></h2>
+<h3 id="languages-and-platforms">Languages and Platforms<a class="headerlink" href="#languages-and-platforms" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://zistvan.github.io/doc/ntl-fccm19.pdf">Design Patterns for Code Reuse in HLS Packet Processing Pipelines, FCCM&lsquo;19</a><ul>
+<li>A very good HLS library. Haggai rocks as always. Read and learn something.</li>
+</ul>
+</li>
+<li><a href="https://research.vmware.com/publications/just-in-time-compilation-for-verilog-a-new-technique-for-improving-the-fpga-programming-experience">Just-in-Time Compilation for Verilog, ASPLOS&lsquo;19</a><ul>
+<li>You need this dope.</li>
+</ul>
+</li>
+<li><a href="https://github.com/template-hls/template-hls-floa">Templatised Soft Floating-Point for High-Level Synthesis, FCCM&lsquo;19</a><ul>
+<li>Of course FP is evil. But you need it for lift. Yummy.</li>
+</ul>
+</li>
+<li><a href="https://vast.cs.ucla.edu/sites/default/files/publications/st-accel-high.pdf">ST-Accel: A High-Level Programming Platform for Streaming Applications on FPGA, FCCM&lsquo;18</a><ul>
+<li>Yum.</li>
+</ul>
+</li>
+<li>Chisel: Constructing Hardware in a Scala Embedded Language, DAC&lsquo;12<ul>
+<li>The good.</li>
+</ul>
+</li>
+<li>HeteroCL: A Multi-Paradigm Programming Infrastructure for Software-Defined Reconfigurable Computing, FPGA&lsquo;19</li>
+<li>Rosetta: A Realistic High-Level Synthesis Benchmark Suite for Software Programmable FPGAs, FPGA&lsquo;18</li>
+<li>From JVM to FPGA: Bridging Abstraction Hierarchy via Optimized Deep Pipelining, HotCloud&lsquo;18</li>
+</ul>
+<h3 id="integrate-with-frameworks">Integrate with Frameworks<a class="headerlink" href="#integrate-with-frameworks" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://ieeexplore.ieee.org/document/4724898">Map-reduce as a Programming Model for Custom Computing Machines, FCCM&lsquo;08</a><ul>
+<li>This paper proposes a model to translate MapReduce code written in C to code that could run on FPGA and GPU. Many details are omitted, and they don&rsquo;t really have the compiler.</li>
+<li>Single-host framework, everything is in FPGA and GPU.</li>
+</ul>
+</li>
+<li><a href="http://www.doc.ic.ac.uk/~wl/papers/10/fpga10bt.pdf">Axel: A Heterogeneous Cluster with FPGAs and GPUs, FPGA&lsquo;10</a><ul>
+<li>A distributed MapReduce Framework, targets clusters with CPU, GPU, and FPGA. Mainly the idea of scheduling FPGA/GPU jobs.</li>
+<li>Distributed Framework.</li>
+</ul>
+</li>
+<li><a href="https://dl.acm.org/citation.cfm?doid=1723112.1723129">FPMR: MapReduce Framework on FPGA, FPGA&lsquo;10</a><ul>
+<li>A MapReduce framework on a single host&rsquo;s FPGA. You need to write Verilog/HLS for processing logic to hook with their framework. The framework mainly includes a data transfer controller, a simple schedule that enable certain blocks at certain time.</li>
+<li>Single-host framework, everything is in FPGA.</li>
+</ul>
+</li>
+<li><a href="https://ieeexplore.ieee.org/document/7425227/">Melia: A MapReduce Framework on OpenCL-Based FPGAs, IEEE&lsquo;16</a><ul>
+<li>Another framework, written in OpenCL, and users can use OpenCL to program as well. Similar to previous work, it&rsquo;s more about the framework design, not specific algorithms on FPGA.</li>
+<li>Single-host framework, everything is in FPGA. But they have a discussion on running on multiple FPGAs.</li>
+<li>Four MapReduce FPGA papers here, I believe there are more. The marriage between MapReduce and FPGA is not something hard to understand. FPGA can be viewed as another core with different capabilities. The thing is, given FPGA&rsquo;s reprogram-time and limited on-board memory, how to design a good scheduling algorithm and data moving/caching mechanisms. Those papers give some hints on this.</li>
+</ul>
+</li>
+<li><a href="https://vast.cs.ucla.edu/sites/default/files/publications/usenix-hotcloud-2016.pdf">UCLA: When Apache Spark Meets FPGAs: A Case Study for Next-Generation DNA Sequencing Acceleration, HotCloud&lsquo;16</a></li>
+<li><a href="https://dl.acm.org/citation.cfm?id=2987569">UCLA: Programming and Runtime Support to Blaze FPGA Accelerator Deployment at Datacenter Scale, SoCC&lsquo;16</a><ul>
+<li>A system that hooks FPGA with Spark.</li>
+<li>There is a line of work that hook FPGA with big data processing framework (Spark), so the implementation of FPGA and the scale-out software can be separated. The Spark can schedule FPGA jobs to different machines, and take care of scale-out, failure handling etc. But, I personally think this line of work is really just an extension to ReconOS/FUSE/BORPH line of work. The main reason is: both these two lines of work try to integrate jobs run on CPU and jobs run on FPGA, so CPU and FPGA have an easier way to talk, or put in another way, CPU and FPGA have a better division of labor. Whether it&rsquo;s single-machine (like ReconOS, Melia), or distributed (like Blaze, Axel), they are essentially the same.</li>
+</ul>
+</li>
+<li><a href="https://ieeexplore.ieee.org/document/7544260">UCLA: Heterogeneous Datacenters: Options and Opportunities, DAC&lsquo;16</a><ul>
+<li>Follow up work of Blaze. Nice comparison of big and wimpy cores.</li>
+</ul>
+</li>
+</ul>
+<h3 id="cloud-infrastructure">Cloud Infrastructure<a class="headerlink" href="#cloud-infrastructure" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://indico.cern.ch/event/669648/contributions/2838181/attachments/1581893/2500031/Huawei_Cloud_FPGA_as_a_Service_CERN_openlab.pdf">Huawei: FPGA as a Service in the Cloud</a></li>
+<li><a href="https://vast.cs.ucla.edu/sites/default/files/publications/08566145.pdf">UCLA: Customizable Computing: From Single Chip to Datacenters, IEEE&lsquo;18</a></li>
+<li><a href="https://dl.acm.org/citation.cfm?id=2596667">UCLA: Accelerator-Rich Architectures: Opportunities and Progresses, DAC&lsquo;14</a><ul>
+<li>Reminds me of <a href="https://dl.acm.org/citation.cfm?id=3102992">OmniX</a>. Disaggregation at a different scale.</li>
+<li>This paper actually targets single-machine case. But it can reflect a distributed setting.</li>
+</ul>
+</li>
+<li><a href="https://dl.acm.org/citation.cfm?id=2597929">Enabling FPGAs in the Cloud, CF&lsquo;14</a><ul>
+<li>Paper raised four important aspects to enable FPGA in cloud: Abstraction, Sharing, Compatibility, and Security. FPGA itself requires a shell (paper calls it service logic) and being partitioned into multiple slots. Things discussed in the paper are straightforward, but worth reading. They did not solve the FPGA sharing issue, which, is solved by AmorphOS.</li>
+</ul>
+</li>
+<li><a href="https://ieeexplore.ieee.org/document/6861604">FPGAs in the Cloud: Booting Virtualized Hardware Accelerators with OpenStack, FCCM&lsquo;14</a><ul>
+<li>Use OpenStack to manage FPGA resource. The FPGA is partitioned into multiple regions, each region can use PR. The FPGA shell includes: 1) basic MAC, and packet dispatcher, 2) memory controller, and segment-based partition scheme, 3) a soft processor used for runtime PR control. One very important aspect of this project is: they envision input to FPGA comes from Ethernet, which is very true nowadays. And this also makes their project quite similar to Catapult. It&rsquo;s a very solid paper, though the evaluation is a little bit weak. What could be added: migration, different-sized region.</li>
+<li>The above CF and FCCM papers are similar in the sense that they are both building SW framework and HW shell to provide a unified cloud management system. They differ in their shell design: CF one take inputs from DMA engine, which is local system DRAM, FCCM one take inputs from Ethernet. The things after DMA or MAC, are essentially similar.</li>
+<li>It seems all of them are using simple segment-based memory partition for user FPGA logic. What&rsquo;s the pros and cons of using paging here?</li>
+</ul>
+</li>
+<li><a href="https://ieeexplore.ieee.org/document/6927507">S1 DyRACT: A partial reconfiguration enabled accelerator and test platform, FPL&lsquo;14</a></li>
+<li><a href="https://ieeexplore.ieee.org/abstract/document/7396187">S2 Virtualized FPGA Accelerators for Efficient Cloud Computing, CloudCom&lsquo;15</a></li>
+<li><a href="https://warwick.ac.uk/fac/sci/eng/staff/saf/publications/fpl2016-asiatici-phdforum.pdf">S3 Designing a Virtual Runtime for FPGA Accelerators in the Cloud, FPL&lsquo;16</a></li>
+<li><a href="https://ieeexplore.ieee.org/abstract/document/7840018">S4 Virtualized Execution Runtime for FPGA Accelerators in the Cloud, IEEE Access&lsquo;17</a><ul>
+<li>The above four papers came from the same group of folks. S1 developed a framework to use PCIe to do PR, okay. S2 is a follow-up on S1, read S2&rsquo;s chapter IV hardware architecture, many implementation details like internal FPGA switch, AXI stream interface. But no memory virtualization discussion. S3 is a two page short paper. S4 is the realization of S3. I was particularly interested if S4 has implemented their own virtual memory management. The answer is NO. S4 leveraged on-chip Linux, they just build a customized MMU (in the form of using BRAM to store page tables. This approach is similar to the papers listed in <code class="codehilite">Integrate with Virtual Memory</code>). Many things discussed in S4 have been proposed multiple times in previous cloud FPGA papers since 2014.</li>
+</ul>
+</li>
+<li><a href="https://www.microsoft.com/en-us/research/publication/a-reconfigurable-fabric-for-accelerating-large-scale-datacenter-services/">MS: A Reconfigurable Fabric for Accelerating Large-Scale Datacenter Services, ISCA&lsquo;14</a></li>
+<li><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/10/Cloud-Scale-Acceleration-Architecture.pdf">MS: A Cloud-Scale Acceleration Architecture, Micro&lsquo;16</a><ul>
+<li>Catapult is unique in its shell, which includes the Lightweight Transport Layer (LTL), and Elastic Router(ER). The cloud management part, which the paper just briefly mentioned, actually should include everything the above CF&lsquo;14 and FCCM&lsquo;14 have. The LTL has congestion control, packet loss detection/resend, ACK/NACK. The ER is a crossbar switch used by FPGA internal modules, which is essential to connect shell and roles.</li>
+<li>These two Catapult papers are simply a must read.</li>
+</ul>
+</li>
+<li><a href="https://www.microsoft.com/en-us/research/uploads/prod/2018/06/ISCA18-Brainwave-CameraReady.pdf">MS: A Configurable Cloud-Scale DNN Processor for Real-Time AI, Micro&lsquo;18</a></li>
+<li><a href="https://www.microsoft.com/en-us/research/uploads/prod/2018/03/Azure_SmartNIC_NSDI_2018.pdf">MS: Azure Accelerated Networking: SmartNICs in the Public Cloud, NSDI&lsquo;18</a></li>
+<li><a href="https://www.microsoft.com/en-us/research/uploads/prod/2018/10/nsdi19spring-final64.pdf">MS: Direct Universal Access : Making Data Center Resources Available to FPGA, NSDI&lsquo;19</a><ul>
+<li>Catapult is just sweet, isn&rsquo;t it?</li>
+</ul>
+</li>
+<li><a href="https://cseweb.ucsd.edu/~mbtaylor/papers/ASIC_Cloud_ISCA_2016_Proceedings.pdf">ASIC Clouds: Specializing the Datacenter, ISCA&lsquo;16</a></li>
+</ul>
+<h3 id="programmable-network">Programmable Network<a class="headerlink" href="#programmable-network" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/main-4.pdf">MS: ClickNP: Highly Flexible and High Performance Network Processing with Reconfigurable Hardware, SIGCOMM&lsquo;16</a></li>
+<li><a href="https://www.usenix.org/conference/nsdi18/presentation/lu">MS: Multi-Path Transport for RDMA in Datacenters, NSDI&lsquo;18</a></li>
+<li><a href="https://www.microsoft.com/en-us/research/uploads/prod/2018/03/Azure_SmartNIC_NSDI_2018.pdf">MS: Azure Accelerated Networking: SmartNICs in the Public Cloud, NSDI&lsquo;18</a></li>
+<li><a href="https://www.usenix.org/conference/atc19/presentation/eran">Mellanox. NICA: An Infrastructure for Inline Acceleration of Network Applications, ATC&lsquo;19</a></li>
+<li><a href="https://dl.acm.org/citation.cfm?id=3303979">The Case For In-Network Computing On Demand, EuroSys&lsquo;19</a></li>
+<li><a href="https://dl.acm.org/citation.cfm?id=3303979">Fast, Scalable, and Programmable Packet Scheduler in Hardware, SIGCOMM&lsquo;19</a></li>
+<li><a href="https://dl.acm.org/citation.cfm?id=3342085">HPCC: high precision congestion control, SIGCOMM&lsquo;19</a></li>
+<li><a href="https://homes.cs.washington.edu/~arvind/papers/ipipe.pdf">Offloading Distributed Applications onto SmartNICs using iPipe, SIGCOMM&lsquo;19</a><ul>
+<li>Not necessary FPGA, but SmartNICs. The actor programming model seems a good fit. There is another paper from ATC&lsquo;19 that optimizes <a href="https://www.usenix.org/system/files/atc19-meiklejohn.pdf">distributed actor runtime</a>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="database">Database<a class="headerlink" href="#database" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://pdfs.semanticscholar.org/dee1/59031eb2de0a9324829f9027b14403164489.pdf">Accelerating database systems using FPGAs: A survey, FPL&lsquo;18</a></li>
+</ul>
+<h3 id="storage">Storage<a class="headerlink" href="#storage" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://www.usenix.org/conference/atc19/presentation/liang">Cognitive SSD: A Deep Learning Engine for In-Storage Data Retrieval, ATC&lsquo;19</a></li>
+<li><a href="https://www.usenix.org/conference/atc19/presentation/ruan">INSIDER: Designing In-Storage Computing System for Emerging High-Performance Drive, ATC&lsquo;19</a></li>
+</ul>
+<h3 id="machine-learning">Machine Learning<a class="headerlink" href="#machine-learning" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Optimizing FPGA-based Accelerator Design for Deep Convolutional Neural Networks, FPGA&lsquo;15</li>
+<li>From High-Level Deep Neural Models to FPGAs, ISCA&lsquo;16</li>
+<li>Deep Learning on FPGAs: Past, Present, and Future, arXiv&lsquo;16</li>
+<li>Accelerating binarized neural networks: Comparison of FPGA, CPU, GPU, and ASIC, FPT&lsquo;16</li>
+<li>FINN: A Framework for Fast, Scalable Binarized Neural Network Inference, FPGA&lsquo;17</li>
+<li>In-Datacenter Performance Analysis of a Tensor Processing Unit, ISCA&lsquo;17</li>
+<li>Accelerating Binarized Convolutional Neural Networks with Software-Programmable FPGAs, FPGA&lsquo;17</li>
+<li>A Configurable Cloud-Scale DNN Processor for Real-Time AI, ISCA&lsquo;18</li>
+<li>A Network-Centric Hardware/Algorithm Co-Design to Accelerate Distributed Training of Deep Neural Networks, MICRO&lsquo;18</li>
+<li>DNNBuilder: an Automated Tool for Building High-Performance DNN Hardware Accelerators for FPGAs, ICCAD&lsquo;18</li>
+<li>FA3C : FPGA-Accelerated Deep Reinforcement Learning， ASPLOS’19</li>
+<li>Cognitive SSD: A Deep Learning Engine for In-Storage Data Retrieval, ATC&lsquo;19</li>
+</ul>
+<h3 id="graph">Graph<a class="headerlink" href="#graph" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A Scalable Processing-in-Memory Accelerator for Parallel Graph Processing, ISCA&lsquo;15</li>
+<li>Energy Efficient Architecture for Graph Analytics Accelerators, ISCA&lsquo;16</li>
+<li>Boosting the Performance of FPGA-based Graph Processor using Hybrid Memory Cube: A Case for Breadth First Search, FPGA&lsquo;17</li>
+<li>FPGA-Accelerated Transactional Execution of Graph Workloads, FPGA&lsquo;17</li>
+<li>An FPGA Framework for Edge-Centric Graph Processing, CF&lsquo;18</li>
+</ul>
+<h3 id="key-value-store">Key-Value Store<a class="headerlink" href="#key-value-store" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Achieving 10Gbps line-rate key-value stores with FPGAs, HotCloud&lsquo;13</li>
+<li>Thin Servers with Smart Pipes: Designing SoC Accelerators for Memcached, ISCA&lsquo;13</li>
+<li>An FPGA Memcached Appliance, FPGA&lsquo;13</li>
+<li>Scaling out to a Single-Node 80Gbps Memcached Server with 40Terabytes of Memory, HotStorage&lsquo;15</li>
+<li><a href="https://dl.acm.org/citation.cfm?id=3132756">KV-Direct: High-Performance In-Memory Key-Value Store with Programmable NIC, SOSP&lsquo;17</a><ul>
+<li>This link is also useful for better understading <a href="https://blog.acolyer.org/2017/11/23/kv-direct-high-performance-in-memory-key-value-store-with-programmable-nic/">Morning Paper</a></li>
+</ul>
+</li>
+<li>Ultra-Low-Latency and Flexible In-Memory Key-Value Store System Design on CPU-FPGA, FPT&lsquo;18</li>
+</ul>
+<h3 id="bio">Bio<a class="headerlink" href="#bio" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://vast.cs.ucla.edu/sites/default/files/publications/usenix-hotcloud-2016.pdf">When Apache Spark Meets FPGAs: A Case Study for Next-Generation DNA Sequencing Acceleration, HotCloud&lsquo;16</a></li>
+<li>FPGA Accelerated INDEL Realignment in the Cloud, HPCA&lsquo;19</li>
+</ul>
+<h3 id="consensus">Consensus<a class="headerlink" href="#consensus" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Consensus in a Box: Inexpensive Coordination in Hardware, NSDI&lsquo;16</li>
+</ul>
+<h3 id="video-processing">Video Processing<a class="headerlink" href="#video-processing" title="Permanent link">&para;</a></h3>
+<ul>
+<li>TODO</li>
+</ul>
+<h3 id="blockchain">Blockchain<a class="headerlink" href="#blockchain" title="Permanent link">&para;</a></h3>
+<ul>
+<li>TODO</li>
+</ul>
+<h3 id="micro-services">Micro-services<a class="headerlink" href="#micro-services" title="Permanent link">&para;</a></h3>
+<ul>
+<li>TODO</li>
+</ul>
+<h2 id="fpga-internal">FPGA Internal<a class="headerlink" href="#fpga-internal" title="Permanent link">&para;</a></h2>
+<h3 id="general">General<a class="headerlink" href="#general" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="http://www.eecg.toronto.edu/~jayar/pubs/brown/DTSurvey.pdf">FPGA and CPLD architectures: a tutorial, 1996</a></li>
+<li><a href="https://people.ece.uw.edu/hauck/publications/ConfigCompute.pdf">Reconfigurable computing: a survey of systems and software, 2002</a></li>
+<li><a href="http://www.doc.ic.ac.uk/~wl/papers/05/iee05tjt.pdf">Reconfigurable computing: architectures and design methods</a></li>
+<li><a href="http://www.eecg.toronto.edu/~jayar/pubs/kuon/foundtrend08.pdf">FPGA Architecture: Survey and Challenges, 2007</a><ul>
+<li>Read the first two paragraphs of each section and then come back to read all of that if needed.</li>
+</ul>
+</li>
+<li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.437.4076&amp;rep=rep1&amp;type=pdf">RAMP: Research Accelerator For Multiple Processors, 2007</a></li>
+<li><a href="https://ieeexplore.ieee.org/document/7086413">Three Ages of FPGAs: A Retrospective on the First Thirty Years of FPGA Technology, IEEE&lsquo;15</a></li>
+</ul>
+<h3 id="partial-reconfiguration">Partial Reconfiguration<a class="headerlink" href="#partial-reconfiguration" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://dl.acm.org/citation.cfm?id=3193827">FPGA Dynamic and Partial Reconfiguration: A Survey of Architectures, Methods, and Applications, CSUR&lsquo;18</a><ul>
+<li>Must read.</li>
+</ul>
+</li>
+<li><a href="https://ieeexplore.ieee.org/document/6927507">DyRACT: A partial reconfiguration enabled accelerator and test platform, FPL&lsquo;14</a></li>
+<li>A high speed open source controller for FPGA partial reconfiguration</li>
+</ul>
+<h3 id="logical-optimization-and-technology-mapping">Logical Optimization and Technology Mapping<a class="headerlink" href="#logical-optimization-and-technology-mapping" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.22.9473&amp;rep=rep1&amp;type=pdf">FlowMap: An Optimal Technology Mapping Algorithm for Delay Optimization in Lookup-Table Based FPGA Designs, 1994</a></li>
+<li><a href="http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=A93A485E9AAE008EE16450279ED1CE63?doi=10.1.1.5.3571&amp;rep=rep1&amp;type=pdf">Combinational Logic Synthesis for LUT Based Field Programmable Gate Arrays, 1996</a></li>
+<li><a href="https://cadlab.cs.ucla.edu/~cong/papers/CRU79_chen.pdf">DAOmap: A Depth-optimal Area Optimization Mapping Algorithm for FPGA Designs, 2004</a></li>
+</ul>
+<h3 id="place-and-route">Place and Route<a class="headerlink" href="#place-and-route" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="http://www.eecg.toronto.edu/~vaughn/papers/fpl97.pdf">VPR: A New Packing, Placement and Routing Tool for FPGA Research, 1997</a></li>
+<li><a href="http://www.eecg.toronto.edu/~jayar/pubs/luu/luutrets14.pdf">VTR 7.0: Next Generation Architecture and CAD System for FPGAs, 2014</a></li>
+</ul>
+<h3 id="rtl2fpga">RTL2FPGA<a class="headerlink" href="#rtl2fpga" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://people.eecs.berkeley.edu/~krste/papers/fame-isca2010.pdf">A Case for FAME: FPGA Architecture Model Execution, 2010</a></li>
+<li><a href="https://people.eecs.berkeley.edu/~krste/papers/fame-isca2010.pdf">Strober: Fast and Accurate Sample-Based Energy Simulation for Arbitrary RTL, 2016</a></li>
+<li><a href="https://pdfs.semanticscholar.org/f4dd/f85e953f30a25250baf958c2a2619380bf9b.pdf">Evaluation of RISC-V RTL with FPGA-Accelerated Simulation, 2017</a></li>
+<li><a href="https://sagark.org/assets/pubs/firesim-isca2018.pdf">FireSim: FPGA-Accelerated Cycle-Exact Scale-Out System Simulation in the Public Cloud, 2018</a></li>
+</ul>
+                
+                  
+                
+              
+              
+                
+                  
+
+
+  <h2 id="__comments">Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://lastweek.io/notes/paper_fpga/";
+      this.page.identifier =
+        "/notes/paper_fpga/";
+    };
+    (function() {
+      var d = document, s = d.createElement("script");
+      s.src = "//lastweek-io.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../cache_coherence/" title="Cache Coherence" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Cache Coherence
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../proc/" title="[Linux] Special Files" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                [Linux] Special Files
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+  <div class="md-footer-social">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <a href="https://github.com/lastweek" class="md-footer-social__link fa fa-github"></a>
+    
+  </div>
+
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.abd7b172.js"></script>
+      
+      <script>app.initialize({version:"0.17.2",url:{base:"../.."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-143772066-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>

@@ -30,6 +30,12 @@
     </url>
         
     <url>
+     <loc>http://lastweek.io/notes/paper_fpga/</loc>
+     <lastmod>2019-10-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>http://lastweek.io/notes/proc/</loc>
      <lastmod>2019-10-03</lastmod>
      <changefreq>daily</changefreq>
