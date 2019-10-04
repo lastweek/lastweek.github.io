@@ -77,7 +77,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#papers" tabindex="1" class="md-skip">
+      <a href="#list-of-fpga-papers" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -299,15 +299,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#scheduling-related" title="Scheduling Related" class="md-nav__link">
-    Scheduling Related
+  <a href="#scheduling" title="Scheduling" class="md-nav__link">
+    Scheduling
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#integrate-with-host-os" title="Integrate with Host OS" class="md-nav__link">
-    Integrate with Host OS
+  <a href="#integrate-with-host-oss" title="Integrate with Host OSs" class="md-nav__link">
+    Integrate with Host OSs
   </a>
   
 </li>
@@ -325,16 +325,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#language-runtime-and-application" title="Language, Runtime, and Application" class="md-nav__link">
-    Language, Runtime, and Application
+  <a href="#languages-runtime-and-application" title="Languages, Runtime, and Application" class="md-nav__link">
+    Languages, Runtime, and Application
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#languages-and-platforms" title="Languages and Platforms" class="md-nav__link">
-    Languages and Platforms
+  <a href="#xilinx-hls-related" title="Xilinx HLS Related" class="md-nav__link">
+    Xilinx HLS Related
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-level-languages-and-platforms" title="High-Level Languages and Platforms" class="md-nav__link">
+    High-Level Languages and Platforms
   </a>
   
 </li>
@@ -1551,15 +1558,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#scheduling-related" title="Scheduling Related" class="md-nav__link">
-    Scheduling Related
+  <a href="#scheduling" title="Scheduling" class="md-nav__link">
+    Scheduling
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#integrate-with-host-os" title="Integrate with Host OS" class="md-nav__link">
-    Integrate with Host OS
+  <a href="#integrate-with-host-oss" title="Integrate with Host OSs" class="md-nav__link">
+    Integrate with Host OSs
   </a>
   
 </li>
@@ -1577,16 +1584,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#language-runtime-and-application" title="Language, Runtime, and Application" class="md-nav__link">
-    Language, Runtime, and Application
+  <a href="#languages-runtime-and-application" title="Languages, Runtime, and Application" class="md-nav__link">
+    Languages, Runtime, and Application
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#languages-and-platforms" title="Languages and Platforms" class="md-nav__link">
-    Languages and Platforms
+  <a href="#xilinx-hls-related" title="Xilinx HLS Related" class="md-nav__link">
+    Xilinx HLS Related
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-level-languages-and-platforms" title="High-Level Languages and Platforms" class="md-nav__link">
+    High-Level Languages and Platforms
   </a>
   
 </li>
@@ -1758,15 +1772,17 @@
               
                 
                 
-                <h1 id="papers">Papers<a class="headerlink" href="#papers" title="Permanent link">&para;</a></h1>
-<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Oct 3, 2019</td><td>Initial version from <a href="https://github.com/lastweek/FPGA">Github</a></td></tr></tbody></table></details><p>A list of academic papers. Enjoy.</p>
+                <h1 id="list-of-fpga-papers">List of FPGA Papers<a class="headerlink" href="#list-of-fpga-papers" title="Permanent link">&para;</a></h1>
+<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Oct 4, 2019</td><td>Add more papers extracted from AmophOS</td></tr><tr><td align="left">Oct 3, 2019</td><td>Initial version from <a href="https://github.com/lastweek/FPGA">Github</a></td></tr></tbody></table></details><p>A list of academic papers. Enjoy.</p>
 <h2 id="virtualization">Virtualization<a class="headerlink" href="#virtualization" title="Permanent link">&para;</a></h2>
-<p>How to apply Operating System concept to FPGA? How to virtualize on-board memory and on-chip logic?
-And, how is FPGA ultimately different from CPU in items of resource sharing?
-Papers in this section could give us some hints.</p>
-<h3 id="memory-hierarchy">Memory Hierarchy<a class="headerlink" href="#memory-hierarchy" title="Permanent link">&para;</a></h3>
 <ul>
-<li>(Papers deal with BRAM, registers, on-board DRAM, and system DRAM)</li>
+<li>How to create abstractions for FPGA resources(BRAM, DRAM, LUTs, and DSPs)?</li>
+<li>How to schedule bitstreams (spatial and time sharing)?</li>
+<li>How to interact with host OS?</li>
+</ul>
+<h3 id="memory-hierarchy">Memory Hierarchy<a class="headerlink" href="#memory-hierarchy" title="Permanent link">&para;</a></h3>
+<p>Papers deal with BRAM, registers, on-board DRAM, and host DRAM.</p>
+<ul>
 <li><a href="https://people.csail.mit.edu/emer/papers/2011.02.isfpga.leap_scratchpads.pdf">LEAP Scratchpads: Automatic Memory and Cache Management for Reconfigurable Logic, FPGA&lsquo;11</a><ul>
 <li>Main design hierarchy: Use BRAM as L1 cache, use on-board DRAM as L2 cache, and host memory as the backing store. Everthing is abstracted away through their interface (similar to load/store). Programming is pretty much the same as if you are writing for CPU.</li>
 <li>According to sec 2.2.2, its scratchpad controller, is using simple segment-based mapping scheme. Like AmorphOS&rsquo;s one.</li>
@@ -1777,12 +1793,13 @@ Papers in this section could give us some hints.</p>
 <li>Coherent Scatchpads with MOSI protocol.</li>
 </ul>
 </li>
+<li><a href="http://cas.ee.ic.ac.uk/people/fw1811/papers/FPGA15_Felix.pdf">MATCHUP: Memory Abstractions for Heap Manipulating Programs, FPGA&lsquo;15</a></li>
 <li><a href="https://users.ece.cmu.edu/~jhoe/distribution/2011/chung.pdf">CoRAM: An In-Fabric Memory Architecture for FPGA-Based Computing</a><ul>
 <li>CoRAM provides an interface for managing the on- and off-chip memory resource of an FPGA. It use &ldquo;control threads&rdquo; enforce low-level control on data movement.</li>
 <li>Seriously, the CoRAM is just like Processor L1-L3 caches.</li>
 </ul>
 </li>
-<li>[CoRAM Prototype and evaluation of the CoRAM memory architecture for FPGA-based computing, FPGA&lsquo;12]<ul>
+<li><a href="">CoRAM Prototype and evaluation of the CoRAM memory architecture for FPGA-based computing, FPGA&lsquo;12</a><ul>
 <li>Prototype on FPGA.</li>
 </ul>
 </li>
@@ -1800,8 +1817,11 @@ Papers in this section could give us some hints.</p>
 <li><a href="https://github.com/zslwyuan/Hi-DMM">Hi-DMM: High-Performance Dynamic Memory Management in High-Level Synthesis, IEEE&lsquo;18</a></li>
 </ul>
 <h3 id="integrate-with-host-virtual-memory">Integrate with Host Virtual Memory<a class="headerlink" href="#integrate-with-host-virtual-memory" title="Permanent link">&para;</a></h3>
+<p>Papers deal with OS Virtual Memory System (VMS). Note that, all these papers introduce some form of MMU into the FPGA
+to let FPGA be able to work with host VMS.
+This added MMU is similar to CPU&rsquo;s MMU and <a href="https://www.usenix.org/conference/usenixsecurity19/presentation/tsai">RDMA NIC&rsquo;s internal cache</a>.
+Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootdown and so on. What could really stands out, is to implement VMS inside FPGA.)</p>
 <ul>
-<li>(Papers deal with OS Virtual Memory System. Note that, all these papers, they introduce some form of MMU into FPGA to let FPGA work with host virtual memory systems. This added MMU is similar to CPU&rsquo;s MMU in the sense that they both do address translation. But, do note that the virtual memory system still runs in Linux, these include page fault handling, swapping, TLB shootdown stuff. What could really stands out, is to implement virtual memory system in FPGA. :-/ )</li>
 <li><a href="https://ieeexplore.ieee.org/document/1664911">Virtual Memory Window for Application-Specific Reconfigurable Coprocessors, DAC&lsquo;04</a><ul>
 <li>Early work that adds a new MMU to FPGA to let FPGA logic access <code class="codehilite">on-chip DRAM</code>. Note, it&rsquo;s not the system main memory. Thus the translation pgtable is different.</li>
 <li>Has some insights on prefetching and MMU CAM design.</li>
@@ -1837,18 +1857,33 @@ Papers in this section could give us some hints.</p>
 </ul>
 </li>
 </ul>
-<h3 id="scheduling-related">Scheduling Related<a class="headerlink" href="#scheduling-related" title="Permanent link">&para;</a></h3>
+<h3 id="scheduling">Scheduling<a class="headerlink" href="#scheduling" title="Permanent link">&para;</a></h3>
 <ul>
+<li><a href="">Preemptive multitasking on fpgas, FCCM&lsquo;00</a></li>
+<li><a href="">Operating Systems for Reconfigurable Embedded Platforms: Online Scheduling of Real-Time Tasks, 2004</a></li>
+<li><a href="">Context saving and restoring for multitasking in reconfigurable systems, FPL&lsquo;05</a></li>
+<li><a href="">Tartan: Evaluating Spatial Computation for Whole Program Execution, ASPLOS&lsquo;06</a></li>
+<li><a href="">Scheduling intervals for reconfigurable computing, FCCM&lsquo;08</a></li>
+<li><a href="">ReconOS Cooperative multithreading in dynamically reconfigurable systems, FPL&lsquo;09</a></li>
+<li><a href="">Block, drop or roll(back): Alternative preemption methods for RH multi-tasking, FCCM&lsquo;09</a></li>
+<li><a href="">Hardware context-switch methodology for dynamically partially reconfigurable systems, 2010</a></li>
+<li><a href="">Online Scheduling for Multi-core Shared Reconfigurable Fabric, DATE&lsquo;12</a></li>
+<li><a href="">ReMAP: A reconfigurable heterogeneous multicore architecture, Micro&lsquo;10</a></li>
+<li>
+<p><a href="">Scheduling mixed-architecture processes in tightly coupled FPGA-CPU reconfigurable computers, FCCM&lsquo;14</a></p>
+</li>
+<li>
+<p><a href="">Multi-shape Tasks Scheduling for Online Multitasking on FPGAs, 2014</a></p>
+</li>
 <li><a href="https://ieeexplore.ieee.org/document/1612697">hthreads: a hardware/software co-designed multithreaded RTOS kernel, 2005</a></li>
-<li>[hthreads: Enabling a Uniform Programming Model Across the Software/Hardware Boundary, FCCM&lsquo;16]</li>
-<li>[ReconOS Cooperative multithreading in dynamically reconfigurable systems, FPL&lsquo;09]<ul>
+<li><a href="">hthreads: Enabling a Uniform Programming Model Across the Software/Hardware Boundary, FCCM&lsquo;16</a><ul>
 <li>Let FPGA apps use <code class="codehilite">yield()</code>.</li>
 <li>A lot issues, but, sure.</li>
 </ul>
 </li>
 <li>AmophOS, OSDI&lsquo;18</li>
 </ul>
-<h3 id="integrate-with-host-os">Integrate with Host OS<a class="headerlink" href="#integrate-with-host-os" title="Permanent link">&para;</a></h3>
+<h3 id="integrate-with-host-oss">Integrate with Host OSs<a class="headerlink" href="#integrate-with-host-oss" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://link.springer.com/chapter/10.1007/3-540-61730-2_35">A Virtual Hardware Operating System for the Xilinx XC6200, FPL&lsquo;96</a></li>
 <li><a href="https://ieeexplore.ieee.org/document/1336761">Operating systems for reconfigurable embedded platforms: online scheduling of real-time tasks, IEEE&lsquo;04</a></li>
@@ -1862,7 +1897,6 @@ Papers in this section could give us some hints.</p>
 <li>Read the &ldquo;Operating Systems for Reconfigurable Computing&rdquo; sidebar, nice summary.</li>
 </ul>
 </li>
-<li>LEAP<ul>
 <li>LEAP Soft connections: Addressing the hardware-design modularity problem, DAC&lsquo;09<ul>
 <li>Channel concept. Good.</li>
 </ul>
@@ -1878,38 +1912,59 @@ Papers in this section could give us some hints.</p>
 </li>
 <li>LEAP FPGA Operating System, FPL&lsquo;14.</li>
 </ul>
-</li>
-</ul>
 <h3 id="summary-on-current-fpga-virtualization-status">Summary on current FPGA Virtualization Status<a class="headerlink" href="#summary-on-current-fpga-virtualization-status" title="Permanent link">&para;</a></h3>
 <p>Prior art mainly focus on: 1) How to virtualize on-chip BRAM (e.g., CoRAM, LEAP Scratchpad),
 2) How to work with host, specifically, how to use the host DRAM, how to use host virtual memory.
 3) How to schedule bitstreams inside a FPGA chip. 4) How to provide certain services to make FPGA programming easier (mostly work with host OS).</p>
-<h2 id="language-runtime-and-application">Language, Runtime, and Application<a class="headerlink" href="#language-runtime-and-application" title="Permanent link">&para;</a></h2>
-<h3 id="languages-and-platforms">Languages and Platforms<a class="headerlink" href="#languages-and-platforms" title="Permanent link">&para;</a></h3>
+<h2 id="languages-runtime-and-application">Languages, Runtime, and Application<a class="headerlink" href="#languages-runtime-and-application" title="Permanent link">&para;</a></h2>
+<p>Innovations in the toolchain space.</p>
+<h3 id="xilinx-hls-related">Xilinx HLS Related<a class="headerlink" href="#xilinx-hls-related" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://zistvan.github.io/doc/ntl-fccm19.pdf">Design Patterns for Code Reuse in HLS Packet Processing Pipelines, FCCM&lsquo;19</a><ul>
-<li>A very good HLS library. Haggai rocks as always. Read and learn something.</li>
+<li>A very good HLS library.</li>
 </ul>
 </li>
+<li><a href="https://github.com/template-hls/template-hls-floa">Templatised Soft Floating-Point for High-Level Synthesis, FCCM&lsquo;19</a></li>
+<li><a href="http://cas.ee.ic.ac.uk/people/fw1811/papers/FelixFCCM14.pdf">Separation Logic-Assisted Code Transformations for Efficient High-Level Synthesis, FCCM&lsquo;14</a><ul>
+<li>An HLS design aids that analyze the original program at <em>compile time</em> and perform automated code transformations. The tool analysis pointer-manipulating programs and automatically splits heap-allocated data structures into disjoint, independent regions.</li>
+<li>The tool is for C++ heap operations.</li>
+<li>To put in another way: the tool looks at your BRAM usage, found any false-dependencies, and make multiple independent regions, then your II is improved.</li>
+</ul>
+</li>
+<li><a href="http://cas.ee.ic.ac.uk/people/fw1811/papers/FPGA15_Felix.pdf">MATCHUP: Memory Abstractions for Heap Manipulating Programs, FPGA&lsquo;15</a><ul>
+<li>Follow-up work of the above FCCM&lsquo;14 one. This time they use LEAP scracchpads as the underlying caching block.</li>
+</ul>
+</li>
+</ul>
+<h3 id="high-level-languages-and-platforms">High-Level Languages and Platforms<a class="headerlink" href="#high-level-languages-and-platforms" title="Permanent link">&para;</a></h3>
+<ul>
 <li><a href="https://research.vmware.com/publications/just-in-time-compilation-for-verilog-a-new-technique-for-improving-the-fpga-programming-experience">Just-in-Time Compilation for Verilog, ASPLOS&lsquo;19</a><ul>
 <li>You need this dope.</li>
 </ul>
 </li>
-<li><a href="https://github.com/template-hls/template-hls-floa">Templatised Soft Floating-Point for High-Level Synthesis, FCCM&lsquo;19</a><ul>
-<li>Of course FP is evil. But you need it for lift. Yummy.</li>
+<li>Chisel: Constructing Hardware in a Scala Embedded Language, DAC&lsquo;12<ul>
+<li>Chisel is being actively improved and used by UCB folks.</li>
 </ul>
 </li>
+<li>Rosetta: A Realistic High-Level Synthesis Benchmark Suite for Software Programmable FPGAs, FPGA&lsquo;18</li>
+<li>From JVM to FPGA: Bridging Abstraction Hierarchy via Optimized Deep Pipelining, HotCloud&lsquo;18</li>
 <li><a href="https://vast.cs.ucla.edu/sites/default/files/publications/st-accel-high.pdf">ST-Accel: A High-Level Programming Platform for Streaming Applications on FPGA, FCCM&lsquo;18</a><ul>
 <li>Yum.</li>
 </ul>
 </li>
-<li>Chisel: Constructing Hardware in a Scala Embedded Language, DAC&lsquo;12<ul>
-<li>The good.</li>
+<li>
+<p><a href="https://vast.cs.ucla.edu/~chiyuze/pub/fpga19-heterocl.pdf">HeteroCL: A Multi-Paradigm Programming Infrastructure for Software-Defined Reconfigurable Computing, FPGA&lsquo;19</a></p>
+</li>
+<li>
+<p><a href="https://www.cl.cam.ac.uk/research/srg/han/ACS-P35/readinglist/bacon-lime-p89-auerbach.pdf">Lime: a Java-Compatible and Synthesizable Language for Heterogeneous Architectures, OOPSLA&lsquo;10</a></p>
+<ul>
+<li>Research idea. Lime is designed to be executable across a broad range of architectures, from FPGAs to conventional CPUs</li>
 </ul>
 </li>
-<li>HeteroCL: A Multi-Paradigm Programming Infrastructure for Software-Defined Reconfigurable Computing, FPGA&lsquo;19</li>
-<li>Rosetta: A Realistic High-Level Synthesis Benchmark Suite for Software Programmable FPGAs, FPGA&lsquo;18</li>
-<li>From JVM to FPGA: Bridging Abstraction Hierarchy via Optimized Deep Pipelining, HotCloud&lsquo;18</li>
+<li><a href="">LINQits: Big Data on Little Clients, ISCA&lsquo;13</a></li>
+<li><a href="">Generating configurable hardware from parallel patterns, ASPLOS&lsquo;16</a></li>
+<li><a href="">Plasticine: A Reconfigurable Architecture For Parallel Patterns, ISCA&lsquo;17</a></li>
+<li><a href="http://csl.stanford.edu/~christos/publications/2018.spatial.pldi.pdf">Spatial: A Language and Compiler for Application Accelerators, PLDI&lsquo;18</a></li>
 </ul>
 <h3 id="integrate-with-frameworks">Integrate with Frameworks<a class="headerlink" href="#integrate-with-frameworks" title="Permanent link">&para;</a></h3>
 <ul>
