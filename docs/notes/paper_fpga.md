@@ -8,6 +8,8 @@
 
 A list of academic papers. Enjoy.
 
+Table of Contents
+
 ## Virtualization
 
 - How to create abstractions for FPGA resources(BRAM, DRAM, LUTs, and DSPs)?
@@ -115,7 +117,7 @@ Prior art mainly focus on: 1) How to virtualize on-chip BRAM (e.g., CoRAM, LEAP 
 2) How to work with host, specifically, how to use the host DRAM, how to use host virtual memory.
 3) How to schedule bitstreams inside a FPGA chip. 4) How to provide certain services to make FPGA programming easier (mostly work with host OS).
 
-## Languages, Runtime, and Application
+## Languages, Runtime, and Framework
 
 Innovations in the toolchain space.
 
@@ -142,13 +144,16 @@ Innovations in the toolchain space.
 - [ST-Accel: A High-Level Programming Platform for Streaming Applications on FPGA, FCCM'18](https://vast.cs.ucla.edu/sites/default/files/publications/st-accel-high.pdf)
     - Yum.
 - [HeteroCL: A Multi-Paradigm Programming Infrastructure for Software-Defined Reconfigurable Computing, FPGA'19](https://vast.cs.ucla.edu/~chiyuze/pub/fpga19-heterocl.pdf)
-
 - [Lime: a Java-Compatible and Synthesizable Language for Heterogeneous Architectures, OOPSLA'10](https://www.cl.cam.ac.uk/research/srg/han/ACS-P35/readinglist/bacon-lime-p89-auerbach.pdf)
-	- Research idea. Lime is designed to be executable across a broad range of architectures, from FPGAs to conventional CPUs
+	- Lime is a Java-based programming model and runtime from IBM which aims to provide a single unified
+	  language to program heterogeneous architectures, from FPGAs to conventional CPUs
 - [LINQits: Big Data on Little Clients, ISCA'13]()
-- [Generating configurable hardware from parallel patterns, ASPLOS'16]()
-- [Plasticine: A Reconfigurable Architecture For Parallel Patterns, ISCA'17]()
-- [Spatial: A Language and Compiler for Application Accelerators, PLDI'18](http://csl.stanford.edu/~christos/publications/2018.spatial.pldi.pdf)
+- A line of work from Standord
+	- [Generating configurable hardware from parallel patterns, ASPLOS'16](http://csl.stanford.edu/~christos/publications/2016.delitehw.asplos.pdf)
+	- [Plasticine: A Reconfigurable Architecture For Parallel Patterns, ISCA'17](https://stanford-ppl.github.io/website/papers/isca17-raghu-plasticine.pdf)
+	- [Spatial: A Language and Compiler for Application Accelerators, PLDI'18](http://csl.stanford.edu/~christos/publications/2018.spatial.pldi.pdf)
+		- Spatial generates _Chisel_ code along with C++ code which can be used on a host CPU to control the execution of the accelerator on the target FPGA.
+		- This kind of academic papers must have a lot good ideas. But the truth is it will not be reliable because it's from academic labs.
 
 ### Integrate with Frameworks
 - [Map-reduce as a Programming Model for Custom Computing Machines, FCCM'08](https://ieeexplore.ieee.org/document/4724898)
@@ -197,6 +202,8 @@ Innovations in the toolchain space.
 - [MS: Direct Universal Access : Making Data Center Resources Available to FPGA, NSDI'19](https://www.microsoft.com/en-us/research/uploads/prod/2018/10/nsdi19spring-final64.pdf)
 	- Catapult is just sweet, isn't it?
 - [ASIC Clouds: Specializing the Datacenter, ISCA'16](https://cseweb.ucsd.edu/~mbtaylor/papers/ASIC_Cloud_ISCA_2016_Proceedings.pdf)
+
+## Applications
 
 ### Programmable Network
 - [MS: ClickNP: Highly Flexible and High Performance Network Processing with Reconfigurable Hardware, SIGCOMM'16](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/main-4.pdf)
