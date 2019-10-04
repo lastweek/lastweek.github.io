@@ -10,6 +10,37 @@ A list of academic papers. Enjoy.
 
 Table of Contents
 
+- [Virtualization](#virtualization)
+	- [Memory Hierarchy](#memory-hierarchy)
+	- [Dynamic Memory Allocation](#dynamic-memory-allocation)
+	- [Integrate with Host Virtual Memory](#integrate-with-host-virtual-memory)
+	- [Scheduling](#scheduling)
+	- [Integrate with Host OSs](#integrate-with-host-oss)
+	- [Summary on current FPGA Virtualization Status](#summary-on-current-fpga-virtualization-status)
+- [Languages, Runtime, and Framework](#languages-runtime-and-framework)
+	- [Xilinx HLS Related](#xilinx-hls-related)
+	- [High-Level Languages and Platforms](#high-level-languages-and-platforms)
+	- [Integrate with Frameworks](#integrate-with-frameworks)
+	- [Cloud Infrastructure](#cloud-infrastructure)
+- [Applications](#applications)
+	- [Programmable Network](#programmable-network)
+	- [Database](#database)
+	- [Storage](#storage)
+	- [Machine Learning](#machine-learning)
+	- [Graph](#graph)
+	- [Key-Value Store](#key-value-store)
+	- [Bio](#bio)
+	- [Consensus](#consensus)
+	- [Video Processing](#video-processing)
+	- [Blockchain](#blockchain)
+	- [Micro-services](#micro-services)
+- [FPGA Internal](#fpga-internal)
+	- [General](#general)
+	- [Partial Reconfiguration](#partial-reconfiguration)
+	- [Logical Optimization and Technology Mapping](#logical-optimization-and-technology-mapping)
+	- [Place and Route](#place-and-route)
+	- [RTL2FPGA](#rtl2fpga)
+
 ## Virtualization
 
 - How to create abstractions for FPGA resources(BRAM, DRAM, LUTs, and DSPs)?
@@ -71,24 +102,31 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
 
 ### Scheduling
 
-- [Preemptive multitasking on fpgas, FCCM'00]()
+TODO:
+
 - [Operating Systems for Reconfigurable Embedded Platforms: Online Scheduling of Real-Time Tasks, 2004]()
 - [Context saving and restoring for multitasking in reconfigurable systems, FPL'05]()
-- [Tartan: Evaluating Spatial Computation for Whole Program Execution, ASPLOS'06]()
 - [Scheduling intervals for reconfigurable computing, FCCM'08]()
 - [ReconOS Cooperative multithreading in dynamically reconfigurable systems, FPL'09]()
 - [Block, drop or roll(back): Alternative preemption methods for RH multi-tasking, FCCM'09]()
 - [Hardware context-switch methodology for dynamically partially reconfigurable systems, 2010]()
-- [Online Scheduling for Multi-core Shared Reconfigurable Fabric, DATE'12]()
 - [ReMAP: A reconfigurable heterogeneous multicore architecture, Micro'10]()
+- [Online Scheduling for Multi-core Shared Reconfigurable Fabric, DATE'12]()
 - [Scheduling mixed-architecture processes in tightly coupled FPGA-CPU reconfigurable computers, FCCM'14]()
-
 - [Multi-shape Tasks Scheduling for Online Multitasking on FPGAs, 2014]()
+
+FPGA and CPU co-scheduling:
+
 - [hthreads: a hardware/software co-designed multithreaded RTOS kernel, 2005](https://ieeexplore.ieee.org/document/1612697)
+- [Tartan: Evaluating Spatial Computation for Whole Program Execution, ASPLOS'06]()
+
+Pure FPGA:
+
+- [Preemptive multitasking on fpgas, FCCM'00](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.35.4462&rep=rep1&type=pdf)
+	- Some very practical technique discussions about doing preemptive scheduling on FPGA.
 - [hthreads: Enabling a Uniform Programming Model Across the Software/Hardware Boundary, FCCM'16]()
-    - Let FPGA apps use `yield()`.
-    - A lot issues, but, sure.
- - AmophOS, OSDI'18
+	- Let FPGA apps use `yield()`.
+- [AmophOS, OSDI'18](https://www.usenix.org/system/files/osdi18-khawaja.pdf)
 
 ### Integrate with Host OSs
 
@@ -121,33 +159,34 @@ Prior art mainly focus on: 1) How to virtualize on-chip BRAM (e.g., CoRAM, LEAP 
 
 Innovations in the toolchain space.
 
-### Xilinx HLS Related
+### Xilinx HLS
 
 - [Design Patterns for Code Reuse in HLS Packet Processing Pipelines, FCCM'19](https://zistvan.github.io/doc/ntl-fccm19.pdf)
-	- A very good HLS library.
+	- A very good HLS library from Mellanox folks.
 - [Templatised Soft Floating-Point for High-Level Synthesis, FCCM'19](https://github.com/template-hls/template-hls-floa)
+- [ST-Accel: A High-Level Programming Platform for Streaming Applications on FPGA, FCCM'18](https://vast.cs.ucla.edu/sites/default/files/publications/st-accel-high.pdf)
 - [Separation Logic-Assisted Code Transformations for Efficient High-Level Synthesis, FCCM'14](http://cas.ee.ic.ac.uk/people/fw1811/papers/FelixFCCM14.pdf)
 	- An HLS design aids that analyze the original program at _compile time_ and perform automated code transformations. The tool analysis pointer-manipulating programs and automatically splits heap-allocated data structures into disjoint, independent regions.
 	- The tool is for C++ heap operations.
 	- To put in another way: the tool looks at your BRAM usage, found any false-dependencies, and make multiple independent regions, then your II is improved.
 - [MATCHUP: Memory Abstractions for Heap Manipulating Programs, FPGA'15](http://cas.ee.ic.ac.uk/people/fw1811/papers/FPGA15_Felix.pdf)
+	- This is an HLS toolchain aid.
 	- Follow-up work of the above FCCM'14 one. This time they use LEAP scracchpads as the underlying caching block.
 
 ### High-Level Languages and Platforms
 
 - [Just-in-Time Compilation for Verilog, ASPLOS'19](https://research.vmware.com/publications/just-in-time-compilation-for-verilog-a-new-technique-for-improving-the-fpga-programming-experience)
-    - You need this dope.
-- Chisel: Constructing Hardware in a Scala Embedded Language, DAC'12
+- [Chisel: Constructing Hardware in a Scala Embedded Language, DAC'12]()
 	- Chisel is being actively improved and used by UCB folks.
-- Rosetta: A Realistic High-Level Synthesis Benchmark Suite for Software Programmable FPGAs, FPGA'18
-- From JVM to FPGA: Bridging Abstraction Hierarchy via Optimized Deep Pipelining, HotCloud'18
-- [ST-Accel: A High-Level Programming Platform for Streaming Applications on FPGA, FCCM'18](https://vast.cs.ucla.edu/sites/default/files/publications/st-accel-high.pdf)
-    - Yum.
+- [Rosetta: A Realistic High-Level Synthesis Benchmark Suite for Software Programmable FPGAs, FPGA'18](https://hj424.github.io/papers/rosetta_fpga2018.pdf)
+- [From JVM to FPGA: Bridging Abstraction Hierarchy via Optimized Deep Pipelining, HotCloud'18]()
 - [HeteroCL: A Multi-Paradigm Programming Infrastructure for Software-Defined Reconfigurable Computing, FPGA'19](https://vast.cs.ucla.edu/~chiyuze/pub/fpga19-heterocl.pdf)
+- [LINQits: Big Data on Little Clients, ISCA'13](https://www.microsoft.com/en-us/research/wp-content/uploads/2013/06/ISCA13_linqits.pdf)
+	- From Microsoft, used to express SQL-like functions (thus big data) and runs on ZYNQ (thus little client),
+	- You wrote C#, LINQits translate it to verilog, and run the whole thing at a ZYNQ (ARM+FPGA) board.
 - [Lime: a Java-Compatible and Synthesizable Language for Heterogeneous Architectures, OOPSLA'10](https://www.cl.cam.ac.uk/research/srg/han/ACS-P35/readinglist/bacon-lime-p89-auerbach.pdf)
 	- Lime is a Java-based programming model and runtime from IBM which aims to provide a single unified
 	  language to program heterogeneous architectures, from FPGAs to conventional CPUs
-- [LINQits: Big Data on Little Clients, ISCA'13]()
 - A line of work from Standord
 	- [Generating configurable hardware from parallel patterns, ASPLOS'16](http://csl.stanford.edu/~christos/publications/2016.delitehw.asplos.pdf)
 	- [Plasticine: A Reconfigurable Architecture For Parallel Patterns, ISCA'17](https://stanford-ppl.github.io/website/papers/isca17-raghu-plasticine.pdf)
