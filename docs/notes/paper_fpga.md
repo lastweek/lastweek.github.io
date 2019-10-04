@@ -11,12 +11,12 @@ A list of academic papers. Enjoy.
 Table of Contents
 
 - [Virtualization](#virtualization)
+	- [Scheduling](#scheduling)
 	- [Memory Hierarchy](#memory-hierarchy)
 	- [Dynamic Memory Allocation](#dynamic-memory-allocation)
 	- [Integrate with Host Virtual Memory](#integrate-with-host-virtual-memory)
-	- [Scheduling](#scheduling)
 	- [Integrate with Host OSs](#integrate-with-host-oss)
-	- [Summary on current FPGA Virtualization Status](#summary-on-current-fpga-virtualization-status)
+	- [Summary](#summary)
 - [Languages, Runtime, and Framework](#languages-runtime-and-framework)
 	- [Xilinx HLS Related](#xilinx-hls-related)
 	- [High-Level Languages and Platforms](#high-level-languages-and-platforms)
@@ -46,6 +46,37 @@ Table of Contents
 - How to create abstractions for FPGA resources(BRAM, DRAM, LUTs, and DSPs)?
 - How to schedule bitstreams (spatial and time sharing)?
 - How to interact with host OS?
+
+### Scheduling
+
+TODO:
+
+- [Operating Systems for Reconfigurable Embedded Platforms: Online Scheduling of Real-Time Tasks, 2004]()
+- [Context saving and restoring for multitasking in reconfigurable systems, FPL'05]()
+- [Scheduling intervals for reconfigurable computing, FCCM'08]()
+- [Block, drop or roll(back): Alternative preemption methods for RH multi-tasking, FCCM'09]()
+- [Hardware context-switch methodology for dynamically partially reconfigurable systems, 2010]()
+- [ReMAP: A reconfigurable heterogeneous multicore architecture, Micro'10]()
+- [Online Scheduling for Multi-core Shared Reconfigurable Fabric, DATE'12]()
+- [Scheduling mixed-architecture processes in tightly coupled FPGA-CPU reconfigurable computers, FCCM'14]()
+- [Multi-shape Tasks Scheduling for Online Multitasking on FPGAs, 2014]()
+
+FPGA and CPU co-scheduling:
+
+- [hthreads: A hardware/software co-designed multithreaded RTOS kernel, 2005](https://ieeexplore.ieee.org/document/1612697)
+- [hthreads: Enabling a Uniform Programming Model Across the Software/Hardware Boundary, FCCM'16]()
+- [Tartan: Evaluating Spatial Computation for Whole Program Execution, ASPLOS'06]()
+
+Pure FPGA:
+
+- [Preemptive multitasking on fpgas, FCCM'00](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.35.4462&rep=rep1&type=pdf)
+	- Some very practical technique discussions about doing preemptive scheduling on FPGA.
+- [ReconOS Cooperative multithreading in dynamically reconfigurable systems, FPL'09]()
+	- Middle of preemptive and non-preemptive scheduling: let FPGA apps use `yield()`.
+	- It could save cost if and only if FPGA app is already doing the right thing,
+	  which, is not somehting an OS should have in mind.
+- [AmophOS, OSDI'18](https://www.usenix.org/system/files/osdi18-khawaja.pdf)
+
 
 ### Memory Hierarchy
 Papers deal with BRAM, registers, on-board DRAM, and host DRAM.
@@ -100,36 +131,6 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
 	- Part of the PULP project.
 	- Essentially a software-managed IOMMU. The control path is running as a Linux kernel module. The datapath is a lightweight AXI transation translation.
 
-### Scheduling
-
-TODO:
-
-- [Operating Systems for Reconfigurable Embedded Platforms: Online Scheduling of Real-Time Tasks, 2004]()
-- [Context saving and restoring for multitasking in reconfigurable systems, FPL'05]()
-- [Scheduling intervals for reconfigurable computing, FCCM'08]()
-- [Block, drop or roll(back): Alternative preemption methods for RH multi-tasking, FCCM'09]()
-- [Hardware context-switch methodology for dynamically partially reconfigurable systems, 2010]()
-- [ReMAP: A reconfigurable heterogeneous multicore architecture, Micro'10]()
-- [Online Scheduling for Multi-core Shared Reconfigurable Fabric, DATE'12]()
-- [Scheduling mixed-architecture processes in tightly coupled FPGA-CPU reconfigurable computers, FCCM'14]()
-- [Multi-shape Tasks Scheduling for Online Multitasking on FPGAs, 2014]()
-
-FPGA and CPU co-scheduling:
-
-- [hthreads: A hardware/software co-designed multithreaded RTOS kernel, 2005](https://ieeexplore.ieee.org/document/1612697)
-- [hthreads: Enabling a Uniform Programming Model Across the Software/Hardware Boundary, FCCM'16]()
-- [Tartan: Evaluating Spatial Computation for Whole Program Execution, ASPLOS'06]()
-
-Pure FPGA:
-
-- [Preemptive multitasking on fpgas, FCCM'00](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.35.4462&rep=rep1&type=pdf)
-	- Some very practical technique discussions about doing preemptive scheduling on FPGA.
-- [ReconOS Cooperative multithreading in dynamically reconfigurable systems, FPL'09]()
-	- Middle of preemptive and non-preemptive scheduling: let FPGA apps use `yield()`.
-	- It could save cost if and only if FPGA app is already doing the right thing,
-	  which, is not somehting an OS should have in mind.
-- [AmophOS, OSDI'18](https://www.usenix.org/system/files/osdi18-khawaja.pdf)
-
 ### Integrate with Host OSs
 
 - [A Virtual Hardware Operating System for the Xilinx XC6200, FPL'96](https://link.springer.com/chapter/10.1007/3-540-61730-2_35)
@@ -151,9 +152,9 @@ Pure FPGA:
 	- Also check out my note on [Cache Coherence](http://lastweek.io/notes/cache_coherence/).
 - LEAP FPGA Operating System, FPL'14.
 
-### Summary on current FPGA Virtualization Status
+### Summary
 
-Prior art mainly focus on: 1) How to virtualize on-chip BRAM (e.g., CoRAM, LEAP Scratchpad),
+Summary on current FPGA Virtualization Status. Prior art mainly focus on: 1) How to virtualize on-chip BRAM (e.g., CoRAM, LEAP Scratchpad),
 2) How to work with host, specifically, how to use the host DRAM, how to use host virtual memory.
 3) How to schedule bitstreams inside a FPGA chip. 4) How to provide certain services to make FPGA programming easier (mostly work with host OS).
 
