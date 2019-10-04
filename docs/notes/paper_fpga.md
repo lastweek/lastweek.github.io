@@ -107,7 +107,6 @@ TODO:
 - [Operating Systems for Reconfigurable Embedded Platforms: Online Scheduling of Real-Time Tasks, 2004]()
 - [Context saving and restoring for multitasking in reconfigurable systems, FPL'05]()
 - [Scheduling intervals for reconfigurable computing, FCCM'08]()
-- [ReconOS Cooperative multithreading in dynamically reconfigurable systems, FPL'09]()
 - [Block, drop or roll(back): Alternative preemption methods for RH multi-tasking, FCCM'09]()
 - [Hardware context-switch methodology for dynamically partially reconfigurable systems, 2010]()
 - [ReMAP: A reconfigurable heterogeneous multicore architecture, Micro'10]()
@@ -117,15 +116,18 @@ TODO:
 
 FPGA and CPU co-scheduling:
 
-- [hthreads: a hardware/software co-designed multithreaded RTOS kernel, 2005](https://ieeexplore.ieee.org/document/1612697)
+- [hthreads: A hardware/software co-designed multithreaded RTOS kernel, 2005](https://ieeexplore.ieee.org/document/1612697)
+- [hthreads: Enabling a Uniform Programming Model Across the Software/Hardware Boundary, FCCM'16]()
 - [Tartan: Evaluating Spatial Computation for Whole Program Execution, ASPLOS'06]()
 
 Pure FPGA:
 
 - [Preemptive multitasking on fpgas, FCCM'00](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.35.4462&rep=rep1&type=pdf)
 	- Some very practical technique discussions about doing preemptive scheduling on FPGA.
-- [hthreads: Enabling a Uniform Programming Model Across the Software/Hardware Boundary, FCCM'16]()
-	- Let FPGA apps use `yield()`.
+- [ReconOS Cooperative multithreading in dynamically reconfigurable systems, FPL'09]()
+	- Middle of preemptive and non-preemptive scheduling: let FPGA apps use `yield()`.
+	- It could save cost if and only if FPGA app is already doing the right thing,
+	  which, is not somehting an OS should have in mind.
 - [AmophOS, OSDI'18](https://www.usenix.org/system/files/osdi18-khawaja.pdf)
 
 ### Integrate with Host OSs
