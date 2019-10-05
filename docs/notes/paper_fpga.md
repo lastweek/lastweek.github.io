@@ -6,9 +6,10 @@
 	|Oct 4, 2019| Add more papers extracted from AmophOS|
 	|Oct 3, 2019| Initial version from [Github](https://github.com/lastweek/FPGA)|
 
-A list of academic papers. Enjoy.
-
-Table of Contents
+Someone once called me a keeper. I think I am.
+This is a list of _academic papers_ that cover all sorts of FPGA related topic,
+more from a system researcher's point of view though.
+If you see any papers missing, please comment below and I will add accordingly.
 
 - [Virtualization](#virtualization)
 	- [Scheduling](#scheduling)
@@ -43,11 +44,13 @@ Table of Contents
 
 ## Virtualization
 
-- How to create abstractions for FPGA resources(BRAM, DRAM, LUTs, and DSPs)?
-- How to schedule bitstreams (spatial and time sharing)?
-- How to interact with host OS?
+How to create abstractions for FPGA resources(BRAM, DRAM, LUTs, and DSPs)?
+How to schedule bitstreams (spatial and time sharing)?
+How to interact with host OS?
 
 ### Scheduling
+
+The FPGA chip is shared, thus someone needs to schedule things.
 
 TODO:
 
