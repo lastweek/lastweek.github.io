@@ -40,7 +40,7 @@
     
     
       
-        <title>Papers of FPGA - Yizhou Shan's Home Page</title>
+        <title>FPGA Papers - Yizhou Shan's Home Page</title>
       
     
     
@@ -99,7 +99,7 @@
                 Yizhou Shan's Home Page
               </span>
               <span class="md-header-nav__topic">
-                Papers of FPGA
+                FPGA Papers
               </span>
             
           
@@ -201,42 +201,6 @@
           
           
 
-
-  <li class="md-nav__item">
-    <a href="../benchmark/" title="Benchmarks" class="md-nav__link">
-      Benchmarks
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../paper_perf_shadows/" title="Perf Shadows" class="md-nav__link">
-      Perf Shadows
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../cache_coherence/" title="Cache Coherence" class="md-nav__link">
-      Cache Coherence
-    </a>
-  </li>
-
-        
-          
-          
-          
-
   
 
 
@@ -248,11 +212,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        Papers of FPGA
+        FPGA Papers
       </label>
     
-    <a href="./" title="Papers of FPGA" class="md-nav__link md-nav__link--active">
-      Papers of FPGA
+    <a href="./" title="FPGA Papers" class="md-nav__link md-nav__link--active">
+      FPGA Papers
     </a>
     
       
@@ -513,6 +477,42 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cache_coherence/" title="Cache Coherence" class="md-nav__link">
+      Cache Coherence
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../benchmark/" title="Benchmarks" class="md-nav__link">
+      Benchmarks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../paper_perf_shadows/" title="Perf Shadows" class="md-nav__link">
+      Perf Shadows
+    </a>
   </li>
 
         
@@ -1844,10 +1844,11 @@ If you see any papers missing, please comment below and I will add accordingly.<
 How to schedule bitstreams (spatial and time sharing)?
 How to interact with host OS?</p>
 <h3 id="scheduling">Scheduling<a class="headerlink" href="#scheduling" title="Permanent link">&para;</a></h3>
-<p>The FPGA chip is shared, thus someone needs to schedule things.</p>
 <p>TODO:</p>
 <ul>
-<li><a href="">Operating Systems for Reconfigurable Embedded Platforms: Online Scheduling of Real-Time Tasks, 2004</a></li>
+<li>[The Development of an Operating System for Reconfigurable Computing, 2001]</li>
+<li>[Interconnection Networks Enable Fine-Grain Dynamic Multi-Tasking on FPGAs, 2002]</li>
+<li>[Configuration Relocation and Defragmentation for Run-Time Reconfigurable Computing, 2002]</li>
 <li><a href="">Context saving and restoring for multitasking in reconfigurable systems, FPL&lsquo;05</a></li>
 <li><a href="">Scheduling intervals for reconfigurable computing, FCCM&lsquo;08</a></li>
 <li><a href="">Block, drop or roll(back): Alternative preemption methods for RH multi-tasking, FCCM&lsquo;09</a></li>
@@ -1857,16 +1858,37 @@ How to interact with host OS?</p>
 <li><a href="">Scheduling mixed-architecture processes in tightly coupled FPGA-CPU reconfigurable computers, FCCM&lsquo;14</a></li>
 <li><a href="">Multi-shape Tasks Scheduling for Online Multitasking on FPGAs, 2014</a></li>
 </ul>
-<p>FPGA and CPU co-scheduling:</p>
+<p>Offline:</p>
 <ul>
 <li><a href="https://ieeexplore.ieee.org/document/1612697">hthreads: A hardware/software co-designed multithreaded RTOS kernel, 2005</a></li>
 <li><a href="">hthreads: Enabling a Uniform Programming Model Across the Software/Hardware Boundary, FCCM&lsquo;16</a></li>
 <li><a href="">Tartan: Evaluating Spatial Computation for Whole Program Execution, ASPLOS&lsquo;06</a></li>
 </ul>
-<p>Pure FPGA:</p>
+<p>Online:</p>
 <ul>
+<li><a href="https://link.springer.com/chapter/10.1007/3-540-61730-2_35">A virtual hardware operating system for the Xilinx XC6200, 1996</a></li>
+<li><a href="">The Swappable Logic Unit: a Paradigm for Virtual Hardware, FCCM&lsquo;97</a></li>
+<li><a href="">Run-time management of dynamically reconfigurable designs, 1998</a><ul>
+<li>All above ones are early work on FPGA scheduling.</li>
+<li>Worth a read, but don&rsquo;t take some of their assumptions. Some have been changed after SO many years.</li>
+</ul>
+</li>
+<li><a href="">Multitasking on FPGA Coprocessors, 2000</a><ul>
+<li>Be careful about the concurrent DRAM accesses if you want to PR an exisitng bitstream!</li>
+<li>I think this rule applies all kinds of IO communication: make sure
+to handle on-the-fly transactions.</li>
+</ul>
+</li>
 <li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.35.4462&amp;rep=rep1&amp;type=pdf">Preemptive multitasking on fpgas, FCCM&lsquo;00</a><ul>
-<li>Some very practical technique discussions about doing preemptive scheduling on FPGA.</li>
+<li>Very practical technique discussions about doing preemptive scheduling on FPGA.</li>
+</ul>
+</li>
+<li><a href="">S1. Reconfigurable Hardware Operating Systems: From Design Concepts to Realizations, 2003</a></li>
+<li><a href="">S2. Operating Systems for Reconfigurable Embedded Platforms: Online Scheduling of Real-Time Tasks, 2004</a><ul>
+<li>Very fruitful discussion. The paper schedules bitstreams inside FPGA,
+  following a <em>Real-Time sched policy (deadline)</em>.</li>
+<li>Different from CPU sched, FPGA scheduling needs to consider &ldquo;areas&rdquo;. The chip is
+a rectangle box, allocating areas needs great care to avoid fragmentation!</li>
 </ul>
 </li>
 <li><a href="">ReconOS Cooperative multithreading in dynamically reconfigurable systems, FPL&lsquo;09</a><ul>
@@ -2272,7 +2294,7 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../cache_coherence/" title="Cache Coherence" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../.." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -2281,19 +2303,19 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Cache Coherence
+                Home
               </span>
             </div>
           </a>
         
         
-          <a href="../proc/" title="[Linux] Special Files" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../cache_coherence/" title="Cache Coherence" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                [Linux] Special Files
+                Cache Coherence
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
