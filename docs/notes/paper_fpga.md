@@ -50,11 +50,11 @@ How to interact with host OS?
 
 ### Scheduling
 
-The FPGA chip is shared, thus someone needs to schedule things.
-
 TODO:
 
-- [Operating Systems for Reconfigurable Embedded Platforms: Online Scheduling of Real-Time Tasks, 2004]()
+- [The Development of an Operating System for Reconfigurable Computing, 2001]
+- [Interconnection Networks Enable Fine-Grain Dynamic Multi-Tasking on FPGAs, 2002]
+- [Configuration Relocation and Defragmentation for Run-Time Reconfigurable Computing, 2002]
 - [Context saving and restoring for multitasking in reconfigurable systems, FPL'05]()
 - [Scheduling intervals for reconfigurable computing, FCCM'08]()
 - [Block, drop or roll(back): Alternative preemption methods for RH multi-tasking, FCCM'09]()
@@ -64,16 +64,31 @@ TODO:
 - [Scheduling mixed-architecture processes in tightly coupled FPGA-CPU reconfigurable computers, FCCM'14]()
 - [Multi-shape Tasks Scheduling for Online Multitasking on FPGAs, 2014]()
 
-FPGA and CPU co-scheduling:
+Offline:
 
 - [hthreads: A hardware/software co-designed multithreaded RTOS kernel, 2005](https://ieeexplore.ieee.org/document/1612697)
 - [hthreads: Enabling a Uniform Programming Model Across the Software/Hardware Boundary, FCCM'16]()
 - [Tartan: Evaluating Spatial Computation for Whole Program Execution, ASPLOS'06]()
 
-Pure FPGA:
+Online:
 
+- [A virtual hardware operating system for the Xilinx XC6200, 1996](https://link.springer.com/chapter/10.1007/3-540-61730-2_35)
+- [The Swappable Logic Unit: a Paradigm for Virtual Hardware, FCCM'97]()
+- [Run-time management of dynamically reconfigurable designs, 1998]()
+	- All above ones are early work on FPGA scheduling.
+	- Worth a read, but don't take some of their assumptions. Some have been changed after SO many years.
+- [Multitasking on FPGA Coprocessors, 2000]()
+	- Be careful about the concurrent DRAM accesses if you want to PR an exisitng bitstream!
+	- I think this rule applies all kinds of IO communication: make sure
+	to handle on-the-fly transactions.
 - [Preemptive multitasking on fpgas, FCCM'00](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.35.4462&rep=rep1&type=pdf)
-	- Some very practical technique discussions about doing preemptive scheduling on FPGA.
+	- Very practical technique discussions about doing preemptive scheduling on FPGA.
+- [S1. Reconfigurable Hardware Operating Systems: From Design Concepts to Realizations, 2003]()
+- [S2. Operating Systems for Reconfigurable Embedded Platforms: Online Scheduling of Real-Time Tasks, 2004]()
+	- Very fruitful discussion. The paper schedules bitstreams inside FPGA,
+	  following a _Real-Time sched policy (deadline)_.
+	- Different from CPU sched, FPGA scheduling needs to consider "areas". The chip is
+	a rectangle box, allocating areas needs great care to avoid fragmentation!
 - [ReconOS Cooperative multithreading in dynamically reconfigurable systems, FPL'09]()
 	- Middle of preemptive and non-preemptive scheduling: let FPGA apps use `yield()`.
 	- It could save cost if and only if FPGA app is already doing the right thing,
