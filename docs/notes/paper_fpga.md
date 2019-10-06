@@ -216,12 +216,19 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
 
 ### Security
 
+Power and timing.
+
 - [FPGA Side-Channel Receivers, FPGA'11](https://dl.acm.org/citation.cfm?id=1950462)
+- [Voltage drop-based fault attacks on FPGAs using valid bitstreams, FPL'17](https://ieeexplore.ieee.org/document/8056840)
+- [FPGA Side Channel Attacks without Physical Access, FCCM'18](http://www.ecs.umass.edu/ece/tessier/ramesh-fccm18.pdf)
+- [FPGA-Based Remote Power Side-Channel Attacks, S&P'18](https://cpb-us-w2.wpmucdn.com/sites.coecis.cornell.edu/dist/7/89/files/2018/04/SP2018-FPGA-2m12dnp.pdf)
+- [An inside job: Remote power analysis attacks on FPGAs, 2018](https://eprint.iacr.org/2018/012.pdf)
+- [FPGAhammer: Remote Voltage Fault Attacks on Shared FPGAs, suitable for DFA on AES, 2018](https://tches.iacr.org/index.php/TCHES/article/view/7268)
+- [Characterization of Long Wire Data Leakage in Deep Submicron FPGAs, FPGA'19](http://www.ecs.umass.edu/ece/tessier/provelengios-fpga19.pdf)
+
 - [FPGA Security: Motivations,Features, and Applications, IEEE 2014](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=6849432)
 - [Protecting against Cryptographic Trojans in FPGAs, FCCM'15](http://www.ecs.umass.edu/ece/tessier/aes-protect-fccm15.pdf)
-- [FPGA-Based Remote Power Side-Channel Attacks, S&P'18](https://cpb-us-w2.wpmucdn.com/sites.coecis.cornell.edu/dist/7/89/files/2018/04/SP2018-FPGA-2m12dnp.pdf)
-- [FPGA Side Channel Attacks without Physical Access, FCCM'18](http://www.ecs.umass.edu/ece/tessier/ramesh-fccm18.pdf)
-- [Characterization of Long Wire Data Leakage in Deep Submicron FPGAs, FPGA'19](http://www.ecs.umass.edu/ece/tessier/provelengios-fpga19.pdf)
+- [High-Level Synthesis with Timing-Sensitive Information Flow Enforcement, ICCAD'18](https://cpb-us-w2.wpmucdn.com/sites.coecis.cornell.edu/dist/7/89/files/2016/08/assure-iccad2018-2fi44co.pdf)
 
 ### Summary
 
