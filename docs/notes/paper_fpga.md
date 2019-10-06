@@ -3,7 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
-	|Oct 5, 2019| More on scheduling. Add NoC.|
+	|Oct 5, 2019| More on scheduling. Add NoC. Add Security.|
 	|Oct 4, 2019| Add more papers extracted from AmophOS|
 	|Oct 3, 2019| Initial version from [Github](https://github.com/lastweek/FPGA)|
 
@@ -22,6 +22,7 @@ If you see any papers missing, please comment below and I will add accordingly.
 	- [Dynamic Memory Allocation](#dynamic-memory-allocation)
 	- [Integrate with Host Virtual Memory](#integrate-with-host-virtual-memory)
 	- [Integrate with Host OSs](#integrate-with-host-oss)
+	- [Security](#security)
 	- [Summary](#summary)
 - [Languages, Runtime, and Framework](#languages-runtime-and-framework)
 	- [Xilinx HLS Related](#xilinx-hls-related)
@@ -88,7 +89,7 @@ Online:
 - __[Preemptive multitasking on fpgas, FCCM'00](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.35.4462&rep=rep1&type=pdf)__
 	- Very practical technique discussions about doing _preemptive scheduling_ on FPGA.
 - __[The Development of an Operating System for Reconfigurable Computing, 2001]()__
-	- Discussed about area framentation.
+	- Discussed about area framentation, app partitioning.
 	- It's discussion about partitioning, place, and route FPGA bitstreams brought me to realize that
 	  FPGA online scheduling is just another level of P&R, with coaser-granularity (small PR bitstream).
 - [Configuration Relocation and Defragmentation for Run-Time Reconfigurable Computing, 2002](https://pdfs.semanticscholar.org/1418/c596e8a3d378b2147237371023977017e9e2.pdf)
@@ -212,6 +213,13 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
 	- Add cache-coherence on top of previous work.
 	- Also check out my note on [Cache Coherence](http://lastweek.io/notes/cache_coherence/).
 - LEAP FPGA Operating System, FPL'14.
+
+### Security
+
+- [FPGA Security: Motivations,Features, and Applications, IEEE 2014](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=6849432)
+- [Protecting against Cryptographic Trojans in FPGAs, FCCM'15](http://www.ecs.umass.edu/ece/tessier/aes-protect-fccm15.pdf)
+- [FPGA Side Channel Attacks without Physical Access, FCCM'18](http://www.ecs.umass.edu/ece/tessier/ramesh-fccm18.pdf)
+- [Characterization of Long Wire Data Leakage in Deep Submicron FPGAs, FPGA'19](http://www.ecs.umass.edu/ece/tessier/provelengios-fpga19.pdf)
 
 ### Summary
 
