@@ -216,8 +216,10 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
 
 ### Security
 
+- [FPGA Side-Channel Receivers, FPGA'11](https://dl.acm.org/citation.cfm?id=1950462)
 - [FPGA Security: Motivations,Features, and Applications, IEEE 2014](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=6849432)
 - [Protecting against Cryptographic Trojans in FPGAs, FCCM'15](http://www.ecs.umass.edu/ece/tessier/aes-protect-fccm15.pdf)
+- [FPGA-Based Remote Power Side-Channel Attacks, S&P'18](https://cpb-us-w2.wpmucdn.com/sites.coecis.cornell.edu/dist/7/89/files/2018/04/SP2018-FPGA-2m12dnp.pdf)
 - [FPGA Side Channel Attacks without Physical Access, FCCM'18](http://www.ecs.umass.edu/ece/tessier/ramesh-fccm18.pdf)
 - [Characterization of Long Wire Data Leakage in Deep Submicron FPGAs, FPGA'19](http://www.ecs.umass.edu/ece/tessier/provelengios-fpga19.pdf)
 
