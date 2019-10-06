@@ -239,7 +239,7 @@
             <div class="section">
               
                 <h1 id="list-of-fpga-papers">List of FPGA Papers<a class="headerlink" href="#list-of-fpga-papers" title="Permanent link">&para;</a></h1>
-<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Oct 5, 2019</td><td>More on scheduling. Add NoC.</td></tr><tr><td align="left">Oct 4, 2019</td><td>Add more papers extracted from AmophOS</td></tr><tr><td align="left">Oct 3, 2019</td><td>Initial version from <a href="https://github.com/lastweek/FPGA">Github</a></td></tr></tbody></table></details><p>This is a list of <em>academic papers</em> that cover all sorts of FPGA related topic,
+<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Oct 5, 2019</td><td>More on scheduling. Add NoC. Add Security.</td></tr><tr><td align="left">Oct 4, 2019</td><td>Add more papers extracted from AmophOS</td></tr><tr><td align="left">Oct 3, 2019</td><td>Initial version from <a href="https://github.com/lastweek/FPGA">Github</a></td></tr></tbody></table></details><p>This is a list of <em>academic papers</em> that cover all sorts of FPGA related topic,
 more from a system researcher&rsquo;s point of view though.</p>
 <p>Not all the listed papers are good,
 some of them just repeat the history.
@@ -253,6 +253,7 @@ If you see any papers missing, please comment below and I will add accordingly.<
 <li><a href="#dynamic-memory-allocation">Dynamic Memory Allocation</a></li>
 <li><a href="#integrate-with-host-virtual-memory">Integrate with Host Virtual Memory</a></li>
 <li><a href="#integrate-with-host-oss">Integrate with Host OSs</a></li>
+<li><a href="#security">Security</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </li>
@@ -335,7 +336,7 @@ to handle on-the-fly transactions.</li>
 </ul>
 </li>
 <li><strong><a href="">The Development of an Operating System for Reconfigurable Computing, 2001</a></strong><ul>
-<li>Discussed about area framentation.</li>
+<li>Discussed about area framentation, app partitioning.</li>
 <li>It&rsquo;s discussion about partitioning, place, and route FPGA bitstreams brought me to realize that
   FPGA online scheduling is just another level of P&amp;R, with coaser-granularity (small PR bitstream).</li>
 </ul>
@@ -509,6 +510,13 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
 </ul>
 </li>
 <li>LEAP FPGA Operating System, FPL&lsquo;14.</li>
+</ul>
+<h3 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=6849432">FPGA Security: Motivations,Features, and Applications, IEEE 2014</a></li>
+<li><a href="http://www.ecs.umass.edu/ece/tessier/aes-protect-fccm15.pdf">Protecting against Cryptographic Trojans in FPGAs, FCCM&lsquo;15</a></li>
+<li><a href="http://www.ecs.umass.edu/ece/tessier/ramesh-fccm18.pdf">FPGA Side Channel Attacks without Physical Access, FCCM&lsquo;18</a></li>
+<li><a href="http://www.ecs.umass.edu/ece/tessier/provelengios-fpga19.pdf">Characterization of Long Wire Data Leakage in Deep Submicron FPGAs, FPGA&lsquo;19</a></li>
 </ul>
 <h3 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
 <p>Summary on current FPGA Virtualization Status. Prior art mainly focus on: 1) How to virtualize on-chip BRAM (e.g., CoRAM, LEAP Scratchpad),
