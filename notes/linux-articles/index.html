@@ -8,7 +8,7 @@
   
   <meta name="author" content="Yizhou Shan">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Benchmarks - Yizhou Shan's Home Page</title>
+  <title>Linux Articles - Yizhou Shan's Home Page</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
   <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
 
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Benchmarks";
-    var mkdocs_page_input_path = "notes/benchmark.md";
-    var mkdocs_page_url = "/notes/benchmark/";
+    var mkdocs_page_name = "Linux Articles";
+    var mkdocs_page_input_path = "notes/linux-articles.md";
+    var mkdocs_page_url = "/notes/linux-articles/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -74,9 +74,17 @@
             
   <a class="" href="../cache_coherence/">Cache Coherence</a>
         </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../benchmark/">Benchmarks</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../paper_perf_shadows/">Perf Shadows</a>
+        </li>
           <li class="toctree-l1 current">
             
-  <a class="current" href="./">Benchmarks</a>
+  <a class="current" href="./">Linux Articles</a>
   <ul class="subnav">
       
   <li class="toctree-l2 current">
@@ -85,11 +93,11 @@
     <ul class="">
     
         <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#areas">Areas</a>
+          <a class="toctree-l3" href="#sched">Sched</a>
         </li>
     
         <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#misc-information">Misc Information</a>
+          <a class="toctree-l3" href="#misc">Misc</a>
         </li>
     
     </ul>
@@ -97,14 +105,6 @@
   </li>
 
   </ul>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../paper_perf_shadows/">Perf Shadows</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../linux-articles/">Linux Articles</a>
         </li>
           <li class="toctree-l1">
             
@@ -222,7 +222,7 @@
         
       
     
-    <li>Benchmarks</li>
+    <li>Linux Articles</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -232,32 +232,19 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="benchmarks">Benchmarks<a class="headerlink" href="#benchmarks" title="Permanent link">&para;</a></h1>
-<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Aug 13, 2019</td><td>Update</td></tr><tr><td align="left">Aug 03, 2019</td><td>Initial draft</td></tr></tbody></table></details><h2 id="areas">Areas<a class="headerlink" href="#areas" title="Permanent link">&para;</a></h2>
-<h3 id="synchronizationconcurrency-community">Synchronization/Concurrency Community<a class="headerlink" href="#synchronizationconcurrency-community" title="Permanent link">&para;</a></h3>
+                <h1 id="linux-articles">Linux Articles<a class="headerlink" href="#linux-articles" title="Permanent link">&para;</a></h1>
+<p><img alt="🗿" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f5ff.svg" title=":moyai:" /></p>
+<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Oct 7, 2019</td><td>Feels like I need to start thi</td></tr></tbody></table></details><p>Articles about Linux Kernel.</p>
+<h2 id="sched">Sched<a class="headerlink" href="#sched" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Phoenix (mm)</li>
-<li>MOSBENCH/Metis (mm)</li>
-<li>LevelDB</li>
-<li>will-it-scale</li>
-<li>Linux locktorture</li>
-<li>Filesystems (fs)</li>
-<li>LiTL, ATC&lsquo;16, <a href="https://github.com/multicore-locks/litl">https://github.com/multicore-locks/litl</a></li>
-<li>References<ul>
-<li>ShuffleLock, SOSP&lsquo;19</li>
-<li>Compact NUMA-aware Locks, EuroSys&lsquo;19</li>
-<li>fill me in</li>
+<li><a href="http://www.maizure.org/projects/evolution_x86_context_switch_linux/">Evolution of the x86 context switch in Linux</a></li>
+</ul>
+<h2 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://lwn.net/Articles/800946/">Why printk() is so complicated (and how to fix it)</a><ul>
+<li><a href="https://www.linuxplumbersconf.org/event/4/contributions/290/attachments/276/463/lpc2019_jogness_printk.pdf">Slide</a>.</li>
 </ul>
 </li>
-</ul>
-<h3 id="fpga">FPGA<a class="headerlink" href="#fpga" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="https://hj424.github.io/papers/rosetta_fpga2018.pdf">Rosetta: A Realistic High-Level Synthesis Benchmark Suite for Software Programmable FPGAs, FPGA&lsquo;18</a></li>
-<li>AmophOS has a lot more.</li>
-</ul>
-<h2 id="misc-information">Misc Information<a class="headerlink" href="#misc-information" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="https://www.cse.unsw.edu.au/~gernot/benchmarking-crimes.html">Systems Benchmarking Crimes</a></li>
 </ul>
               
             </div>
@@ -266,10 +253,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../paper_perf_shadows/" class="btn btn-neutral float-right" title="Perf Shadows">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../proc/" class="btn btn-neutral float-right" title="[Linux] Special Files">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../cache_coherence/" class="btn btn-neutral" title="Cache Coherence"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../paper_perf_shadows/" class="btn btn-neutral" title="Perf Shadows"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -295,10 +282,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../cache_coherence/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../paper_perf_shadows/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../paper_perf_shadows/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../proc/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

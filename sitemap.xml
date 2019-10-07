@@ -36,6 +36,12 @@
     </url>
         
     <url>
+     <loc>http://lastweek.io/notes/linux-articles/</loc>
+     <lastmod>2019-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>http://lastweek.io/notes/proc/</loc>
      <lastmod>2019-10-07</lastmod>
      <changefreq>daily</changefreq>
