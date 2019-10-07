@@ -345,6 +345,8 @@ Innovations in the toolchain space.
 - [INSIDER: Designing In-Storage Computing System for Emerging High-Performance Drive, ATC'19](https://www.usenix.org/conference/atc19/presentation/ruan)
 
 ### Machine Learning
+
+- [TABLA: A Unified Template-based Framework for Accelerating Statistical Machine Learning, HPCA'16](https://www.cc.gatech.edu/~hadi/doc/paper/2016-hpca-tabla.pdf)
 - Optimizing FPGA-based Accelerator Design for Deep Convolutional Neural Networks, FPGA'15
 - From High-Level Deep Neural Models to FPGAs, ISCA'16
 - Deep Learning on FPGAs: Past, Present, and Future, arXiv'16
@@ -352,7 +354,8 @@ Innovations in the toolchain space.
 - FINN: A Framework for Fast, Scalable Binarized Neural Network Inference, FPGA'17
 - In-Datacenter Performance Analysis of a Tensor Processing Unit, ISCA'17
 - Accelerating Binarized Convolutional Neural Networks with Software-Programmable FPGAs, FPGA'17
-- A Configurable Cloud-Scale DNN Processor for Real-Time AI, ISCA'18
+- [A Configurable Cloud-Scale DNN Processor for Real-Time AI, ISCA'18](https://www.microsoft.com/en-us/research/uploads/prod/2018/06/ISCA18-Brainwave-CameraReady.pdf)
+	- Microsoft Project Brainware. Built on Catapult.
 - A Network-Centric Hardware/Algorithm Co-Design to Accelerate Distributed Training of Deep Neural Networks, MICRO'18
 - DNNBuilder: an Automated Tool for Building High-Performance DNN Hardware Accelerators for FPGAs, ICCAD'18
 - FA3C : FPGA-Accelerated Deep Reinforcement Learning， ASPLOS’19
