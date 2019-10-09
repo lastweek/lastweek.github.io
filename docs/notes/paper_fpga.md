@@ -67,7 +67,6 @@ Questions to cover:
       c) the bitstream has a fixed requirement on the area.
 - How to allocate FPGA areas?
 - How to relocate already deployed bitstreams to make room for a new one?
-- What scheduling algorithms shall we use?
 
 Offline:
 
@@ -126,6 +125,10 @@ Online:
 - [Multi-shape Tasks Scheduling for Online Multitasking on FPGAs, 2014]()
 	- Policy and mechanism.
 - [AmophOS, OSDI'18](https://www.usenix.org/system/files/osdi18-khawaja.pdf)
+
+Misc:
+- [Hardware context switching on FPGAs, 2014](https://pdfs.semanticscholar.org/4a4a/f3d8f3fb98c181dc2339375ef0342fcd24e1.pdf)
+- [Efficient Hardware Context-Switch for Task Migration between	Heterogeneous FPGAs, 2016](http://www.mpsoc-forum.org/previous/2016/slides/Frederic_Rousseau.pdf)
 
 ### NoC
 
