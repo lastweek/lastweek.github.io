@@ -114,3 +114,8 @@ menuentry 'Ubuntu, with Linux 4.9.92' --class ubuntu  ...
     - GRUB_DEFAULT="Advanced options for Ubuntu>Ubuntu, with Linux 4.16.0"
     - GRUB_DEFAULT="Advanced options for Ubuntu>Ubuntu, with Linux 4.9.92"
 - Step III: `sudo update-grub`
+
+## Migrate to Ubuntu From MacOS
+
+- [Disable [Super+p]](https://askubuntu.com/questions/68463/how-to-disable-global-super-p-shortcut). This is my tmux prefix somehow.
+- xmodmap to switch Super and CTRL. [1](https://github.com/lastweek/dot-home/blob/master/.Xmodmap)
