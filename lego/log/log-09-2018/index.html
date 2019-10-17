@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -23,15 +23,16 @@
     var mkdocs_page_url = "/lego/log/log-09-2018/";
   </script>
   
-  <script src="../../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../../js/highlight.pack.js"></script> 
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-143772066-1', 'auto');
       ga('send', 'pageview');
@@ -49,228 +50,737 @@
         <a href="../../.." class="icon icon-home"> Yizhou Shan's Home Page</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	  
-          
-		  
-  <ul class="" href="../../..">
-    <li class="toctree-l1">
-  <a class="" href="../../..">Home</a>
-  </li></ul>
-          
-		  
-  <p class="caption">Notes</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/paper_fpga/">FPGA Papers</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/cache_coherence/">Cache Coherence</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/benchmark/">Benchmarks</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/linux-articles/">Linux Articles</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/proc/">[Linux] Special Files</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/trace/">[Linux] Trace/Profile</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../misc/essential/">Essential</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../misc/cheatsheet/">Cheatsheet</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/general_log/0919">Log</a>
-        </li>
-  </ul>
-
-          
-		  
-  <p class="caption">FPGA</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/vivado_tricks/">Vivado Tricks</a>
-        </li>
-  </ul>
-
-          
-		  
-  <p class="caption">LegoOS-Dev</p>
-  <ul class="current">
-          <li class="toctree-l1 current">
-            
-  <a class="current" href="/lego/log/TODO">Log</a>
-  <ul class="subnav">
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../TODO/">TODO</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../misc/">MISC</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../test-note/">Test Script</a>
-        </li>
-        <li class="toctree-l2 current 1">
-            
-  <a class="current" href="./">Sep 2018</a>
-  <ul class="subnav">
+	<ul class="tocbase current">
+    
+    
       
-  <li class="toctree-l2 current">
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../..">Home</a>
+  </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">Notes</p>
+  </li>
+
+
   
+
   
-    <ul class="">
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/paper_fpga/">FPGA Papers</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/cache_coherence/">Cache Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/benchmark/">Benchmarks</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/linux-articles/">Linux Articles</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/proc/">[Linux] Special Files</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/trace/">[Linux] Trace/Profile</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../misc/essential/">Essential</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../misc/cheatsheet/">Cheatsheet</a>
+  </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0919/">Sep 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0819/">Aug 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0719/">Jul 2019</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#sep-20">Sep 20</a>
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">FPGA</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/vivado_tricks/">Vivado Tricks</a>
+  </li>
+        
+      </ul>
+    </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">LegoOS-Dev</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../TODO/">TODO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../misc/">MISC</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../test-note/">Test Script</a>
+  </li>
+        
+          
+
+
+  
+    
+    <li class="navtree toctree-l3 page current">
+      <a class="current" href="./">
+        Sep 2018
+      </a>
+    </li>
+    
+      
+
+  <li class="toctree-l3 current with-children">
+    <a href="#sep-2018">
+      Sep 2018
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l3 current">
+    <ul class="subnav-l3 current">
+    
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#sep-20">Sep 20</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#sep-17">Sep 17</a>
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#sep-17">Sep 17</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#sep-16">Sep 16</a>
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#sep-16">Sep 16</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#sep-15">Sep 15</a>
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#sep-15">Sep 15</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#sep-11">Sep 11</a>
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#sep-11">Sep 11</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#sep-08">Sep 08</a>
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#sep-08">Sep 08</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#sep-07">Sep 07</a>
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#sep-07">Sep 07</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#sep-06">Sep 06</a>
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#sep-06">Sep 06</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#sep-05">Sep 05</a>
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#sep-05">Sep 05</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#sep-04">Sep 04</a>
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#sep-04">Sep 04</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#sep-03">Sep 03</a>
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#sep-03">Sep 03</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#-">-</a>
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#-">-</a>
         </li>
     
     </ul>
-  
   </li>
 
-  </ul>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../log-08-2018/">Aug 2018</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../log-04-2018/">April 2018</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../log-03-2018/">March 2018</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../log-02-2018/">Feb 2018</a>
-        </li>
-  </ul>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/kernel/kconfig">Kernel</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/syscall/facts">Syscall</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/pcache/config">Pcache</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/driver/pci">Driver</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/paper/nmp">Paper</a>
-        </li>
-  </ul>
 
+  
+        
           
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../log-08-2018/">Aug 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../log-04-2018/">April 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../log-03-2018/">March 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../log-02-2018/">Feb 2018</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Kernel</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/kconfig/">Kconfig</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/debug/">Debug</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/grub/">GRUB</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile/">Profile</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile_strace/">Profile strace</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile_heatmap/">Profile heatmap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile_points/">Profile points</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/trampoline/">Trampoline</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/pagefault_disable/">Disable pgfault</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/stop_machine/">Stop machine</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/loader/">Program Loader</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/vDSO/">vDSO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/vfs/">Virtual File System</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/vm/">Process Virtual Memory</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/fpu/">x86 FPU</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/irq/">IRQ</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/net_thpool/">Network Thpool</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Syscall</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/facts/">Facts</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile_strace/">strace</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/compat/">compat</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/msync/">msync()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/mremap/">mremap()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/fork/">fork()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/getrusage/">getrusage()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/wait_and_exit/">wait4 and exit()</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Pcache</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/config/">Config</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/sweep/">Sweep</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/tlb/">TLB Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/pgtable-lock/">PageTable Lock</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/victim/">Victim Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/virtual_cache/">Virtual Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/rmap/">Reverse Mapping</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/evict_and_ref/">Evict and Refcount</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/smp_design/">SMP Design</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/replication/">Replication</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Driver</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../driver/pci/">PCI</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../driver/ib/">Infiniband</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Paper</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/nmp/">NMP</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/processor_oom/">Processor OOM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/genz/">Gen-Z</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/replication/">Replication</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/related/">Related</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
       </div>
       &nbsp;
     </nav>
@@ -292,11 +802,11 @@
     
       
         
-          <li>LegoOS-Dev &raquo;</li>
+          <li>Log &raquo;</li>
         
       
         
-          <li>Log &raquo;</li>
+          <li>LegoOS-Dev &raquo;</li>
         
       
     
@@ -312,7 +822,7 @@
               
                 <h1 id="sep-2018">Sep 2018<a class="headerlink" href="#sep-2018" title="Permanent link">&para;</a></h1>
 <h2 id="sep-20">Sep 20<a class="headerlink" href="#sep-20" title="Permanent link">&para;</a></h2>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -513,7 +1023,7 @@
 <p>Anyway fuck it.</p>
 <p>Today I created a new tag v0.0.9, hope we have a stable net. The RPC profile code is very stressing, and fit survived.</p>
 <p>The following wanring is fixed by post rx_depth/2.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -568,7 +1078,7 @@
 </td></tr></table></p>
 <h2 id="sep-11">Sep 11<a class="headerlink" href="#sep-11" title="Permanent link">&para;</a></h2>
 <p>Got this log, 5 machine, p2s_open, S side has this issue. Damn.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -716,7 +1226,7 @@
 
 <h2 id="sep-08">Sep 08<a class="headerlink" href="#sep-08" title="Permanent link">&para;</a></h2>
 <p>Check this log out:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -741,32 +1251,32 @@
 23
 24
 25
-26</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>]---
-[  427.218569] STDOUT: ---[
-INFO:tensorflow:Graph was finalized.
+26</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">]</span><span class="c1">---</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">218569</span><span class="p">]</span> <span class="k">STDOUT</span><span class="p">:</span> <span class="c1">---[</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tensorflow</span><span class="p">:</span><span class="n">Graph</span> <span class="n">was</span> <span class="n">finalized</span><span class="p">.</span>
 
-]---
-[  427.416043] BUG: unable to handle kernel NULL pointer dereference at           (null)
-[  427.424583] IP: [&lt;ffffffff810748fb&gt;] fit_poll_recv_cq+0x5cb/0x860
-[  427.431370] mlx4_msi_x_interrupt(): IRQ: 27 CPU: 0
-[  427.436702] PGD 0
-[  427.438932] CQ_ERROR CQ overrun on CQN 000082
-[  427.443780] Oops: 0002 [#1] SMP PROCESSOR
-[  427.448240] event qp_event arrived
-[  427.452022] CPU: 6 PID: 18 Comm: FIT_RecvCQ-0 4.0.0-lego+ #23
-[  427.458421] event qp_event arrived
-[  427.462203] RIP: 0010:[&lt;ffffffff810748fb&gt;]  [&lt;ffffffff810748fb&gt;] fit_poll_recv_cq+0x5cb/0x860
-[  427.471704] RSP: 0000:ffff881023e3fe60  EFLAGS: 00010287
-[  427.477618] RAX: 0000000000000000 RBX: 000000002aaaaaab RCX: 0000000000000004
-[  427.485570] RDX: 0000000000000000 RSI: 0000000000000053 RDI: 0000000000000000
-[  427.493520] RBP: ffff881023e3fec0 R08: 0000000000000001 R09: ffff881039900000
-[  427.501470] R10: 0000000000000000 R11: ffff881039918000 R12: ffff8810398f2000
-[  427.509421] R13: 0000000000000000 R14: 0000000000000001 R15: ffff881023e25008
-[  427.517371] event qp_event arrived
-[  427.521153] FS:  0000000000000000(0000) GS:ffff88107fc60000(0000) knlGS:0000000000000000
-[  427.530169] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  427.536569] CR2: 0000000000000000 CR3: 000000000117a000 CR4: 00000000000406a0
-[  427.544519] event qp_event arrived
+<span class="p">]</span><span class="c1">---</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">416043</span><span class="p">]</span> <span class="n">BUG</span><span class="p">:</span> <span class="n">unable</span> <span class="k">to</span> <span class="n">handle</span> <span class="n">kernel</span> <span class="k">NULL</span> <span class="n">pointer</span> <span class="n">dereference</span> <span class="k">at</span>           <span class="p">(</span><span class="k">null</span><span class="p">)</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">424583</span><span class="p">]</span> <span class="n">IP</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810748fb</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">fit_poll_recv_cq</span><span class="o">+</span><span class="mi">0</span><span class="n">x5cb</span><span class="o">/</span><span class="mi">0</span><span class="n">x860</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">431370</span><span class="p">]</span> <span class="n">mlx4_msi_x_interrupt</span><span class="p">():</span> <span class="n">IRQ</span><span class="p">:</span> <span class="mi">27</span> <span class="n">CPU</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">436702</span><span class="p">]</span> <span class="n">PGD</span> <span class="mi">0</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">438932</span><span class="p">]</span> <span class="n">CQ_ERROR</span> <span class="n">CQ</span> <span class="n">overrun</span> <span class="k">on</span> <span class="n">CQN</span> <span class="mi">000082</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">443780</span><span class="p">]</span> <span class="n">Oops</span><span class="p">:</span> <span class="mi">0002</span> <span class="p">[</span><span class="o">#</span><span class="mi">1</span><span class="p">]</span> <span class="n">SMP</span> <span class="n">PROCESSOR</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">448240</span><span class="p">]</span> <span class="n">event</span> <span class="n">qp_event</span> <span class="n">arrived</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">452022</span><span class="p">]</span> <span class="n">CPU</span><span class="p">:</span> <span class="mi">6</span> <span class="n">PID</span><span class="p">:</span> <span class="mi">18</span> <span class="n">Comm</span><span class="p">:</span> <span class="n">FIT_RecvCQ</span><span class="o">-</span><span class="mi">0</span> <span class="mi">4</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="n">lego</span><span class="o">+</span> <span class="o">#</span><span class="mi">23</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">458421</span><span class="p">]</span> <span class="n">event</span> <span class="n">qp_event</span> <span class="n">arrived</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">462203</span><span class="p">]</span> <span class="n">RIP</span><span class="p">:</span> <span class="mi">0010</span><span class="p">:[</span><span class="o">&lt;</span><span class="n">ffffffff810748fb</span><span class="o">&gt;</span><span class="p">]</span>  <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810748fb</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">fit_poll_recv_cq</span><span class="o">+</span><span class="mi">0</span><span class="n">x5cb</span><span class="o">/</span><span class="mi">0</span><span class="n">x860</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">471704</span><span class="p">]</span> <span class="n">RSP</span><span class="p">:</span> <span class="mi">0000</span><span class="p">:</span><span class="n">ffff881023e3fe60</span>  <span class="n">EFLAGS</span><span class="p">:</span> <span class="mi">00010287</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">477618</span><span class="p">]</span> <span class="n">RAX</span><span class="p">:</span> <span class="mi">0000000000000000</span> <span class="n">RBX</span><span class="p">:</span> <span class="mi">000000002</span><span class="n">aaaaaab</span> <span class="n">RCX</span><span class="p">:</span> <span class="mi">0000000000000004</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">485570</span><span class="p">]</span> <span class="n">RDX</span><span class="p">:</span> <span class="mi">0000000000000000</span> <span class="n">RSI</span><span class="p">:</span> <span class="mi">0000000000000053</span> <span class="n">RDI</span><span class="p">:</span> <span class="mi">0000000000000000</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">493520</span><span class="p">]</span> <span class="n">RBP</span><span class="p">:</span> <span class="n">ffff881023e3fec0</span> <span class="n">R08</span><span class="p">:</span> <span class="mi">0000000000000001</span> <span class="n">R09</span><span class="p">:</span> <span class="n">ffff881039900000</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">501470</span><span class="p">]</span> <span class="n">R10</span><span class="p">:</span> <span class="mi">0000000000000000</span> <span class="n">R11</span><span class="p">:</span> <span class="n">ffff881039918000</span> <span class="n">R12</span><span class="p">:</span> <span class="n">ffff8810398f2000</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">509421</span><span class="p">]</span> <span class="n">R13</span><span class="p">:</span> <span class="mi">0000000000000000</span> <span class="n">R14</span><span class="p">:</span> <span class="mi">0000000000000001</span> <span class="n">R15</span><span class="p">:</span> <span class="n">ffff881023e25008</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">517371</span><span class="p">]</span> <span class="n">event</span> <span class="n">qp_event</span> <span class="n">arrived</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">521153</span><span class="p">]</span> <span class="n">FS</span><span class="p">:</span>  <span class="mi">0000000000000000</span><span class="p">(</span><span class="mi">0000</span><span class="p">)</span> <span class="n">GS</span><span class="p">:</span><span class="n">ffff88107fc60000</span><span class="p">(</span><span class="mi">0000</span><span class="p">)</span> <span class="n">knlGS</span><span class="p">:</span><span class="mi">0000000000000000</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">530169</span><span class="p">]</span> <span class="n">CS</span><span class="p">:</span>  <span class="mi">0010</span> <span class="n">DS</span><span class="p">:</span> <span class="mi">0000</span> <span class="n">ES</span><span class="p">:</span> <span class="mi">0000</span> <span class="n">CR0</span><span class="p">:</span> <span class="mi">0000000080050033</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">536569</span><span class="p">]</span> <span class="n">CR2</span><span class="p">:</span> <span class="mi">0000000000000000</span> <span class="n">CR3</span><span class="p">:</span> <span class="mi">000000000117</span><span class="n">a000</span> <span class="n">CR4</span><span class="p">:</span> <span class="mi">00000000000406</span><span class="n">a0</span>
+<span class="p">[</span>  <span class="mi">427</span><span class="p">.</span><span class="mi">544519</span><span class="p">]</span> <span class="n">event</span> <span class="n">qp_event</span> <span class="n">arrived</span>
 </pre></div>
 </td></tr></table></p>
 <p>Trying to tune FIT&rsquo;s number polling threads. This could be the throughput/latency killer.</p>
@@ -798,21 +1308,21 @@ INFO:tensorflow:Graph was finalized.
 <h2 id="sep-07">Sep 07<a class="headerlink" href="#sep-07" title="Permanent link">&para;</a></h2>
 <p>Set up Infiniswap again. What a fucking crap code, and crash the kernel out of nowhere. crap crap crap.</p>
 <p>Hmm, Linux will tune the CPU freq during runtime, will be higher than 2.4GHz. So disable it, make it a fair comparison with Lego.</p>
-<p><code class="codehilite">intel_pstate=disable.</code></p>
+<p><code class="codehilite"><span class="n">intel_pstate</span><span class="o">=</span><span class="n">disable</span><span class="p">.</span></code></p>
 <h2 id="sep-06">Sep 06<a class="headerlink" href="#sep-06" title="Permanent link">&para;</a></h2>
 <p>Did two optimizations on pcache, both are buffer management.
 Especially the pcache rmap case. In both opts, we kind of use static/pre-allocated array to serve dynamic allocation.</p>
 <p>This is a better solution than using kmem_cache, faster. kmem_cache will be a more general solution here.</p>
 <p>kmem_cache, FIFO queue (thpool buffer), static preallocated array (rmap, clflush)&hellip; Buffer management is really a very important thing in system building. I should be aware at the beginning next time.</p>
 <p>These changes are in commits:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>6e0cf6c5c64edbe445a27cf55f86ac51f8a897b3
-73377cafce95ffa0cfb155f77cac97456a5e4a71
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="mi">6</span><span class="n">e0cf6c5c64edbe445a27cf55f86ac51f8a897b3</span>
+<span class="mi">73377</span><span class="n">cafce95ffa0cfb155f77cac97456a5e4a71</span>
 </pre></div>
 </td></tr></table></p>
 <h2 id="sep-05">Sep 05<a class="headerlink" href="#sep-05" title="Permanent link">&para;</a></h2>
 <p>Alright. Besides some flaws/bugs in some kfree stuff, LegoOS now actually is very robust! Ran a quick git summary:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -827,22 +1337,22 @@ Especially the pcache rmap case. In both opts, we kind of use static/pre-allocat
 13
 14
 15
-16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> project  : LegoOS
- repo age : 1 year, 11 months
- active   : 358 days
- commits  : 1540
- files    : 1161
- authors  :
-  1317  Yizhou Shan                  85.5%
-   120  root                         7.8%
-    36  hythzz                       2.3%
-    27  yilun                        1.8%
-    16  Yutong Huang                 1.0%
-    10  Build Android                0.6%
-     8  Yiying Zhang                 0.5%
-     4  sumukh1991                   0.3%
-     1  Yizhou SHan                  0.1%
-     1  Sumukh Hallymysore Ravindra  0.1%
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> <span class="n">project</span>  <span class="p">:</span> <span class="n">LegoOS</span>
+ <span class="n">repo</span> <span class="n">age</span> <span class="p">:</span> <span class="mi">1</span> <span class="k">year</span><span class="p">,</span> <span class="mi">11</span> <span class="n">months</span>
+ <span class="n">active</span>   <span class="p">:</span> <span class="mi">358</span> <span class="n">days</span>
+ <span class="n">commits</span>  <span class="p">:</span> <span class="mi">1540</span>
+ <span class="n">files</span>    <span class="p">:</span> <span class="mi">1161</span>
+ <span class="n">authors</span>  <span class="p">:</span>
+  <span class="mi">1317</span>  <span class="n">Yizhou</span> <span class="n">Shan</span>                  <span class="mi">85</span><span class="p">.</span><span class="mi">5</span><span class="o">%</span>
+   <span class="mi">120</span>  <span class="n">root</span>                         <span class="mi">7</span><span class="p">.</span><span class="mi">8</span><span class="o">%</span>
+    <span class="mi">36</span>  <span class="n">hythzz</span>                       <span class="mi">2</span><span class="p">.</span><span class="mi">3</span><span class="o">%</span>
+    <span class="mi">27</span>  <span class="n">yilun</span>                        <span class="mi">1</span><span class="p">.</span><span class="mi">8</span><span class="o">%</span>
+    <span class="mi">16</span>  <span class="n">Yutong</span> <span class="n">Huang</span>                 <span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="o">%</span>
+    <span class="mi">10</span>  <span class="n">Build</span> <span class="n">Android</span>                <span class="mi">0</span><span class="p">.</span><span class="mi">6</span><span class="o">%</span>
+     <span class="mi">8</span>  <span class="n">Yiying</span> <span class="n">Zhang</span>                 <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="o">%</span>
+     <span class="mi">4</span>  <span class="n">sumukh1991</span>                   <span class="mi">0</span><span class="p">.</span><span class="mi">3</span><span class="o">%</span>
+     <span class="mi">1</span>  <span class="n">Yizhou</span> <span class="n">SHan</span>                  <span class="mi">0</span><span class="p">.</span><span class="mi">1</span><span class="o">%</span>
+     <span class="mi">1</span>  <span class="n">Sumukh</span> <span class="n">Hallymysore</span> <span class="n">Ravindra</span>  <span class="mi">0</span><span class="p">.</span><span class="mi">1</span><span class="o">%</span>
 </pre></div>
 </td></tr></table>
 
@@ -856,7 +1366,7 @@ Especially the pcache rmap case. In both opts, we kind of use static/pre-allocat
 <h2 id="-">-<a class="headerlink" href="#-" title="Permanent link">&para;</a></h2>
 <p>-</p>
 <p>update_wall_time+0x44 is where we call tsc_read. And this has been called many times (HZ per second). All of a sudden, the pointer got crashed. Who wrote to this code memory?? Remote RDMA?
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -971,9 +1481,8 @@ Especially the pcache rmap case. In both opts, we kind of use static/pre-allocat
     </span>
 </div>
     <script>var base_url = '../../..';</script>
-    <script src="../../../js/theme.js"></script>
-      <script src="../../../search/require.js"></script>
-      <script src="../../../search/search.js"></script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
 
 </body>
 </html>

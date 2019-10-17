@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -23,15 +23,16 @@
     var mkdocs_page_url = "/lego/log/log-03-2018/";
   </script>
   
-  <script src="../../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../../js/highlight.pack.js"></script> 
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-143772066-1', 'auto');
       ga('send', 'pageview');
@@ -49,260 +50,952 @@
         <a href="../../.." class="icon icon-home"> Yizhou Shan's Home Page</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	  
-          
-		  
-  <ul class="" href="../../..">
-    <li class="toctree-l1">
-  <a class="" href="../../..">Home</a>
-  </li></ul>
-          
-		  
-  <p class="caption">Notes</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/paper_fpga/">FPGA Papers</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/cache_coherence/">Cache Coherence</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/benchmark/">Benchmarks</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/linux-articles/">Linux Articles</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/proc/">[Linux] Special Files</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/trace/">[Linux] Trace/Profile</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../misc/essential/">Essential</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../misc/cheatsheet/">Cheatsheet</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/general_log/0919">Log</a>
-        </li>
-  </ul>
-
-          
-		  
-  <p class="caption">FPGA</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/vivado_tricks/">Vivado Tricks</a>
-        </li>
-  </ul>
-
-          
-		  
-  <p class="caption">LegoOS-Dev</p>
-  <ul class="current">
-          <li class="toctree-l1 current">
-            
-  <a class="current" href="/lego/log/TODO">Log</a>
-  <ul class="subnav">
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../TODO/">TODO</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../misc/">MISC</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../test-note/">Test Script</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../log-09-2018/">Sep 2018</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../log-08-2018/">Aug 2018</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../log-04-2018/">April 2018</a>
-        </li>
-        <li class="toctree-l2 current 1">
-            
-  <a class="current" href="./">March 2018</a>
-  <ul class="subnav">
+	<ul class="tocbase current">
+    
+    
       
-  <li class="toctree-l2 current">
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../..">Home</a>
+  </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">Notes</p>
+  </li>
+
+
   
+
   
-    <ul class="">
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/paper_fpga/">FPGA Papers</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/cache_coherence/">Cache Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/benchmark/">Benchmarks</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/linux-articles/">Linux Articles</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/proc/">[Linux] Special Files</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/trace/">[Linux] Trace/Profile</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../misc/essential/">Essential</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../misc/cheatsheet/">Cheatsheet</a>
+  </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0919/">Sep 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0819/">Aug 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0719/">Jul 2019</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0331-sat">03/31 Sat</a>
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">FPGA</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/vivado_tricks/">Vivado Tricks</a>
+  </li>
+        
+      </ul>
+    </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">LegoOS-Dev</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../TODO/">TODO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../misc/">MISC</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../test-note/">Test Script</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../log-09-2018/">Sep 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../log-08-2018/">Aug 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../log-04-2018/">April 2018</a>
+  </li>
+        
+          
+
+
+  
+    
+    <li class="navtree toctree-l3 page current">
+      <a class="current" href="./">
+        March 2018
+      </a>
+    </li>
+    
+      
+
+  <li class="toctree-l3 current with-children">
+    <a href="#march-2018">
+      March 2018
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l3 current">
+    <ul class="subnav-l3 current">
+    
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#0331-sat">03/31 Sat</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0330-fri">03/30 Fri</a>
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#0330-fri">03/30 Fri</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0326-mon">03/26 Mon</a>
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#0326-mon">03/26 Mon</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0322-thur">03/22 Thur</a>
-        </li>
+      
+          
+
+  <li class="toctree-l4">
+    <a href="#0322-thur">
+      03/22 Thur
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l4">
+    <ul class="subnav-l4 toc-hidden">
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0321-wed">03/21 Wed</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0320-tue">03/20 Tue</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0319-mon">03/19 Mon</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0318-sun">03/18 Sun</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0317-sat">03/17 Sat</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0316-friday">03/16 Friday</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0315-thur">03/15 Thur</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0313-wed">03/13 Wed</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0312-tue">03/12 Tue</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0311-mon">03/11 Mon</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0310-sun">03/10 Sun</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0310-sat">03/10 Sat</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0309-fri">03/09 Fri</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0308-thur">03/08 Thur</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0302-fri">03/02 Fri</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#0301-thur">03/01 Thur</a>
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#clear-registers-for-execve">Clear Registers for execve()</a>
         </li>
     
     </ul>
-  
   </li>
 
-  </ul>
+      
+    
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#0321-wed">03/21 Wed</a>
         </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../log-02-2018/">Feb 2018</a>
-        </li>
-  </ul>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/kernel/kconfig">Kernel</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/syscall/facts">Syscall</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/pcache/config">Pcache</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/driver/pci">Driver</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/paper/nmp">Paper</a>
-        </li>
-  </ul>
-
+    
+      
           
+
+  <li class="toctree-l4">
+    <a href="#0320-tue">
+      03/20 Tue
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l4">
+    <ul class="subnav-l4 toc-hidden">
+    
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#ib-bug-again">IB Bug again</a>
+        </li>
+    
+    </ul>
+  </li>
+
+      
+    
+      
+          
+
+  <li class="toctree-l4">
+    <a href="#0319-mon">
+      03/19 Mon
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l4">
+    <ul class="subnav-l4 toc-hidden">
+    
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#random-ib-bug">Random IB Bug</a>
+        </li>
+    
+    </ul>
+  </li>
+
+      
+    
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#0318-sun">03/18 Sun</a>
+        </li>
+    
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#0317-sat">03/17 Sat</a>
+        </li>
+    
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#0316-friday">03/16 Friday</a>
+        </li>
+    
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#0315-thur">03/15 Thur</a>
+        </li>
+    
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#0313-wed">03/13 Wed</a>
+        </li>
+    
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#0312-tue">03/12 Tue</a>
+        </li>
+    
+      
+          
+
+  <li class="toctree-l4">
+    <a href="#0311-mon">
+      03/11 Mon
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l4">
+    <ul class="subnav-l4 toc-hidden">
+    
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#debug-victim-cache">Debug victim cache</a>
+        </li>
+    
+    </ul>
+  </li>
+
+      
+    
+      
+          
+
+  <li class="toctree-l4">
+    <a href="#0310-sun">
+      03/10 Sun
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l4">
+    <ul class="subnav-l4 toc-hidden">
+    
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#fix-bug-from-__unhash_procees">Fix bug from __unhash_procees()</a>
+        </li>
+    
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#victim-report-error">victim report error</a>
+        </li>
+    
+    </ul>
+  </li>
+
+      
+    
+      
+          
+
+  <li class="toctree-l4">
+    <a href="#0310-sat">
+      03/10 Sat
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l4">
+    <ul class="subnav-l4 toc-hidden">
+    
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#put_pcache-in-pcache_zap_pte">put_pcache in pcache_zap_pte</a>
+        </li>
+    
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#python-hello-world-run-to-end">python hello world run to end</a>
+        </li>
+    
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#trying-phoenix-pthread-again">Trying phoenix pthread again</a>
+        </li>
+    
+    </ul>
+  </li>
+
+      
+    
+      
+          
+
+  <li class="toctree-l4">
+    <a href="#0309-fri">
+      03/09 Fri
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l4">
+    <ul class="subnav-l4 toc-hidden">
+    
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#find-bug-in-kmalloc">Find bug in kmalloc</a>
+        </li>
+    
+    </ul>
+  </li>
+
+      
+    
+      
+          
+
+  <li class="toctree-l4">
+    <a href="#0308-thur">
+      03/08 Thur
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l4">
+    <ul class="subnav-l4 toc-hidden">
+    
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#python">python</a>
+        </li>
+    
+    </ul>
+  </li>
+
+      
+    
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#0302-fri">03/02 Fri</a>
+        </li>
+    
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#0301-thur">03/01 Thur</a>
+        </li>
+    
+    </ul>
+  </li>
+
+
+  
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../log-02-2018/">Feb 2018</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Kernel</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/kconfig/">Kconfig</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/debug/">Debug</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/grub/">GRUB</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile/">Profile</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile_strace/">Profile strace</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile_heatmap/">Profile heatmap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile_points/">Profile points</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/trampoline/">Trampoline</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/pagefault_disable/">Disable pgfault</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/stop_machine/">Stop machine</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/loader/">Program Loader</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/vDSO/">vDSO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/vfs/">Virtual File System</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/vm/">Process Virtual Memory</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/fpu/">x86 FPU</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/irq/">IRQ</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/net_thpool/">Network Thpool</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Syscall</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/facts/">Facts</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile_strace/">strace</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/compat/">compat</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/msync/">msync()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/mremap/">mremap()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/fork/">fork()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/getrusage/">getrusage()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/wait_and_exit/">wait4 and exit()</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Pcache</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/config/">Config</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/sweep/">Sweep</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/tlb/">TLB Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/pgtable-lock/">PageTable Lock</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/victim/">Victim Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/virtual_cache/">Virtual Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/rmap/">Reverse Mapping</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/evict_and_ref/">Evict and Refcount</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/smp_design/">SMP Design</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/replication/">Replication</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Driver</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../driver/pci/">PCI</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../driver/ib/">Infiniband</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Paper</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/nmp/">NMP</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/processor_oom/">Processor OOM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/genz/">Gen-Z</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/replication/">Replication</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/related/">Related</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
       </div>
       &nbsp;
     </nav>
@@ -324,11 +1017,11 @@
     
       
         
-          <li>LegoOS-Dev &raquo;</li>
+          <li>Log &raquo;</li>
         
       
         
-          <li>Log &raquo;</li>
+          <li>LegoOS-Dev &raquo;</li>
         
       
     
@@ -366,9 +1059,9 @@
 <p>The bug looks like the return of main, evevntually does not go to library&rsquo;s exit. Is it because library pages are not loaded properly? Since the number of pgfault equals to normal setting, I guess it may originate from Memory side.</p>
 <p>TLB is also flushed, so TLB should not be a hidden issue.</p>
 <p>Going to check checsum. Well, checsum is okay too.</p>
-<p>Syscall execve will change ip, sp, flags registers. So it will use <code class="codehilite">iretq</code> instead of <code class="codehilite">sysexit</code> to return to userspace.</p>
+<p>Syscall execve will change ip, sp, flags registers. So it will use <code class="codehilite"><span class="n">iretq</span></code> instead of <code class="codehilite"><span class="n">sysexit</span></code> to return to userspace.</p>
 <p>Got an insteresting IB bug after execve. The CPU5 seems fail to return to userspace, and the CPU0 has the IB bug followed:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -447,7 +1140,7 @@
 <span class="p">[</span> <span class="mf">1222.363707</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100e4b2</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">ret_from_fork</span><span class="o">+</span><span class="mh">0x22</span><span class="o">/</span><span class="mh">0x30</span>
 </pre></div>
 </td></tr></table></p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -469,7 +1162,7 @@
 <li>Task 1: add some checking in ib, flush, sweep thread. 1) If cpu changed, 2) if nr_threads on this core &gt; 1.</li>
 </ul>
 <p>Had an issue while testing: execve(). I ran a exec.o first, then do execve to run seq.o:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -544,10 +1237,10 @@
 </ul>
 <p>Hmm, I finished the per-pte per-pmd lock patch. I think it works.
 But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I marked 3 CPUs inactive, so all new 24 threads will be scheduled to other cores (I may need to check this!). At some point, Lego P either stuck, or a lot ibapi_send_reply timeout.</p>
-<p>When I change the cpu_online to may <code class="codehilite">0-6</code>, it finished. When I change it to <code class="codehilite">0-18</code>, also succeed. I really doubt if actually those pinned threads are not pinned. Need to check.</p>
+<p>When I change the cpu_online to may <code class="codehilite"><span class="mi">0</span><span class="o">-</span><span class="mi">6</span></code>, it finished. When I change it to <code class="codehilite"><span class="mi">0</span><span class="o">-</span><span class="mi">18</span></code>, also succeed. I really doubt if actually those pinned threads are not pinned. Need to check.</p>
 <h3 id="ib-bug-again">IB Bug again<a class="headerlink" href="#ib-bug-again" title="Permanent link">&para;</a></h3>
 <p>Running MT-phoenix, 2GB, somehow crashed in the middle:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -679,7 +1372,7 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 </pre></div>
 </td></tr></table></p>
 <p>Uuh:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -756,9 +1449,9 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 </td></tr></table></p>
 <h2 id="0319-mon">03/19 Mon<a class="headerlink" href="#0319-mon" title="Permanent link">&para;</a></h2>
 <p>Not too many days left!!! Got to design full replication mechanism and algorithm today.</p>
-<p>Merged pull request for <code class="codehilite">pipe</code>, <code class="codehilite">pipe2</code> and <code class="codehilite">/dev/null</code> from Yilun. Our simple file op mgmt concerns me. I left a note at kernel/fork.c.</p>
+<p>Merged pull request for <code class="codehilite"><span class="n">pipe</span></code>, <code class="codehilite"><span class="n">pipe2</span></code> and <code class="codehilite"><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="k">null</span></code> from Yilun. Our simple file op mgmt concerns me. I left a note at kernel/fork.c.</p>
 <p>Got a bug report from Yilun, syscall execv failed. To be honest, I&rsquo;ve never tried this syscall, always call it directly within kernel.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -825,11 +1518,11 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 <span class="p">[</span>  <span class="mf">943.736598</span><span class="p">]</span> <span class="nl">CR2</span><span class="p">:</span> <span class="mo">00000000004</span><span class="mi">90523</span>
 </pre></div>
 </td></tr></table></p>
-<p>It is <code class="codehilite">setup_new_exec() -&gt; set_task_comm()</code>. I passed the user pointer to <code class="codehilite">set_task_comm()</code>, which I should pass a kernel pointer.</p>
-<p>And I actually found we missed a function: <code class="codehilite">do_close_on_exec()</code>. I also add a note above.</p>
+<p>It is <code class="codehilite"><span class="n">setup_new_exec</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">set_task_comm</span><span class="p">()</span></code>. I passed the user pointer to <code class="codehilite"><span class="n">set_task_comm</span><span class="p">()</span></code>, which I should pass a kernel pointer.</p>
+<p>And I actually found we missed a function: <code class="codehilite"><span class="n">do_close_on_exec</span><span class="p">()</span></code>. I also add a note above.</p>
 <h3 id="random-ib-bug">Random IB Bug<a class="headerlink" href="#random-ib-bug" title="Permanent link">&para;</a></h3>
 <p>Another weird bug after pathing loader. Actually, I tried the same setting twice, the second time it works. I guess this is some random IB bug. (Setting: 1P, 1M, 1S. Running a simple exec.c testing program, this have not reach that point yet.)
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -908,7 +1601,7 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 </td></tr></table></p>
 <h2 id="0318-sun">03/18 Sun<a class="headerlink" href="#0318-sun" title="Permanent link">&para;</a></h2>
 <p>Got a bug report after enable preempt and sweep thread
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -979,10 +1672,10 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 <span class="p">[</span>  <span class="mf">590.059943</span><span class="p">]</span> <span class="nl">nr_sweep_nr_moved_pcm</span><span class="p">:</span> <span class="mi">100686435</span>
 </pre></div>
 </td></tr></table></p>
-<p>This is an interesting bug. Two threads, one doing munmap or mremap, one doing eviction. They are using the same pcm. munmap and mremap will use <code class="codehilite">pte_get_and_clear()</code> to get the pcm.  While eviction will call <code class="codehilite">pcache_try_to_unamp</code>, which will further call <code class="codehilite">rmap_get_locked_pte()</code>, in which we check if the pte is none, if it is, then we know this is under munmap or mremap, then we skip. This is absolutely wrong. When <code class="codehilite">pcache_try_to_unamp</code> is called by eviction, it should always unmap ALL rmap. The above case is triggered because both two threads skip the final <code class="codehilite">__pcache_remove_rmap</code>.</p>
+<p>This is an interesting bug. Two threads, one doing munmap or mremap, one doing eviction. They are using the same pcm. munmap and mremap will use <code class="codehilite"><span class="n">pte_get_and_clear</span><span class="p">()</span></code> to get the pcm.  While eviction will call <code class="codehilite"><span class="n">pcache_try_to_unamp</span></code>, which will further call <code class="codehilite"><span class="n">rmap_get_locked_pte</span><span class="p">()</span></code>, in which we check if the pte is none, if it is, then we know this is under munmap or mremap, then we skip. This is absolutely wrong. When <code class="codehilite"><span class="n">pcache_try_to_unamp</span></code> is called by eviction, it should always unmap ALL rmap. The above case is triggered because both two threads skip the final <code class="codehilite"><span class="n">__pcache_remove_rmap</span></code>.</p>
 <p>Hmm, looks like open/close filename is wrong. I need to check.</p>
 <p>Last Log from MT+2GB, computation finished:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -1064,7 +1757,7 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 <p>Coding side, I will only optimize sweep. Besides, I will book tickets for Iceland trip.</p>
 <h2 id="0316-friday">03/16 Friday<a class="headerlink" href="#0316-friday" title="Permanent link">&para;</a></h2>
 <p><del class="critic">Task 1</del>: Add physical memory counter. It is a per-zone based counter, even though there is also some global counters. In Linux, per-cpu counter is first accumlated, global counter is updated only when per-cpu ones overflow. Lego&rsquo;s initial version save the trouble of per-cpu counter, I only port one global counter today, because I&rsquo;m not quite confident about our percpu_alloc&hellip;</p>
-<p>Anway, the info is reported in the format of <code class="codehilite">manager_sysinfo</code>. Do note this is different from the oirginal <code class="codehilite">sysinfo</code> structure, which is used by sysinfo syscall.</p>
+<p>Anway, the info is reported in the format of <code class="codehilite"><span class="n">manager_sysinfo</span></code>. Do note this is different from the oirginal <code class="codehilite"><span class="n">sysinfo</span></code> structure, which is used by sysinfo syscall.</p>
 <p><del class="critic">Task 2</del>: Patch get_random_number and /dev/urandom /dev/random. Others wrote the code, but he did not stick to the tradition of format naming. So I have to rewrite some of them. Sigh.</p>
 <p><ins class="critic">Task 3</ins>: optimize sweep</p>
 <h2 id="0315-thur">03/15 Thur<a class="headerlink" href="#0315-thur" title="Permanent link">&para;</a></h2>
@@ -1086,7 +1779,7 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 <li>statfs</li>
 <li>sync</li>
 </ul>
-<p><del class="critic">Task 2</del>: Add <code class="codehilite">sched_yield()</code>. Fairly simple.</p>
+<p><del class="critic">Task 2</del>: Add <code class="codehilite"><span class="n">sched_yield</span><span class="p">()</span></code>. Fairly simple.</p>
 <p><ins class="critic">Task 3</ins>: Add physical memory counter. Fairly complex. The underlying is built long time ago. Need to pick up some. Well some facts:</p>
 <ul>
 <li>pg_data_t (and zone) is allcoated by alloc_node_data if NUMA is configured.</li>
@@ -1099,7 +1792,7 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 <p>The slow victim flush issue is solved by pinning the thread to a core and remove that core from active_cpu mask.</p>
 <p>Today I&rsquo;m going to solve the SMP object issue. I&rsquo;m hoping by solving this, we can have a complete working pcache and victim cache.</p>
 <p>Continue yesterday&rsquo;s log:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -1205,7 +1898,7 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 <h2 id="0312-tue">03/12 Tue<a class="headerlink" href="#0312-tue" title="Permanent link">&para;</a></h2>
 <p>Continue victim cache. The current conclusion is victim has a unbalanced input and output rate. That is why some cores timeout and abort.</p>
 <p>Got some more clean log. The log told us that the flushd_victim is too slow at flushing content. Next I going to print the current flush queue content. Make sure that they are really not flushed. If so, I want to add code to flush sync.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -1324,7 +2017,7 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 </td></tr></table>
 
 <p>Yes, this victims are truly not being flushed. They are inside the flush_queue. No bug, hoo! Just some performance coding issues. But god why the flushd does not get a chance to run in 10 seconds? Hmm&hellip;
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -1449,8 +2142,8 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 <span class="p">[</span> <span class="mf">5536.396899</span><span class="p">]</span> <span class="nl">nr_victim_flush_sync</span><span class="p">:</span> <span class="mi">0</span>
 </pre></div>
 </td></tr></table></p>
-<p>Hmm, got some interesting bug, which never happened before. We did a <code class="codehilite">unmap</code> before <code class="codehilite">finish_insert</code>, so the mapcount must be zero. Since we have the <code class="codehilite">Reclaim</code> set for the candidate. But it looks like other code does not too much about the Reclaim bit. I need to check.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p>Hmm, got some interesting bug, which never happened before. We did a <code class="codehilite"><span class="n">unmap</span></code> before <code class="codehilite"><span class="n">finish_insert</span></code>, so the mapcount must be zero. Since we have the <code class="codehilite"><span class="n">Reclaim</span></code> set for the candidate. But it looks like other code does not too much about the Reclaim bit. I need to check.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -1525,8 +2218,8 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 <span class="p">[</span> <span class="mf">1012.159799</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100dadf</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">page_fault</span><span class="o">+</span><span class="mh">0x1f</span><span class="o">/</span><span class="mh">0x30</span>
 </pre></div>
 </td></tr></table></p>
-<p>Interesting. Memory consistency issue? Actually, I&rsquo;m not sure if it is the <code class="codehilite">v-&gt;flags = 0</code> issue. Others use atomic bit operations to play with this flag, while the reset is a simple store. I checked the list operations,  all of them are protected by spinlock. So the below should never happen in theory. I&rsquo;m changing the <code class="codehilite">v-&gt;flags = 0</code> to <code class="codehilite">smp_store_mb(v-&gt;flags, 0)</code>, which is a <code class="codehilite">xchg</code> in x86. Same for pcache.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p>Interesting. Memory consistency issue? Actually, I&rsquo;m not sure if it is the <code class="codehilite"><span class="n">v</span><span class="o">-&gt;</span><span class="n">flags</span> <span class="o">=</span> <span class="mi">0</span></code> issue. Others use atomic bit operations to play with this flag, while the reset is a simple store. I checked the list operations,  all of them are protected by spinlock. So the below should never happen in theory. I&rsquo;m changing the <code class="codehilite"><span class="n">v</span><span class="o">-&gt;</span><span class="n">flags</span> <span class="o">=</span> <span class="mi">0</span></code> to <code class="codehilite"><span class="n">smp_store_mb</span><span class="p">(</span><span class="n">v</span><span class="o">-&gt;</span><span class="n">flags</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></code>, which is a <code class="codehilite"><span class="n">xchg</span></code> in x86. Same for pcache.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -1547,8 +2240,8 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 <span class="p">[</span> <span class="mf">1781.363348</span><span class="p">]</span> <span class="nl">nr_pcache_fill_from_victim</span><span class="p">:</span> <span class="mi">2</span>
 </pre></div>
 </td></tr></table></p>
-<p>Did another run. I added an explicit <code class="codehilite">wake_up_victim_flushd</code> if victim failed to evict any line. But this fails with IB failure..
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p>Did another run. I added an explicit <code class="codehilite"><span class="n">wake_up_victim_flushd</span></code> if victim failed to evict any line. But this fails with IB failure..
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -1712,7 +2405,7 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 </pre></div>
 </td></tr></table></p>
 <p>A classical SMP bug. Lucky to find this one. Let me try to describe this. There are two CPU1. CPU0 and CPU1. CPU0 is doing eviction while CPU1 is doing munmap-&gt;pcache_zap_pte. The CPU0 slected a pcm, while this pcm happen to be zapped at the same time by CPU1. There are not enough actions to either 1) prevent CPU0 from selecting this pcm, 2) prevent CPU1 from using this pcm. Both solutions might be work. But we need as least one.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -1737,8 +2430,8 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 <h2 id="0311-mon">03/11 Mon<a class="headerlink" href="#0311-mon" title="Permanent link">&para;</a></h2>
 <h3 id="debug-victim-cache">Debug victim cache<a class="headerlink" href="#debug-victim-cache" title="Permanent link">&para;</a></h3>
 <p>Morning. Today I will continue debugging victim and clflush, running with MT phoenix+2GB, seq+4GB. Sounds good.</p>
-<p>Digging into yesterday&rsquo;s 21th run log. The warning comes from <code class="codehilite">victim_alloc_slowpath</code>. The allocation abort after 10 seconds timeout. And interestingly, a lot threads abort. (The case is, <code class="codehilite">pset</code> is full, so <code class="codehilite">pcache_alloc</code> will try to evict one to victim cache. But victim cache is full as well. So it needs to evict one victim cache line too. Somehow this does not proceed as planned.) I guess somewhere deadlock happens.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p>Digging into yesterday&rsquo;s 21th run log. The warning comes from <code class="codehilite"><span class="n">victim_alloc_slowpath</span></code>. The allocation abort after 10 seconds timeout. And interestingly, a lot threads abort. (The case is, <code class="codehilite"><span class="n">pset</span></code> is full, so <code class="codehilite"><span class="n">pcache_alloc</span></code> will try to evict one to victim cache. But victim cache is full as well. So it needs to evict one victim cache line too. Somehow this does not proceed as planned.) I guess somewhere deadlock happens.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -1773,7 +2466,7 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 <p>Along the testing, fixed a bug in eviction code: handle failed evict_line properly. If eviction mechanism failed, we need to clear what the algorithm part has done. This is also related to yesterday&rsquo;s big idea: always do proper cleanup. Many thanks go to pcache free checking, help me to find this bug.</p>
 <p>Less is more. I printed too much useless info when pcache_alloc or victim_alloc fail. I removed all the dump_pset from the failing path. It can give me a much more clean message to debug.</p>
 <p>Hmm, it is really weird. I dump all victims once alloc timeout. You can see that all victim are not Flushed, that means none of them can be evicted. Take a look at the stat. Hmm, I probabaly should not do this per-cpu counter??
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -1884,8 +2577,8 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 <span class="p">[</span> <span class="mf">4758.639333</span><span class="p">]</span> <span class="nl">nr_victim_flush_finished</span><span class="p">:</span> <span class="mi">488</span>
 </pre></div>
 </td></tr></table></p>
-<p>I counted it wrong. Below is the log. Since <code class="codehilite">nr_victim_flushd_run * 8 = nr_victim_flush_finished</code>, it basically means for every run, victim_flushd needs to flush all 8 victims, which implies eviction rate is much higher than the flushd running rate. <code class="codehilite"><span class="n">nr_pcache_fill_from_victim</span><span class="o">:</span> <span class="mi">21</span></code>, which means there are some succeed refills, but I don&rsquo;t know how it can improve performance.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p>I counted it wrong. Below is the log. Since <code class="codehilite"><span class="n">nr_victim_flushd_run</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">=</span> <span class="n">nr_victim_flush_finished</span></code>, it basically means for every run, victim_flushd needs to flush all 8 victims, which implies eviction rate is much higher than the flushd running rate. <code class="codehilite"><span class="n">nr_pcache_fill_from_victim</span><span class="o">:</span> <span class="mi">21</span></code>, which means there are some succeed refills, but I don&rsquo;t know how it can improve performance.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -2012,12 +2705,12 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 </td></tr></table>
 
 <h2 id="0310-sun">03/10 Sun<a class="headerlink" href="#0310-sun" title="Permanent link">&para;</a></h2>
-<h3 id="fix-bug-from-__unhash_procees">Fix bug from <code class="codehilite">__unhash_procees()</code><a class="headerlink" href="#fix-bug-from-__unhash_procees" title="Permanent link">&para;</a></h3>
+<h3 id="fix-bug-from-__unhash_procees">Fix bug from <code class="codehilite"><span class="n">__unhash_procees</span><span class="p">()</span></code><a class="headerlink" href="#fix-bug-from-__unhash_procees" title="Permanent link">&para;</a></h3>
 <p>[Summary]: a bug cause by laziness. When fork happens, the new thread is added into parent&rsquo;s thread_group list. However, we forgot to remove it when the new thread exit. Thus, the field in parent&rsquo;s thread_group will point to a freed page. To make it worse, the freed page got allocated again. In our case, the page was used by pgtable. So, when the parent tries to use that field, it simply corrupts pgtable. This bug is fixed by this commit: 64d43fc.</p>
 <p>Got something going on. Huh.</p>
 <p>Anyway, pick up what left last night.</p>
 <p>8<sup>th</sup> run,
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -2035,29 +2728,29 @@ But I do found an issue. When I run MT+2GB, it will create 24 threads. Since I m
 16
 17
 18
-19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[  426.595911] SYSC_mmap(cpu5): ret_addr:0x7ffefbeac000
+19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[  <span class="mi">426</span>.<span class="mi">595911</span>] <span class="nv">SYSC_mmap</span><span class="ss">(</span><span class="nv">cpu5</span><span class="ss">)</span>: <span class="nv">ret_addr</span>:<span class="mi">0</span><span class="nv">x7ffefbeac000</span>
 
-pte page got allocated
-[  426.653216]     pmd is none index 0x1e3 line 567 from_addr 0x7ffefc6acd90
-[  426.734334] __pte_alloc(): for addr: 0x7ffefc6acd90 pte_index: ac
-[  426.807132]     pte is none index 0x38 line 574 from_addr 0x7ffefc6acd90
-[  427.304148]     pte is none index 0x38 line 576 from_addr 0x7ffefc6acd90
+<span class="nv">pte</span> <span class="nv">page</span> <span class="nv">got</span> <span class="nv">allocated</span>
+[  <span class="mi">426</span>.<span class="mi">653216</span>]     <span class="nv">pmd</span> <span class="nv">is</span> <span class="nv">none</span> <span class="nv">index</span> <span class="mi">0</span><span class="nv">x1e3</span> <span class="nv">line</span> <span class="mi">567</span> <span class="nv">from_addr</span> <span class="mi">0</span><span class="nv">x7ffefc6acd90</span>
+[  <span class="mi">426</span>.<span class="mi">734334</span>] <span class="nv">__pte_alloc</span><span class="ss">()</span>: <span class="k">for</span> <span class="nv">addr</span>: <span class="mi">0</span><span class="nv">x7ffefc6acd90</span> <span class="nv">pte_index</span>: <span class="nv">ac</span>
+[  <span class="mi">426</span>.<span class="mi">807132</span>]     <span class="nv">pte</span> <span class="nv">is</span> <span class="nv">none</span> <span class="nv">index</span> <span class="mi">0</span><span class="nv">x38</span> <span class="nv">line</span> <span class="mi">574</span> <span class="nv">from_addr</span> <span class="mi">0</span><span class="nv">x7ffefc6acd90</span>
+[  <span class="mi">427</span>.<span class="mi">304148</span>]     <span class="nv">pte</span> <span class="nv">is</span> <span class="nv">none</span> <span class="nv">index</span> <span class="mi">0</span><span class="nv">x38</span> <span class="nv">line</span> <span class="mi">576</span> <span class="nv">from_addr</span> <span class="mi">0</span><span class="nv">x7ffefc6acd90</span>
 
-this addr seems fine
-[  427.382251]     pte is none index 0x38 line 567 from_addr 0x7ffefc6abe78
-[  427.462329]     pte is none index 0x38 line 574 from_addr 0x7ffefc6abe78
-[  427.644439]     pte is none index 0x38 line 576 from_addr 0x7ffefc6abe78
+<span class="nv">this</span> <span class="nv">addr</span> <span class="nv">seems</span> <span class="nv">fine</span>
+[  <span class="mi">427</span>.<span class="mi">382251</span>]     <span class="nv">pte</span> <span class="nv">is</span> <span class="nv">none</span> <span class="nv">index</span> <span class="mi">0</span><span class="nv">x38</span> <span class="nv">line</span> <span class="mi">567</span> <span class="nv">from_addr</span> <span class="mi">0</span><span class="nv">x7ffefc6abe78</span>
+[  <span class="mi">427</span>.<span class="mi">462329</span>]     <span class="nv">pte</span> <span class="nv">is</span> <span class="nv">none</span> <span class="nv">index</span> <span class="mi">0</span><span class="nv">x38</span> <span class="nv">line</span> <span class="mi">574</span> <span class="nv">from_addr</span> <span class="mi">0</span><span class="nv">x7ffefc6abe78</span>
+[  <span class="mi">427</span>.<span class="mi">644439</span>]     <span class="nv">pte</span> <span class="nv">is</span> <span class="nv">none</span> <span class="nv">index</span> <span class="mi">0</span><span class="nv">x38</span> <span class="nv">line</span> <span class="mi">576</span> <span class="nv">from_addr</span> <span class="mi">0</span><span class="nv">x7ffefc6abe78</span>
 
-Something happen in between corrupted pgtable
-[  427.722547] pte:ffff88207e8b51c0 pfn:0x8207e8c3 flags:(dirty|large|global|softw4|pkey0|pkey1|pkey2|pkey3|nx|0x3ff800000000000)
-[  427.858779] line: 567 from_addr: 0x6fc6d8 pte.cont: 0xffff88207e8c31c0
+<span class="nv">Something</span> <span class="nv">happen</span> <span class="nv">in</span> <span class="nv">between</span> <span class="nv">corrupted</span> <span class="nv">pgtable</span>
+[  <span class="mi">427</span>.<span class="mi">722547</span>] <span class="nv">pte</span>:<span class="nv">ffff88207e8b51c0</span> <span class="nv">pfn</span>:<span class="mi">0</span><span class="nv">x8207e8c3</span> <span class="nv">flags</span>:<span class="ss">(</span><span class="nv">dirty</span><span class="o">|</span><span class="nv">large</span><span class="o">|</span><span class="nv">global</span><span class="o">|</span><span class="nv">softw4</span><span class="o">|</span><span class="nv">pkey0</span><span class="o">|</span><span class="nv">pkey1</span><span class="o">|</span><span class="nv">pkey2</span><span class="o">|</span><span class="nv">pkey3</span><span class="o">|</span><span class="nv">nx</span><span class="o">|</span><span class="mi">0</span><span class="nv">x3ff800000000000</span><span class="ss">)</span>
+[  <span class="mi">427</span>.<span class="mi">858779</span>] <span class="nv">line</span>: <span class="mi">567</span> <span class="nv">from_addr</span>: <span class="mi">0</span><span class="nv">x6fc6d8</span> <span class="nv">pte</span>.<span class="nv">cont</span>: <span class="mi">0</span><span class="nv">xffff88207e8c31c0</span>
 
-[  427.938858] pte:ffff88207e8b51c0 pfn:0x8207e8c3 flags:(dirty|large|global|softw4|pkey0|pkey1|pkey2|pkey3|nx|0x3ff800000000000)
-[  428.075095] line: 574 from_addr: 0x6fc6d8 pte.cont: 0xffff88207e8c31c0
+[  <span class="mi">427</span>.<span class="mi">938858</span>] <span class="nv">pte</span>:<span class="nv">ffff88207e8b51c0</span> <span class="nv">pfn</span>:<span class="mi">0</span><span class="nv">x8207e8c3</span> <span class="nv">flags</span>:<span class="ss">(</span><span class="nv">dirty</span><span class="o">|</span><span class="nv">large</span><span class="o">|</span><span class="nv">global</span><span class="o">|</span><span class="nv">softw4</span><span class="o">|</span><span class="nv">pkey0</span><span class="o">|</span><span class="nv">pkey1</span><span class="o">|</span><span class="nv">pkey2</span><span class="o">|</span><span class="nv">pkey3</span><span class="o">|</span><span class="nv">nx</span><span class="o">|</span><span class="mi">0</span><span class="nv">x3ff800000000000</span><span class="ss">)</span>
+[  <span class="mi">428</span>.<span class="mi">075095</span>] <span class="nv">line</span>: <span class="mi">574</span> <span class="nv">from_addr</span>: <span class="mi">0</span><span class="nv">x6fc6d8</span> <span class="nv">pte</span>.<span class="nv">cont</span>: <span class="mi">0</span><span class="nv">xffff88207e8c31c0</span>
 </pre></div>
 </td></tr></table></p>
 <p>9<sup>th</sup> run, found actually it created another thread. And it exit. And it corrupted aftet the pid33 exit. Bang, it should be something wrong in exit().
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -2121,7 +2814,7 @@ Something happen in between corrupted pgtable
 </pre></div>
 </td></tr></table></p>
 <p>10<sup>th</sup> run, actually 2 threads are created. When pid 33 exit, everything stays okay. But after fork of pid 34. It went wrong:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -2204,8 +2897,8 @@ Something happen in between corrupted pgtable
 <span class="p">[</span>  <span class="mf">613.066078</span><span class="p">]</span> <span class="n">CPU7</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">34</span> <span class="nl">caller</span><span class="p">:</span> <span class="nl">do_exitline</span><span class="p">:</span> <span class="mi">401</span> <span class="nl">from_addr</span><span class="p">:</span> <span class="mh">0x0</span> <span class="n">pte</span><span class="p">.</span><span class="nl">cont</span><span class="p">:</span> <span class="mh">0xffff88207e8c31c0</span>
 </pre></div>
 </td></tr></table></p>
-<p>11<sup>th</sup> run, found it orignate from <code class="codehilite">copy_process()</code>. Good.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>11<sup>th</sup> run, found it orignate from <code class="codehilite"><span class="n">copy_process</span><span class="p">()</span></code>. Good.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span>  <span class="mf">869.591729</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">do_fork</span>    <span class="n">pte</span> <span class="n">is</span> <span class="n">none</span> <span class="n">index</span> <span class="mh">0x38</span> <span class="n">line</span> <span class="mi">886</span> <span class="n">from_addr</span> <span class="mh">0x0</span>
@@ -2215,7 +2908,7 @@ Something happen in between corrupted pgtable
 </pre></div>
 </td></tr></table></p>
 <p>12<sup>th</sup> run, found the opeation that corrupt pgtable:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -2238,8 +2931,8 @@ Something happen in between corrupted pgtable
 <span class="mi">902</span>                 <span class="n">jasmine</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">__LINE__</span><span class="p">,</span> <span class="n">__func__</span><span class="p">);</span>
 </pre></div>
 </td></tr></table></p>
-<p>13<sup>th</sup> run, interesting, the list_add_tail write to the pgtable. <code class="codehilite">pte.cont = 0xffff88207e8c31c0, p-&gt;thread_group: 0xffff88207e8c31c0</code>.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>13<sup>th</sup> run, interesting, the list_add_tail write to the pgtable. <code class="codehilite"><span class="n">pte</span><span class="p">.</span><span class="n">cont</span> <span class="o">=</span> <span class="mi">0</span><span class="n">xffff88207e8c31c0</span><span class="p">,</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">thread_group</span><span class="p">:</span> <span class="mi">0</span><span class="n">xffff88207e8c31c0</span></code>.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -2257,7 +2950,7 @@ Something happen in between corrupted pgtable
 </pre></div>
 </td></tr></table></p>
 <p>14<sup>th</sup> run, got an log like this. Clearly, the pte is written the value  of p-&gt;thread_group. But the leader&rsquo;s pointer is correct. Weird, going to dig deeper.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -2265,19 +2958,19 @@ Something happen in between corrupted pgtable
 6
 7
 8
-9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>                p: ffff88207e8c3000 p-&gt;group_leader: ffff88107e189000(32)
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>                <span class="n">p</span><span class="p">:</span> <span class="n">ffff88207e8c3000</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">group_leader</span><span class="p">:</span> <span class="n">ffff88107e189000</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
 
-                p-&gt;thread_group:        ffff88207e8c31c0
-                leader-&gt;thread_group:   ffff88107e1891c0
+                <span class="n">p</span><span class="o">-&gt;</span><span class="n">thread_group</span><span class="p">:</span>        <span class="n">ffff88207e8c31c0</span>
+                <span class="n">leader</span><span class="o">-&gt;</span><span class="n">thread_group</span><span class="p">:</span>   <span class="n">ffff88107e1891c0</span>
 
-                pte page:               ffff88207e8b5000
-                pte:                    ffff88207e8b51c0
+                <span class="n">pte</span> <span class="n">page</span><span class="p">:</span>               <span class="n">ffff88207e8b5000</span>
+                <span class="n">pte</span><span class="p">:</span>                    <span class="n">ffff88207e8b51c0</span>
 
-                pte.cont:               ffff88207e8c31c0
+                <span class="n">pte</span><span class="p">.</span><span class="n">cont</span><span class="p">:</span>               <span class="n">ffff88207e8c31c0</span>
 </pre></div>
 </td></tr></table></p>
 <p>15<sup>th</sup> run, found the bug.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -2348,11 +3041,11 @@ Something happen in between corrupted pgtable
 <span class="p">[</span> <span class="mf">1486.912060</span><span class="p">]</span> <span class="n">CPU5</span> <span class="nl">pid</span><span class="p">:</span><span class="mi">32</span> <span class="nl">caller</span><span class="p">:</span> <span class="n">__list_add</span> <span class="nl">line</span><span class="p">:</span> <span class="mi">77</span> <span class="nl">from_addr</span><span class="p">:</span> <span class="mh">0x0</span> <span class="n">pte</span><span class="p">.</span><span class="nl">cont</span><span class="p">:</span> <span class="mh">0xffff88207e8c31c0</span>
 </pre></div>
 </td></tr></table></p>
-<p>16<sup>th</sup> run, damn, after patching <code class="codehilite">__unhash_process()</code>, it finally works. Going to workout, see you tonight.</p>
+<p>16<sup>th</sup> run, damn, after patching <code class="codehilite"><span class="n">__unhash_process</span><span class="p">()</span></code>, it finally works. Going to workout, see you tonight.</p>
 <h3 id="victim-report-error">victim report error<a class="headerlink" href="#victim-report-error" title="Permanent link">&para;</a></h3>
-<p>17<sup>th</sup> run. The phoenix program has bug itself, it is not able to run with 4GB dataset. So try it with 2GB dataset. Uuh, the log is too long. <code class="codehilite">__put_vicim</code> report a victim that has wrong flags. Going to disable the evict log and try again.</p>
+<p>17<sup>th</sup> run. The phoenix program has bug itself, it is not able to run with 4GB dataset. So try it with 2GB dataset. Uuh, the log is too long. <code class="codehilite"><span class="n">__put_vicim</span></code> report a victim that has wrong flags. Going to disable the evict log and try again.</p>
 <p>18<sup>th</sup> run. Happen to run seq with 100MB&hellip; It actually half finished. But the printf of phoenix has funny chars. I guess memory is corrupted. The log shows it is ib_mad_completion.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -2500,8 +3193,8 @@ Something happen in between corrupted pgtable
 </pre></div>
 </td></tr></table></p>
 <p>19<sup>th</sup>, try seq+100MB again. Well succeed. I guess I start S too later. So that thread has issues. We run 12.3 sec, while linux run 9.7 sec.</p>
-<p>20<sup>th</sup>, try seq+4GB data. Linux runs <code class="codehilite">314.4 sec</code>. Lego runs <code class="codehilite">403 sec</code>. But Lego has some clflush error messages. I don&rsquo;t know why actually.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p>20<sup>th</sup>, try seq+4GB data. Linux runs <code class="codehilite"><span class="mi">314</span><span class="p">.</span><span class="mi">4</span> <span class="n">sec</span></code>. Lego runs <code class="codehilite"><span class="mi">403</span> <span class="n">sec</span></code>. But Lego has some clflush error messages. I don&rsquo;t know why actually.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -2634,13 +3327,13 @@ Something happen in between corrupted pgtable
 <span class="p">[</span> <span class="mf">1202.230987</span><span class="p">]</span> <span class="nl">nr_victim_eviction</span><span class="p">:</span> <span class="mi">521090</span>
 </pre></div>
 </td></tr></table></p>
-<p>21th run. Do not have time and energy to debug the clflush issue. I just want to run MT+2GB again. Well victim has issues! Some warning are triggered. Log is <code class="codehilite">wuklab13:~/ys/0311-22</code>. Continue tomorrow! Good night world. (Such a lonly phd.)</p>
+<p>21th run. Do not have time and energy to debug the clflush issue. I just want to run MT+2GB again. Well victim has issues! Some warning are triggered. Log is <code class="codehilite"><span class="n">wuklab13</span><span class="p">:</span><span class="o">~/</span><span class="n">ys</span><span class="o">/</span><span class="mi">0311</span><span class="o">-</span><span class="mi">22</span></code>. Continue tomorrow! Good night world. (Such a lonly phd.)</p>
 <h2 id="0310-sat">03/10 Sat<a class="headerlink" href="#0310-sat" title="Permanent link">&para;</a></h2>
 <p>Running python hello world. Tried to make kmalloc use buddy directly.</p>
 <h3 id="put_pcache-in-pcache_zap_pte">put_pcache in pcache_zap_pte<a class="headerlink" href="#put_pcache-in-pcache_zap_pte" title="Permanent link">&para;</a></h3>
 <p>So this time, python keep running for a long time. But P crashed when the first time eviction was triggered.</p>
 <p>Below is log from S side, those libraries do not exist, so these log are fine:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -2657,28 +3350,28 @@ Something happen in between corrupted pgtable
 15
 16
 17
-18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>S:
-[Mar10 10:39] handle_access_request /etc/ld.so.preload 4, -2
-[Mar10 10:44] local_file_open : Cannot open required file [/usr/lib64/python2.7/site.so].
-[  +0.352839] local_file_open : Cannot open required file [/usr/lib64/python2.7/sitemodule.so].
-[ +22.254465] local_file_open : Cannot open required file [/usr/lib64/python2.7/os.so].
-[  +0.350759] local_file_open : Cannot open required file [/usr/lib64/python2.7/osmodule.so].
-[Mar10 10:45] local_file_open : Cannot open required file [/usr/lib64/python2.7/posixpath.so].
-[  +0.358045] local_file_open : Cannot open required file [/usr/lib64/python2.7/posixpathmodule.so].
-[ +13.421033] local_file_open : Cannot open required file [/usr/lib64/python2.7/stat.so].
-[  +0.352838] local_file_open : Cannot open required file [/usr/lib64/python2.7/statmodule.so].
-[Mar10 10:46] local_file_open : Cannot open required file [/usr/lib64/python2.7/genericpath.so].
-[  +0.360126] local_file_open : Cannot open required file [/usr/lib64/python2.7/genericpathmodule.so].
-[ +11.582165] local_file_open : Cannot open required file [/usr/lib64/python2.7/warnings.so].
-[  +0.357003] local_file_open : Cannot open required file [/usr/lib64/python2.7/warningsmodule.so].
-[ +11.989828] local_file_open : Cannot open required file [/usr/lib64/python2.7/linecache.so].
-[  +0.358043] local_file_open : Cannot open required file [/usr/lib64/python2.7/linecachemodule.so].
-[Mar10 10:47] local_file_open : Cannot open required file [/usr/lib64/python2.7/types.so].
-[  +0.353879] local_file_open : Cannot open required file [/usr/lib64/python2.7/typesmodule.so].
+18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">S</span><span class="p">:</span>
+<span class="p">[</span><span class="n">Mar10</span> <span class="mi">10</span><span class="p">:</span><span class="mi">39</span><span class="p">]</span> <span class="n">handle_access_request</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ld</span><span class="p">.</span><span class="n">so</span><span class="p">.</span><span class="n">preload</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span>
+<span class="p">[</span><span class="n">Mar10</span> <span class="mi">10</span><span class="p">:</span><span class="mi">44</span><span class="p">]</span> <span class="n">local_file_open</span> <span class="p">:</span> <span class="n">Cannot</span> <span class="k">open</span> <span class="n">required</span> <span class="n">file</span> <span class="p">[</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span><span class="mi">7</span><span class="o">/</span><span class="n">site</span><span class="p">.</span><span class="n">so</span><span class="p">].</span>
+<span class="p">[</span>  <span class="o">+</span><span class="mi">0</span><span class="p">.</span><span class="mi">352839</span><span class="p">]</span> <span class="n">local_file_open</span> <span class="p">:</span> <span class="n">Cannot</span> <span class="k">open</span> <span class="n">required</span> <span class="n">file</span> <span class="p">[</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span><span class="mi">7</span><span class="o">/</span><span class="n">sitemodule</span><span class="p">.</span><span class="n">so</span><span class="p">].</span>
+<span class="p">[</span> <span class="o">+</span><span class="mi">22</span><span class="p">.</span><span class="mi">254465</span><span class="p">]</span> <span class="n">local_file_open</span> <span class="p">:</span> <span class="n">Cannot</span> <span class="k">open</span> <span class="n">required</span> <span class="n">file</span> <span class="p">[</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span><span class="mi">7</span><span class="o">/</span><span class="n">os</span><span class="p">.</span><span class="n">so</span><span class="p">].</span>
+<span class="p">[</span>  <span class="o">+</span><span class="mi">0</span><span class="p">.</span><span class="mi">350759</span><span class="p">]</span> <span class="n">local_file_open</span> <span class="p">:</span> <span class="n">Cannot</span> <span class="k">open</span> <span class="n">required</span> <span class="n">file</span> <span class="p">[</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span><span class="mi">7</span><span class="o">/</span><span class="n">osmodule</span><span class="p">.</span><span class="n">so</span><span class="p">].</span>
+<span class="p">[</span><span class="n">Mar10</span> <span class="mi">10</span><span class="p">:</span><span class="mi">45</span><span class="p">]</span> <span class="n">local_file_open</span> <span class="p">:</span> <span class="n">Cannot</span> <span class="k">open</span> <span class="n">required</span> <span class="n">file</span> <span class="p">[</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span><span class="mi">7</span><span class="o">/</span><span class="n">posixpath</span><span class="p">.</span><span class="n">so</span><span class="p">].</span>
+<span class="p">[</span>  <span class="o">+</span><span class="mi">0</span><span class="p">.</span><span class="mi">358045</span><span class="p">]</span> <span class="n">local_file_open</span> <span class="p">:</span> <span class="n">Cannot</span> <span class="k">open</span> <span class="n">required</span> <span class="n">file</span> <span class="p">[</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span><span class="mi">7</span><span class="o">/</span><span class="n">posixpathmodule</span><span class="p">.</span><span class="n">so</span><span class="p">].</span>
+<span class="p">[</span> <span class="o">+</span><span class="mi">13</span><span class="p">.</span><span class="mi">421033</span><span class="p">]</span> <span class="n">local_file_open</span> <span class="p">:</span> <span class="n">Cannot</span> <span class="k">open</span> <span class="n">required</span> <span class="n">file</span> <span class="p">[</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span><span class="mi">7</span><span class="o">/</span><span class="n">stat</span><span class="p">.</span><span class="n">so</span><span class="p">].</span>
+<span class="p">[</span>  <span class="o">+</span><span class="mi">0</span><span class="p">.</span><span class="mi">352838</span><span class="p">]</span> <span class="n">local_file_open</span> <span class="p">:</span> <span class="n">Cannot</span> <span class="k">open</span> <span class="n">required</span> <span class="n">file</span> <span class="p">[</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span><span class="mi">7</span><span class="o">/</span><span class="n">statmodule</span><span class="p">.</span><span class="n">so</span><span class="p">].</span>
+<span class="p">[</span><span class="n">Mar10</span> <span class="mi">10</span><span class="p">:</span><span class="mi">46</span><span class="p">]</span> <span class="n">local_file_open</span> <span class="p">:</span> <span class="n">Cannot</span> <span class="k">open</span> <span class="n">required</span> <span class="n">file</span> <span class="p">[</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span><span class="mi">7</span><span class="o">/</span><span class="n">genericpath</span><span class="p">.</span><span class="n">so</span><span class="p">].</span>
+<span class="p">[</span>  <span class="o">+</span><span class="mi">0</span><span class="p">.</span><span class="mi">360126</span><span class="p">]</span> <span class="n">local_file_open</span> <span class="p">:</span> <span class="n">Cannot</span> <span class="k">open</span> <span class="n">required</span> <span class="n">file</span> <span class="p">[</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span><span class="mi">7</span><span class="o">/</span><span class="n">genericpathmodule</span><span class="p">.</span><span class="n">so</span><span class="p">].</span>
+<span class="p">[</span> <span class="o">+</span><span class="mi">11</span><span class="p">.</span><span class="mi">582165</span><span class="p">]</span> <span class="n">local_file_open</span> <span class="p">:</span> <span class="n">Cannot</span> <span class="k">open</span> <span class="n">required</span> <span class="n">file</span> <span class="p">[</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span><span class="mi">7</span><span class="o">/</span><span class="n">warnings</span><span class="p">.</span><span class="n">so</span><span class="p">].</span>
+<span class="p">[</span>  <span class="o">+</span><span class="mi">0</span><span class="p">.</span><span class="mi">357003</span><span class="p">]</span> <span class="n">local_file_open</span> <span class="p">:</span> <span class="n">Cannot</span> <span class="k">open</span> <span class="n">required</span> <span class="n">file</span> <span class="p">[</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span><span class="mi">7</span><span class="o">/</span><span class="n">warningsmodule</span><span class="p">.</span><span class="n">so</span><span class="p">].</span>
+<span class="p">[</span> <span class="o">+</span><span class="mi">11</span><span class="p">.</span><span class="mi">989828</span><span class="p">]</span> <span class="n">local_file_open</span> <span class="p">:</span> <span class="n">Cannot</span> <span class="k">open</span> <span class="n">required</span> <span class="n">file</span> <span class="p">[</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span><span class="mi">7</span><span class="o">/</span><span class="n">linecache</span><span class="p">.</span><span class="n">so</span><span class="p">].</span>
+<span class="p">[</span>  <span class="o">+</span><span class="mi">0</span><span class="p">.</span><span class="mi">358043</span><span class="p">]</span> <span class="n">local_file_open</span> <span class="p">:</span> <span class="n">Cannot</span> <span class="k">open</span> <span class="n">required</span> <span class="n">file</span> <span class="p">[</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span><span class="mi">7</span><span class="o">/</span><span class="n">linecachemodule</span><span class="p">.</span><span class="n">so</span><span class="p">].</span>
+<span class="p">[</span><span class="n">Mar10</span> <span class="mi">10</span><span class="p">:</span><span class="mi">47</span><span class="p">]</span> <span class="n">local_file_open</span> <span class="p">:</span> <span class="n">Cannot</span> <span class="k">open</span> <span class="n">required</span> <span class="n">file</span> <span class="p">[</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span><span class="mi">7</span><span class="o">/</span><span class="n">types</span><span class="p">.</span><span class="n">so</span><span class="p">].</span>
+<span class="p">[</span>  <span class="o">+</span><span class="mi">0</span><span class="p">.</span><span class="mi">353879</span><span class="p">]</span> <span class="n">local_file_open</span> <span class="p">:</span> <span class="n">Cannot</span> <span class="k">open</span> <span class="n">required</span> <span class="n">file</span> <span class="p">[</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span><span class="mi">7</span><span class="o">/</span><span class="n">typesmodule</span><span class="p">.</span><span class="n">so</span><span class="p">].</span>
 </pre></div>
 </td></tr></table></p>
 <p>Weird P&rsquo;s bug, seems like the pcm returned by evict_find_line has issue. Well, I&rsquo;m trying to debug what is going with this set.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -2763,8 +3456,8 @@ Something happen in between corrupted pgtable
 <span class="p">[</span> <span class="mf">1051.288326</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100d82c</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">entry_SYSCALL64_slow_path</span><span class="o">+</span><span class="mh">0x25</span><span class="o">/</span><span class="mh">0x25</span>
 </pre></div>
 </td></tr></table></p>
-<p>Interesting, added several debug messages. The bug is I forgot to put_pcache when a rmap was zapped. One rmap counts one refcount (effectively one process), thus when a rmap was zapped, we should decrease the refcount. I found I&rsquo;ve already done so for <code class="codehilite">pcache_remove_rmap</code>, and <code class="codehilite">pcache_move_pte</code>. But damn, forgot this one. I remember this code was written before fork+pcache. So.. I don&rsquo;t have a big picture at that time. <strong>Multithreaded system plus background reclaim really a very rigours design usage of refcount and lock</strong>.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p>Interesting, added several debug messages. The bug is I forgot to put_pcache when a rmap was zapped. One rmap counts one refcount (effectively one process), thus when a rmap was zapped, we should decrease the refcount. I found I&rsquo;ve already done so for <code class="codehilite"><span class="n">pcache_remove_rmap</span></code>, and <code class="codehilite"><span class="n">pcache_move_pte</span></code>. But damn, forgot this one. I remember this code was written before fork+pcache. So.. I don&rsquo;t have a big picture at that time. <strong>Multithreaded system plus background reclaim really a very rigours design usage of refcount and lock</strong>.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -2835,7 +3528,7 @@ Something happen in between corrupted pgtable
 </td></tr></table></p>
 <h3 id="python-hello-world-run-to-end">python hello world run to end<a class="headerlink" href="#python-hello-world-run-to-end" title="Permanent link">&para;</a></h3>
 <p>Glad to say, python hello world finished, even with some missed syscalls. Especially the stdin stuff, so the string is actually not printed out. Log is wuklab13:~/ys/0310-4
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -2949,7 +3642,7 @@ Something happen in between corrupted pgtable
 <li>IB stucked
 So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal deadlock issue.</li>
 </ul>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -3063,8 +3756,8 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 </pre></div>
 </td></tr></table>
 
-<p>3<sup>th</sup> run, without STRACE, with locked ibapi, it finished, result is correct. Runtime: <code class="codehilite">18.692936 sec</code>.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>3<sup>th</sup> run, without STRACE, with locked ibapi, it finished, result is correct. Runtime: <code class="codehilite"><span class="mi">18</span><span class="p">.</span><span class="mi">692936</span> <span class="n">sec</span></code>.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -3083,8 +3776,8 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 <span class="p">[</span>  <span class="mf">555.774187</span><span class="p">]</span> <span class="nl">nr_victim_eviction</span><span class="p">:</span> <span class="mi">474</span>
 </pre></div>
 </td></tr></table></p>
-<p>4<sup>th</sup> run, same setting with the 3<sup>th</sup> run, same result. But the nr_pgfault differs, I guess it is due to runtime things. Runtime: <code class="codehilite">19.12861 sec</code>.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>4<sup>th</sup> run, same setting with the 3<sup>th</sup> run, same result. But the nr_pgfault differs, I guess it is due to runtime things. Runtime: <code class="codehilite"><span class="mi">19</span><span class="p">.</span><span class="mi">12861</span> <span class="n">sec</span></code>.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -3103,8 +3796,8 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 <span class="p">[</span>  <span class="mf">470.242285</span><span class="p">]</span> <span class="nl">nr_victim_eviction</span><span class="p">:</span> <span class="mi">493</span>
 </pre></div>
 </td></tr></table></p>
-<p>5<sup>th</sup> run, same with 4<sup>th</sup>, succeed, Runtime: <code class="codehilite">18.653879 sec</code>.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>5<sup>th</sup> run, same with 4<sup>th</sup>, succeed, Runtime: <code class="codehilite"><span class="mi">18</span><span class="p">.</span><span class="mi">653879</span> <span class="n">sec</span></code>.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -3112,19 +3805,19 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 6
 7
 8
-9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[  313.202348] nr_pgfault: 288070
-[  313.236772] nr_pgfault_wp: 0
-[  313.271093] nr_pgfault_wp_cow: 0
-[  313.309575] nr_pgfault_wp_reuse: 0
-[  313.350139] nr_pgfault_due_to_concurrent_eviction: 0
-[  313.409421] nr_pcache_fill_from_memory: 288052
-[  313.462465] nr_pcache_fill_from_victim: 6
-[  313.510307] nr_pcache_eviction: 446
-[  313.551909] nr_victim_eviction: 432
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span>  <span class="mi">313</span><span class="p">.</span><span class="mi">202348</span><span class="p">]</span> <span class="n">nr_pgfault</span><span class="p">:</span> <span class="mi">288070</span>
+<span class="p">[</span>  <span class="mi">313</span><span class="p">.</span><span class="mi">236772</span><span class="p">]</span> <span class="n">nr_pgfault_wp</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span>  <span class="mi">313</span><span class="p">.</span><span class="mi">271093</span><span class="p">]</span> <span class="n">nr_pgfault_wp_cow</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span>  <span class="mi">313</span><span class="p">.</span><span class="mi">309575</span><span class="p">]</span> <span class="n">nr_pgfault_wp_reuse</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span>  <span class="mi">313</span><span class="p">.</span><span class="mi">350139</span><span class="p">]</span> <span class="n">nr_pgfault_due_to_concurrent_eviction</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span>  <span class="mi">313</span><span class="p">.</span><span class="mi">409421</span><span class="p">]</span> <span class="n">nr_pcache_fill_from_memory</span><span class="p">:</span> <span class="mi">288052</span>
+<span class="p">[</span>  <span class="mi">313</span><span class="p">.</span><span class="mi">462465</span><span class="p">]</span> <span class="n">nr_pcache_fill_from_victim</span><span class="p">:</span> <span class="mi">6</span>
+<span class="p">[</span>  <span class="mi">313</span><span class="p">.</span><span class="mi">510307</span><span class="p">]</span> <span class="n">nr_pcache_eviction</span><span class="p">:</span> <span class="mi">446</span>
+<span class="p">[</span>  <span class="mi">313</span><span class="p">.</span><span class="mi">551909</span><span class="p">]</span> <span class="n">nr_victim_eviction</span><span class="p">:</span> <span class="mi">432</span>
 </pre></div>
 </td></tr></table></p>
 <p>6<sup>th</sup>, setting is the same, but with 4GB dataset, crashed:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -3200,7 +3893,7 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 </pre></div>
 </td></tr></table></p>
 <p>7<sup>th</sup> run, add debug info, does not seem that useful:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -3219,13 +3912,13 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 <span class="p">[</span><span class="mf">15756.096114</span><span class="p">]</span> <span class="nl">CPU</span><span class="p">:</span> <span class="mi">5</span> <span class="nl">PID</span><span class="p">:</span> <span class="mi">32</span> <span class="nl">Comm</span><span class="p">:</span> <span class="n">word_count</span><span class="o">-</span><span class="n">pt</span>
 </pre></div>
 </td></tr></table></p>
-<p>Tried several times, even with mmap/munmap debug option on, it crashed at the same point. Key is address <code class="codehilite">0x7ffefc638000</code>, and the mmap() related to it.</p>
+<p>Tried several times, even with mmap/munmap debug option on, it crashed at the same point. Key is address <code class="codehilite"><span class="mi">0</span><span class="n">x7ffefc638000</span></code>, and the mmap() related to it.</p>
 <p>Close to find the bug. Latest log in 0310-18.</p>
 <hr />
 <h2 id="0309-fri">03/09 Fri<a class="headerlink" href="#0309-fri" title="Permanent link">&para;</a></h2>
 <h3 id="find-bug-in-kmalloc">Find bug in kmalloc<a class="headerlink" href="#find-bug-in-kmalloc" title="Permanent link">&para;</a></h3>
 <p>Tried to print pud in every syscall and catch the criminal:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -3287,7 +3980,7 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 </pre></div>
 </td></tr></table></p>
 <p>After printing more in pcache_handle_fault, I found who corrupted pgtable:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -3358,17 +4051,17 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 <span class="p">[</span>  <span class="mf">664.482552</span><span class="p">]</span> <span class="n">do_syscall_64</span><span class="p">()</span><span class="o">:</span> <span class="n">leave</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff9001801ff000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff9001801ff000</span>
 </pre></div>
 </td></tr></table></p>
-<p>Then, try catching bug with address <code class="codehilite">0x7ffff7ff2fda</code> fault. Printing still being the most effective way to debug. :-)</p>
-<p>Dig further, I found pgtable corrupted after <code class="codehilite">pcache_add_rmap()</code>, namely after <code class="codehilite">alloc_pcache_rmap()</code>:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>Then, try catching bug with address <code class="codehilite"><span class="mi">0</span><span class="n">x7ffff7ff2fda</span></code> fault. Printing still being the most effective way to debug. :-)</p>
+<p>Dig further, I found pgtable corrupted after <code class="codehilite"><span class="n">pcache_add_rmap</span><span class="p">()</span></code>, namely after <code class="codehilite"><span class="n">alloc_pcache_rmap</span><span class="p">()</span></code>:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span> <span class="mf">5024.482570</span><span class="p">]</span> <span class="n">pcache_add_rmap</span><span class="p">()</span> <span class="mi">343</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff88207fcae000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff88207fcae000</span>
 <span class="p">[</span> <span class="mf">5024.613601</span><span class="p">]</span> <span class="n">alloc_pcache_rmap</span><span class="p">()</span><span class="o">:</span> <span class="nl">size</span><span class="p">:</span> <span class="mi">56</span><span class="p">,</span> <span class="nl">rmap</span><span class="p">:</span> <span class="n">ffff88207fccefd0</span>
 <span class="p">[</span> <span class="mf">5024.686396</span><span class="p">]</span> <span class="n">pcache_add_rmap</span><span class="p">()</span> <span class="mi">358</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff90207fcce000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff90207fcce000</span>
 </pre></div>
 </td></tr></table></p>
-<p>Well, <code class="codehilite"><span class="n">rmap</span><span class="o">:</span> <span class="n">ffff88207fccefd0</span></code> &amp; <code class="codehilite">ffff90207fcce000</code>, clearly
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p>Well, <code class="codehilite"><span class="n">rmap</span><span class="o">:</span> <span class="n">ffff88207fccefd0</span></code> &amp; <code class="codehilite"><span class="n">ffff90207fcce000</span></code>, clearly
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -3473,8 +4166,8 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 <span class="mi">89</span> <span class="p">}</span>
 </pre></div>
 </td></tr></table></p>
-<p>Narrow it down to <code class="codehilite">INIT_LIST_HEAD</code>:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p>Narrow it down to <code class="codehilite"><span class="n">INIT_LIST_HEAD</span></code>:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -3529,7 +4222,7 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 <li>tty/serial code has bug? Really ancient code.</li>
 </ul>
 <p>After add a few printk, IB seems stuck. And this happens just with few more lines of code! Why? code size matters?
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -3547,7 +4240,7 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 </pre></div>
 </td></tr></table></p>
 <p>Well, the following finding finally find the bug line. And it kind of explains the above bug. Probably kmalloc&rsquo;ed area has issues, so IB is touching wrong data. The following bug is related to kmalloc, the rmap is 56 bytes, and it should be within 1 single page, but it is not:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -3570,15 +4263,15 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 </span><span class="p">[</span> <span class="mf">1863.289265</span><span class="p">]</span> <span class="n">alloc_pcache_rmap</span><span class="p">()</span> <span class="mi">114</span> <span class="n">pgd</span> <span class="n">ffff88207fccf000</span><span class="p">,</span> <span class="n">pgd</span><span class="p">.</span><span class="n">cont_va</span> <span class="n">ffff90207fcce000</span><span class="p">,</span> <span class="n">pud_index</span><span class="o">=</span><span class="mh">0x0</span> <span class="nl">pud</span><span class="p">:</span> <span class="n">ffff90207fcce000</span>
 </pre></div>
 </td></tr></table></p>
-<p>Analysis: The @prev field in line 7 has address <code class="codehilite">ffff88207fccf000</code>, which happen to the pgd page (<code class="codehilite">pgd ffff88207fccf000</code>). Thus when we do <code class="codehilite">list-&gt;prev = list</code>, it writes to the first 8 bytes of pgd page, corrupts the original pgd entry. That is why we see a corrupted pgd entry (<code class="codehilite">ffff90207fcce000</code>).</p>
+<p>Analysis: The @prev field in line 7 has address <code class="codehilite"><span class="n">ffff88207fccf000</span></code>, which happen to the pgd page (<code class="codehilite"><span class="n">pgd</span> <span class="n">ffff88207fccf000</span></code>). Thus when we do <code class="codehilite"><span class="n">list</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">list</span></code>, it writes to the first 8 bytes of pgd page, corrupts the original pgd entry. That is why we see a corrupted pgd entry (<code class="codehilite"><span class="n">ffff90207fcce000</span></code>).</p>
 <p>This roots from kmalloc, which should not allocate such an object that cross two pages.</p>
 <hr />
 <h2 id="0308-thur">03/08 Thur<a class="headerlink" href="#0308-thur" title="Permanent link">&para;</a></h2>
-<p>Took several days off. This morning finished the porting of <code class="codehilite">wait4</code> and <code class="codehilite">waitid</code>, which actually has a lot code change. The concept and mechanism is fairly simple, but the legacy UNIX tradition make the implementation quite complex.</p>
+<p>Took several days off. This morning finished the porting of <code class="codehilite"><span class="n">wait4</span></code> and <code class="codehilite"><span class="n">waitid</span></code>, which actually has a lot code change. The concept and mechanism is fairly simple, but the legacy UNIX tradition make the implementation quite complex.</p>
 <p>Now, look back to finish debugging the pcache issue. It must be fixed this week.</p>
 <h3 id="python">python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h3>
-<p>Tried <code class="codehilite">python hello_world.py</code>, the program runs for a while and crashes at a deterministic point:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p>Tried <code class="codehilite"><span class="n">python</span> <span class="n">hello_world</span><span class="p">.</span><span class="n">py</span></code>, the program runs for a while and crashes at a deterministic point:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -3660,7 +4353,7 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 </pre></div>
 </td></tr></table></p>
 <p>Dig deeper:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -3706,7 +4399,7 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 </pre></div>
 </td></tr></table></p>
 <p>Print pgd and pud info, these three messages are related and the last one leads to panic:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -3758,7 +4451,7 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 <li>use omnigraffle to draw the whole workflow of pcache.</li>
 </ul>
 <p>Phoenix, word_count-seq, 4G dataset, 4GB pcache:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -3828,19 +4521,19 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
 <hr />
 <h2 id="0301-thur">03/01 Thur<a class="headerlink" href="#0301-thur" title="Permanent link">&para;</a></h2>
 <p>Weird.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
 5
 6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[43181.388400] p2m_fork(cpu5): I cur:24-word_count-seq new:25
-[43181.435341] p2m_fork(cpu5): O succeed cur:24-word_count-seq new:25
-[43181.436013] __pcache_do_fill_page(): I pid:24 tgid:24 address:0x4158d0 flags:0x150
-[43181.439246] __pcache_do_fill_page(): O pid:24 tgid:24 address:0x4158d0 flags:0x150 ret:0(OKAY) csum:0x9e8f028e
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span><span class="mi">43181</span><span class="p">.</span><span class="mi">388400</span><span class="p">]</span> <span class="n">p2m_fork</span><span class="p">(</span><span class="n">cpu5</span><span class="p">):</span> <span class="n">I</span> <span class="n">cur</span><span class="p">:</span><span class="mi">24</span><span class="o">-</span><span class="n">word_count</span><span class="o">-</span><span class="n">seq</span> <span class="k">new</span><span class="p">:</span><span class="mi">25</span>
+<span class="p">[</span><span class="mi">43181</span><span class="p">.</span><span class="mi">435341</span><span class="p">]</span> <span class="n">p2m_fork</span><span class="p">(</span><span class="n">cpu5</span><span class="p">):</span> <span class="n">O</span> <span class="n">succeed</span> <span class="n">cur</span><span class="p">:</span><span class="mi">24</span><span class="o">-</span><span class="n">word_count</span><span class="o">-</span><span class="n">seq</span> <span class="k">new</span><span class="p">:</span><span class="mi">25</span>
+<span class="p">[</span><span class="mi">43181</span><span class="p">.</span><span class="mi">436013</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">():</span> <span class="n">I</span> <span class="n">pid</span><span class="p">:</span><span class="mi">24</span> <span class="n">tgid</span><span class="p">:</span><span class="mi">24</span> <span class="n">address</span><span class="p">:</span><span class="mi">0</span><span class="n">x4158d0</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span><span class="n">x150</span>
+<span class="p">[</span><span class="mi">43181</span><span class="p">.</span><span class="mi">439246</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">():</span> <span class="n">O</span> <span class="n">pid</span><span class="p">:</span><span class="mi">24</span> <span class="n">tgid</span><span class="p">:</span><span class="mi">24</span> <span class="n">address</span><span class="p">:</span><span class="mi">0</span><span class="n">x4158d0</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span><span class="n">x150</span> <span class="n">ret</span><span class="p">:</span><span class="mi">0</span><span class="p">(</span><span class="n">OKAY</span><span class="p">)</span> <span class="n">csum</span><span class="p">:</span><span class="mi">0</span><span class="n">x9e8f028e</span>
 
-[43181.510534] __pcache_do_fill_page(): I pid:25 tgid:25 address:0x415000 flags:0x150
-[43181.517729] __pcache_do_fill_page(): O pid:25 tgid:25 address:0x415000 flags:0x150 ret:0(OKAY) csum:0xffff88029e8f028e
+<span class="p">[</span><span class="mi">43181</span><span class="p">.</span><span class="mi">510534</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">():</span> <span class="n">I</span> <span class="n">pid</span><span class="p">:</span><span class="mi">25</span> <span class="n">tgid</span><span class="p">:</span><span class="mi">25</span> <span class="n">address</span><span class="p">:</span><span class="mi">0</span><span class="n">x415000</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span><span class="n">x150</span>
+<span class="p">[</span><span class="mi">43181</span><span class="p">.</span><span class="mi">517729</span><span class="p">]</span> <span class="n">__pcache_do_fill_page</span><span class="p">():</span> <span class="n">O</span> <span class="n">pid</span><span class="p">:</span><span class="mi">25</span> <span class="n">tgid</span><span class="p">:</span><span class="mi">25</span> <span class="n">address</span><span class="p">:</span><span class="mi">0</span><span class="n">x415000</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span><span class="n">x150</span> <span class="n">ret</span><span class="p">:</span><span class="mi">0</span><span class="p">(</span><span class="n">OKAY</span><span class="p">)</span> <span class="n">csum</span><span class="p">:</span><span class="mi">0</span><span class="n">xffff88029e8f028e</span>
 </pre></div>
 </td></tr></table></p>
 <p>After all, it is TLB issue. I forgot to flush tlb after making the original pte read-only during fork. So the parent will be also to continue RW some pages, which should be process-private.</p>
@@ -3890,9 +4583,8 @@ So next I&rsquo;m going to try add a lock to ibapi, see if it is ib internal dea
     </span>
 </div>
     <script>var base_url = '../../..';</script>
-    <script src="../../../js/theme.js"></script>
-      <script src="../../../search/require.js"></script>
-      <script src="../../../search/search.js"></script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
 
 </body>
 </html>

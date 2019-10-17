@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -23,15 +23,16 @@
     var mkdocs_page_url = "/lego/kernel/profile_strace/";
   </script>
   
-  <script src="../../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../../js/highlight.pack.js"></script> 
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-143772066-1', 'auto');
       ga('send', 'pageview');
@@ -49,194 +50,692 @@
         <a href="../../.." class="icon icon-home"> Yizhou Shan's Home Page</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	  
-          
-		  
-  <ul class="" href="../../..">
-    <li class="toctree-l1">
-  <a class="" href="../../..">Home</a>
-  </li></ul>
-          
-		  
-  <p class="caption">Notes</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/paper_fpga/">FPGA Papers</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/cache_coherence/">Cache Coherence</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/benchmark/">Benchmarks</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/linux-articles/">Linux Articles</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/proc/">[Linux] Special Files</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/trace/">[Linux] Trace/Profile</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../misc/essential/">Essential</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../misc/cheatsheet/">Cheatsheet</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/general_log/0919">Log</a>
-        </li>
-  </ul>
-
-          
-		  
-  <p class="caption">FPGA</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/vivado_tricks/">Vivado Tricks</a>
-        </li>
-  </ul>
-
-          
-		  
-  <p class="caption">LegoOS-Dev</p>
-  <ul class="current">
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/log/TODO">Log</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/kernel/kconfig">Kernel</a>
-        </li>
-          <li class="toctree-l1 current">
-            
-  <a class="current" href="/lego/syscall/facts">Syscall</a>
-  <ul class="subnav">
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../../syscall/facts/">Facts</a>
-        </li>
-        <li class="toctree-l2 current 1">
-            
-  <a class="current" href="./">strace</a>
-  <ul class="subnav">
+	<ul class="tocbase current">
+    
+    
       
-  <li class="toctree-l2 current">
-  
-    <a class="current"  href="#lego-profile-strace">Lego Profile strace</a>
-  
-  
-    <ul class="">
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../..">Home</a>
+  </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#design">Design</a>
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">Notes</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/paper_fpga/">FPGA Papers</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/cache_coherence/">Cache Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/benchmark/">Benchmarks</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/linux-articles/">Linux Articles</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/proc/">[Linux] Special Files</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/trace/">[Linux] Trace/Profile</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../misc/essential/">Essential</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../misc/cheatsheet/">Cheatsheet</a>
+  </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0919/">Sep 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0819/">Aug 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0719/">Jul 2019</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">FPGA</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/vivado_tricks/">Vivado Tricks</a>
+  </li>
+        
+      </ul>
+    </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">LegoOS-Dev</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/TODO/">TODO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/misc/">MISC</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/test-note/">Test Script</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-09-2018/">Sep 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-08-2018/">Aug 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-04-2018/">April 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-03-2018/">March 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-02-2018/">Feb 2018</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Kernel</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../kconfig/">Kconfig</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../debug/">Debug</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../grub/">GRUB</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../profile/">Profile</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="./">Profile strace</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../profile_heatmap/">Profile heatmap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../profile_points/">Profile points</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../trampoline/">Trampoline</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../pagefault_disable/">Disable pgfault</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../stop_machine/">Stop machine</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../loader/">Program Loader</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../vDSO/">vDSO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../vfs/">Virtual File System</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../vm/">Process Virtual Memory</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../fpu/">x86 FPU</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../irq/">IRQ</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../net_thpool/">Network Thpool</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Syscall</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/facts/">Facts</a>
+  </li>
+        
+          
+
+
+  
+    
+    <li class="navtree toctree-l3 page current">
+      <a class="current" href="./">
+        strace
+      </a>
+    </li>
+    
+      
+
+  <li class="toctree-l3 current with-children">
+    <a href="#lego-profile-strace">
+      Lego Profile strace
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l3 current">
+    <ul class="subnav-l3 current">
+    
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#design">Design</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#details">Details</a>
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#details">Details</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#example-output">Example Output</a>
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#example-output">Example Output</a>
         </li>
     
     </ul>
-  
   </li>
 
-  </ul>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../../syscall/compat/">compat</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../../syscall/msync/">msync()</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../../syscall/mremap/">mremap()</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../../syscall/fork/">fork()</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../../syscall/getrusage/">getrusage()</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../../syscall/wait_and_exit/">wait4 and exit()</a>
-        </li>
-  </ul>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/pcache/config">Pcache</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/driver/pci">Driver</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/paper/nmp">Paper</a>
-        </li>
-  </ul>
 
+  
+        
           
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/compat/">compat</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/msync/">msync()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/mremap/">mremap()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/fork/">fork()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/getrusage/">getrusage()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/wait_and_exit/">wait4 and exit()</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Pcache</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/config/">Config</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/sweep/">Sweep</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/tlb/">TLB Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/pgtable-lock/">PageTable Lock</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/victim/">Victim Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/virtual_cache/">Virtual Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/rmap/">Reverse Mapping</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/evict_and_ref/">Evict and Refcount</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/smp_design/">SMP Design</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/replication/">Replication</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Driver</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../driver/pci/">PCI</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../driver/ib/">Infiniband</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Paper</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/nmp/">NMP</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/processor_oom/">Processor OOM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/genz/">Gen-Z</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/replication/">Replication</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/related/">Related</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
       </div>
       &nbsp;
     </nav>
@@ -258,11 +757,11 @@
     
       
         
-          <li>LegoOS-Dev &raquo;</li>
+          <li>Syscall &raquo;</li>
         
       
         
-          <li>Syscall &raquo;</li>
+          <li>LegoOS-Dev &raquo;</li>
         
       
     
@@ -277,7 +776,7 @@
             <div class="section">
               
                 <h1 id="lego-profile-strace">Lego Profile strace<a class="headerlink" href="#lego-profile-strace" title="Permanent link">&para;</a></h1>
-<p>Lego has a built-in kernel-version syscall tracer, similar to <code class="codehilite">strace</code> utility in the user space. Below we will just call our Lego&rsquo;s syscall tracer as strace for simplicity.</p>
+<p>Lego has a built-in kernel-version syscall tracer, similar to <code class="codehilite"><span class="n">strace</span></code> utility in the user space. Below we will just call our Lego&rsquo;s syscall tracer as strace for simplicity.</p>
 <h2 id="design">Design<a class="headerlink" href="#design" title="Permanent link">&para;</a></h2>
 <p>There are essentially three important metrics to track for each syscall</p>
 <ul>
@@ -287,24 +786,24 @@
 </ul>
 <p>Besides, there is another important design decision: 1) should all threads within a process share one copy of data to maintain bookkeeping, or 2) should each thread do its bookkeeping on its own set of data? Our answer is 2). For two reasons:</p>
 <ul>
-<li>Performance: set of counters are <code class="codehilite">atomic_t</code>, updating is performed by a locked instruction. The first solution will add huge overhead while tracing heavily multithreaded applications.</li>
+<li>Performance: set of counters are <code class="codehilite"><span class="n">atomic_t</span></code>, updating is performed by a locked instruction. The first solution will add huge overhead while tracing heavily multithreaded applications.</li>
 <li>Simplicity: in order to track the latency of each syscall, we need to know when it enter and when it finish. As threads come and go, it is hard to maintain such information. To make it worse, a preemptable kernel, or schedule-related syscalls will move threads around cores.</li>
 </ul>
-<p>Below is our simple design, where each thread has a <code class="codehilite">struct strace_info</code>, which include a set of counters for each syscall. All <code class="codehilite">strace_info</code> within a process are chained together by a doubly-linked list.</p>
+<p>Below is our simple design, where each thread has a <code class="codehilite"><span class="n">struct</span> <span class="n">strace_info</span></code>, which include a set of counters for each syscall. All <code class="codehilite"><span class="n">strace_info</span></code> within a process are chained together by a doubly-linked list.</p>
 <p><img alt="img_1" src="../strace_1.jpg" /></p>
-<p>When we want to look at the strace statistic numbers, we need to <code class="codehilite">accumulate</code> counters from all threads within a process, including those dead threads. We do the <code class="codehilite">accumulate</code> when the last thread of this process is going to exit.</p>
-<p>The benefit of doubly-linked <code class="codehilite">strace_info</code> is we can walk through the list starting anywhere. There is really no list head here. In fact, everyone can be the head. See how we respect equality? Besides, even if <code class="codehilite">task_struct</code> is reaped, <code class="codehilite">strace_info</code> is still there and linked.</p>
-<p>For example, assume thread_3 has a SIGSEGV, and did a <code class="codehilite">zap_other_threads</code>. And he is the last standing live thread of this process. When it is going to exit, it will accumulate all the statistic and do the necessary printing.
+<p>When we want to look at the strace statistic numbers, we need to <code class="codehilite"><span class="n">accumulate</span></code> counters from all threads within a process, including those dead threads. We do the <code class="codehilite"><span class="n">accumulate</span></code> when the last thread of this process is going to exit.</p>
+<p>The benefit of doubly-linked <code class="codehilite"><span class="n">strace_info</span></code> is we can walk through the list starting anywhere. There is really no list head here. In fact, everyone can be the head. See how we respect equality? Besides, even if <code class="codehilite"><span class="n">task_struct</span></code> is reaped, <code class="codehilite"><span class="n">strace_info</span></code> is still there and linked.</p>
+<p>For example, assume thread_3 has a SIGSEGV, and did a <code class="codehilite"><span class="n">zap_other_threads</span></code>. And he is the last standing live thread of this process. When it is going to exit, it will accumulate all the statistic and do the necessary printing.
 <img alt="img_2" src="../strace_2.jpg" /></p>
 <h2 id="details">Details<a class="headerlink" href="#details" title="Permanent link">&para;</a></h2>
 <p>There are essentially three hooks in core kernel:</p>
 <ul>
-<li><strong>syscall</strong>: before and after <code class="codehilite">sys_call_table</code></li>
-<li><strong>fork/clone</strong>: create <code class="codehilite">strace_info</code> for each thread</li>
+<li><strong>syscall</strong>: before and after <code class="codehilite"><span class="n">sys_call_table</span></code></li>
+<li><strong>fork/clone</strong>: create <code class="codehilite"><span class="n">strace_info</span></code> for each thread</li>
 <li><strong>do_exit()</strong>: when group_dead(signal-&gt;live==1), accumulate</li>
 </ul>
 <h2 id="example-output">Example Output<a class="headerlink" href="#example-output" title="Permanent link">&para;</a></h2>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -410,9 +909,8 @@ Last Updated: April 05, 2018</p>
     </span>
 </div>
     <script>var base_url = '../../..';</script>
-    <script src="../../../js/theme.js"></script>
-      <script src="../../../search/require.js"></script>
-      <script src="../../../search/search.js"></script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
 
 </body>
 </html>

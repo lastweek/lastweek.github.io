@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Yizhou Shan">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Restless Dumb Memory Assassinate (RDMA) - Yizhou Shan's Home Page</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Restless Dumb Memory Assassinate (RDMA)";
+    var mkdocs_page_input_path = "rdma/rdma.md";
+    var mkdocs_page_url = "/rdma/rdma/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-143772066-1', 'auto');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Yizhou Shan's Home Page</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="tocbase current">
+    
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../..">Home</a>
+  </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">Notes</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/paper_fpga/">FPGA Papers</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/cache_coherence/">Cache Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/benchmark/">Benchmarks</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/paper_perf_shadows/">Perf Shadows</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/linux-articles/">Linux Articles</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/proc/">[Linux] Special Files</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/trace/">[Linux] Trace/Profile</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/userfaultfd/">[Linux] Userfaultfd</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/xperf/">[Linux] User/kern Cross Perf</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/kvm-basic/">[Linux] KVM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../misc/essential/">Essential</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../misc/cheatsheet/">Cheatsheet</a>
+  </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../general_log/0919/">Sep 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../general_log/0819/">Aug 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../general_log/0719/">Jul 2019</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">FPGA</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../fpga/vivado_tricks/">Vivado Tricks</a>
+  </li>
+        
+      </ul>
+    </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">LegoOS-Dev</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/TODO/">TODO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/misc/">MISC</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/test-note/">Test Script</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/log-09-2018/">Sep 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/log-08-2018/">Aug 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/log-04-2018/">April 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/log-03-2018/">March 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/log-02-2018/">Feb 2018</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Kernel</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/kconfig/">Kconfig</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/debug/">Debug</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/grub/">GRUB</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/profile/">Profile</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/profile_strace/">Profile strace</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/profile_heatmap/">Profile heatmap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/profile_points/">Profile points</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/trampoline/">Trampoline</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/pagefault_disable/">Disable pgfault</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/stop_machine/">Stop machine</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/loader/">Program Loader</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/vDSO/">vDSO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/vfs/">Virtual File System</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/vm/">Process Virtual Memory</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/fpu/">x86 FPU</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/irq/">IRQ</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/net_thpool/">Network Thpool</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Syscall</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/syscall/facts/">Facts</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/profile_strace/">strace</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/syscall/compat/">compat</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/syscall/msync/">msync()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/syscall/mremap/">mremap()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/syscall/fork/">fork()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/syscall/getrusage/">getrusage()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/syscall/wait_and_exit/">wait4 and exit()</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Pcache</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/config/">Config</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/sweep/">Sweep</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/tlb/">TLB Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/pgtable-lock/">PageTable Lock</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/victim/">Victim Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/virtual_cache/">Virtual Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/rmap/">Reverse Mapping</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/evict_and_ref/">Evict and Refcount</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/smp_design/">SMP Design</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/replication/">Replication</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Driver</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/driver/pci/">PCI</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/driver/ib/">Infiniband</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Paper</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/paper/nmp/">NMP</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/paper/processor_oom/">Processor OOM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/paper/genz/">Gen-Z</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/paper/replication/">Replication</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/paper/related/">Related</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Yizhou Shan's Home Page</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Restless Dumb Memory Assassinate (RDMA)</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="restless-dumb-memory-assassinate-rdma">Restless Dumb Memory Assassinate (RDMA)<a class="headerlink" href="#restless-dumb-memory-assassinate-rdma" title="Permanent link">&para;</a></h1>
+<h2 id="q">Q<a class="headerlink" href="#q" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Atomic Operations: what exactly does the atomic mean in this context?</li>
+<li>RPC: SEND or RDMA Write with Immediate, which is better and why?</li>
+</ul>
+<h2 id="except">Except<a class="headerlink" href="#except" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code class="codehilite"><span class="n">One</span><span class="o">-</span><span class="n">sided</span> <span class="n">v</span><span class="p">.</span><span class="n">s</span><span class="p">.</span> <span class="n">Two</span> <span class="n">sided</span></code><ul>
+<li>SEND and RECV are two sided as the CPU at the responder needs to post a RECV in order for an incoming SEND to be processed. Unlike memory verbs, the responder&rsquo;s CPU is involved. One thing I do like to note is: the actual data transfer will not bother responder&rsquo;s CPU, the generated CQE will not bother it as well, only the pre-post action need CPU involvement. (HERD)</li>
+</ul>
+</li>
+<li><code class="codehilite"><span class="n">CQE</span> <span class="n">Generation</span></code><ul>
+<li>Requester side: On completing a verb, the requester&rsquo;s NIC optionally signals completion by DMA-ing a completion entry (CQE) to a completion queue (CQ) associated with the QP. Of course, some WQE can be un-signaled.</li>
+<li>Responder side: NIC must DMA a CQE for completed RECV. (So I think this will not involve responder&rsquo;s CPU, right?)</li>
+</ul>
+</li>
+</ul>
+<h2 id="ib-specification">IB Specification<a class="headerlink" href="#ib-specification" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>The QP is the <strong>virtual interface that the hardware provides to an IBA consumer</strong>; it serves as a virtual communication port for the consumer.</p>
+</li>
+<li>
+<p>Memory Region, L_Key, R_Key (sec 3.5.3/3.5.4)</p>
+<ul>
+<li>Used in RDMA requests.</li>
+<li>This is key in many design choices.</li>
+</ul>
+</li>
+<li>
+<p>Addressing (sec 3.5.10 and sec 4)</p>
+<ul>
+<li>Each QP has as queue pair number (<strong>QPN</strong>) assigned by the channel
+adapter which uniquely identifies the QP <strong>within the channel adapter</strong>.</li>
+<li>QPN GID, LID stuff</li>
+</ul>
+</li>
+<li>
+<p><mark class="critic"><strong>IBA Semantic (sec 3.6)</strong></mark></p>
+<ul>
+<li>Channel (Send/Receive), classical I/O channel<ul>
+<li>The message transmitted on the wire only names the destination’s QP, the message does not describe where in the destination consumer’s memory space the message content will be written. Instead, the destination QP contains addressing information used to deliver the message to the appropriate memory location.</li>
+<li>Pre-Post Receive Buffer (a channel semantic operation for SEND from remote.)</li>
+</ul>
+</li>
+<li>Memory (RDMA)<ul>
+<li>With memory semantics the initiating party directly reads or writes the virtual address space of a remote node. The remote party needs only communicate the location of the buffer; it is not involved with the actual transfer of the data. Hence, this style is sometimes referred to as single-ended communications.</li>
+</ul>
+</li>
+<li>L_Key and R_Key used to validate access permission.</li>
+</ul>
+</li>
+<li>
+<p>Immediate Data</p>
+<ul>
+<li>RDMA Write and SEND can carry <strong>4 bytes of Immediate data</strong>.</li>
+<li>sec 3.6 SEND can carry Immediate data for each send message. If included, the Immediate data is contained within an additional header field on the last packet of the SEND Operation (sec 9.4.1 SEND Operation).</li>
+<li>sec 3.7.4 <strong>An RDMA Write with immediate data</strong> will consume a receive WQE even though the QP did not place any data into the receive buffer since the IMMDT is placed in a CQE that references the receive WQE and indicates that the WQE has completed.</li>
+<li>sec 9.4.3 If specified by the verbs layer, Immediate data is included in the <strong>last packet of an RDMA WRITE message</strong>. The Immediate data is not written to the target virtual address range, but is passed to the client after the last RDMA WRITE packet is successfully processed.</li>
+<li>sec 10.7.2.2 C10-86: The responder’s Receive Queue shall consume a Work Request when Immediate Data is specified in a successfully completed incoming RDMA Write.</li>
+</ul>
+</li>
+<li>
+<p>QP transport services</p>
+<ul>
+<li>RC</li>
+<li>RD</li>
+<li>UC</li>
+<li>UD</li>
+</ul>
+</li>
+<li>
+<p>IB Layers</p>
+<ul>
+<li>The <strong>network</strong> and <strong>link</strong> protocols deliver a packet to the desired destination. The <strong>transport</strong> portion of the packet delivers the packet to the proper QP and instructs the QP how to process the packet’s data.</li>
+<li>Upper Layers (Consumer Operations). <strong>This is the layer most people focus on and try to optimize, right?</strong></li>
+</ul>
+</li>
+<li>
+<p><mark class="critic"><strong>IB Transaction Flow (sec 3.8)</strong></mark></p>
+<ul>
+<li>Describe the general flow. A nice read.</li>
+<li>So the WQE of RDMA Write/Read, the sender side&rsquo;s driver will create a CQE when sender get ACK from receiver? And that marks the end of a RDMA Read/Write? For RC, I think so. According to: <strong>When the originator receives an acknowledgment, it creates a CQE on the CQ and retires the WQE from the send queue.</strong></li>
+<li><strong>sec 3.2.1 Each time the remote consumer successfully executes a SEND operation, the hardware takes the next entry from the receive queue, places the received data in the memory location specified in that receive WQE, and places a CQE on the completion queue indicating to the consumer that the receive operation has completed. Thus the execution of a SEND operation causes a receive queue operation at the remote consumer.</strong> That is one important claim, the receiver side can poll the CQ to know if it has received a SEND or not.</li>
+</ul>
+</li>
+<li>
+<p>IB I/O Operations (sec 3.9)</p>
+<ul>
+<li>Interesting. So, instead of a Host Channel Adapter (HCA), we have Target Channel Adapter (TCA), which is attached to a IO device such as SSD. If we look from the IB layered architecture, everything below <strong>upper level protocols</strong> remain the same. In upper level protocols, which used to be Consumer, now is I/O controller.</li>
+<li>Do we have this kind of hardware on market? Fabric over NVMe?</li>
+</ul>
+</li>
+<li>
+<p>Transport Layer (sec 9)</p>
+<ul>
+<li>The transport header contains the information required by the endnode to complete the specified operation, e.g. delivery of data payload to the appropriate entity within the endnode such as <strong>a thread</strong> or <strong>IO controller</strong>.</li>
+<li>For a host platform, <strong>the client of the transport layer is the Verbs software layer</strong>. The client posts buffers or commands to these queues and hardware transfers data from or into the buffers.</li>
+<li>Reliable transport has response (acknowledge). Unreliable transport does not use acknowledgment messages.</li>
+<li>SEND can carry <strong>4 bytes of Immediate data</strong> for each send message. If included, the Immediate data is contained within an additional header field on the last packet of the SEND Operation (sec 9.4.1 SEND Operation).</li>
+<li><strong>WQ Packet Ordering Stuff</strong> (sec 9.5 Transaction Ordering): A requester shall transmit request messages in the order that the Work Queue Elements (WQEs) were posted.</li>
+<li>Reliable Service (sec 9.7)<ul>
+<li>Before it can consider a WQE completed, the requester must wait for the necessary response(s) to arrive. If the requester requires an explicit response such that it can complete a given WQE, then the requester shall be responsible to take the necessary steps to ensure that the needed response is forthcoming.</li>
+</ul>
+</li>
+<li>This section is still too much details on hardware behavior. But Mel must have more detailed stuff in house.</li>
+</ul>
+</li>
+<li>
+<p>Software Transport interface (sec 10)</p>
+<ul>
+<li>I think this section is trying to describe the various software concepts, such as HCA, Protection domain, and so on. The actual manipulations are carried out by Verbs, which are described in sec 11.</li>
+<li>A QP, which is a component of the channel interface, is NOT directly accessible by the Verbs consumer and can only be manipulated through the use of Verbs.</li>
+<li>A CQ can be used to multiplex work completions from multiple work queues across queue pairs on the same HCA.</li>
+<li>Shared Receive Queue (sec 10.2.9) (Is it used in Lego?)</li>
+<li>Memory Management (sec 10.6)<ul>
+<li>Memory Region</li>
+</ul>
+</li>
+<li>Able to register a <strong>virtually contiguous address range</strong>, even though the physical pages are not contiguous.</li>
+<li>Able to register a <strong>physically contiguous address range</strong>.</li>
+<li>Prior to invoking a Register Physical Memory Region or Reregister Physical Memory Region Verb, the Consumer should <strong>pin down</strong> in physical memory every physical buffer within the Memory Region. (But now Mellanox supports pgfault in their products, right?)</li>
+<li>Work Request (sec 10.7 and sec 10.8)<ul>
+<li>Signaled Completion and Unsignaled Completion (sec 10.7.3.1) Finally meet these two description in tech documents. In Lego, we used to use unsignaled (polling), and then we change that to signaled handler.</li>
+</ul>
+</li>
+<li>Submitting a list of Work Requests.. (10.8.2.1)</li>
+<li>.. <strong>the HCA is notified that one or more WQEs are ready to be processed.</strong> What is the mechanism of this notification? How does HCA got notified? HCA polling, or driver write something into HCA?</li>
+<li>Completion Queue Operations: poll a specified CQ for a Work Completion, that is <code class="codehilite"><span class="n">ib_poll_cq</span><span class="p">()</span></code>! (sec 11.4.2)</li>
+</ul>
+</li>
+<li>
+<p>SG list</p>
+<ul>
+<li>Based on discussion with Shin-Yeh and Yiying.</li>
+<li>x3: if a sender uses one-sided RDMA write/read to send a sg-list to remote, the receiver side can only receive a consecutive memory buffer.</li>
+<li>x3: if a sender uses two-sided RDMA to SEND a sg-list to remote, the receiver can get a sg-list of buffers by pre-post RECV to receive queue.</li>
+<li>x4 and x5: looks like the User-Mode Memory Registration (UMR) can help to solve the one-sided RDMA issue (not verified).</li>
+</ul>
+</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

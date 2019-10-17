@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -23,15 +23,16 @@
     var mkdocs_page_url = "/lego/syscall/fork/";
   </script>
   
-  <script src="../../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../../js/highlight.pack.js"></script> 
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-143772066-1', 'auto');
       ga('send', 'pageview');
@@ -49,188 +50,817 @@
         <a href="../../.." class="icon icon-home"> Yizhou Shan's Home Page</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	  
-          
-		  
-  <ul class="" href="../../..">
-    <li class="toctree-l1">
-  <a class="" href="../../..">Home</a>
-  </li></ul>
-          
-		  
-  <p class="caption">Notes</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/paper_fpga/">FPGA Papers</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/cache_coherence/">Cache Coherence</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/benchmark/">Benchmarks</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/linux-articles/">Linux Articles</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/proc/">[Linux] Special Files</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/trace/">[Linux] Trace/Profile</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../misc/essential/">Essential</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../misc/cheatsheet/">Cheatsheet</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/general_log/0919">Log</a>
-        </li>
-  </ul>
-
-          
-		  
-  <p class="caption">FPGA</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/vivado_tricks/">Vivado Tricks</a>
-        </li>
-  </ul>
-
-          
-		  
-  <p class="caption">LegoOS-Dev</p>
-  <ul class="current">
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/log/TODO">Log</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/kernel/kconfig">Kernel</a>
-        </li>
-          <li class="toctree-l1 current">
-            
-  <a class="current" href="/lego/syscall/facts">Syscall</a>
-  <ul class="subnav">
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../facts/">Facts</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../../kernel/profile_strace/">strace</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../compat/">compat</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../msync/">msync()</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../mremap/">mremap()</a>
-        </li>
-        <li class="toctree-l2 current 1">
-            
-  <a class="current" href="./">fork()</a>
-  <ul class="subnav">
+	<ul class="tocbase current">
+    
+    
       
-  <li class="toctree-l2 current">
-  
-  
-    <ul class="">
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../..">Home</a>
+  </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#memory-manager">Memory Manager</a>
-        </li>
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">Notes</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/paper_fpga/">FPGA Papers</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/cache_coherence/">Cache Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/benchmark/">Benchmarks</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/linux-articles/">Linux Articles</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/proc/">[Linux] Special Files</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/trace/">[Linux] Trace/Profile</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../misc/essential/">Essential</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../misc/cheatsheet/">Cheatsheet</a>
+  </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0919/">Sep 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0819/">Aug 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0719/">Jul 2019</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#processor-manager">Processor Manager</a>
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">FPGA</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/vivado_tricks/">Vivado Tricks</a>
+  </li>
+        
+      </ul>
+    </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">LegoOS-Dev</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/TODO/">TODO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/misc/">MISC</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/test-note/">Test Script</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-09-2018/">Sep 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-08-2018/">Aug 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-04-2018/">April 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-03-2018/">March 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-02-2018/">Feb 2018</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Kernel</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/kconfig/">Kconfig</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/debug/">Debug</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/grub/">GRUB</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile/">Profile</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile_strace/">Profile strace</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile_heatmap/">Profile heatmap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile_points/">Profile points</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/trampoline/">Trampoline</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/pagefault_disable/">Disable pgfault</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/stop_machine/">Stop machine</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/loader/">Program Loader</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/vDSO/">vDSO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/vfs/">Virtual File System</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/vm/">Process Virtual Memory</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/fpu/">x86 FPU</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/irq/">IRQ</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/net_thpool/">Network Thpool</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Syscall</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../facts/">Facts</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile_strace/">strace</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../compat/">compat</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../msync/">msync()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../mremap/">mremap()</a>
+  </li>
+        
+          
+
+
+  
+    
+    <li class="navtree toctree-l3 page current">
+      <a class="current" href="./">
+        fork()
+      </a>
+    </li>
+    
+      
+
+  <li class="toctree-l3 current with-children">
+    <a href="#fork">
+      fork()
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l3 current">
+    <ul class="subnav-l3 current">
+    
+      
+          
+
+  <li class="toctree-l4 current with-children">
+    <a href="#memory-manager">
+      Memory Manager
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l4 current">
+    <ul class="subnav-l4 current">
+    
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#duplicate-vm-free-pool">Duplicate VM Free Pool</a>
         </li>
     
     </ul>
-  
   </li>
 
-  </ul>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../getrusage/">getrusage()</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../wait_and_exit/">wait4 and exit()</a>
-        </li>
-  </ul>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/pcache/config">Pcache</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/driver/pci">Driver</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/paper/nmp">Paper</a>
-        </li>
-  </ul>
-
+      
+    
+      
           
+
+  <li class="toctree-l4">
+    <a href="#processor-manager">
+      Processor Manager
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l4">
+    <ul class="subnav-l4 toc-hidden">
+    
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#entry-points">Entry Points</a>
+        </li>
+    
+      
+          
+
+  <li class="toctree-l5">
+    <a href="#do_fork">
+      do_fork()
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l5">
+    <ul class="subnav-l5 toc-hidden">
+    
+      
+          
+
+  <li class="toctree-l6 current with-children">
+    <a href="#copy_process">
+      copy_process()
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l6 current">
+    <ul class="subnav-l6 current">
+    
+      
+        <li class="toctree-l7">
+          <a class="toctree-l8" href="#sanity-checking">Sanity Checking</a>
+        </li>
+    
+      
+        <li class="toctree-l7">
+          <a class="toctree-l8" href="#dup_task_struct">dup_task_struct()</a>
+        </li>
+    
+      
+        <li class="toctree-l7">
+          <a class="toctree-l8" href="#copy_mm">copy_mm()</a>
+        </li>
+    
+      
+        <li class="toctree-l7">
+          <a class="toctree-l8" href="#duplicate-pcache-data">Duplicate pcache data</a>
+        </li>
+    
+      
+        <li class="toctree-l7">
+          <a class="toctree-l8" href="#setup_sched_fork">setup_sched_fork()</a>
+        </li>
+    
+      
+        <li class="toctree-l7">
+          <a class="toctree-l8" href="#allocate-new-pid">Allocate new pid</a>
+        </li>
+    
+      
+        <li class="toctree-l7">
+          <a class="toctree-l8" href="#settidcleartid">SETTID/CLEARTID</a>
+        </li>
+    
+      
+        <li class="toctree-l7">
+          <a class="toctree-l8" href="#copy_thread_tls">copy_thread_tls()</a>
+        </li>
+    
+    </ul>
+  </li>
+
+      
+    
+      
+        <li class="toctree-l6">
+          <a class="toctree-l7" href="#p2m_fork">p2m_fork()</a>
+        </li>
+    
+      
+        <li class="toctree-l6">
+          <a class="toctree-l7" href="#wake_up_new_task">wake_up_new_task()</a>
+        </li>
+    
+    </ul>
+  </li>
+
+      
+    
+    </ul>
+  </li>
+
+      
+    
+    </ul>
+  </li>
+
+
+  
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../getrusage/">getrusage()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../wait_and_exit/">wait4 and exit()</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Pcache</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/config/">Config</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/sweep/">Sweep</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/tlb/">TLB Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/pgtable-lock/">PageTable Lock</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/victim/">Victim Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/virtual_cache/">Virtual Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/rmap/">Reverse Mapping</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/evict_and_ref/">Evict and Refcount</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/smp_design/">SMP Design</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/replication/">Replication</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Driver</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../driver/pci/">PCI</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../driver/ib/">Infiniband</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Paper</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/nmp/">NMP</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/processor_oom/">Processor OOM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/genz/">Gen-Z</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/replication/">Replication</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/related/">Related</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
       </div>
       &nbsp;
     </nav>
@@ -252,11 +882,11 @@
     
       
         
-          <li>LegoOS-Dev &raquo;</li>
+          <li>Syscall &raquo;</li>
         
       
         
-          <li>Syscall &raquo;</li>
+          <li>LegoOS-Dev &raquo;</li>
         
       
     
@@ -272,10 +902,10 @@
               
                 <h1 id="fork">fork()<a class="headerlink" href="#fork" title="Permanent link">&para;</a></h1>
 <h2 id="memory-manager">Memory Manager<a class="headerlink" href="#memory-manager" title="Permanent link">&para;</a></h2>
-<p>We need to duplicate the address space in the memory manager side. Follow the traditional <code class="codehilite">fork()</code> semantic, both the existing and newly created address space will be write-protected.</p>
-<p>Since we have the flexibility to implement any VM organization, we should be careful while duplicating the address space. Currently, we are using page-based VM, thus the duplicating is basically creating a new <code class="codehilite">pgd</code> and copy existing pgtables, and further downgrade permission to read-only. This is now performed by <code class="codehilite">lego_copy_page_range()</code>.</p>
-<p>The final write-protect is performed by <code class="codehilite">lego_copy_one_pte()</code>:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p>We need to duplicate the address space in the memory manager side. Follow the traditional <code class="codehilite"><span class="n">fork</span><span class="p">()</span></code> semantic, both the existing and newly created address space will be write-protected.</p>
+<p>Since we have the flexibility to implement any VM organization, we should be careful while duplicating the address space. Currently, we are using page-based VM, thus the duplicating is basically creating a new <code class="codehilite"><span class="n">pgd</span></code> and copy existing pgtables, and further downgrade permission to read-only. This is now performed by <code class="codehilite"><span class="n">lego_copy_page_range</span><span class="p">()</span></code>.</p>
+<p>The final write-protect is performed by <code class="codehilite"><span class="n">lego_copy_one_pte</span><span class="p">()</span></code>:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -308,19 +938,19 @@
 <p>Boring implementation details in the processor manager side.</p>
 <h3 id="entry-points">Entry Points<a class="headerlink" href="#entry-points" title="Permanent link">&para;</a></h3>
 <ul>
-<li><code class="codehilite">fork()</code></li>
-<li><code class="codehilite">vfork()</code></li>
-<li><code class="codehilite">clone()</code></li>
-<li><code class="codehilite">kernel_thread()</code></li>
+<li><code class="codehilite"><span class="n">fork</span><span class="p">()</span></code></li>
+<li><code class="codehilite"><span class="n">vfork</span><span class="p">()</span></code></li>
+<li><code class="codehilite"><span class="n">clone</span><span class="p">()</span></code></li>
+<li><code class="codehilite"><span class="n">kernel_thread</span><span class="p">()</span></code></li>
 </ul>
-<p>All of them land on <code class="codehilite">do_fork()</code>, which is Lego&rsquo;s main fork function.</p>
+<p>All of them land on <code class="codehilite"><span class="n">do_fork</span><span class="p">()</span></code>, which is Lego&rsquo;s main fork function.</p>
 <h3 id="do_fork">do_fork()<a class="headerlink" href="#do_fork" title="Permanent link">&para;</a></h3>
-<p>There are mainly three parts within <code class="codehilite">do_fork()</code>: <code class="codehilite">1)</code> <code class="codehilite">copy_process()</code>, which duplicates a new task based on <code class="codehilite">current</code>, including allocate new kernel stack, new task_struct, increase mm reference counter, etc. <code class="codehilite">2)</code> If we are creating a new process, then tell global monitor or memory manager to let them update bookkeeping and create corresponding data structures. <code class="codehilite">3)</code> <code class="codehilite">wake_up_new_task()</code>, which gives away the newly created task to local scheduler.</p>
+<p>There are mainly three parts within <code class="codehilite"><span class="n">do_fork</span><span class="p">()</span></code>: <code class="codehilite"><span class="mi">1</span><span class="p">)</span></code> <code class="codehilite"><span class="n">copy_process</span><span class="p">()</span></code>, which duplicates a new task based on <code class="codehilite"><span class="k">current</span></code>, including allocate new kernel stack, new task_struct, increase mm reference counter, etc. <code class="codehilite"><span class="mi">2</span><span class="p">)</span></code> If we are creating a new process, then tell global monitor or memory manager to let them update bookkeeping and create corresponding data structures. <code class="codehilite"><span class="mi">3</span><span class="p">)</span></code> <code class="codehilite"><span class="n">wake_up_new_task</span><span class="p">()</span></code>, which gives away the newly created task to local scheduler.</p>
 <h4 id="copy_process">copy_process()<a class="headerlink" href="#copy_process" title="Permanent link">&para;</a></h4>
-<p>The routine is kind of boring. It do a lot dirty work to copy information from calling thread to new thread. The most important data structures of course are <code class="codehilite">task_struct</code>, <code class="codehilite">mm_sturct</code>, <code class="codehilite">sighand</code>, and so on. This section only talks about few of them, and leave others to readers who are interested.</p>
+<p>The routine is kind of boring. It do a lot dirty work to copy information from calling thread to new thread. The most important data structures of course are <code class="codehilite"><span class="n">task_struct</span></code>, <code class="codehilite"><span class="n">mm_sturct</span></code>, <code class="codehilite"><span class="n">sighand</span></code>, and so on. This section only talks about few of them, and leave others to readers who are interested.</p>
 <h5 id="sanity-checking">Sanity Checking<a class="headerlink" href="#sanity-checking" title="Permanent link">&para;</a></h5>
-<p>Mainly check if <code class="codehilite">clone_flags</code> are passed properly. For example, if user is creating a new thread, that implies certain data structures are shared, cause new thread belongs to the same process with the calling thread. If <code class="codehilite">CLONE_THREAD</code> is passed, then <code class="codehilite">CLONE_SIGHAND</code>, <code class="codehilite">CLONE_VM</code>, and so on must be set as well.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p>Mainly check if <code class="codehilite"><span class="n">clone_flags</span></code> are passed properly. For example, if user is creating a new thread, that implies certain data structures are shared, cause new thread belongs to the same process with the calling thread. If <code class="codehilite"><span class="n">CLONE_THREAD</span></code> is passed, then <code class="codehilite"><span class="n">CLONE_SIGHAND</span></code>, <code class="codehilite"><span class="n">CLONE_VM</span></code>, and so on must be set as well.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -350,8 +980,8 @@
 </pre></div>
 </td></tr></table></p>
 <h5 id="dup_task_struct">dup_task_struct()<a class="headerlink" href="#dup_task_struct" title="Permanent link">&para;</a></h5>
-<p>Two main things: 1) duplicate a new <code class="codehilite">task_struct</code>, 2) duplicate a new kernel stack. x86 is just a weird architecture, the size of <code class="codehilite">task_struct</code> depends on the size of fpu. So the allocation and duplication need to callback to x86-specific code to duplicate the task_struct and fpu info.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>Two main things: 1) duplicate a new <code class="codehilite"><span class="n">task_struct</span></code>, 2) duplicate a new kernel stack. x86 is just a weird architecture, the size of <code class="codehilite"><span class="n">task_struct</span></code> depends on the size of fpu. So the allocation and duplication need to callback to x86-specific code to duplicate the task_struct and fpu info.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -364,8 +994,8 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-The stack duplication is fairly simple, just copy everything from the old stack to new stack. Of course, it needs to setup the <code class="codehilite">thread_info</code> to points to this new thread, so the <code class="codehilite">current</code> macro will work.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+The stack duplication is fairly simple, just copy everything from the old stack to new stack. Of course, it needs to setup the <code class="codehilite"><span class="n">thread_info</span></code> to points to this new thread, so the <code class="codehilite"><span class="k">current</span></code> macro will work.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -383,8 +1013,8 @@ The stack duplication is fairly simple, just copy everything from the old stack 
 </pre></div>
 </td></tr></table></p>
 <h5 id="copy_mm">copy_mm()<a class="headerlink" href="#copy_mm" title="Permanent link">&para;</a></h5>
-<p>This is where threads within a process will share the virtual address space happens. If we are creating a new process, then this function will create a new <code class="codehilite">mm_struct</code>, and also a new <code class="codehilite">pgd</code>:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>This is where threads within a process will share the virtual address space happens. If we are creating a new process, then this function will create a new <code class="codehilite"><span class="n">mm_struct</span></code>, and also a new <code class="codehilite"><span class="n">pgd</span></code>:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -405,9 +1035,11 @@ The stack duplication is fairly simple, just copy everything from the old stack 
 </td></tr></table></p>
 <h5 id="duplicate-pcache-data">Duplicate pcache data<a class="headerlink" href="#duplicate-pcache-data" title="Permanent link">&para;</a></h5>
 <p><mark class="critic">TODO</mark></p>
-<details class="danger" open="open"><summary>TODO: hook with pcache</summary><p>We need to duplicate the pcache vm_range array, once Yutong finished the code.</p></details><h5 id="setup_sched_fork">setup_sched_fork()<a class="headerlink" href="#setup_sched_fork" title="Permanent link">&para;</a></h5>
+<details class="danger" open="open"><summary>TODO: hook with pcache</summary><p>We need to duplicate the pcache vm_range array, once Yutong finished the code.</p>
+</details>
+<h5 id="setup_sched_fork">setup_sched_fork()<a class="headerlink" href="#setup_sched_fork" title="Permanent link">&para;</a></h5>
 <p>Callback to scheduler to setup this new task. It may reset all scheduler related information. Here we also have a chance to change this task&rsquo;s scheduler class:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -478,8 +1110,8 @@ The stack duplication is fairly simple, just copy everything from the old stack 
 </td></tr></table>
 
 <h5 id="allocate-new-pid">Allocate new pid<a class="headerlink" href="#allocate-new-pid" title="Permanent link">&para;</a></h5>
-<p>In both Lego and Linux, we don&rsquo;t allocate new pid for a new thread, if that thread is an <code class="codehilite">idle thread</code>. So callers of <code class="codehilite">do_fork</code> needs to pass something to let <code class="codehilite">do_fork</code> know. In Linux, they use <code class="codehilite">struct pid, init_struct_pid</code> to check. In Lego, we introduce an new clone_flag <code class="codehilite">CLONE_IDLE_THREAD</code>. If that flag is set, <code class="codehilite">do_fork()</code> will try to allocate a new pid for the new thread. Otherwise, it will be 0:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>In both Lego and Linux, we don&rsquo;t allocate new pid for a new thread, if that thread is an <code class="codehilite"><span class="n">idle</span> <span class="n">thread</span></code>. So callers of <code class="codehilite"><span class="n">do_fork</span></code> needs to pass something to let <code class="codehilite"><span class="n">do_fork</span></code> know. In Linux, they use <code class="codehilite"><span class="n">struct</span> <span class="n">pid</span><span class="p">,</span> <span class="n">init_struct_pid</span></code> to check. In Lego, we introduce an new clone_flag <code class="codehilite"><span class="n">CLONE_IDLE_THREAD</span></code>. If that flag is set, <code class="codehilite"><span class="n">do_fork</span><span class="p">()</span></code> will try to allocate a new pid for the new thread. Otherwise, it will be 0:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -492,14 +1124,14 @@ The stack duplication is fairly simple, just copy everything from the old stack 
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></p>
-<p>So, only the <code class="codehilite">init_idle()</code> function can pass this <code class="codehilite">CLONE_IDLE_THREAD</code> down. All other usages are wrong and should be reported.</p>
+<p>So, only the <code class="codehilite"><span class="n">init_idle</span><span class="p">()</span></code> function can pass this <code class="codehilite"><span class="n">CLONE_IDLE_THREAD</span></code> down. All other usages are wrong and should be reported.</p>
 <p>In order to avoid conflict with Linux clone_flag, we define it as:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#define CLONE_IDLE_THREAD       0x100000000</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#define CLONE_IDLE_THREAD       0x100000000</span>
 </pre></div>
 </td></tr></table></p>
 <h5 id="settidcleartid">SETTID/CLEARTID<a class="headerlink" href="#settidcleartid" title="Permanent link">&para;</a></h5>
 <p>These are some futex related stuff. I will cover these stuff in futex document:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -522,7 +1154,7 @@ The stack duplication is fairly simple, just copy everything from the old stack 
 <p>This is the most interesting function. Cover later.</p>
 <h4 id="p2m_fork">p2m_fork()<a class="headerlink" href="#p2m_fork" title="Permanent link">&para;</a></h4>
 <p>In order to track user activities, we need to know when user are going to create new process. Fork is the best time and the only time we kernel know. So, Lego adds this special hook to tell remote global monitor or memory manager that there is a new process going to be created. Upon receiving this message, remote monitor will update its bookkeeping for this specific user/vNode.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -540,19 +1172,19 @@ The stack duplication is fairly simple, just copy everything from the old stack 
 </pre></div>
 </td></tr></table>
 
-<p>The <code class="codehilite">CLONE_GLOBAL_THREAD</code> should only be set, if the following cases happen:</p>
+<p>The <code class="codehilite"><span class="n">CLONE_GLOBAL_THREAD</span></code> should only be set, if the following cases happen:</p>
 <ul>
 <li>fork()</li>
 <li>vfork()</li>
-<li>clone(), without <code class="codehilite">CLONE_THREAD</code> being set</li>
+<li>clone(), without <code class="codehilite"><span class="n">CLONE_THREAD</span></code> being set</li>
 </ul>
 <p>In order to avoid conflict with Linux clone_flag, we define it as:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#define CLONE_GLOBAL_THREAD     0x200000000</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#define CLONE_GLOBAL_THREAD     0x200000000</span>
 </pre></div>
 </td></tr></table></p>
 <h4 id="wake_up_new_task">wake_up_new_task()<a class="headerlink" href="#wake_up_new_task" title="Permanent link">&para;</a></h4>
-<p>The last step of <code class="codehilite">do_fork</code> is waking up the new thread or process, which is performed by <code class="codehilite">wake_up_new_task()</code> function. The first question this function will ask is: <code class="codehilite">which cpu to land?</code> The answer comes from <code class="codehilite">select_task_rq()</code>:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>The last step of <code class="codehilite"><span class="n">do_fork</span></code> is waking up the new thread or process, which is performed by <code class="codehilite"><span class="n">wake_up_new_task</span><span class="p">()</span></code> function. The first question this function will ask is: <code class="codehilite"><span class="n">which</span> <span class="n">cpu</span> <span class="k">to</span> <span class="n">land</span><span class="o">?</span></code> The answer comes from <code class="codehilite"><span class="n">select_task_rq</span><span class="p">()</span></code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -572,9 +1204,9 @@ The stack duplication is fairly simple, just copy everything from the old stack 
 </pre></div>
 </td></tr></table>
 
-<p>Clearly, this is determined by <code class="codehilite">cpus_allowed</code>, which is the same with its parent at this point. That being said, if the parent is only able to run on one specific CPU, then all its children will end up running on the same CPU when they wake up (they could change their affinity later). This is also the default on Linux: <code class="codehilite">A child created via fork(2) inherits its parent&#39;s CPU affinity mask. The affinity mask is preserved across an execve(2).</code></p>
+<p>Clearly, this is determined by <code class="codehilite"><span class="n">cpus_allowed</span></code>, which is the same with its parent at this point. That being said, if the parent is only able to run on one specific CPU, then all its children will end up running on the same CPU when they wake up (they could change their affinity later). This is also the default on Linux: <code class="codehilite"><span class="n">A</span> <span class="n">child</span> <span class="n">created</span> <span class="n">via</span> <span class="n">fork</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">inherits</span> <span class="n">its</span> <span class="n">parent</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">CPU</span> <span class="n">affinity</span> <span class="n">mask</span><span class="p">.</span> <span class="n">The</span> <span class="n">affinity</span> <span class="n">mask</span> <span class="k">is</span> <span class="n">preserved</span> <span class="n">across</span> <span class="n">an</span> <span class="n">execve</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span></code></p>
 <p>After landing CPU is selected, following operation is simple: just enqueue this task into landing CPU&rsquo;s runqueue, and we are done:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -660,9 +1292,8 @@ Last Updated: Feb 27, 2018</p>
     </span>
 </div>
     <script>var base_url = '../../..';</script>
-    <script src="../../../js/theme.js"></script>
-      <script src="../../../search/require.js"></script>
-      <script src="../../../search/search.js"></script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
 
 </body>
 </html>

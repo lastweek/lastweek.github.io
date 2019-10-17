@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -23,15 +23,16 @@
     var mkdocs_page_url = "/lego/paper/genz/";
   </script>
   
-  <script src="../../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../../js/highlight.pack.js"></script> 
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-143772066-1', 'auto');
       ga('send', 'pageview');
@@ -49,166 +50,671 @@
         <a href="../../.." class="icon icon-home"> Yizhou Shan's Home Page</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	  
-          
-		  
-  <ul class="" href="../../..">
-    <li class="toctree-l1">
-  <a class="" href="../../..">Home</a>
-  </li></ul>
-          
-		  
-  <p class="caption">Notes</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/paper_fpga/">FPGA Papers</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/cache_coherence/">Cache Coherence</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/benchmark/">Benchmarks</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/linux-articles/">Linux Articles</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/proc/">[Linux] Special Files</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/trace/">[Linux] Trace/Profile</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../misc/essential/">Essential</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../misc/cheatsheet/">Cheatsheet</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/general_log/0919">Log</a>
-        </li>
-  </ul>
-
-          
-		  
-  <p class="caption">FPGA</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/vivado_tricks/">Vivado Tricks</a>
-        </li>
-  </ul>
-
-          
-		  
-  <p class="caption">LegoOS-Dev</p>
-  <ul class="current">
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/log/TODO">Log</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/kernel/kconfig">Kernel</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/syscall/facts">Syscall</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/pcache/config">Pcache</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/driver/pci">Driver</a>
-        </li>
-          <li class="toctree-l1 current">
-            
-  <a class="current" href="/lego/paper/nmp">Paper</a>
-  <ul class="subnav">
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../nmp/">NMP</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../processor_oom/">Processor OOM</a>
-        </li>
-        <li class="toctree-l2 current 1">
-            
-  <a class="current" href="./">Gen-Z</a>
-  <ul class="subnav">
+	<ul class="tocbase current">
+    
+    
       
-  <li class="toctree-l2 current">
-  
-    <a class="current"  href="#interconnect-technology-comparison">Interconnect Technology Comparison</a>
-  
-  
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../..">Home</a>
+  </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">Notes</p>
   </li>
 
-  </ul>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../replication/">Replication</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../related/">Related</a>
-        </li>
-  </ul>
-        </li>
-  </ul>
 
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
           
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/paper_fpga/">FPGA Papers</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/cache_coherence/">Cache Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/benchmark/">Benchmarks</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/linux-articles/">Linux Articles</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/proc/">[Linux] Special Files</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/trace/">[Linux] Trace/Profile</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../misc/essential/">Essential</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../misc/cheatsheet/">Cheatsheet</a>
+  </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0919/">Sep 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0819/">Aug 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0719/">Jul 2019</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">FPGA</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/vivado_tricks/">Vivado Tricks</a>
+  </li>
+        
+      </ul>
+    </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">LegoOS-Dev</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/TODO/">TODO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/misc/">MISC</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/test-note/">Test Script</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-09-2018/">Sep 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-08-2018/">Aug 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-04-2018/">April 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-03-2018/">March 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-02-2018/">Feb 2018</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Kernel</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/kconfig/">Kconfig</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/debug/">Debug</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/grub/">GRUB</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile/">Profile</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile_strace/">Profile strace</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile_heatmap/">Profile heatmap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile_points/">Profile points</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/trampoline/">Trampoline</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/pagefault_disable/">Disable pgfault</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/stop_machine/">Stop machine</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/loader/">Program Loader</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/vDSO/">vDSO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/vfs/">Virtual File System</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/vm/">Process Virtual Memory</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/fpu/">x86 FPU</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/irq/">IRQ</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/net_thpool/">Network Thpool</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Syscall</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/facts/">Facts</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile_strace/">strace</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/compat/">compat</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/msync/">msync()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/mremap/">mremap()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/fork/">fork()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/getrusage/">getrusage()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/wait_and_exit/">wait4 and exit()</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Pcache</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/config/">Config</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/sweep/">Sweep</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/tlb/">TLB Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/pgtable-lock/">PageTable Lock</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/victim/">Victim Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/virtual_cache/">Virtual Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/rmap/">Reverse Mapping</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/evict_and_ref/">Evict and Refcount</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/smp_design/">SMP Design</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/replication/">Replication</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Driver</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../driver/pci/">PCI</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../driver/ib/">Infiniband</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Paper</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../nmp/">NMP</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../processor_oom/">Processor OOM</a>
+  </li>
+        
+          
+
+
+  
+    
+    <li class="navtree toctree-l3 page current">
+      <a class="current" href="./">
+        Gen-Z
+      </a>
+    </li>
+    
+      
+
+  <li class="toctree-l3 current with-children">
+    <a href="#interconnect-technology-comparison">
+      Interconnect Technology Comparison
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+
+  
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../replication/">Replication</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../related/">Related</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
       </div>
       &nbsp;
     </nav>
@@ -230,11 +736,11 @@
     
       
         
-          <li>LegoOS-Dev &raquo;</li>
+          <li>Paper &raquo;</li>
         
       
         
-          <li>Paper &raquo;</li>
+          <li>LegoOS-Dev &raquo;</li>
         
       
     
@@ -263,55 +769,55 @@
 </thead>
 <tbody>
 <tr>
-<td align="left"><strong>Gen-Z<sup id="fnref3:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup><sup id="fnref:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup></strong></td>
+<td align="left"><strong>Gen-Z<sup id="fnref3:7"><a class="footnote-ref" href="#fn:7">7</a></sup><sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup></strong></td>
 <td>N/A</td>
 <td>Cross components</td>
-<td><img alt="✖️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2716.svg" title=":heavy_multiplication_x:" /></td>
+<td><img alt="✖" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2716.svg" title=":heavy_multiplication_x:" /></td>
 <td>Memory</td>
-<td align="left">32 GBps ~ 400+ GBps <br> <code class="codehilite">Unidirectional</code></td>
+<td align="left">32 GBps ~ 400+ GBps <br> <code class="codehilite"><span class="n">Unidirectional</span></code></td>
 <td>&lt;100ns</td>
 </tr>
 <tr>
-<td align="left"><strong>OpenCAPI<sup id="fnref2:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup></strong></td>
+<td align="left"><strong>OpenCAPI<sup id="fnref2:7"><a class="footnote-ref" href="#fn:7">7</a></sup></strong></td>
 <td>IBM Power9</td>
 <td>Motherboard</td>
-<td><img alt="✔️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
 <td>Memory</td>
-<td align="left">50 GBps per lane <br> <code class="codehilite">Bidirectional</code></td>
+<td align="left">50 GBps per lane <br> <code class="codehilite"><span class="n">Bidirectional</span></code></td>
 <td>?</td>
 </tr>
 <tr>
-<td align="left"><strong>CCIX<sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup></strong></td>
+<td align="left"><strong>CCIX<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup></strong></td>
 <td>N/A</td>
 <td>Motherboard</td>
-<td><img alt="✔️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
 <td>Memory</td>
-<td align="left">32/40/50 GBps/lane <br> <code class="codehilite">Bidirectional</code></td>
+<td align="left">32/40/50 GBps/lane <br> <code class="codehilite"><span class="n">Bidirectional</span></code></td>
 <td>?</td>
 </tr>
 <tr>
-<td align="left"><strong>OmniPath<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup><sup id="fnref:10"><a class="footnote-ref" href="#fn:10" rel="footnote">10</a></sup></strong></td>
+<td align="left"><strong>OmniPath<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup><sup id="fnref:10"><a class="footnote-ref" href="#fn:10">10</a></sup></strong></td>
 <td>Intel KnightsLanding</td>
 <td>Cross networrk</td>
-<td><img alt="✖️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2716.svg" title=":heavy_multiplication_x:" /></td>
+<td><img alt="✖" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2716.svg" title=":heavy_multiplication_x:" /></td>
 <td>Network</td>
-<td align="left">25 GBps/port <br> <code class="codehilite">Bidirectional</code></td>
+<td align="left">25 GBps/port <br> <code class="codehilite"><span class="n">Bidirectional</span></code></td>
 <td>?</td>
 </tr>
 <tr>
 <td align="left"><strong>PCIe 3.0</strong></td>
 <td>A Lot</td>
 <td>Motherboard</td>
-<td><img alt="✖️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2716.svg" title=":heavy_multiplication_x:" /></td>
+<td><img alt="✖" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2716.svg" title=":heavy_multiplication_x:" /></td>
 <td>PCIe</td>
-<td align="left">~1GBps/lane<sup id="fnref:12"><a class="footnote-ref" href="#fn:12" rel="footnote">12</a></sup></td>
-<td>4B Read ~756ns<sup id="fnref:11"><a class="footnote-ref" href="#fn:11" rel="footnote">11</a></sup></td>
+<td align="left">~1GBps/lane<sup id="fnref:12"><a class="footnote-ref" href="#fn:12">12</a></sup></td>
+<td>4B Read ~756ns<sup id="fnref:11"><a class="footnote-ref" href="#fn:11">11</a></sup></td>
 </tr>
 <tr>
 <td align="left"><strong>PCIe 4.0</strong></td>
 <td>Soon</td>
 <td>Motherboard</td>
-<td><img alt="✖️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2716.svg" title=":heavy_multiplication_x:" /></td>
+<td><img alt="✖" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2716.svg" title=":heavy_multiplication_x:" /></td>
 <td>PCIe</td>
 <td align="left">~2GBps/lane</td>
 <td>?</td>
@@ -320,7 +826,7 @@
 <td align="left"><strong>IB EDR</strong></td>
 <td>Mellanox ConnectX4,X5</td>
 <td>Cross network</td>
-<td><img alt="✖️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2716.svg" title=":heavy_multiplication_x:" /></td>
+<td><img alt="✖" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2716.svg" title=":heavy_multiplication_x:" /></td>
 <td>Network</td>
 <td align="left">100Gbps</td>
 <td>0.5us</td>
@@ -329,34 +835,34 @@
 <td align="left"><strong>IB HDR</strong></td>
 <td>Mellanox ConnectX6</td>
 <td>Cross network</td>
-<td><img alt="✖️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2716.svg" title=":heavy_multiplication_x:" /></td>
+<td><img alt="✖" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2716.svg" title=":heavy_multiplication_x:" /></td>
 <td>Network</td>
 <td align="left">200Gbps</td>
 <td>&lt;0.5us</td>
 </tr>
 <tr>
-<td align="left"><strong>HyperTransport<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup></strong></td>
+<td align="left"><strong>HyperTransport<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup></strong></td>
 <td>AMD</td>
 <td>Motherboard</td>
-<td><img alt="✔️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
 <td>Memory</td>
-<td align="left">51.2 GBps per link <br> <code class="codehilite">Bidirectional</code></td>
+<td align="left">51.2 GBps per link <br> <code class="codehilite"><span class="n">Bidirectional</span></code></td>
 <td>?</td>
 </tr>
 <tr>
-<td align="left"><strong>NVLink<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup></strong></td>
+<td align="left"><strong>NVLink<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></strong></td>
 <td>NVIDIA V100 <br> IBM Power9</td>
 <td>Motherboard</td>
-<td><img alt="✔️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
 <td>Memory</td>
-<td align="left">50GBps per link <br> <code class="codehilite">Bidirectional</code></td>
+<td align="left">50GBps per link <br> <code class="codehilite"><span class="n">Bidirectional</span></code></td>
 <td>?</td>
 </tr>
 <tr>
-<td align="left"><strong>QPI<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup><sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup></strong></td>
+<td align="left"><strong>QPI<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup><sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup></strong></td>
 <td>Intel</td>
 <td>Motherboard</td>
-<td><img alt="✔️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
 <td>Memory</td>
 <td align="left">?</td>
 <td>?</td>
@@ -365,18 +871,18 @@
 <td align="left"><strong>Intel Main Memory Bus</strong></td>
 <td>Intel</td>
 <td>Processor</td>
-<td><img alt="✔️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
 <td>Memory</td>
-<td align="left">E7-8894 v4 <code class="codehilite">85 GB/s</code> <br> E5-2620 v3 <code class="codehilite">59 GB/s</code></td>
+<td align="left">E7-8894 v4 <code class="codehilite"><span class="mi">85</span> <span class="n">GB</span><span class="o">/</span><span class="n">s</span></code> <br> E5-2620 v3 <code class="codehilite"><span class="mi">59</span> <span class="n">GB</span><span class="o">/</span><span class="n">s</span></code></td>
 <td>?</td>
 </tr>
 <tr>
-<td align="left"><strong>Ethernet<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup></strong></td>
+<td align="left"><strong>Ethernet<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></strong></td>
 <td>A Lot</td>
 <td>Motherboard</td>
-<td><img alt="✖️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2716.svg" title=":heavy_multiplication_x:" /></td>
+<td><img alt="✖" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2716.svg" title=":heavy_multiplication_x:" /></td>
 <td>Network</td>
-<td align="left">Mellanox <code class="codehilite">200Gbps</code> <br> Cisco ASR <code class="codehilite">100 Gbps</code><sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup></td>
+<td align="left">Mellanox <code class="codehilite"><span class="mi">200</span><span class="n">Gbps</span></code> <br> Cisco ASR <code class="codehilite"><span class="mi">100</span> <span class="n">Gbps</span></code><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></td>
 <td>?</td>
 </tr>
 </tbody>
@@ -391,41 +897,41 @@ Last Updated: March 01, 2018</p>
 <hr />
 <ol>
 <li id="fn:1">
-<p><a href="https://www.cisco.com/c/en/us/products/collateral/routers/asr-9000-series-aggregation-services-routers/datasheet-c78-740092.html">Ethernet Cisco ASR 9000 Series 4-Port 100-Gigabit Ethernet</a>&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p><a href="https://www.cisco.com/c/en/us/products/collateral/routers/asr-9000-series-aggregation-services-routers/datasheet-c78-740092.html">Ethernet Cisco ASR 9000 Series 4-Port 100-Gigabit Ethernet</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
 <p><a href="https://en.wikipedia.org/wiki/Terabit_Ethernet">Terabit Ethernet</a>
- <a href="https://en.wikipedia.org/wiki/NVLink">https://en.wikipedia.org/wiki/NVLink</a>&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+ <a href="https://en.wikipedia.org/wiki/NVLink">https://en.wikipedia.org/wiki/NVLink</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p><a href="http://www.nvidia.com/object/nvlink.html">NVLink</a>&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p><a href="http://www.nvidia.com/object/nvlink.html">NVLink</a>&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 <li id="fn:4">
-<p><a href="https://en.wikipedia.org/wiki/HyperTransport">HyperTransport</a>&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<p><a href="https://en.wikipedia.org/wiki/HyperTransport">HyperTransport</a>&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 <li id="fn:5">
-<p><a href="https://en.wikipedia.org/wiki/Intel_QuickPath_Interconnect">https://en.wikipedia.org/wiki/Intel_QuickPath_Interconnect</a>&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Intel_QuickPath_Interconnect">https://en.wikipedia.org/wiki/Intel_QuickPath_Interconnect</a>&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
 <li id="fn:6">
-<p><a href="https://communities.intel.com/thread/21872">https://communities.intel.com/thread/21872</a>&#160;<a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+<p><a href="https://communities.intel.com/thread/21872">https://communities.intel.com/thread/21872</a>&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
 </li>
 <li id="fn:7">
-<p><a href="https://www.openfabrics.org/images/eventpresos/2017presentations/213_CCIXGen-Z_BBenton.pdf">https://www.openfabrics.org/images/eventpresos/2017presentations/213_CCIXGen-Z_BBenton.pdf</a>&#160;<a class="footnote-backref" href="#fnref:7" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:7" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:7" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+<p><a href="https://www.openfabrics.org/images/eventpresos/2017presentations/213_CCIXGen-Z_BBenton.pdf">https://www.openfabrics.org/images/eventpresos/2017presentations/213_CCIXGen-Z_BBenton.pdf</a>&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:7" title="Jump back to footnote 7 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:7" title="Jump back to footnote 7 in the text">&#8617;</a></p>
 </li>
 <li id="fn:8">
-<p><a href="http://genzconsortium.org/wp-content/uploads/2017/08/Gen-Z-Overview.pdf">Gen-Z Overview</a>&#160;<a class="footnote-backref" href="#fnref:8" rev="footnote" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+<p><a href="http://genzconsortium.org/wp-content/uploads/2017/08/Gen-Z-Overview.pdf">Gen-Z Overview</a>&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text">&#8617;</a></p>
 </li>
 <li id="fn:9">
-<p><a href="http://www.hoti.org/hoti23/slides/rimmer.pdf">http://www.hoti.org/hoti23/slides/rimmer.pdf</a>&#160;<a class="footnote-backref" href="#fnref:9" rev="footnote" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+<p><a href="http://www.hoti.org/hoti23/slides/rimmer.pdf">http://www.hoti.org/hoti23/slides/rimmer.pdf</a>&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 9 in the text">&#8617;</a></p>
 </li>
 <li id="fn:10">
-<p><a href="https://www.intel.com/content/www/us/en/products/network-io/high-performance-fabrics/omni-path-edge-switch-100-series.html">https://www.intel.com/content/www/us/en/products/network-io/high-performance-fabrics/omni-path-edge-switch-100-series.html</a>&#160;<a class="footnote-backref" href="#fnref:10" rev="footnote" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+<p><a href="https://www.intel.com/content/www/us/en/products/network-io/high-performance-fabrics/omni-path-edge-switch-100-series.html">https://www.intel.com/content/www/us/en/products/network-io/high-performance-fabrics/omni-path-edge-switch-100-series.html</a>&#160;<a class="footnote-backref" href="#fnref:10" title="Jump back to footnote 10 in the text">&#8617;</a></p>
 </li>
 <li id="fn:11">
-<p><a href="https://forum.stanford.edu/events/posterslides/LowLatencyNetworkInterfaces.pdf">https://forum.stanford.edu/events/posterslides/LowLatencyNetworkInterfaces.pdf</a>&#160;<a class="footnote-backref" href="#fnref:11" rev="footnote" title="Jump back to footnote 11 in the text">&#8617;</a></p>
+<p><a href="https://forum.stanford.edu/events/posterslides/LowLatencyNetworkInterfaces.pdf">https://forum.stanford.edu/events/posterslides/LowLatencyNetworkInterfaces.pdf</a>&#160;<a class="footnote-backref" href="#fnref:11" title="Jump back to footnote 11 in the text">&#8617;</a></p>
 </li>
 <li id="fn:12">
-<p><a href="https://www.xilinx.com/support/documentation/white_papers/wp350.pdf">https://www.xilinx.com/support/documentation/white_papers/wp350.pdf</a>&#160;<a class="footnote-backref" href="#fnref:12" rev="footnote" title="Jump back to footnote 12 in the text">&#8617;</a></p>
+<p><a href="https://www.xilinx.com/support/documentation/white_papers/wp350.pdf">https://www.xilinx.com/support/documentation/white_papers/wp350.pdf</a>&#160;<a class="footnote-backref" href="#fnref:12" title="Jump back to footnote 12 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -473,9 +979,8 @@ Last Updated: March 01, 2018</p>
     </span>
 </div>
     <script>var base_url = '../../..';</script>
-    <script src="../../../js/theme.js"></script>
-      <script src="../../../search/require.js"></script>
-      <script src="../../../search/search.js"></script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
 
 </body>
 </html>

@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -23,15 +23,16 @@
     var mkdocs_page_url = "/notes/trace/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-143772066-1', 'auto');
       ga('send', 'pageview');
@@ -49,144 +50,672 @@
         <a href="../.." class="icon icon-home"> Yizhou Shan's Home Page</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	  
-          
-		  
-  <ul class="" href="../..">
-    <li class="toctree-l1">
-  <a class="" href="../..">Home</a>
-  </li></ul>
-          
-		  
-  <p class="caption">Notes</p>
-  <ul class="current">
-          <li class="toctree-l1">
-            
-  <a class="" href="../paper_fpga/">FPGA Papers</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../cache_coherence/">Cache Coherence</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../benchmark/">Benchmarks</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../paper_perf_shadows/">Perf Shadows</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../linux-articles/">Linux Articles</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../proc/">[Linux] Special Files</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../rmap/">[Linux] Reverse Mmap (rmap)</a>
-        </li>
-          <li class="toctree-l1 current">
-            
-  <a class="current" href="./">[Linux] Trace/Profile</a>
-  <ul class="subnav">
+	<ul class="tocbase current">
+    
+    
       
-  <li class="toctree-l2 current">
-  
-    <a class="current"  href="#linux-tracing">Linux Tracing</a>
-  
-  
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../..">Home</a>
+  </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">Notes</p>
   </li>
 
-  </ul>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../cgroup-swap/">[Linux] Cgroup and Swap</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../userfaultfd/">[Linux] Userfaultfd</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../xperf/">[Linux] User/kern Cross Perf</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../kvm-basic/">[Linux] KVM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../misc/essential/">Essential</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../misc/cheatsheet/">Cheatsheet</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/general_log/0919">Log</a>
-        </li>
-  </ul>
 
-          
-		  
-  <p class="caption">FPGA</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../fpga/vivado_tricks/">Vivado Tricks</a>
-        </li>
-  </ul>
+  
 
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
           
-		  
-  <p class="caption">LegoOS-Dev</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/log/TODO">Log</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/kernel/kconfig">Kernel</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/syscall/facts">Syscall</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/pcache/config">Pcache</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/driver/pci">Driver</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/paper/nmp">Paper</a>
-        </li>
-  </ul>
 
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../paper_fpga/">FPGA Papers</a>
+  </li>
+        
           
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../cache_coherence/">Cache Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../benchmark/">Benchmarks</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../paper_perf_shadows/">Perf Shadows</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../linux-articles/">Linux Articles</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../proc/">[Linux] Special Files</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../rmap/">[Linux] Reverse Mmap (rmap)</a>
+  </li>
+        
+          
+
+
+  
+    
+    <li class="navtree toctree-l2 page current">
+      <a class="current" href="./">
+        [Linux] Trace/Profile
+          <span class="toctree-expand"></span>
+      </a>
+    </li>
+    
+      
+
+  <li class="toctree-l2 current with-children">
+    <a href="#linux-tracing">
+      Linux Tracing
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+
+  
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../cgroup-swap/">[Linux] Cgroup and Swap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../userfaultfd/">[Linux] Userfaultfd</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../xperf/">[Linux] User/kern Cross Perf</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../kvm-basic/">[Linux] KVM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../misc/essential/">Essential</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../misc/cheatsheet/">Cheatsheet</a>
+  </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../general_log/0919/">Sep 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../general_log/0819/">Aug 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../general_log/0719/">Jul 2019</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">FPGA</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../fpga/vivado_tricks/">Vivado Tricks</a>
+  </li>
+        
+      </ul>
+    </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">LegoOS-Dev</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/TODO/">TODO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/misc/">MISC</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/test-note/">Test Script</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/log-09-2018/">Sep 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/log-08-2018/">Aug 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/log-04-2018/">April 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/log-03-2018/">March 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/log-02-2018/">Feb 2018</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Kernel</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/kconfig/">Kconfig</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/debug/">Debug</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/grub/">GRUB</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/profile/">Profile</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/profile_strace/">Profile strace</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/profile_heatmap/">Profile heatmap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/profile_points/">Profile points</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/trampoline/">Trampoline</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/pagefault_disable/">Disable pgfault</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/stop_machine/">Stop machine</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/loader/">Program Loader</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/vDSO/">vDSO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/vfs/">Virtual File System</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/vm/">Process Virtual Memory</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/fpu/">x86 FPU</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/irq/">IRQ</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/net_thpool/">Network Thpool</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Syscall</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/syscall/facts/">Facts</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/profile_strace/">strace</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/syscall/compat/">compat</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/syscall/msync/">msync()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/syscall/mremap/">mremap()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/syscall/fork/">fork()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/syscall/getrusage/">getrusage()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/syscall/wait_and_exit/">wait4 and exit()</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Pcache</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/config/">Config</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/sweep/">Sweep</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/tlb/">TLB Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/pgtable-lock/">PageTable Lock</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/victim/">Victim Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/virtual_cache/">Virtual Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/rmap/">Reverse Mapping</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/evict_and_ref/">Evict and Refcount</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/smp_design/">SMP Design</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/replication/">Replication</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Driver</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/driver/pci/">PCI</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/driver/ib/">Infiniband</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Paper</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/paper/nmp/">NMP</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/paper/processor_oom/">Processor OOM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/paper/genz/">Gen-Z</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/paper/replication/">Replication</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/paper/related/">Related</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
       </div>
       &nbsp;
     </nav>
@@ -239,32 +768,32 @@ which is able to profile arbitray code piece is still my favorite thing.</p>
 </ul>
 <p>I tend to think this way:</p>
 <ul>
-<li>Tracing needs two parts, <code class="codehilite">1)</code> <strong>Mechanims to do callback.</strong> This means we need a way to
+<li>Tracing needs two parts, <code class="codehilite"><span class="mi">1</span><span class="p">)</span></code> <strong>Mechanims to do callback.</strong> This means we need a way to
     let our tracing/profiling code got invoked on a running system. This can be static
     or dynamic. Static means we added our tracing code to source code, like tracepoints.
     Dynamic means we added our tracing code when system is running, like ftrace and kprobe.
-    <code class="codehilite">2)</code> <strong>Do stuff within callback.</strong> All of them provide some sort of handling. But eBPF is the
+    <code class="codehilite"><span class="mi">2</span><span class="p">)</span></code> <strong>Do stuff within callback.</strong> All of them provide some sort of handling. But eBPF is the
     most extensive one.</li>
-<li>For example, <code class="codehilite">ftrace</code>, <code class="codehilite">kprobe</code>, and <code class="codehilite">perf_event</code> include the callback facilities,
+<li>For example, <code class="codehilite"><span class="n">ftrace</span></code>, <code class="codehilite"><span class="n">kprobe</span></code>, and <code class="codehilite"><span class="n">perf_event</span></code> include the callback facilities,
     although they are not just limited to this.
-    <code class="codehilite">ftrace</code> has the <code class="codehilite">call mount</code> way to do callback on every single function invocation.
-    <code class="codehilite">kprobe</code> dynamically patch instructions and to do callback within exception handlers.
-    <code class="codehilite">perf_event</code> can let CPU fire NMI interrupt. Those are all mechanisms to catch perf data.</li>
+    <code class="codehilite"><span class="n">ftrace</span></code> has the <code class="codehilite"><span class="k">call</span> <span class="n">mount</span></code> way to do callback on every single function invocation.
+    <code class="codehilite"><span class="n">kprobe</span></code> dynamically patch instructions and to do callback within exception handlers.
+    <code class="codehilite"><span class="n">perf_event</span></code> can let CPU fire NMI interrupt. Those are all mechanisms to catch perf data.</li>
 <li>The blog from Julia explains it well: <a href="https://jvns.ca/blog/2017/07/05/linux-tracing-systems/">Linux tracing systems &amp; how they fit together</a></li>
 </ul>
-<p><code class="codehilite">ftrace</code>:</p>
+<p><code class="codehilite"><span class="n">ftrace</span></code>:</p>
 <ul>
 <li>Mechanism<ul>
-<li>For each un-inlined function, gcc inserts a <code class="codehilite">call mcount</code>, or a <code class="codehilite">call fentry</code>
+<li>For each un-inlined function, gcc inserts a <code class="codehilite"><span class="k">call</span> <span class="n">mcount</span></code>, or a <code class="codehilite"><span class="k">call</span> <span class="n">fentry</span></code>
 instruction at the very beginning. This means whenever a function is called,
-the <code class="codehilite">mcount()</code> or the <code class="codehilite">fentry()</code> callback will be invoked.</li>
-<li>Having these <code class="codehilite">call</code> instructions introduce a lot overheads. So by default kernel
-replace <code class="codehilite">call</code> with <code class="codehilite">nop</code>. Only after we <code class="codehilite">echo something &gt; setup_filter_functions</code>
-will the ftrace code replace <code class="codehilite">nop</code> with <code class="codehilite">call</code>. Do note, Linux uses the linker
+the <code class="codehilite"><span class="n">mcount</span><span class="p">()</span></code> or the <code class="codehilite"><span class="n">fentry</span><span class="p">()</span></code> callback will be invoked.</li>
+<li>Having these <code class="codehilite"><span class="k">call</span></code> instructions introduce a lot overheads. So by default kernel
+replace <code class="codehilite"><span class="k">call</span></code> with <code class="codehilite"><span class="n">nop</span></code>. Only after we <code class="codehilite"><span class="n">echo</span> <span class="n">something</span> <span class="o">&gt;</span> <span class="n">setup_filter_functions</span></code>
+will the ftrace code replace <code class="codehilite"><span class="n">nop</span></code> with <code class="codehilite"><span class="k">call</span></code>. Do note, Linux uses the linker
 magic again here, check Steven&rsquo;s slides.</li>
-<li>You can do a <code class="codehilite">objdump vmlinux -d</code>, and able to see the following instructions for
-almost all functions: <code class="codehilite">callq  ffffffff81a01560 &lt;__fentry__&gt;</code>.</li>
-<li>x86 related code: <code class="codehilite">arch/x86/kernel/ftrace_64.S</code>, <code class="codehilite">arch/x86/kernel/ftrace.c</code></li>
+<li>You can do a <code class="codehilite"><span class="n">objdump</span> <span class="n">vmlinux</span> <span class="o">-</span><span class="n">d</span></code>, and able to see the following instructions for
+almost all functions: <code class="codehilite"><span class="n">callq</span>  <span class="n">ffffffff81a01560</span> <span class="o">&lt;</span><span class="n">__fentry__</span><span class="o">&gt;</span></code>.</li>
+<li>x86 related code: <code class="codehilite"><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">kernel</span><span class="o">/</span><span class="n">ftrace_64</span><span class="p">.</span><span class="n">S</span></code>, <code class="codehilite"><span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">kernel</span><span class="o">/</span><span class="n">ftrace</span><span class="p">.</span><span class="k">c</span></code></li>
 <li>Questions: it seems we can know when a function got called by using fentry, but
 how can we know the function has returned? The trick is: the returning address
 is pushed to stack when a function got called. So ftrace, again, can replace
@@ -277,21 +806,21 @@ of a function. Neat!!</li>
 </ul>
 </li>
 <li>Usage<ul>
-<li><code class="codehilite">Files under /sys/kernel/debug/tracing/*</code></li>
-<li><code class="codehilite">perf help ftrace</code></li>
+<li><code class="codehilite"><span class="n">Files</span> <span class="k">under</span> <span class="o">/</span><span class="n">sys</span><span class="o">/</span><span class="n">kernel</span><span class="o">/</span><span class="n">debug</span><span class="o">/</span><span class="n">tracing</span><span class="cm">/*</span></code></li>
+<li><code class="codehilite"><span class="n">perf</span> <span class="n">help</span> <span class="n">ftrace</span></code></li>
 </ul>
 </li>
 </ul>
-<p><code class="codehilite">kprobe</code>:</p>
+<p><code class="codehilite"><span class="n">kprobe</span></code>:</p>
 <ul>
 <li>Mechanism<ul>
-<li>Kprobe replaces the original assembly instruction with an <code class="codehilite">int3</code> trap instruction.
+<li>Kprobe replaces the original assembly instruction with an <code class="codehilite"><span class="n">int3</span></code> trap instruction.
   So when we ran into the PC of the original instruction, an int3 CPU exception will happen.
-  Within <code class="codehilite">do_in3()</code>, kernel will callback to core kprobe layer to do <code class="codehilite">pre-handler</code>.
-  After singlestep, CPU have debug exception. Kernel walks into <code class="codehilite">do_debug()</code>,
-  where kprobe run <code class="codehilite">post-handler</code>.</li>
+  Within <code class="codehilite"><span class="n">do_in3</span><span class="p">()</span></code>, kernel will callback to core kprobe layer to do <code class="codehilite"><span class="n">pre</span><span class="o">-</span><span class="k">handler</span></code>.
+  After singlestep, CPU have debug exception. Kernel walks into <code class="codehilite"><span class="n">do_debug</span><span class="p">()</span></code>,
+  where kprobe run <code class="codehilite"><span class="n">post</span><span class="o">-</span><span class="k">handler</span></code>.</li>
 <li>Kprobe is powerful, because it&rsquo;s able to trace almost everything at instruction level.</li>
-<li>Kprobe can NOT touch things inside <code class="codehilite">entry.S</code>. It needs a valid <code class="codehilite">pt_regs</code> to operate.</li>
+<li>Kprobe can NOT touch things inside <code class="codehilite"><span class="n">entry</span><span class="p">.</span><span class="n">S</span></code>. It needs a valid <code class="codehilite"><span class="n">pt_regs</span></code> to operate.</li>
 </ul>
 </li>
 <li>Resources<ul>
@@ -299,7 +828,7 @@ of a function. Neat!!</li>
 </ul>
 </li>
 </ul>
-<p><code class="codehilite">eBPF</code>:</p>
+<p><code class="codehilite"><span class="n">eBPF</span></code>:</p>
 <ul>
 <li>Mechanism<ul>
 <li>I think the most important thing is to understand what&rsquo;s the relationship between
@@ -320,7 +849,7 @@ The program can be user-written eBPF code. Other articles explained it well.</li
 </ul>
 </li>
 </ul>
-<p><code class="codehilite">perf</code>:</p>
+<p><code class="codehilite"><span class="n">perf</span></code>:</p>
 <ul>
 <li>perf tool is simply amazing. It not only use CPU PMU, but also integrated with ftrace/kprobe/eBPF.</li>
 <li>perf is a tool to present data, but also a tool to collect data.</li>
@@ -333,15 +862,15 @@ The program can be user-written eBPF code. Other articles explained it well.</li
 </ul>
 <p>Trace in real time:</p>
 <p>Print the number of page faults happen in every one second:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>perf stat -e <span class="s2">&quot;page-faults&quot;</span> -I <span class="m">1000</span> -a -- sleep <span class="m">10</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>perf stat -e <span class="s2">&quot;page-faults&quot;</span> -I <span class="m">1000</span> -a -- sleep <span class="m">10</span>
 </pre></div>
 </td></tr></table></p>
-<p>Print the numberf of <code class="codehilite">mmap</code> syscall happen in every one second:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>perf stat -e <span class="s2">&quot;syscalls:sys_enter_mmap&quot;</span> -I <span class="m">1000</span> -a -- sleep <span class="m">10</span>
+<p>Print the numberf of <code class="codehilite"><span class="n">mmap</span></code> syscall happen in every one second:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>perf stat -e <span class="s2">&quot;syscalls:sys_enter_mmap&quot;</span> -I <span class="m">1000</span> -a -- sleep <span class="m">10</span>
 </pre></div>
 </td></tr></table></p>
 <p>Dynamically trace kernel functions:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>perf probe --add do_anonymous_page
 perf stat -I <span class="m">5000</span> -e <span class="s2">&quot;page-faults,probe:do_anonymous_page&quot;</span> -- sleep <span class="m">10</span>
@@ -396,9 +925,8 @@ Last Updated: Jul 21, 2019</p>
     </span>
 </div>
     <script>var base_url = '../..';</script>
-    <script src="../../js/theme.js"></script>
-      <script src="../../search/require.js"></script>
-      <script src="../../search/search.js"></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>

@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -23,15 +23,16 @@
     var mkdocs_page_url = "/lego/kernel/loader/";
   </script>
   
-  <script src="../../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../../js/highlight.pack.js"></script> 
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-143772066-1', 'auto');
       ga('send', 'pageview');
@@ -49,230 +50,852 @@
         <a href="../../.." class="icon icon-home"> Yizhou Shan's Home Page</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	  
-          
-		  
-  <ul class="" href="../../..">
-    <li class="toctree-l1">
-  <a class="" href="../../..">Home</a>
-  </li></ul>
-          
-		  
-  <p class="caption">Notes</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/paper_fpga/">FPGA Papers</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/cache_coherence/">Cache Coherence</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/benchmark/">Benchmarks</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/linux-articles/">Linux Articles</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/proc/">[Linux] Special Files</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/trace/">[Linux] Trace/Profile</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../misc/essential/">Essential</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../misc/cheatsheet/">Cheatsheet</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/general_log/0919">Log</a>
-        </li>
-  </ul>
-
-          
-		  
-  <p class="caption">FPGA</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/vivado_tricks/">Vivado Tricks</a>
-        </li>
-  </ul>
-
-          
-		  
-  <p class="caption">LegoOS-Dev</p>
-  <ul class="current">
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/log/TODO">Log</a>
-        </li>
-          <li class="toctree-l1 current">
-            
-  <a class="current" href="/lego/kernel/kconfig">Kernel</a>
-  <ul class="subnav">
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../kconfig/">Kconfig</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../debug/">Debug</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../grub/">GRUB</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../profile/">Profile</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../profile_strace/">Profile strace</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../profile_heatmap/">Profile heatmap</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../profile_points/">Profile points</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../trampoline/">Trampoline</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../pagefault_disable/">Disable pgfault</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../stop_machine/">Stop machine</a>
-        </li>
-        <li class="toctree-l2 current 1">
-            
-  <a class="current" href="./">Program Loader</a>
-  <ul class="subnav">
+	<ul class="tocbase current">
+    
+    
       
-  <li class="toctree-l2 current">
-  
-    <a class="current"  href="#lego-program-loader">Lego Program Loader</a>
-  
-  
-    <ul class="">
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../..">Home</a>
+  </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#status">Status</a>
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">Notes</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/paper_fpga/">FPGA Papers</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/cache_coherence/">Cache Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/benchmark/">Benchmarks</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/linux-articles/">Linux Articles</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/proc/">[Linux] Special Files</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/trace/">[Linux] Trace/Profile</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../misc/essential/">Essential</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../misc/cheatsheet/">Cheatsheet</a>
+  </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0919/">Sep 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0819/">Aug 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0719/">Jul 2019</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">FPGA</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/vivado_tricks/">Vivado Tricks</a>
+  </li>
+        
+      </ul>
+    </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">LegoOS-Dev</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/TODO/">TODO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/misc/">MISC</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/test-note/">Test Script</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-09-2018/">Sep 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-08-2018/">Aug 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-04-2018/">April 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-03-2018/">March 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-02-2018/">Feb 2018</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Kernel</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../kconfig/">Kconfig</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../debug/">Debug</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../grub/">GRUB</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../profile/">Profile</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../profile_strace/">Profile strace</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../profile_heatmap/">Profile heatmap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../profile_points/">Profile points</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../trampoline/">Trampoline</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../pagefault_disable/">Disable pgfault</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../stop_machine/">Stop machine</a>
+  </li>
+        
+          
+
+
+  
+    
+    <li class="navtree toctree-l3 page current">
+      <a class="current" href="./">
+        Program Loader
+      </a>
+    </li>
+    
+      
+
+  <li class="toctree-l3 current with-children">
+    <a href="#lego-program-loader">
+      Lego Program Loader
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l3 current">
+    <ul class="subnav-l3 current">
+    
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#status">Status</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#overall">Overall</a>
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#overall">Overall</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#legos-loader">Lego's Loader</a>
+      
+          
+
+  <li class="toctree-l4">
+    <a href="#legos-loader">
+      Lego's Loader
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l4">
+    <ul class="subnav-l4 toc-hidden">
+    
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#entry-point">Entry Point</a>
+        </li>
+    
+      
+          
+
+  <li class="toctree-l5">
+    <a href="#memory-managers-job">
+      Memory Manager's Job
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l5">
+    <ul class="subnav-l5 toc-hidden">
+    
+      
+        <li class="toctree-l6">
+          <a class="toctree-l7" href="#load-ld-linux">Load ld-linux</a>
         </li>
     
     </ul>
-  
   </li>
 
-  </ul>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../vDSO/">vDSO</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../vfs/">Virtual File System</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../vm/">Process Virtual Memory</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../fpu/">x86 FPU</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../irq/">IRQ</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../net_thpool/">Network Thpool</a>
-        </li>
-  </ul>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/syscall/facts">Syscall</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/pcache/config">Pcache</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/driver/pci">Driver</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/paper/nmp">Paper</a>
-        </li>
-  </ul>
-
+      
+    
+      
           
+
+  <li class="toctree-l5">
+    <a href="#processor-managers-job">
+      Processor Manager's Job
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l5">
+    <ul class="subnav-l5 toc-hidden">
+    
+      
+          
+
+  <li class="toctree-l6 current with-children">
+    <a href="#destroy-old-context-flush_old_exec">
+      Destroy old context: flush_old_exec()
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l6 current">
+    <ul class="subnav-l6 current">
+    
+      
+        <li class="toctree-l7">
+          <a class="toctree-l8" href="#zap-other-threads">Zap other threads</a>
+        </li>
+    
+      
+        <li class="toctree-l7">
+          <a class="toctree-l8" href="#switch-to-new-address-space">Switch to new address space</a>
+        </li>
+    
+      
+        <li class="toctree-l7">
+          <a class="toctree-l8" href="#clear-architecture-specific-state">Clear Architecture-Specific state</a>
+        </li>
+    
+    </ul>
+  </li>
+
+      
+    
+      
+        <li class="toctree-l6">
+          <a class="toctree-l7" href="#setup-new-context-setup_new_exec">Setup new context: setup_new_exec()</a>
+        </li>
+    
+      
+        <li class="toctree-l6">
+          <a class="toctree-l7" href="#change-return-frame-in-stack">Change return frame in stack</a>
+        </li>
+    
+    </ul>
+  </li>
+
+      
+    
+      
+          
+
+  <li class="toctree-l5">
+    <a href="#features">
+      Features
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l5">
+    <ul class="subnav-l5 toc-hidden">
+    
+      
+        <li class="toctree-l6">
+          <a class="toctree-l7" href="#virtual-address-space-range">Virtual Address Space Range</a>
+        </li>
+    
+      
+        <li class="toctree-l6">
+          <a class="toctree-l7" href="#pre-populated-bss-and-brk">Pre-Populated .bss and .brk</a>
+        </li>
+    
+      
+        <li class="toctree-l6">
+          <a class="toctree-l7" href="#un-populated-stack">Un-Populated stack</a>
+        </li>
+    
+      
+        <li class="toctree-l6">
+          <a class="toctree-l7" href="#un-populated-text-and-data">Un-Populated .text and .data</a>
+        </li>
+    
+      
+        <li class="toctree-l6">
+          <a class="toctree-l7" href="#disabled-randomized-top-of-stack">Disabled Randomized Top of Stack</a>
+        </li>
+    
+      
+        <li class="toctree-l6">
+          <a class="toctree-l7" href="#no-vdso">No vDSO</a>
+        </li>
+    
+    </ul>
+  </li>
+
+      
+    
+    </ul>
+  </li>
+
+      
+    
+    </ul>
+  </li>
+
+
+  
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../vDSO/">vDSO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../vfs/">Virtual File System</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../vm/">Process Virtual Memory</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../fpu/">x86 FPU</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../irq/">IRQ</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../net_thpool/">Network Thpool</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Syscall</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/facts/">Facts</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../profile_strace/">strace</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/compat/">compat</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/msync/">msync()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/mremap/">mremap()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/fork/">fork()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/getrusage/">getrusage()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/wait_and_exit/">wait4 and exit()</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Pcache</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/config/">Config</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/sweep/">Sweep</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/tlb/">TLB Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/pgtable-lock/">PageTable Lock</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/victim/">Victim Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/virtual_cache/">Virtual Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/rmap/">Reverse Mapping</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/evict_and_ref/">Evict and Refcount</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/smp_design/">SMP Design</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/replication/">Replication</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Driver</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../driver/pci/">PCI</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../driver/ib/">Infiniband</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Paper</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/nmp/">NMP</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/processor_oom/">Processor OOM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/genz/">Gen-Z</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/replication/">Replication</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/related/">Related</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
       </div>
       &nbsp;
     </nav>
@@ -294,11 +917,11 @@
     
       
         
-          <li>LegoOS-Dev &raquo;</li>
+          <li>Kernel &raquo;</li>
         
       
         
-          <li>Kernel &raquo;</li>
+          <li>LegoOS-Dev &raquo;</li>
         
       
     
@@ -325,21 +948,21 @@
 <tbody>
 <tr>
 <td>ELF (static-linked)</td>
-<td><img alt="✔️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
 </tr>
 <tr>
 <td>ELF (dynamic-linked)</td>
-<td><img alt="✔️" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
 </tr>
 </tbody>
 </table>
 <h2 id="overall">Overall<a class="headerlink" href="#overall" title="Permanent link">&para;</a></h2>
-<p>In order to support different executable formats, Lego has a <code class="codehilite">virtual loader layer</code> above all specific formats, which is quite similar to <code class="codehilite">virtual file system</code>. In Lego, <code class="codehilite">execve()</code> is divided into two parts: <code class="codehilite">1)</code> syscall hook at processor side, <code class="codehilite">2)</code> real loader at memory side. Combined together, they provide the same semantic of <code class="codehilite">execve()</code> as described in Linux man page. Also for the code, we divide the Linux implementation into parts. But our emulation model introduces several interesting workarounds.</p>
+<p>In order to support different executable formats, Lego has a <code class="codehilite"><span class="n">virtual</span> <span class="n">loader</span> <span class="n">layer</span></code> above all specific formats, which is quite similar to <code class="codehilite"><span class="n">virtual</span> <span class="n">file</span> <span class="k">system</span></code>. In Lego, <code class="codehilite"><span class="n">execve</span><span class="p">()</span></code> is divided into two parts: <code class="codehilite"><span class="mi">1</span><span class="p">)</span></code> syscall hook at processor side, <code class="codehilite"><span class="mi">2</span><span class="p">)</span></code> real loader at memory side. Combined together, they provide the same semantic of <code class="codehilite"><span class="n">execve</span><span class="p">()</span></code> as described in Linux man page. Also for the code, we divide the Linux implementation into parts. But our emulation model introduces several interesting workarounds.</p>
 <h2 id="legos-loader">Lego&rsquo;s Loader<a class="headerlink" href="#legos-loader" title="Permanent link">&para;</a></h2>
 <p>Lego basically divide the Linux loader into two parts, one in memory manager and other in processor manager. Most dirty work is done by memory manager. Processor manager only needs to make sure the new execution has a fresh environment to start.</p>
 <h3 id="entry-point">Entry Point<a class="headerlink" href="#entry-point" title="Permanent link">&para;</a></h3>
-<p>So the normal entry point is <code class="codehilite">do_execve()</code>. Above that, it can be invoked by syscall from user space, or from kernel space by calling <code class="codehilite">do_execve()</code> directly. There are not too many places that will call <code class="codehilite">do_execve</code> within kernel. One notable case is how kernel starts the <code class="codehilite">pid 1</code> user program. This happens after kernel finished all initialization. The code is:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>So the normal entry point is <code class="codehilite"><span class="n">do_execve</span><span class="p">()</span></code>. Above that, it can be invoked by syscall from user space, or from kernel space by calling <code class="codehilite"><span class="n">do_execve</span><span class="p">()</span></code> directly. There are not too many places that will call <code class="codehilite"><span class="n">do_execve</span></code> within kernel. One notable case is how kernel starts the <code class="codehilite"><span class="n">pid</span> <span class="mi">1</span></code> user program. This happens after kernel finished all initialization. The code is:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -351,10 +974,10 @@
 </pre></div>
 </td></tr></table></p>
 <h3 id="memory-managers-job">Memory Manager&rsquo;s Job<a class="headerlink" href="#memory-managers-job" title="Permanent link">&para;</a></h3>
-<p>Memory manager side will do most of the dirty loading work. It will parse the ELF image, create new VMAs based on ELF information. After that, it only pass <code class="codehilite">start_ip</code> and <code class="codehilite">start_stack</code> back to processor manager. Once processor manager starts running this new execution, pages will be fetched from memory component on demand.</p>
+<p>Memory manager side will do most of the dirty loading work. It will parse the ELF image, create new VMAs based on ELF information. After that, it only pass <code class="codehilite"><span class="n">start_ip</span></code> and <code class="codehilite"><span class="n">start_stack</span></code> back to processor manager. Once processor manager starts running this new execution, pages will be fetched from memory component on demand.</p>
 <h4 id="load-ld-linux">Load ld-linux<a class="headerlink" href="#load-ld-linux" title="Permanent link">&para;</a></h4>
-<p>For dynamically-linked images, kernel ELF loader needs to load the <code class="codehilite">ld-linux.so</code> as well. It will first try to map the <code class="codehilite">ld-linux.so</code> into this process&rsquo;s virtual address space. Furthermore, the first user instruction that will run is no longer <code class="codehilite">__libc_main_start</code>, kernel will transfer the kernel to <code class="codehilite">ld-linux.so</code> instead. Thus, for a normal user program, <code class="codehilite">ld-linux.so</code> will load all the shared libraries before running glibc.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p>For dynamically-linked images, kernel ELF loader needs to load the <code class="codehilite"><span class="n">ld</span><span class="o">-</span><span class="n">linux</span><span class="p">.</span><span class="n">so</span></code> as well. It will first try to map the <code class="codehilite"><span class="n">ld</span><span class="o">-</span><span class="n">linux</span><span class="p">.</span><span class="n">so</span></code> into this process&rsquo;s virtual address space. Furthermore, the first user instruction that will run is no longer <code class="codehilite"><span class="n">__libc_main_start</span></code>, kernel will transfer the kernel to <code class="codehilite"><span class="n">ld</span><span class="o">-</span><span class="n">linux</span><span class="p">.</span><span class="n">so</span></code> instead. Thus, for a normal user program, <code class="codehilite"><span class="n">ld</span><span class="o">-</span><span class="n">linux</span><span class="p">.</span><span class="n">so</span></code> will load all the shared libraries before running glibc.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -445,13 +1068,13 @@
 </td></tr></table>
 
 <h3 id="processor-managers-job">Processor Manager&rsquo;s Job<a class="headerlink" href="#processor-managers-job" title="Permanent link">&para;</a></h3>
-<p>It needs to flush old execution environment, and setup the new execution environment, such as signal, FPU. Notably, processor manager need to run <code class="codehilite">flush_old_exec()</code>, and <code class="codehilite">setup_new_exec()</code>.</p>
+<p>It needs to flush old execution environment, and setup the new execution environment, such as signal, FPU. Notably, processor manager need to run <code class="codehilite"><span class="n">flush_old_exec</span><span class="p">()</span></code>, and <code class="codehilite"><span class="n">setup_new_exec</span><span class="p">()</span></code>.</p>
 <h4 id="destroy-old-context-flush_old_exec">Destroy old context: flush_old_exec()<a class="headerlink" href="#destroy-old-context-flush_old_exec" title="Permanent link">&para;</a></h4>
 <h5 id="zap-other-threads">Zap other threads<a class="headerlink" href="#zap-other-threads" title="Permanent link">&para;</a></h5>
-<p><code class="codehilite">de_thread</code> is used to kill other threads within the same thread group, thus make sure this process has its own signal table. Furthermore, A <code class="codehilite">exec</code> starts a new thread group with the same TGID of the previous thread group, so we probably also need to switch PID if calling thread is not a leader.</p>
+<p><code class="codehilite"><span class="n">de_thread</span></code> is used to kill other threads within the same thread group, thus make sure this process has its own signal table. Furthermore, A <code class="codehilite"><span class="k">exec</span></code> starts a new thread group with the same TGID of the previous thread group, so we probably also need to switch PID if calling thread is not a leader.</p>
 <h5 id="switch-to-new-address-space">Switch to new address space<a class="headerlink" href="#switch-to-new-address-space" title="Permanent link">&para;</a></h5>
 <p>We also need to release the old mm, and allocate a new mm. The new mm only has the high address kernel mapping established. Do note that in Lego, pgtable is used to emulate the processor cache:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -501,8 +1124,8 @@
 </pre></div>
 </td></tr></table></p>
 <h5 id="clear-architecture-specific-state">Clear Architecture-Specific state<a class="headerlink" href="#clear-architecture-specific-state" title="Permanent link">&para;</a></h5>
-<p>This is performed by <code class="codehilite">flush_thread()</code>, which is an architecture-specific callback. In x86, we need to clear FPU state, and reset TLS array:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>This is performed by <code class="codehilite"><span class="n">flush_thread</span><span class="p">()</span></code>, which is an architecture-specific callback. In x86, we need to clear FPU state, and reset TLS array:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -518,8 +1141,8 @@
 </pre></div>
 </td></tr></table></p>
 <h4 id="setup-new-context-setup_new_exec">Setup new context: setup_new_exec()<a class="headerlink" href="#setup-new-context-setup_new_exec" title="Permanent link">&para;</a></h4>
-<p>Lego&rsquo;s <code class="codehilite">setup_new_exec()</code> is quite different from Linux&rsquo;s default implementation. Lego moves several functions to memory component, like the <code class="codehilite">arch_pick_mmap_layout</code> stuff. Thus, Lego only flush the signal handlers and reset the signal stack stuff:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>Lego&rsquo;s <code class="codehilite"><span class="n">setup_new_exec</span><span class="p">()</span></code> is quite different from Linux&rsquo;s default implementation. Lego moves several functions to memory component, like the <code class="codehilite"><span class="n">arch_pick_mmap_layout</span></code> stuff. Thus, Lego only flush the signal handlers and reset the signal stack stuff:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -540,7 +1163,7 @@
 </td></tr></table></p>
 <h4 id="change-return-frame-in-stack">Change return frame in stack<a class="headerlink" href="#change-return-frame-in-stack" title="Permanent link">&para;</a></h4>
 <p>We do not return to user mode here, we simply replace the return IP of the regs frame. While the kernel thread returns, it will simply merge to syscall return path (check ret_from_fork() in entry.S for detail).
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -579,8 +1202,8 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></p>
-<p>If calling <code class="codehilite">execve()</code> from userspace, the return frame is saved in the stack, we can simply do <code class="codehilite">start_thread</code> above, and merge to syscall return path. However, if calling <code class="codehilite">execve()</code> from a kernel thread, things changed. As you can see, all forked threads will run from <code class="codehilite">ret_from_fork</code> when it wakes for the first time. If it is a kernel thread, it jumps to <code class="codehilite">line 23</code>, to execute the kernel function. Normally, the function should not return. If it does return, it normally has called an <code class="codehilite">execve()</code>, and return frame has been changed by <code class="codehilite">start_thread()</code>. So we jump to <code class="codehilite">line 16</code> to let it merge to syscall return path.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p>If calling <code class="codehilite"><span class="n">execve</span><span class="p">()</span></code> from userspace, the return frame is saved in the stack, we can simply do <code class="codehilite"><span class="n">start_thread</span></code> above, and merge to syscall return path. However, if calling <code class="codehilite"><span class="n">execve</span><span class="p">()</span></code> from a kernel thread, things changed. As you can see, all forked threads will run from <code class="codehilite"><span class="n">ret_from_fork</span></code> when it wakes for the first time. If it is a kernel thread, it jumps to <code class="codehilite"><span class="n">line</span> <span class="mi">23</span></code>, to execute the kernel function. Normally, the function should not return. If it does return, it normally has called an <code class="codehilite"><span class="n">execve</span><span class="p">()</span></code>, and return frame has been changed by <code class="codehilite"><span class="n">start_thread</span><span class="p">()</span></code>. So we jump to <code class="codehilite"><span class="n">line</span> <span class="mi">16</span></code> to let it merge to syscall return path.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -652,11 +1275,11 @@
 <hr />
 <h4 id="virtual-address-space-range">Virtual Address Space Range<a class="headerlink" href="#virtual-address-space-range" title="Permanent link">&para;</a></h4>
 <p>User&rsquo;s virtual address falls into this range:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[sysctl_mmap_min_addr, TASK_SIZE)
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span><span class="n">sysctl_mmap_min_addr</span><span class="p">,</span> <span class="n">TASK_SIZE</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></p>
 <p>By default,
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -682,13 +1305,13 @@
 </pre></div>
 </td></tr></table></p>
 <p>Essentially:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[0x1000, 0x7ffffffff000)
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span><span class="mi">0</span><span class="n">x1000</span><span class="p">,</span> <span class="mi">0</span><span class="n">x7ffffffff000</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></p>
 <hr />
 <h4 id="pre-populated-bss-and-brk">Pre-Populated <code class="codehilite"><span class="na">.bss</span></code> and <code class="codehilite"><span class="na">.brk</span></code><a class="headerlink" href="#pre-populated-bss-and-brk" title="Permanent link">&para;</a></h4>
-<p>The heap vma created at loading time is a combination of <code class="codehilite"><span class="na">.bss</span></code> and <code class="codehilite"><span class="na">.brk</span></code> segments. Since brk usage is 0 (will it be non-zero?) at this moment, so the heap vma is essentially just <code class="codehilite"><span class="na">.bss</span></code> pages. Normally, Linux kernel does not populate pages for this vma during loading, but Lego does. It can save several page allocation cost for heap pcache miss. It is controlled by <code class="codehilite">vm_brk()</code>.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p>The heap vma created at loading time is a combination of <code class="codehilite"><span class="na">.bss</span></code> and <code class="codehilite"><span class="na">.brk</span></code> segments. Since brk usage is 0 (will it be non-zero?) at this moment, so the heap vma is essentially just <code class="codehilite"><span class="na">.bss</span></code> pages. Normally, Linux kernel does not populate pages for this vma during loading, but Lego does. It can save several page allocation cost for heap pcache miss. It is controlled by <code class="codehilite"><span class="n">vm_brk</span><span class="p">()</span></code>.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -727,12 +1350,12 @@
 </td></tr></table></p>
 <hr />
 <h4 id="un-populated-stack">Un-Populated stack<a class="headerlink" href="#un-populated-stack" title="Permanent link">&para;</a></h4>
-<p>Stack vma is manually expanded to <code class="codehilite">32 pages + pages for argv info</code> by loader to accommodate future usage. Only pages for argv are populated by default, the extra 32 pages are not. A typical program may need 1 page for saving argv info, plus the 32 extra, the layout will be:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>7ffffffde000-7ffffffff000 rw-p 00000000 [stack]
+<p>Stack vma is manually expanded to <code class="codehilite"><span class="mi">32</span> <span class="nv">pages</span> <span class="o">+</span> <span class="nv">pages</span> <span class="k">for</span> <span class="nv">argv</span> <span class="nv">info</span></code> by loader to accommodate future usage. Only pages for argv are populated by default, the extra 32 pages are not. A typical program may need 1 page for saving argv info, plus the 32 extra, the layout will be:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="mi">7</span><span class="n">ffffffde000</span><span class="o">-</span><span class="mi">7</span><span class="n">ffffffff000</span><span class="w"> </span><span class="n">rw</span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">00000000</span><span class="w"> </span><span class="o">[</span><span class="n">stack</span><span class="o">]</span><span class="w"></span>
 </pre></div>
 </td></tr></table></p>
-<p>The code to expand stack is done when ELF loader tries to finalize the stack vma, by calling <code class="codehilite">setup_arg_pages()</code>:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p>The code to expand stack is done when ELF loader tries to finalize the stack vma, by calling <code class="codehilite"><span class="n">setup_arg_pages</span><span class="p">()</span></code>:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -768,8 +1391,8 @@
 <p>In essence, all PT_LOAD segments of ELF image are not pre-populated. They will be fetched from storage on demand. This is the traditional on-demand paging way. If we want to reduce the overhead of code and data&rsquo;s on-demand paging, we can prefault them in the future.</p>
 <hr />
 <h4 id="disabled-randomized-top-of-stack">Disabled Randomized Top of Stack<a class="headerlink" href="#disabled-randomized-top-of-stack" title="Permanent link">&para;</a></h4>
-<p>Lego currently does not randomize the stack top. The stack vma is allocated by <code class="codehilite">bprm_mm_init()</code> at early execve time. There is no randomization at the allocation time, and this applies to all exectuable formats. The end of vma is just <code class="codehilite">TASK_SIZE</code>:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>Lego currently does not randomize the stack top. The stack vma is allocated by <code class="codehilite"><span class="n">bprm_mm_init</span><span class="p">()</span></code> at early execve time. There is no randomization at the allocation time, and this applies to all exectuable formats. The end of vma is just <code class="codehilite"><span class="n">TASK_SIZE</span></code>:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -784,14 +1407,14 @@
 <span class="p">(</span><span class="n">managers</span><span class="o">/</span><span class="n">memory</span><span class="o">/</span><span class="n">loader</span><span class="o">/</span><span class="n">elf</span><span class="p">.</span><span class="n">c</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></p>
-<p>Top of stack randomization happens within each specific format loader. They do this by calling back to virtual loader layer&rsquo;s <code class="codehilite">setup_arg_pages()</code> function, which is used to finalize the top of stack:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>Top of stack randomization happens within each specific format loader. They do this by calling back to virtual loader layer&rsquo;s <code class="codehilite"><span class="n">setup_arg_pages</span><span class="p">()</span></code> function, which is used to finalize the top of stack:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="nf">setup_arg_pages</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
                     <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">stack_top</span><span class="p">,</span> <span class="kt">int</span> <span class="n">executable_stack</span><span class="p">);</span>
 </pre></div>
 </td></tr></table></p>
 <p>So, to actually randomize the top of stack, you can simply do the following:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -842,8 +1465,8 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></p>
-<p>However, current Lego disables randomization by passing <code class="codehilite">TASK_SIZE</code>:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>However, current Lego disables randomization by passing <code class="codehilite"><span class="n">TASK_SIZE</span></code>:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -862,16 +1485,16 @@
 </td></tr></table></p>
 <hr />
 <h4 id="no-vdso">No vDSO<a class="headerlink" href="#no-vdso" title="Permanent link">&para;</a></h4>
-<p>Currently, Lego does not have <code class="codehilite">vDSO</code> support. There are not too many syscalls mapped in the vDSO, for <a href="http://man7.org/linux/man-pages/man7/vdso.7.html">x86-64</a>:</p>
+<p>Currently, Lego does not have <code class="codehilite"><span class="n">vDSO</span></code> support. There are not too many syscalls mapped in the vDSO, for <a href="http://man7.org/linux/man-pages/man7/vdso.7.html">x86-64</a>:</p>
 <ul>
 <li>clock_gettime</li>
 <li>getcpu</li>
 <li>gettimeofday</li>
 <li>time</li>
 </ul>
-<p>The reason to add it back is simple: if those syscalls are used <code class="codehilite">a lot</code> and hurt overall performance. Do note that when we add it back, it will be different from the common design: vDSO <code class="codehilite">must</code> be mapped at processor side, mapped in our emulated pgtable.</p>
+<p>The reason to add it back is simple: if those syscalls are used <code class="codehilite"><span class="n">a</span> <span class="n">lot</span></code> and hurt overall performance. Do note that when we add it back, it will be different from the common design: vDSO <code class="codehilite"><span class="n">must</span></code> be mapped at processor side, mapped in our emulated pgtable.</p>
 <p>Below is the original part where loader maps vDSO:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -898,8 +1521,8 @@
 <span class="n">managers</span><span class="o">/</span><span class="n">memory</span><span class="o">/</span><span class="n">loader</span><span class="o">/</span><span class="n">elf</span><span class="p">.</span><span class="n">c</span>
 </pre></div>
 </td></tr></table></p>
-<p>For lego, we should move it to processor right before <code class="codehilite">start_thread()</code>:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p>For lego, we should move it to processor right before <code class="codehilite"><span class="n">start_thread</span><span class="p">()</span></code>:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -920,8 +1543,8 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></p>
-<p>Besides, don&rsquo;t forget to report the <code class="codehilite">vDSO</code> address in the aux vector:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p>Besides, don&rsquo;t forget to report the <code class="codehilite"><span class="n">vDSO</span></code> address in the aux vector:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -1002,9 +1625,8 @@ Last Updated: Feb 27, 2018</p>
     </span>
 </div>
     <script>var base_url = '../../..';</script>
-    <script src="../../../js/theme.js"></script>
-      <script src="../../../search/require.js"></script>
-      <script src="../../../search/search.js"></script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
 
 </body>
 </html>

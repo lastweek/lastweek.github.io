@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -23,15 +23,16 @@
     var mkdocs_page_url = "/lego/kernel/irq/";
   </script>
   
-  <script src="../../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../../js/highlight.pack.js"></script> 
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-143772066-1', 'auto');
       ga('send', 'pageview');
@@ -49,228 +50,692 @@
         <a href="../../.." class="icon icon-home"> Yizhou Shan's Home Page</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	  
-          
-		  
-  <ul class="" href="../../..">
-    <li class="toctree-l1">
-  <a class="" href="../../..">Home</a>
-  </li></ul>
-          
-		  
-  <p class="caption">Notes</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/paper_fpga/">FPGA Papers</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/cache_coherence/">Cache Coherence</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/benchmark/">Benchmarks</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/linux-articles/">Linux Articles</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/proc/">[Linux] Special Files</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/trace/">[Linux] Trace/Profile</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../misc/essential/">Essential</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../misc/cheatsheet/">Cheatsheet</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/general_log/0919">Log</a>
-        </li>
-  </ul>
-
-          
-		  
-  <p class="caption">FPGA</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/vivado_tricks/">Vivado Tricks</a>
-        </li>
-  </ul>
-
-          
-		  
-  <p class="caption">LegoOS-Dev</p>
-  <ul class="current">
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/log/TODO">Log</a>
-        </li>
-          <li class="toctree-l1 current">
-            
-  <a class="current" href="/lego/kernel/kconfig">Kernel</a>
-  <ul class="subnav">
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../kconfig/">Kconfig</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../debug/">Debug</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../grub/">GRUB</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../profile/">Profile</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../profile_strace/">Profile strace</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../profile_heatmap/">Profile heatmap</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../profile_points/">Profile points</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../trampoline/">Trampoline</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../pagefault_disable/">Disable pgfault</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../stop_machine/">Stop machine</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../loader/">Program Loader</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../vDSO/">vDSO</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../vfs/">Virtual File System</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../vm/">Process Virtual Memory</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../fpu/">x86 FPU</a>
-        </li>
-        <li class="toctree-l2 current 1">
-            
-  <a class="current" href="./">IRQ</a>
-  <ul class="subnav">
+	<ul class="tocbase current">
+    
+    
       
-  <li class="toctree-l2 current">
-  
-  
-    <ul class="">
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../..">Home</a>
+  </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#init">Init</a>
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">Notes</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/paper_fpga/">FPGA Papers</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/cache_coherence/">Cache Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/benchmark/">Benchmarks</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/linux-articles/">Linux Articles</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/proc/">[Linux] Special Files</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/trace/">[Linux] Trace/Profile</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../misc/essential/">Essential</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../misc/cheatsheet/">Cheatsheet</a>
+  </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0919/">Sep 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0819/">Aug 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0719/">Jul 2019</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">FPGA</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/vivado_tricks/">Vivado Tricks</a>
+  </li>
+        
+      </ul>
+    </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">LegoOS-Dev</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/TODO/">TODO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/misc/">MISC</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/test-note/">Test Script</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-09-2018/">Sep 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-08-2018/">Aug 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-04-2018/">April 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-03-2018/">March 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../log/log-02-2018/">Feb 2018</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Kernel</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../kconfig/">Kconfig</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../debug/">Debug</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../grub/">GRUB</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../profile/">Profile</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../profile_strace/">Profile strace</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../profile_heatmap/">Profile heatmap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../profile_points/">Profile points</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../trampoline/">Trampoline</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../pagefault_disable/">Disable pgfault</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../stop_machine/">Stop machine</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../loader/">Program Loader</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../vDSO/">vDSO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../vfs/">Virtual File System</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../vm/">Process Virtual Memory</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../fpu/">x86 FPU</a>
+  </li>
+        
+          
+
+
+  
+    
+    <li class="navtree toctree-l3 page current">
+      <a class="current" href="./">
+        IRQ
+      </a>
+    </li>
+    
+      
+
+  <li class="toctree-l3 current with-children">
+    <a href="#irq">
+      IRQ
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l3 current">
+    <ul class="subnav-l3 current">
+    
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#init">Init</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#irq-domain">IRQ Domain</a>
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#irq-domain">IRQ Domain</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#aug-20-2018">Aug 20, 2018</a>
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#aug-20-2018">Aug 20, 2018</a>
         </li>
     
     </ul>
-  
   </li>
 
-  </ul>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../net_thpool/">Network Thpool</a>
-        </li>
-  </ul>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/syscall/facts">Syscall</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/pcache/config">Pcache</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/driver/pci">Driver</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/paper/nmp">Paper</a>
-        </li>
-  </ul>
 
+  
+        
           
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../net_thpool/">Network Thpool</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Syscall</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/facts/">Facts</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../profile_strace/">strace</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/compat/">compat</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/msync/">msync()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/mremap/">mremap()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/fork/">fork()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/getrusage/">getrusage()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/wait_and_exit/">wait4 and exit()</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Pcache</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/config/">Config</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/sweep/">Sweep</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/tlb/">TLB Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/pgtable-lock/">PageTable Lock</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/victim/">Victim Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/virtual_cache/">Virtual Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/rmap/">Reverse Mapping</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/evict_and_ref/">Evict and Refcount</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/smp_design/">SMP Design</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/replication/">Replication</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Driver</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../driver/pci/">PCI</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../driver/ib/">Infiniband</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Paper</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/nmp/">NMP</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/processor_oom/">Processor OOM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/genz/">Gen-Z</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/replication/">Replication</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/related/">Related</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
       </div>
       &nbsp;
     </nav>
@@ -292,11 +757,11 @@
     
       
         
-          <li>LegoOS-Dev &raquo;</li>
+          <li>Kernel &raquo;</li>
         
       
         
-          <li>Kernel &raquo;</li>
+          <li>LegoOS-Dev &raquo;</li>
         
       
     
@@ -311,27 +776,27 @@
             <div class="section">
               
                 <h1 id="irq">IRQ<a class="headerlink" href="#irq" title="Permanent link">&para;</a></h1>
-<p>IRQ is majorly ported based on <code class="codehilite">linux-4.4</code>. The decision of porting of whole IRQ stack from linux was made at early stage of Lego, when I&rsquo;m not so familiar with this stuff. This technique decision has pros and cons.</p>
+<p>IRQ is majorly ported based on <code class="codehilite"><span class="n">linux</span><span class="o">-</span><span class="mi">4</span><span class="p">.</span><span class="mi">4</span></code>. The decision of porting of whole IRQ stack from linux was made at early stage of Lego, when I&rsquo;m not so familiar with this stuff. This technique decision has pros and cons.</p>
 <p>The whole thing is made complicated by having IRQ domain. IRQ domain is introduced to address the multiple interrupt controller issue. And in x86, we kind of have mutiple as well: IO-APIC, REMAP, LAPIC. Although we are not supporting IRQ remap now.</p>
 <h2 id="init">Init<a class="headerlink" href="#init" title="Permanent link">&para;</a></h2>
 <ul>
-<li>The first part of initialization is <code class="codehilite">trap_init()</code> at early <code class="codehilite">setup_arch()</code>.</li>
-<li>The second major entry point is <code class="codehilite">irq_init()</code> at <code class="codehilite">start_kernel()</code>. This <code class="codehilite">irq_init()</code> is actually a combination of linux&rsquo;s:<ul>
-<li><code class="codehilite">early_irq_init()</code>: 1) setup <code class="codehilite">irq_desc[]</code> array, and then call <code class="codehilite">arch_early_irq_init()</code>, which will register two IRQ domains (x86_vector_domain, msi_domain).</li>
-<li><code class="codehilite">init_IRQ()</code>: is actually a callback to low-level x86 interrupt setup. It mainly setup the desc&rsquo;s data/chip etc, and register all different handlers.</li>
-<li>In Lego, you will be able to find all the functionalitis are moved into <code class="codehilite">arch_irq_init()</code>. And, to this point, we have a complete setup.</li>
+<li>The first part of initialization is <code class="codehilite"><span class="n">trap_init</span><span class="p">()</span></code> at early <code class="codehilite"><span class="n">setup_arch</span><span class="p">()</span></code>.</li>
+<li>The second major entry point is <code class="codehilite"><span class="n">irq_init</span><span class="p">()</span></code> at <code class="codehilite"><span class="n">start_kernel</span><span class="p">()</span></code>. This <code class="codehilite"><span class="n">irq_init</span><span class="p">()</span></code> is actually a combination of linux&rsquo;s:<ul>
+<li><code class="codehilite"><span class="n">early_irq_init</span><span class="p">()</span></code>: 1) setup <code class="codehilite"><span class="n">irq_desc</span><span class="p">[]</span></code> array, and then call <code class="codehilite"><span class="n">arch_early_irq_init</span><span class="p">()</span></code>, which will register two IRQ domains (x86_vector_domain, msi_domain).</li>
+<li><code class="codehilite"><span class="n">init_IRQ</span><span class="p">()</span></code>: is actually a callback to low-level x86 interrupt setup. It mainly setup the desc&rsquo;s data/chip etc, and register all different handlers.</li>
+<li>In Lego, you will be able to find all the functionalitis are moved into <code class="codehilite"><span class="n">arch_irq_init</span><span class="p">()</span></code>. And, to this point, we have a complete setup.</li>
 </ul>
 </li>
-<li>The third (and last) entry point is <code class="codehilite">smp_prepare_cpus()</code>:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<li>The third (and last) entry point is <code class="codehilite"><span class="n">smp_prepare_cpus</span><span class="p">()</span></code>:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>smp_prepare_cpus()
--&gt; apic_bsp_setup()
-   -&gt; setup_local_APIC()
-   -&gt; setup_IO_APIC()
-   -&gt; x86_init.timers.setup_percpu_clockev()
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">smp_prepare_cpus</span><span class="p">()</span>
+<span class="o">-&gt;</span> <span class="n">apic_bsp_setup</span><span class="p">()</span>
+   <span class="o">-&gt;</span> <span class="n">setup_local_APIC</span><span class="p">()</span>
+   <span class="o">-&gt;</span> <span class="n">setup_IO_APIC</span><span class="p">()</span>
+   <span class="o">-&gt;</span> <span class="n">x86_init</span><span class="p">.</span><span class="n">timers</span><span class="p">.</span><span class="n">setup_percpu_clockev</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></li>
 </ul>
@@ -342,14 +807,14 @@
 <li>x86_msi</li>
 <li>x86_ioapic-N (each ioapic has one)</li>
 </ul>
-<p>The first two guys are created during <code class="codehilite">arch_irq_init()</code>. While the latter ioapic ones are created during <code class="codehilite">setup_IO_APIC()</code>. All of them are allocated eventually by <code class="codehilite">__irq_domain_add()</code>, and linked at <code class="codehilite">LIST_HEAD(irq_domain_list)</code>.</p>
+<p>The first two guys are created during <code class="codehilite"><span class="n">arch_irq_init</span><span class="p">()</span></code>. While the latter ioapic ones are created during <code class="codehilite"><span class="n">setup_IO_APIC</span><span class="p">()</span></code>. All of them are allocated eventually by <code class="codehilite"><span class="n">__irq_domain_add</span><span class="p">()</span></code>, and linked at <code class="codehilite"><span class="n">LIST_HEAD</span><span class="p">(</span><span class="n">irq_domain_list</span><span class="p">)</span></code>.</p>
 <p>So....  Lego or Linux maintains its own IRQ numbers, starting from 0 to NR_IRQs.
-However, this IRQ number MAY not have a identical mapping to hardware&rsquo;s own IRQ number (let us call it hwirq). Given this, we want to know the mapping between IRQ and hwirq. That&rsquo;s the purpose of having <code class="codehilite">linear_revmap</code> and <code class="codehilite">revmap_tree</code> within each domain, it is used to translate hwirq to IRQ.</p>
-<p>Why two different data structures? <code class="codehilite">linear_revmap</code> is fairly simple, an array, which is indexed by hwirq. However, the hwirq maybe very large, we don&rsquo;t want to waste memory, that&rsquo;s how we want to use trees.</p>
-<p>These two can be used together. If we fail to insert into <code class="codehilite">linear_revmap</code>, we insert into tree. During search time, we need to look up both.</p>
-<p>By default, <code class="codehilite">x86_vector</code> and <code class="codehilite">x86_msi</code> use radix tree only. <code class="codehilite">x86_ioapic-N</code> uses a mix of linear and radix tree.</p>
-<p>To dump all IRQ domains, call <code class="codehilite">dump_irq_domain_list()</code>, which give you something like this:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+However, this IRQ number MAY not have a identical mapping to hardware&rsquo;s own IRQ number (let us call it hwirq). Given this, we want to know the mapping between IRQ and hwirq. That&rsquo;s the purpose of having <code class="codehilite"><span class="n">linear_revmap</span></code> and <code class="codehilite"><span class="n">revmap_tree</span></code> within each domain, it is used to translate hwirq to IRQ.</p>
+<p>Why two different data structures? <code class="codehilite"><span class="n">linear_revmap</span></code> is fairly simple, an array, which is indexed by hwirq. However, the hwirq maybe very large, we don&rsquo;t want to waste memory, that&rsquo;s how we want to use trees.</p>
+<p>These two can be used together. If we fail to insert into <code class="codehilite"><span class="n">linear_revmap</span></code>, we insert into tree. During search time, we need to look up both.</p>
+<p>By default, <code class="codehilite"><span class="n">x86_vector</span></code> and <code class="codehilite"><span class="n">x86_msi</span></code> use radix tree only. <code class="codehilite"><span class="n">x86_ioapic</span><span class="o">-</span><span class="n">N</span></code> uses a mix of linear and radix tree.</p>
+<p>To dump all IRQ domains, call <code class="codehilite"><span class="n">dump_irq_domain_list</span><span class="p">()</span></code>, which give you something like this:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -404,7 +869,7 @@ However, this IRQ number MAY not have a identical mapping to hardware&rsquo;s ow
 </td></tr></table></p>
 <h2 id="aug-20-2018">Aug 20, 2018<a class="headerlink" href="#aug-20-2018" title="Permanent link">&para;</a></h2>
 <p>Well, I&rsquo;ve ported the IRQ stuff at early days of Lego. At that time, I mainly ported the low-level APIC, IO-APIC, and ACPI stuff, along with the upper layer irqchip, irqdesc stuff.</p>
-<p>These days, I was verifying our IB code and tried to add back mlx4en&rsquo;s interrupt handler, somehow, there is no interrupt after <code class="codehilite">request_irq()</code>.</p>
+<p>These days, I was verifying our IB code and tried to add back mlx4en&rsquo;s interrupt handler, somehow, there is no interrupt after <code class="codehilite"><span class="n">request_irq</span><span class="p">()</span></code>.</p>
 <p>Two possible reasons: 1) I missed something during PCI setup, 2) underlying APIC and IO-APIC need more work.</p>
 <p>&ndash;
 Last Updated: Aug 28, 2018</p>
@@ -452,9 +917,8 @@ Last Updated: Aug 28, 2018</p>
     </span>
 </div>
     <script>var base_url = '../../..';</script>
-    <script src="../../../js/theme.js"></script>
-      <script src="../../../search/require.js"></script>
-      <script src="../../../search/search.js"></script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
 
 </body>
 </html>

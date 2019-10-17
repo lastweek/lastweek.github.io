@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -23,15 +23,16 @@
     var mkdocs_page_url = "/lego/log/log-08-2018/";
   </script>
   
-  <script src="../../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../../js/highlight.pack.js"></script> 
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-143772066-1', 'auto');
       ga('send', 'pageview');
@@ -49,204 +50,772 @@
         <a href="../../.." class="icon icon-home"> Yizhou Shan's Home Page</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	  
-          
-		  
-  <ul class="" href="../../..">
-    <li class="toctree-l1">
-  <a class="" href="../../..">Home</a>
-  </li></ul>
-          
-		  
-  <p class="caption">Notes</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/paper_fpga/">FPGA Papers</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/cache_coherence/">Cache Coherence</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/benchmark/">Benchmarks</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/linux-articles/">Linux Articles</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/proc/">[Linux] Special Files</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/trace/">[Linux] Trace/Profile</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../misc/essential/">Essential</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../misc/cheatsheet/">Cheatsheet</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/general_log/0919">Log</a>
-        </li>
-  </ul>
-
-          
-		  
-  <p class="caption">FPGA</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../../fpga/vivado_tricks/">Vivado Tricks</a>
-        </li>
-  </ul>
-
-          
-		  
-  <p class="caption">LegoOS-Dev</p>
-  <ul class="current">
-          <li class="toctree-l1 current">
-            
-  <a class="current" href="/lego/log/TODO">Log</a>
-  <ul class="subnav">
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../TODO/">TODO</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../misc/">MISC</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../test-note/">Test Script</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../log-09-2018/">Sep 2018</a>
-        </li>
-        <li class="toctree-l2 current 1">
-            
-  <a class="current" href="./">Aug 2018</a>
-  <ul class="subnav">
+	<ul class="tocbase current">
+    
+    
       
-  <li class="toctree-l2 current">
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../..">Home</a>
+  </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">Notes</p>
+  </li>
+
+
   
+
   
-    <ul class="">
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/paper_fpga/">FPGA Papers</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/cache_coherence/">Cache Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/benchmark/">Benchmarks</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/linux-articles/">Linux Articles</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/proc/">[Linux] Special Files</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/trace/">[Linux] Trace/Profile</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../misc/essential/">Essential</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../misc/cheatsheet/">Cheatsheet</a>
+  </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0919/">Sep 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0819/">Aug 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../../general_log/0719/">Jul 2019</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#aug-31">Aug 31</a>
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">FPGA</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../../fpga/vivado_tricks/">Vivado Tricks</a>
+  </li>
+        
+      </ul>
+    </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">LegoOS-Dev</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../TODO/">TODO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../misc/">MISC</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../test-note/">Test Script</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../log-09-2018/">Sep 2018</a>
+  </li>
+        
+          
+
+
+  
+    
+    <li class="navtree toctree-l3 page current">
+      <a class="current" href="./">
+        Aug 2018
+      </a>
+    </li>
+    
+      
+
+  <li class="toctree-l3 current with-children">
+    <a href="#aug-2018">
+      Aug 2018
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l3 current">
+    <ul class="subnav-l3 current">
+    
+      
+          
+
+  <li class="toctree-l4 current with-children">
+    <a href="#aug-31">
+      Aug 31
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l4 current">
+    <ul class="subnav-l4 current">
+    
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#one-major-todo">One major TODO</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#aug-30">Aug 30</a>
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#ugh">Ugh</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#aug-29">Aug 29</a>
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#try-max_send_wr-and-number-of-qps">Try max_send_wr and number of QPs</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#aug-27">Aug 27</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#aug-26">Aug 26</a>
-        </li>
-    
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#aug-22">Aug 22</a>
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#after-victim-bug-fix">After Victim bug fix</a>
         </li>
     
     </ul>
-  
   </li>
 
-  </ul>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../log-04-2018/">April 2018</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../log-03-2018/">March 2018</a>
-        </li>
-        <li class="toctree-l2 1">
-            
-  <a class="" href="../log-02-2018/">Feb 2018</a>
-        </li>
-  </ul>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/kernel/kconfig">Kernel</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/syscall/facts">Syscall</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/pcache/config">Pcache</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/driver/pci">Driver</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/paper/nmp">Paper</a>
-        </li>
-  </ul>
-
+      
+    
+      
           
+
+  <li class="toctree-l4">
+    <a href="#aug-30">
+      Aug 30
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l4">
+    <ul class="subnav-l4 toc-hidden">
+    
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#identified-victim-bug">Identified victim bug.</a>
+        </li>
+    
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#after-adding-pi_lock">After adding pi_lock</a>
+        </li>
+    
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#rq-lock-deadlock">rq-&gt;lock deadlock</a>
+        </li>
+    
+    </ul>
+  </li>
+
+      
+    
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#aug-29">Aug 29</a>
+        </li>
+    
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#aug-27">Aug 27</a>
+        </li>
+    
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#aug-26">Aug 26</a>
+        </li>
+    
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#aug-22">Aug 22</a>
+        </li>
+    
+    </ul>
+  </li>
+
+
+  
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../log-04-2018/">April 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../log-03-2018/">March 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../log-02-2018/">Feb 2018</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Kernel</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/kconfig/">Kconfig</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/debug/">Debug</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/grub/">GRUB</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile/">Profile</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile_strace/">Profile strace</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile_heatmap/">Profile heatmap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile_points/">Profile points</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/trampoline/">Trampoline</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/pagefault_disable/">Disable pgfault</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/stop_machine/">Stop machine</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/loader/">Program Loader</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/vDSO/">vDSO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/vfs/">Virtual File System</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/vm/">Process Virtual Memory</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/fpu/">x86 FPU</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/irq/">IRQ</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/net_thpool/">Network Thpool</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Syscall</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/facts/">Facts</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../kernel/profile_strace/">strace</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/compat/">compat</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/msync/">msync()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/mremap/">mremap()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/fork/">fork()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/getrusage/">getrusage()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../syscall/wait_and_exit/">wait4 and exit()</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Pcache</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/config/">Config</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/sweep/">Sweep</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/tlb/">TLB Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/pgtable-lock/">PageTable Lock</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/victim/">Victim Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/virtual_cache/">Virtual Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/rmap/">Reverse Mapping</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/evict_and_ref/">Evict and Refcount</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/smp_design/">SMP Design</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../pcache/replication/">Replication</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Driver</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../driver/pci/">PCI</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../driver/ib/">Infiniband</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Paper</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/nmp/">NMP</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/processor_oom/">Processor OOM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/genz/">Gen-Z</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/replication/">Replication</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../paper/related/">Related</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
       </div>
       &nbsp;
     </nav>
@@ -268,11 +837,11 @@
     
       
         
-          <li>LegoOS-Dev &raquo;</li>
+          <li>Log &raquo;</li>
         
       
         
-          <li>Log &raquo;</li>
+          <li>LegoOS-Dev &raquo;</li>
         
       
     
@@ -289,7 +858,7 @@
                 <h1 id="aug-2018">Aug 2018<a class="headerlink" href="#aug-2018" title="Permanent link">&para;</a></h1>
 <h2 id="aug-31">Aug 31<a class="headerlink" href="#aug-31" title="Permanent link">&para;</a></h2>
 <h3 id="one-major-todo">One major TODO<a class="headerlink" href="#one-major-todo" title="Permanent link">&para;</a></h3>
-<p>Check <code class="codehilite">do_handle_p2m_pcache_miss()</code>. We MUST remove that mempcy, maybe by using another flag in thpool. This is just no acceptable.</p>
+<p>Check <code class="codehilite"><span class="n">do_handle_p2m_pcache_miss</span><span class="p">()</span></code>. We MUST remove that mempcy, maybe by using another flag in thpool. This is just no acceptable.</p>
 <h3 id="ugh">Ugh<a class="headerlink" href="#ugh" title="Permanent link">&para;</a></h3>
 <p>Fuck. Without debug_mm, there is still memory corruption.</p>
 <h3 id="try-max_send_wr-and-number-of-qps">Try max_send_wr and number of QPs<a class="headerlink" href="#try-max_send_wr-and-number-of-qps" title="Permanent link">&para;</a></h3>
@@ -301,7 +870,7 @@ Change max_send_wr at all P M S.</p>
 <li>QP=24, max_send_wr = 1: succeed (0831-w14-18 0831-w14-20)</li>
 <li>QP=24, max_send_wr = 256: succeed (0831-w14-16 0831-w14-17)</li>
 </ul>
-<p>Pay attention to the <code class="codehilite">0831-w14-15</code>： something wrong with our timekeeping code? QP=24, max_send_wr = 1 case.</p>
+<p>Pay attention to the <code class="codehilite"><span class="mi">0831</span><span class="o">-</span><span class="n">w14</span><span class="o">-</span><span class="mi">15</span></code>： something wrong with our timekeeping code? QP=24, max_send_wr = 1 case.</p>
 <h3 id="after-victim-bug-fix">After Victim bug fix<a class="headerlink" href="#after-victim-bug-fix" title="Permanent link">&para;</a></h3>
 <p>MNIST 4 threads</p>
 <ul>
@@ -313,16 +882,16 @@ Change max_send_wr at all P M S.</p>
 <h2 id="aug-30">Aug 30<a class="headerlink" href="#aug-30" title="Permanent link">&para;</a></h2>
 <p>Be humble.</p>
 <h3 id="identified-victim-bug">Identified victim bug.<a class="headerlink" href="#identified-victim-bug" title="Permanent link">&para;</a></h3>
-<p>Finally. I thought it through, and with the help of this <code class="codehilite">0830-w14-12</code>.
-The bug is in <code class="codehilite">victim_try_fill_pcache()</code>, when there are multiple hits to the same victim. Since we released the <code class="codehilite">usable_victim_lock</code> after a hit. There might a be race case where: 1) CPU0 reached <code class="codehilite">dec_and_test_filling</code>, and passed to free the line. 2) CPU1 just got to the <code class="codehilite">victim_check_hit</code>, and increment the fill counter to 1 again. When CPU1 finished filling, and do <code class="codehilite">dec_and_test_filling</code>, it will do the free again!!! What a double free.</p>
+<p>Finally. I thought it through, and with the help of this <code class="codehilite"><span class="mi">0830</span><span class="o">-</span><span class="n">w14</span><span class="o">-</span><span class="mi">12</span></code>.
+The bug is in <code class="codehilite"><span class="n">victim_try_fill_pcache</span><span class="p">()</span></code>, when there are multiple hits to the same victim. Since we released the <code class="codehilite"><span class="n">usable_victim_lock</span></code> after a hit. There might a be race case where: 1) CPU0 reached <code class="codehilite"><span class="n">dec_and_test_filling</span></code>, and passed to free the line. 2) CPU1 just got to the <code class="codehilite"><span class="n">victim_check_hit</span></code>, and increment the fill counter to 1 again. When CPU1 finished filling, and do <code class="codehilite"><span class="n">dec_and_test_filling</span></code>, it will do the free again!!! What a double free.</p>
 <p>Tomorrow, let me do the fix. Thought: adding more sync in victim_check_hit part. Basically we want to ensure only one CPU can do the final free.</p>
 <h3 id="after-adding-pi_lock">After adding pi_lock<a class="headerlink" href="#after-adding-pi_lock" title="Permanent link">&para;</a></h3>
 <p>Okay. the pi_lock is added. Although it is mostly used by futex-pi and rt-mutex, we lego does not have these two guys. Therefore, it is only used by sched/core.c, exit.c, and kthread.c. 99% is in core.c</p>
-<p>The purpose of having this back is to have the <code class="codehilite">spin_lock_irqsave(&amp;p-&gt;pi_lock)</code> back. Most scheduling code is not recursive, we have to disable interrupt. Of course we can use <code class="codehilite">spin_lock_irqsave(&amp;rq-&gt;lock)</code> instead of <code class="codehilite">spin_lock(&amp;rq-&gt;lock)</code>. But this is too dangerous at this stage. Porting based on Linux now is the fastest and safest way.</p>
+<p>The purpose of having this back is to have the <code class="codehilite"><span class="n">spin_lock_irqsave</span><span class="p">(</span><span class="o">&amp;</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">pi_lock</span><span class="p">)</span></code> back. Most scheduling code is not recursive, we have to disable interrupt. Of course we can use <code class="codehilite"><span class="n">spin_lock_irqsave</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rq</span><span class="o">-&gt;</span><span class="k">lock</span><span class="p">)</span></code> instead of <code class="codehilite"><span class="n">spin_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rq</span><span class="o">-&gt;</span><span class="k">lock</span><span class="p">)</span></code>. But this is too dangerous at this stage. Porting based on Linux now is the fastest and safest way.</p>
 <p><strong>The importance of disabling interrupt in some kernel path!!</strong></p>
 <p>Good. Now I&rsquo;m seeing now debuggable victim issue.</p>
 <p>Classical deadlock catched. Now, only two victims.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -414,7 +983,7 @@ The bug is in <code class="codehilite">victim_try_fill_pcache()</code>, when the
 
 <h3 id="rq-lock-deadlock">rq-&gt;lock deadlock<a class="headerlink" href="#rq-lock-deadlock" title="Permanent link">&para;</a></h3>
 <p>Alright. We had rq-&gt;lock deadlock issue. Basically, we missed the part of disabling interrupt. A timer interrupt will try to acquire the lock again. Then, bang we have a deadlock. Digging into the code, you will be able to find the cause easily. The root cause we removed all the pi_lock stuff, which actually have a lot irqsave usages&hellip; Oh man, maybe it&rsquo;s time to add it back.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -455,53 +1024,53 @@ The bug is in <code class="codehilite">victim_try_fill_pcache()</code>, when the
 39
 40
 41
-42</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[ 3367.835389] ------------------- cut here -------------------
-[ 3367.841504] Possible deadlock happend locker_cpu: 0
-[ 3367.846934] Current call stack:
-[ 3367.850425] CPU: 0 PID: 1 Comm: kernel_init 4.0.0-lego+ #437
-[ 3367.856726] Stack:
-[ 3367.858957] ffff88107ff0fa58 ffffffff8101f4b6 ffff88107fc05e00 00000004a817c800
-[ 3367.867101] ffff88107ff0fa80 ffffffff8101f52e ffff88107fc05e00 ffff88107ffb4000
-[ 3367.875246] 0000000000000000 ffff88107ff0faa0 ffffffff8101b1ae ffff88107fc04980
-[ 3367.883390] 0000000000000000 ffff88107ff0fab8 ffffffff810174f5 0000000000000286
-[ 3367.891535] ffff88107ff0fae0 ffffffff81006774 ffff88107ffb9000 ffff88107fc05e00
-[ 3367.899680] Call Trace:
-[ 3367.902396] &lt;TSK&gt;
-[ 3367.904528] [&lt;ffffffff8101f4c2&gt;] report_deadlock+0x62/0x80
-[ 3367.910637] [&lt;ffffffff8101f52e&gt;] debug_spin_lock+0x4e/0x60
-[ 3367.916745] [&lt;ffffffff8101b1ae&gt;] scheduler_tick+0x2e/0x60
-[ 3367.922756] [&lt;ffffffff810174f5&gt;] tick_handle_periodic+0x45/0x70
-[ 3367.929350] [&lt;ffffffff81006774&gt;] apic_timer_interrupt+0x54/0x90
-[ 3367.935943] [&lt;ffffffff8100e8aa&gt;] smp__apic_timer_interrupt+0x6a/0x70
-[ 3367.943021] [&lt;ffffffff8101db99&gt;] ? enqueue_task_rt+0x149/0x250
-[ 3367.949518] [&lt;ffffffff8105908a&gt;] ? __mlx4_write_mtt+0xea/0x140
-[ 3367.956014] [&lt;ffffffff8101ad34&gt;] activate_task+0x44/0x50
-[ 3367.961929] [&lt;ffffffff8101b667&gt;] ttwu_do_activate+0x27/0x50
-[ 3367.968134] [&lt;ffffffff8101b89c&gt;] try_to_wake_up+0xdc/0x1f0
-[ 3367.974243] [&lt;ffffffff8106cc20&gt;] ? ib_mad_send_done_handler.isra.22+0x4d0/0x4d0
-[ 3367.982388] [&lt;ffffffff8101ba80&gt;] wake_up_process+0x10/0x20
-[ 3367.988497] [&lt;ffffffff81023116&gt;] __kthread_create_on_node+0x146/0x230
-[ 3367.995671] [&lt;ffffffff8102329f&gt;] kthread_create_on_node+0x2f/0x40
-[ 3368.002459] [&lt;ffffffff81066873&gt;] ? ib_create_cq+0x23/0x60
-[ 3368.008470] [&lt;ffffffff810695e1&gt;] ib_mad_init_device+0x1f1/0x7b0
-[ 3368.015064] [&lt;ffffffff81067246&gt;] ib_register_device+0x5d6/0x690
-[ 3368.021657] [&lt;ffffffff8105e9d3&gt;] mlx4_ib_add+0x653/0x780
-[ 3368.027571] [&lt;ffffffff8105147d&gt;] mlx4_add_device+0x8d/0x130
-[ 3368.033777] [&lt;ffffffff8105158c&gt;] mlx4_register_interface+0x6c/0xa0
-[ 3368.040661] [&lt;ffffffff811dc660&gt;] mlx4_ib_init+0x10/0x20
-[ 3368.046478] [&lt;ffffffff811dc619&gt;] mlx4_init+0x19/0x50
-[ 3368.052005] [&lt;ffffffff811dc68d&gt;] ib_core_init+0x1d/0x30
-[ 3368.057823] [&lt;ffffffff811db7f9&gt;] device_init+0x9/0x10
-[ 3368.063447] [&lt;ffffffff8100030b&gt;] kernel_init+0x4b/0xc0
-[ 3368.069168] [&lt;ffffffff8101b0ea&gt;] ? schedule_tail+0xa/0x40
-[ 3368.075178] [&lt;ffffffff810002c0&gt;] ? 0xffffffff810002c0
-[ 3368.080803] [&lt;ffffffff8100eb32&gt;] ret_from_fork+0x22/0x30
-[ 3368.086718] &lt;EOT&gt;
+42</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">835389</span><span class="p">]</span> <span class="c1">------------------- cut here -------------------</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">841504</span><span class="p">]</span> <span class="n">Possible</span> <span class="n">deadlock</span> <span class="n">happend</span> <span class="n">locker_cpu</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">846934</span><span class="p">]</span> <span class="k">Current</span> <span class="k">call</span> <span class="n">stack</span><span class="p">:</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">850425</span><span class="p">]</span> <span class="n">CPU</span><span class="p">:</span> <span class="mi">0</span> <span class="n">PID</span><span class="p">:</span> <span class="mi">1</span> <span class="n">Comm</span><span class="p">:</span> <span class="n">kernel_init</span> <span class="mi">4</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="n">lego</span><span class="o">+</span> <span class="o">#</span><span class="mi">437</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">856726</span><span class="p">]</span> <span class="n">Stack</span><span class="p">:</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">858957</span><span class="p">]</span> <span class="n">ffff88107ff0fa58</span> <span class="n">ffffffff8101f4b6</span> <span class="n">ffff88107fc05e00</span> <span class="mi">00000004</span><span class="n">a817c800</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">867101</span><span class="p">]</span> <span class="n">ffff88107ff0fa80</span> <span class="n">ffffffff8101f52e</span> <span class="n">ffff88107fc05e00</span> <span class="n">ffff88107ffb4000</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">875246</span><span class="p">]</span> <span class="mi">0000000000000000</span> <span class="n">ffff88107ff0faa0</span> <span class="n">ffffffff8101b1ae</span> <span class="n">ffff88107fc04980</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">883390</span><span class="p">]</span> <span class="mi">0000000000000000</span> <span class="n">ffff88107ff0fab8</span> <span class="n">ffffffff810174f5</span> <span class="mi">0000000000000286</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">891535</span><span class="p">]</span> <span class="n">ffff88107ff0fae0</span> <span class="n">ffffffff81006774</span> <span class="n">ffff88107ffb9000</span> <span class="n">ffff88107fc05e00</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">899680</span><span class="p">]</span> <span class="k">Call</span> <span class="n">Trace</span><span class="p">:</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">902396</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">TSK</span><span class="o">&gt;</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">904528</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101f4c2</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">report_deadlock</span><span class="o">+</span><span class="mi">0</span><span class="n">x62</span><span class="o">/</span><span class="mi">0</span><span class="n">x80</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">910637</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101f52e</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">debug_spin_lock</span><span class="o">+</span><span class="mi">0</span><span class="n">x4e</span><span class="o">/</span><span class="mi">0</span><span class="n">x60</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">916745</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101b1ae</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">scheduler_tick</span><span class="o">+</span><span class="mi">0</span><span class="n">x2e</span><span class="o">/</span><span class="mi">0</span><span class="n">x60</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">922756</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810174f5</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">tick_handle_periodic</span><span class="o">+</span><span class="mi">0</span><span class="n">x45</span><span class="o">/</span><span class="mi">0</span><span class="n">x70</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">929350</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81006774</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">apic_timer_interrupt</span><span class="o">+</span><span class="mi">0</span><span class="n">x54</span><span class="o">/</span><span class="mi">0</span><span class="n">x90</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">935943</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100e8aa</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">smp__apic_timer_interrupt</span><span class="o">+</span><span class="mi">0</span><span class="n">x6a</span><span class="o">/</span><span class="mi">0</span><span class="n">x70</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">943021</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101db99</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">enqueue_task_rt</span><span class="o">+</span><span class="mi">0</span><span class="n">x149</span><span class="o">/</span><span class="mi">0</span><span class="n">x250</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">949518</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8105908a</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">__mlx4_write_mtt</span><span class="o">+</span><span class="mi">0</span><span class="n">xea</span><span class="o">/</span><span class="mi">0</span><span class="n">x140</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">956014</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101ad34</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">activate_task</span><span class="o">+</span><span class="mi">0</span><span class="n">x44</span><span class="o">/</span><span class="mi">0</span><span class="n">x50</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">961929</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101b667</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">ttwu_do_activate</span><span class="o">+</span><span class="mi">0</span><span class="n">x27</span><span class="o">/</span><span class="mi">0</span><span class="n">x50</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">968134</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101b89c</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">try_to_wake_up</span><span class="o">+</span><span class="mi">0</span><span class="n">xdc</span><span class="o">/</span><span class="mi">0</span><span class="n">x1f0</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">974243</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8106cc20</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">ib_mad_send_done_handler</span><span class="p">.</span><span class="n">isra</span><span class="p">.</span><span class="mi">22</span><span class="o">+</span><span class="mi">0</span><span class="n">x4d0</span><span class="o">/</span><span class="mi">0</span><span class="n">x4d0</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">982388</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101ba80</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">wake_up_process</span><span class="o">+</span><span class="mi">0</span><span class="n">x10</span><span class="o">/</span><span class="mi">0</span><span class="n">x20</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">988497</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81023116</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">__kthread_create_on_node</span><span class="o">+</span><span class="mi">0</span><span class="n">x146</span><span class="o">/</span><span class="mi">0</span><span class="n">x230</span>
+<span class="p">[</span> <span class="mi">3367</span><span class="p">.</span><span class="mi">995671</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8102329f</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">kthread_create_on_node</span><span class="o">+</span><span class="mi">0</span><span class="n">x2f</span><span class="o">/</span><span class="mi">0</span><span class="n">x40</span>
+<span class="p">[</span> <span class="mi">3368</span><span class="p">.</span><span class="mi">002459</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81066873</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">ib_create_cq</span><span class="o">+</span><span class="mi">0</span><span class="n">x23</span><span class="o">/</span><span class="mi">0</span><span class="n">x60</span>
+<span class="p">[</span> <span class="mi">3368</span><span class="p">.</span><span class="mi">008470</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810695e1</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">ib_mad_init_device</span><span class="o">+</span><span class="mi">0</span><span class="n">x1f1</span><span class="o">/</span><span class="mi">0</span><span class="n">x7b0</span>
+<span class="p">[</span> <span class="mi">3368</span><span class="p">.</span><span class="mi">015064</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff81067246</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">ib_register_device</span><span class="o">+</span><span class="mi">0</span><span class="n">x5d6</span><span class="o">/</span><span class="mi">0</span><span class="n">x690</span>
+<span class="p">[</span> <span class="mi">3368</span><span class="p">.</span><span class="mi">021657</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8105e9d3</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">mlx4_ib_add</span><span class="o">+</span><span class="mi">0</span><span class="n">x653</span><span class="o">/</span><span class="mi">0</span><span class="n">x780</span>
+<span class="p">[</span> <span class="mi">3368</span><span class="p">.</span><span class="mi">027571</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8105147d</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">mlx4_add_device</span><span class="o">+</span><span class="mi">0</span><span class="n">x8d</span><span class="o">/</span><span class="mi">0</span><span class="n">x130</span>
+<span class="p">[</span> <span class="mi">3368</span><span class="p">.</span><span class="mi">033777</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8105158c</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">mlx4_register_interface</span><span class="o">+</span><span class="mi">0</span><span class="n">x6c</span><span class="o">/</span><span class="mi">0</span><span class="n">xa0</span>
+<span class="p">[</span> <span class="mi">3368</span><span class="p">.</span><span class="mi">040661</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff811dc660</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">mlx4_ib_init</span><span class="o">+</span><span class="mi">0</span><span class="n">x10</span><span class="o">/</span><span class="mi">0</span><span class="n">x20</span>
+<span class="p">[</span> <span class="mi">3368</span><span class="p">.</span><span class="mi">046478</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff811dc619</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">mlx4_init</span><span class="o">+</span><span class="mi">0</span><span class="n">x19</span><span class="o">/</span><span class="mi">0</span><span class="n">x50</span>
+<span class="p">[</span> <span class="mi">3368</span><span class="p">.</span><span class="mi">052005</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff811dc68d</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">ib_core_init</span><span class="o">+</span><span class="mi">0</span><span class="n">x1d</span><span class="o">/</span><span class="mi">0</span><span class="n">x30</span>
+<span class="p">[</span> <span class="mi">3368</span><span class="p">.</span><span class="mi">057823</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff811db7f9</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">device_init</span><span class="o">+</span><span class="mi">0</span><span class="n">x9</span><span class="o">/</span><span class="mi">0</span><span class="n">x10</span>
+<span class="p">[</span> <span class="mi">3368</span><span class="p">.</span><span class="mi">063447</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100030b</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">kernel_init</span><span class="o">+</span><span class="mi">0</span><span class="n">x4b</span><span class="o">/</span><span class="mi">0</span><span class="n">xc0</span>
+<span class="p">[</span> <span class="mi">3368</span><span class="p">.</span><span class="mi">069168</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8101b0ea</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="n">schedule_tail</span><span class="o">+</span><span class="mi">0</span><span class="n">xa</span><span class="o">/</span><span class="mi">0</span><span class="n">x40</span>
+<span class="p">[</span> <span class="mi">3368</span><span class="p">.</span><span class="mi">075178</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff810002c0</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">?</span> <span class="mi">0</span><span class="n">xffffffff810002c0</span>
+<span class="p">[</span> <span class="mi">3368</span><span class="p">.</span><span class="mi">080803</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">ffffffff8100eb32</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">ret_from_fork</span><span class="o">+</span><span class="mi">0</span><span class="n">x22</span><span class="o">/</span><span class="mi">0</span><span class="n">x30</span>
+<span class="p">[</span> <span class="mi">3368</span><span class="p">.</span><span class="mi">086718</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">EOT</span><span class="o">&gt;</span>
 </pre></div>
 </td></tr></table>
 
 <p>0830-w14-1: I really don&rsquo;t know how this happen. The refcounter and fill counter should be enough to serialize..
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -520,26 +1089,26 @@ The bug is in <code class="codehilite">victim_try_fill_pcache()</code>, when the
 17
 18
 19
-20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[37722.177024] CPU20 PID31  victim:ffffffff810c2880 index:0 refcount:0 nr_fill:0 max_fill:4 locked:0 flags:(0x12e)(allocated|usable|hasdata|waitflush|fillfree) pcm:          (null) pset:ffff88207ff5b980
-[37722.196623] CPU20 PID31     hit[0] owner:22 m_nid:1 rep_nid:1 addr: 0x2c33000
-[37722.204572] CPU20 PID31  victim:ffffffff810c2880 index:0 refcount:0 nr_fill:0 max_fill:4 locked:0 flags:(0x14e)(allocated|usable|hasdata|flushed|fillfree) pcm:          (null) pset:ffff88207ff5b980
-[37722.224154] CPU20 PID31     rmap to pset:ffff88207ff5b980 set_idx: 51 nr_lru:63
-[37722.232299] CPU20 PID31     victim dumped because: PCACHE_BUG_ON_VICTIM(!VictimAllocated(v) || !VictimUsable(v) || !VictimFlushed(v) || VictimWriteback(v) || VictimLocked(v))
-[37722.254790] WARNING: CPU: 20 PID: 31 at managers/processor/pcache/victim.c:196 __put_victim_nolist+0xb8/0x140
- ffffffff8103e170[37722.453632] [&lt;ffffffff8103c9c8&gt;] __put_victim_nolist+0xb8/0x140
- 0000000000000000[37722.461873] [&lt;ffffffff8103db18&gt;] victim_try_fill_pcache+0x2f8/0x440
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[<span class="mi">37722</span>.<span class="mi">177024</span>] <span class="nv">CPU20</span> <span class="nv">PID31</span>  <span class="nv">victim</span>:<span class="nv">ffffffff810c2880</span> <span class="nv">index</span>:<span class="mi">0</span> <span class="nv">refcount</span>:<span class="mi">0</span> <span class="nv">nr_fill</span>:<span class="mi">0</span> <span class="nv">max_fill</span>:<span class="mi">4</span> <span class="nv">locked</span>:<span class="mi">0</span> <span class="nv">flags</span>:<span class="ss">(</span><span class="mi">0</span><span class="nv">x12e</span><span class="ss">)(</span><span class="nv">allocated</span><span class="o">|</span><span class="nv">usable</span><span class="o">|</span><span class="nv">hasdata</span><span class="o">|</span><span class="nv">waitflush</span><span class="o">|</span><span class="nv">fillfree</span><span class="ss">)</span> <span class="nv">pcm</span>:          <span class="ss">(</span><span class="nv">null</span><span class="ss">)</span> <span class="nv">pset</span>:<span class="nv">ffff88207ff5b980</span>
+[<span class="mi">37722</span>.<span class="mi">196623</span>] <span class="nv">CPU20</span> <span class="nv">PID31</span>     <span class="nv">hit</span>[<span class="mi">0</span>] <span class="nv">owner</span>:<span class="mi">22</span> <span class="nv">m_nid</span>:<span class="mi">1</span> <span class="nv">rep_nid</span>:<span class="mi">1</span> <span class="nv">addr</span>: <span class="mi">0</span><span class="nv">x2c33000</span>
+[<span class="mi">37722</span>.<span class="mi">204572</span>] <span class="nv">CPU20</span> <span class="nv">PID31</span>  <span class="nv">victim</span>:<span class="nv">ffffffff810c2880</span> <span class="nv">index</span>:<span class="mi">0</span> <span class="nv">refcount</span>:<span class="mi">0</span> <span class="nv">nr_fill</span>:<span class="mi">0</span> <span class="nv">max_fill</span>:<span class="mi">4</span> <span class="nv">locked</span>:<span class="mi">0</span> <span class="nv">flags</span>:<span class="ss">(</span><span class="mi">0</span><span class="nv">x14e</span><span class="ss">)(</span><span class="nv">allocated</span><span class="o">|</span><span class="nv">usable</span><span class="o">|</span><span class="nv">hasdata</span><span class="o">|</span><span class="nv">flushed</span><span class="o">|</span><span class="nv">fillfree</span><span class="ss">)</span> <span class="nv">pcm</span>:          <span class="ss">(</span><span class="nv">null</span><span class="ss">)</span> <span class="nv">pset</span>:<span class="nv">ffff88207ff5b980</span>
+[<span class="mi">37722</span>.<span class="mi">224154</span>] <span class="nv">CPU20</span> <span class="nv">PID31</span>     <span class="nv">rmap</span> <span class="nv">to</span> <span class="nv">pset</span>:<span class="nv">ffff88207ff5b980</span> <span class="nv">set_idx</span>: <span class="mi">51</span> <span class="nv">nr_lru</span>:<span class="mi">63</span>
+[<span class="mi">37722</span>.<span class="mi">232299</span>] <span class="nv">CPU20</span> <span class="nv">PID31</span>     <span class="nv">victim</span> <span class="nv">dumped</span> <span class="nv">because</span>: <span class="nv">PCACHE_BUG_ON_VICTIM</span><span class="ss">(</span><span class="o">!</span><span class="nv">VictimAllocated</span><span class="ss">(</span><span class="nv">v</span><span class="ss">)</span> <span class="o">||</span> <span class="o">!</span><span class="nv">VictimUsable</span><span class="ss">(</span><span class="nv">v</span><span class="ss">)</span> <span class="o">||</span> <span class="o">!</span><span class="nv">VictimFlushed</span><span class="ss">(</span><span class="nv">v</span><span class="ss">)</span> <span class="o">||</span> <span class="nv">VictimWriteback</span><span class="ss">(</span><span class="nv">v</span><span class="ss">)</span> <span class="o">||</span> <span class="nv">VictimLocked</span><span class="ss">(</span><span class="nv">v</span><span class="ss">))</span>
+[<span class="mi">37722</span>.<span class="mi">254790</span>] <span class="nv">WARNING</span>: <span class="nv">CPU</span>: <span class="mi">20</span> <span class="nv">PID</span>: <span class="mi">31</span> <span class="nv">at</span> <span class="nv">managers</span><span class="o">/</span><span class="nv">processor</span><span class="o">/</span><span class="nv">pcache</span><span class="o">/</span><span class="nv">victim</span>.<span class="nv">c</span>:<span class="mi">196</span> <span class="nv">__put_victim_nolist</span><span class="o">+</span><span class="mi">0</span><span class="nv">xb8</span><span class="o">/</span><span class="mi">0</span><span class="nv">x140</span>
+ <span class="nv">ffffffff8103e170</span>[<span class="mi">37722</span>.<span class="mi">453632</span>] [<span class="o">&lt;</span><span class="nv">ffffffff8103c9c8</span><span class="o">&gt;</span>] <span class="nv">__put_victim_nolist</span><span class="o">+</span><span class="mi">0</span><span class="nv">xb8</span><span class="o">/</span><span class="mi">0</span><span class="nv">x140</span>
+ <span class="mi">0000000000000000</span>[<span class="mi">37722</span>.<span class="mi">461873</span>] [<span class="o">&lt;</span><span class="nv">ffffffff8103db18</span><span class="o">&gt;</span>] <span class="nv">victim_try_fill_pcache</span><span class="o">+</span><span class="mi">0</span><span class="nv">x2f8</span><span class="o">/</span><span class="mi">0</span><span class="nv">x440</span>
 
-[37722.265842] CPU10 PID20  victim:ffffffff810c2880 index:0 refcount:0 nr_fill:0 max_fill:4 locked:0 flags:(0x14e)(allocated|usable|hasdata|flushed|fillfree) pcm:          (null) pset:ffff88207ff5b980
-[37722.291438] CPU10 PID20     hit[0] owner:22 m_nid:1 rep_nid:1 addr: 0x2c33000
-[37722.301616] CPU10 PID20  victim:ffffffff810c2880 index:0 refcount:0 nr_fill:0 max_fill:4 locked:0 flags:(0x14e)(allocated|usable|hasdata|flushed|fillfree) pcm:          (null) pset:ffff88207ff5b980
-[37722.324206] CPU10 PID20     rmap to pset:ffff88207ff5b980 set_idx: 51 nr_lru:63
-[37722.332349] CPU10 PID20     victim dumped because: PCACHE_BUG_ON_VICTIM(victim_ref_count(v) == 0)
-[37722.350673] WARNING: CPU: 10 PID: 20 at ./include/processor/pcache_victim.h:127 __victim_flush_func+0x232/0x250
-[37722.363568] CPU: 10 PID: 20 Comm: kvictim_flushd 4.0.0-lego+ #435
-[37722.534003] [&lt;ffffffff8103e152&gt;] __victim_flush_func+0x232/0x250
-[37722.547577] [&lt;ffffffff8103e1d9&gt;] victim_flush_async+0x69/0xb0
-[37722.553975] [&lt;ffffffff81022ec1&gt;] kthread+0x111/0x130
-[37722.565900] [&lt;ffffffff8100eb32&gt;] ret_from_fork+0x22/0x30
+[<span class="mi">37722</span>.<span class="mi">265842</span>] <span class="nv">CPU10</span> <span class="nv">PID20</span>  <span class="nv">victim</span>:<span class="nv">ffffffff810c2880</span> <span class="nv">index</span>:<span class="mi">0</span> <span class="nv">refcount</span>:<span class="mi">0</span> <span class="nv">nr_fill</span>:<span class="mi">0</span> <span class="nv">max_fill</span>:<span class="mi">4</span> <span class="nv">locked</span>:<span class="mi">0</span> <span class="nv">flags</span>:<span class="ss">(</span><span class="mi">0</span><span class="nv">x14e</span><span class="ss">)(</span><span class="nv">allocated</span><span class="o">|</span><span class="nv">usable</span><span class="o">|</span><span class="nv">hasdata</span><span class="o">|</span><span class="nv">flushed</span><span class="o">|</span><span class="nv">fillfree</span><span class="ss">)</span> <span class="nv">pcm</span>:          <span class="ss">(</span><span class="nv">null</span><span class="ss">)</span> <span class="nv">pset</span>:<span class="nv">ffff88207ff5b980</span>
+[<span class="mi">37722</span>.<span class="mi">291438</span>] <span class="nv">CPU10</span> <span class="nv">PID20</span>     <span class="nv">hit</span>[<span class="mi">0</span>] <span class="nv">owner</span>:<span class="mi">22</span> <span class="nv">m_nid</span>:<span class="mi">1</span> <span class="nv">rep_nid</span>:<span class="mi">1</span> <span class="nv">addr</span>: <span class="mi">0</span><span class="nv">x2c33000</span>
+[<span class="mi">37722</span>.<span class="mi">301616</span>] <span class="nv">CPU10</span> <span class="nv">PID20</span>  <span class="nv">victim</span>:<span class="nv">ffffffff810c2880</span> <span class="nv">index</span>:<span class="mi">0</span> <span class="nv">refcount</span>:<span class="mi">0</span> <span class="nv">nr_fill</span>:<span class="mi">0</span> <span class="nv">max_fill</span>:<span class="mi">4</span> <span class="nv">locked</span>:<span class="mi">0</span> <span class="nv">flags</span>:<span class="ss">(</span><span class="mi">0</span><span class="nv">x14e</span><span class="ss">)(</span><span class="nv">allocated</span><span class="o">|</span><span class="nv">usable</span><span class="o">|</span><span class="nv">hasdata</span><span class="o">|</span><span class="nv">flushed</span><span class="o">|</span><span class="nv">fillfree</span><span class="ss">)</span> <span class="nv">pcm</span>:          <span class="ss">(</span><span class="nv">null</span><span class="ss">)</span> <span class="nv">pset</span>:<span class="nv">ffff88207ff5b980</span>
+[<span class="mi">37722</span>.<span class="mi">324206</span>] <span class="nv">CPU10</span> <span class="nv">PID20</span>     <span class="nv">rmap</span> <span class="nv">to</span> <span class="nv">pset</span>:<span class="nv">ffff88207ff5b980</span> <span class="nv">set_idx</span>: <span class="mi">51</span> <span class="nv">nr_lru</span>:<span class="mi">63</span>
+[<span class="mi">37722</span>.<span class="mi">332349</span>] <span class="nv">CPU10</span> <span class="nv">PID20</span>     <span class="nv">victim</span> <span class="nv">dumped</span> <span class="nv">because</span>: <span class="nv">PCACHE_BUG_ON_VICTIM</span><span class="ss">(</span><span class="nv">victim_ref_count</span><span class="ss">(</span><span class="nv">v</span><span class="ss">)</span> <span class="o">==</span> <span class="mi">0</span><span class="ss">)</span>
+[<span class="mi">37722</span>.<span class="mi">350673</span>] <span class="nv">WARNING</span>: <span class="nv">CPU</span>: <span class="mi">10</span> <span class="nv">PID</span>: <span class="mi">20</span> <span class="nv">at</span> .<span class="o">/</span><span class="k">include</span><span class="o">/</span><span class="nv">processor</span><span class="o">/</span><span class="nv">pcache_victim</span>.<span class="nv">h</span>:<span class="mi">127</span> <span class="nv">__victim_flush_func</span><span class="o">+</span><span class="mi">0</span><span class="nv">x232</span><span class="o">/</span><span class="mi">0</span><span class="nv">x250</span>
+[<span class="mi">37722</span>.<span class="mi">363568</span>] <span class="nv">CPU</span>: <span class="mi">10</span> <span class="nv">PID</span>: <span class="mi">20</span> <span class="nv">Comm</span>: <span class="nv">kvictim_flushd</span> <span class="mi">4</span>.<span class="mi">0</span>.<span class="mi">0</span><span class="o">-</span><span class="nv">lego</span><span class="o">+</span> <span class="sc">#435</span>
+[<span class="mi">37722</span>.<span class="mi">534003</span>] [<span class="o">&lt;</span><span class="nv">ffffffff8103e152</span><span class="o">&gt;</span>] <span class="nv">__victim_flush_func</span><span class="o">+</span><span class="mi">0</span><span class="nv">x232</span><span class="o">/</span><span class="mi">0</span><span class="nv">x250</span>
+[<span class="mi">37722</span>.<span class="mi">547577</span>] [<span class="o">&lt;</span><span class="nv">ffffffff8103e1d9</span><span class="o">&gt;</span>] <span class="nv">victim_flush_async</span><span class="o">+</span><span class="mi">0</span><span class="nv">x69</span><span class="o">/</span><span class="mi">0</span><span class="nv">xb0</span>
+[<span class="mi">37722</span>.<span class="mi">553975</span>] [<span class="o">&lt;</span><span class="nv">ffffffff81022ec1</span><span class="o">&gt;</span>] <span class="nv">kthread</span><span class="o">+</span><span class="mi">0</span><span class="nv">x111</span><span class="o">/</span><span class="mi">0</span><span class="nv">x130</span>
+[<span class="mi">37722</span>.<span class="mi">565900</span>] [<span class="o">&lt;</span><span class="nv">ffffffff8100eb32</span><span class="o">&gt;</span>] <span class="nv">ret_from_fork</span><span class="o">+</span><span class="mi">0</span><span class="nv">x22</span><span class="o">/</span><span class="mi">0</span><span class="nv">x30</span>
 </pre></div>
 </td></tr></table></p>
 <h2 id="aug-29">Aug 29<a class="headerlink" href="#aug-29" title="Permanent link">&para;</a></h2>
@@ -552,7 +1121,7 @@ The bug is in <code class="codehilite">victim_try_fill_pcache()</code>, when the
 <li>0829-w14-12: P side seems have deadlock. Let me enable DEBUG_SPINLOCK.</li>
 <li>
 <p>0829-w14-13: SEQ_IBAPI, DEBUG_SPINLOCK, this is a very useful log:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -629,7 +1198,7 @@ The bug is in <code class="codehilite">victim_try_fill_pcache()</code>, when the
 </li>
 <li>
 <p>check until 0829-w14-18
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -705,7 +1274,7 @@ The bug is in <code class="codehilite">victim_try_fill_pcache()</code>, when the
 </li>
 <li>
 <p>0829-w14-16: we got this by having debug_spinlock, and seq_ibapi. This is interesting and serious. I think our general C code is fine.. Should I go check the assembly part? This is the rq-&gt;lock? come on&hellip;
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -764,7 +1333,7 @@ The bug is in <code class="codehilite">victim_try_fill_pcache()</code>, when the
 </ul>
 <h2 id="aug-27">Aug 27<a class="headerlink" href="#aug-27" title="Permanent link">&para;</a></h2>
 <p>There a lot lost CQE cases. This one is about P-&gt;M-&gt;S. And M lost the CQE for the WQE sent to S.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -838,7 +1407,7 @@ The bug is in <code class="codehilite">victim_try_fill_pcache()</code>, when the
 <p>hmm, another on lost CQE happen at P.
 Today is weird, why we happen to have so many lost CQE today?</p>
 <p>Think about why CQE is not generated?</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -918,9 +1487,9 @@ Today is weird, why we happen to have so many lost CQE today?</p>
 
 <h2 id="aug-26">Aug 26<a class="headerlink" href="#aug-26" title="Permanent link">&para;</a></h2>
 <p>Oh well. I saw the same damn lost packet issue again. The issue can be desribed as: P use lite rpc to send a request to M. M processed the handled, and called rpc reply to sent back to P. M need to poll send_cq to poll completion. But M fail to get the CQE for the should-be-sent-out WQE.</p>
-<p>This is tested with M&rsquo;s <code class="codehilite">CONFIG_FIT_NOWAIT</code> optimization, which is basically an optimization that M will not poll cq every time a reply was sent out, instead, do batch polling.</p>
+<p>This is tested with M&rsquo;s <code class="codehilite"><span class="n">CONFIG_FIT_NOWAIT</span></code> optimization, which is basically an optimization that M will not poll cq every time a reply was sent out, instead, do batch polling.</p>
 <p>The following stack dump was reported by M side watchdog. It is not necessary mlx4_poll_cq&rsquo;s issue, since there is a while (1) loop at fit code. Oh well.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -1053,9 +1622,8 @@ Today is weird, why we happen to have so many lost CQE today?</p>
     </span>
 </div>
     <script>var base_url = '../../..';</script>
-    <script src="../../../js/theme.js"></script>
-      <script src="../../../search/require.js"></script>
-      <script src="../../../search/search.js"></script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
 
 </body>
 </html>

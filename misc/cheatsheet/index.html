@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -23,15 +23,16 @@
     var mkdocs_page_url = "/misc/cheatsheet/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-143772066-1', 'auto');
       ga('send', 'pageview');
@@ -49,188 +50,721 @@
         <a href="../.." class="icon icon-home"> Yizhou Shan's Home Page</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	  
-          
-		  
-  <ul class="" href="../..">
-    <li class="toctree-l1">
-  <a class="" href="../..">Home</a>
-  </li></ul>
-          
-		  
-  <p class="caption">Notes</p>
-  <ul class="current">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../notes/paper_fpga/">FPGA Papers</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../notes/cache_coherence/">Cache Coherence</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../notes/benchmark/">Benchmarks</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../notes/paper_perf_shadows/">Perf Shadows</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../notes/linux-articles/">Linux Articles</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../notes/proc/">[Linux] Special Files</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../notes/trace/">[Linux] Trace/Profile</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../notes/userfaultfd/">[Linux] Userfaultfd</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../notes/xperf/">[Linux] User/kern Cross Perf</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../notes/kvm-basic/">[Linux] KVM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../essential/">Essential</a>
-        </li>
-          <li class="toctree-l1 current">
-            
-  <a class="current" href="./">Cheatsheet</a>
-  <ul class="subnav">
+	<ul class="tocbase current">
+    
+    
       
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../..">Home</a>
+  </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">Notes</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/paper_fpga/">FPGA Papers</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/cache_coherence/">Cache Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/benchmark/">Benchmarks</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/paper_perf_shadows/">Perf Shadows</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/linux-articles/">Linux Articles</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/proc/">[Linux] Special Files</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/trace/">[Linux] Trace/Profile</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/userfaultfd/">[Linux] Userfaultfd</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/xperf/">[Linux] User/kern Cross Perf</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../notes/kvm-basic/">[Linux] KVM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../essential/">Essential</a>
+  </li>
+        
+          
+
+
+  
+    
+    <li class="navtree toctree-l2 page current">
+      <a class="current" href="./">
+        Cheatsheet
+          <span class="toctree-expand"></span>
+      </a>
+    </li>
+    
+      
+
+
+
   <li class="toctree-l2 current">
-  
-    <a class="current"  href="#cheatsheet">cheatsheet</a>
-  
-  
-    <ul class="">
+    <ul class="subnav-l2 current">
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#vnc">VNC</a>
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#vnc">VNC</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#virsh">virsh</a>
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#virsh">virsh</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#markdown">Markdown</a>
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#markdown">Markdown</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#tmux">tmux</a>
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#tmux">tmux</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#bash">bash</a>
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#bash">bash</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#qemu">QEMU</a>
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#qemu">QEMU</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#install-centos-on-dell-poweredge">Install CentOS on Dell PowerEdge</a>
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#install-centos-on-dell-poweredge">Install CentOS on Dell PowerEdge</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#avoid-typing-ssh-password">Avoid Typing SSH Password</a>
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#avoid-typing-ssh-password">Avoid Typing SSH Password</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#grub2-on-ubuntu">GRUB2 on Ubuntu</a>
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#grub2-on-ubuntu">GRUB2 on Ubuntu</a>
         </li>
     
-        <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#migrate-to-ubuntu-from-macos">Migrate to Ubuntu From MacOS</a>
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#migrate-to-ubuntu-from-macos">Migrate to Ubuntu From MacOS</a>
         </li>
     
     </ul>
-  
   </li>
 
-  </ul>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/general_log/0919">Log</a>
-        </li>
-  </ul>
 
+  
+        
           
-		  
-  <p class="caption">FPGA</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../fpga/vivado_tricks/">Vivado Tricks</a>
-        </li>
-  </ul>
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
 
-          
-		  
-  <p class="caption">LegoOS-Dev</p>
-  <ul class="">
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/log/TODO">Log</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/kernel/kconfig">Kernel</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/syscall/facts">Syscall</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/pcache/config">Pcache</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/driver/pci">Driver</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="/lego/paper/nmp">Paper</a>
-        </li>
-  </ul>
 
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
           
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../general_log/0919/">Sep 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../general_log/0819/">Aug 2019</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../general_log/0719/">Jul 2019</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">FPGA</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../../fpga/vivado_tricks/">Vivado Tricks</a>
+  </li>
+        
+      </ul>
+    </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">LegoOS-Dev</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Log</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/TODO/">TODO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/misc/">MISC</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/test-note/">Test Script</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/log-09-2018/">Sep 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/log-08-2018/">Aug 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/log-04-2018/">April 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/log-03-2018/">March 2018</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/log/log-02-2018/">Feb 2018</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Kernel</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/kconfig/">Kconfig</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/debug/">Debug</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/grub/">GRUB</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/profile/">Profile</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/profile_strace/">Profile strace</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/profile_heatmap/">Profile heatmap</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/profile_points/">Profile points</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/trampoline/">Trampoline</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/pagefault_disable/">Disable pgfault</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/stop_machine/">Stop machine</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/loader/">Program Loader</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/vDSO/">vDSO</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/vfs/">Virtual File System</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/vm/">Process Virtual Memory</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/fpu/">x86 FPU</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/irq/">IRQ</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/net_thpool/">Network Thpool</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Syscall</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/syscall/facts/">Facts</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/kernel/profile_strace/">strace</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/syscall/compat/">compat</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/syscall/msync/">msync()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/syscall/mremap/">mremap()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/syscall/fork/">fork()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/syscall/getrusage/">getrusage()</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/syscall/wait_and_exit/">wait4 and exit()</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Pcache</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/config/">Config</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/sweep/">Sweep</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/tlb/">TLB Coherence</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/pgtable-lock/">PageTable Lock</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/victim/">Victim Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/virtual_cache/">Virtual Cache</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/rmap/">Reverse Mapping</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/evict_and_ref/">Evict and Refcount</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/smp_design/">SMP Design</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/pcache/replication/">Replication</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Driver</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/driver/pci/">PCI</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/driver/ib/">Infiniband</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Paper</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/paper/nmp/">NMP</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/paper/processor_oom/">Processor OOM</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/paper/genz/">Gen-Z</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/paper/replication/">Replication</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../lego/paper/related/">Related</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
       </div>
       &nbsp;
     </nav>
@@ -272,24 +806,24 @@
 <ul>
 <li>
 <p>Server side: Start server on certain port with certain geometry:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">vncserver</span> <span class="o">:</span><span class="mi">66</span> <span class="o">-</span><span class="n">geometry</span> <span class="mi">1920</span><span class="n">x1080</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">vncserver</span> <span class="o">:</span><span class="mi">66</span> <span class="o">-</span><span class="n">geometry</span> <span class="mi">1920</span><span class="n">x1080</span>
 </pre></div>
 </td></tr></table></p>
 </li>
 <li>
 <p>Client side: for safety, use SSH tunnel.</p>
 <ul>
-<li><code class="codehilite">-p 22</code>: ssh port is 22</li>
-<li><code class="codehilite">-L 7777:localhost:5966</code>: Forward localhost&rsquo;s 7777 to server&rsquo;s 5966
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<li><code class="codehilite"><span class="o">-</span><span class="n">p</span> <span class="mi">22</span></code>: ssh port is 22</li>
+<li><code class="codehilite"><span class="o">-</span><span class="n">L</span> <span class="mi">7777</span><span class="p">:</span><span class="n">localhost</span><span class="p">:</span><span class="mi">5966</span></code>: Forward localhost&rsquo;s 7777 to server&rsquo;s 5966
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Step 1)
-ssh -p 22 -v -C -L 7777:localhost:5966 root@yourserver.com
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">Step</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="n">ssh</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="o">-</span><span class="n">C</span><span class="w"> </span><span class="o">-</span><span class="n">L</span><span class="w"> </span><span class="mi">7777</span><span class="err">:</span><span class="nl">localhost</span><span class="p">:</span><span class="mi">5966</span><span class="w"> </span><span class="n">root</span><span class="nv">@yourserver</span><span class="p">.</span><span class="n">com</span><span class="w"></span>
 
-Step 2)
-Use VNC client to establish connection with localhost:7777
+<span class="n">Step</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="k">Use</span><span class="w"> </span><span class="n">VNC</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">establish</span><span class="w"> </span><span class="k">connection</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="nl">localhost</span><span class="p">:</span><span class="mi">7777</span><span class="w"></span>
 </pre></div>
 </td></tr></table></li>
 </ul>
@@ -298,7 +832,7 @@ Use VNC client to establish connection with localhost:7777
 <h2 id="virsh">virsh<a class="headerlink" href="#virsh" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Pass commands to QEMU in the virsh bash:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span># qemu-monitor-command guest_os_id --hmp &quot;info cpus&quot;
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">#</span> <span class="n">qemu</span><span class="o">-</span><span class="n">monitor</span><span class="o">-</span><span class="n">command</span> <span class="n">guest_os_id</span> <span class="c1">--hmp &quot;info cpus&quot;</span>
 </pre></div>
 </td></tr></table></li>
 </ul>
@@ -313,7 +847,7 @@ Use VNC client to establish connection with localhost:7777
 <h2 id="bash">bash<a class="headerlink" href="#bash" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Show current git branch in PS1:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -328,7 +862,7 @@ Use VNC client to establish connection with localhost:7777
 <h2 id="qemu">QEMU<a class="headerlink" href="#qemu" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Run standalone kernel:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -388,55 +922,55 @@ qemu-system-x86_64 -s  <span class="se">\</span>
 </ul>
 <h2 id="install-centos-on-dell-poweredge">Install CentOS on Dell PowerEdge<a class="headerlink" href="#install-centos-on-dell-poweredge" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Enable <code class="codehilite">SR-IOV</code> for future usage<ul>
-<li>Press <code class="codehilite">F11 Boot Manager</code> during boot</li>
-<li>Find <code class="codehilite">Integrated Devices</code></li>
-<li>Enable <code class="codehilite">SR-IOV Global Enable</code></li>
+<li>Enable <code class="codehilite"><span class="n">SR</span><span class="o">-</span><span class="n">IOV</span></code> for future usage<ul>
+<li>Press <code class="codehilite"><span class="n">F11</span> <span class="n">Boot</span> <span class="n">Manager</span></code> during boot</li>
+<li>Find <code class="codehilite"><span class="n">Integrated</span> <span class="n">Devices</span></code></li>
+<li>Enable <code class="codehilite"><span class="n">SR</span><span class="o">-</span><span class="n">IOV</span> <span class="k">Global</span> <span class="n">Enable</span></code></li>
 </ul>
 </li>
 <li>Partition<ul>
-<li><code class="codehilite">/boot</code>: e.g, 50GB</li>
-<li><code class="codehilite">swap</code>: e.g, 4G</li>
-<li><code class="codehilite">/</code>: all left</li>
+<li><code class="codehilite"><span class="o">/</span><span class="n">boot</span></code>: e.g, 50GB</li>
+<li><code class="codehilite"><span class="n">swap</span></code>: e.g, 4G</li>
+<li><code class="codehilite"><span class="o">/</span></code>: all left</li>
 </ul>
 </li>
 <li>Don&rsquo;t forget to enable Network during installation.</li>
 <li>Change SSH port<ul>
-<li>Disable <code class="codehilite">firewalld</code><ul>
-<li><code class="codehilite">systemctl stop firewalld</code></li>
-<li><code class="codehilite">systemctl disable firewalld</code></li>
+<li>Disable <code class="codehilite"><span class="n">firewalld</span></code><ul>
+<li><code class="codehilite"><span class="n">systemctl</span> <span class="n">stop</span> <span class="n">firewalld</span></code></li>
+<li><code class="codehilite"><span class="n">systemctl</span> <span class="n">disable</span> <span class="n">firewalld</span></code></li>
 </ul>
 </li>
 <li>If SELinux is enabled<ul>
-<li><code class="codehilite">yum install policycoreutils-python</code></li>
-<li><code class="codehilite">semanage port -a -t ssh_port_t -p tcp #PORTNUMBER</code></li>
+<li><code class="codehilite"><span class="n">yum</span> <span class="n">install</span> <span class="n">policycoreutils</span><span class="o">-</span><span class="n">python</span></code></li>
+<li><code class="codehilite"><span class="n">semanage</span> <span class="n">port</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">t</span> <span class="n">ssh_port_t</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">#</span><span class="n">PORTNUMBER</span></code></li>
 </ul>
 </li>
-<li>Change <code class="codehilite">/etc/ssh/sshd_config</code></li>
-<li><code class="codehilite">systemctl restart sshd</code></li>
+<li>Change <code class="codehilite"><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">sshd_config</span></code></li>
+<li><code class="codehilite"><span class="n">systemctl</span> <span class="k">restart</span> <span class="n">sshd</span></code></li>
 </ul>
 </li>
 </ul>
 <h2 id="avoid-typing-ssh-password">Avoid Typing SSH Password<a class="headerlink" href="#avoid-typing-ssh-password" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Generate keys: <code class="codehilite">ssh-keygen -t rsa</code></li>
-<li>Copy to remote: <code class="codehilite">ssh-copy-id -i ~/.ssh/id_rsa.pub username@remotehost -p 22</code></li>
+<li>Generate keys: <code class="codehilite"><span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span> <span class="o">-</span><span class="n">t</span> <span class="n">rsa</span></code></li>
+<li>Copy to remote: <code class="codehilite"><span class="n">ssh</span><span class="o">-</span><span class="n">copy</span><span class="o">-</span><span class="n">id</span><span class="w"> </span><span class="o">-</span><span class="n">i</span><span class="w"> </span><span class="o">~/</span><span class="p">.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span><span class="p">.</span><span class="n">pub</span><span class="w"> </span><span class="n">username</span><span class="nv">@remotehost</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">22</span><span class="w"></span></code></li>
 </ul>
 <h2 id="grub2-on-ubuntu">GRUB2 on Ubuntu<a class="headerlink" href="#grub2-on-ubuntu" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Nothing like grubby?! Shame on you.</li>
-<li>Step I: <code class="codehilite">cat /boot/grub/grub.cfg | grep menuentry</code>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>menuentry &#39;Ubuntu, with Linux 4.16.0&#39; --class ubuntu  ...
-menuentry &#39;Ubuntu, with Linux 4.9.92&#39; --class ubuntu  ...
+<li>Step I: <code class="codehilite"><span class="n">cat</span> <span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">grub</span><span class="o">/</span><span class="n">grub</span><span class="p">.</span><span class="n">cfg</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">menuentry</span></code>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">menuentry</span> <span class="s1">&#39;Ubuntu, with Linux 4.16.0&#39;</span> <span class="c1">--class ubuntu  ...</span>
+<span class="n">menuentry</span> <span class="s1">&#39;Ubuntu, with Linux 4.9.92&#39;</span> <span class="c1">--class ubuntu  ...</span>
 </pre></div>
 </td></tr></table></li>
-<li>Step II: Open <code class="codehilite">/etc/default/grub</code>, change<ul>
+<li>Step II: Open <code class="codehilite"><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="k">default</span><span class="o">/</span><span class="n">grub</span></code>, change<ul>
 <li>GRUB_DEFAULT=&rdquo;Advanced options for Ubuntu&gt;Ubuntu, with Linux 4.16.0&rdquo;</li>
 <li>GRUB_DEFAULT=&rdquo;Advanced options for Ubuntu&gt;Ubuntu, with Linux 4.9.92&rdquo;</li>
 </ul>
 </li>
-<li>Step III: <code class="codehilite">sudo update-grub</code></li>
+<li>Step III: <code class="codehilite"><span class="n">sudo</span> <span class="k">update</span><span class="o">-</span><span class="n">grub</span></code></li>
 </ul>
 <h2 id="migrate-to-ubuntu-from-macos">Migrate to Ubuntu From MacOS<a class="headerlink" href="#migrate-to-ubuntu-from-macos" title="Permanent link">&para;</a></h2>
 <ul>
@@ -487,9 +1021,8 @@ menuentry &#39;Ubuntu, with Linux 4.9.92&#39; --class ubuntu  ...
     </span>
 </div>
     <script>var base_url = '../..';</script>
-    <script src="../../js/theme.js"></script>
-      <script src="../../search/require.js"></script>
-      <script src="../../search/search.js"></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>
