@@ -140,6 +140,7 @@ Network-on-Chip on FPGA.
 - [LEAP Soft connections: Addressing the hardware-design modularity problem, DAC'09]()
 	- Virtual channel concept. Time-insensitive.
 - [Leveraging Latency-Insensitivity to Ease Multiple FPGA Design, FPGA'12]()
+- [CONNECT: re-examining conventional wisdom for designing nocs in the context of FPGAs, FPGA'12](https://dl.acm.org/citation.cfm?doid=2145694.2145703)
 - [Your Programmable NIC Should be a Programmable Switch, HotNets'18](https://www2.cs.uic.edu/~brents/docs/panic.hotnets18.pdf)
 
 
