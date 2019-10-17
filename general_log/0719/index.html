@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../../css/highlight.css">
   
   <script>
     // Current page data
@@ -23,16 +23,15 @@
     var mkdocs_page_url = "/general_log/0719/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-143772066-1', 'auto');
       ga('send', 'pageview');
@@ -50,702 +49,180 @@
         <a href="../.." class="icon icon-home"> Yizhou Shan's Home Page</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+    <input type="text" name="q" placeholder="Search docs" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="tocbase current">
-    
-    
+	  
+          
+		  
+  <ul class="" href="../..">
+    <li class="toctree-l1">
+  <a class="" href="../..">Home</a>
+  </li></ul>
+          
+		  
+  <p class="caption">Notes</p>
+  <ul class="current">
+          <li class="toctree-l1">
+            
+  <a class="" href="../../notes/paper_fpga/">FPGA Papers</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../notes/cache_coherence/">Cache Coherence</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../notes/benchmark/">Benchmarks</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../notes/paper_perf_shadows/">Perf Shadows</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../notes/linux-articles/">Linux Articles</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../notes/proc/">[Linux] Special Files</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../notes/trace/">[Linux] Trace/Profile</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../notes/userfaultfd/">[Linux] Userfaultfd</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../notes/xperf/">[Linux] User/kern Cross Perf</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../notes/kvm-basic/">[Linux] KVM</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../misc/essential/">Essential</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../misc/cheatsheet/">Cheatsheet</a>
+        </li>
+          <li class="toctree-l1 current">
+            
+  <a class="current" href="/general_log/0919">Log</a>
+  <ul class="subnav">
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../0919/">Sep 2019</a>
+        </li>
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../0819/">Aug 2019</a>
+        </li>
+        <li class="toctree-l2 current 1">
+            
+  <a class="current" href="./">Jul 2019</a>
+  <ul class="subnav">
       
-
-
-  <li class="navtree toctree-l1 inactive">
-    <a class="" href="../..">Home</a>
-  </li>
+  <li class="toctree-l2 current">
+  
+  
+    <ul class="">
     
-      
-  <li class="navtree toctree-l1 label">
-    <p class="caption">Notes</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l1 group">
-      <ul class="navtree subnav-l1 current">
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../notes/paper_fpga/">FPGA Papers</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../notes/cache_coherence/">Cache Coherence</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../notes/benchmark/">Benchmarks</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../notes/paper_perf_shadows/">Perf Shadows</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../notes/linux-articles/">Linux Articles</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../notes/proc/">[Linux] Special Files</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../notes/trace/">[Linux] Trace/Profile</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../notes/userfaultfd/">[Linux] Userfaultfd</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../notes/xperf/">[Linux] User/kern Cross Perf</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../notes/kvm-basic/">[Linux] KVM</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../misc/essential/">Essential</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../misc/cheatsheet/">Cheatsheet</a>
-  </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Log</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../0919/">Sep 2019</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../0819/">Aug 2019</a>
-  </li>
-        
-          
-
-
-  
-    
-    <li class="navtree toctree-l3 page current">
-      <a class="current" href="./">
-        Jul 2019
-      </a>
-    </li>
-    
-      
-
-  <li class="toctree-l3 current with-children">
-    <a href="#jul-2019">
-      Jul 2019
-      <span class="toctree-expand"></span>
-    </a>
-  </li>
-
-
-
-  <li class="toctree-l3 current">
-    <ul class="subnav-l3 current">
-    
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#0727-sat">0727 Sat</a>
+        <li class="toctree-l3 toc-item" >
+          <a class="toctree-l3" href="#0727-sat">0727 Sat</a>
         </li>
     
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#0726-friday">0726 Friday</a>
+        <li class="toctree-l3 toc-item" >
+          <a class="toctree-l3" href="#0726-friday">0726 Friday</a>
         </li>
     
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#0725">0725</a>
+        <li class="toctree-l3 toc-item" >
+          <a class="toctree-l3" href="#0725">0725</a>
         </li>
     
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#0724">0724</a>
+        <li class="toctree-l3 toc-item" >
+          <a class="toctree-l3" href="#0724">0724</a>
         </li>
     
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#0723">0723</a>
+        <li class="toctree-l3 toc-item" >
+          <a class="toctree-l3" href="#0723">0723</a>
         </li>
     
     </ul>
-  </li>
-
-
   
-        
-      </ul>
-    </li>
-        
-      </ul>
-    </li>
-    
-      
-  <li class="navtree toctree-l1 label">
-    <p class="caption">FPGA</p>
   </li>
 
-
-  
-
-  
-    <li class="navtree toctree-l1 group">
-      <ul class="navtree subnav-l1 current">
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../fpga/vivado_tricks/">Vivado Tricks</a>
-  </li>
-        
-      </ul>
-    </li>
-    
-      
-  <li class="navtree toctree-l1 label">
-    <p class="caption">LegoOS-Dev</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l1 group">
-      <ul class="navtree subnav-l1 current">
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Log</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/log/TODO/">TODO</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/log/misc/">MISC</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/log/test-note/">Test Script</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/log/log-09-2018/">Sep 2018</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/log/log-08-2018/">Aug 2018</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/log/log-04-2018/">April 2018</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/log/log-03-2018/">March 2018</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/log/log-02-2018/">Feb 2018</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Kernel</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/kconfig/">Kconfig</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/debug/">Debug</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/grub/">GRUB</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/profile/">Profile</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/profile_strace/">Profile strace</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/profile_heatmap/">Profile heatmap</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/profile_points/">Profile points</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/trampoline/">Trampoline</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/pagefault_disable/">Disable pgfault</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/stop_machine/">Stop machine</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/loader/">Program Loader</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/vDSO/">vDSO</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/vfs/">Virtual File System</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/vm/">Process Virtual Memory</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/fpu/">x86 FPU</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/irq/">IRQ</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/net_thpool/">Network Thpool</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Syscall</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/syscall/facts/">Facts</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/profile_strace/">strace</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/syscall/compat/">compat</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/syscall/msync/">msync()</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/syscall/mremap/">mremap()</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/syscall/fork/">fork()</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/syscall/getrusage/">getrusage()</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/syscall/wait_and_exit/">wait4 and exit()</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Pcache</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/pcache/config/">Config</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/pcache/sweep/">Sweep</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/pcache/tlb/">TLB Coherence</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/pcache/pgtable-lock/">PageTable Lock</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/pcache/victim/">Victim Cache</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/pcache/virtual_cache/">Virtual Cache</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/pcache/rmap/">Reverse Mapping</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/pcache/evict_and_ref/">Evict and Refcount</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/pcache/smp_design/">SMP Design</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/pcache/replication/">Replication</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Driver</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/driver/pci/">PCI</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/driver/ib/">Infiniband</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Paper</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/paper/nmp/">NMP</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/paper/processor_oom/">Processor OOM</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/paper/genz/">Gen-Z</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/paper/replication/">Replication</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/paper/related/">Related</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-      </ul>
-    </li>
-    
   </ul>
+        </li>
+  </ul>
+        </li>
+  </ul>
+
+          
+		  
+  <p class="caption">FPGA</p>
+  <ul class="">
+          <li class="toctree-l1">
+            
+  <a class="" href="../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../fpga/vivado_tricks/">Vivado Tricks</a>
+        </li>
+  </ul>
+
+          
+		  
+  <p class="caption">LegoOS-Dev</p>
+  <ul class="">
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/log/TODO">Log</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/kernel/kconfig">Kernel</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/syscall/facts">Syscall</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/pcache/config">Pcache</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/driver/pci">Driver</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/paper/nmp">Paper</a>
+        </li>
+  </ul>
+
+          
       </div>
       &nbsp;
     </nav>
@@ -767,11 +244,11 @@
     
       
         
-          <li>Log &raquo;</li>
+          <li>Notes &raquo;</li>
         
       
         
-          <li>Notes &raquo;</li>
+          <li>Log &raquo;</li>
         
       
     
@@ -796,15 +273,15 @@ of cb_alloc_zero_page is not good..</p>
 to reduce the handlemmfault overhead by 15%, the actual
 runtime is the same.. weird.</p>
 <h2 id="0726-friday">0726 Friday<a class="headerlink" href="#0726-friday" title="Permanent link">&para;</a></h2>
-<p>Stuck at the BUG: bad mm counter and <code class="codehilite"><span class="n">print_bad_pte</span></code>.
+<p>Stuck at the BUG: bad mm counter and <code class="codehilite">print_bad_pte</code>.
 Issues identified: looks like I must use pcp lists?</p>
 <h2 id="0725">0725<a class="headerlink" href="#0725" title="Permanent link">&para;</a></h2>
-<p>HA. I leaned about <code class="codehilite"><span class="n">perf</span> <span class="k">lock</span></code>, which requies a kernel with <code class="codehilite"><span class="n">CONFIG_LOCKDEP</span></code> and <code class="codehilite"><span class="n">CONFIG_LOCK_STAT</span></code>.
+<p>HA. I leaned about <code class="codehilite">perf lock</code>, which requies a kernel with <code class="codehilite">CONFIG_LOCKDEP</code> and <code class="codehilite">CONFIG_LOCK_STAT</code>.
 Not sure exactly how these options work, but they should insert some code inside each lock acquire and release.
-Anyway, with <code class="codehilite"><span class="n">perf</span> <span class="k">lock</span></code>, we are able to know what <em>specific locks</em> are hot. This is fantastic.</p>
-<p>Note that normal <code class="codehilite"><span class="n">perf</span> <span class="n">record</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;cycles:k&#39;</span></code> can tell use how much time is spent on <code class="codehilite"><span class="n">spin_lock</span></code>,
+Anyway, with <code class="codehilite">perf lock</code>, we are able to know what <em>specific locks</em> are hot. This is fantastic.</p>
+<p>Note that normal <code class="codehilite">perf record -e &#39;cycles:k&#39;</code> can tell use how much time is spent on <code class="codehilite">spin_lock</code>,
 but it does not say how much time each specific lock uses. Cool.</p>
-<p>Ah, side note, <code class="codehilite"><span class="n">make</span> <span class="n">nconfig</span></code> is really powerful!! Even though I&rsquo;ve been playing with Linux
+<p>Ah, side note, <code class="codehilite">make nconfig</code> is really powerful!! Even though I&rsquo;ve been playing with Linux
 for many years, I haven&rsquo;t actually played with linux config manually.</p>
 <p>Tried once. Our spinlock for pgadvance list shouldn&rsquo;t be the issue.
 Now disable it and reboot.</p>
@@ -821,7 +298,7 @@ I&rsquo;m first trying <em>Round-Robin</em>.</p>
 <p>Try TF Cifar. First run without pgadvance, see how
 the first 100 step performs in different runs.
 They seem to be very stable.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
@@ -837,7 +314,7 @@ They seem to be very stable.
 </pre></div>
 </td></tr></table></p>
 <p>DAMN. Forgot to turn off huge page.
-Now use <code class="codehilite"><span class="n">perf</span></code> to make sure <code class="codehilite"><span class="n">do_anonymous_page</span></code> got enough cycles..</p>
+Now use <code class="codehilite">perf</code> to make sure <code class="codehilite">do_anonymous_page</code> got enough cycles..</p>
 <p>22/23 down, no pgadvance, 163, 161, 161
 22/23 down, no pgadvance, no perf, 159</p>
 <h2 id="0723">0723<a class="headerlink" href="#0723" title="Permanent link">&para;</a></h2>
@@ -856,7 +333,7 @@ I&rsquo;m reporting CPU cycles, CPU frequency change shouldn&rsquo;t matter, rig
 optimize 0-order allocation. In my test case,
 each CPU keep 7 free pages. The patten is reflected
 in the measurement. Note that, the refill is sync.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -894,45 +371,45 @@ in the measurement. Note that, the refill is sync.</p>
 36
 37
 38
-39</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="ss">&quot;&quot;&quot; (latency in CPU cycles. 2.4GHz Xeon E5 v3) &quot;&quot;&quot;</span>
-<span class="p">...</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789257</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11956</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">3128</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789257</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11957</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">376</span> 
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789258</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11958</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">376</span> 
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789258</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11959</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">368</span> 
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789258</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11960</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">376</span> 
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789259</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11961</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">400</span> 
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789259</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11962</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">384</span> 
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789260</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11963</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">3080</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789260</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11964</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">408</span> 
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789260</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11965</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">400</span> 
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789261</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11966</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">392</span> 
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789261</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11967</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">360</span> 
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789262</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11968</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">360</span> 
-<span class="hll"><span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789262</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11969</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">376</span> 
-</span><span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789262</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11970</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">2992</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789263</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11971</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">29930</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789263</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11972</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">171</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789264</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11973</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">156</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789264</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11974</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">177</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789264</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11975</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">174</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789265</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11976</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">174</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789265</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11977</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">1419</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789265</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11978</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">156</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789266</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11979</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">174</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789266</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11980</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">171</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789267</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11981</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">171</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789267</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11982</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">171</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789267</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11983</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">156</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789268</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11984</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">1362</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789268</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11985</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">174</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789269</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11986</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">168</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789269</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11987</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">156</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789269</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11988</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">168</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789270</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11989</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">174</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789270</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11990</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">171</span>
-<span class="p">[</span> <span class="mi">1043</span><span class="p">.</span><span class="mi">789270</span><span class="p">]</span> <span class="n">idx</span><span class="o">=</span><span class="mi">11991</span>    <span class="k">order</span><span class="o">=</span><span class="mi">0</span>        <span class="n">latency</span><span class="o">=</span><span class="mi">1266</span>
-<span class="p">...</span>
+39</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>&quot;&quot;&quot; (latency in CPU cycles. 2.4GHz Xeon E5 v3) &quot;&quot;&quot;
+...
+[ 1043.789257] idx=11956    order=0        latency=3128
+[ 1043.789257] idx=11957    order=0        latency=376 
+[ 1043.789258] idx=11958    order=0        latency=376 
+[ 1043.789258] idx=11959    order=0        latency=368 
+[ 1043.789258] idx=11960    order=0        latency=376 
+[ 1043.789259] idx=11961    order=0        latency=400 
+[ 1043.789259] idx=11962    order=0        latency=384 
+[ 1043.789260] idx=11963    order=0        latency=3080
+[ 1043.789260] idx=11964    order=0        latency=408 
+[ 1043.789260] idx=11965    order=0        latency=400 
+[ 1043.789261] idx=11966    order=0        latency=392 
+[ 1043.789261] idx=11967    order=0        latency=360 
+[ 1043.789262] idx=11968    order=0        latency=360 
+<span class="hll">[ 1043.789262] idx=11969    order=0        latency=376 
+</span>[ 1043.789262] idx=11970    order=0        latency=2992
+[ 1043.789263] idx=11971    order=0        latency=29930
+[ 1043.789263] idx=11972    order=0        latency=171
+[ 1043.789264] idx=11973    order=0        latency=156
+[ 1043.789264] idx=11974    order=0        latency=177
+[ 1043.789264] idx=11975    order=0        latency=174
+[ 1043.789265] idx=11976    order=0        latency=174
+[ 1043.789265] idx=11977    order=0        latency=1419
+[ 1043.789265] idx=11978    order=0        latency=156
+[ 1043.789266] idx=11979    order=0        latency=174
+[ 1043.789266] idx=11980    order=0        latency=171
+[ 1043.789267] idx=11981    order=0        latency=171
+[ 1043.789267] idx=11982    order=0        latency=171
+[ 1043.789267] idx=11983    order=0        latency=156
+[ 1043.789268] idx=11984    order=0        latency=1362
+[ 1043.789268] idx=11985    order=0        latency=174
+[ 1043.789269] idx=11986    order=0        latency=168
+[ 1043.789269] idx=11987    order=0        latency=156
+[ 1043.789269] idx=11988    order=0        latency=168
+[ 1043.789270] idx=11989    order=0        latency=174
+[ 1043.789270] idx=11990    order=0        latency=171
+[ 1043.789270] idx=11991    order=0        latency=1266
+...
 </pre></div>
 </td></tr></table>
               
@@ -979,8 +456,9 @@ in the measurement. Note that, the refill is sync.</p>
     </span>
 </div>
     <script>var base_url = '../..';</script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../search/main.js" defer></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
 
 </body>
 </html>

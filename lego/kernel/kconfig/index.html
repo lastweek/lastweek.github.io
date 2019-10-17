@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../../../css/highlight.css">
   
   <script>
     // Current page data
@@ -23,16 +23,15 @@
     var mkdocs_page_url = "/lego/kernel/kconfig/";
   </script>
   
-  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
+  <script src="../../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../../js/highlight.pack.js"></script> 
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-143772066-1', 'auto');
       ga('send', 'pageview');
@@ -50,697 +49,234 @@
         <a href="../../.." class="icon icon-home"> Yizhou Shan's Home Page</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+    <input type="text" name="q" placeholder="Search docs" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="tocbase current">
-    
-    
+	  
+          
+		  
+  <ul class="" href="../../..">
+    <li class="toctree-l1">
+  <a class="" href="../../..">Home</a>
+  </li></ul>
+          
+		  
+  <p class="caption">Notes</p>
+  <ul class="">
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/paper_fpga/">FPGA Papers</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/cache_coherence/">Cache Coherence</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/benchmark/">Benchmarks</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/linux-articles/">Linux Articles</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/proc/">[Linux] Special Files</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/trace/">[Linux] Trace/Profile</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../misc/essential/">Essential</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../misc/cheatsheet/">Cheatsheet</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="/general_log/0919">Log</a>
+        </li>
+  </ul>
+
+          
+		  
+  <p class="caption">FPGA</p>
+  <ul class="">
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../fpga/vivado_tricks/">Vivado Tricks</a>
+        </li>
+  </ul>
+
+          
+		  
+  <p class="caption">LegoOS-Dev</p>
+  <ul class="current">
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/log/TODO">Log</a>
+        </li>
+          <li class="toctree-l1 current">
+            
+  <a class="current" href="/lego/kernel/kconfig">Kernel</a>
+  <ul class="subnav">
+        <li class="toctree-l2 current 1">
+            
+  <a class="current" href="./">Kconfig</a>
+  <ul class="subnav">
       
-
-
-  <li class="navtree toctree-l1 inactive">
-    <a class="" href="../../..">Home</a>
-  </li>
+  <li class="toctree-l2 current">
+  
+    <a class="current"  href="#lego-kconfig">Lego Kconfig</a>
+  
+  
+    <ul class="">
     
-      
-  <li class="navtree toctree-l1 label">
-    <p class="caption">Notes</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l1 group">
-      <ul class="navtree subnav-l1 current">
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/paper_fpga/">FPGA Papers</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/cache_coherence/">Cache Coherence</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/benchmark/">Benchmarks</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/linux-articles/">Linux Articles</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/proc/">[Linux] Special Files</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/trace/">[Linux] Trace/Profile</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../misc/essential/">Essential</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../misc/cheatsheet/">Cheatsheet</a>
-  </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Log</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../../general_log/0919/">Sep 2019</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../../general_log/0819/">Aug 2019</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../../general_log/0719/">Jul 2019</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-      </ul>
-    </li>
-    
-      
-  <li class="navtree toctree-l1 label">
-    <p class="caption">FPGA</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l1 group">
-      <ul class="navtree subnav-l1 current">
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../fpga/vivado_tricks/">Vivado Tricks</a>
-  </li>
-        
-      </ul>
-    </li>
-    
-      
-  <li class="navtree toctree-l1 label">
-    <p class="caption">LegoOS-Dev</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l1 group">
-      <ul class="navtree subnav-l1 current">
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Log</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../log/TODO/">TODO</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../log/misc/">MISC</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../log/test-note/">Test Script</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../log/log-09-2018/">Sep 2018</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../log/log-08-2018/">Aug 2018</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../log/log-04-2018/">April 2018</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../log/log-03-2018/">March 2018</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../log/log-02-2018/">Feb 2018</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Kernel</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  
-    
-    <li class="navtree toctree-l3 page current">
-      <a class="current" href="./">
-        Kconfig
-      </a>
-    </li>
-    
-      
-
-  <li class="toctree-l3 current with-children">
-    <a href="#lego-kconfig">
-      Lego Kconfig
-      <span class="toctree-expand"></span>
-    </a>
-  </li>
-
-
-
-  <li class="toctree-l3 current">
-    <ul class="subnav-l3 current">
-    
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#network">Network</a>
+        <li class="toctree-l3 toc-item" >
+          <a class="toctree-l3" href="#network">Network</a>
         </li>
     
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#processor">Processor</a>
+        <li class="toctree-l3 toc-item" >
+          <a class="toctree-l3" href="#processor">Processor</a>
         </li>
     
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#memory">Memory</a>
+        <li class="toctree-l3 toc-item" >
+          <a class="toctree-l3" href="#memory">Memory</a>
         </li>
     
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#run-without-storage-component">Run without Storage Component</a>
+        <li class="toctree-l3 toc-item" >
+          <a class="toctree-l3" href="#run-without-storage-component">Run without Storage Component</a>
         </li>
     
     </ul>
-  </li>
-
-
   
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../debug/">Debug</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../grub/">GRUB</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../profile/">Profile</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../profile_strace/">Profile strace</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../profile_heatmap/">Profile heatmap</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../profile_points/">Profile points</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../trampoline/">Trampoline</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../pagefault_disable/">Disable pgfault</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../stop_machine/">Stop machine</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../loader/">Program Loader</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../vDSO/">vDSO</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../vfs/">Virtual File System</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../vm/">Process Virtual Memory</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../fpu/">x86 FPU</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../irq/">IRQ</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../net_thpool/">Network Thpool</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Syscall</p>
   </li>
 
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../syscall/facts/">Facts</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../profile_strace/">strace</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../syscall/compat/">compat</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../syscall/msync/">msync()</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../syscall/mremap/">mremap()</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../syscall/fork/">fork()</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../syscall/getrusage/">getrusage()</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../syscall/wait_and_exit/">wait4 and exit()</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Pcache</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../pcache/config/">Config</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../pcache/sweep/">Sweep</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../pcache/tlb/">TLB Coherence</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../pcache/pgtable-lock/">PageTable Lock</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../pcache/victim/">Victim Cache</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../pcache/virtual_cache/">Virtual Cache</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../pcache/rmap/">Reverse Mapping</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../pcache/evict_and_ref/">Evict and Refcount</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../pcache/smp_design/">SMP Design</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../pcache/replication/">Replication</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Driver</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../driver/pci/">PCI</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../driver/ib/">Infiniband</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Paper</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../paper/nmp/">NMP</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../paper/processor_oom/">Processor OOM</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../paper/genz/">Gen-Z</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../paper/replication/">Replication</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../paper/related/">Related</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-      </ul>
-    </li>
-    
   </ul>
+        </li>
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../debug/">Debug</a>
+        </li>
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../grub/">GRUB</a>
+        </li>
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../profile/">Profile</a>
+        </li>
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../profile_strace/">Profile strace</a>
+        </li>
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../profile_heatmap/">Profile heatmap</a>
+        </li>
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../profile_points/">Profile points</a>
+        </li>
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../trampoline/">Trampoline</a>
+        </li>
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../pagefault_disable/">Disable pgfault</a>
+        </li>
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../stop_machine/">Stop machine</a>
+        </li>
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../loader/">Program Loader</a>
+        </li>
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../vDSO/">vDSO</a>
+        </li>
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../vfs/">Virtual File System</a>
+        </li>
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../vm/">Process Virtual Memory</a>
+        </li>
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../fpu/">x86 FPU</a>
+        </li>
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../irq/">IRQ</a>
+        </li>
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../net_thpool/">Network Thpool</a>
+        </li>
+  </ul>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/syscall/facts">Syscall</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/pcache/config">Pcache</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/driver/pci">Driver</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/paper/nmp">Paper</a>
+        </li>
+  </ul>
+
+          
       </div>
       &nbsp;
     </nav>
@@ -762,11 +298,11 @@
     
       
         
-          <li>Kernel &raquo;</li>
+          <li>LegoOS-Dev &raquo;</li>
         
       
         
-          <li>LegoOS-Dev &raquo;</li>
+          <li>Kernel &raquo;</li>
         
       
     
@@ -783,56 +319,56 @@
                 <h1 id="lego-kconfig">Lego Kconfig<a class="headerlink" href="#lego-kconfig" title="Permanent link">&para;</a></h1>
 <h2 id="network">Network<a class="headerlink" href="#network" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Enable <code class="codehilite"><span class="n">CONFIG_INFINIBAND</span></code></li>
-<li>Enable <code class="codehilite"><span class="n">CONFIG_FIT</span></code></li>
-<li>Set <code class="codehilite"><span class="n">CONFIG_FIT_INITIAL_SLEEP_TIMEOUT</span></code>: boot time connection timeout</li>
-<li>Set <code class="codehilite"><span class="n">CONFIG_FIT_NR_NODES</span></code>: number of Lego nodes in this run</li>
-<li>Set <code class="codehilite"><span class="n">CONFIG_FIT_LOCAL_ID</span></code>: current node id</li>
+<li>Enable <code class="codehilite">CONFIG_INFINIBAND</code></li>
+<li>Enable <code class="codehilite">CONFIG_FIT</code></li>
+<li>Set <code class="codehilite">CONFIG_FIT_INITIAL_SLEEP_TIMEOUT</code>: boot time connection timeout</li>
+<li>Set <code class="codehilite">CONFIG_FIT_NR_NODES</code>: number of Lego nodes in this run</li>
+<li>Set <code class="codehilite">CONFIG_FIT_LOCAL_ID</code>: current node id</li>
 <li>
-<p>In <code class="codehilite"><span class="n">net</span><span class="o">/</span><span class="n">lego</span><span class="o">/</span><span class="n">fit_machine</span><span class="p">.</span><span class="k">c</span></code>, modify the <code class="codehilite"><span class="n">lego_cluster_hostnames</span></code> array to match the machines you are using.</p>
+<p>In <code class="codehilite">net/lego/fit_machine.c</code>, modify the <code class="codehilite">lego_cluster_hostnames</code> array to match the machines you are using.</p>
 </li>
 <li>
-<p>Set <code class="codehilite"><span class="n">CONFIG_DEFAULT_MEM_NODE</span></code> in processor manager</p>
+<p>Set <code class="codehilite">CONFIG_DEFAULT_MEM_NODE</code> in processor manager</p>
 </li>
-<li>Set <code class="codehilite"><span class="n">CONFIG_DEFAULT_STORAGE_NODE</span></code> if you are running with storage component.</li>
+<li>Set <code class="codehilite">CONFIG_DEFAULT_STORAGE_NODE</code> if you are running with storage component.</li>
 </ul>
 <p>Network configuration is crucial, please make sure all Lego nodes have consistent configurations. Otherwise the system may panic or fail to connect.</p>
 <h2 id="processor">Processor<a class="headerlink" href="#processor" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Enable <code class="codehilite"><span class="n">CONFIG_COMP_PROCESSOR</span></code><ul>
+<li>Enable <code class="codehilite">CONFIG_COMP_PROCESSOR</code><ul>
 <li>open <code class="codehilite"><span class="na">.config</span></code></li>
-<li>remove line <code class="codehilite"><span class="o">#</span> <span class="n">CONFIG_COMP_PROCESSOR</span> <span class="k">is</span> <span class="k">not</span> <span class="k">set</span></code></li>
+<li>remove line <code class="codehilite"># CONFIG_COMP_PROCESSOR is not set</code></li>
 <li>close <code class="codehilite"><span class="na">.config</span></code></li>
-<li>do <code class="codehilite"><span class="n">make</span></code>, you will see <code class="codehilite"><span class="n">Configure</span> <span class="n">Lego</span> <span class="k">as</span> <span class="n">processor</span> <span class="n">component</span> <span class="p">(</span><span class="n">COMP_PROCESSOR</span><span class="p">)</span> <span class="p">[</span><span class="n">N</span><span class="o">/</span><span class="n">y</span><span class="o">/?</span><span class="p">]</span> <span class="p">(</span><span class="k">NEW</span><span class="p">)</span></code>, select Y</li>
+<li>do <code class="codehilite">make</code>, you will see <code class="codehilite">Configure Lego as processor component (COMP_PROCESSOR) [N/y/?] (NEW)</code>, select Y</li>
 <li>Choose default configuration for all new config options</li>
 </ul>
 </li>
-<li>Enable <code class="codehilite"><span class="n">CONFIG_USE_RAMFS</span></code> if you are not using storage components</li>
+<li>Enable <code class="codehilite">CONFIG_USE_RAMFS</code> if you are not using storage components</li>
 </ul>
 <h2 id="memory">Memory<a class="headerlink" href="#memory" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Enable <code class="codehilite"><span class="n">CONFIG_COMP_MEMORY</span></code><ul>
+<li>Enable <code class="codehilite">CONFIG_COMP_MEMORY</code><ul>
 <li>open <code class="codehilite"><span class="na">.config</span></code></li>
-<li>remove line <code class="codehilite"><span class="o">#</span> <span class="n">CONFIG_COMP_MEMORY</span> <span class="k">is</span> <span class="k">not</span> <span class="k">set</span></code></li>
+<li>remove line <code class="codehilite"># CONFIG_COMP_MEMORY is not set</code></li>
 <li>close <code class="codehilite"><span class="na">.config</span></code></li>
-<li>do <code class="codehilite"><span class="n">make</span></code>, you will see <code class="codehilite"><span class="n">Configure</span> <span class="n">Lego</span> <span class="k">as</span> <span class="n">memory</span> <span class="n">component</span> <span class="n">manager</span> <span class="p">(</span><span class="n">COMP_MEMORY</span><span class="p">)</span> <span class="p">[</span><span class="n">N</span><span class="o">/</span><span class="n">y</span><span class="o">/?</span><span class="p">]</span> <span class="p">(</span><span class="k">NEW</span><span class="p">)</span></code>, select Y</li>
+<li>do <code class="codehilite">make</code>, you will see <code class="codehilite">Configure Lego as memory component manager (COMP_MEMORY) [N/y/?] (NEW)</code>, select Y</li>
 <li>Choose default configuration for all new config options</li>
 </ul>
 </li>
-<li>Enable <code class="codehilite"><span class="n">CONFIG_USE_RAMFS</span></code> if you are not using storage components<ul>
-<li>Set <code class="codehilite"><span class="n">CONFIG_RAMFS_OBJECT_FILE</span></code>: points to <strong>static-linked</strong> ELF file that you want to execute.</li>
-<li>tips: you can put your test code under <code class="codehilite"><span class="n">usr</span><span class="o">/</span></code> directory, and a simple <code class="codehilite"><span class="n">make</span></code> will compile everything under.</li>
+<li>Enable <code class="codehilite">CONFIG_USE_RAMFS</code> if you are not using storage components<ul>
+<li>Set <code class="codehilite">CONFIG_RAMFS_OBJECT_FILE</code>: points to <strong>static-linked</strong> ELF file that you want to execute.</li>
+<li>tips: you can put your test code under <code class="codehilite">usr/</code> directory, and a simple <code class="codehilite">make</code> will compile everything under.</li>
 </ul>
 </li>
 </ul>
 <h2 id="run-without-storage-component">Run without Storage Component<a class="headerlink" href="#run-without-storage-component" title="Permanent link">&para;</a></h2>
 <p>To run Lego just with one processor component and one memory component, you need to:</p>
 <ul>
-<li>Enable <code class="codehilite"><span class="n">CONFIG_USE_RAMFS</span></code> at both sides. And in memory side, you need to set the <code class="codehilite"><span class="n">CONFIG_RAMFS_OBJECT_FILE</span></code>, which points to the ELF binary you want to test.</li>
-<li>make sure <code class="codehilite"><span class="n">CONFIG_DEFAULT_MEM_NODE</span></code> at processor component is pointing to memory component&rsquo;s node id.</li>
+<li>Enable <code class="codehilite">CONFIG_USE_RAMFS</code> at both sides. And in memory side, you need to set the <code class="codehilite">CONFIG_RAMFS_OBJECT_FILE</code>, which points to the ELF binary you want to test.</li>
+<li>make sure <code class="codehilite">CONFIG_DEFAULT_MEM_NODE</code> at processor component is pointing to memory component&rsquo;s node id.</li>
 </ul>
 <p>A typical code snippet and configuration would be:
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">lego_cluster_hostnames</span><span class="p">[</span><span class="n">CONFIG_FIT_NR_NODES</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
@@ -841,7 +377,7 @@
 <span class="p">};</span>
 </pre></div>
 </td></tr></table></p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -889,59 +425,59 @@
 46
 47
 48
-49</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">wuklab00</span> <span class="n">Processor</span>
+49</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>wuklab00 Processor
 
-<span class="o">#</span>
-<span class="o">#</span> <span class="n">Lego</span> <span class="n">Processor</span> <span class="n">Component</span> <span class="n">Configurations</span>
-<span class="o">#</span>
-<span class="n">CONFIG_COMP_PROCESSOR</span><span class="o">=</span><span class="n">y</span>
-<span class="n">CONFIG_CHECKPOINT</span><span class="o">=</span><span class="n">y</span>
-<span class="n">CONFIG_MEMMAP_MEMBLOCK_RESERVED</span><span class="o">=</span><span class="n">y</span>
-<span class="o">#</span> <span class="n">CONFIG_PCACHE_EVICT_RANDOM</span> <span class="k">is</span> <span class="k">not</span> <span class="k">set</span>
-<span class="o">#</span> <span class="n">CONFIG_PCACHE_EVICT_FIFO</span> <span class="k">is</span> <span class="k">not</span> <span class="k">set</span>
-<span class="n">CONFIG_PCACHE_EVICT_LRU</span><span class="o">=</span><span class="n">y</span>
-<span class="n">CONFIG_PCACHE_EVICT_GENERIC_SWEEP</span><span class="o">=</span><span class="n">y</span>
-<span class="o">#</span> <span class="n">CONFIG_PCACHE_EVICTION_WRITE_PROTECT</span> <span class="k">is</span> <span class="k">not</span> <span class="k">set</span>
-<span class="o">#</span> <span class="n">CONFIG_PCACHE_EVICTION_PERSET_LIST</span> <span class="k">is</span> <span class="k">not</span> <span class="k">set</span>
-<span class="n">CONFIG_PCACHE_EVICTION_VICTIM</span><span class="o">=</span><span class="n">y</span>
-<span class="n">CONFIG_PCACHE_EVICTION_VICTIM_NR_ENTRIES</span><span class="o">=</span><span class="mi">8</span>
-<span class="n">CONFIG_PCACHE_PREFETCH</span><span class="o">=</span><span class="n">y</span>
+#
+# Lego Processor Component Configurations
+#
+CONFIG_COMP_PROCESSOR=y
+CONFIG_CHECKPOINT=y
+CONFIG_MEMMAP_MEMBLOCK_RESERVED=y
+# CONFIG_PCACHE_EVICT_RANDOM is not set
+# CONFIG_PCACHE_EVICT_FIFO is not set
+CONFIG_PCACHE_EVICT_LRU=y
+CONFIG_PCACHE_EVICT_GENERIC_SWEEP=y
+# CONFIG_PCACHE_EVICTION_WRITE_PROTECT is not set
+# CONFIG_PCACHE_EVICTION_PERSET_LIST is not set
+CONFIG_PCACHE_EVICTION_VICTIM=y
+CONFIG_PCACHE_EVICTION_VICTIM_NR_ENTRIES=8
+CONFIG_PCACHE_PREFETCH=y
 
-<span class="o">#</span>
-<span class="o">#</span> <span class="n">Processor</span> <span class="n">DEBUG</span> <span class="k">Options</span>
-<span class="o">#</span>
+#
+# Processor DEBUG Options
+#
 
-<span class="o">#</span>
-<span class="o">#</span> <span class="n">Lego</span> <span class="n">Memory</span> <span class="n">Component</span> <span class="n">Configurations</span>
-<span class="o">#</span>
-<span class="o">#</span> <span class="n">CONFIG_COMP_MEMORY</span> <span class="k">is</span> <span class="k">not</span> <span class="k">set</span>
+#
+# Lego Memory Component Configurations
+#
+# CONFIG_COMP_MEMORY is not set
 
-<span class="o">#</span>
-<span class="o">#</span> <span class="n">DRAM</span> <span class="k">Cache</span> <span class="k">Options</span>
-<span class="o">#</span>
-<span class="n">CONFIG_PCACHE_LINE_SIZE_SHIFT</span><span class="o">=</span><span class="mi">12</span>
-<span class="n">CONFIG_PCACHE_ASSOCIATIVITY_SHIFT</span><span class="o">=</span><span class="mi">3</span>
+#
+# DRAM Cache Options
+#
+CONFIG_PCACHE_LINE_SIZE_SHIFT=12
+CONFIG_PCACHE_ASSOCIATIVITY_SHIFT=3
 
-<span class="o">#</span>
-<span class="o">#</span> <span class="k">General</span> <span class="n">Manager</span> <span class="n">Config</span><span class="o">/</span><span class="n">Debug</span> <span class="k">Options</span>
-<span class="o">#</span>
-<span class="n">CONFIG_DEFAULT_MEM_NODE</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">CONFIG_DEFAULT_STORAGE_NODE</span><span class="o">=</span><span class="mi">2</span>
-<span class="n">CONFIG_USE_RAMFS</span><span class="o">=</span><span class="n">y</span>
+#
+# General Manager Config/Debug Options
+#
+CONFIG_DEFAULT_MEM_NODE=1
+CONFIG_DEFAULT_STORAGE_NODE=2
+CONFIG_USE_RAMFS=y
 
-<span class="o">#</span>
-<span class="o">#</span> <span class="n">Networking</span>
-<span class="o">#</span>
-<span class="o">#</span> <span class="n">CONFIG_LWIP</span> <span class="k">is</span> <span class="k">not</span> <span class="k">set</span>
-<span class="n">CONFIG_FIT</span><span class="o">=</span><span class="n">y</span>
-<span class="o">#</span> <span class="n">CONFIG_FIT_DEBUG</span> <span class="k">is</span> <span class="k">not</span> <span class="k">set</span>
-<span class="n">CONFIG_FIT_INITIAL_SLEEP_TIMEOUT</span><span class="o">=</span><span class="mi">30</span>
-<span class="n">CONFIG_FIT_NR_NODES</span><span class="o">=</span><span class="mi">2</span>
-<span class="n">CONFIG_FIT_LOCAL_ID</span><span class="o">=</span><span class="mi">0</span>
+#
+# Networking
+#
+# CONFIG_LWIP is not set
+CONFIG_FIT=y
+# CONFIG_FIT_DEBUG is not set
+CONFIG_FIT_INITIAL_SLEEP_TIMEOUT=30
+CONFIG_FIT_NR_NODES=2
+CONFIG_FIT_LOCAL_ID=0
 </pre></div>
 </td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -975,41 +511,41 @@
 32
 33
 34
-35</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">wuklab01</span> <span class="n">Memory</span>
+35</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>wuklab01 Memory
 
-<span class="o">#</span>
-<span class="o">#</span> <span class="n">Lego</span> <span class="n">Memory</span> <span class="n">Component</span> <span class="n">Configurations</span>
-<span class="o">#</span>
-<span class="n">CONFIG_COMP_MEMORY</span><span class="o">=</span><span class="n">y</span>
+#
+# Lego Memory Component Configurations
+#
+CONFIG_COMP_MEMORY=y
 
-<span class="o">#</span>
-<span class="o">#</span> <span class="n">Memory</span> <span class="n">DEBUG</span> <span class="k">Options</span>
-<span class="o">#</span>
-<span class="o">#</span> <span class="n">CONFIG_MEM_PREFETCH</span> <span class="k">is</span> <span class="k">not</span> <span class="k">set</span>
+#
+# Memory DEBUG Options
+#
+# CONFIG_MEM_PREFETCH is not set
 
-<span class="o">#</span>
-<span class="o">#</span> <span class="n">DRAM</span> <span class="k">Cache</span> <span class="k">Options</span>
-<span class="o">#</span>
-<span class="n">CONFIG_PCACHE_LINE_SIZE_SHIFT</span><span class="o">=</span><span class="mi">12</span>
-<span class="n">CONFIG_PCACHE_ASSOCIATIVITY_SHIFT</span><span class="o">=</span><span class="mi">3</span>
+#
+# DRAM Cache Options
+#
+CONFIG_PCACHE_LINE_SIZE_SHIFT=12
+CONFIG_PCACHE_ASSOCIATIVITY_SHIFT=3
 
-<span class="o">#</span>
-<span class="o">#</span> <span class="k">General</span> <span class="n">Manager</span> <span class="n">Config</span><span class="o">/</span><span class="n">Debug</span> <span class="k">Options</span>
-<span class="o">#</span>
-<span class="n">CONFIG_DEFAULT_MEM_NODE</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">CONFIG_DEFAULT_STORAGE_NODE</span><span class="o">=</span><span class="mi">2</span>
-<span class="n">CONFIG_USE_RAMFS</span><span class="o">=</span><span class="n">y</span>
-<span class="n">CONFIG_RAMFS_OBJECT_FILE</span><span class="o">=</span><span class="ss">&quot;usr/pcache_conflict.o&quot;</span>
+#
+# General Manager Config/Debug Options
+#
+CONFIG_DEFAULT_MEM_NODE=1
+CONFIG_DEFAULT_STORAGE_NODE=2
+CONFIG_USE_RAMFS=y
+CONFIG_RAMFS_OBJECT_FILE=&quot;usr/pcache_conflict.o&quot;
 
-<span class="o">#</span>
-<span class="o">#</span> <span class="n">Networking</span>
-<span class="o">#</span>
-<span class="o">#</span> <span class="n">CONFIG_LWIP</span> <span class="k">is</span> <span class="k">not</span> <span class="k">set</span>
-<span class="n">CONFIG_FIT</span><span class="o">=</span><span class="n">y</span>
-<span class="o">#</span> <span class="n">CONFIG_FIT_DEBUG</span> <span class="k">is</span> <span class="k">not</span> <span class="k">set</span>
-<span class="n">CONFIG_FIT_INITIAL_SLEEP_TIMEOUT</span><span class="o">=</span><span class="mi">30</span>
-<span class="n">CONFIG_FIT_NR_NODES</span><span class="o">=</span><span class="mi">2</span>
-<span class="n">CONFIG_FIT_LOCAL_ID</span><span class="o">=</span><span class="mi">1</span>
+#
+# Networking
+#
+# CONFIG_LWIP is not set
+CONFIG_FIT=y
+# CONFIG_FIT_DEBUG is not set
+CONFIG_FIT_INITIAL_SLEEP_TIMEOUT=30
+CONFIG_FIT_NR_NODES=2
+CONFIG_FIT_LOCAL_ID=1
 </pre></div>
 </td></tr></table>
               
@@ -1056,8 +592,9 @@
     </span>
 </div>
     <script>var base_url = '../../..';</script>
-    <script src="../../../js/theme.js" defer></script>
-      <script src="../../../search/main.js" defer></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/require.js"></script>
+      <script src="../../../search/search.js"></script>
 
 </body>
 </html>

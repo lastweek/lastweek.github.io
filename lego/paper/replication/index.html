@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../../../css/highlight.css">
   
   <script>
     // Current page data
@@ -23,16 +23,15 @@
     var mkdocs_page_url = "/lego/paper/replication/";
   </script>
   
-  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
+  <script src="../../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../../js/highlight.pack.js"></script> 
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-143772066-1', 'auto');
       ga('send', 'pageview');
@@ -50,697 +49,186 @@
         <a href="../../.." class="icon icon-home"> Yizhou Shan's Home Page</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+    <input type="text" name="q" placeholder="Search docs" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="tocbase current">
-    
-    
+	  
+          
+		  
+  <ul class="" href="../../..">
+    <li class="toctree-l1">
+  <a class="" href="../../..">Home</a>
+  </li></ul>
+          
+		  
+  <p class="caption">Notes</p>
+  <ul class="">
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/paper_fpga/">FPGA Papers</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/cache_coherence/">Cache Coherence</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/benchmark/">Benchmarks</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/linux-articles/">Linux Articles</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/proc/">[Linux] Special Files</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/trace/">[Linux] Trace/Profile</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../misc/essential/">Essential</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../misc/cheatsheet/">Cheatsheet</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="/general_log/0919">Log</a>
+        </li>
+  </ul>
+
+          
+		  
+  <p class="caption">FPGA</p>
+  <ul class="">
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../../fpga/vivado_tricks/">Vivado Tricks</a>
+        </li>
+  </ul>
+
+          
+		  
+  <p class="caption">LegoOS-Dev</p>
+  <ul class="current">
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/log/TODO">Log</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/kernel/kconfig">Kernel</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/syscall/facts">Syscall</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/pcache/config">Pcache</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/driver/pci">Driver</a>
+        </li>
+          <li class="toctree-l1 current">
+            
+  <a class="current" href="/lego/paper/nmp">Paper</a>
+  <ul class="subnav">
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../nmp/">NMP</a>
+        </li>
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../processor_oom/">Processor OOM</a>
+        </li>
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../genz/">Gen-Z</a>
+        </li>
+        <li class="toctree-l2 current 1">
+            
+  <a class="current" href="./">Replication</a>
+  <ul class="subnav">
       
-
-
-  <li class="navtree toctree-l1 inactive">
-    <a class="" href="../../..">Home</a>
-  </li>
+  <li class="toctree-l2 current">
+  
+    <a class="current"  href="#replication-checkpoint-logging-and-recovery">Replication, Checkpoint, Logging, and Recovery</a>
+  
+  
+    <ul class="">
     
-      
-  <li class="navtree toctree-l1 label">
-    <p class="caption">Notes</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l1 group">
-      <ul class="navtree subnav-l1 current">
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/paper_fpga/">FPGA Papers</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/cache_coherence/">Cache Coherence</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/benchmark/">Benchmarks</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/paper_perf_shadows/">Perf Shadows</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/linux-articles/">Linux Articles</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/proc/">[Linux] Special Files</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/trace/">[Linux] Trace/Profile</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/userfaultfd/">[Linux] Userfaultfd</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/xperf/">[Linux] User/kern Cross Perf</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../notes/kvm-basic/">[Linux] KVM</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../misc/essential/">Essential</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../misc/cheatsheet/">Cheatsheet</a>
-  </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Log</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../../general_log/0919/">Sep 2019</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../../general_log/0819/">Aug 2019</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../../general_log/0719/">Jul 2019</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-      </ul>
-    </li>
-    
-      
-  <li class="navtree toctree-l1 label">
-    <p class="caption">FPGA</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l1 group">
-      <ul class="navtree subnav-l1 current">
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../../fpga/vivado_tricks/">Vivado Tricks</a>
-  </li>
-        
-      </ul>
-    </li>
-    
-      
-  <li class="navtree toctree-l1 label">
-    <p class="caption">LegoOS-Dev</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l1 group">
-      <ul class="navtree subnav-l1 current">
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Log</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../log/TODO/">TODO</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../log/misc/">MISC</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../log/test-note/">Test Script</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../log/log-09-2018/">Sep 2018</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../log/log-08-2018/">Aug 2018</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../log/log-04-2018/">April 2018</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../log/log-03-2018/">March 2018</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../log/log-02-2018/">Feb 2018</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Kernel</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../kernel/kconfig/">Kconfig</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../kernel/debug/">Debug</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../kernel/grub/">GRUB</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../kernel/profile/">Profile</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../kernel/profile_strace/">Profile strace</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../kernel/profile_heatmap/">Profile heatmap</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../kernel/profile_points/">Profile points</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../kernel/trampoline/">Trampoline</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../kernel/pagefault_disable/">Disable pgfault</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../kernel/stop_machine/">Stop machine</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../kernel/loader/">Program Loader</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../kernel/vDSO/">vDSO</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../kernel/vfs/">Virtual File System</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../kernel/vm/">Process Virtual Memory</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../kernel/fpu/">x86 FPU</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../kernel/irq/">IRQ</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../kernel/net_thpool/">Network Thpool</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Syscall</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../syscall/facts/">Facts</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../kernel/profile_strace/">strace</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../syscall/compat/">compat</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../syscall/msync/">msync()</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../syscall/mremap/">mremap()</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../syscall/fork/">fork()</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../syscall/getrusage/">getrusage()</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../syscall/wait_and_exit/">wait4 and exit()</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Pcache</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../pcache/config/">Config</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../pcache/sweep/">Sweep</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../pcache/tlb/">TLB Coherence</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../pcache/pgtable-lock/">PageTable Lock</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../pcache/victim/">Victim Cache</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../pcache/virtual_cache/">Virtual Cache</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../pcache/rmap/">Reverse Mapping</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../pcache/evict_and_ref/">Evict and Refcount</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../pcache/smp_design/">SMP Design</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../pcache/replication/">Replication</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Driver</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../driver/pci/">PCI</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../driver/ib/">Infiniband</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Paper</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../nmp/">NMP</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../processor_oom/">Processor OOM</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../genz/">Gen-Z</a>
-  </li>
-        
-          
-
-
-  
-    
-    <li class="navtree toctree-l3 page current">
-      <a class="current" href="./">
-        Replication
-      </a>
-    </li>
-    
-      
-
-  <li class="toctree-l3 current with-children">
-    <a href="#replication-checkpoint-logging-and-recovery">
-      Replication, Checkpoint, Logging, and Recovery
-      <span class="toctree-expand"></span>
-    </a>
-  </li>
-
-
-
-  <li class="toctree-l3 current">
-    <ul class="subnav-l3 current">
-    
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#discussion">Discussion</a>
+        <li class="toctree-l3 toc-item" >
+          <a class="toctree-l3" href="#discussion">Discussion</a>
         </li>
     
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#replication">Replication</a>
+        <li class="toctree-l3 toc-item" >
+          <a class="toctree-l3" href="#replication">Replication</a>
         </li>
     
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#checkpointing">Checkpointing</a>
+        <li class="toctree-l3 toc-item" >
+          <a class="toctree-l3" href="#checkpointing">Checkpointing</a>
         </li>
     
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#misc">MISC</a>
+        <li class="toctree-l3 toc-item" >
+          <a class="toctree-l3" href="#misc">MISC</a>
         </li>
     
     </ul>
-  </li>
-
-
   
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../related/">Related</a>
   </li>
-        
-      </ul>
-    </li>
-        
-      </ul>
-    </li>
-    
+
   </ul>
+        </li>
+        <li class="toctree-l2 1">
+            
+  <a class="" href="../related/">Related</a>
+        </li>
+  </ul>
+        </li>
+  </ul>
+
+          
       </div>
       &nbsp;
     </nav>
@@ -762,11 +250,11 @@
     
       
         
-          <li>Paper &raquo;</li>
+          <li>LegoOS-Dev &raquo;</li>
         
       
         
-          <li>LegoOS-Dev &raquo;</li>
+          <li>Paper &raquo;</li>
         
       
     
@@ -797,18 +285,18 @@
 </li>
 </ul>
 <h2 id="replication">Replication<a class="headerlink" href="#replication" title="Permanent link">&para;</a></h2>
-<p>Before started, I spent some time recap, and found Wiki pages<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup><sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> are actually very good.</p>
+<p>Before started, I spent some time recap, and found Wiki pages<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup><sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup><sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup> are actually very good.</p>
 <p>Two main approaches:</p>
 <ul>
-<li><strong>Optimistic (Lazy, Passive) Replication</strong> <sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>, in which replicas are allowed to diverge<ul>
-<li><strong>Eventual consistency</strong><sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup><sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup><sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup>, meaning that replicas are guaranteed to converge only when the system has been quiesced for a period of time</li>
+<li><strong>Optimistic (Lazy, Passive) Replication</strong> <sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>, in which replicas are allowed to diverge<ul>
+<li><strong>Eventual consistency</strong><sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup><sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup><sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup>, meaning that replicas are guaranteed to converge only when the system has been quiesced for a period of time</li>
 </ul>
 </li>
-<li><strong>Pessimistic (Active, Multi-master<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup>) Replication</strong>, tries to guarantee from the beginning that all of the replicas are identical to each other, as if there was only a single copy of the data all along.</li>
+<li><strong>Pessimistic (Active, Multi-master<sup id="fnref:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup>) Replication</strong>, tries to guarantee from the beginning that all of the replicas are identical to each other, as if there was only a single copy of the data all along.</li>
 </ul>
 <p>Lego is more towards memory replication, not storage replication. We may want to conduct some ideas from DSM replication (MRSW, MRMW), or in-memory DB such as RAMCloud, VoltDB?</p>
 <h2 id="checkpointing">Checkpointing<a class="headerlink" href="#checkpointing" title="Permanent link">&para;</a></h2>
-<p>Some nice reading<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup>.</p>
+<p>Some nice reading<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>.</p>
 <p>Application types:</p>
 <ul>
 <li>Long-running v.s. Short-lived</li>
@@ -826,7 +314,7 @@
 </li>
 </ul>
 <p>We should favor <strong>[Long-running &amp;&amp; no built-in checkpoint/journaling]</strong> applications. Normally they are not distributed systems, right? Even it is, it might be running as a single-node version. Based on this, I think we should favor coordinated checkpointing.</p>
-<p>HPC community<sup id="fnref:10"><a class="footnote-ref" href="#fn:10">10</a></sup><sup id="fnref:11"><a class="footnote-ref" href="#fn:11">11</a></sup><sup id="fnref:12"><a class="footnote-ref" href="#fn:12">12</a></sup> has a lot publications on checkpoint/recovery (e.g., Lawrence National Laboratory).</p>
+<p>HPC community<sup id="fnref:10"><a class="footnote-ref" href="#fn:10" rel="footnote">10</a></sup><sup id="fnref:11"><a class="footnote-ref" href="#fn:11" rel="footnote">11</a></sup><sup id="fnref:12"><a class="footnote-ref" href="#fn:12" rel="footnote">12</a></sup> has a lot publications on checkpoint/recovery (e.g., Lawrence National Laboratory).</p>
 <h2 id="misc">MISC<a class="headerlink" href="#misc" title="Permanent link">&para;</a></h2>
 <p>Some other interesting topics:</p>
 <ul>
@@ -845,41 +333,41 @@ Last Updated: Mar 19, 2018</p>
 <hr />
 <ol>
 <li id="fn:1">
-<p><a href="https://en.wikipedia.org/wiki/Replication_(computing)">Wiki: Replication</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Replication_(computing)">Wiki: Replication</a>&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p><a href="https://en.wikipedia.org/wiki/High-availability_cluster">Wiki: High-availability_cluster</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p><a href="https://en.wikipedia.org/wiki/High-availability_cluster">Wiki: High-availability_cluster</a>&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p><a href="https://en.wikipedia.org/wiki/Virtual_synchrony">Wiki: Virtual synchrony</a>&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Virtual_synchrony">Wiki: Virtual synchrony</a>&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 <li id="fn:4">
-<p><a href="https://en.wikipedia.org/wiki/Optimistic_replication">Wiki: Optimistic Replication</a>&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Optimistic_replication">Wiki: Optimistic Replication</a>&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 <li id="fn:5">
-<p><a href="https://en.wikipedia.org/wiki/Quiesce">Wiki: Quiesce</a>&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Quiesce">Wiki: Quiesce</a>&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
 <li id="fn:6">
-<p><a href="https://en.wikipedia.org/wiki/Eventual_consistency">Wiki: Eventual Consistency</a>&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Eventual_consistency">Wiki: Eventual Consistency</a>&#160;<a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text">&#8617;</a></p>
 </li>
 <li id="fn:7">
-<p><a href="https://en.wikipedia.org/wiki/CAP_theorem">Wiki: CAP Theorem</a>&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+<p><a href="https://en.wikipedia.org/wiki/CAP_theorem">Wiki: CAP Theorem</a>&#160;<a class="footnote-backref" href="#fnref:7" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a></p>
 </li>
 <li id="fn:8">
-<p><a href="https://en.wikipedia.org/wiki/Multi-master_replication">Wiki: Multi-master replication</a>&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Multi-master_replication">Wiki: Multi-master replication</a>&#160;<a class="footnote-backref" href="#fnref:8" rev="footnote" title="Jump back to footnote 8 in the text">&#8617;</a></p>
 </li>
 <li id="fn:9">
-<p><a href="https://en.wikipedia.org/wiki/Application_checkpointing">Wiki: Application Checkpointing</a>&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Application_checkpointing">Wiki: Application Checkpointing</a>&#160;<a class="footnote-backref" href="#fnref:9" rev="footnote" title="Jump back to footnote 9 in the text">&#8617;</a></p>
 </li>
 <li id="fn:10">
-<p><a href="http://crd.lbl.gov/assets/pubs_presos/CDS/FTG/Papers/2002/checkpointSurvey-020724b.pdf">Paper: A Survey of Checkpoint/Restart Implementations </a>&#160;<a class="footnote-backref" href="#fnref:10" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+<p><a href="http://crd.lbl.gov/assets/pubs_presos/CDS/FTG/Papers/2002/checkpointSurvey-020724b.pdf">Paper: A Survey of Checkpoint/Restart Implementations </a>&#160;<a class="footnote-backref" href="#fnref:10" rev="footnote" title="Jump back to footnote 10 in the text">&#8617;</a></p>
 </li>
 <li id="fn:11">
 <p><a href="http://crd.lbl.gov/assets/pubs_presos/CDS/FTG/Papers/2002/blcr.pdf">Paper: The Design and Implementation of Berkeley Lab’s Linux
-Checkpoint/Restart</a>&#160;<a class="footnote-backref" href="#fnref:11" title="Jump back to footnote 11 in the text">&#8617;</a></p>
+Checkpoint/Restart</a>&#160;<a class="footnote-backref" href="#fnref:11" rev="footnote" title="Jump back to footnote 11 in the text">&#8617;</a></p>
 </li>
 <li id="fn:12">
-<p><a href="http://crd.lbl.gov/departments/computer-science/CLaSS/research/BLCR/">Berkeley Lab Checkpoint/Restart (BLCR) for LINUX</a>&#160;<a class="footnote-backref" href="#fnref:12" title="Jump back to footnote 12 in the text">&#8617;</a></p>
+<p><a href="http://crd.lbl.gov/departments/computer-science/CLaSS/research/BLCR/">Berkeley Lab Checkpoint/Restart (BLCR) for LINUX</a>&#160;<a class="footnote-backref" href="#fnref:12" rev="footnote" title="Jump back to footnote 12 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -927,8 +415,9 @@ Checkpoint/Restart</a>&#160;<a class="footnote-backref" href="#fnref:11" title="
     </span>
 </div>
     <script>var base_url = '../../..';</script>
-    <script src="../../../js/theme.js" defer></script>
-      <script src="../../../search/main.js" defer></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/require.js"></script>
+      <script src="../../../search/search.js"></script>
 
 </body>
 </html>

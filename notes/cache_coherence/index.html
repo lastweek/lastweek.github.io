@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../../css/highlight.css">
   
   <script>
     // Current page data
@@ -23,16 +23,15 @@
     var mkdocs_page_url = "/notes/cache_coherence/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-143772066-1', 'auto');
       ga('send', 'pageview');
@@ -50,743 +49,164 @@
         <a href="../.." class="icon icon-home"> Yizhou Shan's Home Page</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+    <input type="text" name="q" placeholder="Search docs" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="tocbase current">
-    
-    
-      
-
-
-  <li class="navtree toctree-l1 inactive">
-    <a class="" href="../..">Home</a>
-  </li>
-    
-      
-  <li class="navtree toctree-l1 label">
-    <p class="caption">Notes</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l1 group">
-      <ul class="navtree subnav-l1 current">
+	  
           
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../paper_fpga/">FPGA Papers</a>
-  </li>
-        
+		  
+  <ul class="" href="../..">
+    <li class="toctree-l1">
+  <a class="" href="../..">Home</a>
+  </li></ul>
           
-
-
-  
-    
-    <li class="navtree toctree-l2 page current">
-      <a class="current" href="./">
-        Cache Coherence
-          <span class="toctree-expand"></span>
-      </a>
-    </li>
-    
+		  
+  <p class="caption">Notes</p>
+  <ul class="current">
+          <li class="toctree-l1">
+            
+  <a class="" href="../paper_fpga/">FPGA Papers</a>
+        </li>
+          <li class="toctree-l1 current">
+            
+  <a class="current" href="./">Cache Coherence</a>
+  <ul class="subnav">
       
-
-  <li class="toctree-l2 current with-children">
-    <a href="#practical-cache-coherence-implementation">
-      Practical Cache Coherence Implementation
-      <span class="toctree-expand"></span>
-    </a>
-  </li>
-
-
-
   <li class="toctree-l2 current">
-    <ul class="subnav-l2 current">
+  
+    <a class="current"  href="#practical-cache-coherence-implementation">Practical Cache Coherence Implementation</a>
+  
+  
+    <ul class="">
     
-      
-        <li class="toctree-l3">
-          <a class="toctree-l4" href="#summary-and-thoughs">Summary and Thoughs</a>
+        <li class="toctree-l3 toc-item" >
+          <a class="toctree-l3" href="#summary-and-thoughs">Summary and Thoughs</a>
         </li>
     
-      
-        <li class="toctree-l3">
-          <a class="toctree-l4" href="#readings">Readings</a>
+        <li class="toctree-l3 toc-item" >
+          <a class="toctree-l3" href="#readings">Readings</a>
         </li>
     
-      
-        <li class="toctree-l3">
-          <a class="toctree-l4" href="#misc-facts">Misc Facts</a>
+        <li class="toctree-l3 toc-item" >
+          <a class="toctree-l3" href="#misc-facts">Misc Facts</a>
         </li>
     
-      
-          
-
-  <li class="toctree-l3">
-    <a href="#case-study">
-      Case Study
-      <span class="toctree-expand"></span>
-    </a>
-  </li>
-
-
-
-  <li class="toctree-l3">
-    <ul class="subnav-l3 toc-hidden">
-    
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#intel">Intel</a>
-        </li>
-    
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#amd">AMD</a>
-        </li>
-    
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#arm">ARM</a>
-        </li>
-    
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#opencapi-and-ccix">OpenCAPI and CCIX</a>
-        </li>
-    
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#openpiton">OpenPiton</a>
-        </li>
-    
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#fpga">FPGA</a>
+        <li class="toctree-l3 toc-item" >
+          <a class="toctree-l3" href="#case-study">Case Study</a>
         </li>
     
     </ul>
-  </li>
-
-      
-    
-    </ul>
-  </li>
-
-
   
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../benchmark/">Benchmarks</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../paper_perf_shadows/">Perf Shadows</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../linux-articles/">Linux Articles</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../proc/">[Linux] Special Files</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../rmap/">[Linux] Reverse Mmap (rmap)</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../trace/">[Linux] Trace/Profile</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../cgroup-swap/">[Linux] Cgroup and Swap</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../userfaultfd/">[Linux] Userfaultfd</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../xperf/">[Linux] User/kern Cross Perf</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../kvm-basic/">[Linux] KVM</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../misc/essential/">Essential</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../misc/cheatsheet/">Cheatsheet</a>
-  </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Log</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../general_log/0919/">Sep 2019</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../general_log/0819/">Aug 2019</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../general_log/0719/">Jul 2019</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-      </ul>
-    </li>
-    
-      
-  <li class="navtree toctree-l1 label">
-    <p class="caption">FPGA</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l1 group">
-      <ul class="navtree subnav-l1 current">
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l2 inactive">
-    <a class="" href="../../fpga/vivado_tricks/">Vivado Tricks</a>
-  </li>
-        
-      </ul>
-    </li>
-    
-      
-  <li class="navtree toctree-l1 label">
-    <p class="caption">LegoOS-Dev</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l1 group">
-      <ul class="navtree subnav-l1 current">
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Log</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/log/TODO/">TODO</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/log/misc/">MISC</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/log/test-note/">Test Script</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/log/log-09-2018/">Sep 2018</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/log/log-08-2018/">Aug 2018</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/log/log-04-2018/">April 2018</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/log/log-03-2018/">March 2018</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/log/log-02-2018/">Feb 2018</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Kernel</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/kconfig/">Kconfig</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/debug/">Debug</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/grub/">GRUB</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/profile/">Profile</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/profile_strace/">Profile strace</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/profile_heatmap/">Profile heatmap</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/profile_points/">Profile points</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/trampoline/">Trampoline</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/pagefault_disable/">Disable pgfault</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/stop_machine/">Stop machine</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/loader/">Program Loader</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/vDSO/">vDSO</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/vfs/">Virtual File System</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/vm/">Process Virtual Memory</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/fpu/">x86 FPU</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/irq/">IRQ</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/net_thpool/">Network Thpool</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Syscall</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/syscall/facts/">Facts</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/kernel/profile_strace/">strace</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/syscall/compat/">compat</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/syscall/msync/">msync()</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/syscall/mremap/">mremap()</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/syscall/fork/">fork()</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/syscall/getrusage/">getrusage()</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/syscall/wait_and_exit/">wait4 and exit()</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Pcache</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/pcache/config/">Config</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/pcache/sweep/">Sweep</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/pcache/tlb/">TLB Coherence</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/pcache/pgtable-lock/">PageTable Lock</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/pcache/victim/">Victim Cache</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/pcache/virtual_cache/">Virtual Cache</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/pcache/rmap/">Reverse Mapping</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/pcache/evict_and_ref/">Evict and Refcount</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/pcache/smp_design/">SMP Design</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/pcache/replication/">Replication</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Driver</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/driver/pci/">PCI</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/driver/ib/">Infiniband</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Paper</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/paper/nmp/">NMP</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/paper/processor_oom/">Processor OOM</a>
   </li>
-        
-          
 
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/paper/genz/">Gen-Z</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/paper/replication/">Replication</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../lego/paper/related/">Related</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-      </ul>
-    </li>
-    
   </ul>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../benchmark/">Benchmarks</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../paper_perf_shadows/">Perf Shadows</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../linux-articles/">Linux Articles</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../proc/">[Linux] Special Files</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../rmap/">[Linux] Reverse Mmap (rmap)</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../trace/">[Linux] Trace/Profile</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../cgroup-swap/">[Linux] Cgroup and Swap</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../userfaultfd/">[Linux] Userfaultfd</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../xperf/">[Linux] User/kern Cross Perf</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../kvm-basic/">[Linux] KVM</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../misc/essential/">Essential</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../misc/cheatsheet/">Cheatsheet</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="/general_log/0919">Log</a>
+        </li>
+  </ul>
+
+          
+		  
+  <p class="caption">FPGA</p>
+  <ul class="">
+          <li class="toctree-l1">
+            
+  <a class="" href="../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../fpga/vivado_tricks/">Vivado Tricks</a>
+        </li>
+  </ul>
+
+          
+		  
+  <p class="caption">LegoOS-Dev</p>
+  <ul class="">
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/log/TODO">Log</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/kernel/kconfig">Kernel</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/syscall/facts">Syscall</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/pcache/config">Pcache</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/driver/pci">Driver</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="/lego/paper/nmp">Paper</a>
+        </li>
+  </ul>
+
+          
       </div>
       &nbsp;
     </nav>
@@ -823,26 +243,7 @@
             <div class="section">
               
                 <h1 id="practical-cache-coherence-implementation">Practical Cache Coherence Implementation<a class="headerlink" href="#practical-cache-coherence-implementation" title="Permanent link">&para;</a></h1>
-<details class="note"><summary>Version History</summary><table>
-<thead>
-<tr>
-<th align="left">Date</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">Oct 3, 2019</td>
-<td>Add FPGA related discussion</td>
-</tr>
-<tr>
-<td align="left">Jun 28, 2019</td>
-<td>Initial draft</td>
-</tr>
-</tbody>
-</table>
-</details>
-<p><img alt="🍶" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f376.svg" title=":sake:" /></p>
+<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Oct 3, 2019</td><td>Add FPGA related discussion</td></tr><tr><td align="left">Jun 28, 2019</td><td>Initial draft</td></tr></tbody></table></details><p><img alt="🍶" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f376.svg" title=":sake:" /></p>
 <ul>
 <li><a href="#practical-cache-coherence">Practical Cache Coherence</a><ul>
 <li><a href="#summary-and-thoughs">Summary and Thoughs</a></li>
@@ -888,7 +289,7 @@ a concrete understanding of current cache coherence implementations.</p>
   cache coherence transactions. And there are many.</li>
 <li>Atomic Read-Modify-Write (RMW) instructions will make cache coherence
   implementations even more complex. Those instructions include
-  <code class="codehilite"><span class="k">read</span><span class="o">-</span><span class="k">and</span><span class="o">-</span><span class="n">inc</span></code>, <code class="codehilite"><span class="n">test</span><span class="o">-</span><span class="k">and</span><span class="o">-</span><span class="k">set</span></code>, and <code class="codehilite"><span class="k">lock</span><span class="p">;</span></code>-prefixed.
+  <code class="codehilite">read-and-inc</code>, <code class="codehilite">test-and-set</code>, and <code class="codehilite">lock;</code>-prefixed.
   I think, there will some &ldquo;lock the bus&rdquo;, or &ldquo;locked state&rdquo; at the
   home agent per cache line. Having atomic RMW instructions
   will add more complexity to the overall transaction design.</li>
@@ -918,11 +319,11 @@ a concrete understanding of current cache coherence implementations.</p>
 <li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.455.4198&amp;rep=rep1&amp;type=pdf">The Architecture of the Nehalem Processor and Nehalem-EP SMP Platforms</a>, chapter 5.2 Cache-Coherence Protocol for Multi-Processors.</li>
 <li><a href="https://software.intel.com/sites/products/collateral/hpc/vtune/performance_analysis_guide.pdf">Intel: Performance Analysis Guide for Intel® Core™ i7 Processor and Intel® Xeon™ 5500 processors</a></li>
 <li><a href="https://frankdenneman.nl/2016/07/11/numa-deep-dive-part-3-cache-coherency/">Blog: NUMA Deep Dive Part 3: Cache Coherency</a><ul>
-<li>By far the BEST blog I&rsquo;ve seen on the topic of <code class="codehilite"><span class="n">Intel</span> <span class="n">snoop</span> <span class="n">models</span></code>. Frank&rsquo;s other articles are also amazing.</li>
+<li>By far the BEST blog I&rsquo;ve seen on the topic of <code class="codehilite">Intel snoop models</code>. Frank&rsquo;s other articles are also amazing.</li>
 <li>Intel is using MESIF cache coherence protocol, but it has multiple cache coherence implementations.
-  The first one is <code class="codehilite"><span class="k">Source</span> <span class="n">Snoop</span></code> (or <code class="codehilite"><span class="n">Early</span> <span class="n">Snoop</span></code>), which is more like a traditional snoop-based
+  The first one is <code class="codehilite">Source Snoop</code> (or <code class="codehilite">Early Snoop</code>), which is more like a traditional snoop-based
   cache coherence implementation. Upon miss, the caching agent will broadcast to other agents.
-  The second one is <code class="codehilite"><span class="n">Home</span> <span class="n">Snoop</span></code>, which is more like a directory-based cache coherence implementation.
+  The second one is <code class="codehilite">Home Snoop</code>, which is more like a directory-based cache coherence implementation.
   Upon miss, the caching agent will contact home agent, and then the home agent will send requests
   to other caching agents who have the requested cache line.
   There are other implementations like Cluster-on-Die.
@@ -935,7 +336,7 @@ a concrete understanding of current cache coherence implementations.</p>
 <li><a href="https://researchspace.auckland.ac.nz/bitstream/handle/2292/11594/MESIF-2009.pdf?sequence=6">Paper: MESIF: A Two-Hop Cache Coherency Protocol for Point-to-Point Interconnects (2009)__</a><ul>
 <li>A MUST read.</li>
 <li>This paper has the most extensive description of the MESIF protocol implementation.
-  It has many <code class="codehilite"><span class="n">timing</span> <span class="n">diagrams</span></code> than describe how cache requests actually proceed.
+  It has many <code class="codehilite">timing diagrams</code> than describe how cache requests actually proceed.
   Those diagrams can help us understand what is needed to finish a cache request.</li>
 <li>Their <a href="https://parlab.eecs.berkeley.edu/sites/all/parlab/files/20091029-goodman-ssccp.pdf">slides</a>
   has more timing diagrams.</li>
@@ -960,15 +361,15 @@ a concrete understanding of current cache coherence implementations.</p>
 <li>Having directory for cache coherence will make implementation easier. Because
   the place (e.g., L3) where directory resides can serve as the serialization point.
   They can solve write races.</li>
-<li><code class="codehilite"><span class="n">Home</span> <span class="n">directory</span> <span class="n">controller</span></code> and <code class="codehilite"><span class="k">cache</span> <span class="n">controller</span></code> will exchange messages like a set of distributed machines.
+<li><code class="codehilite">Home directory controller</code> and <code class="codehilite">cache controller</code> will exchange messages like a set of distributed machines.
   In fact, with NoC, they are actually distributed system.</li>
 </ul>
 </li>
 <li><a href="https://www.intel.ca/content/dam/doc/white-paper/quick-path-interconnect-introduction-paper.pdf">Intel: An Introduction to the Intel® QuickPath Interconnect</a>,
   page 15 MESIF.<ul>
 <li><a href="https://www.hotchips.org/wp-content/uploads/hc_archives/hc21/1_sun/HC21.23.1.SystemInterconnectTutorial-Epub/HC21.23.120.Safranek-Intel-QPI.pdf">HotChips slide</a>, has timing diagrams.</li>
-<li>It explains the <code class="codehilite"><span class="n">Home</span> <span class="n">Snoop</span></code> and <code class="codehilite"><span class="k">Source</span> <span class="n">Snoop</span></code> used by Intel.</li>
-<li>Based on their explanation, it seems both <code class="codehilite"><span class="n">Home</span> <span class="n">Snoop</span></code> and <code class="codehilite"><span class="k">Source</span> <span class="n">Snoop</span></code> are using a combination of
+<li>It explains the <code class="codehilite">Home Snoop</code> and <code class="codehilite">Source Snoop</code> used by Intel.</li>
+<li>Based on their explanation, it seems both <code class="codehilite">Home Snoop</code> and <code class="codehilite">Source Snoop</code> are using a combination of
     snoop and directory. The Processor#4 (pg 17 and 18) maintains the directory.</li>
 <li>And this is a perfect demonstration of the details described in <a href="https://www.elsevier.com/books-and-journals/book-companion/9780128119051">Appendix I: Large-Scale Multiprocessors and Scientific Applications</a>.</li>
 <li>Related patent: <a href="https://patents.google.com/patent/US20150081977">Extending a cache coherency snoop broadcast protocol with directory information</a></li>
@@ -977,7 +378,7 @@ a concrete understanding of current cache coherence implementations.</p>
 <li><a href="http://research.cs.wisc.edu/multifacet/papers/isca99_multicast_talk_pdf.pdf">Paper: Multicast Snooping: A New Coherence Method Using a Multicast Address Network, ISCA &lsquo;99</a><ul>
 <li>A hybrid snoop and directory cache coherence implementation. The insight is snoop
   cause too much bandwidth, directory incurs longer latency.</li>
-<li>So this paper proposed <code class="codehilite"><span class="n">Multicast</span> <span class="n">snoop</span></code>, where it multicasts coherence transactions
+<li>So this paper proposed <code class="codehilite">Multicast snoop</code>, where it multicasts coherence transactions
   to selected processors, lowering the address bandwidth required for snooping.</li>
 </ul>
 </li>
@@ -1042,7 +443,7 @@ collecting snoop responses from the local cores when the MESIF protocol requires
 <li>Starting from Intel UPI, Caching Agent and Home Agent are combined as CHA.</li>
 </ul>
 </li>
-<li>A good <a href="https://www.realworldtech.com/qpi-evolved/3/">discussion</a> about why QPI gradually drop <code class="codehilite"><span class="k">Source</span> <span class="n">Snoop</span></code> and solely use <code class="codehilite"><span class="n">Home</span> <span class="n">Snoop</span></code>.<ul>
+<li>A good <a href="https://www.realworldtech.com/qpi-evolved/3/">discussion</a> about why QPI gradually drop <code class="codehilite">Source Snoop</code> and solely use <code class="codehilite">Home Snoop</code>.<ul>
 <li>The motivation is scalability. It turns out the new UPI only supports directory-based protocol.</li>
 <li>This makes sense because 1) inter socket bandwidth is precious, 2) snoop will consume a lot bandwidth.</li>
 </ul>
@@ -1073,8 +474,8 @@ workload which one is used at runtime.</p>
   (This is answering the question of &ldquo;why using local memory is faster than remote&rdquo;
    from the cache coherence perspective.)</li>
 <li>At L3, when received the request from a L2,<ul>
-<li>If it&rsquo;s in source snoop model, it will send <code class="codehilite"><span class="n">snoop</span> <span class="n">messages</span></code> to other sockets.</li>
-<li>If it&rsquo;s in home snoop model, it will send <code class="codehilite"><span class="k">read</span> <span class="n">message</span></code> to other sockets.
+<li>If it&rsquo;s in source snoop model, it will send <code class="codehilite">snoop messages</code> to other sockets.</li>
+<li>If it&rsquo;s in home snoop model, it will send <code class="codehilite">read message</code> to other sockets.
   The another socket will generate snoop and collect responses. (R3QPI or home?)</li>
 <li>Quote Dr. Bandwidth: Maintaining consistency is easier if the data is sent
   to the L3 first, and then to the requesting core, but it is also possible to
@@ -1200,8 +601,9 @@ workload which one is used at runtime.</p>
     </span>
 </div>
     <script>var base_url = '../..';</script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../search/main.js" defer></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
 
 </body>
 </html>
