@@ -52,7 +52,7 @@ If you see any papers missing, please comment below and I will add accordingly.
 
 ### Scheduling
 
-Preemptive Scheduling
+#### Preemptive Scheduling
 - [Preemptive multitasking on FPGAs, 2000]()
 - [Multitasking on FPGA Coprocessors, 2000]()
 - [Context saving and restoring for multitasking in reconfigurable systems, 2005]()
@@ -63,16 +63,16 @@ Preemptive Scheduling
 - [HTR: on-chip Hardware Task Relocation For Partially Reconfigurable FPGAs, 2013]()
 - [Preemptive Hardware Multitasking in ReconOS, 2015]()
 
-Preemptive Reconfiguration
+#### Preemptive Reconfiguration
 - [Preemption of the Partial Reconfiguration Process to Enable Real-Time Computing, 2018]()
 
-Bitstreams
+#### Bitstreams
 - [Github 7-series bitmap reverse engineering](https://github.com/SymbiFlow/prjxray)
 - [PARBIT: A Tool to Transform Bitfiles to Implement Partial Reconfiguration of Field Programmable Gate Arrays (FPGAs), 2001]()
 - [BIL: A TOOL-CHAIN FOR BITSTREAM REVERSE-ENGINEERING, 2012]()
 - [BITMAN: A Tool and API for FPGA Bitstream Manipulations, 2017]()
 
-Relocation:
+#### Relocation:
 - [Context saving and restoring for multitasking in reconfigurable systems, 2005]()
 - [REPLICA2Pro: Task Relocation by Bitstream Manipulation in Virtex-II/Pro FPGAs, 2006]()
 - [Relocation and Automatic Floor-planning of FPGA Partial Configuration Bit-Streams, MSR 2008]()
@@ -82,7 +82,7 @@ Relocation:
 - [AutoReloc, 2016]()
 - [HTR: on-chip Hardware Task Relocation For Partially Reconfigurable FPGAs, 2013]()
 
-Others
+#### Others
 - [hthreads: A hardware/software co-designed multithreaded RTOS kernel, 2005](https://ieeexplore.ieee.org/document/1612697)
 - [hthreads: Enabling a Uniform Programming Model Across the Software/Hardware Boundary, FCCM'16]()
 - [Tartan: Evaluating Spatial Computation for Whole Program Execution, ASPLOS'06]()
