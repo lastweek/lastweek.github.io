@@ -53,34 +53,34 @@ If you see any papers missing, please comment below and I will add accordingly.
 ### Scheduling
 
 #### Preemptive Scheduling
-- [Preemptive multitasking on FPGAs, 2000]()
-- [Multitasking on FPGA Coprocessors, 2000]()
-- [Context saving and restoring for multitasking in reconfigurable systems, 2005]()
-- [ReconOS Cooperative multithreading in dynamically reconfigurable systems, FPL'09]()
-- [Block, drop or roll(back): Alternative preemption methods for RH multi-tasking, FCCM'09]()
-- [Hardware Context-Switch Methodology for Dynamically Partially Reconfigurable Systems, 2010]()
-- [On-chip Context Save and Restore of Hardware Tasks on Partially Reconfigurable FPGAs, 2013]()
-- [HTR: on-chip Hardware Task Relocation For Partially Reconfigurable FPGAs, 2013]()
-- [Preemptive Hardware Multitasking in ReconOS, 2015]()
+- Preemptive multitasking on FPGAs, 2000
+- Multitasking on FPGA Coprocessors, 2000
+- Context saving and restoring for multitasking in reconfigurable systems, 2005
+- ReconOS Cooperative multithreading in dynamically reconfigurable systems, FPL'09
+- Block, drop or roll(back): Alternative preemption methods for RH multi-tasking, FCCM'09
+- Hardware Context-Switch Methodology for Dynamically Partially Reconfigurable Systems, 2010
+- On-chip Context Save and Restore of Hardware Tasks on Partially Reconfigurable FPGAs, 2013
+- HTR: on-chip Hardware Task Relocation For Partially Reconfigurable FPGAs, 2013
+- Preemptive Hardware Multitasking in ReconOS, 2015
 
 #### Preemptive Reconfiguration
-- [Preemption of the Partial Reconfiguration Process to Enable Real-Time Computing, 2018]()
+- Preemption of the Partial Reconfiguration Process to Enable Real-Time Computing, 2018
 
 #### Bitstreams
 - [Github 7-series bitmap reverse engineering](https://github.com/SymbiFlow/prjxray)
-- [PARBIT: A Tool to Transform Bitfiles to Implement Partial Reconfiguration of Field Programmable Gate Arrays (FPGAs), 2001]()
-- [BIL: A TOOL-CHAIN FOR BITSTREAM REVERSE-ENGINEERING, 2012]()
-- [BITMAN: A Tool and API for FPGA Bitstream Manipulations, 2017]()
+- PARBIT: A Tool to Transform Bitfiles to Implement Partial Reconfiguration of Field Programmable Gate Arrays (FPGAs), 2001
+- BIL: A TOOL-CHAIN FOR BITSTREAM REVERSE-ENGINEERING, 2012
+- BITMAN: A Tool and API for FPGA Bitstream Manipulations, 2017
 
 #### Relocation:
-- [Context saving and restoring for multitasking in reconfigurable systems, 2005]()
-- [REPLICA2Pro: Task Relocation by Bitstream Manipulation in Virtex-II/Pro FPGAs, 2006]()
-- [Relocation and Automatic Floor-planning of FPGA Partial Configuration Bit-Streams, MSR 2008]()
-- [Internal and External Bitstream Relocation for Partial Dynamic Reconfiguration, 2009]()
-- [PRR-PRR Dynamic Relocation, 2009]()
-- [HTR: on-chip Hardware Task Relocation For Partially Reconfigurable FPGAs, 2003]()
-- [AutoReloc, 2016]()
-- [HTR: on-chip Hardware Task Relocation For Partially Reconfigurable FPGAs, 2013]()
+- Context saving and restoring for multitasking in reconfigurable systems, 2005
+- REPLICA2Pro: Task Relocation by Bitstream Manipulation in Virtex-II/Pro FPGAs, 2006
+- Relocation and Automatic Floor-planning of FPGA Partial Configuration Bit-Streams, MSR 2008
+- Internal and External Bitstream Relocation for Partial Dynamic Reconfiguration, 2009
+- PRR-PRR Dynamic Relocation, 2009
+- HTR: on-chip Hardware Task Relocation For Partially Reconfigurable FPGAs, 2003
+- AutoReloc, 2016
+- HTR: on-chip Hardware Task Relocation For Partially Reconfigurable FPGAs, 2013
 
 #### Others
 - [hthreads: A hardware/software co-designed multithreaded RTOS kernel, 2005](https://ieeexplore.ieee.org/document/1612697)
