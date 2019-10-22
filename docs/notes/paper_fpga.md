@@ -52,50 +52,45 @@ If you see any papers missing, please comment below and I will add accordingly.
 
 ### Scheduling
 
-Questions to cover:
+Preemptive Scheduling
+- [Preemptive multitasking on FPGAs, 2000]()
+- [Multitasking on FPGA Coprocessors, 2000]()
+- [Context saving and restoring for multitasking in reconfigurable systems, 2005]()
+- [ReconOS Cooperative multithreading in dynamically reconfigurable systems, FPL'09]()
+- [Block, drop or roll(back): Alternative preemption methods for RH multi-tasking, FCCM'09]()
+- [Hardware Context-Switch Methodology for Dynamically Partially Reconfigurable Systems, 2010]()
+- [On-chip Context Save and Restore of Hardware Tasks on Partially Reconfigurable FPGAs, 2013]()
+- [HTR: on-chip Hardware Task Relocation For Partially Reconfigurable FPGAs, 2013]()
+- [Preemptive Hardware Multitasking in ReconOS, 2015]()
 
-- Can we partition an FPGA bitstream into multiple small ones? If so, how?
-    - Are there any tools that could automatically partiton an FPGA bitstream
-      into multiple smalls ones without developer intervention?
-    - Sure, partitioning adds extra communication overhead, potentionally lower overall performance.
-      But partitioning should be able to greatly increases scheduling flexibility in terms of area allocation.
-- How to do hardware context-switch?
-- How can we preemptively de-schedule already deployed bitstream? What should be taken care of?
-- How to deal with area framentation?
-    - FPGA area framentation is different from traditional memory framentation, simply
-      because a) FPGA area is two-dimentional, b) relocating a bitstream may not be possible,
-      c) the bitstream has a fixed requirement on the area.
-- How to allocate FPGA areas?
-- How to relocate already deployed bitstreams to make room for a new one?
+Preemptive Reconfiguration
+- [Preemption of the Partial Reconfiguration Process to Enable Real-Time Computing, 2018]()
 
-Offline:
+Bitstreams
+- [Github 7-series bitmap reverse engineering](https://github.com/SymbiFlow/prjxray)
+- [PARBIT: A Tool to Transform Bitfiles to Implement Partial Reconfiguration of Field Programmable Gate Arrays (FPGAs), 2001]()
+- [BIL: A TOOL-CHAIN FOR BITSTREAM REVERSE-ENGINEERING, 2012]()
+- [BITMAN: A Tool and API for FPGA Bitstream Manipulations, 2017]()
 
+Relocation:
+- [Context saving and restoring for multitasking in reconfigurable systems, 2005]()
+- [REPLICA2Pro: Task Relocation by Bitstream Manipulation in Virtex-II/Pro FPGAs, 2006]()
+- [Relocation and Automatic Floor-planning of FPGA Partial Configuration Bit-Streams, MSR 2008]()
+- [Internal and External Bitstream Relocation for Partial Dynamic Reconfiguration, 2009]()
+- [PRR-PRR Dynamic Relocation, 2009]()
+- [HTR: on-chip Hardware Task Relocation For Partially Reconfigurable FPGAs, 2003]()
+- [AutoReloc, 2016]()
+- [HTR: on-chip Hardware Task Relocation For Partially Reconfigurable FPGAs, 2013]()
+
+Others
 - [hthreads: A hardware/software co-designed multithreaded RTOS kernel, 2005](https://ieeexplore.ieee.org/document/1612697)
 - [hthreads: Enabling a Uniform Programming Model Across the Software/Hardware Boundary, FCCM'16]()
 - [Tartan: Evaluating Spatial Computation for Whole Program Execution, ASPLOS'06]()
-
-Online:
-
 - [A virtual hardware operating system for the Xilinx XC6200, 1996](https://link.springer.com/chapter/10.1007/3-540-61730-2_35)
 - [The Swappable Logic Unit: a Paradigm for Virtual Hardware, FCCM'97]()
 - [Run-time management of dynamically reconfigurable designs, 1998]()
 	- All above ones are early work on FPGA scheduling.
 	- Worth a read, but don't take some of their assumptions. Some have been changed after SO many years.
-- [Multitasking on FPGA Coprocessors, 2000]()
-	- Be careful about the concurrent DRAM accesses if you want to PR an exisitng bitstream!
-	- I think this rule applies all kinds of IO communication: make sure
-	to handle on-the-fly transactions.
-- __[Preemptive multitasking on fpgas, FCCM'00](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.35.4462&rep=rep1&type=pdf)__
-	- Very practical technique discussions about doing _preemptive scheduling_ on FPGA.
-- __[The Development of an Operating System for Reconfigurable Computing, 2001]()__
-	- Discussed about area framentation, app partitioning.
-	- It's discussion about partitioning, place, and route FPGA bitstreams brought me to realize that
-	  FPGA online scheduling is just another level of P&R, with coaser-granularity (small PR bitstream).
-- [Configuration Relocation and Defragmentation for Run-Time Reconfigurable Computing, 2002](https://pdfs.semanticscholar.org/1418/c596e8a3d378b2147237371023977017e9e2.pdf)
-	- Proposed a NEW architecture of FPGA to aid online relocation and avoid defragementation.
-	Some designs are still valid, e.g., use _Virtual IO_ for each PR bitstream. Thus it won't be
-	constrained by physical IO pin location.
-	- I came across similar issues lately, but found people already done this around 20 years ago.
 - [S1. Reconfigurable Hardware Operating Systems: From Design Concepts to Realizations, 2003]()
 - **[S2. Operating Systems for Reconfigurable Embedded Platforms: Online Scheduling of Real-Time Tasks, 2004]()**
 	- Very fruitful discussion. The paper schedules bitstreams inside FPGA,
@@ -110,23 +105,10 @@ Online:
 	- This paper used ICAP to read the bitstream back and extract necenssay state information that must
 	be present at next bitstream resume.
 - [Scheduling intervals for reconfigurable computing, FCCM'08]()
-- [Block, drop or roll(back): Alternative preemption methods for RH multi-tasking, FCCM'09]()
-	- I like their arguement of having SoC: "To avoid stalling for RH kernel availability, our system
-	requires applications to include software alternatives for each application kernel,
-	which are used if the RH kernel is not immediately available."
-	- The system is simulated.
-- [ReconOS Cooperative multithreading in dynamically reconfigurable systems, FPL'09]()
-	- Middle of preemptive and non-preemptive scheduling: let FPGA apps use `yield()`.
-	- It could save cost if and only if FPGA app is already doing the right thing,
-	  which, is not somehting an OS should have in mind.
 - [Hardware context-switch methodology for dynamically partially reconfigurable systems, 2010]()
 - [Online Scheduling for Multi-core Shared Reconfigurable Fabric, DATE'12]()
-	- More on policy.
 - [Multi-shape Tasks Scheduling for Online Multitasking on FPGAs, 2014]()
-	- Policy and mechanism.
 - [AmophOS, OSDI'18](https://www.usenix.org/system/files/osdi18-khawaja.pdf)
-
-Misc:
 - [Hardware context switching on FPGAs, 2014](https://pdfs.semanticscholar.org/4a4a/f3d8f3fb98c181dc2339375ef0342fcd24e1.pdf)
 - [Efficient Hardware Context-Switch for Task Migration between	Heterogeneous FPGAs, 2016](http://www.mpsoc-forum.org/previous/2016/slides/Frederic_Rousseau.pdf)
 
