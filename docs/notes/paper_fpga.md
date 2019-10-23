@@ -199,6 +199,9 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
 	- Add cache-coherence on top of previous work.
 	- Also check out my note on [Cache Coherence](http://lastweek.io/notes/cache_coherence/).
 - LEAP FPGA Operating System, FPL'14.
+- A Survey on FPGA Virtualization, FPL'18
+- ZUCL 2.0: Virtualised Memory and Communication for ZYNQ UltraScale+ FPGAs, FSP'19
+
 
 ### Security
 
