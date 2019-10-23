@@ -3,6 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Oct 22, 2019| Shuffle scheduling section. More focused. Add two more recent fpga-virt papers|
 	|Oct 5, 2019| More on scheduling. Add NoC. Add Security.|
 	|Oct 4, 2019| Add more papers extracted from AmophOS|
 	|Oct 3, 2019| Initial version from [Github](https://github.com/lastweek/FPGA)|
