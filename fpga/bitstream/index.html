@@ -8,7 +8,7 @@
   
   <meta name="author" content="Yizhou Shan">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>HLS: High-performance AXI-MM - Yizhou Shan's Home Page</title>
+  <title>Bitstream Explained - Yizhou Shan's Home Page</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
   <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
 
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "HLS: High-performance AXI-MM";
-    var mkdocs_page_input_path = "fpga/hls_axi.md";
-    var mkdocs_page_url = "/fpga/hls_axi/";
+    var mkdocs_page_name = "Bitstream Explained";
+    var mkdocs_page_input_path = "fpga/bitstream.md";
+    var mkdocs_page_url = "/fpga/bitstream/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -128,27 +128,27 @@
 		  
   <p class="caption">FPGA</p>
   <ul class="current">
-          <li class="toctree-l1">
-            
-  <a class="" href="../bitstream/">Bitstream Explained</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="./">HLS: Usage of AXI-Stream</a>
-        </li>
           <li class="toctree-l1 current">
             
-  <a class="current" href="./">HLS: High-performance AXI-MM</a>
+  <a class="current" href="./">Bitstream Explained</a>
   <ul class="subnav">
       
   <li class="toctree-l2 current">
   
-    <a class="current"  href="#high-performance-axi-mm-in-hls">High-performance AXI-MM in HLS</a>
+    <a class="current"  href="#fpga-bitstream-explained">FPGA Bitstream Explained</a>
   
   
   </li>
 
   </ul>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../hls_axi/">HLS: Usage of AXI-Stream</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../hls_axi/">HLS: High-performance AXI-MM</a>
         </li>
           <li class="toctree-l1">
             
@@ -212,7 +212,7 @@
         
       
     
-    <li>HLS: High-performance AXI-MM</li>
+    <li>Bitstream Explained</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -222,8 +222,14 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="high-performance-axi-mm-in-hls">High-performance AXI-MM in HLS<a class="headerlink" href="#high-performance-axi-mm-in-hls" title="Permanent link">&para;</a></h1>
-<p>This post is about how to achieve the maximum AXI bandwidth in HLS.</p>
+                <h1 id="fpga-bitstream-explained">FPGA Bitstream Explained<a class="headerlink" href="#fpga-bitstream-explained" title="Permanent link">&para;</a></h1>
+<p><img alt="🐪" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f42a.svg" title=":dromedary_camel:" /></p>
+<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Oct 24, 2019</td><td>created</td></tr></tbody></table></details><p>This note will explain what&rsquo;s inside a bitstream, how can you cook it, and how it is being configured.</p>
+<p>I want to write this down because there is no good user-friendly introduction out there.
+I felt dizzy while reading that. I bet you will too.
+But the bitstream and the FPGA configurating process is not that complex
+and somewhat easy to understand.</p>
+<p>Coming.. sometime. Stay tuned.</p>
               
             </div>
           </div>
@@ -231,10 +237,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../vivado_tricks/" class="btn btn-neutral float-right" title="Vivado Tricks">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../hls_axi/" class="btn btn-neutral float-right" title="HLS: Usage of AXI-Stream">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="./" class="btn btn-neutral" title="HLS: Usage of AXI-Stream"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../misc/cheatsheet/" class="btn btn-neutral" title="Cheatsheet"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -260,10 +266,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="./" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../misc/cheatsheet/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../vivado_tricks/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../hls_axi/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
