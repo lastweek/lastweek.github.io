@@ -385,6 +385,8 @@ Innovations in the toolchain space.
 
 ## FPGA Internal
 
+[FPGA20: Highlighting Significant Contributions from 20 Years of the International Symposium on Field-Programmable Gate Arrays (1992--2011)](http://tcfpga.org/fpga20/fpga20.html)
+
 ### General
 - [FPGA and CPLD architectures: a tutorial, 1996](http://www.eecg.toronto.edu/~jayar/pubs/brown/DTSurvey.pdf)
 - [Reconfigurable computing: a survey of systems and software, 2002](https://people.ece.uw.edu/hauck/publications/ConfigCompute.pdf)

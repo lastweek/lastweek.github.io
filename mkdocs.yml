@@ -20,6 +20,7 @@ pages:
    - 'Essential':                        'misc/essential.md'
    - 'Cheatsheet':                       'misc/cheatsheet.md'
 - FPGA:
+   - 'Bitstream Explained':              'fpga/bitstrean.md'
    - 'HLS: Usage of AXI-Stream':         'fpga/hls_axi.md'
    - 'HLS: High-performance AXI-MM':     'fpga/hls_axi.md'
    - 'Vivado Tricks':                    'fpga/vivado_tricks.md'
