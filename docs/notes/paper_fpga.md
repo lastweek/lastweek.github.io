@@ -11,11 +11,6 @@
 This is a list of _academic papers_ that cover all sorts of FPGA related topic,
 more from a system researcher's point of view though.
 
-Not all the listed papers are good,
-some of them just repeat the history.
-That's why I started this: have a thorough understanding of this area first.
-If you see any papers missing, please comment below and I will add accordingly.
-
 - [Virtualization](#virtualization)
 	- [Scheduling](#scheduling)
 	- [NoC](#noc)
@@ -52,6 +47,11 @@ If you see any papers missing, please comment below and I will add accordingly.
 ## Virtualization
 
 ### Scheduling
+
+Scheduling is big topic for FPGA. Unlike the traditional CPU scheduling,
+there are more aspects to consider, e.g.,
+1) Partial reconfiguration (PR), 2) Dynamic self PR,
+3) Preemptive scheduling, 4) Relocation, 5) Floorplanning, and so on.
 
 #### Preemptive Scheduling
 - Preemptive multitasking on FPGAs, 2000
