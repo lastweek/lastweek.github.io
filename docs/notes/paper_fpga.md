@@ -21,7 +21,7 @@ more from a system researcher's point of view though.
 	- [Security](#security)
 	- [Summary](#summary)
 - [Languages, Runtime, and Framework](#languages-runtime-and-framework)
-	- [Xilinx HLS Related](#xilinx-hls-related)
+	- [Xilinx HLS](#xilinx-hls)
 	- [High-Level Languages and Platforms](#high-level-languages-and-platforms)
 	- [Integrate with Frameworks](#integrate-with-frameworks)
 	- [Cloud Infrastructure](#cloud-infrastructure)
@@ -236,6 +236,7 @@ Innovations in the toolchain space.
 	- A very good HLS library from Mellanox folks.
 - [Templatised Soft Floating-Point for High-Level Synthesis, FCCM'19](https://github.com/template-hls/template-hls-floa)
 - [ST-Accel: A High-Level Programming Platform for Streaming Applications on FPGA, FCCM'18](https://vast.cs.ucla.edu/sites/default/files/publications/st-accel-high.pdf)
+- [HLScope+: Fast and Accurate Performance Estimation for FPGA HLS, ICCAD'17](https://vast.cs.ucla.edu/sites/default/files/publications/young_iccad_final.pdf)
 - [Separation Logic-Assisted Code Transformations for Efficient High-Level Synthesis, FCCM'14](http://cas.ee.ic.ac.uk/people/fw1811/papers/FelixFCCM14.pdf)
 	- An HLS design aids that analyze the original program at _compile time_ and perform automated code transformations. The tool analysis pointer-manipulating programs and automatically splits heap-allocated data structures into disjoint, independent regions.
 	- The tool is for C++ heap operations.
