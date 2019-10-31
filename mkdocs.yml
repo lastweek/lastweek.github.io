@@ -19,12 +19,12 @@ pages:
    - 'Essential':                        'misc/essential.md'
    - 'Cheatsheet':                       'misc/cheatsheet.md'
 - FPGA:
-   - 'FPGA Papers':                      'notes/paper_fpga.md'
-   - 'Vivado Practice':                  'fpga/vivado.md'
-   - 'Bitstream Explained':              'fpga/bitstream.md'
-   - 'Partial Reconfiguration Explained':'fpga/pr.md'
-   - 'HLS: Usage of AXI-Stream':         'fpga/hls_axi.md'
-   - 'HLS: High-performance AXI-MM':     'fpga/hls_axi.md'
+   - 'FPGA Papers':                       'notes/paper_fpga.md'
+   - 'Vivado Practice':                   'fpga/vivado.md'
+   - 'Bitstream Explained':               'fpga/bitstream.md'
+   - 'Partial Reconfiguration Explained': 'fpga/pr.md'
+   - 'HLS: Usage of AXI-Stream':          'fpga/hls_axi.md'
+   - 'HLS: High-performance AXI-MM':      'fpga/hls_axi.md'
 - LegoOS-Dev:
    - 'Log':
            - 'TODO':                    'lego/log/TODO.md'
