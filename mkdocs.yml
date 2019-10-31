@@ -20,10 +20,10 @@ pages:
    - 'Essential':                        'misc/essential.md'
    - 'Cheatsheet':                       'misc/cheatsheet.md'
 - FPGA:
+   - 'Vivado Practice':                  'fpga/vivado.md'
    - 'Bitstream Explained':              'fpga/bitstream.md'
    - 'HLS: Usage of AXI-Stream':         'fpga/hls_axi.md'
    - 'HLS: High-performance AXI-MM':     'fpga/hls_axi.md'
-   - 'Vivado Tricks':                    'fpga/vivado_tricks.md'
 - LegoOS-Dev:
    - 'Log':
            - 'TODO':                    'lego/log/TODO.md'

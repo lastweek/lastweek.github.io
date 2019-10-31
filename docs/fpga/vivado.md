@@ -1,4 +1,4 @@
-# Vivado Tricks
+# Vivado Practice
 
 :dromedary_camel:
 
@@ -36,3 +36,8 @@
 - [Book: Practical Programming in Tcl and Tk](http://www.beedub.com/book/tkbook.pdf)
 - [UG835 Vivado TCL Command Reference Guide](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug894-vivado-tcl-scripting.pdf)
 	- Good reference if you are hacking TCL scripts. 
+
+
+## Tricks
+
+We have a lot juicy hackings. Stay tuned.
