@@ -12,7 +12,6 @@
 
 - [UG912 Vivado Properties Reference Guide](https://www.xilinx.com/content/dam/xilinx/support/documentation/sw_manuals/xilinx2019_1/ug912-vivado-properties.pdf<Paste>)
 	- Excellent resource on explaining cell, net, pin, port, and so on.
-		- It helps a lot if you want to have a better understanding about the tool and TCL scripts.
 	- `pin`: A pin is a point of logical connectivity on a primitive or
 	hierarchical cell. A pin allows the contents of a cell to be abstracted away,
 	and the logic simplified for ease-of-use. A pin is attached to a cell and can be connected to pins on other cells by a net.
@@ -34,4 +33,6 @@
 	BEL_PINs, and to SITEs through SITE_PINs. 
 
 
-
+- [Book: Practical Programming in Tcl and Tk](http://www.beedub.com/book/tkbook.pdf)
+- [UG835 Vivado TCL Command Reference Guide](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug894-vivado-tcl-scripting.pdf)
+	- Good reference if you are hacking TCL scripts. 
