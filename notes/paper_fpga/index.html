@@ -245,10 +245,6 @@
                 <h1 id="list-of-fpga-papers">List of FPGA Papers<a class="headerlink" href="#list-of-fpga-papers" title="Permanent link">&para;</a></h1>
 <details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Oct 22, 2019</td><td>Shuffle scheduling section. More focused. Add two more recent fpga-virt papers</td></tr><tr><td align="left">Oct 5, 2019</td><td>More on scheduling. Add NoC. Add Security.</td></tr><tr><td align="left">Oct 4, 2019</td><td>Add more papers extracted from AmophOS</td></tr><tr><td align="left">Oct 3, 2019</td><td>Initial version from <a href="https://github.com/lastweek/FPGA">Github</a></td></tr></tbody></table></details><p>This is a list of <em>academic papers</em> that cover all sorts of FPGA related topic,
 more from a system researcher&rsquo;s point of view though.</p>
-<p>Not all the listed papers are good,
-some of them just repeat the history.
-That&rsquo;s why I started this: have a thorough understanding of this area first.
-If you see any papers missing, please comment below and I will add accordingly.</p>
 <ul>
 <li><a href="#virtualization">Virtualization</a><ul>
 <li><a href="#scheduling">Scheduling</a></li>
@@ -293,6 +289,10 @@ If you see any papers missing, please comment below and I will add accordingly.<
 </ul>
 <h2 id="virtualization">Virtualization<a class="headerlink" href="#virtualization" title="Permanent link">&para;</a></h2>
 <h3 id="scheduling">Scheduling<a class="headerlink" href="#scheduling" title="Permanent link">&para;</a></h3>
+<p>Scheduling is big topic for FPGA. Unlike the traditional CPU scheduling,
+there are more aspects to consider, e.g.,
+1) Partial reconfiguration (PR), 2) Dynamic self PR,
+3) Preemptive scheduling, 4) Relocation, 5) Floorplanning, and so on.</p>
 <h4 id="preemptive-scheduling">Preemptive Scheduling<a class="headerlink" href="#preemptive-scheduling" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Preemptive multitasking on FPGAs, 2000</li>
