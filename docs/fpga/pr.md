@@ -1,6 +1,6 @@
 # Partial Reconfiguration Explained
 
-:honeybee:
+:ox:
 
 ??? note "Version History"
 	|Date|Description|
