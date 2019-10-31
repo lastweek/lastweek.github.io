@@ -591,6 +591,16 @@
             "title": "FPGA Bitstream Explained"
         }, 
         {
+            "location": "/fpga/pr/", 
+            "text": "Partial Reconfiguration Explained\n\n\n:honeybee:\n\n\nVersion History\nDate\nDescription\nOct 31, 2019\nCreated\nEverything you want to know about PR. Stay tuned. I will summarize when I have time. Stay tuned.", 
+            "title": "Partial Reconfiguration Explained"
+        }, 
+        {
+            "location": "/fpga/pr/#partial-reconfiguration-explained", 
+            "text": ":honeybee:  Version History Date Description Oct 31, 2019 Created Everything you want to know about PR. Stay tuned. I will summarize when I have time. Stay tuned.", 
+            "title": "Partial Reconfiguration Explained"
+        }, 
+        {
             "location": "/fpga/hls_axi/", 
             "text": "High-performance AXI-MM in HLS\n\n\nThis post is about how to achieve the maximum AXI bandwidth in HLS.", 
             "title": "HLS: Usage of AXI-Stream"

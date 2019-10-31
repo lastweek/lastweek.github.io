@@ -8,7 +8,7 @@
   
   <meta name="author" content="Yizhou Shan">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>[Linux] Special Files - Yizhou Shan's Home Page</title>
+  <title>Partial Reconfiguration Explained - Yizhou Shan's Home Page</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
   <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
 
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "[Linux] Special Files";
-    var mkdocs_page_input_path = "notes/proc.md";
-    var mkdocs_page_url = "/notes/proc/";
+    var mkdocs_page_name = "Partial Reconfiguration Explained";
+    var mkdocs_page_input_path = "fpga/pr.md";
+    var mkdocs_page_url = "/fpga/pr/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -65,60 +65,50 @@
           
 		  
   <p class="caption">Notes</p>
-  <ul class="current">
+  <ul class="">
           <li class="toctree-l1">
             
-  <a class="" href="../cache_coherence/">Cache Coherence</a>
+  <a class="" href="../../notes/cache_coherence/">Cache Coherence</a>
         </li>
           <li class="toctree-l1">
             
-  <a class="" href="../benchmark/">Benchmarks</a>
+  <a class="" href="../../notes/benchmark/">Benchmarks</a>
         </li>
           <li class="toctree-l1">
             
-  <a class="" href="../paper_perf_shadows/">Perf Shadows</a>
+  <a class="" href="../../notes/paper_perf_shadows/">Perf Shadows</a>
         </li>
           <li class="toctree-l1">
             
-  <a class="" href="../linux-articles/">Linux Articles</a>
-        </li>
-          <li class="toctree-l1 current">
-            
-  <a class="current" href="./">[Linux] Special Files</a>
-  <ul class="subnav">
-      
-  <li class="toctree-l2 current">
-  
-    <a class="current"  href="#special-files">Special Files</a>
-  
-  
-  </li>
-
-  </ul>
+  <a class="" href="../../notes/linux-articles/">Linux Articles</a>
         </li>
           <li class="toctree-l1">
             
-  <a class="" href="../rmap/">[Linux] Reverse Mmap (rmap)</a>
+  <a class="" href="../../notes/proc/">[Linux] Special Files</a>
         </li>
           <li class="toctree-l1">
             
-  <a class="" href="../trace/">[Linux] Trace/Profile</a>
+  <a class="" href="../../notes/rmap/">[Linux] Reverse Mmap (rmap)</a>
         </li>
           <li class="toctree-l1">
             
-  <a class="" href="../cgroup-swap/">[Linux] Cgroup and Swap</a>
+  <a class="" href="../../notes/trace/">[Linux] Trace/Profile</a>
         </li>
           <li class="toctree-l1">
             
-  <a class="" href="../userfaultfd/">[Linux] Userfaultfd</a>
+  <a class="" href="../../notes/cgroup-swap/">[Linux] Cgroup and Swap</a>
         </li>
           <li class="toctree-l1">
             
-  <a class="" href="../xperf/">[Linux] User/kern Cross Perf</a>
+  <a class="" href="../../notes/userfaultfd/">[Linux] Userfaultfd</a>
         </li>
           <li class="toctree-l1">
             
-  <a class="" href="../kvm-basic/">[Linux] KVM</a>
+  <a class="" href="../../notes/xperf/">[Linux] User/kern Cross Perf</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../../notes/kvm-basic/">[Linux] KVM</a>
         </li>
           <li class="toctree-l1">
             
@@ -133,30 +123,38 @@
           
 		  
   <p class="caption">FPGA</p>
-  <ul class="">
+  <ul class="current">
           <li class="toctree-l1">
             
-  <a class="" href="../paper_fpga/">FPGA Papers</a>
+  <a class="" href="../../notes/paper_fpga/">FPGA Papers</a>
         </li>
           <li class="toctree-l1">
             
-  <a class="" href="../../fpga/vivado/">Vivado Practice</a>
+  <a class="" href="../vivado/">Vivado Practice</a>
         </li>
           <li class="toctree-l1">
             
-  <a class="" href="../../fpga/bitstream/">Bitstream Explained</a>
+  <a class="" href="../bitstream/">Bitstream Explained</a>
+        </li>
+          <li class="toctree-l1 current">
+            
+  <a class="current" href="./">Partial Reconfiguration Explained</a>
+  <ul class="subnav">
+      
+  <li class="toctree-l2 current">
+  
+  
+  </li>
+
+  </ul>
         </li>
           <li class="toctree-l1">
             
-  <a class="" href="../../fpga/pr/">Partial Reconfiguration Explained</a>
+  <a class="" href="../hls_axi/">HLS: Usage of AXI-Stream</a>
         </li>
           <li class="toctree-l1">
             
-  <a class="" href="../../fpga/hls_axi/">HLS: Usage of AXI-Stream</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../../fpga/hls_axi/">HLS: High-performance AXI-MM</a>
+  <a class="" href="../hls_axi/">HLS: High-performance AXI-MM</a>
         </li>
   </ul>
 
@@ -212,11 +210,11 @@
     
       
         
-          <li>Notes &raquo;</li>
+          <li>FPGA &raquo;</li>
         
       
     
-    <li>[Linux] Special Files</li>
+    <li>Partial Reconfiguration Explained</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -226,60 +224,9 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="special-files">Special Files<a class="headerlink" href="#special-files" title="Permanent link">&para;</a></h1>
-<ul>
-<li><code class="codehilite">/sys/devices/system/&lt;name&gt;</code><ul>
-<li>Creation: <code class="codehilite">subsys_system_register()</code>, @ <a href="https://github.com/torvalds/linux/blob/0ecfebd2b52404ae0c54a878c872bb93363ada36/drivers/base/bus.c#L1180">drivers/base/bus.c</a></li>
-<li>Note that this subdirectory is a legacy. Newer stuffer are added into other folders inside <code class="codehilite">/sys</code>.</li>
-<li><code class="codehilite">/sys/devices/system/cpu/*</code>, @ <a href="https://github.com/torvalds/linux/blob/0ecfebd2b52404ae0c54a878c872bb93363ada36/drivers/base/cpu.c">drivers/base/cpu.c</a><ul>
-<li>Root Object is <a href="https://github.com/torvalds/linux/blob/0ecfebd2b52404ae0c54a878c872bb93363ada36/drivers/base/cpu.c#L467">cpu_root_attrs</a>. The <code class="codehilite">online</code> file belongs to another <a href="https://github.com/torvalds/linux/blob/0ecfebd2b52404ae0c54a878c872bb93363ada36/drivers/base/cpu.c#L222">sub-object</a></li>
-<li>And this <a href="https://github.com/torvalds/linux/blob/0ecfebd2b52404ae0c54a878c872bb93363ada36/drivers/base/cpu.c#L366">register_cpu()</a> function is used to setup the directories for each cpu.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>Many applications use <code class="codehilite">/sys/devices/system/cpu/online</code> to get the number of available CPUs.
-And it&rsquo;s hard to change this behavior because it&rsquo;s usually encoded inside glibc.
-Thus, if you want to &ldquo;hide&rdquo; certain CPUs from applications for some reason,
-you can write a kernel module that use <code class="codehilite">set_cpu_active(cpu, false)</code>,
-and then use the following small patch. (Note that using <code class="codehilite">set_cpu_online(cpu, false)</code>
-will confuse CPU idle routine and panic.)
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="gh">diff --git a/drivers/base/cpu.c b/drivers/base/cpu.c</span>
-<span class="gd">--- a/drivers/base/cpu.c</span>
-<span class="gi">+++ b/drivers/base/cpu.c</span>
-<span class="gu">@@ -220,7 +220,8 @@ static ssize_t show_cpus_attr(struct device *dev,</span>
-
- /* Keep in sync with cpu_subsys_attrs */
- static struct cpu_attr cpu_attrs[] = {
-<span class="gd">-       _CPU_ATTR(online, &amp;__cpu_online_mask),</span>
-<span class="gi">+       _CPU_ATTR(online, &amp;__cpu_active_mask),</span>
-        _CPU_ATTR(possible, &amp;__cpu_possible_mask),
-        _CPU_ATTR(present, &amp;__cpu_present_mask),
- };
-</pre></div>
-</td></tr></table></p>
-<ul>
-<li><code class="codehilite">/proc/pressure</code><ul>
-<li><a href="https://lwn.net/Articles/759658/">https://lwn.net/Articles/759658/</a></li>
-</ul>
-</li>
-</ul>
-<p>&ndash;<br />
-Yizhou Shan<br />
-Created: Jul 26, 2019<br />
-Last Updated: Aug 03, 2019</p>
+                <h1 id="partial-reconfiguration-explained">Partial Reconfiguration Explained<a class="headerlink" href="#partial-reconfiguration-explained" title="Permanent link">&para;</a></h1>
+<p>:honeybee:</p>
+<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Oct 31, 2019</td><td>Created</td></tr></tbody></table></details><p>Everything you want to know about PR. Stay tuned. I will summarize when I have time. Stay tuned.</p>
               
             </div>
           </div>
@@ -287,10 +234,10 @@ Last Updated: Aug 03, 2019</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../rmap/" class="btn btn-neutral float-right" title="[Linux] Reverse Mmap (rmap)">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../hls_axi/" class="btn btn-neutral float-right" title="HLS: Usage of AXI-Stream">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../linux-articles/" class="btn btn-neutral" title="Linux Articles"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../bitstream/" class="btn btn-neutral" title="Bitstream Explained"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -316,10 +263,10 @@ Last Updated: Aug 03, 2019</p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../linux-articles/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../bitstream/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../rmap/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../hls_axi/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
