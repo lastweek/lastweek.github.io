@@ -8,7 +8,7 @@
   
   <meta name="author" content="Yizhou Shan">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Vivado Tricks - Yizhou Shan's Home Page</title>
+  <title>Vivado Practice - Yizhou Shan's Home Page</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
   <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
 
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Vivado Tricks";
-    var mkdocs_page_input_path = "fpga/vivado_tricks.md";
-    var mkdocs_page_url = "/fpga/vivado_tricks/";
+    var mkdocs_page_name = "Vivado Practice";
+    var mkdocs_page_input_path = "fpga/vivado.md";
+    var mkdocs_page_url = "/fpga/vivado/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -128,21 +128,9 @@
 		  
   <p class="caption">FPGA</p>
   <ul class="current">
-          <li class="toctree-l1">
-            
-  <a class="" href="../bitstream/">Bitstream Explained</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../hls_axi/">HLS: Usage of AXI-Stream</a>
-        </li>
-          <li class="toctree-l1">
-            
-  <a class="" href="../hls_axi/">HLS: High-performance AXI-MM</a>
-        </li>
           <li class="toctree-l1 current">
             
-  <a class="current" href="./">Vivado Tricks</a>
+  <a class="current" href="./">Vivado Practice</a>
   <ul class="subnav">
       
   <li class="toctree-l2 current">
@@ -154,11 +142,27 @@
           <a class="toctree-l3" href="#basic-knowledge">Basic Knowledge</a>
         </li>
     
+        <li class="toctree-l3 toc-item" >
+          <a class="toctree-l3" href="#tricks">Tricks</a>
+        </li>
+    
     </ul>
   
   </li>
 
   </ul>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../bitstream/">Bitstream Explained</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../hls_axi/">HLS: Usage of AXI-Stream</a>
+        </li>
+          <li class="toctree-l1">
+            
+  <a class="" href="../hls_axi/">HLS: High-performance AXI-MM</a>
         </li>
   </ul>
 
@@ -218,7 +222,7 @@
         
       
     
-    <li>Vivado Tricks</li>
+    <li>Vivado Practice</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -228,15 +232,14 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="vivado-tricks">Vivado Tricks<a class="headerlink" href="#vivado-tricks" title="Permanent link">&para;</a></h1>
+                <h1 id="vivado-practice">Vivado Practice<a class="headerlink" href="#vivado-practice" title="Permanent link">&para;</a></h1>
 <p><img alt="🐪" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f42a.svg" title=":dromedary_camel:" /></p>
 <details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Oct 31, 2019</td><td>Happy Halloween</td></tr><tr><td align="left">Sep 20, 2019</td><td>Created</td></tr></tbody></table></details><h2 id="basic-knowledge">Basic Knowledge<a class="headerlink" href="#basic-knowledge" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://www.xilinx.com/content/dam/xilinx/support/documentation/sw_manuals/xilinx2019_1/ug912-vivado-properties.pdf&lt;Paste&gt;">UG912 Vivado Properties Reference Guide</a><ul>
-<li>Excellent resource on explaining cell, net, pin, port, and so on.<ul>
-<li>It helps a lot if you want to have a better understanding about the tool and TCL scripts.</li>
-</ul>
-</li>
+<li>
+<p><a href="https://www.xilinx.com/content/dam/xilinx/support/documentation/sw_manuals/xilinx2019_1/ug912-vivado-properties.pdf&lt;Paste&gt;">UG912 Vivado Properties Reference Guide</a></p>
+<ul>
+<li>Excellent resource on explaining cell, net, pin, port, and so on.</li>
 <li><code class="codehilite">pin</code>: A pin is a point of logical connectivity on a primitive or
 hierarchical cell. A pin allows the contents of a cell to be abstracted away,
 and the logic simplified for ease-of-use. A pin is attached to a cell and can be connected to pins on other cells by a net.</li>
@@ -258,7 +261,16 @@ resources such as WIREs, NODEs, and PIPs on the device, and is connected to BELs
 BEL_PINs, and to SITEs through SITE_PINs. </li>
 </ul>
 </li>
+<li>
+<p><a href="http://www.beedub.com/book/tkbook.pdf">Book: Practical Programming in Tcl and Tk</a></p>
+</li>
+<li><a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug894-vivado-tcl-scripting.pdf">UG835 Vivado TCL Command Reference Guide</a><ul>
+<li>Good reference if you are hacking TCL scripts. </li>
 </ul>
+</li>
+</ul>
+<h2 id="tricks">Tricks<a class="headerlink" href="#tricks" title="Permanent link">&para;</a></h2>
+<p>We have a lot juicy hackings. Stay tuned.</p>
               
             </div>
           </div>
@@ -266,10 +278,10 @@ BEL_PINs, and to SITEs through SITE_PINs. </li>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../lego/log/TODO/" class="btn btn-neutral float-right" title="TODO">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../bitstream/" class="btn btn-neutral float-right" title="Bitstream Explained">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../hls_axi/" class="btn btn-neutral" title="HLS: High-performance AXI-MM"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../misc/cheatsheet/" class="btn btn-neutral" title="Cheatsheet"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -295,10 +307,10 @@ BEL_PINs, and to SITEs through SITE_PINs. </li>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../hls_axi/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../misc/cheatsheet/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../lego/log/TODO/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../bitstream/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

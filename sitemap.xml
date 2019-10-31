@@ -100,6 +100,12 @@
     
         
     <url>
+     <loc>http://lastweek.io/fpga/vivado/</loc>
+     <lastmod>2019-10-31</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>http://lastweek.io/fpga/bitstream/</loc>
      <lastmod>2019-10-31</lastmod>
      <changefreq>daily</changefreq>
@@ -113,12 +119,6 @@
         
     <url>
      <loc>http://lastweek.io/fpga/hls_axi/</loc>
-     <lastmod>2019-10-31</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>http://lastweek.io/fpga/vivado_tricks/</loc>
      <lastmod>2019-10-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
