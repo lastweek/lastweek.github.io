@@ -31,11 +31,26 @@
 	As the design is mapped onto the target Xilinx FPGA, the NET is mapped to routing
 	resources such as WIREs, NODEs, and PIPs on the device, and is connected to BELs through
 	BEL_PINs, and to SITEs through SITE_PINs. 
-
+	- `pblock`: A Pblock is a collection of cells, and one or more rectangular areas or regions that specify
+	the device resources contained by the Pblock. Pblocks are used during floorplanning
+	placement to group related logic and assign it to a region of the target device.
+		- ??? example
+			create_pblock Pblock_usbEngine  
+			add_cells_to_pblock [get_pblocks Pblock_usbEngine] [get_cells -quiet [listusbEngine1]]  
+			resize_pblock [get_pblocks Pblock_usbEngine] -add {SLICE_X8Y105:SLICE_X23Y149}  
+			resize_pblock [get_pblocks Pblock_usbEngine] -add {DSP48_X0Y42:DSP48_X1Y59}  
+			resize_pblock [get_pblocks Pblock_usbEngine] -add {RAMB18_X0Y42:RAMB18_X1Y59}  
+			resize_pblock [get_pblocks Pblock_usbEngine] -add {RAMB36_X0Y21:RAMB36_X1Y29}
+	- `CONTAIN_ROUTING`: The `CONTAIN_ROUTING` property restricts the routing of signals contained within a Pblock
+	to use routing resources within the area defined by the Pblock. This prevents signals inside
+	the Pblock from being routed outside the Pblock, and increases the reusability of the design.
+		- This is useful when you are trying to do advanced PR hacks.
 
 - [Book: Practical Programming in Tcl and Tk](http://www.beedub.com/book/tkbook.pdf)
-- [UG835 Vivado TCL Command Reference Guide](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug894-vivado-tcl-scripting.pdf)
-	- Good reference if you are hacking TCL scripts. 
+- [UG894 Vivado Using TCL scripting](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2019_1/ug894-vivado-tcl-scripting.pdf)
+	- Get you started with Vivado TCL
+- [UG835 Vivado TCL Reference Guide](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug894-vivado-tcl-scripting.pdf)
+	- aka. Vivado TCL Man Page
 
 
 ## Tricks
