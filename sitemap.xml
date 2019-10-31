@@ -12,12 +12,6 @@
     
         
     <url>
-     <loc>http://lastweek.io/notes/paper_fpga/</loc>
-     <lastmod>2019-10-31</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
      <loc>http://lastweek.io/notes/cache_coherence/</loc>
      <lastmod>2019-10-31</lastmod>
      <changefreq>daily</changefreq>
@@ -98,6 +92,12 @@
     
 
     
+        
+    <url>
+     <loc>http://lastweek.io/notes/paper_fpga/</loc>
+     <lastmod>2019-10-31</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
         
     <url>
      <loc>http://lastweek.io/fpga/vivado/</loc>
