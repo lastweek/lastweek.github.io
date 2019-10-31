@@ -1,6 +1,6 @@
 # Vivado Practice
 
-:dromedary_camel:
+:dragon:
 
 ??? note "Version History"
 	|Date|Description|
