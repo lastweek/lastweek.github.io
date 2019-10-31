@@ -18,6 +18,7 @@
 		- [ARM](#arm)
 		- [OpenCAPI and CCIX](#opencapi-and-ccix)
 		- [OpenPiton](#openpiton)
+		- [FPGA](#fpga)
 
 A general collection of resources on cache coherence.
 I started this when I was having a hard time optimizing lock delegation.
@@ -277,3 +278,6 @@ When in doubt, read the [discussion](https://software.intel.com/en-us/forums/int
 - [Intel FPGA PAC](https://www.intel.com/content/www/us/en/programmable/documentation/bfr1522087299048.html)
     - Intel itself is building a FPGA-CPU cache coherent setting. They use the Intel UPI interconnect
       to natually the spectrum. The FPGA shell has some modules to handle this.
+
+- Also some pointer chasing related stuff
+	- [A Study of Pointer-Chasing Performance on Shared-Memory Processor-FPGA Systems, FPGA'16](https://users.ece.cmu.edu/~jhoe/distribution/2016/fpga16.pdf)

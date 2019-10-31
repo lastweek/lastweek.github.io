@@ -5,7 +5,6 @@ site_url: 'http://lastweek.io'
 pages:
 - Home: 'index.md'
 - Notes:
-   - 'FPGA Papers':                      'notes/paper_fpga.md'
    - 'Cache Coherence':                  'notes/cache_coherence.md'
    - 'Benchmarks':                       'notes/benchmark.md'
    - 'Perf Shadows':                     'notes/paper_perf_shadows.md'
@@ -20,6 +19,7 @@ pages:
    - 'Essential':                        'misc/essential.md'
    - 'Cheatsheet':                       'misc/cheatsheet.md'
 - FPGA:
+   - 'FPGA Papers':                      'notes/paper_fpga.md'
    - 'Vivado Practice':                  'fpga/vivado.md'
    - 'Bitstream Explained':              'fpga/bitstream.md'
    - 'HLS: Usage of AXI-Stream':         'fpga/hls_axi.md'

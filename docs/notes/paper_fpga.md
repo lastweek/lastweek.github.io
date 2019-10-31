@@ -25,6 +25,7 @@ more from a system researcher's point of view though.
 	- [High-Level Languages and Platforms](#high-level-languages-and-platforms)
 	- [Integrate with Frameworks](#integrate-with-frameworks)
 	- [Cloud Infrastructure](#cloud-infrastructure)
+	- [Misc](#misc)
 - [Applications](#applications)
 	- [Programmable Network](#programmable-network)
 	- [Database](#database)
@@ -313,6 +314,10 @@ Innovations in the toolchain space.
 - [MS: Direct Universal Access : Making Data Center Resources Available to FPGA, NSDI'19](https://www.microsoft.com/en-us/research/uploads/prod/2018/10/nsdi19spring-final64.pdf)
 	- Catapult is just sweet, isn't it?
 - [ASIC Clouds: Specializing the Datacenter, ISCA'16](https://cseweb.ucsd.edu/~mbtaylor/papers/ASIC_Cloud_ISCA_2016_Proceedings.pdf)
+
+### Misc
+
+- [A Study of Pointer-Chasing Performance on Shared-Memory Processor-FPGA Systems, FPGA'16](https://users.ece.cmu.edu/~jhoe/distribution/2016/fpga16.pdf)
 
 ## Applications
 
