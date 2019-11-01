@@ -240,7 +240,6 @@
 <p><img alt="🐉" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f409.svg" title=":dragon:" /></p>
 <details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Oct 31, 2019</td><td>Happy Halloween</td></tr><tr><td align="left">Sep 20, 2019</td><td>Created</td></tr></tbody></table></details><h2 id="tricks">Tricks<a class="headerlink" href="#tricks" title="Permanent link">&para;</a></h2>
 <p>This list will be updated frequently.</p>
-<h3 id="partial-reconfiguration-related">Partial Reconfiguration Related<a class="headerlink" href="#partial-reconfiguration-related" title="Permanent link">&para;</a></h3>
 <h4 id="get-the-list-of-partition-pins">Get the List of Partition Pins<a class="headerlink" href="#get-the-list-of-partition-pins" title="Permanent link">&para;</a></h4>
 <p>The partition pins are inserted by Vivado at the boundary of a PR region.
 <code class="codehilite">PartPin</code> is short for Partition Pins.
@@ -253,7 +252,12 @@
 <p>The contained routing requirement of RP Pblocks for UltraScale and UltraScale+ devices has
 been relaxed to allow for improved routing and timing results. Instead of routing being
 confined strictly to the resources owned by the Pblock, the routing footprint is expanded.</p>
-<p>This option can be disabled. Make sure you know what you are doing.</p>
+<p>This option is enabled by default.
+when this option is enabled, not all interface ports receive a partition pin.</p>
+<p>When you disable this option, the implications are:
+1) each interface port (per bit) receivces a partition pin,
+2) <code class="codehilite">hd_visual/</code> will not be generated.</p>
+<p>This command is useful when you want to do some hacking about Partition Pins.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nv">set_param</span> hd.routingContainmentAreaExpansion false
 </pre></div>
 </td></tr></table>
