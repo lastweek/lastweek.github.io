@@ -139,11 +139,11 @@
     <ul class="">
     
         <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#basic-knowledge">Basic Knowledge</a>
+          <a class="toctree-l3" href="#tricks">Tricks</a>
         </li>
     
         <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#tricks">Tricks</a>
+          <a class="toctree-l3" href="#read-the-docs">Read-the-docs</a>
         </li>
     
     </ul>
@@ -238,7 +238,27 @@
               
                 <h1 id="vivado-practice">Vivado Practice<a class="headerlink" href="#vivado-practice" title="Permanent link">&para;</a></h1>
 <p><img alt="🐉" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f409.svg" title=":dragon:" /></p>
-<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Oct 31, 2019</td><td>Happy Halloween</td></tr><tr><td align="left">Sep 20, 2019</td><td>Created</td></tr></tbody></table></details><h2 id="basic-knowledge">Basic Knowledge<a class="headerlink" href="#basic-knowledge" title="Permanent link">&para;</a></h2>
+<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Oct 31, 2019</td><td>Happy Halloween</td></tr><tr><td align="left">Sep 20, 2019</td><td>Created</td></tr></tbody></table></details><h2 id="tricks">Tricks<a class="headerlink" href="#tricks" title="Permanent link">&para;</a></h2>
+<p>This list will be updated frequently.</p>
+<h3 id="partial-reconfiguration-related">Partial Reconfiguration Related<a class="headerlink" href="#partial-reconfiguration-related" title="Permanent link">&para;</a></h3>
+<h4 id="get-the-list-of-partition-pins">Get the List of Partition Pins<a class="headerlink" href="#get-the-list-of-partition-pins" title="Permanent link">&para;</a></h4>
+<p>The partition pins are inserted by Vivado at the boundary of a PR region.
+<code class="codehilite">PartPin</code> is short for Partition Pins.
+<code class="codehilite">PPLOC</code> is short for Partpin LOC.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nv">get_pplocs</span> <span class="o">-</span>pin <span class="k">[</span><span class="nv">get_pins</span> <span class="o">-</span>hier <span class="o">*</span><span class="k">]</span>
+</pre></div>
+</td></tr></table>
+
+<h4 id="disable-expansion-of-contain_routing-area">Disable Expansion of <code class="codehilite">CONTAIN_ROUTING</code> Area<a class="headerlink" href="#disable-expansion-of-contain_routing-area" title="Permanent link">&para;</a></h4>
+<p>The contained routing requirement of RP Pblocks for UltraScale and UltraScale+ devices has
+been relaxed to allow for improved routing and timing results. Instead of routing being
+confined strictly to the resources owned by the Pblock, the routing footprint is expanded.</p>
+<p>This option can be disabled. Make sure you know what you are doing.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nv">set_param</span> hd.routingContainmentAreaExpansion false
+</pre></div>
+</td></tr></table>
+
+<h2 id="read-the-docs">Read-the-docs<a class="headerlink" href="#read-the-docs" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p><a href="https://www.xilinx.com/content/dam/xilinx/support/documentation/sw_manuals/xilinx2019_1/ug912-vivado-properties.pdf&lt;Paste&gt;">UG912 Vivado Properties Reference Guide</a></p>
@@ -290,13 +310,36 @@ the Pblock from being routed outside the Pblock, and increases the reusability o
 <li>Get you started with Vivado TCL</li>
 </ul>
 </li>
-<li><a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug894-vivado-tcl-scripting.pdf">UG835 Vivado TCL Reference Guide</a><ul>
+<li>
+<p><a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug894-vivado-tcl-scripting.pdf">UG835 Vivado TCL Reference Guide</a></p>
+<ul>
 <li>aka. Vivado TCL Man Page</li>
 </ul>
 </li>
+<li>
+<p><a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2019_1/ug909-vivado-partial-reconfiguration.pdf">UG909 Partial Reconfiguration</a></p>
+<ul>
+<li><code class="codehilite">Partition Pins</code><ul>
+<li>Interface points called partition pins are automatically created within the Pblock ranges
+defined for the Reconfigurable Partition. These virtual I/O are established within
+interconnect tiles as the anchor points that remain consistent from one module to the next.</li>
+<li>In UltraScale or UltraScale+ designs, <strong>not all interface ports receive a partition pin</strong>. With the
+<strong>routing expansion</strong> feature, as explained in Expansion of <code class="codehilite">CONTAIN_ROUTING</code> Area, some
+interface nets are completely contained within the expanded region. When this happens, no
+partition pin is inserted; the entire net, including the source and all loads, is contained
+within the area captured by the partial bit file. Rather than pick an unnecessary
+intermediate point for the route, the entire net is rerouted, giving the Vivado tools the
+flexibility to pick an optimal solution.</li>
+<li><details class="exmaple"><summary>Exmaple</summary>
+set_property HD.PARTPIN_LOCS INT_R_X4Y153 [get_ports <port_name>]<br />
+set_property HD.PARTPIN_RANGE SLICE_X4Y153:SLICE_X5Y157 [get_ports <port_name>]<br />
+set_property HD.PARTPIN_RANGE {SLICE_Xx0Yx0:SLICE_Xx1Yy1 SLICE_XxNYyN:SLICE_XxMYyM} [get_pins <rp_cell_name>/*]<Paste></details></li>
+<li>These pins can be manually relocated and locked.</li>
 </ul>
-<h2 id="tricks">Tricks<a class="headerlink" href="#tricks" title="Permanent link">&para;</a></h2>
-<p>We have a lot juicy hackings. Stay tuned.</p>
+</li>
+</ul>
+</li>
+</ul>
               
             </div>
           </div>
