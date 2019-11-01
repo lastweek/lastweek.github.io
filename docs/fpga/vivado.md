@@ -1,6 +1,6 @@
 # Vivado Practice
 
-:dragon:
+:dragon_face:
 
 ??? note "Version History"
 	|Date|Description|
