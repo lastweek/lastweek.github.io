@@ -8,7 +8,35 @@
 	|Oct 31, 2019 | Happy Halloween|
 	|Sep 20, 2019 | Created |
 
-## Basic Knowledge
+## Tricks
+
+This list will be updated frequently.
+
+### Partial Reconfiguration Related
+
+#### Get the List of Partition Pins
+
+The partition pins are inserted by Vivado at the boundary of a PR region.
+`PartPin` is short for Partition Pins.
+`PPLOC` is short for Partpin LOC.
+
+```tcl
+get_pplocs -pin [get_pins -hier *]
+```
+
+#### Disable Expansion of `CONTAIN_ROUTING` Area
+
+The contained routing requirement of RP Pblocks for UltraScale and UltraScale+ devices has
+been relaxed to allow for improved routing and timing results. Instead of routing being
+confined strictly to the resources owned by the Pblock, the routing footprint is expanded.
+
+This option can be disabled. Make sure you know what you are doing.
+
+```tcl
+set_param hd.routingContainmentAreaExpansion false
+```
+
+## Read-the-docs
 
 - [UG912 Vivado Properties Reference Guide](https://www.xilinx.com/content/dam/xilinx/support/documentation/sw_manuals/xilinx2019_1/ug912-vivado-properties.pdf<Paste>)
 	- Excellent resource on explaining cell, net, pin, port, and so on.
@@ -52,7 +80,22 @@
 - [UG835 Vivado TCL Reference Guide](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug894-vivado-tcl-scripting.pdf)
 	- aka. Vivado TCL Man Page
 
+- [UG909 Partial Reconfiguration](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2019_1/ug909-vivado-partial-reconfiguration.pdf)
+	- `Partition Pins`
+		- Interface points called partition pins are automatically created within the Pblock ranges
+		defined for the Reconfigurable Partition. These virtual I/O are established within
+		interconnect tiles as the anchor points that remain consistent from one module to the next.
+		- In UltraScale or UltraScale+ designs, __not all interface ports receive a partition pin__. With the
+		__routing expansion__ feature, as explained in Expansion of `CONTAIN_ROUTING` Area, some
+		interface nets are completely contained within the expanded region. When this happens, no
+		partition pin is inserted; the entire net, including the source and all loads, is contained
+		within the area captured by the partial bit file. Rather than pick an unnecessary
+		intermediate point for the route, the entire net is rerouted, giving the Vivado tools the
+		flexibility to pick an optimal solution.
+		- ??? exmaple
+			set_property HD.PARTPIN_LOCS INT_R_X4Y153 [get_ports <port_name>]  
+			set_property HD.PARTPIN_RANGE SLICE_X4Y153:SLICE_X5Y157 [get_ports <port_name>]  
+			set_property HD.PARTPIN_RANGE {SLICE_Xx0Yx0:SLICE_Xx1Yy1 SLICE_XxNYyN:SLICE_XxMYyM} [get_pins <rp_cell_name>/*]<Paste>
+		- These pins can be manually relocated and locked.
 
-## Tricks
 
-We have a lot juicy hackings. Stay tuned.
