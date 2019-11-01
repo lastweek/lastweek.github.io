@@ -12,7 +12,6 @@
 
 This list will be updated frequently.
 
-### Partial Reconfiguration Related
 
 #### Get the List of Partition Pins
 
@@ -30,7 +29,14 @@ The contained routing requirement of RP Pblocks for UltraScale and UltraScale+ d
 been relaxed to allow for improved routing and timing results. Instead of routing being
 confined strictly to the resources owned by the Pblock, the routing footprint is expanded.
 
-This option can be disabled. Make sure you know what you are doing.
+This option is enabled by default.
+when this option is enabled, not all interface ports receive a partition pin.
+
+When you disable this option, the implications are:
+1) each interface port (per bit) receivces a partition pin,
+2) `hd_visual/` will not be generated.
+
+This command is useful when you want to do some hacking about Partition Pins.
 
 ```tcl
 set_param hd.routingContainmentAreaExpansion false
