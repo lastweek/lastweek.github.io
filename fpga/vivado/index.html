@@ -252,11 +252,15 @@
 <p>The contained routing requirement of RP Pblocks for UltraScale and UltraScale+ devices has
 been relaxed to allow for improved routing and timing results. Instead of routing being
 confined strictly to the resources owned by the Pblock, the routing footprint is expanded.</p>
-<p>This option is enabled by default.
-when this option is enabled, not all interface ports receive a partition pin.</p>
-<p>When you disable this option, the implications are:
+<p>Note that this option is enabled by default. When this option is enabled,
+1) not all interface ports receive a partition pin,
+2) the RP will use routing resources outside its confined area. This is annonying in some way.</p>
+<p>If this option is disabled, the implications are:
 1) each interface port (per bit) receivces a partition pin,
-2) <code class="codehilite">hd_visual/</code> will not be generated.</p>
+2) RP will only resources confined to its pblocks,
+3) the generated PR bitstream will be smaller,
+4) <code class="codehilite">hd_visual/</code> will not be generated.</p>
+<p>However, this option does not prevent routings from the static region from crossing RPs.</p>
 <p>This command is useful when you want to do some hacking about Partition Pins.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nv">set_param</span> hd.routingContainmentAreaExpansion false
 </pre></div>
