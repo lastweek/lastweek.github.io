@@ -1,5 +1,11 @@
 # System Developing Essentials
 
+## Misc Advice
+
+- [Elevator Pitches, John Wilkes](http://conferences.inf.ed.ac.uk/EuroDW2018/keynotes/John-Wilkes-Keynote.pdf)
+- [Creating an effective poster, John Wilkes](https://docs.google.com/document/d/1gkUWgYMQ37kJ-Bu4wmcEi7x30ZEnmRw99ZMSUhZcQtI/edit)
+- [How to Get a Paper Accepted at OOPSLA](https://plg.uwaterloo.ca/~migod/research/beckOOPSLA.html)
+
 ## Tools
 
 - Stack and Register Dumper
