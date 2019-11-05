@@ -280,27 +280,28 @@ and then lock down the static region and static routing. (Reference: UG947)</p>
 <li>Differentiate <code class="codehilite">Netlist Objects</code> and <code class="codehilite">Device Resource Objects</code>.<ul>
 <li><code class="codehilite">Netlist Objects</code><ul>
 <li><code class="codehilite">pin</code>: A pin is a point of logical connectivity on a primitive or
-hierarchical cell. A pin allows the contents of a cell to be abstracted away,
-and the logic simplified for ease-of-use. A pin is attached to a cell and can be connected to pins on other cells by a net.</li>
+    hierarchical cell. A pin allows the contents of a cell to be abstracted away,
+    and the logic simplified for ease-of-use. A pin is attached to a cell and can be connected to pins on other cells by a net.
+    <code class="codehilite"><span class="n">get_pins</span> <span class="n">of</span> <span class="p">[</span><span class="n">get_cells</span> <span class="n">XXX</span><span class="p">]</span></code></li>
 <li><code class="codehilite">port</code>: A port is a special type of hierarchical pin, providing an external connection point at the
-top-level of a hierarchical design, or an internal connection point in a hierarchical cell or
-block module to connect the internal logic to the pins on the hierarchical cell. </li>
+    top-level of a hierarchical design, or an internal connection point in a hierarchical cell or
+    block module to connect the internal logic to the pins on the hierarchical cell. </li>
 <li><code class="codehilite">cell</code>: A cell is an instance of a netlist logic object, which can either be a leaf-cell or a hierarchical
-cell. A leaf-cell is a primitive, or a primitive macro, with no further logic detail in the netlist.
-A hierarchical cell is a module or block that contains one or more additional levels of logic,
-and eventually concludes at leaf-cells. .. cells have PINs which are connected to NETs to define the external
-netlist&hellip; The CELL can be placed onto a BEL object in the case of basic logic such as flops, LUTs, and
-MUXes; or can be placed onto a SITE object in the case of larger logic cells such as BRAMs and DSPs.</li>
+    cell. A leaf-cell is a primitive, or a primitive macro, with no further logic detail in the netlist.
+    A hierarchical cell is a module or block that contains one or more additional levels of logic,
+    and eventually concludes at leaf-cells. .. cells have PINs which are connected to NETs to define the external
+    netlist&hellip; The CELL can be placed onto a BEL object in the case of basic logic such as flops, LUTs, and
+    MUXes; or can be placed onto a SITE object in the case of larger logic cells such as BRAMs and DSPs.</li>
 <li><code class="codehilite">net</code>: A net is a set of interconnected pins, ports, and wires. Every wire has a net name, which
-identifies it. Two or more wires can have the same net name. All wires sharing a common net
-name are part of a single NET, and all pins or ports connected to these wires are electrically connected. ..
-In the design netlist, a NET can be connected to the PIN of a CELL, or to a PORT. ..
-As the design is mapped onto the target Xilinx FPGA, the NET is mapped to routing
-resources such as WIREs, NODEs, and PIPs on the device, and is connected to BELs through
-BEL_PINs, and to SITEs through SITE_PINs. </li>
+    identifies it. Two or more wires can have the same net name. All wires sharing a common net
+    name are part of a single NET, and all pins or ports connected to these wires are electrically connected. ..
+    In the design netlist, a NET can be connected to the PIN of a CELL, or to a PORT. ..
+    As the design is mapped onto the target Xilinx FPGA, the NET is mapped to routing
+    resources such as WIREs, NODEs, and PIPs on the device, and is connected to BELs through
+    BEL_PINs, and to SITEs through SITE_PINs. </li>
 <li><code class="codehilite">pblock</code>: A Pblock is a collection of cells, and one or more rectangular areas or regions that specify
-the device resources contained by the Pblock. Pblocks are used during floorplanning
-placement to group related logic and assign it to a region of the target device.<ul>
+    the device resources contained by the Pblock. Pblocks are used during floorplanning
+    placement to group related logic and assign it to a region of the target device.<ul>
 <li><details class="example"><summary>Example</summary>
 create_pblock Pblock_usbEngine<br />
 add_cells_to_pblock [get_pblocks Pblock_usbEngine] [get_cells -quiet [listusbEngine1]]<br />
@@ -312,8 +313,20 @@ resize_pblock [get_pblocks Pblock_usbEngine] -add {RAMB36_X0Y21:RAMB36_X1Y29}</d
 </li>
 </ul>
 </li>
-<li><code class="codehilite">Device Resource Objects</code>
-    -</li>
+<li><code class="codehilite">Device Resource Objects</code><ul>
+<li><code class="codehilite">BEL</code>: 1) leaf-level cells from the netlist design can be mapped onto bels on the target part
+    2) Bels are grouped in sites. 3) Each bel has bel_pins that map to pins on the cells.
+    4) <code class="codehilite"><span class="n">get_bels</span> <span class="o">-</span><span class="n">of</span> <span class="p">[</span><span class="n">get_cells</span> <span class="n">XX</span><span class="p">]</span></code>, <code class="codehilite"><span class="n">get_bels</span> <span class="o">-</span><span class="n">of</span> <span class="p">[</span><span class="n">get_nets</span> <span class="n">XX</span><span class="p">]</span></code>, and so on.</li>
+<li><code class="codehilite">BEL_PIN</code>: 1) a pin or connection point on a BEL object. 2) BEL_PIN is a device object,
+    associated with netlist objects such as the PIN on a CELL, which is the connection point for the NET.
+    3) <code class="codehilite"><span class="n">get_bel_pins</span> <span class="o">-</span><span class="n">of_objects</span> <span class="p">[</span><span class="n">get_pins</span> <span class="o">-</span><span class="n">of</span> <span class="p">[</span><span class="n">get_cells</span> <span class="n">XXX</span><span class="p">]]</span></code></li>
+<li><code class="codehilite">TILE</code></li>
+<li><code class="codehilite">SITE</code></li>
+<li><code class="codehilite">NODE</code></li>
+<li><code class="codehilite">WIRE</code></li>
+<li><code class="codehilite">PIP</code></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><code class="codehilite">CONTAIN_ROUTING</code>: The <code class="codehilite">CONTAIN_ROUTING</code> property restricts the routing of signals contained within a Pblock
@@ -324,10 +337,20 @@ the Pblock from being routed outside the Pblock, and increases the reusability o
 </li>
 </ul>
 </li>
+<li><a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug894-vivado-tcl-scripting.pdf">UG835 Vivado TCL Reference Guide</a><ul>
+<li>aka. Vivado TCL Man Page. Read this with the above UG912.</li>
+</ul>
+</li>
 <li>
-<p><a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug894-vivado-tcl-scripting.pdf">UG835 Vivado TCL Reference Guide</a></p>
+<p><a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug903-vivado-using-constraints.pdf">UG903 Using Constraints</a></p>
 <ul>
-<li>aka. Vivado TCL Man Page</li>
+<li>About Xilinx XDC files. You will need to understand UG912 first.</li>
+<li>Physical Constraints<ul>
+<li><code class="codehilite">DONT_TOUCH</code>. Prevent netlist optimizations. 1) prevent a net from being optimized away. 2) Prevent merging of manually replicated logic.</li>
+<li>Placement constraints</li>
+<li>Routing constraints</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
@@ -358,18 +381,6 @@ set_property HD.PARTPIN_LOCS INT_R_X4Y153 [get_ports <port_name>]<br />
 set_property HD.PARTPIN_RANGE SLICE_X4Y153:SLICE_X5Y157 [get_ports <port_name>]<br />
 set_property HD.PARTPIN_RANGE {SLICE_Xx0Yx0:SLICE_Xx1Yy1 SLICE_XxNYyN:SLICE_XxMYyM} [get_pins <rp_cell_name>/*]<Paste></details></li>
 <li>These pins can be manually relocated and locked.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug903-vivado-using-constraints.pdf">UG903 Using Constraints</a></p>
-<ul>
-<li>About Xilinx XDC files</li>
-<li>Physical Constraints<ul>
-<li><code class="codehilite">DONT_TOUCH</code>. Prevent netlist optimizations. 1) prevent a net from being optimized away. 2) Prevent merging of manually replicated logic.</li>
-<li>Placement constraints</li>
-<li>Routing constraints</li>
 </ul>
 </li>
 </ul>
