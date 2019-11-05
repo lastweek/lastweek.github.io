@@ -77,6 +77,19 @@ lock_design -level routing
 
 We need to lock both the net and the connected cells. Reference is UG903.
 
+Following commands lock a route of a net. This net is already routed.
+You could run one by one.
+After execution, the route will become dashed (means locked).
+Replace the net name with your interested one.
+```bash
+set net [get_nets inst_count/count_out[0]]
+get_property ROUTE $net
+set_property FIXED_ROUTE [get_property ROUTE $net] $net
+```
+
+But how can we manually route an unrouted net?
+The difficulty is that we need to manually find out all the connection nodes/tiles etc..
+This applies to LOC placement as well.
 
 ---
 
