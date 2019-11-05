@@ -24,6 +24,7 @@ more from a system researcher's point of view though.
 	- [Summary](#summary)
 - [Languages, Runtime, and Framework](#languages-runtime-and-framework)
 	- [Xilinx HLS](#xilinx-hls)
+	- [Xilinx CAD](#xilinx-cad)
 	- [High-Level Languages and Platforms](#high-level-languages-and-platforms)
 	- [Integrate with Frameworks](#integrate-with-frameworks)
 	- [Cloud Infrastructure](#cloud-infrastructure)
@@ -247,6 +248,10 @@ Innovations in the toolchain space.
 - [MATCHUP: Memory Abstractions for Heap Manipulating Programs, FPGA'15](http://cas.ee.ic.ac.uk/people/fw1811/papers/FPGA15_Felix.pdf)
 	- This is an HLS toolchain aid.
 	- Follow-up work of the above FCCM'14 one. This time they use LEAP scracchpads as the underlying caching block.
+
+### Xilinx CAD
+
+- [Maverick: A Stand-alone CAD Flow for Partially Reconfigurable FPGA Modules, FCCM'19](https://ieeexplore.ieee.org/document/8735509)
 
 ### High-Level Languages and Platforms
 
