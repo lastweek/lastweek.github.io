@@ -19,7 +19,7 @@ pages:
    - 'Linux KVM':                      'notes/kvm-basic.md'
    - 'Essential':                        'misc/essential.md'
 - FPGA:
-   - 'FPGA Papers':                       'notes/paper_fpga.md'
+   - 'Reading List':                      'notes/paper_fpga.md'
    - 'Vivado Practice':                   'fpga/vivado.md'
    - 'Bitstream Explained':               'fpga/bitstream.md'
    - 'Partial Reconfiguration Explained': 'fpga/pr.md'

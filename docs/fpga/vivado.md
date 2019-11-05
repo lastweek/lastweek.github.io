@@ -13,20 +13,30 @@
 
 ## Tricks
 
-This list will be updated frequently.
-
-
-#### Get the List of Partition Pins
+### Partition Pins
 
 The partition pins are inserted by Vivado at the boundary of a PR region.
 `PartPin` is short for Partition Pins.
 `PPLOC` is short for Partpin LOC.
 
+Get the list of partition pins:
 ```tcl
-get_pplocs -pin [get_pins -hier *]
+get_pplocs -pins [get_pins -hier *]
 ```
 
-#### Disable Expansion of `CONTAIN_ROUTING` Area
+Partition pin (seems) map to a NODE:
+```tcl
+% report_property [get_pplocs -pins [get_pins XXX]]
+% report_property [get_pplocs -pins [get_pins inst_count/count_out[0]]]
+
+INFO: [Vivado 12-4841] Found PartPin: INT_X17Y790/NN1_E_BEG3
+Property           Type    Read-only  Value
+BASE_CLOCK_REGION  string  true       X0Y13
+CLASS              string  true       node
+```
+
+---
+### Disable Expansion of `CONTAIN_ROUTING` Area
 
 The contained routing requirement of RP Pblocks for UltraScale and UltraScale+ devices has
 been relaxed to allow for improved routing and timing results. Instead of routing being
@@ -50,6 +60,7 @@ This command is useful when you want to do some hacking about Partition Pins.
 set_param hd.routingContainmentAreaExpansion false
 ```
 
+---
 ### Clear RM and Lock Down Static
 
 These commands clear out the Reconfigurable Module logics from the whole design
@@ -61,9 +72,11 @@ update_design -cell XXX -black_box
 lock_design -level routing
 ```
 
+---
 ### Lock Routing
 
-We need to lock both the net and the connected cells.
+We need to lock both the net and the connected cells. Reference is UG903.
+
 
 ---
 
@@ -76,7 +89,7 @@ We need to lock both the net and the connected cells.
 			- `pin`: A pin is a point of logical connectivity on a primitive or
 				hierarchical cell. A pin allows the contents of a cell to be abstracted away,
 				and the logic simplified for ease-of-use. A pin is attached to a cell and can be connected to pins on other cells by a net.
-				`get_pins of [get_cells XXX]`
+				`get_pins -of [get_cells XXX]`. `get_pins XXX`
 			- `port`: A port is a special type of hierarchical pin, providing an external connection point at the
 				top-level of a hierarchical design, or an internal connection point in a hierarchical cell or
 				block module to connect the internal logic to the pins on the hierarchical cell. 

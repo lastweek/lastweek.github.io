@@ -1,4 +1,4 @@
-# List of FPGA Papers
+# An FPGA Reading List
 
 :four_leaf_clover:
 
@@ -48,6 +48,7 @@ more from a system researcher's point of view though.
 	- [Place and Route](#place-and-route)
 	- [RTL2FPGA](#rtl2fpga)
 
+---
 ## Virtualization
 
 ### Scheduling
