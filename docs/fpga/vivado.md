@@ -112,7 +112,13 @@ lock_design -level routing
 	the Pblock from being routed outside the Pblock, and increases the reusability of the design.
 		- This is useful when you are trying to do advanced PR hacks.
 - [UG835 Vivado TCL Reference Guide](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug894-vivado-tcl-scripting.pdf)
-	- aka. Vivado TCL Man Page
+	- aka. Vivado TCL Man Page. Read this with the above UG912.
+- [UG903 Using Constraints](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug903-vivado-using-constraints.pdf)
+	- About Xilinx XDC files. You will need to understand UG912 first.
+	- Physical Constraints
+		- `DONT_TOUCH`. Prevent netlist optimizations. 1) prevent a net from being optimized away. 2) Prevent merging of manually replicated logic.
+		- Placement constraints
+		- Routing constraints
 
 - [Book: Practical Programming in Tcl and Tk](http://www.beedub.com/book/tkbook.pdf)
 - [UG894 Vivado Using TCL scripting](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2019_1/ug894-vivado-tcl-scripting.pdf)
@@ -135,11 +141,4 @@ lock_design -level routing
 			set_property HD.PARTPIN_RANGE SLICE_X4Y153:SLICE_X5Y157 [get_ports <port_name>]  
 			set_property HD.PARTPIN_RANGE {SLICE_Xx0Yx0:SLICE_Xx1Yy1 SLICE_XxNYyN:SLICE_XxMYyM} [get_pins <rp_cell_name>/*]<Paste>
 		- These pins can be manually relocated and locked.
-
-- [UG903 Using Constraints](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug903-vivado-using-constraints.pdf)
-	- About Xilinx XDC files
-	- Physical Constraints
-		- `DONT_TOUCH`. Prevent netlist optimizations. 1) prevent a net from being optimized away. 2) Prevent merging of manually replicated logic.
-		- Placement constraints
-		- Routing constraints
 - [UG905 Hierarchical Design](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2019_1/ug905-vivado-hierarchical-design.pdf)
