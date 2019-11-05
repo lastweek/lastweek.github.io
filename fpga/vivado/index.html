@@ -126,7 +126,7 @@
   <ul class="current">
           <li class="toctree-l1">
             
-  <a class="" href="../../notes/paper_fpga/">FPGA Papers</a>
+  <a class="" href="../../notes/paper_fpga/">Reading List</a>
         </li>
           <li class="toctree-l1 current">
             
@@ -234,17 +234,34 @@
               
                 <h1 id="vivado-practice">Vivado Practice<a class="headerlink" href="#vivado-practice" title="Permanent link">&para;</a></h1>
 <p><img alt="🐲" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f432.svg" title=":dragon_face:" /></p>
-<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Nov 4, 2019</td><td>Add UG903</td></tr><tr><td align="left">Oct 31, 2019</td><td>Happy Halloween</td></tr><tr><td align="left">Sep 20, 2019</td><td>Created</td></tr></tbody></table></details><h2 id="tricks">Tricks<a class="headerlink" href="#tricks" title="Permanent link">&para;</a></h2>
-<p>This list will be updated frequently.</p>
-<h4 id="get-the-list-of-partition-pins">Get the List of Partition Pins<a class="headerlink" href="#get-the-list-of-partition-pins" title="Permanent link">&para;</a></h4>
+<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Nov 4, 2019</td><td>Add UG903</td></tr><tr><td align="left">Oct 31, 2019</td><td>Happy Halloween</td></tr><tr><td align="left">Sep 20, 2019</td><td>Created</td></tr></tbody></table></details><hr />
+<h2 id="tricks">Tricks<a class="headerlink" href="#tricks" title="Permanent link">&para;</a></h2>
+<h3 id="partition-pins">Partition Pins<a class="headerlink" href="#partition-pins" title="Permanent link">&para;</a></h3>
 <p>The partition pins are inserted by Vivado at the boundary of a PR region.
 <code class="codehilite">PartPin</code> is short for Partition Pins.
 <code class="codehilite">PPLOC</code> is short for Partpin LOC.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nv">get_pplocs</span> <span class="o">-</span>pin <span class="k">[</span><span class="nv">get_pins</span> <span class="o">-</span>hier <span class="o">*</span><span class="k">]</span>
+<p>Get the list of partition pins:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nv">get_pplocs</span> <span class="o">-</span>pins <span class="k">[</span><span class="nv">get_pins</span> <span class="o">-</span>hier <span class="o">*</span><span class="k">]</span>
 </pre></div>
-</td></tr></table>
+</td></tr></table></p>
+<p>Partition pin (seems) map to a NODE:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">%</span> <span class="nv">report_property</span> <span class="k">[</span><span class="nv">get_pplocs</span> <span class="o">-</span>pins <span class="k">[</span><span class="nv">get_pins</span> XXX<span class="k">]]</span>
+<span class="o">%</span> <span class="nv">report_property</span> <span class="k">[</span><span class="nv">get_pplocs</span> <span class="o">-</span>pins <span class="k">[</span><span class="nv">get_pins</span> inst_count<span class="o">/</span>count_out<span class="k">[</span><span class="nv">0</span><span class="k">]]]</span>
 
-<h4 id="disable-expansion-of-contain_routing-area">Disable Expansion of <code class="codehilite">CONTAIN_ROUTING</code> Area<a class="headerlink" href="#disable-expansion-of-contain_routing-area" title="Permanent link">&para;</a></h4>
+<span class="nv">INFO</span><span class="o">:</span> <span class="k">[</span><span class="nv">Vivado</span> <span class="mi">12</span><span class="o">-</span><span class="mi">4841</span><span class="k">]</span> Found PartPin: INT_X17Y790<span class="o">/</span>NN1_E_BEG3
+<span class="nv">Property</span>           Type    Read-only  Value
+<span class="nv">BASE_CLOCK_REGION</span>  string  true       X0Y13
+<span class="nv">CLASS</span>              string  true       node
+</pre></div>
+</td></tr></table></p>
+<hr />
+<h3 id="disable-expansion-of-contain_routing-area">Disable Expansion of <code class="codehilite">CONTAIN_ROUTING</code> Area<a class="headerlink" href="#disable-expansion-of-contain_routing-area" title="Permanent link">&para;</a></h3>
 <p>The contained routing requirement of RP Pblocks for UltraScale and UltraScale+ devices has
 been relaxed to allow for improved routing and timing results. Instead of routing being
 confined strictly to the resources owned by the Pblock, the routing footprint is expanded.</p>
@@ -262,6 +279,7 @@ confined strictly to the resources owned by the Pblock, the routing footprint is
 </pre></div>
 </td></tr></table>
 
+<hr />
 <h3 id="clear-rm-and-lock-down-static">Clear RM and Lock Down Static<a class="headerlink" href="#clear-rm-and-lock-down-static" title="Permanent link">&para;</a></h3>
 <p>These commands clear out the Reconfigurable Module logics from the whole design
 and then lock down the static region and static routing. (Reference: UG947)</p>
@@ -273,6 +291,24 @@ and then lock down the static region and static routing. (Reference: UG947)</p>
 </pre></div>
 </td></tr></table>
 
+<hr />
+<h3 id="lock-routing">Lock Routing<a class="headerlink" href="#lock-routing" title="Permanent link">&para;</a></h3>
+<p>We need to lock both the net and the connected cells. Reference is UG903.</p>
+<p>Following commands lock a route of a net. This net is already routed.
+You could run one by one.
+After execution, the route will become dashed (means locked).
+Replace the net name with your interested one.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">set</span> net <span class="o">[</span>get_nets inst_count/count_out<span class="o">[</span><span class="m">0</span><span class="o">]]</span>
+get_property ROUTE <span class="nv">$net</span>
+set_property FIXED_ROUTE <span class="o">[</span>get_property ROUTE <span class="nv">$net</span><span class="o">]</span> <span class="nv">$net</span>
+</pre></div>
+</td></tr></table></p>
+<p>But how can we manually route an unrouted net?
+The difficulty is that we need to manually find out all the connection nodes/tiles etc..
+This applies to LOC placement as well.</p>
+<hr />
 <h2 id="read-the-docs">Read-the-docs<a class="headerlink" href="#read-the-docs" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://www.xilinx.com/content/dam/xilinx/support/documentation/sw_manuals/xilinx2019_1/ug912-vivado-properties.pdf&lt;Paste&gt;">UG912 Vivado Properties Reference Guide</a><ul>
@@ -282,7 +318,7 @@ and then lock down the static region and static routing. (Reference: UG947)</p>
 <li><code class="codehilite">pin</code>: A pin is a point of logical connectivity on a primitive or
     hierarchical cell. A pin allows the contents of a cell to be abstracted away,
     and the logic simplified for ease-of-use. A pin is attached to a cell and can be connected to pins on other cells by a net.
-    <code class="codehilite"><span class="n">get_pins</span> <span class="n">of</span> <span class="p">[</span><span class="n">get_cells</span> <span class="n">XXX</span><span class="p">]</span></code></li>
+    <code class="codehilite"><span class="n">get_pins</span> <span class="o">-</span><span class="n">of</span> <span class="p">[</span><span class="n">get_cells</span> <span class="n">XXX</span><span class="p">]</span></code>. <code class="codehilite">get_pins XXX</code></li>
 <li><code class="codehilite">port</code>: A port is a special type of hierarchical pin, providing an external connection point at the
     top-level of a hierarchical design, or an internal connection point in a hierarchical cell or
     block module to connect the internal logic to the pins on the hierarchical cell. </li>
@@ -397,7 +433,7 @@ set_property HD.PARTPIN_RANGE {SLICE_Xx0Yx0:SLICE_Xx1Yy1 SLICE_XxNYyN:SLICE_XxMY
         <a href="../bitstream/" class="btn btn-neutral float-right" title="Bitstream Explained">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../notes/paper_fpga/" class="btn btn-neutral" title="FPGA Papers"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../notes/paper_fpga/" class="btn btn-neutral" title="Reading List"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
