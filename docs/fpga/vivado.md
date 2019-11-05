@@ -9,6 +9,8 @@
 	|Oct 31, 2019 | Happy Halloween|
 	|Sep 20, 2019 | Created |
 
+---
+
 ## Tricks
 
 This list will be updated frequently.
@@ -58,6 +60,12 @@ update_design -cell XXX -black_box
 
 lock_design -level routing
 ```
+
+### Lock Routing
+
+We need to lock both the net and the connected cells.
+
+---
 
 ## Read-the-docs
 
