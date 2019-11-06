@@ -5,13 +5,14 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Nov 5, 2019 | More stuff|
 	|Nov 4, 2019 | Add UG903 |
 	|Oct 31, 2019 | Happy Halloween|
 	|Sep 20, 2019 | Created |
 
 ---
 
-## Tricks
+## Cheatsheet
 
 ### Partition Pins
 
@@ -36,7 +37,19 @@ CLASS              string  true       node
 ```
 
 ---
-### Disable Expansion of `CONTAIN_ROUTING` Area
+### Pblocks
+
+#### Semantic of `EXCLUDE_PLACEMENT`
+
+The document describe this as: Pblock property that prevents the _placement_ of any logic not
+belonging to the Pblock inside the defined Pblock range.
+
+During my own simple experiment, I found that even Vivado will not place other logics
+into the Pblock, _the routes of static region_ can still go across pblock.
+
+#### Semantic of `CONTAIN_ROUTING`
+
+References: UG909 and UG905.
 
 The contained routing requirement of RP Pblocks for UltraScale and UltraScale+ devices has
 been relaxed to allow for improved routing and timing results. Instead of routing being
@@ -55,6 +68,7 @@ If this option is disabled, the implications are:
 However, this option does not prevent routings from the static region from crossing RPs.
 
 This command is useful when you want to do some hacking about Partition Pins.
+Actually, you can also do this via GUI.
 
 ```tcl
 set_param hd.routingContainmentAreaExpansion false
@@ -73,7 +87,16 @@ lock_design -level routing
 ```
 
 ---
-### Lock Routing
+### Routing
+
+#### Get the routing of a net
+
+```tcl
+set net [get_nets XXX]
+get_property ROUTE $net
+```
+
+#### Lock the routing of a net
 
 We need to lock both the net and the connected cells. Reference is UG903.
 
@@ -85,15 +108,25 @@ Replace the net name with your interested one.
 set net [get_nets inst_count/count_out[0]]
 get_property ROUTE $net
 set_property FIXED_ROUTE [get_property ROUTE $net] $net
+
+set_property is_bel_fixed 1 [get_cells XXX]
+set_property is_loc_fixed 1 [get_cells XXX]
 ```
+
+#### Manual routing
+
+A great GUI-based manual routing tutorial can be found at [UG986 Lab 3](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2019_1/ug986-vivado-tutorial-implementation.pdf). The last step of manual routing, of course is to lock down the LOC and set `FIXED_ROUTE`.
 
 But how can we manually route an unrouted net?
 The difficulty is that we need to manually find out all the connection nodes/tiles etc..
 This applies to LOC placement as well.
 
----
 
+
+---
 ## Read-the-docs
+
+Basic
 
 - [UG912 Vivado Properties Reference Guide](https://www.xilinx.com/content/dam/xilinx/support/documentation/sw_manuals/xilinx2019_1/ug912-vivado-properties.pdf<Paste>)
 	- Excellent resource on explaining cell, net, pin, port, and so on.
@@ -147,6 +180,8 @@ This applies to LOC placement as well.
 		- This is useful when you are trying to do advanced PR hacks.
 - [UG835 Vivado TCL Reference Guide](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug894-vivado-tcl-scripting.pdf)
 	- aka. Vivado TCL Man Page. Read this with the above UG912.
+- [UG894 Vivado Using TCL scripting](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2019_1/ug894-vivado-tcl-scripting.pdf)
+	- Get you started with Vivado TCL
 - [UG903 Using Constraints](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug903-vivado-using-constraints.pdf)
 	- About Xilinx XDC files. You will need to understand UG912 first.
 	- Physical Constraints
@@ -155,8 +190,9 @@ This applies to LOC placement as well.
 		- Routing constraints
 
 - [Book: Practical Programming in Tcl and Tk](http://www.beedub.com/book/tkbook.pdf)
-- [UG894 Vivado Using TCL scripting](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2019_1/ug894-vivado-tcl-scripting.pdf)
-	- Get you started with Vivado TCL
+
+
+Partial Reconfiguration Related
 
 - [UG909 Partial Reconfiguration](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2019_1/ug909-vivado-partial-reconfiguration.pdf)
 	- `Partition Pins`
@@ -176,3 +212,6 @@ This applies to LOC placement as well.
 			set_property HD.PARTPIN_RANGE {SLICE_Xx0Yx0:SLICE_Xx1Yy1 SLICE_XxNYyN:SLICE_XxMYyM} [get_pins <rp_cell_name>/*]<Paste>
 		- These pins can be manually relocated and locked.
 - [UG905 Hierarchical Design](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2019_1/ug905-vivado-hierarchical-design.pdf)
+	- Add the `CONTAIN_ROUTING` property to all OOC Pblocks. Without this property,
+	`lock_design` cannot lock the routing of an imported module because it cannot be
+	guaranteed that there are no routing conflicts
