@@ -139,7 +139,7 @@
     <ul class="">
     
         <li class="toctree-l3 toc-item" >
-          <a class="toctree-l3" href="#tricks">Tricks</a>
+          <a class="toctree-l3" href="#cheatsheet">Cheatsheet</a>
         </li>
     
         <li class="toctree-l3 toc-item" >
@@ -234,8 +234,8 @@
               
                 <h1 id="vivado-practice">Vivado Practice<a class="headerlink" href="#vivado-practice" title="Permanent link">&para;</a></h1>
 <p><img alt="🐲" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f432.svg" title=":dragon_face:" /></p>
-<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Nov 4, 2019</td><td>Add UG903</td></tr><tr><td align="left">Oct 31, 2019</td><td>Happy Halloween</td></tr><tr><td align="left">Sep 20, 2019</td><td>Created</td></tr></tbody></table></details><hr />
-<h2 id="tricks">Tricks<a class="headerlink" href="#tricks" title="Permanent link">&para;</a></h2>
+<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Nov 5, 2019</td><td>More stuff</td></tr><tr><td align="left">Nov 4, 2019</td><td>Add UG903</td></tr><tr><td align="left">Oct 31, 2019</td><td>Happy Halloween</td></tr><tr><td align="left">Sep 20, 2019</td><td>Created</td></tr></tbody></table></details><hr />
+<h2 id="cheatsheet">Cheatsheet<a class="headerlink" href="#cheatsheet" title="Permanent link">&para;</a></h2>
 <h3 id="partition-pins">Partition Pins<a class="headerlink" href="#partition-pins" title="Permanent link">&para;</a></h3>
 <p>The partition pins are inserted by Vivado at the boundary of a PR region.
 <code class="codehilite">PartPin</code> is short for Partition Pins.
@@ -261,7 +261,14 @@
 </pre></div>
 </td></tr></table></p>
 <hr />
-<h3 id="disable-expansion-of-contain_routing-area">Disable Expansion of <code class="codehilite">CONTAIN_ROUTING</code> Area<a class="headerlink" href="#disable-expansion-of-contain_routing-area" title="Permanent link">&para;</a></h3>
+<h3 id="pblocks">Pblocks<a class="headerlink" href="#pblocks" title="Permanent link">&para;</a></h3>
+<h4 id="semantic-of-exclude_placement">Semantic of <code class="codehilite">EXCLUDE_PLACEMENT</code><a class="headerlink" href="#semantic-of-exclude_placement" title="Permanent link">&para;</a></h4>
+<p>The document describe this as: Pblock property that prevents the <em>placement</em> of any logic not
+belonging to the Pblock inside the defined Pblock range.</p>
+<p>During my own simple experiment, I found that even Vivado will not place other logics
+into the Pblock, <em>the routes of static region</em> can still go across pblock.</p>
+<h4 id="semantic-of-contain_routing">Semantic of <code class="codehilite">CONTAIN_ROUTING</code><a class="headerlink" href="#semantic-of-contain_routing" title="Permanent link">&para;</a></h4>
+<p>References: UG909 and UG905.</p>
 <p>The contained routing requirement of RP Pblocks for UltraScale and UltraScale+ devices has
 been relaxed to allow for improved routing and timing results. Instead of routing being
 confined strictly to the resources owned by the Pblock, the routing footprint is expanded.</p>
@@ -274,7 +281,8 @@ confined strictly to the resources owned by the Pblock, the routing footprint is
 3) the generated PR bitstream will be smaller,
 4) <code class="codehilite">hd_visual/</code> will not be generated.</p>
 <p>However, this option does not prevent routings from the static region from crossing RPs.</p>
-<p>This command is useful when you want to do some hacking about Partition Pins.</p>
+<p>This command is useful when you want to do some hacking about Partition Pins.
+Actually, you can also do this via GUI.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nv">set_param</span> hd.routingContainmentAreaExpansion false
 </pre></div>
 </td></tr></table>
@@ -292,7 +300,15 @@ and then lock down the static region and static routing. (Reference: UG947)</p>
 </td></tr></table>
 
 <hr />
-<h3 id="lock-routing">Lock Routing<a class="headerlink" href="#lock-routing" title="Permanent link">&para;</a></h3>
+<h3 id="routing">Routing<a class="headerlink" href="#routing" title="Permanent link">&para;</a></h3>
+<h4 id="get-the-routing-of-a-net">Get the routing of a net<a class="headerlink" href="#get-the-routing-of-a-net" title="Permanent link">&para;</a></h4>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">set</span> net <span class="k">[</span><span class="nv">get_nets</span> XXX<span class="k">]</span>
+<span class="nv">get_property</span> ROUTE <span class="nv">$net</span>
+</pre></div>
+</td></tr></table>
+
+<h4 id="lock-the-routing-of-a-net">Lock the routing of a net<a class="headerlink" href="#lock-the-routing-of-a-net" title="Permanent link">&para;</a></h4>
 <p>We need to lock both the net and the connected cells. Reference is UG903.</p>
 <p>Following commands lock a route of a net. This net is already routed.
 You could run one by one.
@@ -300,16 +316,25 @@ After execution, the route will become dashed (means locked).
 Replace the net name with your interested one.
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">set</span> net <span class="o">[</span>get_nets inst_count/count_out<span class="o">[</span><span class="m">0</span><span class="o">]]</span>
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">set</span> net <span class="o">[</span>get_nets inst_count/count_out<span class="o">[</span><span class="m">0</span><span class="o">]]</span>
 get_property ROUTE <span class="nv">$net</span>
 set_property FIXED_ROUTE <span class="o">[</span>get_property ROUTE <span class="nv">$net</span><span class="o">]</span> <span class="nv">$net</span>
+
+set_property is_bel_fixed <span class="m">1</span> <span class="o">[</span>get_cells XXX<span class="o">]</span>
+set_property is_loc_fixed <span class="m">1</span> <span class="o">[</span>get_cells XXX<span class="o">]</span>
 </pre></div>
 </td></tr></table></p>
+<h4 id="manual-routing">Manual routing<a class="headerlink" href="#manual-routing" title="Permanent link">&para;</a></h4>
+<p>A great GUI-based manual routing tutorial can be found at <a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2019_1/ug986-vivado-tutorial-implementation.pdf">UG986 Lab 3</a>. The last step of manual routing, of course is to lock down the LOC and set <code class="codehilite">FIXED_ROUTE</code>.</p>
 <p>But how can we manually route an unrouted net?
 The difficulty is that we need to manually find out all the connection nodes/tiles etc..
 This applies to LOC placement as well.</p>
 <hr />
 <h2 id="read-the-docs">Read-the-docs<a class="headerlink" href="#read-the-docs" title="Permanent link">&para;</a></h2>
+<p>Basic</p>
 <ul>
 <li><a href="https://www.xilinx.com/content/dam/xilinx/support/documentation/sw_manuals/xilinx2019_1/ug912-vivado-properties.pdf&lt;Paste&gt;">UG912 Vivado Properties Reference Guide</a><ul>
 <li>Excellent resource on explaining cell, net, pin, port, and so on.</li>
@@ -377,6 +402,10 @@ the Pblock from being routed outside the Pblock, and increases the reusability o
 <li>aka. Vivado TCL Man Page. Read this with the above UG912.</li>
 </ul>
 </li>
+<li><a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2019_1/ug894-vivado-tcl-scripting.pdf">UG894 Vivado Using TCL scripting</a><ul>
+<li>Get you started with Vivado TCL</li>
+</ul>
+</li>
 <li>
 <p><a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug903-vivado-using-constraints.pdf">UG903 Using Constraints</a></p>
 <ul>
@@ -392,15 +421,10 @@ the Pblock from being routed outside the Pblock, and increases the reusability o
 <li>
 <p><a href="http://www.beedub.com/book/tkbook.pdf">Book: Practical Programming in Tcl and Tk</a></p>
 </li>
-<li>
-<p><a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2019_1/ug894-vivado-tcl-scripting.pdf">UG894 Vivado Using TCL scripting</a></p>
-<ul>
-<li>Get you started with Vivado TCL</li>
 </ul>
-</li>
-<li>
-<p><a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2019_1/ug909-vivado-partial-reconfiguration.pdf">UG909 Partial Reconfiguration</a></p>
+<p>Partial Reconfiguration Related</p>
 <ul>
+<li><a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2019_1/ug909-vivado-partial-reconfiguration.pdf">UG909 Partial Reconfiguration</a><ul>
 <li><code class="codehilite">Partition Pins</code><ul>
 <li>Interface points called partition pins are automatically created within the Pblock ranges
 defined for the Reconfigurable Partition. These virtual I/O are established within
@@ -421,7 +445,12 @@ set_property HD.PARTPIN_RANGE {SLICE_Xx0Yx0:SLICE_Xx1Yy1 SLICE_XxNYyN:SLICE_XxMY
 </li>
 </ul>
 </li>
-<li><a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2019_1/ug905-vivado-hierarchical-design.pdf">UG905 Hierarchical Design</a></li>
+<li><a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2019_1/ug905-vivado-hierarchical-design.pdf">UG905 Hierarchical Design</a><ul>
+<li>Add the <code class="codehilite">CONTAIN_ROUTING</code> property to all OOC Pblocks. Without this property,
+<code class="codehilite">lock_design</code> cannot lock the routing of an imported module because it cannot be
+guaranteed that there are no routing conflicts</li>
+</ul>
+</li>
 </ul>
               
             </div>
