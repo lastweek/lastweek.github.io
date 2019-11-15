@@ -74,6 +74,11 @@ Actually, you can also do this via GUI.
 set_param hd.routingContainmentAreaExpansion false
 ```
 
+But you wouldn't believe that: __Static routing is still allowed to use resources inside of the Pblock.__
+The implication is also obvious: all PR bitstreams and even blank bitstream will also have the static
+routing, if their targeted Pblocks happen to have static routing in the first place. This is also why
+we will need the static bitstream as the base to do PR bitstream generation.
+
 ---
 ### Clear RM and Lock Down Static
 
@@ -215,3 +220,12 @@ Partial Reconfiguration Related
 	- Add the `CONTAIN_ROUTING` property to all OOC Pblocks. Without this property,
 	`lock_design` cannot lock the routing of an imported module because it cannot be
 	guaranteed that there are no routing conflicts
+
+
+---
+## Some IPs
+
+- UG947 has the sample code for the PR Controller IP
+	- It does not support simulation. Thus we can not probe any ICAP related signals.
+- Ultrascale+ SEM does not have any useful ICAP usage signals in Simulation.
+- xapp1230 has some TCL scripts to perform JTAG readback.
