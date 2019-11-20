@@ -1,6 +1,8 @@
-# cheatsheet
+# Cheatsheet
 
-Last Updated: Sep 12, 2019
+## Python
+
+- `f'{0x0c180606:032b}'`
 
 ## VNC
 
