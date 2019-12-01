@@ -212,7 +212,14 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
 
 ### Security
 
-There are a lot and they are important. I don't have time to sort time. Have fun :p
+If I were to recommend, I'd suggest start from:
+
+- Recent Attacks and Defenses on FPGA-based Systems, 2019
+- Physical Side-Channel Attacks and Covert Communication on FPGAs: A Survey, 2019
+- FPGA security: Motivations, features, and applications, 2014
+
+
+The whole list:
 
 - FPGAhammer : Remote Voltage Fault Attacks on Shared FPGAs , suitable for DFA on AES
 - FPGA-Based Remote Power Side-Channel Attacks
