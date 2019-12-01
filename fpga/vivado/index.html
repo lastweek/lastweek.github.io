@@ -146,6 +146,10 @@
           <a class="toctree-l3" href="#read-the-docs">Read-the-docs</a>
         </li>
     
+        <li class="toctree-l3 toc-item" >
+          <a class="toctree-l3" href="#some-ips">Some IPs</a>
+        </li>
+    
     </ul>
   
   </li>
@@ -287,6 +291,10 @@ Actually, you can also do this via GUI.</p>
 </pre></div>
 </td></tr></table>
 
+<p>But you wouldn&rsquo;t believe that: <strong>Static routing is still allowed to use resources inside of the Pblock.</strong>
+The implication is also obvious: all PR bitstreams and even blank bitstream will also have the static
+routing, if their targeted Pblocks happen to have static routing in the first place. This is also why
+we will need the static bitstream as the base to do PR bitstream generation.</p>
 <hr />
 <h3 id="clear-rm-and-lock-down-static">Clear RM and Lock Down Static<a class="headerlink" href="#clear-rm-and-lock-down-static" title="Permanent link">&para;</a></h3>
 <p>These commands clear out the Reconfigurable Module logics from the whole design
@@ -451,6 +459,16 @@ set_property HD.PARTPIN_RANGE {SLICE_Xx0Yx0:SLICE_Xx1Yy1 SLICE_XxNYyN:SLICE_XxMY
 guaranteed that there are no routing conflicts</li>
 </ul>
 </li>
+</ul>
+<hr />
+<h2 id="some-ips">Some IPs<a class="headerlink" href="#some-ips" title="Permanent link">&para;</a></h2>
+<ul>
+<li>UG947 has the sample code for the PR Controller IP<ul>
+<li>It does not support simulation. Thus we can not probe any ICAP related signals.</li>
+</ul>
+</li>
+<li>Ultrascale+ SEM does not have any useful ICAP usage signals in Simulation.</li>
+<li>xapp1230 has some TCL scripts to perform JTAG readback.</li>
 </ul>
               
             </div>
