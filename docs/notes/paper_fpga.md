@@ -5,6 +5,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Nov 30, 2019| Add a lot security papers |
 	|Oct 22, 2019| Shuffle scheduling section. More focused. Add two more recent fpga-virt papers|
 	|Oct 5, 2019| More on scheduling. Add NoC. Add Security.|
 	|Oct 4, 2019| Add more papers extracted from AmophOS|
