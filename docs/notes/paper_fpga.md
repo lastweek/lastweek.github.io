@@ -211,19 +211,41 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
 
 ### Security
 
-Power and timing.
+There are a lot and they are important. I don't have time to sort time. Have fun :p
 
-- [FPGA Side-Channel Receivers, FPGA'11](https://dl.acm.org/citation.cfm?id=1950462)
-- [Voltage drop-based fault attacks on FPGAs using valid bitstreams, FPL'17](https://ieeexplore.ieee.org/document/8056840)
-- [FPGA Side Channel Attacks without Physical Access, FCCM'18](http://www.ecs.umass.edu/ece/tessier/ramesh-fccm18.pdf)
-- [FPGA-Based Remote Power Side-Channel Attacks, S&P'18](https://cpb-us-w2.wpmucdn.com/sites.coecis.cornell.edu/dist/7/89/files/2018/04/SP2018-FPGA-2m12dnp.pdf)
-- [An inside job: Remote power analysis attacks on FPGAs, 2018](https://eprint.iacr.org/2018/012.pdf)
-- [FPGAhammer: Remote Voltage Fault Attacks on Shared FPGAs, suitable for DFA on AES, 2018](https://tches.iacr.org/index.php/TCHES/article/view/7268)
-- [Characterization of Long Wire Data Leakage in Deep Submicron FPGAs, FPGA'19](http://www.ecs.umass.edu/ece/tessier/provelengios-fpga19.pdf)
-
-- [FPGA Security: Motivations,Features, and Applications, IEEE 2014](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=6849432)
-- [Protecting against Cryptographic Trojans in FPGAs, FCCM'15](http://www.ecs.umass.edu/ece/tessier/aes-protect-fccm15.pdf)
-- [High-Level Synthesis with Timing-Sensitive Information Flow Enforcement, ICCAD'18](https://cpb-us-w2.wpmucdn.com/sites.coecis.cornell.edu/dist/7/89/files/2016/08/assure-iccad2018-2fi44co.pdf)
+- FPGAhammer : Remote Voltage Fault Attacks on Shared FPGAs , suitable for DFA on AES
+- FPGA-Based Remote Power Side-Channel Attacks
+- Characterization of long wire data leakage in deep submicron FPGAS
+- Protecting against cryptographic Trojans in FPGAS
+- FPGA Side Channel Attacks without Physical Access
+- FPGA security: Motivations, features, and applications
+- FPGA side-channel receivers
+- Security of FPGAs in data centers
+- Secure Function Evaluation Using an FPGA Overlay Architecture
+- Mitigating Electrical-level Attacks towards Secure Multi-Tenant FPGAs in the Cloud
+- The Costs of Confidentiality in Virtualized FPGAs
+- Temporal Thermal Covert Channels in Cloud FPGAs
+- Characterizing Power Distribution Attacks in Multi-User FPGA Environments
+- FASE: FPGA Acceleration of Secure Function Evaluation
+- Securing Cryptographic Circuits by Exploiting Implementation Diversity and Partial Reconfiguration on FPGAs
+- Measuring Long Wire Leakage with Ring Oscillators in Cloud FPGAs
+- Physical Side-Channel Attacks and Covert Communication on FPGAs: A Survey
+- Leaky Wires: Information Leakage and Covert Communication Between FPGA Long Wires
+- Using the Power Side Channel of FPGAs for Communication
+- An Inside Job: Remote Power Analysis Attacks on FPGAs
+- Leakier Wires: Exploiting FPGA Long Wires for Covert- and Side-channel Attacks
+- Voltage drop-based fault attacks on FPGAs using valid bitstreams
+- Moats and Drawbridges: An Isolation Primitive for Reconfigurable Hardware Based Systems
+- Sensing nanosecond-scale voltage attacks and natural transients in FPGAs
+- Holistic Power Side-Channel Leakage Assessment:
+- Hiding Intermittent Information Leakage with Architectural Support for Blinking
+- Examining the consequences of high-level synthesis optimizations on power side-channel
+- Register transfer level information flow tracking for provably secure hardware design
+- A Protection and Pay-per-use Licensing Scheme for On-cloud FPGA Circuit IPs
+- Recent Attacks and Defenses on FPGA-based Systems
+- PFC: Privacy Preserving FPGA Cloud - A Case Study of MapReduce
+- A Pay-per-Use Licensing Scheme for Hardware IP Cores in Recent SRAM-Based FPGAs
+- FPGAs for trusted cloud computing
 
 ### Summary
 

@@ -281,3 +281,8 @@ When in doubt, read the [discussion](https://software.intel.com/en-us/forums/int
 
 - Also some pointer chasing related stuff
 	- [A Study of Pointer-Chasing Performance on Shared-Memory Processor-FPGA Systems, FPGA'16](https://users.ece.cmu.edu/~jhoe/distribution/2016/fpga16.pdf)
+
+
+### Formal Verification
+TODO
+FIll me in.
