@@ -264,6 +264,7 @@ When in doubt, read the [discussion](https://software.intel.com/en-us/forums/int
 
 ### FPGA
 
+- Analysis and Optimization of I/O Cache Coherency Strategies for SoC-FPGA Device, FPL'19
 - LEAP Shared Memories: Automating the Construction of FPGA Coherent Memories, FCCM'14.
     - This work is built on their earlier work, which basically add the data caching
       concept to FPGA: using BRAM as L1, on-board DRAM as L2, host or remote DRAM as L3.
