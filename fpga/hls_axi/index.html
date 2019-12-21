@@ -40,7 +40,7 @@
     
     
       
-        <title>HLS: High-performance AXI-MM - Yizhou Shan's Home Page</title>
+        <title>Efficient AXI-MM - Yizhou Shan's Home Page</title>
       
     
     
@@ -99,7 +99,7 @@
                 Yizhou Shan's Home Page
               </span>
               <span class="md-header-nav__topic">
-                HLS: High-performance AXI-MM
+                Efficient AXI-MM
               </span>
             
           
@@ -383,20 +383,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/paper_fpga/" title="Reading List" class="md-nav__link">
-      Reading List
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../vivado/" title="Vivado Practice" class="md-nav__link">
-      Vivado Practice
+    <a href="../../notes/paper_fpga/" title="Papers" class="md-nav__link">
+      Papers
     </a>
   </li>
 
@@ -419,8 +407,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../pr/" title="Partial Reconfiguration Explained" class="md-nav__link">
-      Partial Reconfiguration Explained
+    <a href="../vivado/" title="Vivado Practice" class="md-nav__link">
+      Vivado Practice
     </a>
   </li>
 
@@ -431,16 +419,9 @@
 
 
   <li class="md-nav__item">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-    <a href="./" title="HLS: Usage of AXI-Stream" class="md-nav__link md-nav__link--active">
-      HLS: Usage of AXI-Stream
+    <a href="../pr/" title="Partial Reconfiguration Explained" class="md-nav__link">
+      Partial Reconfiguration Explained
     </a>
-    
   </li>
 
         
@@ -458,8 +439,8 @@
       
     
     
-    <a href="./" title="HLS: High-performance AXI-MM" class="md-nav__link md-nav__link--active">
-      HLS: High-performance AXI-MM
+    <a href="./" title="Efficient AXI-MM" class="md-nav__link md-nav__link--active">
+      Efficient AXI-MM
     </a>
     
   </li>
@@ -1147,7 +1128,13 @@
                 
                 
                 <h1 id="high-performance-axi-mm-in-hls">High-performance AXI-MM in HLS<a class="headerlink" href="#high-performance-axi-mm-in-hls" title="Permanent link">&para;</a></h1>
-<p>This post is about how to achieve the maximum AXI bandwidth in HLS.</p>
+<p>My personal experience: the native AXI-MM in HLS is horrible.
+It fails to generate efficient code.
+The best practice I found is the use an external Datamover.
+In HLS, all memory access is made via AXI-Stream.
+Using AXI-Stream means we can wait the result asynchronously,
+hence we can deal with long memory access in a more informed manner.</p>
+<p>Usually using AXI-Stream and Datamover delivers code with II=1.</p>
                 
                   
                 
@@ -1186,7 +1173,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="./" title="HLS: Usage of AXI-Stream" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../pr/" title="Partial Reconfiguration Explained" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1195,7 +1182,7 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                HLS: Usage of AXI-Stream
+                Partial Reconfiguration Explained
               </span>
             </div>
           </a>

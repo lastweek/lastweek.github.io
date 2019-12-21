@@ -383,20 +383,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/paper_fpga/" title="Reading List" class="md-nav__link">
-      Reading List
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../vivado/" title="Vivado Practice" class="md-nav__link">
-      Vivado Practice
+    <a href="../../notes/paper_fpga/" title="Papers" class="md-nav__link">
+      Papers
     </a>
   </li>
 
@@ -415,10 +403,78 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Bitstream Explained
+      </label>
+    
     <a href="./" title="Bitstream Explained" class="md-nav__link md-nav__link--active">
       Bitstream Explained
     </a>
     
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" title="Introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bistream-related-files" title="Bistream Related Files" class="md-nav__link">
+    Bistream Related Files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#details" title="Details" class="md-nav__link">
+    Details
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" title="References" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../vivado/" title="Vivado Practice" class="md-nav__link">
+      Vivado Practice
+    </a>
   </li>
 
         
@@ -440,20 +496,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../hls_axi/" title="HLS: Usage of AXI-Stream" class="md-nav__link">
-      HLS: Usage of AXI-Stream
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../hls_axi/" title="HLS: High-performance AXI-MM" class="md-nav__link">
-      HLS: High-performance AXI-MM
+    <a href="../hls_axi/" title="Efficient AXI-MM" class="md-nav__link">
+      Efficient AXI-MM
     </a>
   </li>
 
@@ -1128,6 +1172,49 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" title="Introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bistream-related-files" title="Bistream Related Files" class="md-nav__link">
+    Bistream Related Files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#details" title="Details" class="md-nav__link">
+    Details
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" title="References" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1141,12 +1228,272 @@
                 
                 <h1 id="fpga-bitstream-explained">FPGA Bitstream Explained<a class="headerlink" href="#fpga-bitstream-explained" title="Permanent link">&para;</a></h1>
 <p><img alt="🐪" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f42a.svg" title=":dromedary_camel:" /></p>
-<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Oct 24, 2019</td><td>created</td></tr></tbody></table></details><p>This note will explain what&rsquo;s inside a bitstream, how can you cook it, and how it is being configured.</p>
-<p>I want to write this down because there is no good user-friendly introduction out there.
-I felt dizzy while reading that. I bet you will too.
-But the bitstream and the FPGA configurating process is not that complex
-and somewhat easy to understand.</p>
-<p>Coming.. sometime. Stay tuned.</p>
+<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Dec 20, 2019</td><td>Update</td></tr><tr><td align="left">Oct 24, 2019</td><td>Created</td></tr></tbody></table></details><h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>A bitstream can configure an FPGA.
+A bitstream includes the descriptions of the hardware logic, routing, and initial
+values of registers and on-chip memory.
+The common impression is that a bitstream has vendor-specific format and cannot be reversed.
+The answer is yes and no.
+The fact is that the bitstream file is more than the bits to configure an FPGA,
+it also has certain human-readable fields to describe the contents.
+In addition, it has a simple assembly-like instruction set to describe the FPGA configuration process.
+This note is trying to walk through this.</p>
+<p>At a high-level, a bitstream file is similar to an executable program,
+in the sense that it describes everything of a desired functionality.
+Analogous to the ELF format, a bistream has its own format to describe
+the contents. Note that, this file format is publicly documented <a href="https://www.xilinx.com/support/documentation/user_guides/ug570-ultrascale-configuration.pdf">1</a>.
+That means you can analyze the contents of a bitstream file.
+The undocument part is the configuration bits: FPGA vendor
+does not document the format of the configuration bits,
+and how they may to hardware resources.</p>
+<p>As a normal FPGA user, you mostly do not need to understand neither of these.
+These understandings are only required if you plan to do bitstream readback, preemption scheduling and so forth.</p>
+<p>After reading this note, you will understand that a bitstream file is a sequence of instructions and data.
+The FPGA has a simple state machine to parse the bitstream and then configure the chip.
+Part of the bistream file format is public, the mapping between the bitstream configuration bits
+and the actual physical resource is undocumented.</p>
+<h2 id="bistream-related-files">Bistream Related Files<a class="headerlink" href="#bistream-related-files" title="Permanent link">&para;</a></h2>
+<p>In a normal flow, Vivado only generates a simple <code class="codehilite"><span class="na">.bit</span></code> file.
+When you click &ldquo;Program Device&rdquo;, Vivado will use this file to configure your FPGA.</p>
+<p>In addition to generating this file, Vivado is capable of generating a bunch other files.
+You can find a complete coverage in this <a href="https://www.xilinx.com/support/answers/14468.html">link</a>.
+We give a high level summary here.
+Most of the files have the same content and have similar file size.
+For instance, the difference between a <code class="codehilite"><span class="na">.rbt</span></code> and a <code class="codehilite"><span class="na">.bit</span></code> is that the former one is in ASCII format while the latter is in binary format,
+but they have the <em>same</em> contents. As for a <code class="codehilite"><span class="na">.bit</span></code> and a <code class="codehilite"><span class="na">.bin</span></code> file, the latter does not have some ASCII headers at the beginning of the file.</p>
+<p><code class="codehilite"><span class="na">.ll</span></code>, the logical link file, is very interesting.
+It tells you the mapping between user logic and the actual bit offset in the bistream file data section.
+This file can be used to aid preemption scheduling.
+However, note that, this file only documents a very small part of the mapping.
+To the best of my knowledge, I think only the registers, on-chip memory are documented, but the routing
+information is missing. Thus, this file can help reserve engineer bitstream data section to some extend, but not full of it.
+<a href="https://github.com/SymbiFlow/prjxray">Prjxray</a> is an open source project working on cracking everything on 7-series FPGA.</p>
+<h2 id="details">Details<a class="headerlink" href="#details" title="Permanent link">&para;</a></h2>
+<p>We use <code class="codehilite"><span class="na">.rbt</span></code> and <code class="codehilite"><span class="na">.bit</span></code> to demonstrate the file format.
+Note that they are essentially the same thing, except the former in human-readable ASCII format.</p>
+<p>The target board is VCU118, the one used by many cloud vendors.</p>
+<p>The following snippt is the first few lines of the <code class="codehilite"><span class="na">.rpt</span></code> file.
+The first few lines are human-readable ASCII contents describing some general information
+about the bitstream. Starting from line 8 is the actual bitstream file contents.
+Note that the <code class="codehilite"><span class="na">.bin</span></code> file starts directly from line 8, no general header info is attached.
+The interesting part is the 1s and 0s.
+Unless otherwise noted, when we refer to bitstream format, we focus on the 1s and 0s only
+and omit any general ASICC information headers.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">Xilinx</span> <span class="nt">ASCII</span> <span class="nt">Bitstream</span>
+<span class="nt">Created</span> <span class="nt">by</span> <span class="nt">Bitstream</span> <span class="nt">2018</span><span class="p">.</span><span class="nc">3</span> <span class="nt">SW</span> <span class="nt">Build</span> <span class="nt">2405991</span> <span class="nt">on</span> <span class="nt">Thu</span> <span class="nt">Dec</span>  <span class="nt">6</span> <span class="nt">23</span><span class="p">:</span><span class="nd">36</span><span class="p">:</span><span class="nd">41</span> <span class="nt">MST</span> <span class="nt">2018</span>
+<span class="nt">Design</span> <span class="nt">name</span><span class="o">:</span>    <span class="nt">base_mb_wrapper</span><span class="o">;</span><span class="nt">UserID</span><span class="o">=</span><span class="nt">0XFFFFFFFF</span><span class="o">;</span><span class="nt">Version</span><span class="o">=</span><span class="nt">2018</span><span class="p">.</span><span class="nc">3</span>
+<span class="nt">Architecture</span><span class="o">:</span>   <span class="nt">virtexuplus</span>
+<span class="nt">Part</span><span class="o">:</span>           <span class="nt">xcvu9p-flga2104-2L-e</span>
+<span class="nt">Date</span><span class="o">:</span>           <span class="nt">Wed</span> <span class="nt">Nov</span> <span class="nt">20</span> <span class="nt">04</span><span class="p">:</span><span class="nd">13</span><span class="p">:</span><span class="nd">05</span> <span class="nt">2019</span>
+<span class="nt">Bits</span><span class="o">:</span>           <span class="nt">641272864</span>
+<span class="nt">11111111111111111111111111111111</span>
+<span class="nt">11111111111111111111111111111111</span>
+<span class="nt">11111111111111111111111111111111</span>
+<span class="o">...</span>
+</pre></div>
+</td></tr></table>
+
+<p>Note that each line has 32 bits, thus 4 bytes.
+In Xilinx bistream format, each four bytes is a packet (analogous to CPU instruction).
+Each packet has certain format, it could be a special <em>header packet</em>, or a normal <em>data packet</em>.
+The header packet follows a simple assembly-like instruction set to dictate the configuration process.
+The bitstream file is a sequence of these four bytes packets. </p>
+<p>Why it sounds so complicated, a sequence of instructions?!
+I think the short answer is that configuraing FPGA is not an easy task,
+and any wrong doings may permanently harm the chip.
+Natually, the designer would have a on-chip state machine to control the configuration process,
+not only to control the whole process but also to ensure safety.</p>
+<p>Each Xilinx FPGA has an on-chip <em>configuration packet processor</em>.
+All configuration methods such as JTAG, SelectMAP, ICAP merge into this final narrow bridge to carry out the configuration.
+The configuration packet processor has many internal registers (similar to x86 RAX, CRn, MSR registers).
+The bitstream usually interact with one of the registers at a time to do one thing.
+For a more detailed explanation, check out <a href="https://www.kc8apf.net/2018/05/unpacking-xilinx-7-series-bitstreams-part-2/">this blog</a>,
+and UG570 chapter 9.</p>
+<p>To this end, a bitstream consits of three parts:</p>
+<ul>
+<li>1) Header packets to prepare the configuration process.</li>
+<li>2) The actual configuration bits in a contiguous sequence of data packets.
+     AN write to the <code class="codehilite">FDRI</code> register marks the beginning of this section.
+     The length of this section is described by the packet following the FDRI header packet.</li>
+<li>3) Header packets to clean up the configuration process.</li>
+</ul>
+<p>The actual configuration bits are the ones determine the FPGA functionality.
+Note that if you are using an SSI Xilinx device like VCU118, the bitstream format is a bit more complicated.
+Basically, each die has the above three parts. If an chip has N dies, it will have N above triplet.
+I have complained about this is not well documented <a href="https://forums.xilinx.com/t5/FPGA-Configuration/Readback-Verify-and-Capture-on-SSI-devices/m-p/1045810/highlight/true#M14828">here</a>
+and <a href="https://forums.xilinx.com/t5/FPGA-Configuration/Issues-with-ll-and-msk-file-with-an-SSI-Ultrascale-chip-VCU118/m-p/1047253">here</a>.</p>
+<p>I wrote a simple <a href="https://github.com/lastweek/FPGA-Xilinx-Bitstream">C program</a>
+to parse the <code class="codehilite"><span class="na">.rbt</span></code> file and associate a human-reable syntax with each line.
+I didn&rsquo;t have a complete coverage of the header packet format.
+The following snippt shows a parsed <code class="codehilite"><span class="na">.rbt</span></code> file with header removed.
+Here, <code class="codehilite">0xffffffff</code> has no effect, like a NOP.
+<code class="codehilite">0x000000bb</code> and <code class="codehilite">0x11220044</code> are special bus detect words.
+<code class="codehilite">0xaa995566</code> is another special work marking the synchronization status.
+The last few lines mark the beginning of the configuration bits section.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Parsed from base_mb_wrapper.rbt
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+<span class="m">000000</span>bb Bus Width Sync
+<span class="m">11220044</span> Bus Width Detect
+ffffffff 
+ffffffff 
+aa995566  SYNC
+<span class="m">20000000</span> 
+<span class="m">20000000</span> 
+<span class="m">30022001</span> Write to regs <span class="m">17</span>
+<span class="m">00000000</span> 
+<span class="m">30020001</span> Write to regs <span class="m">16</span>
+<span class="m">00000000</span> 
+<span class="m">30008001</span> Write to CMD
+<span class="m">00000000</span> 
+<span class="m">20000000</span> 
+<span class="m">30008001</span> Write to CMD
+<span class="m">00000007</span> 
+<span class="m">20000000</span> 
+<span class="m">20000000</span> 
+<span class="m">30002001</span> Write to FAR
+<span class="m">00000000</span> 
+<span class="m">30026001</span> Write to regs <span class="m">19</span>
+<span class="m">00000000</span> 
+<span class="m">30012001</span> Write to regs <span class="m">9</span>
+<span class="m">38003</span>fe5 Write to regs <span class="m">1</span>
+<span class="m">3001</span>c001 Write to regs <span class="m">14</span>
+<span class="m">00400000</span> 
+<span class="m">30018001</span> Write to IDCODE
+<span class="m">04</span>b31093 IDCODE<span class="o">=</span><span class="m">4</span>b31093
+<span class="m">30008001</span> Write to CMD
+<span class="m">00000009</span> 
+<span class="m">20000000</span> 
+<span class="m">3000</span>c001 Write to regs <span class="m">6</span>
+<span class="m">00000001</span> 
+<span class="m">3000</span>a001 Write to regs <span class="m">5</span>
+<span class="m">00000101</span> 
+<span class="m">3000</span>c001 Write to regs <span class="m">6</span>
+<span class="m">00000000</span> 
+<span class="m">30030001</span> Write to regs <span class="m">24</span>
+<span class="m">00000000</span> 
+<span class="m">20000000</span> 
+<span class="m">20000000</span> 
+<span class="m">20000000</span> 
+<span class="m">20000000</span> 
+<span class="m">20000000</span> 
+<span class="m">20000000</span> 
+<span class="m">20000000</span> 
+<span class="m">20000000</span> 
+<span class="m">30002001</span> Write to FAR
+<span class="m">00000000</span> 
+<span class="m">30008001</span> Write to CMD
+<span class="m">00000001</span> 
+<span class="m">20000000</span> 
+<span class="m">30004000</span> Write to FDRI
+<span class="m">5065</span>eadc            <span class="o">&lt;-</span> The length of configuration bits<span class="p">,</span> follows a certain <span class="kp">format</span>
+<span class="m">00000000</span>            <span class="o">&lt;-</span> The first <span class="m">4</span> bytes of the configuration bits<span class="o">!</span>
+</pre></div>
+</td></tr></table>
+
+<p>Hope you have learned something.</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="https://www.xilinx.com/support/documentation/user_guides/ug570-ultrascale-configuration.pdf">Xilinx UG570</a></li>
+<li><a href="https://www.xilinx.com/support/answers/14468.html">Xilinx bitstream files</a></li>
+<li><a href="https://www.kc8apf.net/2018/05/unpacking-xilinx-7-series-bitstreams-part-2/">Another blog on Xilinx Bitstream Internals</a> </li>
+<li><a href="https://github.com/lastweek/FPGA-Xilinx-Bitstream">Source code to annotate bitstream</a></li>
+</ol>
                 
                   
                 
@@ -1185,7 +1532,7 @@ and somewhat easy to understand.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../vivado/" title="Vivado Practice" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../notes/paper_fpga/" title="Papers" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1194,19 +1541,19 @@ and somewhat easy to understand.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Vivado Practice
+                Papers
               </span>
             </div>
           </a>
         
         
-          <a href="../pr/" title="Partial Reconfiguration Explained" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../vivado/" title="Vivado Practice" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Partial Reconfiguration Explained
+                Vivado Practice
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
