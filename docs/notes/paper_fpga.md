@@ -352,6 +352,7 @@ Innovations in the toolchain space.
 - [MS: Direct Universal Access : Making Data Center Resources Available to FPGA, NSDI'19](https://www.microsoft.com/en-us/research/uploads/prod/2018/10/nsdi19spring-final64.pdf)
 	- Catapult is just sweet, isn't it?
 - [ASIC Clouds: Specializing the Datacenter, ISCA'16](https://cseweb.ucsd.edu/~mbtaylor/papers/ASIC_Cloud_ISCA_2016_Proceedings.pdf)
+- [Virtualizating FPGAs in the Cloud, ASPLOS'20](), to appear.
 
 ### Misc
 
@@ -371,12 +372,16 @@ Innovations in the toolchain space.
     - Not necessary FPGA, but SmartNICs. The actor programming model seems a good fit. There is another paper from ATC'19 that optimizes [distributed actor runtime](https://www.usenix.org/system/files/atc19-meiklejohn.pdf).
 
 
-### Database
+### Database and SQL
+- On-the-fly Composition of FPGA-Based SQL Query Accelerators Using A Partially Reconfigurable Module Library, 2012
 - [Accelerating database systems using FPGAs: A survey, FPL'18](https://pdfs.semanticscholar.org/dee1/59031eb2de0a9324829f9027b14403164489.pdf)
 
 ### Storage
 - [Cognitive SSD: A Deep Learning Engine for In-Storage Data Retrieval, ATC'19](https://www.usenix.org/conference/atc19/presentation/liang)
 - [INSIDER: Designing In-Storage Computing System for Emerging High-Performance Drive, ATC'19](https://www.usenix.org/conference/atc19/presentation/ruan)
+- LightStore: Software-defined Network-attached Key-value Drives, ASPLOS'19
+- FIDR: A Scalable Storage System for Fine-Grain Inline Data Reduction with Efficient Memory Handling, MICRO'19
+- CIDR: A Cost-Effective In-line Data Reduction System for Terabit-per-Second Scale SSD Array, HPCA'19
 
 ### Machine Learning
 
@@ -419,13 +424,8 @@ Innovations in the toolchain space.
 - Consensus in a Box: Inexpensive Coordination in Hardware, NSDI'16
 
 ### Video Processing
-- TODO
-
-### Blockchain
-- TODO
-
-### Micro-services
-- TODO
+- Quantifying the Benefits of Dynamic Partial Reconfiguration for Embedded Vision Applications (FPL 2019)
+- Time-Shared Execution of Realtime Computer Vision Pipelines by Dynamic Partial Reconfiguration (FPL 2018)
 
 ## FPGA Internal
 

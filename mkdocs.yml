@@ -19,12 +19,11 @@ pages:
    - 'Linux KVM':                      'notes/kvm-basic.md'
    - 'Essential':                        'misc/essential.md'
 - FPGA:
-   - 'Reading List':                      'notes/paper_fpga.md'
-   - 'Vivado Practice':                   'fpga/vivado.md'
+   - 'Papers':                      'notes/paper_fpga.md'
    - 'Bitstream Explained':               'fpga/bitstream.md'
+   - 'Vivado Practice':                   'fpga/vivado.md'
    - 'Partial Reconfiguration Explained': 'fpga/pr.md'
-   - 'HLS: Usage of AXI-Stream':          'fpga/hls_axi.md'
-   - 'HLS: High-performance AXI-MM':      'fpga/hls_axi.md'
+   - 'Efficient AXI-MM':      'fpga/hls_axi.md'
 - LegoOS:
 #   - 'Log':
 #           - 'TODO':                    'lego/log/TODO.md'
