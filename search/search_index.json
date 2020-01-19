@@ -117,12 +117,12 @@
         }, 
         {
             "location": "/notes/source_code/", 
-            "text": "Source code study\n\n\nVersion History\nDate\nDescription\nJan 18, 2020\nInitial\n\n\nThis page links to some of my Github repos.\nSort of a note.\n\n\nOpen-source study\n:\n\n\n\n\nglibc: libc, elf, and dynamic linker.\n.\n\n\nSome juicy information about got/plt.\n\n\nand some notes about current elf format.\n\n\n\n\n\n\nbinutils: gas, static linker, and more.\n.\n\n\n\n\nFPGA Related\n:\n\n\n\n\nMy fpga code and scripts.\n.\n\n\nReadings.\n.\n\n\nXilinx Partial Reconfiguration script.\n.\n\n\nIntepret Xilinx Bitstream.\n.\n\n\nHLS-based ICAP Controller.\n.\n\n\n\n\nAcademic Projects\n:\n\n\n\n\nMSR Singularity.\n.", 
+            "text": "Source code study\n\n\nVersion History\nDate\nDescription\nJan 18, 2020\nInitial\n\n\nThis page links to some of my Github repos.\nSort of a note.\n\n\nOpen-source study\n:\n\n\n\n\nglibc: libc, elf, and dynamic linker.\n\n\nSome juicy information about got/plt\n\n\nand some notes about current elf format\n\n\n\n\n\n\nbinutils: gas, static linker, and more.\n\n\n\n\nFPGA Related\n:\n\n\n\n\nMy fpga code and scripts.\n\n\nReadings.\n\n\nXilinx Partial Reconfiguration script.\n\n\nIntepret Xilinx Bitstream.\n\n\nHLS-based ICAP Controller.\n\n\n\n\nAcademic Projects\n:\n\n\n\n\nMSR Singularity.", 
             "title": "Source Code Study"
         }, 
         {
             "location": "/notes/source_code/#source-code-study", 
-            "text": "Version History Date Description Jan 18, 2020 Initial  This page links to some of my Github repos.\nSort of a note.  Open-source study :   glibc: libc, elf, and dynamic linker. .  Some juicy information about got/plt.  and some notes about current elf format.    binutils: gas, static linker, and more. .   FPGA Related :   My fpga code and scripts. .  Readings. .  Xilinx Partial Reconfiguration script. .  Intepret Xilinx Bitstream. .  HLS-based ICAP Controller. .   Academic Projects :   MSR Singularity. .", 
+            "text": "Version History Date Description Jan 18, 2020 Initial  This page links to some of my Github repos.\nSort of a note.  Open-source study :   glibc: libc, elf, and dynamic linker.  Some juicy information about got/plt  and some notes about current elf format    binutils: gas, static linker, and more.   FPGA Related :   My fpga code and scripts.  Readings.  Xilinx Partial Reconfiguration script.  Intepret Xilinx Bitstream.  HLS-based ICAP Controller.   Academic Projects :   MSR Singularity.", 
             "title": "Source code study"
         }, 
         {
