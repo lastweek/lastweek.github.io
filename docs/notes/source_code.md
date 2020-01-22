@@ -8,22 +8,22 @@
 :whale2:
 
 This page links to some of my Github repos.
-Sort of a note.
 
-*Open-source study*:
+*Read the Open-Source*:
 
-- [glibc: libc, elf, and dynamic linker.](https://github.com/lastweek/source-glibc)
+- [glibc: libc, elf, and dynamic linker](https://github.com/lastweek/source-glibc)
     - Some juicy information about got/plt
     - and some notes about current elf format
-- [binutils: gas, static linker, and more.](https://github.com/lastweek/source-binutils)
+- [binutils: gas, static linker, and more](https://github.com/lastweek/source-binutils)
+- [libvirt: virsh and more](https://github.com/lastweek/source-libvirt)
 
 *FPGA Related*:
 
-- [My fpga code and scripts.](https://github.com/lastweek/fpga_vivado_scripts)
-- [Readings.](https://github.com/lastweek/fpga_readings)
-- [Xilinx Partial Reconfiguration script.](https://github.com/lastweek/fpga_vivado_scripts_pr)
-- [Intepret Xilinx Bitstream.](https://github.com/lastweek/fpga_interpret_bitstream)
-- [HLS-based ICAP Controller.](https://github.com/lastweek/fpga_icap_hls/)
+- [Collection](https://github.com/lastweek/fpga_vivado_scripts)
+- [Readings](https://github.com/lastweek/fpga_readings)
+- [Partial Reconfiguration Building Framework](https://github.com/lastweek/fpga_pr_scripts)
+- [Intepret Xilinx Bitstream](https://github.com/lastweek/fpga_interpret_bitstream)
+- [HLS-based ICAP Controller](https://github.com/lastweek/fpga_icap_hls/)
 
 *Academic Projects*:
 

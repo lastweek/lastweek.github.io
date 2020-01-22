@@ -6,8 +6,8 @@ pages:
 - Home: 'index.md'
 - Notes:
    - 'Cache Coherence':                  'notes/cache_coherence.md'
+   - 'Code Study':                       'notes/source_code.md'
    - 'Benchmarks':                       'notes/benchmark.md'
-   - 'Source Code Study':                'notes/source_code.md'
    - 'Perf Shadows':                     'notes/paper_perf_shadows.md'
    - 'Cheatsheet':                       'misc/cheatsheet.md'
    - 'Linux Articles':                   'notes/linux-articles.md'
