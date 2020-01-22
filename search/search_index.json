@@ -86,6 +86,16 @@
             "title": "Formal Verification"
         }, 
         {
+            "location": "/notes/source_code/", 
+            "text": "Source code study\n\n\nVersion History\nDate\nDescription\nJan 18, 2020\nInitial\n\n\nThis page links to some of my Github repos.\n\n\nRead the Open-Source\n:\n\n\n\n\nglibc: libc, elf, and dynamic linker\n\n\nSome juicy information about got/plt\n\n\nand some notes about current elf format\n\n\n\n\n\n\nbinutils: gas, static linker, and more\n\n\nlibvirt: virsh and more\n\n\n\n\nFPGA Related\n:\n\n\n\n\nCollection\n\n\nReadings\n\n\nPartial Reconfiguration Building Framework\n\n\nIntepret Xilinx Bitstream\n\n\nHLS-based ICAP Controller\n\n\n\n\nAcademic Projects\n:\n\n\n\n\nMSR Singularity.", 
+            "title": "Code Study"
+        }, 
+        {
+            "location": "/notes/source_code/#source-code-study", 
+            "text": "Version History Date Description Jan 18, 2020 Initial  This page links to some of my Github repos.  Read the Open-Source :   glibc: libc, elf, and dynamic linker  Some juicy information about got/plt  and some notes about current elf format    binutils: gas, static linker, and more  libvirt: virsh and more   FPGA Related :   Collection  Readings  Partial Reconfiguration Building Framework  Intepret Xilinx Bitstream  HLS-based ICAP Controller   Academic Projects :   MSR Singularity.", 
+            "title": "Source code study"
+        }, 
+        {
             "location": "/notes/benchmark/", 
             "text": "Benchmarks\n\n\nVersion History\nDate\nDescription\nAug 13, 2019\nUpdate\nAug 03, 2019\nInitial draft\nAreas\n\n\nSynchronization/Concurrency Community\n\n\n\n\nPhoenix (mm)\n\n\nMOSBENCH/Metis (mm)\n\n\nLevelDB\n\n\nwill-it-scale\n\n\nLinux locktorture\n\n\nFilesystems (fs)\n\n\nLiTL, ATC\n16, \nhttps://github.com/multicore-locks/litl\n\n\nReferences\n\n\nShuffleLock, SOSP\n19\n\n\nCompact NUMA-aware Locks, EuroSys\n19\n\n\nfill me in\n\n\n\n\n\n\n\n\nFPGA\n\n\n\n\nRosetta: A Realistic High-Level Synthesis Benchmark Suite for Software Programmable FPGAs, FPGA\n18\n\n\nAmophOS has a lot more.\n\n\n\n\nMisc Information\n\n\n\n\nSystems Benchmarking Crimes", 
             "title": "Benchmarks"
@@ -114,16 +124,6 @@
             "location": "/notes/benchmark/#misc-information", 
             "text": "Systems Benchmarking Crimes", 
             "title": "Misc Information"
-        }, 
-        {
-            "location": "/notes/source_code/", 
-            "text": "Source code study\n\n\nVersion History\nDate\nDescription\nJan 18, 2020\nInitial\n\n\nThis page links to some of my Github repos.\nSort of a note.\n\n\nOpen-source study\n:\n\n\n\n\nglibc: libc, elf, and dynamic linker.\n\n\nSome juicy information about got/plt\n\n\nand some notes about current elf format\n\n\n\n\n\n\nbinutils: gas, static linker, and more.\n\n\n\n\nFPGA Related\n:\n\n\n\n\nMy fpga code and scripts.\n\n\nReadings.\n\n\nXilinx Partial Reconfiguration script.\n\n\nIntepret Xilinx Bitstream.\n\n\nHLS-based ICAP Controller.\n\n\n\n\nAcademic Projects\n:\n\n\n\n\nMSR Singularity.", 
-            "title": "Source Code Study"
-        }, 
-        {
-            "location": "/notes/source_code/#source-code-study", 
-            "text": "Version History Date Description Jan 18, 2020 Initial  This page links to some of my Github repos.\nSort of a note.  Open-source study :   glibc: libc, elf, and dynamic linker.  Some juicy information about got/plt  and some notes about current elf format    binutils: gas, static linker, and more.   FPGA Related :   My fpga code and scripts.  Readings.  Xilinx Partial Reconfiguration script.  Intepret Xilinx Bitstream.  HLS-based ICAP Controller.   Academic Projects :   MSR Singularity.", 
-            "title": "Source code study"
         }, 
         {
             "location": "/notes/paper_perf_shadows/", 
