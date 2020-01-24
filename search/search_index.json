@@ -87,12 +87,12 @@
         }, 
         {
             "location": "/notes/source_code/", 
-            "text": "Source code study\n\n\nVersion History\nDate\nDescription\nJan 18, 2020\nInitial\n\n\nThis page links to some of my Github repos.\n\n\nRead the Open-Source\n:\n\n\n\n\nglibc: libc, elf, and dynamic linker\n\n\nSome juicy information about got/plt\n\n\nand some notes about current elf format\n\n\n\n\n\n\nbinutils: gas, static linker, and more\n\n\nlibvirt: virsh and more\n\n\n\n\nFPGA Related\n:\n\n\n\n\nCollection\n\n\nReadings\n\n\nPartial Reconfiguration Building Framework\n\n\nIntepret Xilinx Bitstream\n\n\nHLS-based ICAP Controller\n\n\n\n\nAcademic Projects\n:\n\n\n\n\nMSR Singularity.", 
+            "text": "Source code study\n\n\nVersion History\nDate\nDescription\nJan 18, 2020\nInitial\n\n\nThis page links to some of my Github repos.\n\n\nRead the Open-Source\n:\n\n\n\n\nglibc: libc, elf, and dynamic linker\n\n\nSome juicy information about got/plt\n\n\nand some notes about current elf format\n\n\n\n\n\n\nbinutils: gas, static linker, and more\n\n\nlibvirt: virsh and more\n\n\nQEMU: how it uses KVM, how it emulates devices and beyond\n\n\n\n\nFPGA Related\n:\n\n\n\n\nCollection\n\n\nReadings\n\n\nPartial Reconfiguration Building Framework\n\n\nIntepret Xilinx Bitstream\n\n\nHLS-based ICAP Controller\n\n\n\n\nAcademic Projects\n:\n\n\n\n\nMSR Singularity.", 
             "title": "Code Study"
         }, 
         {
             "location": "/notes/source_code/#source-code-study", 
-            "text": "Version History Date Description Jan 18, 2020 Initial  This page links to some of my Github repos.  Read the Open-Source :   glibc: libc, elf, and dynamic linker  Some juicy information about got/plt  and some notes about current elf format    binutils: gas, static linker, and more  libvirt: virsh and more   FPGA Related :   Collection  Readings  Partial Reconfiguration Building Framework  Intepret Xilinx Bitstream  HLS-based ICAP Controller   Academic Projects :   MSR Singularity.", 
+            "text": "Version History Date Description Jan 18, 2020 Initial  This page links to some of my Github repos.  Read the Open-Source :   glibc: libc, elf, and dynamic linker  Some juicy information about got/plt  and some notes about current elf format    binutils: gas, static linker, and more  libvirt: virsh and more  QEMU: how it uses KVM, how it emulates devices and beyond   FPGA Related :   Collection  Readings  Partial Reconfiguration Building Framework  Intepret Xilinx Bitstream  HLS-based ICAP Controller   Academic Projects :   MSR Singularity.", 
             "title": "Source code study"
         }, 
         {
