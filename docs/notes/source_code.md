@@ -16,6 +16,7 @@ This page links to some of my Github repos.
     - and some notes about current elf format
 - [binutils: gas, static linker, and more](https://github.com/lastweek/source-binutils)
 - [libvirt: virsh and more](https://github.com/lastweek/source-libvirt)
+- [QEMU: how it uses KVM, how it emulates devices and beyond](https://github.com/lastweek/source-qemu)
 
 *FPGA Related*:
 
