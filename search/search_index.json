@@ -86,9 +86,19 @@
             "title": "Formal Verification"
         }, 
         {
+            "location": "/notes/qemu_kvm/", 
+            "text": "Notes on QEMU and KVM\n\n\n\n\n\n\nGoogle Document Version\n.\n\n\n\n\n\n\nEmbedded Version.", 
+            "title": "QEMU and KVM"
+        }, 
+        {
+            "location": "/notes/qemu_kvm/#notes-on-qemu-and-kvm", 
+            "text": "Google Document Version .    Embedded Version.", 
+            "title": "Notes on QEMU and KVM"
+        }, 
+        {
             "location": "/notes/source_code/", 
             "text": "Source code study\n\n\nVersion History\nDate\nDescription\nJan 18, 2020\nInitial\n\n\nThis page links to some of my Github repos.\n\n\nRead the Open-Source\n:\n\n\n\n\nglibc: libc, elf, and dynamic linker\n\n\nSome juicy information about got/plt\n\n\nand some notes about current elf format\n\n\n\n\n\n\nbinutils: gas, static linker, and more\n\n\nlibvirt: virsh and more\n\n\nQEMU: how it uses KVM, how it emulates devices and beyond\n\n\n\n\nFPGA Related\n:\n\n\n\n\nCollection\n\n\nReadings\n\n\nPartial Reconfiguration Building Framework\n\n\nIntepret Xilinx Bitstream\n\n\nHLS-based ICAP Controller\n\n\n\n\nAcademic Projects\n:\n\n\n\n\nMSR Singularity.", 
-            "title": "Code Study"
+            "title": "Codes"
         }, 
         {
             "location": "/notes/source_code/#source-code-study", 
