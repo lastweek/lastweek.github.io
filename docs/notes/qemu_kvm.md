@@ -16,7 +16,7 @@ The document was orginally written in a Google Document, the following presentat
 is just an embedded version.
 For better readibility, you can also check out the:
 
-- [Google Document Version](https://docs.google.com/document/d/18jeI6TPUT8i6EoLmp40SJfjSYQNReFo2ZPU9_quu6bs/edit?usp=sharing)
+- [Google Document Version](https://docs.google.com/document/d/e/2PACX-1vSsskD0A2XgHoZhaYLAkS7lmCOrfxkGXk1WTovWEAyeoELVdBjrE-NzD8h-NvJfKhxMpUg2aXzaD-XG/pub)
 - [PDF Version](http://lastweek.io/pubs/qemu_kvm_notes.pdf)
 
 <iframe style="width: 100%; height: 800px;" frameborder="1" allowfullscreen 
