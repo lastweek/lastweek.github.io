@@ -1,4 +1,4 @@
-# Notes about QEMU and KVM
+# Notes about Virtualization
 
 ??? note "Version History"
 	|Date|Description|
@@ -8,7 +8,7 @@
 
 :rat:
 
-We read the source code, try to understand their interactions and the function flow.
+We read the source code of QEMU and KVM, try to understand their interactions and the function flow.
 End of the day, you should be able to map your knowledge onto real codes.
 Happy hacking!
 
