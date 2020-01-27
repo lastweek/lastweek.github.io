@@ -16,8 +16,8 @@ The document was orginally written in a Google Document, the following presentat
 is just an embedded version.
 For better readibility, you can also check out the:
 
-- [Google Document Version](https://docs.google.com/document/d/e/2PACX-1vSsskD0A2XgHoZhaYLAkS7lmCOrfxkGXk1WTovWEAyeoELVdBjrE-NzD8h-NvJfKhxMpUg2aXzaD-XG/pub)
-- [PDF Version](http://lastweek.io/pubs/qemu_kvm_notes.pdf)
+- <a href="https://docs.google.com/document/d/e/2PACX-1vSsskD0A2XgHoZhaYLAkS7lmCOrfxkGXk1WTovWEAyeoELVdBjrE-NzD8h-NvJfKhxMpUg2aXzaD-XG/pub" target="_blank">Google Doc Version</a>
+- <a href="http://lastweek.io/pubs/qemu_kvm_notes.pdf" target="_blank">PDF Version</a>
 
 <iframe style="width: 100%; height: 800px;" frameborder="1" allowfullscreen 
     src="https://docs.google.com/document/d/e/2PACX-1vSsskD0A2XgHoZhaYLAkS7lmCOrfxkGXk1WTovWEAyeoELVdBjrE-NzD8h-NvJfKhxMpUg2aXzaD-XG/pub?embedded=true">        
