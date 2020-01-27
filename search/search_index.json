@@ -87,12 +87,12 @@
         }, 
         {
             "location": "/notes/qemu_kvm/", 
-            "text": "Notes about QEMU and KVM\n\n\nVersion History\nDate\nDescription\nJan 26, 2020\nMinor adjustment\nJan 25, 2020\nInitial Document\n  \n\n\nWe read the source code, try to understand their interactions and the function flow.\nEnd of the day, you should be able to map your knowledge onto real codes.\nHappy hacking!\n\n\nThe original document was written in a Google Doc, the following presentation\nis an embedded version.\nFor better readibility, you can check out the \nGoogle Document Version\n.", 
+            "text": "Notes about QEMU and KVM\n\n\nVersion History\nDate\nDescription\nJan 26, 2020\nMinor adjustment\nJan 25, 2020\nInitial Document\n\n\nWe read the source code, try to understand their interactions and the function flow.\nEnd of the day, you should be able to map your knowledge onto real codes.\nHappy hacking!\n\n\nThe document was orginally written in a Google Document, the following presentation\nis just an embedded version.\nFor better readibility, you can also check out the:\n\n\n\n\nGoogle Document Version\n\n\nPDF Version", 
             "title": "QEMU and KVM"
         }, 
         {
             "location": "/notes/qemu_kvm/#notes-about-qemu-and-kvm", 
-            "text": "Version History Date Description Jan 26, 2020 Minor adjustment Jan 25, 2020 Initial Document     We read the source code, try to understand their interactions and the function flow.\nEnd of the day, you should be able to map your knowledge onto real codes.\nHappy hacking!  The original document was written in a Google Doc, the following presentation\nis an embedded version.\nFor better readibility, you can check out the  Google Document Version .", 
+            "text": "Version History Date Description Jan 26, 2020 Minor adjustment Jan 25, 2020 Initial Document  We read the source code, try to understand their interactions and the function flow.\nEnd of the day, you should be able to map your knowledge onto real codes.\nHappy hacking!  The document was orginally written in a Google Document, the following presentation\nis just an embedded version.\nFor better readibility, you can also check out the:   Google Document Version  PDF Version", 
             "title": "Notes about QEMU and KVM"
         }, 
         {
