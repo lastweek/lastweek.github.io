@@ -6,8 +6,8 @@ pages:
 - Home: 'index.md'
 - Notes:
    - 'Cache Coherence':                  'notes/cache_coherence.md'
-   - 'Virtualization':                   'notes/qemu_kvm.md'
-   - 'Codes':                       'notes/source_code.md'
+   - 'Virtualization':                   'notes/virt.md'
+   - 'Codes':                            'notes/source_code.md'
    - 'Benchmarks':                       'notes/benchmark.md'
    - 'Perf Shadows':                     'notes/paper_perf_shadows.md'
    - 'Cheatsheet':                       'misc/cheatsheet.md'
