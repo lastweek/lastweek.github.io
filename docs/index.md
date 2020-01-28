@@ -38,7 +38,7 @@ I work on distributed system, kernel, and FPGA. Datacenter in general.
 	<br> [[Source Code]](https://github.com/WukLab/Hotpot)
 
 ??? note "Workshops"
-	[W4] [__Challenges in Building and Deploying Disaggregated Persistent Memory__]()
+	[W4] [__Challenges in Building and Deploying Disaggregated Persistent Memory__](http://lastweek.io/pubs/dpm-nvmw19.pdf)
 	<br> __Yizhou Shan__, Yutong Huang, Yiying Zhang
 	<br> _10th Annual Non-Volatile Memories Workshop (__NVMW'19__)_
 
