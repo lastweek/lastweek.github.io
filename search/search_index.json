@@ -86,12 +86,12 @@
             "title": "Formal Verification"
         }, 
         {
-            "location": "/notes/qemu_kvm/", 
+            "location": "/notes/virt/", 
             "text": "Notes about Virtualization\n\n\nVersion History\nDate\nDescription\nJan 26, 2020\nMinor adjustment\nJan 25, 2020\nInitial Document\n\n\nWe read the source code of QEMU and KVM, try to understand their interactions and the function flow.\nEnd of the day, you should be able to map your knowledge onto real codes.\nHappy hacking!\n\n\nThe document was orginally written in a Google Document, the following presentation\nis just an embedded version.\nFor better readibility, you can also check out the:\n\n\n\n\nGoogle Doc Version\n\n\nPDF Version", 
             "title": "Virtualization"
         }, 
         {
-            "location": "/notes/qemu_kvm/#notes-about-virtualization", 
+            "location": "/notes/virt/#notes-about-virtualization", 
             "text": "Version History Date Description Jan 26, 2020 Minor adjustment Jan 25, 2020 Initial Document  We read the source code of QEMU and KVM, try to understand their interactions and the function flow.\nEnd of the day, you should be able to map your knowledge onto real codes.\nHappy hacking!  The document was orginally written in a Google Document, the following presentation\nis just an embedded version.\nFor better readibility, you can also check out the:   Google Doc Version  PDF Version", 
             "title": "Notes about Virtualization"
         }, 
