@@ -13,22 +13,23 @@ This page links to some of my Github repos.
 *Read Open-Source Code*:
 
 - [glibc: libc, elf, and dynamic linker](https://github.com/lastweek/source-glibc)
-    - Some juicy information about got/plt
-    - and some notes about current elf format
+	- Some juicy information about GOT/PLT
+	- and explains what has happend before main() is called
 - [binutils: gas, static linker, and more](https://github.com/lastweek/source-binutils)
+	- assembler is amazing
+	- static linker.. the magic thing is its linker script!
 - [CRIU: Checkpoint and Restore in Userspace](https://github.com/lastweek/source-criu)
-    - Very high qualify and super interesting
 - Virtualization
-    - [libvirt: virsh and more](https://github.com/lastweek/source-libvirt)
-    - [QEMU](https://github.com/lastweek/source-qemu)
-        - Check my [notes](http://lastweek.io/notes/virt/)
+	- [libvirt: virsh and more](https://github.com/lastweek/source-libvirt)
+	- [QEMU](https://github.com/lastweek/source-qemu)
+        	- Check my [notes](http://lastweek.io/notes/virt/)
 - Network
-    - [rdma-core](https://github.com/lastweek/source-rdma-core)
-        - Userspace IB verbs library (libibverbs)
-	- Commands such as `ibv_devinfo`, `rc_pingpong`
-	- Beautiful code
-    - [Linux kernel Infiniband stack]()
-    - [DPDK](https://github.com/lastweek/source-dpdk)
+	- [rdma-core](https://github.com/lastweek/source-rdma-core)
+		- Userspace IB verbs library (libibverbs)
+		- Commands such as `ibv_devinfo`, `rc_pingpong`
+		- Beautiful code
+	- [Linux kernel Infiniband stack]()
+	- [DPDK](https://github.com/lastweek/source-dpdk)
 
 *Operating Systems*:
 
