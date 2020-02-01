@@ -16,12 +16,16 @@ This page links to some of my Github repos.
     - Some juicy information about got/plt
     - and some notes about current elf format
 - [binutils: gas, static linker, and more](https://github.com/lastweek/source-binutils)
-- [libvirt: virsh and more](https://github.com/lastweek/source-libvirt)
-- [QEMU](https://github.com/lastweek/source-qemu)
-    - Check my [notes](http://lastweek.io/notes/virt/)
 - [CRIU: Checkpoint and Restore in Userspace](https://github.com/lastweek/source-criu)
     - Very high qualify and super interesting
-- [DPDK](https://github.com/lastweek/source-dpdk)
+- Virtualization
+    - [libvirt: virsh and more](https://github.com/lastweek/source-libvirt)
+    - [QEMU](https://github.com/lastweek/source-qemu)
+        - Check my [notes](http://lastweek.io/notes/virt/)
+- Network
+    - [DPDK](https://github.com/lastweek/source-dpdk)
+    - [rdma-core](https://github.com/lastweek/source-rdma-core)
+    - Of course also the kernel IB stack
 
 *Operating Systems*:
 
