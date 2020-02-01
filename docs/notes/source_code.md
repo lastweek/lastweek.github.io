@@ -23,9 +23,12 @@ This page links to some of my Github repos.
     - [QEMU](https://github.com/lastweek/source-qemu)
         - Check my [notes](http://lastweek.io/notes/virt/)
 - Network
-    - [DPDK](https://github.com/lastweek/source-dpdk)
     - [rdma-core](https://github.com/lastweek/source-rdma-core)
-    - Of course also the kernel IB stack
+        - Userspace IB verbs library (libibverbs)
+	- Commands such as `ibv_devinfo`, `rc_pingpong`
+	- Beautiful code
+    - [Linux kernel Infiniband stack]()
+    - [DPDK](https://github.com/lastweek/source-dpdk)
 
 *Operating Systems*:
 
