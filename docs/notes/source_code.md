@@ -17,11 +17,17 @@ This page links to some of my Github repos.
     - and some notes about current elf format
 - [binutils: gas, static linker, and more](https://github.com/lastweek/source-binutils)
 - [libvirt: virsh and more](https://github.com/lastweek/source-libvirt)
-- [QEMU: how it uses KVM, how it emulates devices and beyond](https://github.com/lastweek/source-qemu)
-    - Check my [notes on QEMU/KVM](http://lastweek/notes/virt)
+- [QEMU](https://github.com/lastweek/source-qemu)
+    - Check my [notes](http://lastweek.io/notes/virt/)
 - [CRIU: Checkpoint and Restore in Userspace](https://github.com/lastweek/source-criu)
     - Very high qualify and super interesting
 - [DPDK](https://github.com/lastweek/source-dpdk)
+
+*Operating Systems*:
+
+- [Linux 0.0.1](https://github.com/lastweek/linux-0.01)
+- [Plan 9 OS](https://github.com/lastweek/source-plan9)
+- [MSR Singularity.](https://github.com/lastweek/source-singularity)
 
 *FPGA Related*:
 
@@ -30,7 +36,3 @@ This page links to some of my Github repos.
 - [Partial Reconfiguration Building Framework](https://github.com/lastweek/fpga_pr_scripts)
 - [Intepret Xilinx Bitstream](https://github.com/lastweek/fpga_interpret_bitstream)
 - [HLS-based ICAP Controller](https://github.com/lastweek/fpga_icap_hls/)
-
-*Academic Projects*:
-
-- [MSR Singularity.](https://github.com/lastweek/source-singularity)
