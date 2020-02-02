@@ -1153,8 +1153,19 @@
                 
                 <h1 id="source-code-study">Source code study<a class="headerlink" href="#source-code-study" title="Permanent link">&para;</a></h1>
 <details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Jan 31, 2020</td><td>Add some good stuff</td></tr><tr><td align="left">Jan 18, 2020</td><td>Initial</td></tr></tbody></table></details><p><img alt="🐋" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f40b.svg" title=":whale2:" /></p>
-<p>This page links to some of my Github repos.</p>
-<p><em>Read Open-Source Code</em>:</p>
+<p>Beautiful code is art.
+Recently I started forking good open source code
+into my own Github account and started casual reading and taking notes.</p>
+<p>One of the major motivation is to take notes, honestly.
+For some low-level projects (e.g., GRUB2, rdma-core),
+I&rsquo;ve already managed to understand them before,
+but I reget I didn&rsquo;t take any notes or anything.</p>
+<p>In general, GNU projects are very hard to read, they have
+their own coding style which isn&rsquo;t for everyone.
+My personal favorite is linux kernel coding style,
+and many linux-related projects follow this, e.g., CRIU, rdma-core.</p>
+<p>Either way, happy hacking!</p>
+<p><em>Open-Source Code</em>:</p>
 <ul>
 <li><a href="https://github.com/lastweek/source-glibc">glibc: libc, elf, and dynamic linker</a><ul>
 <li>Some juicy information about GOT/PLT</li>
@@ -1167,6 +1178,13 @@
 </ul>
 </li>
 <li><a href="https://github.com/lastweek/source-criu">CRIU: Checkpoint and Restore in Userspace</a></li>
+<li><a href="https://github.com/lastweek/source-grub2">GRUB2: bootloader</a><ul>
+<li>Learn how modern bootloader works.</li>
+<li>Detailed analysis of Linux booting sequence (how it transit from
+  real-mode to protected mode, and finally to 64-bit mode,
+  how to navigate Linux source code etc.)</li>
+</ul>
+</li>
 <li>Virtualization<ul>
 <li><a href="https://github.com/lastweek/source-libvirt">libvirt: virsh and more</a></li>
 <li><a href="https://github.com/lastweek/source-qemu">QEMU</a>
@@ -1175,9 +1193,12 @@
 </li>
 <li>Network<ul>
 <li><a href="https://github.com/lastweek/source-rdma-core">rdma-core</a><ul>
-<li>Userspace IB verbs library (libibverbs)</li>
+<li>Userspace IB verbs library (e.g., libibverbs)</li>
 <li>Commands such as <code class="codehilite">ibv_devinfo</code>, <code class="codehilite">rc_pingpong</code></li>
-<li>Beautiful code</li>
+<li>Learn how userspace IB layer communicate with kernel, but also bypass kernel.
+  The technique replies on <code class="codehilite">ioctl()</code> and <code class="codehilite">mmap()</code>, standard.
+  But the ABI interface (i.e., data structures) are quite complex.</li>
+<li>This is beautiful code</li>
 </ul>
 </li>
 <li><a href="">Linux kernel Infiniband stack</a></li>
