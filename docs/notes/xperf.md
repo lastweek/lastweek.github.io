@@ -1,4 +1,4 @@
-# Page Fault Ring Switch Overhead
+# x86 Ring Switch Overhead (Page Fault version)
 
 ??? note "Version History"
 	|Date|Description|
