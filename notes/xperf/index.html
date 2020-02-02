@@ -278,13 +278,6 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" title="Purpose" class="md-nav__link">
-    Purpose
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#numbers" title="Numbers" class="md-nav__link">
     Numbers
   </a>
@@ -292,8 +285,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mechanism" title="Mechanism" class="md-nav__link">
-    Mechanism
+  <a href="#mechanisms" title="Mechanisms" class="md-nav__link">
+    Mechanisms
   </a>
   
     <nav class="md-nav">
@@ -1248,13 +1241,6 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" title="Purpose" class="md-nav__link">
-    Purpose
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#numbers" title="Numbers" class="md-nav__link">
     Numbers
   </a>
@@ -1262,8 +1248,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mechanism" title="Mechanism" class="md-nav__link">
-    Mechanism
+  <a href="#mechanisms" title="Mechanisms" class="md-nav__link">
+    Mechanisms
   </a>
   
     <nav class="md-nav">
@@ -1372,17 +1358,10 @@ The code is <a href="https://github.com/lastweek/linux-xperf-4.19.44">here</a>.<
 <li>Virtilization adds more overhead</li>
 </ul>
 <p>The following content is adopted from the Github repo.</p>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This repo is a slighly hacked linux kernel that can be used to measure
-user and kernel space crossing latency in CPU cycles. Crossing meant
-ring level change within CPU, e.g., SYSCALL, interrupt, or exceptions.</p>
-<p>This repo only measure the crossing overhead of page fault, which should
-be similar to all other exceptions within x86 IDT tables. Syscall crossing
-overhead is not measured, but can be measured in a similar fashion.</p>
-<p>But do note, the numbers reported by this repo are slightly larger than the
+<h2 id="numbers">Numbers<a class="headerlink" href="#numbers" title="Permanent link">&para;</a></h2>
+<p>The numbers reported by this repo are slightly larger than the
 real crossing overhead because some instructions are needed in between
 to do bookkeeping. Check below for details.</p>
-<h2 id="numbers">Numbers<a class="headerlink" href="#numbers" title="Permanent link">&para;</a></h2>
 <p>Some preliminary numbers measured on top of Intel Xeon E5-v3 2.4GHz</p>
 <table>
 <thead>
@@ -1405,7 +1384,7 @@ to do bookkeeping. Check below for details.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="mechanism">Mechanism<a class="headerlink" href="#mechanism" title="Permanent link">&para;</a></h2>
+<h2 id="mechanisms">Mechanisms<a class="headerlink" href="#mechanisms" title="Permanent link">&para;</a></h2>
 <h3 id="files-changed">Files changed<a class="headerlink" href="#files-changed" title="Permanent link">&para;</a></h3>
 <p>The whole patch is <a href="https://github.com/lastweek/linux-xperf-4.19.44/blob/master/xperf.patch"><code class="codehilite">xperf.patch</code></a></p>
 <ul>
