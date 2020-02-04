@@ -1152,7 +1152,7 @@
                 
                 
                 <h1 id="source-code-study">Source code study<a class="headerlink" href="#source-code-study" title="Permanent link">&para;</a></h1>
-<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Jan 31, 2020</td><td>Add some good stuff</td></tr><tr><td align="left">Jan 18, 2020</td><td>Initial</td></tr></tbody></table></details><p><img alt="🐋" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f40b.svg" title=":whale2:" /></p>
+<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Feb 4, 2020</td><td>add io_uring, firecracker</td></tr><tr><td align="left">Jan 31, 2020</td><td>Add some good stuff</td></tr><tr><td align="left">Jan 18, 2020</td><td>Initial</td></tr></tbody></table></details><p><img alt="🐋" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f40b.svg" title=":whale2:" /></p>
 <p>Beautiful code is art.
 Recently I started forking good open source code
 into my own Github account and started casual reading and taking notes.</p>
@@ -1165,7 +1165,7 @@ their own coding style which isn&rsquo;t for everyone.
 My personal favorite is linux kernel coding style,
 and many linux-related projects follow this, e.g., CRIU, rdma-core.</p>
 <p>Either way, happy hacking!</p>
-<p><em>Open-Source Code</em>:</p>
+<p><em>Misc</em></p>
 <ul>
 <li><a href="https://github.com/lastweek/source-glibc">glibc: libc, elf, and dynamic linker</a><ul>
 <li>Some juicy information about GOT/PLT</li>
@@ -1185,13 +1185,25 @@ and many linux-related projects follow this, e.g., CRIU, rdma-core.</p>
   how to navigate Linux source code etc.)</li>
 </ul>
 </li>
-<li>Virtualization<ul>
-<li><a href="https://github.com/lastweek/source-libvirt">libvirt: virsh and more</a></li>
-<li><a href="https://github.com/lastweek/source-qemu">QEMU</a>
-        - Check my <a href="http://lastweek.io/notes/virt/">notes</a></li>
+<li><a href="https://kernel.dk/io_uring.pdf">io_uring</a><ul>
+<li><a href="https://github.com/axboe/liburing">user liburing</a></li>
+<li><a href="https://github.com/torvalds/linux/blob/master/fs/io_uring.c">kernel io_uring.c</a></li>
 </ul>
 </li>
-<li>Network<ul>
+</ul>
+<p><em>Virtualization</em></p>
+<ul>
+<li><a href="https://github.com/lastweek/source-libvirt">libvirt: virsh and more</a></li>
+<li><a href="https://github.com/lastweek/source-qemu">QEMU</a><ul>
+<li>Check my <a href="http://lastweek.io/notes/virt/">notes</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/lastweek/source-firecracker">Firecracker</a></li>
+<li><a href="https://github.com/rust-vmm/community">rust-vmm</a></li>
+<li><a href="https://github.com/cloud-hypervisor/cloud-hypervisor">cloud-hypervisor</a></li>
+</ul>
+<p><em>Network</em></p>
+<ul>
 <li><a href="https://github.com/lastweek/source-rdma-core">rdma-core</a><ul>
 <li>Userspace IB verbs library (e.g., libibverbs)</li>
 <li>Commands such as <code class="codehilite">ibv_devinfo</code>, <code class="codehilite">rc_pingpong</code></li>
@@ -1201,10 +1213,8 @@ and many linux-related projects follow this, e.g., CRIU, rdma-core.</p>
 <li>This is beautiful code</li>
 </ul>
 </li>
-<li><a href="">Linux kernel Infiniband stack</a></li>
+<li><a href="https://github.com/torvalds/linux/tree/master/drivers/infiniband">Kernel Infiniband stack</a></li>
 <li><a href="https://github.com/lastweek/source-dpdk">DPDK</a></li>
-</ul>
-</li>
 </ul>
 <p><em>Operating Systems</em>:</p>
 <ul>
