@@ -3,6 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Feb 4, 2020| add io_uring, firecracker|
 	|Jan 31, 2020| Add some good stuff |
 	|Jan 18, 2020| Initial|
 
