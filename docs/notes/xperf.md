@@ -36,21 +36,11 @@ Takeaways:
 
 The following content is adopted from the Github repo.
 
-## Purpose
+## Numbers
 
-This repo is a slighly hacked linux kernel that can be used to measure
-user and kernel space crossing latency in CPU cycles. Crossing meant
-ring level change within CPU, e.g., SYSCALL, interrupt, or exceptions.
-
-This repo only measure the crossing overhead of page fault, which should
-be similar to all other exceptions within x86 IDT tables. Syscall crossing
-overhead is not measured, but can be measured in a similar fashion.
-
-But do note, the numbers reported by this repo are slightly larger than the
+The numbers reported by this repo are slightly larger than the
 real crossing overhead because some instructions are needed in between
 to do bookkeeping. Check below for details.
-
-## Numbers
 
 Some preliminary numbers measured on top of Intel Xeon E5-v3 2.4GHz
 
@@ -59,8 +49,7 @@ Some preliminary numbers measured on top of Intel Xeon E5-v3 2.4GHz
 | VM| ~600 | ~370 |
 |Bare-metal| ~440| ~270|
 
-
-## Mechanism
+## Mechanisms
 
 ### Files changed
 

@@ -24,7 +24,8 @@ and many linux-related projects follow this, e.g., CRIU, rdma-core.
 
 Either way, happy hacking!
 
-*Open-Source Code*:
+
+*Misc*
 
 - [glibc: libc, elf, and dynamic linker](https://github.com/lastweek/source-glibc)
 	- Some juicy information about GOT/PLT
@@ -38,20 +39,30 @@ Either way, happy hacking!
 	- Detailed analysis of Linux booting sequence (how it transit from
 	  real-mode to protected mode, and finally to 64-bit mode,
 	  how to navigate Linux source code etc.)
-- Virtualization
-	- [libvirt: virsh and more](https://github.com/lastweek/source-libvirt)
-	- [QEMU](https://github.com/lastweek/source-qemu)
-        	- Check my [notes](http://lastweek.io/notes/virt/)
-- Network
-	- [rdma-core](https://github.com/lastweek/source-rdma-core)
-		- Userspace IB verbs library (e.g., libibverbs)
-		- Commands such as `ibv_devinfo`, `rc_pingpong`
-		- Learn how userspace IB layer communicate with kernel, but also bypass kernel.
-		  The technique replies on `ioctl()` and `mmap()`, standard.
-		  But the ABI interface (i.e., data structures) are quite complex.
-		- This is beautiful code
-	- [Linux kernel Infiniband stack]()
-	- [DPDK](https://github.com/lastweek/source-dpdk)
+- [io_uring](https://kernel.dk/io_uring.pdf)
+	- [user liburing](https://github.com/axboe/liburing)
+	- [kernel io_uring.c](https://github.com/torvalds/linux/blob/master/fs/io_uring.c)
+
+*Virtualization*
+
+- [libvirt: virsh and more](https://github.com/lastweek/source-libvirt)
+- [QEMU](https://github.com/lastweek/source-qemu)
+	- Check my [notes](http://lastweek.io/notes/virt/)
+- [Firecracker](https://github.com/lastweek/source-firecracker)
+- [rust-vmm](https://github.com/rust-vmm/community)
+- [cloud-hypervisor](https://github.com/cloud-hypervisor/cloud-hypervisor)
+
+*Network*
+
+- [rdma-core](https://github.com/lastweek/source-rdma-core)
+	- Userspace IB verbs library (e.g., libibverbs)
+	- Commands such as `ibv_devinfo`, `rc_pingpong`
+	- Learn how userspace IB layer communicate with kernel, but also bypass kernel.
+	  The technique replies on `ioctl()` and `mmap()`, standard.
+	  But the ABI interface (i.e., data structures) are quite complex.
+	- This is beautiful code
+- [Kernel Infiniband stack](https://github.com/torvalds/linux/tree/master/drivers/infiniband)
+- [DPDK](https://github.com/lastweek/source-dpdk)
 
 *Operating Systems*:
 
