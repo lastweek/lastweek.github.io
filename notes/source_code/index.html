@@ -1211,10 +1211,23 @@ and many linux-related projects follow this, e.g., CRIU, rdma-core.</p>
   The technique replies on <code class="codehilite">ioctl()</code> and <code class="codehilite">mmap()</code>, standard.
   But the ABI interface (i.e., data structures) are quite complex.</li>
 <li>This is beautiful code</li>
+<li><a href="https://github.com/torvalds/linux/tree/master/drivers/infiniband">Kernel Infiniband stack</a></li>
 </ul>
 </li>
-<li><a href="https://github.com/torvalds/linux/tree/master/drivers/infiniband">Kernel Infiniband stack</a></li>
-<li><a href="https://github.com/lastweek/source-dpdk">DPDK</a></li>
+<li><a href="https://github.com/lastweek/source-dpdk">DPDK</a><ul>
+<li>DPDK uses VFIO to directly access physical device.
+Just like how we directly assign device to guest OS in QEMU.</li>
+<li>Even though both DPDK and RDMA bypass kernel, their control
+path is very different. For DPDK, there is a complete device
+driver int the user space, and this driver communicate with the device via MMIO.
+After VFIO ioctls, all data and control path bypass kernel.
+For rdma-core, a lot control-path IB verbs (e.g., create_pd, create_cq) communicate with kernel via Infiniband device file ioctl.
+And you can see all those uverb hanlders in <code class="codehilite">drivers/infiniband/core/uverbs.c</code>
+Those control verbs will mmap some pages between user and kernel,
+so all following datapath IB verbs (e.g., post_send) will just bypass kernel
+and talk to device MMIO directly.</li>
+</ul>
+</li>
 </ul>
 <p><em>Operating Systems</em>:</p>
 <ul>
