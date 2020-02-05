@@ -62,8 +62,19 @@ Either way, happy hacking!
 	  The technique replies on `ioctl()` and `mmap()`, standard.
 	  But the ABI interface (i.e., data structures) are quite complex.
 	- This is beautiful code
-- [Kernel Infiniband stack](https://github.com/torvalds/linux/tree/master/drivers/infiniband)
+	- [Kernel Infiniband stack](https://github.com/torvalds/linux/tree/master/drivers/infiniband)
 - [DPDK](https://github.com/lastweek/source-dpdk)
+	- DPDK uses VFIO to directly access physical device.
+	Just like how we directly assign device to guest OS in QEMU.
+	- Even though both DPDK and RDMA bypass kernel, their control
+	path is very different. For DPDK, there is a complete device
+	driver int the user space, and this driver communicate with the device via MMIO.
+	After VFIO ioctls, all data and control path bypass kernel.
+	For rdma-core, a lot control-path IB verbs (e.g., create_pd, create_cq) communicate with kernel via Infiniband device file ioctl.
+	And you can see all those uverb hanlders in `drivers/infiniband/core/uverbs.c`
+	Those control verbs will mmap some pages between user and kernel,
+	so all following datapath IB verbs (e.g., post_send) will just bypass kernel
+	and talk to device MMIO directly.
 
 *Operating Systems*:
 
