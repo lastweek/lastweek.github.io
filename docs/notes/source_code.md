@@ -68,13 +68,15 @@ Either way, happy hacking!
 	Just like how we directly assign device to guest OS in QEMU.
 	- Even though both DPDK and RDMA bypass kernel, their control
 	path is very different. For DPDK, there is a complete device
-	driver int the user space, and this driver communicate with the device via MMIO.
+	driver in the user space, and this driver communicate with the device via MMIO.
 	After VFIO ioctls, all data and control path bypass kernel.
 	For rdma-core, a lot control-path IB verbs (e.g., create_pd, create_cq) communicate with kernel via Infiniband device file ioctl.
 	And you can see all those uverb hanlders in `drivers/infiniband/core/uverbs.c`
 	Those control verbs will mmap some pages between user and kernel,
 	so all following datapath IB verbs (e.g., post_send) will just bypass kernel
-	and talk to device MMIO directly.
+	and talk to device MMIO directly. Although rdma-core also has some vendor-specific
+	"drivers", but this is really different from the above DPDK's userspace PCIe driver, per se.
+	Userspace "rdma-core" vendor-driver deals with the kernel devel vendor-level driver details.
 
 *Operating Systems*:
 
