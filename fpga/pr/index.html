@@ -40,7 +40,7 @@
     
     
       
-        <title>Partial Reconfiguration Explained - Yizhou Shan's Home Page</title>
+        <title>Morphous PR - Yizhou Shan's Home Page</title>
       
     
     
@@ -73,7 +73,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#partial-reconfiguration-explained" tabindex="1" class="md-skip">
+      <a href="#morphous-dynamic-sized-partial-reconfiguration" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -99,7 +99,7 @@
                 Yizhou Shan's Home Page
               </span>
               <span class="md-header-nav__topic">
-                Partial Reconfiguration Explained
+                Morphous PR
               </span>
             
           
@@ -429,18 +429,6 @@
           
           
 
-
-  <li class="md-nav__item">
-    <a href="../vivado/" title="Vivado Practice" class="md-nav__link">
-      Vivado Practice
-    </a>
-  </li>
-
-        
-          
-          
-          
-
   
 
 
@@ -451,10 +439,22 @@
       
     
     
-    <a href="./" title="Partial Reconfiguration Explained" class="md-nav__link md-nav__link--active">
-      Partial Reconfiguration Explained
+    <a href="./" title="Morphous PR" class="md-nav__link md-nav__link--active">
+      Morphous PR
     </a>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../vivado/" title="Vivado Practice" class="md-nav__link">
+      Vivado Practice
+    </a>
   </li>
 
         
@@ -1151,9 +1151,15 @@
               
                 
                 
-                <h1 id="partial-reconfiguration-explained">Partial Reconfiguration Explained<a class="headerlink" href="#partial-reconfiguration-explained" title="Permanent link">&para;</a></h1>
+                <h1 id="morphous-dynamic-sized-partial-reconfiguration">Morphous (Dynamic-sized) Partial Reconfiguration<a class="headerlink" href="#morphous-dynamic-sized-partial-reconfiguration" title="Permanent link">&para;</a></h1>
 <p><img alt="🐂" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f402.svg" title=":ox:" /></p>
-<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Oct 31, 2019</td><td>Created</td></tr></tbody></table></details><p>Everything you want to know about PR. Stay tuned. I will summarize when I have time. Stay tuned.</p>
+<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Feb 6, 2020</td><td>Created</td></tr></tbody></table></details><p>Traditional partital reconfiguration (PR) is limited to using fix-sized PR regions.
+With one particular static bitstream, users are restricted to only have few pre-defined PR regions.
+If you wish to extend the PR region size, a whole chip reprogram is needed to burn a new static bitstream.</p>
+<p>This practice is suggested by FPGA vendors, and there are reasons behind it.</p>
+<p>However, during our experiment, we found that it is possible to have dynamic-sized PR regions
+with one static design. The mechanism is quite straightforward with some simple hacks.</p>
+<p>I will use a MicroBlaze-based design to demonstrate the approach with a VCU118 board. Stay tuned.</p>
                 
                   
                 
@@ -1192,7 +1198,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../vivado/" title="Vivado Practice" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../bitstream/" title="Bitstream Explained" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1201,19 +1207,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Vivado Practice
+                Bitstream Explained
               </span>
             </div>
           </a>
         
         
-          <a href="../hls_axi/" title="Efficient AXI-MM" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../vivado/" title="Vivado Practice" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Efficient AXI-MM
+                Vivado Practice
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
