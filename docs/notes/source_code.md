@@ -77,6 +77,11 @@ Either way, happy hacking!
 	and talk to device MMIO directly. Although rdma-core also has some vendor-specific
 	"drivers", but this is really different from the above DPDK's userspace PCIe driver, per se.
 	Userspace "rdma-core" vendor-driver deals with the kernel devel vendor-level driver details.
+- [Verilog-Ethernet](https://github.com/lastweek/source-verilog-ethernet)
+	- Self-made PHY, MAC IPs
+	- ARP, IP, UDP stack
+	- [Alex Forencich](https://github.com/alexforencich) is a phenomenon Verilog hacker.
+- [Corundum: an FPGA-based NIC](https://github.com/ucsdsysnet/corundum)
 
 *Operating Systems*:
 
