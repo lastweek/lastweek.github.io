@@ -77,10 +77,15 @@ Either way, happy hacking!
 	and talk to device MMIO directly. Although rdma-core also has some vendor-specific
 	"drivers", but this is really different from the above DPDK's userspace PCIe driver, per se.
 	Userspace "rdma-core" vendor-driver deals with the kernel devel vendor-level driver details.
+	- FWIW, if you are using a Mellanox VPI card in Ethernet mode (e.g. CX3-5),
+	  DPDK will use its built-in mlx driver, which further use libibverbs,
+	  which further relies on kernel IB stack. It's not a complete user solution somehow.
+	  Note that DPDK built-in mlx driver uses RAW_PACKET QPs.
+	- ![image](../images/dpdk_ibverbs.png)
 - [Verilog-Ethernet](https://github.com/lastweek/source-verilog-ethernet)
 	- Self-made PHY, MAC IPs
 	- ARP, IP, UDP stack
-	- [Alex Forencich](https://github.com/alexforencich) is a phenomenon Verilog hacker.
+	- [Alex Forencich](https://github.com/alexforencich) is a phenomenon Verilog hacker
 - [Corundum: an FPGA-based NIC](https://github.com/ucsdsysnet/corundum)
 
 *Operating Systems*:

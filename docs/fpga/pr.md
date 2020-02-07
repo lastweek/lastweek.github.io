@@ -1,4 +1,4 @@
-# Dynamic-sized Partial Reconfiguration
+# Morphous (Dynamic-sized) Partial Reconfiguration
 
 :ox:
 

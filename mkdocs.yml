@@ -23,7 +23,7 @@ pages:
 - FPGA:
    - 'Papers':                      'notes/paper_fpga.md'
    - 'Bitstream Explained':               'fpga/bitstream.md'
-   - 'Dynamic-sized PR':                'fpga/pr.md'
+   - 'Morphous PR':                'fpga/pr.md'
    - 'Vivado Practice':                   'fpga/vivado.md'
    - 'Efficient AXI-MM':      'fpga/hls_axi.md'
 - LegoOS:
