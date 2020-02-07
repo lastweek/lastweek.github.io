@@ -1228,6 +1228,10 @@ so all following datapath IB verbs (e.g., post_send) will just bypass kernel
 and talk to device MMIO directly. Although rdma-core also has some vendor-specific
 &ldquo;drivers&rdquo;, but this is really different from the above DPDK&rsquo;s userspace PCIe driver, per se.
 Userspace &ldquo;rdma-core&rdquo; vendor-driver deals with the kernel devel vendor-level driver details.</li>
+<li>FWIW, if you are using a Mellanox VPI card in Ethernet mode (e.g. CX3-5),
+  DPDK will use its built-in mlx driver, which further use libibverbs,
+  which further relies on kernel IB stack. It&rsquo;s not a complete user solution somehow.
+  Note that DPDK built-in mlx driver uses RAW_PACKET QPs.</li>
 </ul>
 </li>
 <li><a href="https://github.com/lastweek/source-verilog-ethernet">Verilog-Ethernet</a><ul>
