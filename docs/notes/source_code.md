@@ -44,6 +44,17 @@ Either way, happy hacking!
 	- [user liburing](https://github.com/axboe/liburing)
 	- [kernel io_uring.c](https://github.com/torvalds/linux/blob/master/fs/io_uring.c)
 
+*Firmware*
+
+- [SeaBIOS: the default BIOS used by QEMU](https://github.com/lastweek/source-firmware-seabios)
+- [qboot: an alternative and lightweight BIOS for QEMU](https://github.com/lastweek/source-firmware-qboot)
+    - Those are massive hackers, respect.
+    - My experience about BIOS is calling them while the kernel (LegoOS) is running at 16-bit.
+      BIOS *is* the OS for a just-booted kernel. I remember the lower 1MB is never cleared,
+      maybe we could invoke the BIOS at 32 or 64-bit mode?
+- A book: `Beyond BIOS Developing with the Unified Extensible Firmware Interface`.
+
+
 *Virtualization*
 
 - [libvirt: virsh and more](https://github.com/lastweek/source-libvirt)
@@ -93,6 +104,7 @@ Either way, happy hacking!
 - [Linux 0.0.1](https://github.com/lastweek/linux-0.01)
 - [Plan 9 OS](https://github.com/lastweek/source-plan9)
 - [MSR Singularity.](https://github.com/lastweek/source-singularity)
+- [OSv. A lightweight unikernel.](https://github.com/lastweek/source-osv)
 
 *FPGA Related*:
 

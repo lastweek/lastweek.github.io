@@ -3,6 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Feb 24, 2020| Kobe and Gigi. Add Intel CCIP. |
 	|Oct 3, 2019| Add FPGA related discussion|
 	|Jun 28, 2019| Initial draft|
 
@@ -279,6 +280,8 @@ When in doubt, read the [discussion](https://software.intel.com/en-us/forums/int
 - [Intel FPGA PAC](https://www.intel.com/content/www/us/en/programmable/documentation/bfr1522087299048.html)
     - Intel itself is building a FPGA-CPU cache coherent setting. They use the Intel UPI interconnect
       to natually the spectrum. The FPGA shell has some modules to handle this.
+- [Intel FPGA CCIP](https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/manual/mnl-ias-ccip.pdf)
+    - Maybe the ASPLOS'20 Optimus paper is uing CCIP-related research platform?
 
 - Also some pointer chasing related stuff
 	- [A Study of Pointer-Chasing Performance on Shared-Memory Processor-FPGA Systems, FPGA'16](https://users.ece.cmu.edu/~jhoe/distribution/2016/fpga16.pdf)
