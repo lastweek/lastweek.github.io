@@ -1361,7 +1361,7 @@
                 
                 
                 <h1 id="practical-cache-coherence-implementation">Practical Cache Coherence Implementation<a class="headerlink" href="#practical-cache-coherence-implementation" title="Permanent link">&para;</a></h1>
-<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Oct 3, 2019</td><td>Add FPGA related discussion</td></tr><tr><td align="left">Jun 28, 2019</td><td>Initial draft</td></tr></tbody></table></details><p><img alt="🍶" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f376.svg" title=":sake:" /></p>
+<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Feb 24, 2020</td><td>Kobe and Gigi. Add Intel CCIP.</td></tr><tr><td align="left">Oct 3, 2019</td><td>Add FPGA related discussion</td></tr><tr><td align="left">Jun 28, 2019</td><td>Initial draft</td></tr></tbody></table></details><p><img alt="🍶" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f376.svg" title=":sake:" /></p>
 <ul>
 <li><a href="#practical-cache-coherence">Practical Cache Coherence</a><ul>
 <li><a href="#summary-and-thoughs">Summary and Thoughs</a></li>
@@ -1671,11 +1671,15 @@ workload which one is used at runtime.</p>
 <li>A very interesting and promising project.</li>
 </ul>
 </li>
-<li>
-<p><a href="https://www.intel.com/content/www/us/en/programmable/documentation/bfr1522087299048.html">Intel FPGA PAC</a></p>
-<ul>
+<li><a href="https://www.intel.com/content/www/us/en/programmable/documentation/bfr1522087299048.html">Intel FPGA PAC</a><ul>
 <li>Intel itself is building a FPGA-CPU cache coherent setting. They use the Intel UPI interconnect
   to natually the spectrum. The FPGA shell has some modules to handle this.</li>
+</ul>
+</li>
+<li>
+<p><a href="https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/manual/mnl-ias-ccip.pdf">Intel FPGA CCIP</a></p>
+<ul>
+<li>Maybe the ASPLOS&lsquo;20 Optimus paper is uing CCIP-related research platform?</li>
 </ul>
 </li>
 <li>

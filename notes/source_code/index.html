@@ -1191,6 +1191,18 @@ and many linux-related projects follow this, e.g., CRIU, rdma-core.</p>
 </ul>
 </li>
 </ul>
+<p><em>Firmware</em></p>
+<ul>
+<li><a href="https://github.com/lastweek/source-firmware-seabios">SeaBIOS: the default BIOS used by QEMU</a></li>
+<li><a href="https://github.com/lastweek/source-firmware-qboot">qboot: an alternative and lightweight BIOS for QEMU</a><ul>
+<li>Those are massive hackers, respect.</li>
+<li>My experience about BIOS is calling them while the kernel (LegoOS) is running at 16-bit.
+  BIOS <em>is</em> the OS for a just-booted kernel. I remember the lower 1MB is never cleared,
+  maybe we could invoke the BIOS at 32 or 64-bit mode?</li>
+</ul>
+</li>
+<li>A book: <code class="codehilite">Beyond BIOS Developing with the Unified Extensible Firmware Interface</code>.</li>
+</ul>
 <p><em>Virtualization</em></p>
 <ul>
 <li><a href="https://github.com/lastweek/source-libvirt">libvirt: virsh and more</a></li>
@@ -1248,6 +1260,7 @@ Userspace &ldquo;rdma-core&rdquo; vendor-driver deals with the kernel devel vend
 <li><a href="https://github.com/lastweek/linux-0.01">Linux 0.0.1</a></li>
 <li><a href="https://github.com/lastweek/source-plan9">Plan 9 OS</a></li>
 <li><a href="https://github.com/lastweek/source-singularity">MSR Singularity.</a></li>
+<li><a href="https://github.com/lastweek/source-osv">OSv. A lightweight unikernel.</a></li>
 </ul>
 <p><em>FPGA Related</em>:</p>
 <ul>
