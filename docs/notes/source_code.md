@@ -113,3 +113,7 @@ Either way, happy hacking!
 - [Partial Reconfiguration Building Framework](https://github.com/lastweek/fpga_pr_scripts)
 - [Intepret Xilinx Bitstream](https://github.com/lastweek/fpga_interpret_bitstream)
 - [HLS-based ICAP Controller](https://github.com/lastweek/fpga_icap_hls/)
+
+*Web Servers*
+
+- [Apache httpd](https://github.com/lastweek/source-httpd)
