@@ -122,3 +122,5 @@ Either way, happy hacking!
 *KV Stores*
 
 - [RocksDB: A persistent KVS for Flash and RAM Storage](https://github.com/lastweek/source-rocksdb)
+- [LevelDB](https://github.com/lastweek/source-leveldb)
+- [Memcached](https://github.com/lastweek/source-memcached)
