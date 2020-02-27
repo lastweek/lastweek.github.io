@@ -64,7 +64,14 @@ Either way, happy hacking!
 - [rust-vmm](https://github.com/rust-vmm/community)
 - [cloud-hypervisor](https://github.com/cloud-hypervisor/cloud-hypervisor)
 
-*Network*
+*Operating Systems*:
+
+- [Linux 0.0.1](https://github.com/lastweek/linux-0.01)
+- [Plan 9 OS](https://github.com/lastweek/source-plan9)
+- [MSR Singularity.](https://github.com/lastweek/source-singularity)
+- [OSv. A lightweight unikernel.](https://github.com/lastweek/source-osv)
+
+*Low-latency Net*
 
 - [rdma-core](https://github.com/lastweek/source-rdma-core)
 	- Userspace IB verbs library (e.g., libibverbs)
@@ -93,26 +100,19 @@ Either way, happy hacking!
 	  which further relies on kernel IB stack. It's not a complete user solution somehow.
 	  Note that DPDK built-in mlx driver uses RAW_PACKET QPs.
 	- ![image](../images/dpdk_ibverbs.png)
-- [Verilog-Ethernet](https://github.com/lastweek/source-verilog-ethernet)
-	- Self-made PHY, MAC IPs
-	- ARP, IP, UDP stack
-	- [Alex Forencich](https://github.com/alexforencich) is a phenomenon Verilog hacker
-- [Corundum: an FPGA-based NIC](https://github.com/ucsdsysnet/corundum)
 
-*Operating Systems*:
-
-- [Linux 0.0.1](https://github.com/lastweek/linux-0.01)
-- [Plan 9 OS](https://github.com/lastweek/source-plan9)
-- [MSR Singularity.](https://github.com/lastweek/source-singularity)
-- [OSv. A lightweight unikernel.](https://github.com/lastweek/source-osv)
-
-*FPGA Related*:
+*FPGA*:
 
 - [Collection](https://github.com/lastweek/fpga_vivado_scripts)
 - [Readings](https://github.com/lastweek/fpga_readings)
 - [Partial Reconfiguration Building Framework](https://github.com/lastweek/fpga_pr_scripts)
 - [Intepret Xilinx Bitstream](https://github.com/lastweek/fpga_interpret_bitstream)
 - [HLS-based ICAP Controller](https://github.com/lastweek/fpga_icap_hls/)
+- [Verilog-Ethernet](https://github.com/lastweek/source-verilog-ethernet)
+	- Self-made PHY, MAC IPs
+	- ARP, IP, UDP stack
+	- [Alex Forencich](https://github.com/alexforencich) is a phenomenon Verilog hacker
+- [Corundum: an FPGA-based NIC](https://github.com/ucsdsysnet/corundum)
 
 *Web Servers*
 
@@ -130,3 +130,4 @@ Point of interests:
 - [LevelDB. C++](https://github.com/lastweek/source-leveldb)
 - [Memcached. C](https://github.com/lastweek/source-memcached)
 - [Redis. C](https://github.com/lastweek/source-redis)
+- [etcd: Distributed reliable KVS. Go](https://github.com/lastweek/source-etcd)
