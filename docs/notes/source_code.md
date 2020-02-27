@@ -121,6 +121,12 @@ Either way, happy hacking!
 
 *KV Stores*
 
-- [RocksDB: A persistent KVS for Flash and RAM Storage](https://github.com/lastweek/source-rocksdb)
-- [LevelDB](https://github.com/lastweek/source-leveldb)
-- [Memcached](https://github.com/lastweek/source-memcached)
+Point of interests:
+1) in-memory, and can it extend to use disk/ssd?
+2) persistence support
+3) network support
+
+- [RocksDB: A persistent KVS for Flash and RAM Storage. C++](https://github.com/lastweek/source-rocksdb)
+- [LevelDB. C++](https://github.com/lastweek/source-leveldb)
+- [Memcached. C](https://github.com/lastweek/source-memcached)
+- [Redis. C](https://github.com/lastweek/source-redis)
