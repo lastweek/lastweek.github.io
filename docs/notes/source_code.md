@@ -118,3 +118,7 @@ Either way, happy hacking!
 
 - [Apache httpd](https://github.com/lastweek/source-httpd)
 - [nginx](https://github.com/lastweek/source-nginx)
+
+*KV Stores*
+
+- [RocksDB: A persistent KVS for Flash and RAM Storage](https://github.com/lastweek/source-rocksdb)
