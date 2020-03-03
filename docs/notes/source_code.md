@@ -116,8 +116,8 @@ Either way, happy hacking!
       Just-in-time compilation for Verilog, what a brilliant idea.
     - [Verilog-to-routing](https://github.com/lastweek/source-vtr-verilog-to-routing).
         - Synthesis (`ODIN II`)
-	- Logic Optimization & Technology Mapping (`ABC`)
-	- Placement and Route (`VPR`)
+        - Logic Optimization & Technology Mapping (`ABC`)
+        - Placement and Route (`VPR`)
 
 *Web Servers*
 
