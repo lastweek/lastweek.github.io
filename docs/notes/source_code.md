@@ -3,6 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Mar 3, 2020| add FreeBSD |
 	|Feb 4, 2020| add io_uring, firecracker|
 	|Jan 31, 2020| Add some good stuff |
 	|Jan 18, 2020| Initial|
@@ -12,19 +13,12 @@
 Beautiful code is art.
 Recently I started forking good open source code
 into my own Github account and started casual reading and taking notes.
-
-One of the major motivation is to take notes, honestly.
-For some low-level projects (e.g., GRUB2, rdma-core),
-I've already managed to understand them before,
-but I reget I didn't take any notes or anything.
-
 In general, GNU projects are very hard to read, they have
 their own coding style which isn't for everyone.
 My personal favorite is linux kernel coding style,
 and many linux-related projects follow this, e.g., CRIU, rdma-core.
 
 Either way, happy hacking!
-
 
 *Misc*
 
@@ -70,6 +64,7 @@ Either way, happy hacking!
 - [Plan 9 OS](https://github.com/lastweek/source-plan9)
 - [MSR Singularity.](https://github.com/lastweek/source-singularity)
 - [OSv. A lightweight unikernel.](https://github.com/lastweek/source-osv)
+- [FreeBSD](https://github.com/lastweek/source-freebsd)
 
 *Low-latency Net*
 
