@@ -3,7 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
-	|Mar 3, 2020| add FreeBSD |
+	|Mar 3, 2020| add FreeBSD, some fpga stuff |
 	|Feb 4, 2020| add io_uring, firecracker|
 	|Jan 31, 2020| Add some good stuff |
 	|Jan 18, 2020| Initial|
@@ -108,6 +108,16 @@ Either way, happy hacking!
 	- ARP, IP, UDP stack
 	- [Alex Forencich](https://github.com/alexforencich) is a phenomenon Verilog hacker
 - [Corundum: an FPGA-based NIC](https://github.com/ucsdsysnet/corundum)
+- Simulation, Synthesis, and P&R
+    - [Icarus iverilog](https://github.com/lastweek/source-iverilog).
+      iverilog is a compiler that translates Verilog source code into
+      executable programs for simulation, or other netlist formats for further processing [man page](https://linux.die.net/man/1/iverilog).
+    - [VMware Cascade](https://github.com/lastweek/source-cascade).
+      Just-in-time compilation for Verilog, what a brilliant idea.
+    - [Verilog-to-routing](https://github.com/lastweek/source-vtr-verilog-to-routing).
+        - Synthesis (`ODIN II`)
+	- Logic Optimization & Technology Mapping (`ABC`)
+	- Placement and Route (`VPR`)
 
 *Web Servers*
 
