@@ -227,7 +227,7 @@
             <div class="section">
               
                 <h1 id="source-code-study">Source code study<a class="headerlink" href="#source-code-study" title="Permanent link">&para;</a></h1>
-<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Mar 3, 2020</td><td>add FreeBSD</td></tr><tr><td align="left">Feb 4, 2020</td><td>add io_uring, firecracker</td></tr><tr><td align="left">Jan 31, 2020</td><td>Add some good stuff</td></tr><tr><td align="left">Jan 18, 2020</td><td>Initial</td></tr></tbody></table></details><p><img alt="🐋" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f40b.svg" title=":whale2:" /></p>
+<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Mar 3, 2020</td><td>add FreeBSD, some fpga stuff</td></tr><tr><td align="left">Feb 4, 2020</td><td>add io_uring, firecracker</td></tr><tr><td align="left">Jan 31, 2020</td><td>Add some good stuff</td></tr><tr><td align="left">Jan 18, 2020</td><td>Initial</td></tr></tbody></table></details><p><img alt="🐋" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f40b.svg" title=":whale2:" /></p>
 <p>Beautiful code is art.
 Recently I started forking good open source code
 into my own Github account and started casual reading and taking notes.
@@ -341,6 +341,20 @@ Userspace &ldquo;rdma-core&rdquo; vendor-driver deals with the kernel devel vend
 </ul>
 </li>
 <li><a href="https://github.com/ucsdsysnet/corundum">Corundum: an FPGA-based NIC</a></li>
+<li>Simulation, Synthesis, and P&amp;R<ul>
+<li><a href="https://github.com/lastweek/source-iverilog">Icarus iverilog</a>.
+  iverilog is a compiler that translates Verilog source code into
+  executable programs for simulation, or other netlist formats for further processing <a href="https://linux.die.net/man/1/iverilog">man page</a>.</li>
+<li><a href="https://github.com/lastweek/source-cascade">VMware Cascade</a>.
+  Just-in-time compilation for Verilog, what a brilliant idea.</li>
+<li><a href="https://github.com/lastweek/source-vtr-verilog-to-routing">Verilog-to-routing</a>.<ul>
+<li>Synthesis (<code class="codehilite">ODIN II</code>)</li>
+</ul>
+</li>
+<li>Logic Optimization &amp; Technology Mapping (<code class="codehilite">ABC</code>)</li>
+<li>Placement and Route (<code class="codehilite">VPR</code>)</li>
+</ul>
+</li>
 </ul>
 <p><em>Web Servers</em></p>
 <ul>
