@@ -100,14 +100,17 @@ Either way, happy hacking!
 
 - [Collection](https://github.com/lastweek/fpga_vivado_scripts)
 - [Readings](https://github.com/lastweek/fpga_readings)
-- [Partial Reconfiguration Building Framework](https://github.com/lastweek/fpga_pr_scripts)
-- [Intepret Xilinx Bitstream](https://github.com/lastweek/fpga_interpret_bitstream)
-- [HLS-based ICAP Controller](https://github.com/lastweek/fpga_icap_hls/)
-- [Verilog-Ethernet](https://github.com/lastweek/source-verilog-ethernet)
-	- Self-made PHY, MAC IPs
-	- ARP, IP, UDP stack
-	- [Alex Forencich](https://github.com/alexforencich) is a phenomenon Verilog hacker
-- [Corundum: an FPGA-based NIC](https://github.com/ucsdsysnet/corundum)
+- Partial Reconfiguration
+    - [Partial Reconfiguration Building Framework](https://github.com/lastweek/fpga_pr_scripts)
+    - [Intepret Xilinx Bitstream](https://github.com/lastweek/fpga_interpret_bitstream)
+    - [HLS-based **ICAP** Controller](https://github.com/lastweek/fpga_icap_hls/)
+- Network
+    - [Verilog-Ethernet](https://github.com/lastweek/source-verilog-ethernet)
+            - Self-made PHY, MAC IPs
+            - ARP, IP, UDP stack
+            - [Alex Forencich](https://github.com/alexforencich) is a phenomenon Verilog hacker
+    - [Corundum: an FPGA-based NIC](https://github.com/ucsdsysnet/corundum)
+    - [Limago, HLS-based 100 GbE TCP/IP](https://github.com/lastweek/source-Limago)
 - Simulation, Synthesis, and P&R
     - [Icarus iverilog](https://github.com/lastweek/source-iverilog).
       iverilog is a compiler that translates Verilog source code into
