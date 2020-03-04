@@ -20,7 +20,7 @@ and many linux-related projects follow this, e.g., CRIU, rdma-core.
 
 Either way, happy hacking!
 
-*Misc*
+## Misc
 
 - [glibc: libc, elf, and dynamic linker](https://github.com/lastweek/source-glibc)
 	- Some juicy information about GOT/PLT
@@ -38,7 +38,7 @@ Either way, happy hacking!
 	- [user liburing](https://github.com/axboe/liburing)
 	- [kernel io_uring.c](https://github.com/torvalds/linux/blob/master/fs/io_uring.c)
 
-*Firmware*
+## Firmware
 
 - [SeaBIOS: the default BIOS used by QEMU](https://github.com/lastweek/source-firmware-seabios)
 - [qboot: an alternative and lightweight BIOS for QEMU](https://github.com/lastweek/source-firmware-qboot)
@@ -49,7 +49,7 @@ Either way, happy hacking!
 - A book: `Beyond BIOS Developing with the Unified Extensible Firmware Interface`.
 
 
-*Virtualization*
+## Virtualization
 
 - [libvirt: virsh and more](https://github.com/lastweek/source-libvirt)
 - [QEMU](https://github.com/lastweek/source-qemu)
@@ -58,7 +58,7 @@ Either way, happy hacking!
 - [rust-vmm](https://github.com/rust-vmm/community)
 - [cloud-hypervisor](https://github.com/cloud-hypervisor/cloud-hypervisor)
 
-*Operating Systems*:
+## Operating Systems
 
 - [Linux 0.0.1](https://github.com/lastweek/linux-0.01)
 - [Plan 9 OS](https://github.com/lastweek/source-plan9)
@@ -66,7 +66,51 @@ Either way, happy hacking!
 - [OSv. A lightweight unikernel.](https://github.com/lastweek/source-osv)
 - [FreeBSD](https://github.com/lastweek/source-freebsd)
 
-*Low-latency Net*
+## FPGA
+
+- [Collection](https://github.com/lastweek/fpga_vivado_scripts)
+- [Readings](https://github.com/lastweek/fpga_readings)
+- Partial Reconfiguration
+    - [Partial Reconfiguration Building Framework](https://github.com/lastweek/fpga_pr_scripts)
+    - [Intepret Xilinx Bitstream](https://github.com/lastweek/fpga_interpret_bitstream)
+    - [HLS-based **ICAP** Controller](https://github.com/lastweek/fpga_icap_hls/)
+- Network
+    - [Verilog-Ethernet](https://github.com/lastweek/source-verilog-ethernet)
+            - Self-made PHY, MAC IPs
+            - ARP, IP, UDP stack
+            - [Alex Forencich](https://github.com/alexforencich) is a phenomenon Verilog hacker
+    - [Corundum: an FPGA-based NIC](https://github.com/ucsdsysnet/corundum)
+    - [Limago, HLS-based 100 GbE TCP/IP](https://github.com/lastweek/source-Limago)
+- Simulation, Synthesis, and P&R
+    - [Icarus iverilog](https://github.com/lastweek/source-iverilog).
+      iverilog is a compiler that translates Verilog source code into
+      executable programs for simulation, or other netlist formats for further processing [man page](https://linux.die.net/man/1/iverilog).
+    - [VMware Cascade](https://github.com/lastweek/source-cascade).
+      Just-in-time compilation for Verilog, what a brilliant idea.
+    - [Verilog-to-routing](https://github.com/lastweek/source-vtr-verilog-to-routing).
+        - Synthesis (`ODIN II`)
+        - Logic Optimization & Technology Mapping (`ABC`)
+        - Placement and Route (`VPR`)
+
+## Web Servers
+
+- [Apache httpd](https://github.com/lastweek/source-httpd)
+- [nginx](https://github.com/lastweek/source-nginx)
+
+## Key Value Stores
+
+Point of interests:
+1) in-memory, and can it extend to use disk/ssd?
+2) persistence support
+3) network support
+
+- [RocksDB: A persistent KVS for Flash and RAM Storage. C++](https://github.com/lastweek/source-rocksdb)
+- [LevelDB. C++](https://github.com/lastweek/source-leveldb)
+- [Memcached. C](https://github.com/lastweek/source-memcached)
+- [Redis. C](https://github.com/lastweek/source-redis)
+- [etcd: Distributed reliable KVS. Go](https://github.com/lastweek/source-etcd)
+
+## RDMA and More
 
 - [rdma-core](https://github.com/lastweek/source-rdma-core)
 	- Userspace IB verbs library (e.g., libibverbs)
@@ -95,47 +139,3 @@ Either way, happy hacking!
 	  which further relies on kernel IB stack. It's not a complete user solution somehow.
 	  Note that DPDK built-in mlx driver uses RAW_PACKET QPs.
 	- ![image](../images/dpdk_ibverbs.png)
-
-*FPGA*:
-
-- [Collection](https://github.com/lastweek/fpga_vivado_scripts)
-- [Readings](https://github.com/lastweek/fpga_readings)
-- Partial Reconfiguration
-    - [Partial Reconfiguration Building Framework](https://github.com/lastweek/fpga_pr_scripts)
-    - [Intepret Xilinx Bitstream](https://github.com/lastweek/fpga_interpret_bitstream)
-    - [HLS-based **ICAP** Controller](https://github.com/lastweek/fpga_icap_hls/)
-- Network
-    - [Verilog-Ethernet](https://github.com/lastweek/source-verilog-ethernet)
-            - Self-made PHY, MAC IPs
-            - ARP, IP, UDP stack
-            - [Alex Forencich](https://github.com/alexforencich) is a phenomenon Verilog hacker
-    - [Corundum: an FPGA-based NIC](https://github.com/ucsdsysnet/corundum)
-    - [Limago, HLS-based 100 GbE TCP/IP](https://github.com/lastweek/source-Limago)
-- Simulation, Synthesis, and P&R
-    - [Icarus iverilog](https://github.com/lastweek/source-iverilog).
-      iverilog is a compiler that translates Verilog source code into
-      executable programs for simulation, or other netlist formats for further processing [man page](https://linux.die.net/man/1/iverilog).
-    - [VMware Cascade](https://github.com/lastweek/source-cascade).
-      Just-in-time compilation for Verilog, what a brilliant idea.
-    - [Verilog-to-routing](https://github.com/lastweek/source-vtr-verilog-to-routing).
-        - Synthesis (`ODIN II`)
-        - Logic Optimization & Technology Mapping (`ABC`)
-        - Placement and Route (`VPR`)
-
-*Web Servers*
-
-- [Apache httpd](https://github.com/lastweek/source-httpd)
-- [nginx](https://github.com/lastweek/source-nginx)
-
-*KV Stores*
-
-Point of interests:
-1) in-memory, and can it extend to use disk/ssd?
-2) persistence support
-3) network support
-
-- [RocksDB: A persistent KVS for Flash and RAM Storage. C++](https://github.com/lastweek/source-rocksdb)
-- [LevelDB. C++](https://github.com/lastweek/source-leveldb)
-- [Memcached. C](https://github.com/lastweek/source-memcached)
-- [Redis. C](https://github.com/lastweek/source-redis)
-- [etcd: Distributed reliable KVS. Go](https://github.com/lastweek/source-etcd)
