@@ -38,6 +38,11 @@ Either way, happy hacking!
 	- [user liburing](https://github.com/axboe/liburing)
 	- [kernel io_uring.c](https://github.com/torvalds/linux/blob/master/fs/io_uring.c)
 
+## Languages
+
+- [PHP](https://github.com/lastweek/source-php-src)
+- [Python](https://github.com/lastweek/source-cpython)
+
 ## Firmware
 
 - [SeaBIOS: the default BIOS used by QEMU](https://github.com/lastweek/source-firmware-seabios)
