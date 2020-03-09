@@ -22,26 +22,32 @@ Either way, happy hacking!
 
 ## Misc
 
+Projects supporting our day-to-day work without us realizing it.
+
 - [glibc: libc, elf, and dynamic linker](https://github.com/lastweek/source-glibc)
 	- Some juicy information about GOT/PLT
 	- and explains what has happend before main() is called
 - [binutils: gas, static linker, and more](https://github.com/lastweek/source-binutils)
 	- assembler is amazing
 	- static linker.. the magic thing is its linker script!
+- [vim](https://github.com/lastweek/source-vim)
 - [CRIU: Checkpoint and Restore in Userspace](https://github.com/lastweek/source-criu)
 - [GRUB2: bootloader](https://github.com/lastweek/source-grub2)
 	- Learn how modern bootloader works.
 	- Detailed analysis of Linux booting sequence (how it transit from
 	  real-mode to protected mode, and finally to 64-bit mode,
 	  how to navigate Linux source code etc.)
-- [io_uring](https://kernel.dk/io_uring.pdf)
+- [`io_uring`](https://kernel.dk/io_uring.pdf)
 	- [user liburing](https://github.com/axboe/liburing)
 	- [kernel io_uring.c](https://github.com/torvalds/linux/blob/master/fs/io_uring.c)
 
-## Languages
+## Compilers
 
-- [PHP](https://github.com/lastweek/source-php-src)
-- [Python](https://github.com/lastweek/source-cpython)
+- [Rustc, in Rust](https://github.com/lastweek/source-rust)
+- [PHP, in C](https://github.com/lastweek/source-php-src)
+- [Python, in C](https://github.com/lastweek/source-cpython)
+- [Google V8, in C++](https://github.com/lastweek/v8)
+- [Apple Swift, in C++](https://github.com/lastweek/source-swift)
 
 ## Firmware
 
