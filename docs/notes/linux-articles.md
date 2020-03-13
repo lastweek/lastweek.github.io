@@ -1,13 +1,16 @@
-# Linux Articles
+# Articles about linux kernel
 
 :moyai:
 
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Mar 13, 2020| add lkt, nice|
 	|Oct 7, 2019| Feels like I need to start thi|
 
-Articles about Linux Kernel.
+## Tutorials
+
+- [Linux Kernel Teaching](https://linux-kernel-labs.github.io/refs/heads/master/index.html#)
 
 ## Sched
 
