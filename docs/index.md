@@ -1,4 +1,4 @@
-:surfer:
+:surfer: :rowboat: :speedboat:
 
 ## About Me 
 I'm Yizhou Shan, a PhD student at [UCSD CSE](https://cse.ucsd.edu/),
