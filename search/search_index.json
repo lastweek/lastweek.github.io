@@ -317,13 +317,18 @@
         }, 
         {
             "location": "/notes/linux-articles/", 
-            "text": "Linux Articles\n\n\n\n\nVersion History\nDate\nDescription\nOct 7, 2019\nFeels like I need to start thi\nArticles about Linux Kernel.\n\n\nSched\n\n\n\n\nEvolution of the x86 context switch in Linux\n\n\n\n\nMisc\n\n\n\n\nWhy printk() is so complicated (and how to fix it)\n\n\nSlide\n.", 
+            "text": "Articles about linux kernel\n\n\n\n\nVersion History\nDate\nDescription\nMar 13, 2020\nadd lkt, nice\nOct 7, 2019\nFeels like I need to start thi\nTutorials\n\n\n\n\nLinux Kernel Teaching\n\n\n\n\nSched\n\n\n\n\nEvolution of the x86 context switch in Linux\n\n\n\n\nMisc\n\n\n\n\nWhy printk() is so complicated (and how to fix it)\n\n\nSlide\n.", 
             "title": "Linux Articles"
         }, 
         {
-            "location": "/notes/linux-articles/#linux-articles", 
-            "text": "Version History Date Description Oct 7, 2019 Feels like I need to start thi Articles about Linux Kernel.", 
-            "title": "Linux Articles"
+            "location": "/notes/linux-articles/#articles-about-linux-kernel", 
+            "text": "Version History Date Description Mar 13, 2020 add lkt, nice Oct 7, 2019 Feels like I need to start thi", 
+            "title": "Articles about linux kernel"
+        }, 
+        {
+            "location": "/notes/linux-articles/#tutorials", 
+            "text": "Linux Kernel Teaching", 
+            "title": "Tutorials"
         }, 
         {
             "location": "/notes/linux-articles/#sched", 
