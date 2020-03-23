@@ -31,6 +31,9 @@ Projects supporting our day-to-day work without us realizing it.
 	- assembler is amazing
 	- static linker.. the magic thing is its linker script!
 - [vim](https://github.com/lastweek/source-vim)
+- [strace](https://github.com/lastweek/source-strace)
+	- System call tracer at userspace
+	- I've designed [one](http://lastweek.io/lego/kernel/profile_strace/) for LegoOS in kernel space
 - [CRIU: Checkpoint and Restore in Userspace](https://github.com/lastweek/source-criu)
 - [GRUB2: bootloader](https://github.com/lastweek/source-grub2)
 	- Learn how modern bootloader works.
