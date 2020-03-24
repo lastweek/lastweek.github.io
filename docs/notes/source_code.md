@@ -51,6 +51,8 @@ Projects supporting our day-to-day work without us realizing it.
 		- the TCPdump network dissector
 	- [OpenSSH](https://github.com/lastweek/source-openssh-portable)
 		- ssh it is.
+	- [scapy](https://github.com/lastweek/source-scapy)
+		- Python-based interactive packet manipulation program & library
 
 ## Compilers
 
