@@ -30,10 +30,6 @@ Projects supporting our day-to-day work without us realizing it.
 - [binutils: gas, static linker, and more](https://github.com/lastweek/source-binutils)
 	- assembler is amazing
 	- static linker.. the magic thing is its linker script!
-- [vim](https://github.com/lastweek/source-vim)
-- [strace](https://github.com/lastweek/source-strace)
-	- System call tracer at userspace
-	- I've designed [one](http://lastweek.io/lego/kernel/profile_strace/) for LegoOS in kernel space
 - [CRIU: Checkpoint and Restore in Userspace](https://github.com/lastweek/source-criu)
 - [GRUB2: bootloader](https://github.com/lastweek/source-grub2)
 	- Learn how modern bootloader works.
@@ -43,6 +39,17 @@ Projects supporting our day-to-day work without us realizing it.
 - [`io_uring`](https://kernel.dk/io_uring.pdf)
 	- [user liburing](https://github.com/axboe/liburing)
 	- [kernel io_uring.c](https://github.com/torvalds/linux/blob/master/fs/io_uring.c)
+- [strace](https://github.com/lastweek/source-strace)
+	- System call tracer at userspace
+	- I've designed [one](http://lastweek.io/lego/kernel/profile_strace/) for LegoOS in kernel space
+- [vim](https://github.com/lastweek/source-vim)
+- Network
+	- [iperf](https://github.com/lastweek/source-iperf)
+		- iperf3: A TCP, UDP, and SCTP network bandwidth measurement tool
+	- [tcpdump](https://github.com/lastweek/source-tcpdump)
+		- the TCPdump network dissector
+	- [OpenSSH](https://github.com/lastweek/source-openssh-portable)
+		- ssh it is.
 
 ## Compilers
 
