@@ -1,5 +1,3 @@
-:surfer: :rowboat: :speedboat:
-
 ## About Me 
 I'm Yizhou Shan, a PhD student at [UCSD CSE](https://cse.ucsd.edu/),
 advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/).
@@ -64,6 +62,9 @@ I work on distributed system, kernel, and FPGA. Datacenter in general.
 	<br> _Poster at the ACM Symposium on Cloud Computing 2017 (__SoCC '17__)_
 
 ## Social
+
+:surfer: :rowboat:  
+:basketball: :football:
 
 * [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAAAAAJ&hl=en)
 * [Github](https://github.com/lastweek)
