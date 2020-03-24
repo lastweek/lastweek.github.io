@@ -31,6 +31,9 @@ Projects supporting our day-to-day work without us realizing it.
 	- assembler is amazing
 	- static linker.. the magic thing is its linker script!
 - [CRIU: Checkpoint and Restore in Userspace](https://github.com/lastweek/source-criu)
+	- The reason I love this repo is because it has so many interesting pieces
+	  on how to interact with kernel, save states, and restore them. In addition,
+	  it shows how to properly use many less well known syscalls.
 - [GRUB2: bootloader](https://github.com/lastweek/source-grub2)
 	- Learn how modern bootloader works.
 	- Detailed analysis of Linux booting sequence (how it transit from
@@ -45,7 +48,7 @@ Projects supporting our day-to-day work without us realizing it.
 - [vim](https://github.com/lastweek/source-vim)
 - [tmux](https://github.com/lastweek/source-tmux)
 - Network
-	- [iperf](https://github.com/lastweek/source-iperf)
+	- [iperf3](https://github.com/lastweek/source-iperf)
 		- iperf3: A TCP, UDP, and SCTP network bandwidth measurement tool
 	- [tcpdump](https://github.com/lastweek/source-tcpdump)
 		- the TCPdump network dissector
@@ -53,6 +56,10 @@ Projects supporting our day-to-day work without us realizing it.
 		- ssh it is.
 	- [scapy](https://github.com/lastweek/source-scapy)
 		- Python-based interactive packet manipulation program & library
+- C for life
+	- [cJSON](https://github.com/lastweek/source-cJSON)
+		- A lightweight JSON parser in C.
+		- I think iperf3 is using it.
 
 ## Compilers
 
