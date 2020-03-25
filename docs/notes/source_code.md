@@ -30,23 +30,12 @@ Projects supporting our day-to-day work without us realizing it.
 - [binutils: gas, static linker, and more](https://github.com/lastweek/source-binutils)
 	- assembler is amazing
 	- static linker.. the magic thing is its linker script!
-- [CRIU: Checkpoint and Restore in Userspace](https://github.com/lastweek/source-criu)
-	- The reason I love this repo is because it has so many interesting pieces
-	  on how to interact with kernel, save states, and restore them. In addition,
-	  it shows how to properly use many less well known syscalls.
-- [GRUB2: bootloader](https://github.com/lastweek/source-grub2)
-	- Learn how modern bootloader works.
-	- Detailed analysis of Linux booting sequence (how it transit from
-	  real-mode to protected mode, and finally to 64-bit mode,
-	  how to navigate Linux source code etc.)
-- [`io_uring`](https://kernel.dk/io_uring.pdf)
-	- [user liburing](https://github.com/axboe/liburing)
-	- [kernel io_uring.c](https://github.com/torvalds/linux/blob/master/fs/io_uring.c)
 - [strace](https://github.com/lastweek/source-strace)
 	- System call tracer at userspace
 	- I've designed [one](http://lastweek.io/lego/kernel/profile_strace/) for LegoOS in kernel space
 - [vim](https://github.com/lastweek/source-vim)
 - [tmux](https://github.com/lastweek/source-tmux)
+- [git](https://github.com/lastweek/source-git)
 - Network
 	- [iperf3](https://github.com/lastweek/source-iperf)
 		- iperf3: A TCP, UDP, and SCTP network bandwidth measurement tool
@@ -60,6 +49,37 @@ Projects supporting our day-to-day work without us realizing it.
 	- [cJSON](https://github.com/lastweek/source-cJSON)
 		- A lightweight JSON parser in C.
 		- I think iperf3 is using it.
+- Outliers
+	- [CRIU: Checkpoint and Restore in Userspace](https://github.com/lastweek/source-criu)
+		- The reason I love this repo is because it has so many interesting pieces
+		  on how to interact with kernel, save states, and restore them. In addition,
+		  it shows how to properly use many less well known syscalls.
+	- [GRUB2: bootloader](https://github.com/lastweek/source-grub2)
+		- Learn how modern bootloader works.
+		- Detailed analysis of Linux booting sequence (how it transit from
+		  real-mode to protected mode, and finally to 64-bit mode,
+		  how to navigate Linux source code etc.)
+	- [`io_uring`](https://kernel.dk/io_uring.pdf)
+		- [user liburing](https://github.com/axboe/liburing)
+		- [kernel io_uring.c](https://github.com/torvalds/linux/blob/master/fs/io_uring.c)
+
+## Operating Systems
+
+- [Linux 0.0.1](https://github.com/lastweek/linux-0.01)
+- [Plan 9 OS](https://github.com/lastweek/source-plan9)
+- [MSR Singularity.](https://github.com/lastweek/source-singularity)
+- [OSv. A lightweight unikernel.](https://github.com/lastweek/source-osv)
+- [FreeBSD](https://github.com/lastweek/source-freebsd)
+	- FreeBSD repo is a monster. It has all sorts of tools!
+
+## Virtualization
+
+- [libvirt: virsh and more](https://github.com/lastweek/source-libvirt)
+- [QEMU](https://github.com/lastweek/source-qemu)
+	- Check my [notes](http://lastweek.io/notes/virt/)
+- [Firecracker](https://github.com/lastweek/source-firecracker)
+- [rust-vmm](https://github.com/rust-vmm/community)
+- [cloud-hypervisor](https://github.com/cloud-hypervisor/cloud-hypervisor)
 
 ## Compilers
 
@@ -78,24 +98,6 @@ Projects supporting our day-to-day work without us realizing it.
       BIOS *is* the OS for a just-booted kernel. I remember the lower 1MB is never cleared,
       maybe we could invoke the BIOS at 32 or 64-bit mode?
 - A book: `Beyond BIOS Developing with the Unified Extensible Firmware Interface`.
-
-
-## Virtualization
-
-- [libvirt: virsh and more](https://github.com/lastweek/source-libvirt)
-- [QEMU](https://github.com/lastweek/source-qemu)
-	- Check my [notes](http://lastweek.io/notes/virt/)
-- [Firecracker](https://github.com/lastweek/source-firecracker)
-- [rust-vmm](https://github.com/rust-vmm/community)
-- [cloud-hypervisor](https://github.com/cloud-hypervisor/cloud-hypervisor)
-
-## Operating Systems
-
-- [Linux 0.0.1](https://github.com/lastweek/linux-0.01)
-- [Plan 9 OS](https://github.com/lastweek/source-plan9)
-- [MSR Singularity.](https://github.com/lastweek/source-singularity)
-- [OSv. A lightweight unikernel.](https://github.com/lastweek/source-osv)
-- [FreeBSD](https://github.com/lastweek/source-freebsd)
 
 ## FPGA
 
