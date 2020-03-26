@@ -91,12 +91,23 @@ Projects supporting our day-to-day work without us realizing it.
 
 ## Firmware
 
+I obsessed with firmware projects, maybe because that's where I got started.
+First it's SeaBIOS, the default one used by QEMU. Then UEFI, something I actually have never used.
+Recently, some folks are pretty interested in firmware security.
+
 - [SeaBIOS: the default BIOS used by QEMU](https://github.com/lastweek/source-firmware-seabios)
 - [qboot: an alternative and lightweight BIOS for QEMU](https://github.com/lastweek/source-firmware-qboot)
     - Those are massive hackers, respect.
     - My experience about BIOS is calling them while the kernel (LegoOS) is running at 16-bit.
       BIOS *is* the OS for a just-booted kernel. I remember the lower 1MB is never cleared,
       maybe we could invoke the BIOS at 32 or 64-bit mode?
+- [UEFI EDK II ](https://github.com/lastweek/source-uefi-edk2)
+	-  "EDK II is a firmware development environment for the UEFI and UEFI Platform Initialization (PI) specifications"
+	- Part of the [TianoCore](https://www.tianocore.org/) project, an open-source UEFI platform
+	- The Unified Extensible Firmware Interface (UEFI) is a specification that
+	  defines a software interface between an operating system and platform firmware.
+	  UEFI is designed to replace the Basic Input/Output System (BIOS) firmware interface.
+	- [OVMF](https://github.com/tianocore/tianocore.github.io/wiki/OVMF): OVMF is an EDK II based project to enable UEFI support for Virtual Machines. OVMF contains sample UEFI firmware for QEMU and KVM.
 - A book: `Beyond BIOS Developing with the Unified Extensible Firmware Interface`.
 
 ## FPGA
