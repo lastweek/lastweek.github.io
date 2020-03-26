@@ -377,6 +377,9 @@ and many linux-related projects follow this, e.g., CRIU, rdma-core.</p>
 <li><a href="https://github.com/lastweek/source-swift">Apple Swift, in C++</a></li>
 </ul>
 <h2 id="firmware">Firmware<a class="headerlink" href="#firmware" title="Permanent link">&para;</a></h2>
+<p>I obsessed with firmware projects, maybe because that&rsquo;s where I got started.
+First it&rsquo;s SeaBIOS, the default one used by QEMU. Then UEFI, something I actually have never used.
+Recently, some folks are pretty interested in firmware security.</p>
 <ul>
 <li><a href="https://github.com/lastweek/source-firmware-seabios">SeaBIOS: the default BIOS used by QEMU</a></li>
 <li><a href="https://github.com/lastweek/source-firmware-qboot">qboot: an alternative and lightweight BIOS for QEMU</a><ul>
@@ -384,6 +387,15 @@ and many linux-related projects follow this, e.g., CRIU, rdma-core.</p>
 <li>My experience about BIOS is calling them while the kernel (LegoOS) is running at 16-bit.
   BIOS <em>is</em> the OS for a just-booted kernel. I remember the lower 1MB is never cleared,
   maybe we could invoke the BIOS at 32 or 64-bit mode?</li>
+</ul>
+</li>
+<li><a href="https://github.com/lastweek/source-uefi-edk2">UEFI EDK II </a><ul>
+<li>&ldquo;EDK II is a firmware development environment for the UEFI and UEFI Platform Initialization (PI) specifications&rdquo;</li>
+<li>Part of the <a href="https://www.tianocore.org/">TianoCore</a> project, an open-source UEFI platform</li>
+<li>The Unified Extensible Firmware Interface (UEFI) is a specification that
+  defines a software interface between an operating system and platform firmware.
+  UEFI is designed to replace the Basic Input/Output System (BIOS) firmware interface.</li>
+<li><a href="https://github.com/tianocore/tianocore.github.io/wiki/OVMF">OVMF</a>: OVMF is an EDK II based project to enable UEFI support for Virtual Machines. OVMF contains sample UEFI firmware for QEMU and KVM.</li>
 </ul>
 </li>
 <li>A book: <code class="codehilite">Beyond BIOS Developing with the Unified Extensible Firmware Interface</code>.</li>
