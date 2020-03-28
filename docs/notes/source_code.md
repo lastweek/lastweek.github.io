@@ -69,6 +69,7 @@ Projects supporting our day-to-day work without us realizing it.
 - [Plan 9 OS](https://github.com/lastweek/source-plan9)
 - [MSR Singularity.](https://github.com/lastweek/source-singularity)
 - [OSv. A lightweight unikernel.](https://github.com/lastweek/source-osv)
+- [seL4 Microkernel](https://github.com/lastweek/source-seL4)
 - [FreeBSD](https://github.com/lastweek/source-freebsd)
 	- FreeBSD repo is a monster. It has all sorts of tools!
 
