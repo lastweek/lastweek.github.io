@@ -77,6 +77,9 @@ Projects supporting our day-to-day work without us realizing it.
 	- [NetBSD](https://github.com/NetBSD/src)
 	- [TrueOS](https://github.com/trueos/trueos)
 
+![image_unix_timeline](../images/unix_timeline.png)
+(Image source: https://commons.wikimedia.org/wiki/File:Unix_timeline.en.svg)
+
 ## Virtualization
 
 - [libvirt: virsh and more](https://github.com/lastweek/source-libvirt)
