@@ -114,13 +114,13 @@ markdown_extensions:
   - pymdownx.progressbar
 
 theme:
-  name: 'rtd-dropdown'
-  #name: 'material'
+  #name: 'rtd-dropdown'
+  name: 'material'
   palette:
-    #primary: 'Teal'
-    #accent: 'Green'
+    primary: 'Teal'
+    accent: 'Teal'
   font:
-    #text: 'Times New Roman'
+    text: 'Ubuntu'
     code: 'Courier'
 
 google_analytics:
