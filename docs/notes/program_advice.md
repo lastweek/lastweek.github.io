@@ -24,16 +24,16 @@
 ## Prof. John Ousterhout's Favorite Sayings
 
 !!! quote
-       [Source](http://web.stanford.edu/~ouster/cgi-bin/sayings.php)
-       - The greatest performance improvement of all is when a system goes from not-working to working
-       - Use your intuition to ask questions, not to answer them
-       - The most important component of evolution is death
-       - Facts precede concepts
-       - If you don't know what the problem was, you haven't fixed it
-       - If it hasn't been used, it doesn't work
-       - The only thing worse than a problem that happens all the time is a problem that doesn't happen all the time
-       - The three most powerful words for building credibility are "I don't know"
-       - Coherent systems are inherently unstable
+	[Source](http://web.stanford.edu/~ouster/cgi-bin/sayings.php)
+	- The greatest performance improvement of all is when a system goes from not-working to working
+	- Use your intuition to ask questions, not to answer them
+	- The most important component of evolution is death
+	- Facts precede concepts
+	- If you don't know what the problem was, you haven't fixed it
+	- If it hasn't been used, it doesn't work
+	- The only thing worse than a problem that happens all the time is a problem that doesn't happen all the time
+	- The three most powerful words for building credibility are "I don't know"
+	- Coherent systems are inherently unstable
 
 ## Butler W. Lampson Hints for Computer System Design1
 
