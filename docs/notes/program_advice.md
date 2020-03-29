@@ -24,7 +24,8 @@
 ## Prof. John Ousterhout's Favorite Sayings
 
 !!! quote
-	[Source](http://web.stanford.edu/~ouster/cgi-bin/sayings.php)
+	[Source](http://web.stanford.edu/~ouster/cgi-bin/sayings.php):
+
 	- The greatest performance improvement of all is when a system goes from not-working to working
 	- Use your intuition to ask questions, not to answer them
 	- The most important component of evolution is death
@@ -35,6 +36,6 @@
 	- The three most powerful words for building credibility are "I don't know"
 	- Coherent systems are inherently unstable
 
-## Butler W. Lampson Hints for Computer System Design1
+## Butler W. Lampson's Hints for Computer System Design
 
 https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/acrobat-17.pdf
