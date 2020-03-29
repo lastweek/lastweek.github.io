@@ -18,6 +18,12 @@
     </url>
         
     <url>
+     <loc>http://lastweek.io/notes/program_advice/</loc>
+     <lastmod>2020-03-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>http://lastweek.io/notes/virt/</loc>
      <lastmod>2020-03-28</lastmod>
      <changefreq>daily</changefreq>
