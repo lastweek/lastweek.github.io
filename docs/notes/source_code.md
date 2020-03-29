@@ -72,6 +72,7 @@ Projects supporting our day-to-day work without us realizing it.
 - [seL4 Microkernel](https://github.com/lastweek/source-seL4)
 - BSD: these repos have everything you can think of
 	- [FreeBSD](https://github.com/lastweek/source-freebsd)
+	- [OpenBSD](https://github.com/openbsd/src)
 	- [NetBSD](https://github.com/NetBSD/src)
 	- [TrueOS](https://github.com/trueos/trueos)
 
