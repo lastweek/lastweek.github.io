@@ -70,8 +70,10 @@ Projects supporting our day-to-day work without us realizing it.
 - [MSR Singularity.](https://github.com/lastweek/source-singularity)
 - [OSv. A lightweight unikernel.](https://github.com/lastweek/source-osv)
 - [seL4 Microkernel](https://github.com/lastweek/source-seL4)
-- [FreeBSD](https://github.com/lastweek/source-freebsd)
-	- FreeBSD repo is a monster. It has all sorts of tools!
+- BSD: these repos have everything you can think of
+	- [FreeBSD](https://github.com/lastweek/source-freebsd)
+	- [NetBSD](https://github.com/NetBSD/src)
+	- [TrueOS](https://github.com/trueos/trueos)
 
 ## Virtualization
 
