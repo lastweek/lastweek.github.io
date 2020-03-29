@@ -63,8 +63,7 @@ I work on distributed system, kernel, and FPGA. Datacenter in general.
 
 ## Social
 
-:surfer: :rowboat:  
-:basketball: :football:
+:surfer: :rowboat: :basketball: :football:  
 
 * [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAAAAAJ&hl=en)
 * [Github](https://github.com/lastweek)
