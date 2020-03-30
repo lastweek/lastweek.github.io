@@ -96,6 +96,7 @@ Projects supporting our day-to-day work without us realizing it.
 - [Python, in C](https://github.com/lastweek/source-cpython)
 - [Google V8, in C++](https://github.com/lastweek/v8)
 - [Apple Swift, in C++](https://github.com/lastweek/source-swift)
+- [GNU GCC](https://github.com/gcc-mirror/gcc)
 
 ## Firmware
 
