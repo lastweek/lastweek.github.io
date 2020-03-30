@@ -77,13 +77,13 @@
         }, 
         {
             "location": "/notes/program_advice/", 
-            "text": "Programming Advice\n\n\nVersion History\nDate\nDescription\nMar 28, 2020\nStarted.\nFreeBSD\n\n\n\n\nQuote\n\n\nSource\n.\nOur ideology can be described by the following guidelines:\n\n\n\n\nDo not add new functionality unless an implementor cannot complete a real application without it.\n\n\nIt is as important to decide what a system is not as to decide what it is. Do not serve all the world\ns needs; rather, make the system extensible so that additional needs can be met in an upwardly compatible fashion.\n\n\nThe only thing worse than generalizing from one example is generalizing from no examples at all.\n\n\nIf a problem is not completely understood, it is probably best to provide no solution at all.\n\n\nIf you can get 90 percent of the desired effect for 10 percent of the work, use the simpler solution.\n\n\nIsolate complexity as much as possible.\n\n\nProvide mechanism, rather than policy. In particular, place user interface policy in the client\ns hands.\n\n\n\n\nFrom Scheifler \n Gettys: \nX Window System\n\n\n\n\nProf. John Ousterhout\ns Favorite Sayings\n\n\n\n\nQuote\n\n\nSource\n:\n\n\n\n\nThe greatest performance improvement of all is when a system goes from not-working to working\n\n\nUse your intuition to ask questions, not to answer them\n\n\nThe most important component of evolution is death\n\n\nFacts precede concepts\n\n\nIf you don\nt know what the problem was, you haven\nt fixed it\n\n\nIf it hasn\nt been used, it doesn\nt work\n\n\nThe only thing worse than a problem that happens all the time is a problem that doesn\nt happen all the time\n\n\nThe three most powerful words for building credibility are \nI don\nt know\n\n\nCoherent systems are inherently unstable\n\n\n\n\n\n\nButler W. Lampson\ns Hints for Computer System Design\n\n\nhttps://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/acrobat-17.pdf", 
+            "text": "Programming and Writing Advice\n\n\nVersion History\nDate\nDescription\nMar 28, 2020\nStarted.\nFreeBSD\n\n\n\n\nQuote\n\n\nSource\n.\nOur ideology can be described by the following guidelines:\n\n\n\n\nDo not add new functionality unless an implementor cannot complete a real application without it.\n\n\nIt is as important to decide what a system is not as to decide what it is. Do not serve all the world\ns needs; rather, make the system extensible so that additional needs can be met in an upwardly compatible fashion.\n\n\nThe only thing worse than generalizing from one example is generalizing from no examples at all.\n\n\nIf a problem is not completely understood, it is probably best to provide no solution at all.\n\n\nIf you can get 90 percent of the desired effect for 10 percent of the work, use the simpler solution.\n\n\nIsolate complexity as much as possible.\n\n\nProvide mechanism, rather than policy. In particular, place user interface policy in the client\ns hands.\n\n\n\n\nFrom Scheifler \n Gettys: \nX Window System\n\n\n\n\nProf. John Ousterhout\ns Favorite Sayings\n\n\n\n\nQuote\n\n\nSource\n:\n\n\n\n\nThe greatest performance improvement of all is when a system goes from not-working to working\n\n\nUse your intuition to ask questions, not to answer them\n\n\nThe most important component of evolution is death\n\n\nFacts precede concepts\n\n\nIf you don\nt know what the problem was, you haven\nt fixed it\n\n\nIf it hasn\nt been used, it doesn\nt work\n\n\nThe only thing worse than a problem that happens all the time is a problem that doesn\nt happen all the time\n\n\nThe three most powerful words for building credibility are \nI don\nt know\n\n\nCoherent systems are inherently unstable\n\n\n\n\n\n\nButler W. Lampson\ns Hints for Computer System Design\n\n\nhttps://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/acrobat-17.pdf\n\n\nMary Dash\u2019s Writing Tips\n\n\nPlain Writing Act of 2010, \nFederal Plain Language Guidelines.\n.\n\n\nDash Writing Tips", 
             "title": "Programming-Guidelines-and-Advice"
         }, 
         {
-            "location": "/notes/program_advice/#programming-advice", 
+            "location": "/notes/program_advice/#programming-and-writing-advice", 
             "text": "Version History Date Description Mar 28, 2020 Started.", 
-            "title": "Programming Advice"
+            "title": "Programming and Writing Advice"
         }, 
         {
             "location": "/notes/program_advice/#freebsd", 
@@ -99,6 +99,11 @@
             "location": "/notes/program_advice/#butler-w-lampsons-hints-for-computer-system-design", 
             "text": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/acrobat-17.pdf", 
             "title": "Butler W. Lampson's Hints for Computer System Design"
+        }, 
+        {
+            "location": "/notes/program_advice/#mary-dashs-writing-tips", 
+            "text": "Plain Writing Act of 2010,  Federal Plain Language Guidelines. .  Dash Writing Tips", 
+            "title": "Mary Dash\u2019s Writing Tips"
         }, 
         {
             "location": "/notes/virt/", 
