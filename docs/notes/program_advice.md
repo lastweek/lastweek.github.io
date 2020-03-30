@@ -1,4 +1,4 @@
-# Programming Advice
+# Programming and Writing Advice
 
 ??? note "Version History"
 	|Date|Description|
@@ -39,3 +39,9 @@
 ## Butler W. Lampson's Hints for Computer System Design
 
 https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/acrobat-17.pdf
+
+## Mary Dash’s Writing Tips
+
+Plain Writing Act of 2010, [Federal Plain Language Guidelines.](https://plainlanguage.gov/media/FederalPLGuidelines.pdf).
+
+[Dash Writing Tips](https://plainlanguage.gov/resources/articles/dash-writing-tips/)
