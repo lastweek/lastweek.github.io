@@ -38,6 +38,7 @@ pages:
 #           - 'March 2018':              'lego/log/log-03-2018.md'
 #           - 'Feb 2018':                'lego/log/log-02-2018.md'
    - 'Kernel':
+        - 'GRUB2 and Boot' : 'lego/kernel/boot.md'
         - 'Kconfig': 'lego/kernel/kconfig.md'
         - 'Debug': 'lego/kernel/debug.md'
         - 'GRUB': 'lego/kernel/grub.md'
