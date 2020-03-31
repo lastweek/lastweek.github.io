@@ -11,7 +11,7 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
-        <link rel="canonical" href="http://lastweek.io/lego/driver/ib/">
+        <link rel="canonical" href="http://lastweek.io/lego/kernel/boot/">
       
       
         <meta name="author" content="Yizhou Shan">
@@ -40,7 +40,7 @@
     
     
       
-        <title>Infiniband - Yizhou Shan's Home Page</title>
+        <title>GRUB2 and Boot - Yizhou Shan's Home Page</title>
       
     
     
@@ -73,7 +73,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#infiniband-subsystem" tabindex="1" class="md-skip">
+      <a href="#notes-on-grub2-and-boot-sequence" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -99,7 +99,7 @@
                 Yizhou Shan's Home Page
               </span>
               <span class="md-header-nav__topic">
-                Infiniband
+                GRUB2 and Boot
               </span>
             
           
@@ -501,10 +501,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1" checked>
     
     <label class="md-nav__link" for="nav-4-1">
       Kernel
@@ -520,11 +522,75 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../kernel/boot/" title="GRUB2 and Boot" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        GRUB2 and Boot
+      </label>
+    
+    <a href="./" title="GRUB2 and Boot" class="md-nav__link md-nav__link--active">
       GRUB2 and Boot
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#about-grub2" title="About GRUB2" class="md-nav__link">
+    About GRUB2
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-vs-linux16" title="linux v.s. linux16" class="md-nav__link">
+    linux v.s. linux16
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boot-protocol-and-sequence" title="Boot Protocol and Sequence" class="md-nav__link">
+    Boot Protocol and Sequence
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -534,7 +600,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/kconfig/" title="Kconfig" class="md-nav__link">
+    <a href="../kconfig/" title="Kconfig" class="md-nav__link">
       Kconfig
     </a>
   </li>
@@ -546,7 +612,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/debug/" title="Debug" class="md-nav__link">
+    <a href="../debug/" title="Debug" class="md-nav__link">
       Debug
     </a>
   </li>
@@ -558,7 +624,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/grub/" title="GRUB" class="md-nav__link">
+    <a href="../grub/" title="GRUB" class="md-nav__link">
       GRUB
     </a>
   </li>
@@ -570,7 +636,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/profile/" title="Profile" class="md-nav__link">
+    <a href="../profile/" title="Profile" class="md-nav__link">
       Profile
     </a>
   </li>
@@ -582,7 +648,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/profile_strace/" title="Profile strace" class="md-nav__link">
+    <a href="../profile_strace/" title="Profile strace" class="md-nav__link">
       Profile strace
     </a>
   </li>
@@ -594,7 +660,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/profile_heatmap/" title="Profile heatmap" class="md-nav__link">
+    <a href="../profile_heatmap/" title="Profile heatmap" class="md-nav__link">
       Profile heatmap
     </a>
   </li>
@@ -606,7 +672,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/profile_points/" title="Profile points" class="md-nav__link">
+    <a href="../profile_points/" title="Profile points" class="md-nav__link">
       Profile points
     </a>
   </li>
@@ -618,7 +684,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/trampoline/" title="Trampoline" class="md-nav__link">
+    <a href="../trampoline/" title="Trampoline" class="md-nav__link">
       Trampoline
     </a>
   </li>
@@ -630,7 +696,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/pagefault_disable/" title="Disable pgfault" class="md-nav__link">
+    <a href="../pagefault_disable/" title="Disable pgfault" class="md-nav__link">
       Disable pgfault
     </a>
   </li>
@@ -642,7 +708,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/stop_machine/" title="Stop machine" class="md-nav__link">
+    <a href="../stop_machine/" title="Stop machine" class="md-nav__link">
       Stop machine
     </a>
   </li>
@@ -654,7 +720,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/loader/" title="Program Loader" class="md-nav__link">
+    <a href="../loader/" title="Program Loader" class="md-nav__link">
       Program Loader
     </a>
   </li>
@@ -666,7 +732,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/vDSO/" title="vDSO" class="md-nav__link">
+    <a href="../vDSO/" title="vDSO" class="md-nav__link">
       vDSO
     </a>
   </li>
@@ -678,7 +744,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/vfs/" title="Virtual File System" class="md-nav__link">
+    <a href="../vfs/" title="Virtual File System" class="md-nav__link">
       Virtual File System
     </a>
   </li>
@@ -690,7 +756,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/vm/" title="Process Virtual Memory" class="md-nav__link">
+    <a href="../vm/" title="Process Virtual Memory" class="md-nav__link">
       Process Virtual Memory
     </a>
   </li>
@@ -702,7 +768,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/fpu/" title="x86 FPU" class="md-nav__link">
+    <a href="../fpu/" title="x86 FPU" class="md-nav__link">
       x86 FPU
     </a>
   </li>
@@ -714,7 +780,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/irq/" title="IRQ" class="md-nav__link">
+    <a href="../irq/" title="IRQ" class="md-nav__link">
       IRQ
     </a>
   </li>
@@ -726,7 +792,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/net_thpool/" title="Network Thpool" class="md-nav__link">
+    <a href="../net_thpool/" title="Network Thpool" class="md-nav__link">
       Network Thpool
     </a>
   </li>
@@ -774,7 +840,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/profile_strace/" title="strace" class="md-nav__link">
+    <a href="../profile_strace/" title="strace" class="md-nav__link">
       strace
     </a>
   </li>
@@ -1005,12 +1071,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4">
     
     <label class="md-nav__link" for="nav-4-4">
       Driver
@@ -1028,7 +1092,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../pci/" title="PCI" class="md-nav__link">
+    <a href="../../driver/pci/" title="PCI" class="md-nav__link">
       PCI
     </a>
   </li>
@@ -1038,89 +1102,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        Infiniband
-      </label>
-    
-    <a href="./" title="Infiniband" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../driver/ib/" title="Infiniband" class="md-nav__link">
       Infiniband
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#current-status" title="Current Status" class="md-nav__link">
-    Current Status
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#random-summary" title="Random summary" class="md-nav__link">
-    Random summary
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ib_core" title="ib_core" class="md-nav__link">
-    ib_core
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mlx4_ib-and-mlx4_core" title="mlx4_ib and mlx4_core" class="md-nav__link">
-    mlx4_ib and mlx4_core
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#init-sequence" title="Init Sequence" class="md-nav__link">
-    Init Sequence
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -1239,30 +1225,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-status" title="Current Status" class="md-nav__link">
-    Current Status
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#random-summary" title="Random summary" class="md-nav__link">
-    Random summary
+  <a href="#about-grub2" title="About GRUB2" class="md-nav__link">
+    About GRUB2
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ib_core" title="ib_core" class="md-nav__link">
-    ib_core
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mlx4_ib-and-mlx4_core" title="mlx4_ib and mlx4_core" class="md-nav__link">
-    mlx4_ib and mlx4_core
+  <a href="#linux-vs-linux16" title="linux v.s. linux16" class="md-nav__link">
+    linux v.s. linux16
   </a>
   
 </li>
@@ -1273,8 +1245,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#init-sequence" title="Init Sequence" class="md-nav__link">
-    Init Sequence
+  <a href="#boot-protocol-and-sequence" title="Boot Protocol and Sequence" class="md-nav__link">
+    Boot Protocol and Sequence
   </a>
   
 </li>
@@ -1302,46 +1274,121 @@
               
                 
                 
-                <h1 id="infiniband-subsystem">Infiniband Subsystem<a class="headerlink" href="#infiniband-subsystem" title="Permanent link">&para;</a></h1>
-<h2 id="current-status">Current Status<a class="headerlink" href="#current-status" title="Permanent link">&para;</a></h2>
-<p>Lego&rsquo;s IB stack is ported based on <code class="codehilite">linux-3.11.1</code>. We ported:</p>
-<ul>
-<li><code class="codehilite">ib_core</code></li>
-<li><code class="codehilite">mlx4_ib</code></li>
-<li><code class="codehilite">mlx4_core</code></li>
-</ul>
-<p>Lego does not support uverbs. At the time of writing, Lego IB stack has only been tested on <code class="codehilite">Mellanox Technologies MT27500 Family [ConnectX-3]</code>.</p>
-<h2 id="random-summary">Random summary<a class="headerlink" href="#random-summary" title="Permanent link">&para;</a></h2>
-<p>The stack is SUPER complex, a lot data structures and pointers fly all over. Good thing is the whole stack is layered clearly.</p>
-<p>Top down</p>
-<h3 id="ib_core"><code class="codehilite">ib_core</code><a class="headerlink" href="#ib_core" title="Permanent link">&para;</a></h3>
-<ul>
-<li>IB core code is in <code class="codehilite">driver/infiniband/core</code>, which exposes the major IB API to both user and kernel applications. Inside, it has two parts. The first part is function callback, that call back to underlying device-specific functions. The second part is the management stack, including communication manager (cm), management datagram (mad), and so on.</li>
-<li>In IB, each port&rsquo;s QP0 and QP1 are reserved for management purpose. They will receive/send MAD from/to subnet manager, who typically runs on switch. All the IB management stuff is carried out by exchanging MAD.</li>
-<li>There are several key data structures: ib_client, ib_device, and mad_agent. MAD, CM, and some others are ib_client, which means they use IB device, and will be called back whenever a device has been added. mad_agent is something that will be called back whenever a device received a MAD message from switch (see <code class="codehilite">ib_mad_completion_handler()</code>). A lot layers, huh?</li>
-<li><code class="codehilite">ib_mad_completion_handler()</code>: we changed the behavior of it. we use busy polling instead of interrupt. Originally, it will be invoked by mlx4_core/eq.c</li>
-</ul>
-<h3 id="mlx4_ib-and-mlx4_core"><code class="codehilite">mlx4_ib and mlx4_core</code><a class="headerlink" href="#mlx4_ib-and-mlx4_core" title="Permanent link">&para;</a></h3>
-<ul>
-<li>
-<p>mlx4_core is actually the Ethernet driver for Mellanox NIC device (drivers/net/ethernet/mellanox/hw/mlx4), which do the actual dirty work of talking with device. On the other hand, mlx4_ib is the glue code between ib_core and mlx4_core, who do the translation.</p>
-</li>
-<li>
-<p>A lot IB verbs are ultimately translated into <code class="codehilite">fw.c __mlx4_cmd()</code>, which actually send commands to device and get the result. There are two ways of getting result: 1) polling: after writing to device memory the command, the same thread keep polling. 2) sleep and wait for interrupt. By default, the interrupt way is used (obviously). But, at the time of writing (Aug 20, 2018), we don&rsquo;t really have a working IRQ subsystem, so we use polling instead. <strong>I&rsquo;m still a little concerned that without interrupt handler, we might lose some events and the NIC may behavave incorrectly if interrupts are not handled.</strong></p>
-</li>
-</ul>
-<h2 id="init-sequence">Init Sequence<a class="headerlink" href="#init-sequence" title="Permanent link">&para;</a></h2>
+                <h1 id="notes-on-grub2-and-boot-sequence">Notes on GRUB2 and Boot Sequence<a class="headerlink" href="#notes-on-grub2-and-boot-sequence" title="Permanent link">&para;</a></h1>
+<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Mar 31, 2020</td><td>Copied from <a href="https://github.com/lastweek/source-grub2">https://github.com/lastweek/source-grub2</a>.</td></tr></tbody></table></details><h2 id="about-grub2">About GRUB2<a class="headerlink" href="#about-grub2" title="Permanent link">&para;</a></h2>
+<p>GRUB2: <a href="https://www.gnu.org/software/grub/manual/grub/grub.html#Introduction">https://www.gnu.org/software/grub/manual/grub/grub.html#Introduction</a></p>
+<p>Source code: <a href="https://github.com/lastweek/source-grub2">https://github.com/lastweek/source-grub2</a></p>
+<h3 id="linux-vs-linux16">linux v.s. linux16<a class="headerlink" href="#linux-vs-linux16" title="Permanent link">&para;</a></h3>
+<p>An interesting thing is that there are two ways to
+load an kernel image in <code class="codehilite">grub.cfg</code>, either
+<code class="codehilite">linux vmlinuz-3.10.0</code> or <code class="codehilite">linux16 vmlinuz-3.10.0</code>.
+They have different effects, but not sure what are those differences.
+I remember only the linux16 one works for me,
+but not remembering why either. At least on CentOS 7, it&rsquo;s all linux16.</p>
+<p>The <code class="codehilite">linux16</code> and <code class="codehilite">initrd16</code> in <code class="codehilite">grub-core/loader/i386/pc/linux.c</code>:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">GRUB_MOD_INIT</span><span class="p">(</span><span class="n">linux16</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">cmd_linux</span> <span class="o">=</span>
+    <span class="n">grub_register_command</span> <span class="p">(</span><span class="s">&quot;linux16&quot;</span><span class="p">,</span> <span class="n">grub_cmd_linux</span><span class="p">,</span>
+               <span class="mi">0</span><span class="p">,</span> <span class="n">N_</span><span class="p">(</span><span class="s">&quot;Load Linux.&quot;</span><span class="p">));</span>
+  <span class="n">cmd_initrd</span> <span class="o">=</span>
+    <span class="n">grub_register_command</span> <span class="p">(</span><span class="s">&quot;initrd16&quot;</span><span class="p">,</span> <span class="n">grub_cmd_initrd</span><span class="p">,</span>
+               <span class="mi">0</span><span class="p">,</span> <span class="n">N_</span><span class="p">(</span><span class="s">&quot;Load initrd.&quot;</span><span class="p">));</span>
+  <span class="n">my_mod</span> <span class="o">=</span> <span class="n">mod</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></p>
+<p>The <code class="codehilite">linux</code> and <code class="codehilite">initrd</code> in <code class="codehilite">grub-core/loader/i386/linux.c</code>:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">static</span> <span class="n">grub_command_t</span> <span class="n">cmd_linux</span><span class="p">,</span> <span class="n">cmd_initrd</span><span class="p">;</span>
+
+<span class="n">GRUB_MOD_INIT</span><span class="p">(</span><span class="n">linux</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">cmd_linux</span> <span class="o">=</span> <span class="n">grub_register_command</span> <span class="p">(</span><span class="s">&quot;linux&quot;</span><span class="p">,</span> <span class="n">grub_cmd_linux</span><span class="p">,</span>
+                     <span class="mi">0</span><span class="p">,</span> <span class="n">N_</span><span class="p">(</span><span class="s">&quot;Load Linux.&quot;</span><span class="p">));</span>
+  <span class="n">cmd_initrd</span> <span class="o">=</span> <span class="n">grub_register_command</span> <span class="p">(</span><span class="s">&quot;initrd&quot;</span><span class="p">,</span> <span class="n">grub_cmd_initrd</span><span class="p">,</span>
+                      <span class="mi">0</span><span class="p">,</span> <span class="n">N_</span><span class="p">(</span><span class="s">&quot;Load initrd.&quot;</span><span class="p">));</span>
+  <span class="n">my_mod</span> <span class="o">=</span> <span class="n">mod</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></p>
+<h2 id="boot-protocol-and-sequence">Boot Protocol and Sequence<a class="headerlink" href="#boot-protocol-and-sequence" title="Permanent link">&para;</a></h2>
+<p>This was written for <a href="https://github.com/lastweek/source-grub2">https://github.com/lastweek/source-grub2</a>. I just copied it here.</p>
+<p>Linux (x86) has a boot protocol, described by <a href="https://www.kernel.org/doc/html/latest/x86/boot.html">https://www.kernel.org/doc/html/latest/x86/boot.html</a>.
+Essentially, it is a contiguous memory region, just like a big C <code class="codehilite">struct</code>:
+some fields are filled by kernel duing compile time (<code class="codehilite">arch/x86/boot/tools/build.c</code> and some in code),
+some fields are filled by GRUB2 during boot time to tell kernel some
+important addresses, e.g., kernel parameters, ramdisk locations etc.</p>
+<p>GRUB2 code follows the protocol, and you can partially tell from the <code class="codehilite">grub_cmd_linux()</code> function.</p>
+<p>Last time I working on this was late 2016, I truly spent a lot investigating
+how GRUB and linux boot works. I will try to document a bit, if my memory serves:</p>
 <ol>
-<li>Init PCI subsystem, build data structures</li>
-<li>Core IB layer register <code class="codehilite">ib_client</code></li>
-<li><code class="codehilite">mlx4_init()</code>: register PCI driver, provide a callback</li>
-<li><code class="codehilite">__mlx4_init_one()</code>: initialize the hardware itself, register interrupt handler.</li>
-<li><code class="codehilite">mlx4_ib_init()</code>: allocate a ib_device, and register, which will callback through all <code class="codehilite">ib_client</code> registered at step 1.</li>
+<li>
+<p>In the Linux kernel, file <code class="codehilite">arch/x86/boot/header.S</code> is the first file got run after GRUB2.
+This file is a bit complicated but not hard to understand!
+It has 3 parts.
+For the first part, it detects if it was loaded by a bootloader, if not, just by printing an error message and reboot.
+It the kernel was loaded by a bootloader like GRUB2, the first part will never execute.
+The bootload will directly jump to the second part. This is part of the boot protocol.
+For the second part, it lists all the fields described by the boot protocol.
+And finally the third part is real-mode instructions that got run after the GRUB2 jumo.
+The starting function is called <code class="codehilite">start_of_setup</code>, which will do some stack checking,
+and then jump to C code in <code class="codehilite">arch/x86/boot/main.c</code>.</p>
+</li>
+<li>
+<p><code class="codehilite">arch/x86/boot/main.c</code> runs on real-mode, it will do some setup and jump to protected-mode (32-bit).
+It is running after BIOS but before the actual Linux kernel.
+Thus this piece of code must rely on BIOS to do stuff, which makes it very unique.
+The major task of the setup code is to prepare the <code class="codehilite">struct boot_params</code>, which has all the boot information, some of them were extracted from the <code class="codehilite">header.S</code>. The <code class="codehilite">struct boot_params</code> will be passed down and used by many kernel subsystems later on.
+The final jump happens in <code class="codehilite">arch/x86/boot/pmjump.S</code>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="cp">#</span>
+        <span class="cp"># Jump to protected-mode kernel, 0x100000</span>
+        <span class="cp"># which is the compressed/head_$(BITS).o</span>
+        <span class="cp">#</span>
+        <span class="n">jmp</span>     <span class="o">*%</span><span class="n">eax</span>
+</pre></div>
+</td></tr></table></p>
+</li>
+<li>
+<p>Then, we are in <code class="codehilite">arch/x86/boot/compressed/head_64.S</code>.
+Above pmjump jumps to <code class="codehilite">startup_32</code>, it will enable paging, tweak GDT table etc, setup pagetable, and transition to 64-bit entry point <code class="codehilite">startup_64</code>. 
+And finally, we are in 64-bit. The final jump will go to <code class="codehilite">arch/x86/kernel/head_64.S</code>. We are close!</p>
+</li>
+<li>
+<p>Now we are in <code class="codehilite">arch/x86/kernel/head_64.S</code>. We are in 64-bit. But some further setup is needed. This part is really low-level and engaging. I would never know I how managed to understand and port all this shit. It setup a lot GDT, IDT stuff, and some pgfault handlers. It turns out those early pgfault handlers are NECESSARY and I remember they played an very interesting role! Finally, this assembly will jump to <code class="codehilite">arch/x86/kernel/head64.c</code>, the C code!</p>
+<ul>
+<li>I guess an interesting part is <code class="codehilite">secondary_startup_64</code>. This code is actually run by non-booting CPUs, or secondary CPUs.
+  After the major boot CPU is up and running (already within <code class="codehilite">start_kernel()</code>), I believe its the <code class="codehilite">smp_init()</code> that will send IPI wakeup interrupts to all present secondary CPUs.
+  The secondary CPUs will start from real-mode, obviously. Then they will transition from 16bit to 32bit, from 32bit to 64bit. That code is in <a href="https://github.com/WukLab/LegoOS/blob/master/arch/x86/realmode/rm/trampoline.S"><code class="codehilite">arch/x86/realmode/rm/trampoline.S</code></a>!</li>
+<li><code class="codehilite">arch/x86/realmode</code> is interesting. It uses piggyback technique. All the real-mode and 32bit code are in <code class="codehilite">arch/x86/realmode/rm/*</code>, a special <a href="https://github.com/WukLab/LegoOS/blob/master/arch/x86/realmode/rm/ld.lds.S">linker script</a> is used to construct the code in a specific way! Think about mix 16bit, 32bit, 64bit code together, nasty!</li>
+</ul>
+</li>
+<li>
+<p>Hooray, C world. We are in <code class="codehilite">arch/x86/kernel/head64.c</code>. The starting function is <code class="codehilite">x86_64_start_kernel</code>! And the end is the <code class="codehilite">start_kernel</code>, the one in <code class="codehilite">init/main.c</code>.</p>
+</li>
 </ol>
-<p>&ndash;<br />
-Yizhou Shan<br />
-Created: Aug 20, 2018<br />
-Last Updated: Aug 20, 2018</p>
+<p>In all, there are a lot jumps after GRUB2 load the kernel, and its a long road before we can reach <code class="codehilite">start_kernel()</code>. It probably should not be this complex, but the x86 architecture really makes it worse. Happy hacking!</p>
                 
                   
                 
@@ -1355,9 +1402,9 @@ Last Updated: Aug 20, 2018</p>
   <div id="disqus_thread"></div>
   <script>
     var disqus_config = function () {
-      this.page.url = "http://lastweek.io/lego/driver/ib/";
+      this.page.url = "http://lastweek.io/lego/kernel/boot/";
       this.page.identifier =
-        "/lego/driver/ib/";
+        "/lego/kernel/boot/";
     };
     (function() {
       var d = document, s = d.createElement("script");
@@ -1380,7 +1427,7 @@ Last Updated: Aug 20, 2018</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../pci/" title="PCI" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../../fpga/hls_axi/" title="Efficient AXI-MM" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1389,19 +1436,19 @@ Last Updated: Aug 20, 2018</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                PCI
+                Efficient AXI-MM
               </span>
             </div>
           </a>
         
         
-          <a href="../../paper/nmp/" title="NMP" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../kconfig/" title="Kconfig" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                NMP
+                Kconfig
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
