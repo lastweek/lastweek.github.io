@@ -69,6 +69,8 @@ Projects supporting our day-to-day work without us realizing it.
 - [Plan 9 OS](https://github.com/lastweek/source-plan9)
 - [MSR Singularity.](https://github.com/lastweek/source-singularity)
 - [OSv. A lightweight unikernel.](https://github.com/lastweek/source-osv)
+- [illumos](https://github.com/lastweek/source-illumos-gate)
+        - This is a fork of Oracle Solaris OS.
 - [seL4 Microkernel](https://github.com/lastweek/source-seL4)
 - [MacOS Darwin](https://github.com/lastweek/source-darwin-xnu)
 - BSD: these repos have everything you can think of
