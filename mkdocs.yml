@@ -117,7 +117,8 @@ markdown_extensions:
 theme:
   name: 'material'
   font:
-    text: 'Lato'
+          #text: 'Montserrat'
+          text: 'Open Sans'
 
 google_analytics:
   - 'UA-143772066-1'

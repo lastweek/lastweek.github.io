@@ -99,6 +99,8 @@ Projects supporting our day-to-day work without us realizing it.
 - [Google V8, in C++](https://github.com/lastweek/v8)
 - [Apple Swift, in C++](https://github.com/lastweek/source-swift)
 - [GNU GCC](https://github.com/gcc-mirror/gcc)
+- [TCL, in C](https://github.com/lastweek/source-tcl)
+- [Perl 5, in C](https://github.com/lastweek/source-perl5)
 
 ## Firmware
 
