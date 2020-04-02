@@ -427,12 +427,12 @@
         }, 
         {
             "location": "/notes/benchmark/", 
-            "text": "Benchmarks\n\n\nVersion History\nDate\nDescription\nAug 13, 2019\nUpdate\nAug 03, 2019\nInitial draft\nAreas\n\n\nSynchronization/Concurrency Community\n\n\n\n\nPhoenix (mm)\n\n\nMOSBENCH/Metis (mm)\n\n\nLevelDB\n\n\nwill-it-scale\n\n\nLinux locktorture\n\n\nFilesystems (fs)\n\n\nLiTL, ATC\n16, \nhttps://github.com/multicore-locks/litl\n\n\nReferences\n\n\nShuffleLock, SOSP\n19\n\n\nCompact NUMA-aware Locks, EuroSys\n19\n\n\nfill me in\n\n\n\n\n\n\n\n\nFPGA\n\n\n\n\nRosetta: A Realistic High-Level Synthesis Benchmark Suite for Software Programmable FPGAs, FPGA\n18\n\n\nAmophOS has a lot more.\n\n\n\n\nMisc Information\n\n\n\n\nSystems Benchmarking Crimes", 
+            "text": "Benchmarks\n\n\nVersion History\nDate\nDescription\nApr 2, 2020\nUpdate\nAug 13, 2019\nUpdate\nAug 03, 2019\nInitial draft\nAreas\n\n\nSynchronization/Concurrency Community\n\n\n\n\nPhoenix HPCA (heavy mmap/munmap, i.e., mm-sem usage)\n\n\nMOSBENCH/Metis (same as Phoenix)\n\n\nLevelDB (a popular workload)\n\n\nLinux locktorture\n\n\nFilesystems (fs)\n\n\nLiTL, ATC\n16, \nhttps://github.com/multicore-locks/litl\n\n\nReferences\n\n\nShuffleLock, SOSP\n19\n\n\nCompact NUMA-aware Locks, EuroSys\n19\n\n\nfill me in\n\n\n\n\n\n\n\n\nOS\n\n\n\n\nwill-it-scale\n\n\nlmbench\n\n\nsysbench\n\n\n\n\nFPGA\n\n\n\n\nRosetta: A Realistic High-Level Synthesis Benchmark Suite for Software Programmable FPGAs, FPGA\n18\n\n\nAmophOS has a lot more.\n\n\n\n\nMisc Information\n\n\n\n\nSystems Benchmarking Crimes", 
             "title": "Benchmarks"
         }, 
         {
             "location": "/notes/benchmark/#benchmarks", 
-            "text": "Version History Date Description Aug 13, 2019 Update Aug 03, 2019 Initial draft", 
+            "text": "Version History Date Description Apr 2, 2020 Update Aug 13, 2019 Update Aug 03, 2019 Initial draft", 
             "title": "Benchmarks"
         }, 
         {
@@ -442,8 +442,13 @@
         }, 
         {
             "location": "/notes/benchmark/#synchronizationconcurrency-community", 
-            "text": "Phoenix (mm)  MOSBENCH/Metis (mm)  LevelDB  will-it-scale  Linux locktorture  Filesystems (fs)  LiTL, ATC 16,  https://github.com/multicore-locks/litl  References  ShuffleLock, SOSP 19  Compact NUMA-aware Locks, EuroSys 19  fill me in", 
+            "text": "Phoenix HPCA (heavy mmap/munmap, i.e., mm-sem usage)  MOSBENCH/Metis (same as Phoenix)  LevelDB (a popular workload)  Linux locktorture  Filesystems (fs)  LiTL, ATC 16,  https://github.com/multicore-locks/litl  References  ShuffleLock, SOSP 19  Compact NUMA-aware Locks, EuroSys 19  fill me in", 
             "title": "Synchronization/Concurrency Community"
+        }, 
+        {
+            "location": "/notes/benchmark/#os", 
+            "text": "will-it-scale  lmbench  sysbench", 
+            "title": "OS"
         }, 
         {
             "location": "/notes/benchmark/#fpga", 
