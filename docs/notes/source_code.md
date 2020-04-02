@@ -1,4 +1,4 @@
-# Source code study
+# Source Code Study
 
 ??? note "Version History"
 	|Date|Description|
@@ -8,17 +8,12 @@
 	|Jan 31, 2020| Add some good stuff |
 	|Jan 18, 2020| Initial|
 
-:whale2:
-
 Beautiful code is art.
 Recently I started forking good open source code
 into my own Github account and started casual reading and taking notes.
-In general, GNU projects are very hard to read, they have
-their own coding style which isn't for everyone.
-My personal favorite is linux kernel coding style,
-and many linux-related projects follow this, e.g., CRIU, rdma-core.
+This page links to all of them.
 
-Either way, happy hacking!
+Happy hacking!
 
 ## Misc
 
@@ -68,7 +63,6 @@ Projects supporting our day-to-day work without us realizing it.
 - [Linux 0.0.1](https://github.com/lastweek/linux-0.01)
 - [Plan 9 OS](https://github.com/lastweek/source-plan9)
 - [MSR Singularity.](https://github.com/lastweek/source-singularity)
-- [OSv. A lightweight unikernel.](https://github.com/lastweek/source-osv)
 - [illumos](https://github.com/lastweek/source-illumos-gate)
         - This is a fork of Oracle Solaris OS.
 - [seL4 Microkernel](https://github.com/lastweek/source-seL4)
@@ -78,6 +72,11 @@ Projects supporting our day-to-day work without us realizing it.
 	- [OpenBSD](https://github.com/openbsd/src)
 	- [NetBSD](https://github.com/NetBSD/src)
 	- [TrueOS](https://github.com/trueos/trueos)
+- [Unikernel](http://unikernel.org/)
+	- [OSv. A lightweight unikernel.](https://github.com/lastweek/source-osv)
+	- [IncludeOS](https://github.com/lastweek/source-IncludeOS)
+	- [Rumprun](https://github.com/lastweek/source-rumprun)
+	- [Solo5. Unikernel as processes!](https://github.com/lastweek/source-solo5)
 
 ![image_unix_timeline](../images/unix_timeline.png)
 (Image source: https://commons.wikimedia.org/wiki/File:Unix_timeline.en.svg)
