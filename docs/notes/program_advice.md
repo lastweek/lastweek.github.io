@@ -40,8 +40,13 @@
 
 https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/acrobat-17.pdf
 
-## Mary Dash’s Writing Tips
+## Performance Evaluation
 
-Plain Writing Act of 2010, [Federal Plain Language Guidelines.](https://plainlanguage.gov/media/FederalPLGuidelines.pdf).
+- [Systems Benchmarking Crimes](https://www.cse.unsw.edu.au/~gernot/benchmarking-crimes.html)
+- [Tim Harris: designing experiments for understanding performance](https://timharris.uk/misc/five-ways.pdf)
+	- Very practical and useful suggestions.
 
-[Dash Writing Tips](https://plainlanguage.gov/resources/articles/dash-writing-tips/)
+## Writing Tips
+
+- Plain Writing Act of 2010, [Federal Plain Language Guidelines.](https://plainlanguage.gov/media/FederalPLGuidelines.pdf).
+- [Dash Writing Tips](https://plainlanguage.gov/resources/articles/dash-writing-tips/)
