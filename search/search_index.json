@@ -352,7 +352,7 @@
         }, 
         {
             "location": "/notes/linux-articles/", 
-            "text": "Articles about linux kernel\n\n\n\n\nVersion History\nDate\nDescription\nMar 13, 2020\nadd lkt, nice\nOct 7, 2019\nFeels like I need to start thi\nTutorials\n\n\n\n\nLinux Kernel Teaching\n\n\n\n\nSched\n\n\n\n\nEvolution of the x86 context switch in Linux\n\n\n\n\nMisc\n\n\n\n\nWhy printk() is so complicated (and how to fix it)\n\n\nSlide\n.", 
+            "text": "Articles about linux kernel\n\n\n\n\nVersion History\nDate\nDescription\nMar 13, 2020\nadd lkt, nice\nOct 7, 2019\nFeels like I need to start thi\nTutorials\n\n\n\n\nLinux Kernel Teaching\n\n\n\n\nSched\n\n\n\n\nEvolution of the x86 context switch in Linux\n\n\n\n\nMisc\n\n\n\n\nWhy printk() is so complicated (and how to fix it)\n\n\nSlide\n.\n\n\n\n\n\n\nSpecial sections in Linux binaries, 2013", 
             "title": "Linux Articles"
         }, 
         {
@@ -372,7 +372,7 @@
         }, 
         {
             "location": "/notes/linux-articles/#misc", 
-            "text": "Why printk() is so complicated (and how to fix it)  Slide .", 
+            "text": "Why printk() is so complicated (and how to fix it)  Slide .    Special sections in Linux binaries, 2013", 
             "title": "Misc"
         }, 
         {
