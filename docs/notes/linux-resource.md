@@ -1,4 +1,4 @@
-# Articles about linux kernel
+# Linux Kernel Resource
 
 :moyai:
 
@@ -8,9 +8,11 @@
 	|Mar 13, 2020| add lkt, nice|
 	|Oct 7, 2019| Feels like I need to start thi|
 
-## Tutorials
+## High-level
 
 - [Linux Kernel Teaching](https://linux-kernel-labs.github.io/refs/heads/master/index.html#)
+- [The Linux Storage Stack Diagram](https://upload.wikimedia.org/wikipedia/commons/3/30/IO_stack_of_the_Linux_kernel.svg)
+- [Linux kernel map](https://makelinux.github.io/kernel/map/)
 
 ## Sched
 
@@ -21,3 +23,7 @@
 - [Why printk() is so complicated (and how to fix it)](https://lwn.net/Articles/800946/)
 	- [Slide](https://www.linuxplumbersconf.org/event/4/contributions/290/attachments/276/463/lpc2019_jogness_printk.pdf).
 - [Special sections in Linux binaries, 2013](https://lwn.net/Articles/531148/)
+
+## Storage
+
+- [i10, good NVMe code](https://github.com/lastweek/source-NSDI20-i10)
