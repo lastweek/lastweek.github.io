@@ -351,29 +351,34 @@
             "title": "Special Files"
         }, 
         {
-            "location": "/notes/linux-articles/", 
-            "text": "Articles about linux kernel\n\n\n\n\nVersion History\nDate\nDescription\nMar 13, 2020\nadd lkt, nice\nOct 7, 2019\nFeels like I need to start thi\nTutorials\n\n\n\n\nLinux Kernel Teaching\n\n\n\n\nSched\n\n\n\n\nEvolution of the x86 context switch in Linux\n\n\n\n\nMisc\n\n\n\n\nWhy printk() is so complicated (and how to fix it)\n\n\nSlide\n.\n\n\n\n\n\n\nSpecial sections in Linux binaries, 2013", 
-            "title": "Linux Articles"
+            "location": "/notes/linux-resource/", 
+            "text": "Linux Kernel Resource\n\n\n\n\nVersion History\nDate\nDescription\nMar 13, 2020\nadd lkt, nice\nOct 7, 2019\nFeels like I need to start thi\nHigh-level\n\n\n\n\nLinux Kernel Teaching\n\n\nThe Linux Storage Stack Diagram\n\n\nLinux kernel map\n\n\n\n\nSched\n\n\n\n\nEvolution of the x86 context switch in Linux\n\n\n\n\nMisc\n\n\n\n\nWhy printk() is so complicated (and how to fix it)\n\n\nSlide\n.\n\n\n\n\n\n\nSpecial sections in Linux binaries, 2013\n\n\n\n\nStorage\n\n\n\n\ni10, good NVMe code", 
+            "title": "Linux Resource"
         }, 
         {
-            "location": "/notes/linux-articles/#articles-about-linux-kernel", 
+            "location": "/notes/linux-resource/#linux-kernel-resource", 
             "text": "Version History Date Description Mar 13, 2020 add lkt, nice Oct 7, 2019 Feels like I need to start thi", 
-            "title": "Articles about linux kernel"
+            "title": "Linux Kernel Resource"
         }, 
         {
-            "location": "/notes/linux-articles/#tutorials", 
-            "text": "Linux Kernel Teaching", 
-            "title": "Tutorials"
+            "location": "/notes/linux-resource/#high-level", 
+            "text": "Linux Kernel Teaching  The Linux Storage Stack Diagram  Linux kernel map", 
+            "title": "High-level"
         }, 
         {
-            "location": "/notes/linux-articles/#sched", 
+            "location": "/notes/linux-resource/#sched", 
             "text": "Evolution of the x86 context switch in Linux", 
             "title": "Sched"
         }, 
         {
-            "location": "/notes/linux-articles/#misc", 
+            "location": "/notes/linux-resource/#misc", 
             "text": "Why printk() is so complicated (and how to fix it)  Slide .    Special sections in Linux binaries, 2013", 
             "title": "Misc"
+        }, 
+        {
+            "location": "/notes/linux-resource/#storage", 
+            "text": "i10, good NVMe code", 
+            "title": "Storage"
         }, 
         {
             "location": "/notes/kvm-basic/", 
