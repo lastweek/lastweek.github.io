@@ -17,7 +17,7 @@ Happy hacking!
 
 ## Misc
 
-Projects supporting our day-to-day work without us realizing it.
+Projects supporting our day-to-day work.
 
 - [glibc: libc, elf, and dynamic linker](https://github.com/lastweek/source-glibc)
 	- Some juicy information about GOT/PLT
@@ -32,14 +32,12 @@ Projects supporting our day-to-day work without us realizing it.
 - [tmux](https://github.com/lastweek/source-tmux)
 - [git](https://github.com/lastweek/source-git)
 - Network
-	- [iperf3](https://github.com/lastweek/source-iperf)
-		- iperf3: A TCP, UDP, and SCTP network bandwidth measurement tool
+	- [iperf3](https://github.com/lastweek/source-iperf) is a TCP, UDP, and SCTP network bandwidth measurement tool
 	- [tcpdump](https://github.com/lastweek/source-tcpdump)
-		- the TCPdump network dissector
-	- [OpenSSH](https://github.com/lastweek/source-openssh-portable)
-		- ssh it is.
+	- [OpenSSH](https://github.com/lastweek/source-openssh-portable) is our ssh!
 	- [scapy](https://github.com/lastweek/source-scapy)
 		- Python-based interactive packet manipulation program & library
+		- Very neat
 - C for life
 	- [cJSON](https://github.com/lastweek/source-cJSON)
 		- A lightweight JSON parser in C.
@@ -54,6 +52,9 @@ Projects supporting our day-to-day work without us realizing it.
 		- Detailed analysis of Linux booting sequence (how it transit from
 		  real-mode to protected mode, and finally to 64-bit mode,
 		  how to navigate Linux source code etc.)
+	- [FFmpeg](https://github.com/lastweek/source-FFmpeg)
+		- FFmpeg project is famous for its clean and neat C code.
+		- Besides, this project is used by a lot online video service companies
 	- [`io_uring`](https://kernel.dk/io_uring.pdf)
 		- [user liburing](https://github.com/axboe/liburing)
 		- [kernel io_uring.c](https://github.com/torvalds/linux/blob/master/fs/io_uring.c)
