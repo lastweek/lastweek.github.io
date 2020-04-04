@@ -5,7 +5,7 @@ site_url: 'http://lastweek.io'
 pages:
 - Home: 'index.md'
 - Blog:
-   - '2020-04-04 On Network Transport':                 'blog/20200404-on-net-transport.md'
+   - '2020-04 On Hardware-based Network Transport':                 'blog/20200404-on-net-transport.md'
 - Notes:
    - 'Open-Source-Code-Study':                          'notes/source_code.md'
    - 'Programming-Guidelines-and-Advice':               'notes/program_advice.md'
