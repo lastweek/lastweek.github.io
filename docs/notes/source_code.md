@@ -188,11 +188,24 @@ Point of interests:
 	- Native Ethernet (when working with MOFED2) - raw_ethernet_bw, raw_ethernet_lat 
 - [rdma-core](https://github.com/lastweek/source-rdma-core)
 	- Userspace IB verbs library (e.g., libibverbs)
-	- Commands such as `ibv_devinfo`, `rc_pingpong`
 	- Learn how userspace IB layer communicate with kernel, but also bypass kernel.
 	  The technique replies on `ioctl()` and `mmap()`, standard.
 	  But the ABI interface (i.e., data structures) are quite complex.
-	- This is beautiful code
+	- `libibverbs/example`
+		- asyncwatch.c
+		- device_list.c
+		- devinfo.c
+		- pingpong.c
+		- rc_pingpong.c
+		- srq_pingpong.c
+		- uc_pingpong.c
+		- ud_pingpong.c
+		- xsrq_pingpong.c
+	- `infiniband-diags`
+		- ibv_devinfo    
+		- iblinkinfo    
+		- ibping    
+		- ibaddr
 	- [Kernel Infiniband stack](https://github.com/torvalds/linux/tree/master/drivers/infiniband)
 - [DPDK](https://github.com/lastweek/source-dpdk)
 	- DPDK uses VFIO to directly access physical device.
