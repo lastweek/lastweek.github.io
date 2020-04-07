@@ -3,6 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Apr 6, 2020| add verbs perftes|
 	|Mar 3, 2020| add FreeBSD, some fpga stuff |
 	|Feb 4, 2020| add io_uring, firecracker|
 	|Jan 31, 2020| Add some good stuff |
@@ -69,6 +70,7 @@ Projects supporting our day-to-day work.
 - [seL4 Microkernel](https://github.com/lastweek/source-seL4)
 - [MacOS Darwin](https://github.com/lastweek/source-darwin-xnu)
 - BSD: these repos have everything you can think of
+	- If you ever wondered how X is done, how to get Y from OS, this is where you look into.
 	- [FreeBSD](https://github.com/lastweek/source-freebsd)
 	- [OpenBSD](https://github.com/openbsd/src)
 	- [NetBSD](https://github.com/NetBSD/src)
