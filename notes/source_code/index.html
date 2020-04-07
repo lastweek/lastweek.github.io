@@ -1614,11 +1614,28 @@ modern devices using a scalable, maintainable, and reusable pattern&rdquo;</li>
 </li>
 <li><a href="https://github.com/lastweek/source-rdma-core">rdma-core</a><ul>
 <li>Userspace IB verbs library (e.g., libibverbs)</li>
-<li>Commands such as <code class="codehilite">ibv_devinfo</code>, <code class="codehilite">rc_pingpong</code></li>
 <li>Learn how userspace IB layer communicate with kernel, but also bypass kernel.
   The technique replies on <code class="codehilite">ioctl()</code> and <code class="codehilite">mmap()</code>, standard.
   But the ABI interface (i.e., data structures) are quite complex.</li>
-<li>This is beautiful code</li>
+<li><code class="codehilite">libibverbs/example</code><ul>
+<li>asyncwatch.c</li>
+<li>device_list.c</li>
+<li>devinfo.c</li>
+<li>pingpong.c</li>
+<li>rc_pingpong.c</li>
+<li>srq_pingpong.c</li>
+<li>uc_pingpong.c</li>
+<li>ud_pingpong.c</li>
+<li>xsrq_pingpong.c</li>
+</ul>
+</li>
+<li><code class="codehilite">infiniband-diags</code><ul>
+<li>ibv_devinfo    </li>
+<li>iblinkinfo    </li>
+<li>ibping    </li>
+<li>ibaddr</li>
+</ul>
+</li>
 <li><a href="https://github.com/torvalds/linux/tree/master/drivers/infiniband">Kernel Infiniband stack</a></li>
 </ul>
 </li>
