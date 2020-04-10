@@ -148,6 +148,10 @@ First it's SeaBIOS, the default one used by QEMU. Then UEFI, something I have ne
             - [Alex Forencich](https://github.com/alexforencich) is a phenomenon Verilog hacker
     - [Corundum: an FPGA-based NIC](https://github.com/ucsdsysnet/corundum)
     - [Limago, HLS-based 100 GbE TCP/IP](https://github.com/lastweek/source-Limago)
+    - [FPGA Network Stack](https://github.com/fpgasystems/fpga-network-stack)
+	    - This one came from ETH as well.
+            - This one is used by many papers, as far as i know, StRoM, EuroSys'20.
+	    - It's mostly HLS-based. And has ETH/IP/UDP/TCP, RoCE v2 stack.
 - Simulation, Synthesis, and P&R
     - [Icarus iverilog](https://github.com/lastweek/source-iverilog).
       iverilog is a compiler that translates Verilog source code into
