@@ -3,6 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Apr 10, 2020| add graphics section|
 	|Apr 6, 2020| add verbs perftes|
 	|Mar 3, 2020| add FreeBSD, some fpga stuff |
 	|Feb 4, 2020| add io_uring, firecracker|
@@ -39,6 +40,10 @@ Projects supporting our day-to-day work.
 	- [scapy](https://github.com/lastweek/source-scapy)
 		- Python-based interactive packet manipulation program & library
 		- Very neat
+- Graphics
+	- [xRDP, an RDP server. In C](https://github.com/neutrinolabs/xrdp)
+	- [FreeRDP, client and server. In C](https://github.com/FreeRDP/FreeRDP)
+		- Took a brief read of the code, it's super neat. Should take a serious look sometime.
 - C for life
 	- [cJSON](https://github.com/lastweek/source-cJSON)
 		- A lightweight JSON parser in C.
