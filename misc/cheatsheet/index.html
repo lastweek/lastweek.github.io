@@ -488,6 +488,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#git" title="Git" class="md-nav__link">
+    Git
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#qemu" title="QEMU" class="md-nav__link">
     QEMU
   </a>
@@ -1351,6 +1358,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#git" title="Git" class="md-nav__link">
+    Git
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#qemu" title="QEMU" class="md-nav__link">
     QEMU
   </a>
@@ -1457,7 +1471,8 @@ Use VNC client to establish connection with localhost:7777
 </ul>
 <h2 id="bash">bash<a class="headerlink" href="#bash" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Show current git branch in PS1:
+<li>
+<p>Show current git branch in PS1:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -1468,8 +1483,22 @@ Use VNC client to establish connection with localhost:7777
 
 <span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;\[\e[32m\][\u@\h: \W\e[33m\]\$(parse_git_branch)\[\033[32m\]]\[\e[00m\] </span>$<span class="s2"> &quot;</span>
 </pre></div>
-</td></tr></table></li>
+</td></tr></table></p>
+</li>
+<li>
+<p>Forward <code class="codehilite">man</code> pages to <code class="codehilite">vim</code>:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>vman<span class="o">()</span> <span class="o">{</span> man <span class="nv">$*</span> <span class="p">|</span> col -b <span class="p">|</span> vim -c <span class="s1">&#39;set ft=man nomod nolist&#39;</span> -<span class="p">;</span> <span class="o">}</span>    
+<span class="nb">alias</span> <span class="nv">man</span><span class="o">=</span><span class="s2">&quot;vman&quot;</span>
+</pre></div>
+</td></tr></table></p>
+</li>
 </ul>
+<h2 id="git">Git<a class="headerlink" href="#git" title="Permanent link">&para;</a></h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>git log --pretty=&quot;%C(Yellow)%h %C(auto)%d (%C(Green)%cr%C(reset))%x09 %C(Cyan)%an: %C(reset)%s&quot; --date=short --graph
+</pre></div>
+</td></tr></table>
+
 <h2 id="qemu">QEMU<a class="headerlink" href="#qemu" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Run standalone kernel:
