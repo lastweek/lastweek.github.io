@@ -135,33 +135,41 @@ First it's SeaBIOS, the default one used by QEMU. Then UEFI, something I have ne
 
 ## FPGA
 
-- [Collection](https://github.com/lastweek/fpga_vivado_scripts)
-- [Readings](https://github.com/lastweek/fpga_readings)
+- [My own Collection](https://github.com/lastweek/fpga_vivado_scripts)
+- [My own Paper Readings](https://github.com/lastweek/fpga_readings)
 - Partial Reconfiguration
     - [Partial Reconfiguration Building Framework](https://github.com/lastweek/fpga_pr_scripts)
     - [Intepret Xilinx Bitstream](https://github.com/lastweek/fpga_interpret_bitstream)
     - [HLS-based **ICAP** Controller](https://github.com/lastweek/fpga_icap_hls/)
 - Network
-    - [Verilog-Ethernet](https://github.com/lastweek/source-verilog-ethernet)
-            - Self-made PHY, MAC IPs
-            - ARP, IP, UDP stack
-            - [Alex Forencich](https://github.com/alexforencich) is a phenomenon Verilog hacker
-    - [Corundum: an FPGA-based NIC](https://github.com/ucsdsysnet/corundum)
-    - [Limago, HLS-based 100 GbE TCP/IP](https://github.com/lastweek/source-Limago)
-    - [FPGA Network Stack](https://github.com/fpgasystems/fpga-network-stack)
-	    - This one came from ETH as well.
-            - This one is used by many papers, as far as i know, StRoM, EuroSys'20.
-	    - It's mostly HLS-based. And has ETH/IP/UDP/TCP, RoCE v2 stack.
+	- [Corundum: an FPGA-based NIC](https://github.com/ucsdsysnet/corundum)
+		- This is THE BEST network stack out there.
+		- This is not simply a network stack, it is a NIC.
+		- So what makes a NIC? First, PHY and MAC are basic.
+		Second, PCIe connection between host and board.
+		Third, DMA using PCIe, for TX and RX packets between host and board.
+		Fourth, a host NIC driver;
+		Fifth, some opt modules at NIC.
+		- This project has it all. Most amazingly, it works on so many boards.
+		- They have an FCCM'20 paper (finally!) describing the small modules inside.
+	- [Verilog-Ethernet](https://github.com/lastweek/source-verilog-ethernet)
+		- Self-made PHY, MAC IPs, ARP, IP, UDP stack
+		- This is also used by the Corundum project.
+	- [Limago, HLS-based 100 GbE TCP/IP](https://github.com/lastweek/source-Limago)
+	- [FPGA Network Stack](https://github.com/fpgasystems/fpga-network-stack)
+		- This one came from ETH as well.
+		- This one is used by many papers, as far as i know, StRoM, EuroSys'20.
+		- It's mostly HLS-based. And has ETH/IP/UDP/TCP, RoCE v2 stack.
 - Simulation, Synthesis, and P&R
-    - [Icarus iverilog](https://github.com/lastweek/source-iverilog).
-      iverilog is a compiler that translates Verilog source code into
-      executable programs for simulation, or other netlist formats for further processing [man page](https://linux.die.net/man/1/iverilog).
-    - [VMware Cascade](https://github.com/lastweek/source-cascade).
-      Just-in-time compilation for Verilog, what a brilliant idea.
-    - [Verilog-to-routing](https://github.com/lastweek/source-vtr-verilog-to-routing).
-        - Synthesis (`ODIN II`)
-        - Logic Optimization & Technology Mapping (`ABC`)
-        - Placement and Route (`VPR`)
+	- [Icarus iverilog](https://github.com/lastweek/source-iverilog).
+	  iverilog is a compiler that translates Verilog source code into
+	  executable programs for simulation, or other netlist formats for further processing [man page](https://linux.die.net/man/1/iverilog).
+	- [VMware Cascade](https://github.com/lastweek/source-cascade).
+	  Just-in-time compilation for Verilog, what a brilliant idea.
+	- [Verilog-to-routing](https://github.com/lastweek/source-vtr-verilog-to-routing).
+		- Synthesis (`ODIN II`)
+		- Logic Optimization & Technology Mapping (`ABC`)
+		- Placement and Route (`VPR`)
 
 ## Web Servers
 
