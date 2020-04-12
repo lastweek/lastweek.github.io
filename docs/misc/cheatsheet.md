@@ -45,6 +45,18 @@ parse_git_branch() {
 PS1="\[\e[32m\][\u@\h: \W\e[33m\]\$(parse_git_branch)\[\033[32m\]]\[\e[00m\] $ "
 ```
 
+* Forward `man` pages to `vim`:
+```bash
+vman() { man $* | col -b | vim -c 'set ft=man nomod nolist' -; }    
+alias man="vman"
+```
+
+## Git
+
+```
+git log --pretty="%C(Yellow)%h %C(auto)%d (%C(Green)%cr%C(reset))%x09 %C(Cyan)%an: %C(reset)%s" --date=short --graph
+```
+
 ## QEMU
 
 * Run standalone kernel:
