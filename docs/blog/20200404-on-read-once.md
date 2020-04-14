@@ -24,7 +24,7 @@ if it thinks the accessed variable/data is thread-local.
 For instance, the following code snippet shows how gcc -O2 removes the memory access part.
 Without -O2, a simple assembly loop is generated. With -O2, gcc generates a deadlock itself.
 
-```c
+``` c
           Original C                        Assembly                 Assembly
                                             (gcc -S)               (gcc -S -O2)
 int x;                           |                            |
@@ -41,7 +41,7 @@ void wait_for_x(void)            |     cmpl    $1, %eax       |
 by multiple threads at the same time. Thus gcc thinks the above `while (x == 1) ;` check will never break,
 so generating an assembly deadlock jmp loop.
 
-*Why does this matter?* Image `x` being a shared variable.
+*Why does this matter?* Assume `x` is a shared variable.
 In the following code snippet, there are two threads, A and B.
 Thread A wait until B change `x` to 1.
 If we compile with -O2, thread A will deadlock.
