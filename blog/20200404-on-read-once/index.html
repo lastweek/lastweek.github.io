@@ -1264,7 +1264,7 @@ Without -O2, a simple assembly loop is generated. With -O2, gcc generates a dead
 <p><em>Why this is happening?</em> Because gcc thinks vairable <code class="codehilite">x</code> is thread-local and will not be accessed
 by multiple threads at the same time. Thus gcc thinks the above <code class="codehilite">while (x == 1) ;</code> check will never break,
 so generating an assembly deadlock jmp loop.</p>
-<p><em>Why does this matter?</em> Image <code class="codehilite">x</code> being a shared variable.
+<p><em>Why does this matter?</em> Assume <code class="codehilite">x</code> is a shared variable.
 In the following code snippet, there are two threads, A and B.
 Thread A wait until B change <code class="codehilite">x</code> to 1.
 If we compile with -O2, thread A will deadlock.
