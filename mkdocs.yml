@@ -2,10 +2,12 @@ site_name: Yizhou Shan's Home Page
 site_author: 'Yizhou Shan'
 site_url: 'http://lastweek.io'
 
+#nav:
 pages:
 - Home: 'index.md'
 - Blog:
-   - '2020-04 On Hardware-based Network Transport':                 'blog/20200404-on-net-transport.md'
+   - '2020-04 On Hardware-based Network Transport': 'blog/20200404-on-net-transport.md'
+   - '2020-04 On-Read-Once-and-Compiler-Opts':    'blog/20200404-on-read-once.md'
 - Notes:
    - 'Open-Source-Code-Study':                          'notes/source_code.md'
    - 'Programming-Guidelines-and-Advice':               'notes/program_advice.md'
@@ -71,7 +73,7 @@ pages:
            - 'Config': 'lego/pcache/config.md'
            - 'Sweep': 'lego/pcache/sweep.md'
            - 'TLB Coherence': 'lego/pcache/tlb.md'
-           - 'PageTable Lock': lego/pcache/pgtable-lock.md
+           - 'PageTable Lock': 'lego/pcache/pgtable-lock.md'
            - 'Victim Cache': 'lego/pcache/victim.md'
            - 'Virtual Cache': 'lego/pcache/virtual_cache.md'
            - 'Reverse Mapping': 'lego/pcache/rmap.md'
@@ -105,6 +107,7 @@ markdown_extensions:
   - pymdownx.critic
   - pymdownx.details
   - pymdownx.emoji:
+          #emoji_index: !!python/name:pymdownx.emoji.twemoji
       emoji_generator: !!python/name:pymdownx.emoji.to_svg
   - pymdownx.inlinehilite
   - pymdownx.magiclink
@@ -115,6 +118,10 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
   - pymdownx.progressbar
+
+plugins:
+  - search
+  #- git-revision-date-localized:
 
 theme:
   name: 'material'

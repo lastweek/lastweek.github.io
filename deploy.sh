@@ -1,2 +1,2 @@
 git push
-mkdocs gh-deploy -b master
+python -m mkdocs gh-deploy -b master
