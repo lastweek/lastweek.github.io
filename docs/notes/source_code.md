@@ -30,16 +30,18 @@ Projects supporting our day-to-day work.
 - [strace](https://github.com/lastweek/source-strace)
 	- System call tracer at userspace
 	- I've designed [one](http://lastweek.io/lego/kernel/profile_strace/) for LegoOS in kernel space
-- [vim](https://github.com/lastweek/source-vim)
-- [tmux](https://github.com/lastweek/source-tmux)
-- [git](https://github.com/lastweek/source-git)
+- Tools
+	- [tmux](https://github.com/lastweek/source-tmux)
+	- [git](https://github.com/lastweek/source-git)
+- Editors
+	- [vim](https://github.com/lastweek/source-vim)
+	- [neovim](https://github.com/lastweek/source-neovim)
 - Network
 	- [iperf3](https://github.com/lastweek/source-iperf) is a TCP, UDP, and SCTP network bandwidth measurement tool
 	- [tcpdump](https://github.com/lastweek/source-tcpdump)
 	- [OpenSSH](https://github.com/lastweek/source-openssh-portable) is our ssh!
-	- [scapy](https://github.com/lastweek/source-scapy)
-		- Python-based interactive packet manipulation program & library
-		- Very neat
+	- [scapy](https://github.com/lastweek/source-scapy): Python-based interactive packet manipulation program & library. Very neat
+	- Also checkout [FreeBSD](https://github.com/lastweek/source-freebsd) as it has all other commonly used network utilities such as `ifconfig`, `if`. 
 - Graphics
 	- [xRDP, an RDP server. In C](https://github.com/neutrinolabs/xrdp)
 	- [FreeRDP, client and server. In C](https://github.com/FreeRDP/FreeRDP)
