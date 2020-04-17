@@ -1415,19 +1415,32 @@ This page links to all of them.</p>
 <h2 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link">&para;</a></h2>
 <p>Projects supporting our day-to-day work.</p>
 <ul>
-<li><a href="https://github.com/lastweek/source-glibc">glibc: libc, elf, and dynamic linker</a><ul>
-<li>Some juicy information about GOT/PLT</li>
-<li>and explains what has happend before main() is called</li>
+<li><a href="https://github.com/lastweek/source-glibc">GNU glibc: libc, elf, and dynamic linker</a><ul>
+<li>It is the default C library used by almost everyone</li>
+<li>It includes <code class="codehilite">ld.so</code>, the dynamic linker</li>
+<li>I wrote some notes about GOT/PLT and explains what has happend before main() is called.</li>
 </ul>
 </li>
-<li><a href="https://github.com/lastweek/source-binutils">binutils: gas, static linker, and more</a><ul>
-<li>assembler is amazing</li>
-<li>static linker.. the magic thing is its linker script!</li>
+<li><a href="https://github.com/lastweek/source-binutils">GNU binutils: gas, static linker, and more</a><ul>
+<li>This repo has a lot commands like <code class="codehilite">as</code>, <code class="codehilite">ld</code>, <code class="codehilite">objdump</code>, <code class="codehilite">nm</code> and so on</li>
+<li><code class="codehilite">ld</code> is static linker and I like the magic of its linker script</li>
+<li>I guess another useful repo is <code class="codehilite">elfutils</code></li>
 </ul>
 </li>
 <li><a href="https://github.com/lastweek/source-strace">strace</a><ul>
 <li>System call tracer at userspace</li>
 <li>I&rsquo;ve designed <a href="http://lastweek.io/lego/kernel/profile_strace/">one</a> for LegoOS in kernel space</li>
+</ul>
+</li>
+<li>Unix Commands<ul>
+<li>Of course almost all other listed repos in this section have some sort of commands.
+  But they are not essential. The following repos have the essential UNIX commands like ls, cat.
+  It&rsquo;s not possible to go through all of them. But rather, I think they serve as references
+  when we want to know how certain things are implemented (e.g., how dmesg get kernel log).</li>
+<li>BusyBox</li>
+<li>GNU Coreutils</li>
+<li>util-linux</li>
+<li>FreeBSD and its friends</li>
 </ul>
 </li>
 <li>Tools<ul>
@@ -1445,7 +1458,7 @@ This page links to all of them.</p>
 <li><a href="https://github.com/lastweek/source-tcpdump">tcpdump</a></li>
 <li><a href="https://github.com/lastweek/source-openssh-portable">OpenSSH</a> is our ssh!</li>
 <li><a href="https://github.com/lastweek/source-scapy">scapy</a>: Python-based interactive packet manipulation program &amp; library. Very neat</li>
-<li>Also checkout <a href="https://github.com/lastweek/source-freebsd">FreeBSD</a> as it has all other commonly used network utilities such as <code class="codehilite">ifconfig</code>, <code class="codehilite">if</code>. </li>
+<li>Also checkout <a href="https://github.com/lastweek/source-freebsd">FreeBSD</a> as it has tools like <code class="codehilite">ifconfig</code>, <code class="codehilite">if</code>. </li>
 </ul>
 </li>
 <li>Graphics<ul>
@@ -1457,6 +1470,7 @@ This page links to all of them.</p>
 </ul>
 </li>
 <li>C for life<ul>
+<li>Some small and useful C projects</li>
 <li><a href="https://github.com/lastweek/source-cJSON">cJSON</a><ul>
 <li>A lightweight JSON parser in C.</li>
 <li>I think iperf3 is using it.</li>
