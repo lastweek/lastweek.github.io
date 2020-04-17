@@ -21,15 +21,26 @@ Happy hacking!
 
 Projects supporting our day-to-day work.
 
-- [glibc: libc, elf, and dynamic linker](https://github.com/lastweek/source-glibc)
-	- Some juicy information about GOT/PLT
-	- and explains what has happend before main() is called
-- [binutils: gas, static linker, and more](https://github.com/lastweek/source-binutils)
-	- assembler is amazing
-	- static linker.. the magic thing is its linker script!
+- [GNU glibc: libc, elf, and dynamic linker](https://github.com/lastweek/source-glibc)
+	- It is the default C library used by almost everyone
+	- It includes `ld.so`, the dynamic linker
+	- I wrote some notes about GOT/PLT and explains what has happend before main() is called.
+- [GNU binutils: gas, static linker, and more](https://github.com/lastweek/source-binutils)
+	- This repo has a lot commands like `as`, `ld`, `objdump`, `nm` and so on
+	- `ld` is static linker and I like the magic of its linker script
+	- I guess another useful repo is `elfutils`
 - [strace](https://github.com/lastweek/source-strace)
 	- System call tracer at userspace
 	- I've designed [one](http://lastweek.io/lego/kernel/profile_strace/) for LegoOS in kernel space
+- Unix Commands
+	- Of course almost all other listed repos in this section have some sort of commands.
+	  But they are not essential. The following repos have the essential UNIX commands like ls, cat.
+	  It's not possible to go through all of them. But rather, I think they serve as references
+	  when we want to know how certain things are implemented (e.g., how dmesg get kernel log).
+	- BusyBox
+	- GNU Coreutils
+	- util-linux
+	- FreeBSD and its friends
 - Tools
 	- [tmux](https://github.com/lastweek/source-tmux)
 	- [git](https://github.com/lastweek/source-git)
@@ -41,12 +52,13 @@ Projects supporting our day-to-day work.
 	- [tcpdump](https://github.com/lastweek/source-tcpdump)
 	- [OpenSSH](https://github.com/lastweek/source-openssh-portable) is our ssh!
 	- [scapy](https://github.com/lastweek/source-scapy): Python-based interactive packet manipulation program & library. Very neat
-	- Also checkout [FreeBSD](https://github.com/lastweek/source-freebsd) as it has all other commonly used network utilities such as `ifconfig`, `if`. 
+	- Also checkout [FreeBSD](https://github.com/lastweek/source-freebsd) as it has tools like `ifconfig`, `if`. 
 - Graphics
 	- [xRDP, an RDP server. In C](https://github.com/neutrinolabs/xrdp)
 	- [FreeRDP, client and server. In C](https://github.com/FreeRDP/FreeRDP)
 		- Took a brief read of the code, it's super neat. Should take a serious look sometime.
 - C for life
+	- Some small and useful C projects
 	- [cJSON](https://github.com/lastweek/source-cJSON)
 		- A lightweight JSON parser in C.
 		- I think iperf3 is using it.
