@@ -37,9 +37,9 @@ Projects supporting our day-to-day work.
 	  But they are not essential. The following repos have the essential UNIX commands like ls, cat.
 	  It's not possible to go through all of them. But rather, I think they serve as references
 	  when we want to know how certain things are implemented (e.g., how dmesg get kernel log).
-	- BusyBox
-	- GNU Coreutils
-	- util-linux
+	- [BusyBox](https://github.com/lastweek/source-busybox)
+	- [GNU Coreutils](https://github.com/lastweek/source-coreutils)
+	- [util-linux](https://github.com/lastweek/source-util-linux)
 	- FreeBSD and its friends
 - Tools
 	- [tmux](https://github.com/lastweek/source-tmux)
