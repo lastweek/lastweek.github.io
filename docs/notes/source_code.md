@@ -211,14 +211,19 @@ Point of interests:
 
 ## RDMA and More
 
+- RPC
+	- [gRPC](https://github.com/lastweek/source-grpc)
+	- [eRPC, NSDI'19]()
 - [Mellanox libvma](https://github.com/lastweek/source-libvma)
+	- An userspace IB verbs based layer providing POSIX socket APIs.
+	  In other words, a library like SocketDirect, SIGCOMM'19.
 - [verbs perftest](https://github.com/lastweek/source-verbs-perftest)
 	-  The collection contains a set of bandwidth and latency benchmark such as:
-	- Send        - ib_send_bw and ib_send_lat
-	- RDMA Read   - ib_read_bw and ib_read_lat
-	- RDMA Write  - ib_write_bw and ib_wriet_lat
-	- RDMA Atomic - ib_atomic_bw and ib_atomic_lat
-	- Native Ethernet (when working with MOFED2) - raw_ethernet_bw, raw_ethernet_lat 
+	- Send        - `ib_send_bw` and `ib_send_lat`
+	- RDMA Read   - `ib_read_bw` and `ib_read_lat`
+	- RDMA Write  - `ib_write_bw` and `ib_wriet_lat`
+	- RDMA Atomic - `ib_atomic_bw` and `ib_atomic_lat`
+	- Native Ethernet (when working with MOFED2) - `raw_ethernet_bw`, `raw_ethernet_lat`
 - [rdma-core](https://github.com/lastweek/source-rdma-core)
 	- Userspace IB verbs library (e.g., libibverbs)
 	- Learn how userspace IB layer communicate with kernel, but also bypass kernel.
