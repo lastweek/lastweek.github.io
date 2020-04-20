@@ -1660,14 +1660,23 @@ Fifth, some opt modules at NIC.</li>
 </ul>
 <h2 id="rdma-and-more">RDMA and More<a class="headerlink" href="#rdma-and-more" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://github.com/lastweek/source-libvma">Mellanox libvma</a></li>
+<li>RPC<ul>
+<li><a href="https://github.com/lastweek/source-grpc">gRPC</a></li>
+<li><a href="">eRPC, NSDI&lsquo;19</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/lastweek/source-libvma">Mellanox libvma</a><ul>
+<li>An userspace IB verbs based layer providing POSIX socket APIs.
+  In other words, a library like SocketDirect, SIGCOMM&lsquo;19.</li>
+</ul>
+</li>
 <li><a href="https://github.com/lastweek/source-verbs-perftest">verbs perftest</a><ul>
 <li>The collection contains a set of bandwidth and latency benchmark such as:</li>
-<li>Send        - ib_send_bw and ib_send_lat</li>
-<li>RDMA Read   - ib_read_bw and ib_read_lat</li>
-<li>RDMA Write  - ib_write_bw and ib_wriet_lat</li>
-<li>RDMA Atomic - ib_atomic_bw and ib_atomic_lat</li>
-<li>Native Ethernet (when working with MOFED2) - raw_ethernet_bw, raw_ethernet_lat </li>
+<li>Send        - <code class="codehilite">ib_send_bw</code> and <code class="codehilite">ib_send_lat</code></li>
+<li>RDMA Read   - <code class="codehilite">ib_read_bw</code> and <code class="codehilite">ib_read_lat</code></li>
+<li>RDMA Write  - <code class="codehilite">ib_write_bw</code> and <code class="codehilite">ib_wriet_lat</code></li>
+<li>RDMA Atomic - <code class="codehilite">ib_atomic_bw</code> and <code class="codehilite">ib_atomic_lat</code></li>
+<li>Native Ethernet (when working with MOFED2) - <code class="codehilite">raw_ethernet_bw</code>, <code class="codehilite">raw_ethernet_lat</code></li>
 </ul>
 </li>
 <li><a href="https://github.com/lastweek/source-rdma-core">rdma-core</a><ul>
