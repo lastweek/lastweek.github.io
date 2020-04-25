@@ -1,4 +1,4 @@
-G'Day! I'm Yizhou Shan, a PhD student at [UCSD CSE](https://cse.ucsd.edu/),
+Hi! I'm Yizhou Shan, a PhD student at [UCSD CSE](https://cse.ucsd.edu/),
 advised by Prof. [Yiying Zhang](https://engineering.purdue.edu/~yiying/).
 I'm a member of [Wuklab](http://wuklab.io) and [SysNet](https://www.sysnet.ucsd.edu/sysnet/).
 Former [Purdue Boilermaker](https://engineering.purdue.edu/ECE).
