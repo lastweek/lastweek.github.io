@@ -1545,12 +1545,23 @@ This page links to all of them.</p>
 </ul>
 <h2 id="compilers">Compilers<a class="headerlink" href="#compilers" title="Permanent link">&para;</a></h2>
 <ul>
+<li><a href="https://github.com/gcc-mirror/gcc">GNU GCC</a></li>
+<li><a href="https://github.com/llvm/llvm-project">Clang, LLVM, in C++</a><ul>
+<li>This is a collection of projects. Clang is the frontend,
+compiles C/C++ code into LLVM&rsquo;s own IR format.
+The the backend LLVM will take multiple Passes to optimize
+the IR and the finally generate the assembly.</li>
+<li>The beauty of Clang and LLVM is that they can be used
+as libraries, and we could invoke them to manipulate the
+compilation results, to do source-to-source transforms,
+modify Pass&rsquo;s IR etc. I found this super interesting!</li>
+</ul>
+</li>
 <li><a href="https://github.com/lastweek/source-rust">Rustc, in Rust</a></li>
 <li><a href="https://github.com/lastweek/source-php-src">PHP, in C</a></li>
 <li><a href="https://github.com/lastweek/source-cpython">Python, in C</a></li>
 <li><a href="https://github.com/lastweek/v8">Google V8, in C++</a></li>
 <li><a href="https://github.com/lastweek/source-swift">Apple Swift, in C++</a></li>
-<li><a href="https://github.com/gcc-mirror/gcc">GNU GCC</a></li>
 <li><a href="https://github.com/lastweek/source-tcl">TCL, in C</a></li>
 <li><a href="https://github.com/lastweek/source-perl5">Perl 5, in C</a></li>
 </ul>
