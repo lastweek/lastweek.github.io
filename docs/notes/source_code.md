@@ -114,12 +114,21 @@ Projects supporting our day-to-day work.
 
 ## Compilers
 
+- [GNU GCC](https://github.com/gcc-mirror/gcc)
+- [Clang, LLVM, in C++](https://github.com/llvm/llvm-project)
+	- This is a collection of projects. Clang is the frontend,
+	compiles C/C++ code into LLVM's own IR format.
+	The the backend LLVM will take multiple Passes to optimize
+	the IR and the finally generate the assembly.
+	- The beauty of Clang and LLVM is that they can be used
+	as libraries, and we could invoke them to manipulate the
+	compilation results, to do source-to-source transforms,
+	modify Pass's IR etc. I found this super interesting!
 - [Rustc, in Rust](https://github.com/lastweek/source-rust)
 - [PHP, in C](https://github.com/lastweek/source-php-src)
 - [Python, in C](https://github.com/lastweek/source-cpython)
 - [Google V8, in C++](https://github.com/lastweek/v8)
 - [Apple Swift, in C++](https://github.com/lastweek/source-swift)
-- [GNU GCC](https://github.com/gcc-mirror/gcc)
 - [TCL, in C](https://github.com/lastweek/source-tcl)
 - [Perl 5, in C](https://github.com/lastweek/source-perl5)
 
