@@ -3,6 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Apr 26, 2020| Add wayland, X, gnome, gtk etc |
 	|Apr 10, 2020| add graphics section|
 	|Apr 6, 2020| add verbs perftes|
 	|Mar 3, 2020| add FreeBSD, some fpga stuff |
@@ -53,10 +54,6 @@ Projects supporting our day-to-day work.
 	- [OpenSSH](https://github.com/lastweek/source-openssh-portable) is our ssh!
 	- [scapy](https://github.com/lastweek/source-scapy): Python-based interactive packet manipulation program & library. Very neat
 	- Also checkout [FreeBSD](https://github.com/lastweek/source-freebsd) as it has tools like `ifconfig`, `if`. 
-- Graphics
-	- [xRDP, an RDP server. In C](https://github.com/neutrinolabs/xrdp)
-	- [FreeRDP, client and server. In C](https://github.com/FreeRDP/FreeRDP)
-		- Took a brief read of the code, it's super neat. Should take a serious look sometime.
 - C for life
 	- Some small and useful C projects
 	- [cJSON](https://github.com/lastweek/source-cJSON)
@@ -193,6 +190,22 @@ First it's SeaBIOS, the default one used by QEMU. Then UEFI, something I have ne
 		- Synthesis (`ODIN II`)
 		- Logic Optimization & Technology Mapping (`ABC`)
 		- Placement and Route (`VPR`)
+
+
+## Graphics
+
+As of today Apr 26, 2020, I sort of understand how evdev, X/Wayland, GTK/QT, and GNOME/KDE
+layers on top of each other, and how they interact with each other.
+But I still don't know how VNC comes into the picture. Let's figure out sometime!
+And draw a picture like I did for DPDK/libibverbs.
+
+- [GNOME Shell and GTK](https://github.com/GNOME/gtk)
+- [X]() and [Wayland](https://github.com/lastweek/source-wayland)
+	- X is being replaced by Wayland now..
+	- Wayland code seems clean
+- [xRDP, an RDP server. In C](https://github.com/neutrinolabs/xrdp)
+- [FreeRDP, client and server. In C](https://github.com/FreeRDP/FreeRDP)
+	- Took a brief read of the code, it's super neat. Should take a serious look sometime.
 
 ## Web Servers
 
