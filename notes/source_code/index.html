@@ -320,6 +320,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#graphics" title="Graphics" class="md-nav__link">
+    Graphics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#web-servers" title="Web Servers" class="md-nav__link">
     Web Servers
   </a>
@@ -1356,6 +1363,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#graphics" title="Graphics" class="md-nav__link">
+    Graphics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#web-servers" title="Web Servers" class="md-nav__link">
     Web Servers
   </a>
@@ -1407,7 +1421,7 @@
                 
                 
                 <h1 id="source-code-study">Source Code Study<a class="headerlink" href="#source-code-study" title="Permanent link">&para;</a></h1>
-<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Apr 10, 2020</td><td>add graphics section</td></tr><tr><td align="left">Apr 6, 2020</td><td>add verbs perftes</td></tr><tr><td align="left">Mar 3, 2020</td><td>add FreeBSD, some fpga stuff</td></tr><tr><td align="left">Feb 4, 2020</td><td>add io_uring, firecracker</td></tr><tr><td align="left">Jan 31, 2020</td><td>Add some good stuff</td></tr><tr><td align="left">Jan 18, 2020</td><td>Initial</td></tr></tbody></table></details><p>Beautiful code is art.
+<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Apr 26, 2020</td><td>Add wayland, X, gnome, gtk etc</td></tr><tr><td align="left">Apr 10, 2020</td><td>add graphics section</td></tr><tr><td align="left">Apr 6, 2020</td><td>add verbs perftes</td></tr><tr><td align="left">Mar 3, 2020</td><td>add FreeBSD, some fpga stuff</td></tr><tr><td align="left">Feb 4, 2020</td><td>add io_uring, firecracker</td></tr><tr><td align="left">Jan 31, 2020</td><td>Add some good stuff</td></tr><tr><td align="left">Jan 18, 2020</td><td>Initial</td></tr></tbody></table></details><p>Beautiful code is art.
 Recently I started forking good open source code
 into my own Github account and started casual reading and taking notes.
 This page links to all of them.</p>
@@ -1459,14 +1473,6 @@ This page links to all of them.</p>
 <li><a href="https://github.com/lastweek/source-openssh-portable">OpenSSH</a> is our ssh!</li>
 <li><a href="https://github.com/lastweek/source-scapy">scapy</a>: Python-based interactive packet manipulation program &amp; library. Very neat</li>
 <li>Also checkout <a href="https://github.com/lastweek/source-freebsd">FreeBSD</a> as it has tools like <code class="codehilite">ifconfig</code>, <code class="codehilite">if</code>. </li>
-</ul>
-</li>
-<li>Graphics<ul>
-<li><a href="https://github.com/neutrinolabs/xrdp">xRDP, an RDP server. In C</a></li>
-<li><a href="https://github.com/FreeRDP/FreeRDP">FreeRDP, client and server. In C</a><ul>
-<li>Took a brief read of the code, it&rsquo;s super neat. Should take a serious look sometime.</li>
-</ul>
-</li>
 </ul>
 </li>
 <li>C for life<ul>
@@ -1643,6 +1649,24 @@ Fifth, some opt modules at NIC.</li>
 <li>Placement and Route (<code class="codehilite">VPR</code>)</li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+<h2 id="graphics">Graphics<a class="headerlink" href="#graphics" title="Permanent link">&para;</a></h2>
+<p>As of today Apr 26, 2020, I sort of understand how evdev, X/Wayland, GTK/QT, and GNOME/KDE
+layers on top of each other, and how they interact with each other.
+But I still don&rsquo;t know how VNC comes into the picture. Let&rsquo;s figure out sometime!
+And draw a picture like I did for DPDK/libibverbs.</p>
+<ul>
+<li><a href="https://github.com/GNOME/gtk">GNOME Shell and GTK</a></li>
+<li><a href="">X</a> and <a href="https://github.com/lastweek/source-wayland">Wayland</a><ul>
+<li>X is being replaced by Wayland now..</li>
+<li>Wayland code seems clean</li>
+</ul>
+</li>
+<li><a href="https://github.com/neutrinolabs/xrdp">xRDP, an RDP server. In C</a></li>
+<li><a href="https://github.com/FreeRDP/FreeRDP">FreeRDP, client and server. In C</a><ul>
+<li>Took a brief read of the code, it&rsquo;s super neat. Should take a serious look sometime.</li>
 </ul>
 </li>
 </ul>
