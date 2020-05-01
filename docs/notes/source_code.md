@@ -199,10 +199,18 @@ layers on top of each other, and how they interact with each other.
 But I still don't know how VNC comes into the picture. Let's figure out sometime!
 And draw a picture like I did for DPDK/libibverbs.
 
-- [GNOME Shell and GTK](https://github.com/GNOME/gtk)
-- [X]() and [Wayland](https://github.com/lastweek/source-wayland)
+- [X Server](https://github.com/lastweek/source-xserver) and [Wayland](https://github.com/lastweek/source-wayland)
 	- X is being replaced by Wayland now..
 	- Wayland code seems clean
+- [xvnc]()
+	- xvnc and its friends, are sitting on top of display manager (i.e., X/Wayland).
+	  They are clients of X/Wayland, but they act as X/Wayland servers for upper layer
+	  application such as GTK/Qt.
+	- It's a middleman, bringing network between X and GTK.
+	- TigerVNC, TurboVNC and so on.
+- [GNOME Shell and GTK](https://github.com/GNOME/gtk)
+	- GTK's default backend is X.
+	- GNOME shell is a layer on top of GTK+. Similar for KDE/Qt.
 - [xRDP, an RDP server. In C](https://github.com/neutrinolabs/xrdp)
 - [FreeRDP, client and server. In C](https://github.com/FreeRDP/FreeRDP)
 	- Took a brief read of the code, it's super neat. Should take a serious look sometime.
