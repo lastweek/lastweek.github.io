@@ -1250,7 +1250,11 @@ But you can find awesome references at:
 2) <a href="https://wayland.freedesktop.org/architecture.html">Wayland Architecture</a>
 3) <a href="https://unix.stackexchange.com/questions/345344/difference-between-xorg-and-gnome-kde-xfce">StackExchange Difference between Xorg and Gnome/KDE/Xfce</a></p>
 <p>Following are some figures I drew to show the architecture of all these softwares.
-At the lowest level, we have Display Manager, or Display Server.
+In the graphic world, kernel&rsquo;s involvement is minimal, but a critical one.
+Kernel mainly need to deliver mouse/keyboard events, render frames via graphic cards,
+handle network. In other words, kernel provides a mechanism.
+The policy is left to userspace stacks.</p>
+<p>At the lowest level, we have Display Manager, or Display Server.
 Downstream, this layer interact with kernel, i.e., getting keyboard/mouse events from kernel evdev framework,
 rendering frames via DRM interfaces.
 Upstream, this layer accepts request from their clients (i.e., the widget layer) and make them happen in real displays.
