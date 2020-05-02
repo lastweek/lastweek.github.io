@@ -198,6 +198,7 @@ As of today Apr 26, 2020, I sort of understand how evdev, X/Wayland, GTK/QT, and
 layers on top of each other, and how they interact with each other.
 But I still don't know how VNC comes into the picture. Let's figure out sometime!
 And draw a picture like I did for DPDK/libibverbs.
+As of today May 1, 2020, I now know how VNC fits into the big picture.
 
 - [X Server](https://github.com/lastweek/source-xserver) and [Wayland](https://github.com/lastweek/source-wayland)
 	- X is being replaced by Wayland now..
@@ -214,6 +215,9 @@ And draw a picture like I did for DPDK/libibverbs.
 - [xRDP, an RDP server. In C](https://github.com/neutrinolabs/xrdp)
 - [FreeRDP, client and server. In C](https://github.com/FreeRDP/FreeRDP)
 	- Took a brief read of the code, it's super neat. Should take a serious look sometime.
+
+This figure shows the architecture:
+[!20200501-on-graphic-softwares-img3.png](20200501-on-graphic-softwares-img3.png)
 
 ## Web Servers
 
