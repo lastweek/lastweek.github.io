@@ -2,7 +2,7 @@
 
 
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" class="no-js">
   <head>
     
@@ -36,7 +36,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.6.2">
     
     
       
@@ -44,50 +44,19 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.30686662.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.9b572555.css">
       
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
       
-    
-    
-      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
-    
-    
-      
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700|&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700|">
         <style>body,input{font-family:"Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"","Courier New",Courier,monospace}</style>
       
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     
-    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
-    
-    
-    
-      
-        
-<script>
-  window.ga = window.ga || function() {
-    (ga.q = ga.q || []).push(arguments)
-  }
-  ga.l = +new Date
-  /* Setup integration and send page view */
-  ga("create", "UA-143772066-1", "auto")
-  ga("set", "anonymizeIp", true)
-  ga("send", "pageview")
-  /* Register handler to log search on blur */
-  document.addEventListener("DOMContentLoaded", () => {
-    if (document.forms.search) {
-      var query = document.forms.search.query
-      query.addEventListener("blur", function() {
-        if (this.value) {
-          var path = document.location.pathname;
-          ga("send", "pageview", path + "?q=" + this.value)
-        }
-      })
-    }
-  })
-</script>
-<script async src="https://www.google-analytics.com/analytics.js"></script>
-      
     
     
   </head>
@@ -100,9 +69,9 @@
         
       </defs>
     </svg>
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
       <a href="#fpga-bitstream-explained" tabindex="1" class="md-skip">
         Skip to content
@@ -120,32 +89,33 @@
         </a>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
       </div>
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
-            <span class="md-header-nav__topic">
-              Yizhou Shan's Home Page
-            </span>
-            <span class="md-header-nav__topic">
-              
+            
+              <span class="md-header-nav__topic">
+                Yizhou Shan's Home Page
+              </span>
+              <span class="md-header-nav__topic">
                 Bitstream Explained
-              
-            </span>
+              </span>
+            
           
         </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         
-          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
           
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
 <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
+  <label class="md-search__overlay" for="search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
+      <label class="md-icon md-search__icon" for="search"></label>
       <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
         &#xE5CD;
       </button>
@@ -162,6 +132,7 @@
     </div>
   </div>
 </div>
+          
         
       </div>
       
@@ -174,7 +145,7 @@
         
       
       
-      <main class="md-main" role="main">
+      <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
           
             
@@ -182,12 +153,12 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="http://lastweek.io" title="Yizhou Shan's Home Page" class="md-nav__button md-logo">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
-    </a>
+    </span>
     Yizhou Shan's Home Page
   </label>
   
@@ -523,12 +494,12 @@
 
   <li class="md-nav__item md-nav__item--active">
     
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
     
       
     
     
-      <label class="md-nav__link md-nav__link--active" for="__toc">
+      <label class="md-nav__link md-nav__link--active" for="toc">
         Bitstream Explained
       </label>
     
@@ -543,32 +514,32 @@
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <label class="md-nav__title" for="toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
+  <a href="#introduction" title="Introduction" class="md-nav__link">
     Introduction
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#bistream-related-files" class="md-nav__link">
+  <a href="#bistream-related-files" title="Bistream Related Files" class="md-nav__link">
     Bistream Related Files
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#details" class="md-nav__link">
+  <a href="#details" title="Details" class="md-nav__link">
     Details
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
+  <a href="#references" title="References" class="md-nav__link">
     References
   </a>
   
@@ -579,7 +550,7 @@
       
       
         <li class="md-nav__item">
-          <a href="#__comments" class="md-nav__link md-nav__link--active">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
             Comments
           </a>
         </li>
@@ -1309,32 +1280,32 @@
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <label class="md-nav__title" for="toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
+  <a href="#introduction" title="Introduction" class="md-nav__link">
     Introduction
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#bistream-related-files" class="md-nav__link">
+  <a href="#bistream-related-files" title="Bistream Related Files" class="md-nav__link">
     Bistream Related Files
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#details" class="md-nav__link">
+  <a href="#details" title="Details" class="md-nav__link">
     Details
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
+  <a href="#references" title="References" class="md-nav__link">
     References
   </a>
   
@@ -1345,7 +1316,7 @@
       
       
         <li class="md-nav__item">
-          <a href="#__comments" class="md-nav__link md-nav__link--active">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
             Comments
           </a>
         </li>
@@ -1365,26 +1336,7 @@
                 
                 <h1 id="fpga-bitstream-explained">FPGA Bitstream Explained<a class="headerlink" href="#fpga-bitstream-explained" title="Permanent link">&para;</a></h1>
 <p><img alt="🐪" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f42a.svg" title=":dromedary_camel:" /></p>
-<details class="note"><summary>Version History</summary><table>
-<thead>
-<tr>
-<th align="left">Date</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">Dec 20, 2019</td>
-<td>Update</td>
-</tr>
-<tr>
-<td align="left">Oct 24, 2019</td>
-<td>Created</td>
-</tr>
-</tbody>
-</table>
-</details>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Dec 20, 2019</td><td>Update</td></tr><tr><td align="left">Oct 24, 2019</td><td>Created</td></tr></tbody></table></details><h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>A bitstream can configure an FPGA.
 A bitstream includes the descriptions of the hardware logic, routing, and initial
 values of registers and on-chip memory.
@@ -1435,7 +1387,7 @@ Note that the <code class="codehilite"><span class="na">.bin</span></code> file 
 The interesting part is the 1s and 0s.
 Unless otherwise noted, when we refer to bitstream format, we focus on the 1s and 0s only
 and omit any general ASICC information headers.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -1479,7 +1431,7 @@ and UG570 chapter 9.</p>
 <ul>
 <li>1) Header packets to prepare the configuration process.</li>
 <li>2) The actual configuration bits in a contiguous sequence of data packets.
-     AN write to the <code class="codehilite"><span class="n">FDRI</span></code> register marks the beginning of this section.
+     AN write to the <code class="codehilite">FDRI</code> register marks the beginning of this section.
      The length of this section is described by the packet following the FDRI header packet.</li>
 <li>3) Header packets to clean up the configuration process.</li>
 </ul>
@@ -1492,11 +1444,11 @@ and <a href="https://forums.xilinx.com/t5/FPGA-Configuration/Issues-with-ll-and-
 to parse the <code class="codehilite"><span class="na">.rbt</span></code> file and associate a human-reable syntax with each line.
 I didn&rsquo;t have a complete coverage of the header packet format.
 The following snippt shows a parsed <code class="codehilite"><span class="na">.rbt</span></code> file with header removed.
-Here, <code class="codehilite"><span class="mi">0</span><span class="n">xffffffff</span></code> has no effect, like a NOP.
-<code class="codehilite"><span class="mi">0</span><span class="n">x000000bb</span></code> and <code class="codehilite"><span class="mi">0</span><span class="n">x11220044</span></code> are special bus detect words.
-<code class="codehilite"><span class="mi">0</span><span class="n">xaa995566</span></code> is another special work marking the synchronization status.
+Here, <code class="codehilite">0xffffffff</code> has no effect, like a NOP.
+<code class="codehilite">0x000000bb</code> and <code class="codehilite">0x11220044</code> are special bus detect words.
+<code class="codehilite">0xaa995566</code> is another special work marking the synchronization status.
 The last few lines mark the beginning of the configuration bits section.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -1567,61 +1519,61 @@ The last few lines mark the beginning of the configuration bits section.</p>
 69
 70
 71
-72</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">Parsed</span> <span class="n">from</span> <span class="n">base_mb_wrapper.rbt</span>
-<span class="n">ffffffff</span> 
-<span class="n">ffffffff</span> 
-<span class="n">ffffffff</span> 
-<span class="n">ffffffff</span> 
-<span class="n">ffffffff</span> 
-<span class="n">ffffffff</span> 
-<span class="n">ffffffff</span> 
-<span class="n">ffffffff</span> 
-<span class="n">ffffffff</span> 
-<span class="n">ffffffff</span> 
-<span class="n">ffffffff</span> 
-<span class="n">ffffffff</span> 
-<span class="n">ffffffff</span> 
-<span class="n">ffffffff</span> 
-<span class="n">ffffffff</span> 
-<span class="n">ffffffff</span> 
-<span class="m">000000</span><span class="n">bb</span> <span class="n">Bus</span> <span class="n">Width</span> <span class="n">Sync</span>
-<span class="m">11220044</span> <span class="n">Bus</span> <span class="n">Width</span> <span class="n">Detect</span>
-<span class="n">ffffffff</span> 
-<span class="n">ffffffff</span> 
-<span class="n">aa995566</span>  <span class="n">SYNC</span>
+72</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Parsed from base_mb_wrapper.rbt
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+ffffffff 
+<span class="m">000000</span>bb Bus Width Sync
+<span class="m">11220044</span> Bus Width Detect
+ffffffff 
+ffffffff 
+aa995566  SYNC
 <span class="m">20000000</span> 
 <span class="m">20000000</span> 
-<span class="m">30022001</span> <span class="n">Write</span> <span class="n">to</span> <span class="n">regs</span> <span class="m">17</span>
+<span class="m">30022001</span> Write to regs <span class="m">17</span>
 <span class="m">00000000</span> 
-<span class="m">30020001</span> <span class="n">Write</span> <span class="n">to</span> <span class="n">regs</span> <span class="m">16</span>
+<span class="m">30020001</span> Write to regs <span class="m">16</span>
 <span class="m">00000000</span> 
-<span class="m">30008001</span> <span class="n">Write</span> <span class="n">to</span> <span class="n">CMD</span>
+<span class="m">30008001</span> Write to CMD
 <span class="m">00000000</span> 
 <span class="m">20000000</span> 
-<span class="m">30008001</span> <span class="n">Write</span> <span class="n">to</span> <span class="n">CMD</span>
+<span class="m">30008001</span> Write to CMD
 <span class="m">00000007</span> 
 <span class="m">20000000</span> 
 <span class="m">20000000</span> 
-<span class="m">30002001</span> <span class="n">Write</span> <span class="n">to</span> <span class="n">FAR</span>
+<span class="m">30002001</span> Write to FAR
 <span class="m">00000000</span> 
-<span class="m">30026001</span> <span class="n">Write</span> <span class="n">to</span> <span class="n">regs</span> <span class="m">19</span>
+<span class="m">30026001</span> Write to regs <span class="m">19</span>
 <span class="m">00000000</span> 
-<span class="m">30012001</span> <span class="n">Write</span> <span class="n">to</span> <span class="n">regs</span> <span class="m">9</span>
-<span class="m">38003</span><span class="n">fe5</span> <span class="n">Write</span> <span class="n">to</span> <span class="n">regs</span> <span class="m">1</span>
-<span class="m">3001</span><span class="n">c001</span> <span class="n">Write</span> <span class="n">to</span> <span class="n">regs</span> <span class="m">14</span>
+<span class="m">30012001</span> Write to regs <span class="m">9</span>
+<span class="m">38003</span>fe5 Write to regs <span class="m">1</span>
+<span class="m">3001</span>c001 Write to regs <span class="m">14</span>
 <span class="m">00400000</span> 
-<span class="m">30018001</span> <span class="n">Write</span> <span class="n">to</span> <span class="n">IDCODE</span>
-<span class="m">04</span><span class="n">b31093</span> <span class="n">IDCODE</span><span class="o">=</span><span class="m">4</span><span class="n">b31093</span>
-<span class="m">30008001</span> <span class="n">Write</span> <span class="n">to</span> <span class="n">CMD</span>
+<span class="m">30018001</span> Write to IDCODE
+<span class="m">04</span>b31093 IDCODE<span class="o">=</span><span class="m">4</span>b31093
+<span class="m">30008001</span> Write to CMD
 <span class="m">00000009</span> 
 <span class="m">20000000</span> 
-<span class="m">3000</span><span class="n">c001</span> <span class="n">Write</span> <span class="n">to</span> <span class="n">regs</span> <span class="m">6</span>
+<span class="m">3000</span>c001 Write to regs <span class="m">6</span>
 <span class="m">00000001</span> 
-<span class="m">3000</span><span class="n">a001</span> <span class="n">Write</span> <span class="n">to</span> <span class="n">regs</span> <span class="m">5</span>
+<span class="m">3000</span>a001 Write to regs <span class="m">5</span>
 <span class="m">00000101</span> 
-<span class="m">3000</span><span class="n">c001</span> <span class="n">Write</span> <span class="n">to</span> <span class="n">regs</span> <span class="m">6</span>
+<span class="m">3000</span>c001 Write to regs <span class="m">6</span>
 <span class="m">00000000</span> 
-<span class="m">30030001</span> <span class="n">Write</span> <span class="n">to</span> <span class="n">regs</span> <span class="m">24</span>
+<span class="m">30030001</span> Write to regs <span class="m">24</span>
 <span class="m">00000000</span> 
 <span class="m">20000000</span> 
 <span class="m">20000000</span> 
@@ -1631,14 +1583,14 @@ The last few lines mark the beginning of the configuration bits section.</p>
 <span class="m">20000000</span> 
 <span class="m">20000000</span> 
 <span class="m">20000000</span> 
-<span class="m">30002001</span> <span class="n">Write</span> <span class="n">to</span> <span class="n">FAR</span>
+<span class="m">30002001</span> Write to FAR
 <span class="m">00000000</span> 
-<span class="m">30008001</span> <span class="n">Write</span> <span class="n">to</span> <span class="n">CMD</span>
+<span class="m">30008001</span> Write to CMD
 <span class="m">00000001</span> 
 <span class="m">20000000</span> 
-<span class="m">30004000</span> <span class="n">Write</span> <span class="n">to</span> <span class="n">FDRI</span>
-<span class="m">5065</span><span class="n">eadc</span>            <span class="o">&lt;-</span> <span class="n">The</span> <span class="n">length</span> <span class="n">of</span> <span class="n">configuration</span> <span class="n">bits</span><span class="p">,</span> <span class="n">follows</span> <span class="n">a</span> <span class="n">certain</span> <span class="n">format</span>
-<span class="m">00000000</span>            <span class="o">&lt;-</span> <span class="n">The</span> <span class="n">first</span> <span class="m">4</span> <span class="n">bytes</span> <span class="n">of</span> <span class="n">the</span> <span class="n">configuration</span> <span class="n">bits</span><span class="o">!</span>
+<span class="m">30004000</span> Write to FDRI
+<span class="m">5065</span>eadc            <span class="o">&lt;-</span> The length of configuration bits<span class="p">,</span> follows a certain <span class="kp">format</span>
+<span class="m">00000000</span>            <span class="o">&lt;-</span> The first <span class="m">4</span> bytes of the configuration bits<span class="o">!</span>
 </pre></div>
 </td></tr></table>
 
@@ -1656,6 +1608,7 @@ The last few lines mark the beginning of the configuration bits section.</p>
               
               
                 
+                  
 
 
   <h2 id="__comments">Comments</h2>
@@ -1674,6 +1627,7 @@ The last few lines mark the beginning of the configuration bits section.</p>
     })();
   </script>
 
+                
               
             </article>
           </div>
@@ -1723,14 +1677,16 @@ The last few lines mark the beginning of the configuration bits section.</p>
       <div class="md-footer-copyright">
         
         powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
+        <a href="http://www.mkdocs.org">MkDocs</a>
         and
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
       </div>
       
+        
   <div class="md-footer-social">
-    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
       <a href="https://github.com/lastweek" class="md-footer-social__link fa fa-github"></a>
     
@@ -1740,15 +1696,21 @@ The last few lines mark the beginning of the configuration bits section.</p>
     
   </div>
 
+      
     </div>
   </div>
 </footer>
       
     </div>
     
-      <script src="../../assets/javascripts/application.ac79c3b0.js"></script>
+      <script src="../../assets/javascripts/application.abd7b172.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"0.17.2",url:{base:"../.."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-143772066-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
       
     
   </body>

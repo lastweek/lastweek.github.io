@@ -2,7 +2,7 @@
 
 
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" class="no-js">
   <head>
     
@@ -36,7 +36,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.6.2">
     
     
       
@@ -44,50 +44,19 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.30686662.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.9b572555.css">
       
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
       
-    
-    
-      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
-    
-    
-      
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700|&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700|">
         <style>body,input{font-family:"Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"","Courier New",Courier,monospace}</style>
       
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     
-    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
-    
-    
-    
-      
-        
-<script>
-  window.ga = window.ga || function() {
-    (ga.q = ga.q || []).push(arguments)
-  }
-  ga.l = +new Date
-  /* Setup integration and send page view */
-  ga("create", "UA-143772066-1", "auto")
-  ga("set", "anonymizeIp", true)
-  ga("send", "pageview")
-  /* Register handler to log search on blur */
-  document.addEventListener("DOMContentLoaded", () => {
-    if (document.forms.search) {
-      var query = document.forms.search.query
-      query.addEventListener("blur", function() {
-        if (this.value) {
-          var path = document.location.pathname;
-          ga("send", "pageview", path + "?q=" + this.value)
-        }
-      })
-    }
-  })
-</script>
-<script async src="https://www.google-analytics.com/analytics.js"></script>
-      
     
     
   </head>
@@ -100,9 +69,9 @@
         
       </defs>
     </svg>
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
       <a href="#an-fpga-reading-list" tabindex="1" class="md-skip">
         Skip to content
@@ -120,32 +89,33 @@
         </a>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
       </div>
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
-            <span class="md-header-nav__topic">
-              Yizhou Shan's Home Page
-            </span>
-            <span class="md-header-nav__topic">
-              
+            
+              <span class="md-header-nav__topic">
+                Yizhou Shan's Home Page
+              </span>
+              <span class="md-header-nav__topic">
                 Papers
-              
-            </span>
+              </span>
+            
           
         </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         
-          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
           
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
 <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
+  <label class="md-search__overlay" for="search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
+      <label class="md-icon md-search__icon" for="search"></label>
       <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
         &#xE5CD;
       </button>
@@ -162,6 +132,7 @@
     </div>
   </div>
 </div>
+          
         
       </div>
       
@@ -174,7 +145,7 @@
         
       
       
-      <main class="md-main" role="main">
+      <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
           
             
@@ -182,12 +153,12 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="http://lastweek.io" title="Yizhou Shan's Home Page" class="md-nav__button md-logo">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
-    </a>
+    </span>
     Yizhou Shan's Home Page
   </label>
   
@@ -511,12 +482,12 @@
 
   <li class="md-nav__item md-nav__item--active">
     
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
     
       
     
     
-      <label class="md-nav__link md-nav__link--active" for="__toc">
+      <label class="md-nav__link md-nav__link--active" for="toc">
         Papers
       </label>
     
@@ -531,11 +502,11 @@
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <label class="md-nav__title" for="toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#virtualization" class="md-nav__link">
+  <a href="#virtualization" title="Virtualization" class="md-nav__link">
     Virtualization
   </a>
   
@@ -543,7 +514,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#scheduling" class="md-nav__link">
+  <a href="#scheduling" title="Scheduling" class="md-nav__link">
     Scheduling
   </a>
   
@@ -551,35 +522,35 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#preemptive-scheduling" class="md-nav__link">
+  <a href="#preemptive-scheduling" title="Preemptive Scheduling" class="md-nav__link">
     Preemptive Scheduling
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#preemptive-reconfiguration" class="md-nav__link">
+  <a href="#preemptive-reconfiguration" title="Preemptive Reconfiguration" class="md-nav__link">
     Preemptive Reconfiguration
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#bitstreams" class="md-nav__link">
+  <a href="#bitstreams" title="Bitstreams" class="md-nav__link">
     Bitstreams
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#relocation" class="md-nav__link">
+  <a href="#relocation" title="Relocation:" class="md-nav__link">
     Relocation:
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#others" class="md-nav__link">
+  <a href="#others" title="Others" class="md-nav__link">
     Others
   </a>
   
@@ -591,49 +562,49 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#noc" class="md-nav__link">
+  <a href="#noc" title="NoC" class="md-nav__link">
     NoC
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#memory-hierarchy" class="md-nav__link">
+  <a href="#memory-hierarchy" title="Memory Hierarchy" class="md-nav__link">
     Memory Hierarchy
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#dynamic-memory-allocation" class="md-nav__link">
+  <a href="#dynamic-memory-allocation" title="Dynamic Memory Allocation" class="md-nav__link">
     Dynamic Memory Allocation
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#integrate-with-host-virtual-memory" class="md-nav__link">
+  <a href="#integrate-with-host-virtual-memory" title="Integrate with Host Virtual Memory" class="md-nav__link">
     Integrate with Host Virtual Memory
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#integrate-with-host-oss" class="md-nav__link">
+  <a href="#integrate-with-host-oss" title="Integrate with Host OSs" class="md-nav__link">
     Integrate with Host OSs
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#security" class="md-nav__link">
+  <a href="#security" title="Security" class="md-nav__link">
     Security
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
+  <a href="#summary" title="Summary" class="md-nav__link">
     Summary
   </a>
   
@@ -645,7 +616,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#languages-runtime-and-framework" class="md-nav__link">
+  <a href="#languages-runtime-and-framework" title="Languages, Runtime, and Framework" class="md-nav__link">
     Languages, Runtime, and Framework
   </a>
   
@@ -653,42 +624,42 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#xilinx-hls" class="md-nav__link">
+  <a href="#xilinx-hls" title="Xilinx HLS" class="md-nav__link">
     Xilinx HLS
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#xilinx-cad" class="md-nav__link">
+  <a href="#xilinx-cad" title="Xilinx CAD" class="md-nav__link">
     Xilinx CAD
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#high-level-languages-and-platforms" class="md-nav__link">
+  <a href="#high-level-languages-and-platforms" title="High-Level Languages and Platforms" class="md-nav__link">
     High-Level Languages and Platforms
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#integrate-with-frameworks" class="md-nav__link">
+  <a href="#integrate-with-frameworks" title="Integrate with Frameworks" class="md-nav__link">
     Integrate with Frameworks
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#cloud-infrastructure" class="md-nav__link">
+  <a href="#cloud-infrastructure" title="Cloud Infrastructure" class="md-nav__link">
     Cloud Infrastructure
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#misc" class="md-nav__link">
+  <a href="#misc" title="Misc" class="md-nav__link">
     Misc
   </a>
   
@@ -700,7 +671,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#applications" class="md-nav__link">
+  <a href="#applications" title="Applications" class="md-nav__link">
     Applications
   </a>
   
@@ -708,63 +679,63 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#programmable-network" class="md-nav__link">
+  <a href="#programmable-network" title="Programmable Network" class="md-nav__link">
     Programmable Network
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#database-and-sql" class="md-nav__link">
+  <a href="#database-and-sql" title="Database and SQL" class="md-nav__link">
     Database and SQL
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#storage" class="md-nav__link">
+  <a href="#storage" title="Storage" class="md-nav__link">
     Storage
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#machine-learning" class="md-nav__link">
+  <a href="#machine-learning" title="Machine Learning" class="md-nav__link">
     Machine Learning
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#graph" class="md-nav__link">
+  <a href="#graph" title="Graph" class="md-nav__link">
     Graph
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#key-value-store" class="md-nav__link">
+  <a href="#key-value-store" title="Key-Value Store" class="md-nav__link">
     Key-Value Store
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#bio" class="md-nav__link">
+  <a href="#bio" title="Bio" class="md-nav__link">
     Bio
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#consensus" class="md-nav__link">
+  <a href="#consensus" title="Consensus" class="md-nav__link">
     Consensus
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#video-processing" class="md-nav__link">
+  <a href="#video-processing" title="Video Processing" class="md-nav__link">
     Video Processing
   </a>
   
@@ -776,7 +747,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fpga-internal" class="md-nav__link">
+  <a href="#fpga-internal" title="FPGA Internal" class="md-nav__link">
     FPGA Internal
   </a>
   
@@ -784,35 +755,35 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#general" class="md-nav__link">
+  <a href="#general" title="General" class="md-nav__link">
     General
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#partial-reconfiguration" class="md-nav__link">
+  <a href="#partial-reconfiguration" title="Partial Reconfiguration" class="md-nav__link">
     Partial Reconfiguration
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#logical-optimization-and-technology-mapping" class="md-nav__link">
+  <a href="#logical-optimization-and-technology-mapping" title="Logical Optimization and Technology Mapping" class="md-nav__link">
     Logical Optimization and Technology Mapping
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#place-and-route" class="md-nav__link">
+  <a href="#place-and-route" title="Place and Route" class="md-nav__link">
     Place and Route
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#rtl2fpga" class="md-nav__link">
+  <a href="#rtl2fpga" title="RTL2FPGA" class="md-nav__link">
     RTL2FPGA
   </a>
   
@@ -828,7 +799,7 @@
       
       
         <li class="md-nav__item">
-          <a href="#__comments" class="md-nav__link md-nav__link--active">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
             Comments
           </a>
         </li>
@@ -1570,11 +1541,11 @@
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <label class="md-nav__title" for="toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#virtualization" class="md-nav__link">
+  <a href="#virtualization" title="Virtualization" class="md-nav__link">
     Virtualization
   </a>
   
@@ -1582,7 +1553,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#scheduling" class="md-nav__link">
+  <a href="#scheduling" title="Scheduling" class="md-nav__link">
     Scheduling
   </a>
   
@@ -1590,35 +1561,35 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#preemptive-scheduling" class="md-nav__link">
+  <a href="#preemptive-scheduling" title="Preemptive Scheduling" class="md-nav__link">
     Preemptive Scheduling
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#preemptive-reconfiguration" class="md-nav__link">
+  <a href="#preemptive-reconfiguration" title="Preemptive Reconfiguration" class="md-nav__link">
     Preemptive Reconfiguration
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#bitstreams" class="md-nav__link">
+  <a href="#bitstreams" title="Bitstreams" class="md-nav__link">
     Bitstreams
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#relocation" class="md-nav__link">
+  <a href="#relocation" title="Relocation:" class="md-nav__link">
     Relocation:
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#others" class="md-nav__link">
+  <a href="#others" title="Others" class="md-nav__link">
     Others
   </a>
   
@@ -1630,49 +1601,49 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#noc" class="md-nav__link">
+  <a href="#noc" title="NoC" class="md-nav__link">
     NoC
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#memory-hierarchy" class="md-nav__link">
+  <a href="#memory-hierarchy" title="Memory Hierarchy" class="md-nav__link">
     Memory Hierarchy
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#dynamic-memory-allocation" class="md-nav__link">
+  <a href="#dynamic-memory-allocation" title="Dynamic Memory Allocation" class="md-nav__link">
     Dynamic Memory Allocation
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#integrate-with-host-virtual-memory" class="md-nav__link">
+  <a href="#integrate-with-host-virtual-memory" title="Integrate with Host Virtual Memory" class="md-nav__link">
     Integrate with Host Virtual Memory
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#integrate-with-host-oss" class="md-nav__link">
+  <a href="#integrate-with-host-oss" title="Integrate with Host OSs" class="md-nav__link">
     Integrate with Host OSs
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#security" class="md-nav__link">
+  <a href="#security" title="Security" class="md-nav__link">
     Security
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
+  <a href="#summary" title="Summary" class="md-nav__link">
     Summary
   </a>
   
@@ -1684,7 +1655,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#languages-runtime-and-framework" class="md-nav__link">
+  <a href="#languages-runtime-and-framework" title="Languages, Runtime, and Framework" class="md-nav__link">
     Languages, Runtime, and Framework
   </a>
   
@@ -1692,42 +1663,42 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#xilinx-hls" class="md-nav__link">
+  <a href="#xilinx-hls" title="Xilinx HLS" class="md-nav__link">
     Xilinx HLS
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#xilinx-cad" class="md-nav__link">
+  <a href="#xilinx-cad" title="Xilinx CAD" class="md-nav__link">
     Xilinx CAD
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#high-level-languages-and-platforms" class="md-nav__link">
+  <a href="#high-level-languages-and-platforms" title="High-Level Languages and Platforms" class="md-nav__link">
     High-Level Languages and Platforms
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#integrate-with-frameworks" class="md-nav__link">
+  <a href="#integrate-with-frameworks" title="Integrate with Frameworks" class="md-nav__link">
     Integrate with Frameworks
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#cloud-infrastructure" class="md-nav__link">
+  <a href="#cloud-infrastructure" title="Cloud Infrastructure" class="md-nav__link">
     Cloud Infrastructure
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#misc" class="md-nav__link">
+  <a href="#misc" title="Misc" class="md-nav__link">
     Misc
   </a>
   
@@ -1739,7 +1710,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#applications" class="md-nav__link">
+  <a href="#applications" title="Applications" class="md-nav__link">
     Applications
   </a>
   
@@ -1747,63 +1718,63 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#programmable-network" class="md-nav__link">
+  <a href="#programmable-network" title="Programmable Network" class="md-nav__link">
     Programmable Network
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#database-and-sql" class="md-nav__link">
+  <a href="#database-and-sql" title="Database and SQL" class="md-nav__link">
     Database and SQL
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#storage" class="md-nav__link">
+  <a href="#storage" title="Storage" class="md-nav__link">
     Storage
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#machine-learning" class="md-nav__link">
+  <a href="#machine-learning" title="Machine Learning" class="md-nav__link">
     Machine Learning
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#graph" class="md-nav__link">
+  <a href="#graph" title="Graph" class="md-nav__link">
     Graph
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#key-value-store" class="md-nav__link">
+  <a href="#key-value-store" title="Key-Value Store" class="md-nav__link">
     Key-Value Store
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#bio" class="md-nav__link">
+  <a href="#bio" title="Bio" class="md-nav__link">
     Bio
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#consensus" class="md-nav__link">
+  <a href="#consensus" title="Consensus" class="md-nav__link">
     Consensus
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#video-processing" class="md-nav__link">
+  <a href="#video-processing" title="Video Processing" class="md-nav__link">
     Video Processing
   </a>
   
@@ -1815,7 +1786,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fpga-internal" class="md-nav__link">
+  <a href="#fpga-internal" title="FPGA Internal" class="md-nav__link">
     FPGA Internal
   </a>
   
@@ -1823,35 +1794,35 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#general" class="md-nav__link">
+  <a href="#general" title="General" class="md-nav__link">
     General
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#partial-reconfiguration" class="md-nav__link">
+  <a href="#partial-reconfiguration" title="Partial Reconfiguration" class="md-nav__link">
     Partial Reconfiguration
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#logical-optimization-and-technology-mapping" class="md-nav__link">
+  <a href="#logical-optimization-and-technology-mapping" title="Logical Optimization and Technology Mapping" class="md-nav__link">
     Logical Optimization and Technology Mapping
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#place-and-route" class="md-nav__link">
+  <a href="#place-and-route" title="Place and Route" class="md-nav__link">
     Place and Route
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#rtl2fpga" class="md-nav__link">
+  <a href="#rtl2fpga" title="RTL2FPGA" class="md-nav__link">
     RTL2FPGA
   </a>
   
@@ -1867,7 +1838,7 @@
       
       
         <li class="md-nav__item">
-          <a href="#__comments" class="md-nav__link md-nav__link--active">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
             Comments
           </a>
         </li>
@@ -1887,38 +1858,7 @@
                 
                 <h1 id="an-fpga-reading-list">An FPGA Reading List<a class="headerlink" href="#an-fpga-reading-list" title="Permanent link">&para;</a></h1>
 <p><img alt="🍀" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f340.svg" title=":four_leaf_clover:" /></p>
-<details class="note"><summary>Version History</summary><table>
-<thead>
-<tr>
-<th align="left">Date</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">Nov 30, 2019</td>
-<td>Add a lot security papers</td>
-</tr>
-<tr>
-<td align="left">Oct 22, 2019</td>
-<td>Shuffle scheduling section. More focused. Add two more recent fpga-virt papers</td>
-</tr>
-<tr>
-<td align="left">Oct 5, 2019</td>
-<td>More on scheduling. Add NoC. Add Security.</td>
-</tr>
-<tr>
-<td align="left">Oct 4, 2019</td>
-<td>Add more papers extracted from AmophOS</td>
-</tr>
-<tr>
-<td align="left">Oct 3, 2019</td>
-<td>Initial version from <a href="https://github.com/lastweek/FPGA">Github</a></td>
-</tr>
-</tbody>
-</table>
-</details>
-<p>This is a list of <em>academic papers</em> that cover all sorts of FPGA related topic,
+<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">Nov 30, 2019</td><td>Add a lot security papers</td></tr><tr><td align="left">Oct 22, 2019</td><td>Shuffle scheduling section. More focused. Add two more recent fpga-virt papers</td></tr><tr><td align="left">Oct 5, 2019</td><td>More on scheduling. Add NoC. Add Security.</td></tr><tr><td align="left">Oct 4, 2019</td><td>Add more papers extracted from AmophOS</td></tr><tr><td align="left">Oct 3, 2019</td><td>Initial version from <a href="https://github.com/lastweek/FPGA">Github</a></td></tr></tbody></table></details><p>This is a list of <em>academic papers</em> that cover all sorts of FPGA related topic,
 more from a system researcher&rsquo;s point of view though.</p>
 <ul>
 <li><a href="#virtualization">Virtualization</a><ul>
@@ -2088,7 +2028,7 @@ be present at next bitstream resume.</li>
 <li><a href="https://ieeexplore.ieee.org/abstract/document/7840018">Virtualized Execution Runtime for FPGA Accelerators in the Cloud, IEEE Access&lsquo;17</a></li>
 </ul>
 <h3 id="dynamic-memory-allocation">Dynamic Memory Allocation<a class="headerlink" href="#dynamic-memory-allocation" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="n">malloc</span><span class="p">()</span></code> and <code class="codehilite"><span class="k">free</span><span class="p">()</span></code> for FPGA on-board DRAM.</p>
+<p><code class="codehilite">malloc()</code> and <code class="codehilite">free()</code> for FPGA on-board DRAM.</p>
 <ul>
 <li><a href="https://ieeexplore.ieee.org/document/485574/">A High-Performance Memory Allocator for Object-Oriented Systems, IEEE&lsquo;96</a></li>
 <li><a href="https://ieeexplore.ieee.org/document/7293959">SysAlloc: A Hardware Manager for Dynamic Memory Allocation in Heterogeneous Systems, FPL&lsquo;15</a></li>
@@ -2101,7 +2041,7 @@ This added MMU is similar to CPU&rsquo;s MMU and <a href="https://www.usenix.org
 Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootdown and so on. What could really stands out, is to implement VMS inside FPGA.)</p>
 <ul>
 <li><a href="https://ieeexplore.ieee.org/document/1664911">Virtual Memory Window for Application-Specific Reconfigurable Coprocessors, DAC&lsquo;04</a><ul>
-<li>Early work that adds a new MMU to FPGA to let FPGA logic access <code class="codehilite"><span class="k">on</span><span class="o">-</span><span class="n">chip</span> <span class="n">DRAM</span></code>. Note, it&rsquo;s not the system main memory. Thus the translation pgtable is different.</li>
+<li>Early work that adds a new MMU to FPGA to let FPGA logic access <code class="codehilite">on-chip DRAM</code>. Note, it&rsquo;s not the system main memory. Thus the translation pgtable is different.</li>
 <li>Has some insights on prefetching and MMU CAM design.</li>
 </ul>
 </li>
@@ -2125,7 +2065,7 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
 </li>
 <li><a href="https://ieeexplore.ieee.org/abstract/document/7840018">S4 Virtualized Execution Runtime for FPGA Accelerators in the Cloud, IEEE Access&lsquo;17</a><ul>
 <li>This paper also implemented a hardware MMU, but the virtual memory system still run on Linux.</li>
-<li>Also listed in <code class="codehilite"><span class="n">Cloud</span> <span class="n">Infrastructure</span></code> part.</li>
+<li>Also listed in <code class="codehilite">Cloud Infrastructure</code> part.</li>
 </ul>
 </li>
 <li><a href="https://ieeexplore.ieee.org/document/7331367">Lightweight Virtual Memory Support for Many-Core Accelerators in Heterogeneous Embedded SoCs, 2015</a></li>
@@ -2328,7 +2268,7 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
 <li><a href="https://ieeexplore.ieee.org/abstract/document/7396187">S2 Virtualized FPGA Accelerators for Efficient Cloud Computing, CloudCom&lsquo;15</a></li>
 <li><a href="https://warwick.ac.uk/fac/sci/eng/staff/saf/publications/fpl2016-asiatici-phdforum.pdf">S3 Designing a Virtual Runtime for FPGA Accelerators in the Cloud, FPL&lsquo;16</a></li>
 <li><a href="https://ieeexplore.ieee.org/abstract/document/7840018">S4 Virtualized Execution Runtime for FPGA Accelerators in the Cloud, IEEE Access&lsquo;17</a><ul>
-<li>The above four papers came from the same group of folks. S1 developed a framework to use PCIe to do PR, okay. S2 is a follow-up on S1, read S2&rsquo;s chapter IV hardware architecture, many implementation details like internal FPGA switch, AXI stream interface. But no memory virtualization discussion. S3 is a two page short paper. S4 is the realization of S3. I was particularly interested if S4 has implemented their own virtual memory management. The answer is NO. S4 leveraged on-chip Linux, they just build a customized MMU (in the form of using BRAM to store page tables. This approach is similar to the papers listed in <code class="codehilite"><span class="n">Integrate</span> <span class="k">with</span> <span class="n">Virtual</span> <span class="n">Memory</span></code>). Many things discussed in S4 have been proposed multiple times in previous cloud FPGA papers since 2014.</li>
+<li>The above four papers came from the same group of folks. S1 developed a framework to use PCIe to do PR, okay. S2 is a follow-up on S1, read S2&rsquo;s chapter IV hardware architecture, many implementation details like internal FPGA switch, AXI stream interface. But no memory virtualization discussion. S3 is a two page short paper. S4 is the realization of S3. I was particularly interested if S4 has implemented their own virtual memory management. The answer is NO. S4 leveraged on-chip Linux, they just build a customized MMU (in the form of using BRAM to store page tables. This approach is similar to the papers listed in <code class="codehilite">Integrate with Virtual Memory</code>). Many things discussed in S4 have been proposed multiple times in previous cloud FPGA papers since 2014.</li>
 </ul>
 </li>
 <li><a href="https://www.microsoft.com/en-us/research/publication/a-reconfigurable-fabric-for-accelerating-large-scale-datacenter-services/">MS: A Reconfigurable Fabric for Accelerating Large-Scale Datacenter Services, ISCA&lsquo;14</a></li>
@@ -2479,6 +2419,7 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
               
               
                 
+                  
 
 
   <h2 id="__comments">Comments</h2>
@@ -2497,6 +2438,7 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
     })();
   </script>
 
+                
               
             </article>
           </div>
@@ -2546,14 +2488,16 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
       <div class="md-footer-copyright">
         
         powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
+        <a href="http://www.mkdocs.org">MkDocs</a>
         and
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
       </div>
       
+        
   <div class="md-footer-social">
-    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
       <a href="https://github.com/lastweek" class="md-footer-social__link fa fa-github"></a>
     
@@ -2563,15 +2507,21 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
     
   </div>
 
+      
     </div>
   </div>
 </footer>
       
     </div>
     
-      <script src="../../assets/javascripts/application.ac79c3b0.js"></script>
+      <script src="../../assets/javascripts/application.abd7b172.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"0.17.2",url:{base:"../.."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-143772066-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
       
     
   </body>
