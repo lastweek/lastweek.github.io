@@ -156,8 +156,8 @@ First it's SeaBIOS, the default one used by QEMU. Then UEFI, something I have ne
 	- A book: `Beyond BIOS Developing with the Unified Extensible Firmware Interface`.
 - Then boot loaders such as GRUB and U-Boot
 
-The firmware software landscape:
-[!20200506-on-firmware-landscape.png](20200506-on-firmware-landscape.png)
+The open-source firmware landscape:
+![20200506-on-firmware-landscape.png](20200506-on-firmware-landscape.png)
 
 ## FPGA
 

@@ -2,8 +2,8 @@ site_name: Yizhou Shan's Home Page
 site_author: 'Yizhou Shan'
 site_url: 'http://lastweek.io'
 
-#nav:
-pages:
+nav:
+#pages:
 - Home: 'index.md'
 - Blog:
         - '2020-05 On-Firmware-Softwares':              'blog/20200506-on-firmware-softwares.md'
@@ -123,7 +123,7 @@ markdown_extensions:
 
 plugins:
   - search
-  #- git-revision-date-localized:
+  - git-revision-date-localized:
 
 theme:
   name: 'material'
