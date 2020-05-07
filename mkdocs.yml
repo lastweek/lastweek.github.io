@@ -6,6 +6,7 @@ site_url: 'http://lastweek.io'
 pages:
 - Home: 'index.md'
 - Blog:
+        - '2020-05 On-Firmware-Softwares':              'blog/20200506-on-firmware-softwares.md'
         - '2020-05 On-Unix-Graphic-Softwares':          'blog/20200501-on-graphic-softwares.md'
         - '2020-04 On-Read-Once-and-Compiler-Opts':    'blog/20200404-on-read-once.md'
         - '2020-04 On-Hardware-based-Network-Transport': 'blog/20200404-on-net-transport.md'
