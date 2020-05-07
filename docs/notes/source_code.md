@@ -222,8 +222,8 @@ As of today May 1, 2020, I now know how VNC fits into the big picture.
 - [FreeRDP, client and server. In C](https://github.com/FreeRDP/FreeRDP)
 	- Took a brief read of the code, it's super neat. Should take a serious look sometime.
 
-This figure shows the architecture:
-[!20200501-on-graphic-softwares-img3.png](20200501-on-graphic-softwares-img3.png)
+This figure shows the software landscape:
+![20200501-on-graphic-softwares-img3.png](20200501-on-graphic-softwares-img3.png)
 
 ## Web Servers
 

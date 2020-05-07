@@ -23,6 +23,11 @@ But you can find awesome references at:
 3) [StackExchange Difference between Xorg and Gnome/KDE/Xfce](https://unix.stackexchange.com/questions/345344/difference-between-xorg-and-gnome-kde-xfce)
 
 Following are some figures I drew to show the architecture of all these softwares.
+In the graphic world, kernel's involvement is minimal, but a critical one.
+Kernel mainly need to deliver mouse/keyboard events, render frames via graphic cards,
+handle network. In other words, kernel provides a mechanism.
+The policy is left to userspace stacks.
+
 At the lowest level, we have Display Manager, or Display Server.
 Downstream, this layer interact with kernel, i.e., getting keyboard/mouse events from kernel evdev framework,
 rendering frames via DRM interfaces.
