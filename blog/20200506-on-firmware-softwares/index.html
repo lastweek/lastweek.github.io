@@ -1248,9 +1248,18 @@
                 
                 
                 <h1 id="on-open-source-firmware-systems-landscape">On Open-Source Firmware Systems Landscape<a class="headerlink" href="#on-open-source-firmware-systems-landscape" title="Permanent link">&para;</a></h1>
-<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">May 6, 2020</td><td>Initial Version</td></tr></tbody></table></details><p>Firmware makes people confusing, not to mention there
-are so many of them. To make it worse, they can be used/combined
-in a very flexible way.</p>
+<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">May 6, 2020</td><td>Initial Version</td></tr></tbody></table></details><p>There are a lot open-source firmware projects.
+I was trying to understand their relationship.
+After some research, I drew the following landscape figure.</p>
+<p>It seems Microsoft Surface is using Project Wu,
+their own open-source UEFI layer.
+By default, QEMU uses SeaBIOS. But it&rsquo;s easy to use others such as qboot, Tianocore.</p>
+<p>Coreboot seems very interesting. It&rsquo;s only doing one job, which is initialize
+the very low-level memory controller and on-board resources. It uses cache as memory.</p>
+<p>If you are using a normal laptop or desktop, chances are, none of those firmware is used.
+Normally machines are shipped with commercial firmwares.</p>
+<p>To me, I like SeaBIOS project the best. It&rsquo;s simple and can boot everything we need.
+(For example, Linux, LegoOS as well).</p>
 <p>Bottom-up:</p>
 <ul>
 <li>Coreboot/Libreboot/UEFI: for motherboard init, e.g., init memory controller.</li>
