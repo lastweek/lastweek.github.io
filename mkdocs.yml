@@ -2,8 +2,7 @@ site_name: Yizhou Shan's Home Page
 site_author: 'Yizhou Shan'
 site_url: 'http://lastweek.io'
 
-#nav:
-pages:
+nav:
 - Home: 'index.md'
 - Source-Code-Study:
    - 'Summary':                         'notes/source_code/summary.md'
@@ -111,8 +110,8 @@ markdown_extensions:
   - pymdownx.critic
   - pymdownx.details
   - pymdownx.emoji:
-          #emoji_index: !!python/name:pymdownx.emoji.twemoji
-      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.inlinehilite
   - pymdownx.magiclink
   - pymdownx.mark
@@ -125,7 +124,7 @@ markdown_extensions:
 
 plugins:
   - search
-    #- git-revision-date-localized
+  - git-revision-date-localized
 
 #name: 'material'
 #name: 'rtd-dropdown'
@@ -133,11 +132,17 @@ plugins:
 #name: 'readthedocs'
 theme:
   name: 'material'
-  palette:
-    scheme: slate
   font:
-          #text: 'Montserrat'
-          text: 'Open Sans'
+    #text: 'Montserrat'
+    text: 'Open Sans'
+  icon:
+    logo: material/cloud
+    repo: fontawesome/brands/git-alt
+  features:
+          #- tabs
+    - instant
+  palette:
+          #scheme: slate
 
 google_analytics:
   - 'UA-143772066-1'
@@ -146,11 +151,11 @@ google_analytics:
 # Options
 extra:
   logo: "images/logo.svg"
-  social:
-    - type: 'github'
-      link: 'https://github.com/lastweek'
-    - type: 'twitter'
-      link: 'https://twitter.com/Yizhou_Shan'
-    - type: 'linkedin'
-      link: 'https://www.linkedin.com/in/lastweek/'
+  #  social:
+  #  - type: 'github'
+  #    link: 'https://github.com/lastweek'
+  #  - type: 'twitter'
+  #    link: 'https://twitter.com/Yizhou_Shan'
+  #  - type: 'linkedin'
+  #    link: 'https://www.linkedin.com/in/lastweek/'
   disqus: 'lastweek-io'

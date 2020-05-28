@@ -1,1 +1,1 @@
-python2 -m mkdocs serve
+mkdocs serve
