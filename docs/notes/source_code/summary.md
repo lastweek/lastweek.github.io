@@ -303,4 +303,4 @@ Point of interests:
 	  DPDK will use its built-in mlx driver, which further use libibverbs,
 	  which further relies on kernel IB stack. It's not a complete user solution somehow.
 	  Note that DPDK built-in mlx driver uses RAW_PACKET QPs.
-	- ![image](../images/dpdk_ibverbs.png)
+	- ![image](../../images/dpdk_ibverbs.png)

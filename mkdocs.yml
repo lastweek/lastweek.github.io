@@ -5,13 +5,7 @@ site_url: 'http://lastweek.io'
 #nav:
 pages:
 - Home: 'index.md'
-- Blog:
-        - '2020-05 On-Firmware-Softwares':              'blog/20200506-on-firmware-softwares.md'
-        - '2020-05 On-Unix-Graphic-Softwares':          'blog/20200501-on-graphic-softwares.md'
-        - '2020-04 On-Read-Once-and-Compiler-Opts':    'blog/20200404-on-read-once.md'
-        - '2020-04 On-Hardware-based-Network-Transport': 'blog/20200404-on-net-transport.md'
 - Notes:
-   - 'Open-Source-Code-Study':                          'notes/source_code.md'
    - 'Programming-Guidelines-and-Advice':               'notes/program_advice.md'
    - 'Virtualization-Software':                         'notes/virt.md'
    - 'Practical-Cache-Coherence':                       'notes/cache_coherence.md'
@@ -28,10 +22,10 @@ pages:
    - 'Benchmarks':                       'notes/benchmark.md'
    - 'Cheatsheet':                       'misc/cheatsheet.md'
 - FPGA:
-   - 'Papers':                      'notes/paper_fpga.md'
-   - 'Bitstream Explained':               'fpga/bitstream.md'
-   - 'Morphous PR':                'fpga/pr.md'
-   - 'Vivado Practice':                   'fpga/vivado.md'
+   - 'Paper Readings':                                          'notes/paper_fpga.md'
+   - 'Bitstream Explained':                             'fpga/bitstream.md'
+   - 'Morphous Partial Reconfiguration':                     'fpga/pr.md'
+   - 'Vivado Notes':                                     'fpga/vivado.md'
    - 'Efficient AXI-MM':      'fpga/hls_axi.md'
 - LegoOS:
 #   - 'Log':
@@ -91,6 +85,14 @@ pages:
            - 'Gen-Z': 'lego/paper/genz.md'
            - 'Replication': 'lego/paper/replication.md'
            - 'Related': 'lego/paper/related.md'
+- Random:
+   - '2020-04 On-Read-Once-and-Compiler-Opts':    'blog/20200404-on-read-once.md'
+   - '2020-04 On-Hardware-based-Network-Transport': 'blog/20200404-on-net-transport.md'
+- Source-Code-Study:
+   - 'Summary':                         'notes/source_code/summary.md'
+   - 'Graphics':                        'notes/source_code/20200501-on-graphic-softwares.md'
+   - 'Firmware':                        'notes/source_code/20200506-on-firmware-softwares.md'
+   - 'RDMA':                            'notes/source_code/rdma.md'
 
 markdown_extensions:
   - admonition
