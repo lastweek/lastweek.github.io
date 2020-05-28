@@ -1,14 +1,12 @@
 
 
 
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
         <link rel="canonical" href="http://lastweek.io/notes/source_code/rdma/">
@@ -16,27 +14,8 @@
       
         <meta name="author" content="Yizhou Shan">
       
-      
-        <meta name="lang:clipboard.copy" content="Copy to clipboard">
-      
-        <meta name="lang:clipboard.copied" content="Copied to clipboard">
-      
-        <meta name="lang:search.language" content="en">
-      
-        <meta name="lang:search.pipeline.stopwords" content="True">
-      
-        <meta name="lang:search.pipeline.trimmer" content="True">
-      
-        <meta name="lang:search.result.none" content="No matching documents">
-      
-        <meta name="lang:search.result.one" content="1 matching document">
-      
-        <meta name="lang:search.result.other" content="# matching documents">
-      
-        <meta name="lang:search.tokenizer" content="[\s\-]+">
-      
       <link rel="shortcut icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.6.2">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.2.2">
     
     
       
@@ -44,87 +23,97 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/application.9b572555.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.a2408e81.min.css">
+      
       
     
     
-      <script src="../../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700%7C&display=fallback">
+        <style>body,input{font-family:"Open Sans",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
     
     
       
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700|">
-        <style>body,input{font-family:"Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"","Courier New",Courier,monospace}</style>
+        
+<link rel="preconnect dns-prefetch" href="https://www.google-analytics.com">
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-143772066-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview")})</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
       
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    
     
     
   </head>
   
+  
     <body dir="ltr">
   
-    <svg class="md-svg">
-      <defs>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
         
-        
-      </defs>
-    </svg>
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
-    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
-    
-      <a href="#on-rmda-landscape" tabindex="1" class="md-skip">
-        Skip to content
-      </a>
-    
+        <a href="#on-rmda-landscape" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
     
       <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="http://lastweek.io" title="Yizhou Shan's Home Page" class="md-header-nav__button md-logo">
-          
-            <i class="md-icon"></i>
-          
-        </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="http://lastweek.io" title="Yizhou Shan's Home Page" class="md-header-nav__button md-logo" aria-label="Yizhou Shan's Home Page">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.35 10.03A7.49 7.49 0 0012 4C9.11 4 6.6 5.64 5.35 8.03A6.004 6.004 0 000 14a6 6 0 006 6h13a5 5 0 005-5c0-2.64-2.05-4.78-4.65-4.97z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Yizhou Shan's Home Page
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
             
-              <span class="md-header-nav__topic">
-                Yizhou Shan's Home Page
-              </span>
-              <span class="md-header-nav__topic">
-                RDMA
-              </span>
+              RDMA
             
-          
+          </span>
         </div>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        
-          
-            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
-            
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
 <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="search"></label>
+  <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
       </button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
+        <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Type to start searching
+            Initializing search
           </div>
           <ol class="md-search-result__list"></ol>
         </div>
@@ -132,33 +121,33 @@
     </div>
   </div>
 </div>
-          
-        
-      </div>
-      
-    </div>
+    
+    
   </nav>
 </header>
     
-    <div class="md-container">
+    <div class="md-container" data-md-component="container">
       
         
       
       
-      <main class="md-main">
-        <div class="md-main__inner md-grid" data-md-component="container">
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
           
             
               <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="drawer">
-    <span class="md-nav__button md-logo">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="http://lastweek.io" title="Yizhou Shan's Home Page" class="md-nav__button md-logo" aria-label="Yizhou Shan's Home Page">
       
-        <i class="md-icon"></i>
-      
-    </span>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.35 10.03A7.49 7.49 0 0012 4C9.11 4 6.6 5.64 5.35 8.03A6.004 6.004 0 000 14a6 6 0 006 6h13a5 5 0 005-5c0-2.64-2.05-4.78-4.65-4.97z"/></svg>
+
+    </a>
     Yizhou Shan's Home Page
   </label>
   
@@ -185,13 +174,19 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       Source-Code-Study
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="Source-Code-Study" data-md-level="1">
       <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
         Source-Code-Study
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -242,7 +237,7 @@
 
   <li class="md-nav__item md-nav__item--active">
     
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
       
     
@@ -266,13 +261,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
       Notes
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="Notes" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
         Notes
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -470,13 +471,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
       Random
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="Random" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
         Random
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -518,13 +525,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
     <label class="md-nav__link" for="nav-5">
       FPGA
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="FPGA" data-md-level="1">
       <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
         FPGA
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -602,13 +615,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
     
     <label class="md-nav__link" for="nav-6">
       LegoOS
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="LegoOS" data-md-level="1">
       <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
         LegoOS
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -621,13 +640,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1">
     
     <label class="md-nav__link" for="nav-6-1">
       Kernel
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+    <nav class="md-nav" aria-label="Kernel" data-md-level="2">
       <label class="md-nav__title" for="nav-6-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
         Kernel
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -861,13 +886,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-2" type="checkbox" id="nav-6-2">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-2" type="checkbox" id="nav-6-2">
     
     <label class="md-nav__link" for="nav-6-2">
       Syscall
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+    <nav class="md-nav" aria-label="Syscall" data-md-level="2">
       <label class="md-nav__title" for="nav-6-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
         Syscall
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -981,13 +1012,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-3" type="checkbox" id="nav-6-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-3" type="checkbox" id="nav-6-3">
     
     <label class="md-nav__link" for="nav-6-3">
       Pcache
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+    <nav class="md-nav" aria-label="Pcache" data-md-level="2">
       <label class="md-nav__title" for="nav-6-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
         Pcache
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1125,13 +1162,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-4" type="checkbox" id="nav-6-4">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-4" type="checkbox" id="nav-6-4">
     
     <label class="md-nav__link" for="nav-6-4">
       Driver
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+    <nav class="md-nav" aria-label="Driver" data-md-level="2">
       <label class="md-nav__title" for="nav-6-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
         Driver
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1173,13 +1216,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-5" type="checkbox" id="nav-6-5">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-5" type="checkbox" id="nav-6-5">
     
     <label class="md-nav__link" for="nav-6-5">
       Paper
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+    <nav class="md-nav" aria-label="Paper" data-md-level="2">
       <label class="md-nav__title" for="nav-6-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
         Paper
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1266,7 +1315,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
     
@@ -1283,8 +1332,26 @@
               
                 
                 
+                  
+                
+                
                 <h1 id="on-rmda-landscape">On-RMDA-Landscape<a class="headerlink" href="#on-rmda-landscape" title="Permanent link">&para;</a></h1>
-<details class="note"><summary>Version History</summary><table><thead><tr><th align="left">Date</th><th>Description</th></tr></thead><tbody><tr><td align="left">May 28, 2020</td><td>Copied from summary</td></tr></tbody></table></details><p>(Copied from summary.)</p>
+<details class="note"><summary>Version History</summary><table>
+<thead>
+<tr>
+<th align="left">Date</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">May 28, 2020</td>
+<td>Copied from summary</td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>(Copied from summary.)</p>
 <ul>
 <li>RPC<ul>
 <li><a href="https://github.com/lastweek/source-grpc">gRPC</a></li>
@@ -1298,19 +1365,19 @@
 </li>
 <li><a href="https://github.com/lastweek/source-verbs-perftest">verbs perftest</a><ul>
 <li>The collection contains a set of bandwidth and latency benchmark such as:</li>
-<li>Send        - <code class="codehilite">ib_send_bw</code> and <code class="codehilite">ib_send_lat</code></li>
-<li>RDMA Read   - <code class="codehilite">ib_read_bw</code> and <code class="codehilite">ib_read_lat</code></li>
-<li>RDMA Write  - <code class="codehilite">ib_write_bw</code> and <code class="codehilite">ib_wriet_lat</code></li>
-<li>RDMA Atomic - <code class="codehilite">ib_atomic_bw</code> and <code class="codehilite">ib_atomic_lat</code></li>
-<li>Native Ethernet (when working with MOFED2) - <code class="codehilite">raw_ethernet_bw</code>, <code class="codehilite">raw_ethernet_lat</code></li>
+<li>Send        - <code>ib_send_bw</code> and <code>ib_send_lat</code></li>
+<li>RDMA Read   - <code>ib_read_bw</code> and <code>ib_read_lat</code></li>
+<li>RDMA Write  - <code>ib_write_bw</code> and <code>ib_wriet_lat</code></li>
+<li>RDMA Atomic - <code>ib_atomic_bw</code> and <code>ib_atomic_lat</code></li>
+<li>Native Ethernet (when working with MOFED2) - <code>raw_ethernet_bw</code>, <code>raw_ethernet_lat</code></li>
 </ul>
 </li>
 <li><a href="https://github.com/lastweek/source-rdma-core">rdma-core</a><ul>
 <li>Userspace IB verbs library (e.g., libibverbs)</li>
 <li>Learn how userspace IB layer communicate with kernel, but also bypass kernel.
-  The technique replies on <code class="codehilite">ioctl()</code> and <code class="codehilite">mmap()</code>, standard.
+  The technique replies on <code>ioctl()</code> and <code>mmap()</code>, standard.
   But the ABI interface (i.e., data structures) are quite complex.</li>
-<li><code class="codehilite">libibverbs/example</code><ul>
+<li><code>libibverbs/example</code><ul>
 <li>asyncwatch.c</li>
 <li>device_list.c</li>
 <li>devinfo.c</li>
@@ -1322,7 +1389,7 @@
 <li>xsrq_pingpong.c</li>
 </ul>
 </li>
-<li><code class="codehilite">infiniband-diags</code><ul>
+<li><code>infiniband-diags</code><ul>
 <li>ibv_devinfo    </li>
 <li>iblinkinfo    </li>
 <li>ibping    </li>
@@ -1340,7 +1407,7 @@ path is very different. For DPDK, there is a complete device
 driver in the user space, and this driver communicate with the device via MMIO.
 After VFIO ioctls, all data and control path bypass kernel.
 For rdma-core, a lot control-path IB verbs (e.g., create_pd, create_cq) communicate with kernel via Infiniband device file ioctl.
-And you can see all those uverb hanlders in <code class="codehilite">drivers/infiniband/core/uverbs.c</code>
+And you can see all those uverb hanlders in <code>drivers/infiniband/core/uverbs.c</code>
 Those control verbs will mmap some pages between user and kernel,
 so all following datapath IB verbs (e.g., post_send) will just bypass kernel
 and talk to device MMIO directly. Although rdma-core also has some vendor-specific
@@ -1356,30 +1423,27 @@ Userspace &ldquo;rdma-core&rdquo; vendor-driver deals with the kernel devel vend
 </ul>
                 
                   
-                
-              
-              
-                
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: May 28, 2020
+    
+  </small>
+</div>
                   
+                
+              
+              
+                
 
 
   <h2 id="__comments">Comments</h2>
   <div id="disqus_thread"></div>
-  <script>
-    var disqus_config = function () {
-      this.page.url = "http://lastweek.io/notes/source_code/rdma/";
-      this.page.identifier =
-        "/notes/source_code/rdma/";
-    };
-    (function() {
-      var d = document, s = d.createElement("script");
-      s.src = "//lastweek-io.disqus.com/embed.js";
-      s.setAttribute("data-timestamp", +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
+  <script>var disqus_config=function(){this.page.url="http://lastweek.io/notes/source_code/rdma/",this.page.identifier="/notes/source_code/rdma/"};!function(){var e=document,i=e.createElement("script");i.src="//lastweek-io.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
 
-                
               
             </article>
           </div>
@@ -1390,34 +1454,34 @@ Userspace &ldquo;rdma-core&rdquo; vendor-driver deals with the kernel devel vend
 <footer class="md-footer">
   
     <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../20200506-on-firmware-softwares/" title="Firmware" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+          <a href="../20200506-on-firmware-softwares/" title="Firmware" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
                 Firmware
-              </span>
+              </div>
             </div>
           </a>
         
         
-          <a href="../../program_advice/" title="Programming-Guidelines-and-Advice" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
+          <a href="../../program_advice/" title="Programming-Guidelines-and-Advice" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
                 Programming-Guidelines-and-Advice
-              </span>
+              </div>
             </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
             </div>
           </a>
         
@@ -1428,26 +1492,11 @@ Userspace &ldquo;rdma-core&rdquo; vendor-driver deals with the kernel devel vend
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        powered by
-        <a href="http://www.mkdocs.org">MkDocs</a>
-        and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
-          Material for MkDocs</a>
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
       </div>
-      
-        
-  <div class="md-footer-social">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-      <a href="https://github.com/lastweek" class="md-footer-social__link fa fa-github"></a>
-    
-      <a href="https://twitter.com/Yizhou_Shan" class="md-footer-social__link fa fa-twitter"></a>
-    
-      <a href="https://www.linkedin.com/in/lastweek/" class="md-footer-social__link fa fa-linkedin"></a>
-    
-  </div>
-
       
     </div>
   </div>
@@ -1455,14 +1504,18 @@ Userspace &ldquo;rdma-core&rdquo; vendor-driver deals with the kernel devel vend
       
     </div>
     
-      <script src="../../../assets/javascripts/application.abd7b172.js"></script>
+      <script src="../../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
-      <script>app.initialize({version:"0.17.2",url:{base:"../../.."}})</script>
-      
-    
-    
-      
-        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-143772066-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: ["instant"],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.27c6a5e6.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
     
   </body>
