@@ -134,7 +134,7 @@ theme:
   name: 'material'
   font:
     #text: 'Montserrat'
-    text: 'Open Sans'
+    #text: 'Open Sans'
   icon:
     logo: material/cloud
     repo: fontawesome/brands/git-alt
