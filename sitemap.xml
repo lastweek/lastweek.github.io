@@ -12,6 +12,34 @@
     
         
     <url>
+     <loc>http://lastweek.io/notes/source_code/summary/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://lastweek.io/notes/source_code/20200501-on-graphic-softwares/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://lastweek.io/notes/source_code/20200506-on-firmware-softwares/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://lastweek.io/notes/source_code/rdma/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
      <loc>http://lastweek.io/notes/program_advice/</loc>
      <lastmod>2020-05-28</lastmod>
      <changefreq>daily</changefreq>
@@ -106,6 +134,22 @@
     
         
     <url>
+     <loc>http://lastweek.io/blog/20200404-on-read-once/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://lastweek.io/blog/20200404-on-net-transport/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
      <loc>http://lastweek.io/notes/paper_fpga/</loc>
      <lastmod>2020-05-28</lastmod>
      <changefreq>daily</changefreq>
@@ -166,50 +210,6 @@
     <url>
      <loc>http://lastweek.io</loc>
      <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>http://lastweek.io/blog/20200404-on-read-once/</loc>
-     <lastmod>2020-05-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>http://lastweek.io/blog/20200404-on-net-transport/</loc>
-     <lastmod>2020-05-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>http://lastweek.io/notes/source_code/summary/</loc>
-     <lastmod>2020-05-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>http://lastweek.io/notes/source_code/20200501-on-graphic-softwares/</loc>
-     <lastmod>2020-05-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>http://lastweek.io/notes/source_code/20200506-on-firmware-softwares/</loc>
-     <lastmod>2020-05-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>http://lastweek.io/notes/source_code/rdma/</loc>
-     <lastmod>2020-05-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
