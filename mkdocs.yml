@@ -5,6 +5,12 @@ site_url: 'http://lastweek.io'
 #nav:
 pages:
 - Home: 'index.md'
+- Source-Code-Study:
+   - 'Summary':                         'notes/source_code/summary.md'
+   - 'Graphics':                        'notes/source_code/20200501-on-graphic-softwares.md'
+   - 'Firmware':                        'notes/source_code/20200506-on-firmware-softwares.md'
+   - 'RDMA':                            'notes/source_code/rdma.md'
+
 - Notes:
    - 'Programming-Guidelines-and-Advice':               'notes/program_advice.md'
    - 'Virtualization-Software':                         'notes/virt.md'
@@ -21,6 +27,9 @@ pages:
    - 'Essential':                        'misc/essential.md'
    - 'Benchmarks':                       'notes/benchmark.md'
    - 'Cheatsheet':                       'misc/cheatsheet.md'
+- Random:
+   - '2020-04 On-Read-Once-and-Compiler-Opts':    'blog/20200404-on-read-once.md'
+   - '2020-04 On-Hardware-based-Network-Transport': 'blog/20200404-on-net-transport.md'
 - FPGA:
    - 'Paper Readings':                                          'notes/paper_fpga.md'
    - 'Bitstream Explained':                             'fpga/bitstream.md'
@@ -85,15 +94,6 @@ pages:
            - 'Gen-Z': 'lego/paper/genz.md'
            - 'Replication': 'lego/paper/replication.md'
            - 'Related': 'lego/paper/related.md'
-- Random:
-   - '2020-04 On-Read-Once-and-Compiler-Opts':    'blog/20200404-on-read-once.md'
-   - '2020-04 On-Hardware-based-Network-Transport': 'blog/20200404-on-net-transport.md'
-- Source-Code-Study:
-   - 'Summary':                         'notes/source_code/summary.md'
-   - 'Graphics':                        'notes/source_code/20200501-on-graphic-softwares.md'
-   - 'Firmware':                        'notes/source_code/20200506-on-firmware-softwares.md'
-   - 'RDMA':                            'notes/source_code/rdma.md'
-
 markdown_extensions:
   - admonition
   - tables
@@ -127,6 +127,10 @@ plugins:
   - search
     #- git-revision-date-localized:
 
+#name: 'material'
+#name: 'rtd-dropdown'
+#name: 'gitbook'
+#name: 'readthedocs'
 theme:
   name: 'material'
   font:
