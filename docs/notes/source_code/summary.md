@@ -97,7 +97,7 @@ Projects supporting our day-to-day work.
 	- [Rumprun](https://github.com/lastweek/source-rumprun)
 	- [Solo5. Unikernel as processes!](https://github.com/lastweek/source-solo5)
 
-![image_unix_timeline](../images/unix_timeline.png)
+![image_unix_timeline](../../images/unix_timeline.png)
 (Image source: https://commons.wikimedia.org/wiki/File:Unix_timeline.en.svg)
 
 ## Virtualization
