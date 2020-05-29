@@ -139,10 +139,12 @@ theme:
     logo: material/cloud
     repo: fontawesome/brands/git-alt
   features:
-          #- tabs
+    - tabs
     - instant
   palette:
           #scheme: slate
+     primary: black
+     accent: blue
 
 google_analytics:
   - 'UA-143772066-1'

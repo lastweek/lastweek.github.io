@@ -39,21 +39,21 @@ My recent research focus is on disaggregated datacenter, designing its hardware,
 
 ### Workshops
 
-* [__Challenges in Building and Deploying Disaggregated Persistent Memory__](http://lastweek.io/pubs/dpm-nvmw19.pdf)
+4. [__Challenges in Building and Deploying Disaggregated Persistent Memory__](http://lastweek.io/pubs/dpm-nvmw19.pdf)
   <br> *Yizhou Shan*, Yutong Huang, Yiying Zhang
-  <br> _10th Annual Non-Volatile Memories Workshop (__NVMW 2019__)_
+  <br> *10th Annual Non-Volatile Memories Workshop (__NVMW 2019__)*
 
-* [__Disaggregating Memory with Software-Managed Virtual Cache__](http://workshops.inf.ed.ac.uk/wams/)
+3. [__Disaggregating Memory with Software-Managed Virtual Cache__](http://workshops.inf.ed.ac.uk/wams/)
   <br> _Yizhou Shan_, Yiying Zhang
-  <br> _2018 Workshop on Warehouse-scale Memory Systems (__WAMS 2018__) (co-located with ASPLOS '18)_
+  <br> *2018 Workshop on Warehouse-scale Memory Systems (__WAMS 2018__) (co-located with ASPLOS '18)*
 
-* [__Distributed Shared Persistent Memory__](https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf)
-  <br> _Yizhou Shan_, Shin-Yeh Tsai, Yiying Zhang
-  <br> _9th Annual Non-Volatile Memories Workshop (__NVMW 2018__)_
+2. [__Distributed Shared Persistent Memory__](https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf)
+  <br> *Yizhou Shan*, Shin-Yeh Tsai, Yiying Zhang
+  <br> *9th Annual Non-Volatile Memories Workshop (__NVMW 2018__)*
 
-* [__Disaggregated Operating System__](http://hpts.ws/papers/2017/lego.pdf)
-  <br> Yiying Zhang, _Yizhou Shan_, Sumukh Hallymysore
-  <br> _17th International Workshop on High Performance Transaction Systems (__HPTS 2017__)_
+1. [__Disaggregated Operating System__](http://hpts.ws/papers/2017/lego.pdf)
+  <br> Yiying Zhang, *Yizhou Shan*, Sumukh Hallymysore
+  <br> *17th International Workshop on High Performance Transaction Systems (__HPTS 2017__)*
 
 ??? note "Posters"
 	[P2] [__Lego: A Distributed, Decomposed OS for Resource Disaggregation__](https://lastweek.github.io/pubs/SOSP17-Lego-Poster.pdf)
