@@ -139,7 +139,6 @@ theme:
     logo: material/cloud
     repo: fontawesome/brands/git-alt
   features:
-    - tabs
     - instant
   palette:
           #scheme: slate
