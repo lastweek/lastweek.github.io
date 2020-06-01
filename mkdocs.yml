@@ -31,7 +31,7 @@ nav:
    - '2020-04 On-Hardware-based-Network-Transport': 'blog/20200404-on-net-transport.md'
 - FPGA:
    - 'Papers':                                          'notes/paper_fpga.md'
-   - 'Languages'                                        'fpga/language.md'
+   - 'Language':                                        'fpga/language.md'
    - 'Bitstream Explained':                             'fpga/bitstream.md'
    - 'Morphous Partial Reconfiguration':                     'fpga/pr.md'
    - 'Vivado Notes':                                     'fpga/vivado.md'
