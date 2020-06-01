@@ -4,17 +4,17 @@ site_url: 'http://lastweek.io'
 
 nav:
 - Home: 'index.md'
-- Source-Code-Study:
-   - 'Summary':                         'notes/source_code/summary.md'
-   - 'Graphics':                        'notes/source_code/20200501-on-graphic-softwares.md'
-   - 'Firmware':                        'notes/source_code/20200506-on-firmware-softwares.md'
-   - 'RDMA':                            'notes/source_code/rdma.md'
+- Code Landscape:
+   - 'All':                         'notes/source_code/summary.md'
+   - 'Graphics':                    'notes/source_code/20200501-on-graphic-softwares.md'
+   - 'Firmware':                    'notes/source_code/20200506-on-firmware-softwares.md'
+   - 'RDMA/DPDK':                   'notes/source_code/rdma.md'
+   - 'Virtualization':              'notes/source_code/virt.md'
+   - 'Guideline & Advice':          'notes/program_advice.md'
 
 - Notes:
-   - 'Programming-Guidelines-and-Advice':               'notes/program_advice.md'
-   - 'Virtualization-Software':                         'notes/virt.md'
    - 'Practical-Cache-Coherence':                       'notes/cache_coherence.md'
-   - 'Measure-x86-Ring-Switch-Overhead':                'notes/xperf.md'
+   - 'x86-Ring-Switch-Overhead':                'notes/xperf.md'
    - 'Performance-Shadows':                             'notes/paper_perf_shadows.md'
    - 'Linux Reverse Map (rmap)':       'notes/rmap.md'
    - 'Linux Userfaultfd':              'notes/userfaultfd.md'
@@ -30,11 +30,12 @@ nav:
    - '2020-04 On-Read-Once-and-Compiler-Opts':    'blog/20200404-on-read-once.md'
    - '2020-04 On-Hardware-based-Network-Transport': 'blog/20200404-on-net-transport.md'
 - FPGA:
-   - 'Paper Readings':                                          'notes/paper_fpga.md'
+   - 'Papers':                                          'notes/paper_fpga.md'
+   - 'Languages'                                        'fpga/language.md'
    - 'Bitstream Explained':                             'fpga/bitstream.md'
    - 'Morphous Partial Reconfiguration':                     'fpga/pr.md'
    - 'Vivado Notes':                                     'fpga/vivado.md'
-   - 'Efficient AXI-MM':      'fpga/hls_axi.md'
+   - 'Efficient AXI-MM':                                 'fpga/hls_axi.md'
 - LegoOS:
 #   - 'Log':
 #           - 'TODO':                    'lego/log/TODO.md'
