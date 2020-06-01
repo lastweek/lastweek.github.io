@@ -4,7 +4,7 @@ site_url: 'http://lastweek.io'
 
 nav:
 - Home: 'index.md'
-- Code Landscape:
+- Code:
    - 'All':                         'notes/source_code/summary.md'
    - 'Graphics':                    'notes/source_code/20200501-on-graphic-softwares.md'
    - 'Firmware':                    'notes/source_code/20200506-on-firmware-softwares.md'
@@ -12,7 +12,7 @@ nav:
    - 'Virtualization':              'notes/source_code/virt.md'
    - 'Guideline & Advice':          'notes/program_advice.md'
 
-- Notes:
+- Note:
    - 'Practical-Cache-Coherence':                       'notes/cache_coherence.md'
    - 'x86-Ring-Switch-Overhead':                'notes/xperf.md'
    - 'Performance-Shadows':                             'notes/paper_perf_shadows.md'
@@ -26,9 +26,6 @@ nav:
    - 'Essential':                        'misc/essential.md'
    - 'Benchmarks':                       'notes/benchmark.md'
    - 'Cheatsheet':                       'misc/cheatsheet.md'
-- Random:
-   - '2020-04 On-Read-Once-and-Compiler-Opts':    'blog/20200404-on-read-once.md'
-   - '2020-04 On-Hardware-based-Network-Transport': 'blog/20200404-on-net-transport.md'
 - FPGA:
    - 'Papers':                                          'notes/paper_fpga.md'
    - 'Language':                                        'fpga/language.md'
@@ -36,6 +33,9 @@ nav:
    - 'Morphous Partial Reconfiguration':                     'fpga/pr.md'
    - 'Vivado Notes':                                     'fpga/vivado.md'
    - 'Efficient AXI-MM':                                 'fpga/hls_axi.md'
+- Random:
+   - '2020-04 On-Read-Once-and-Compiler-Opts':    'blog/20200404-on-read-once.md'
+   - '2020-04 On-Hardware-based-Network-Transport': 'blog/20200404-on-net-transport.md'
 - LegoOS:
 #   - 'Log':
 #           - 'TODO':                    'lego/log/TODO.md'
@@ -137,7 +137,7 @@ theme:
     #text: 'Montserrat'
     #text: 'Open Sans'
   icon:
-    logo: material/cloud
+          #logo: material/cloud
     repo: fontawesome/brands/git-alt
   features:
     - instant

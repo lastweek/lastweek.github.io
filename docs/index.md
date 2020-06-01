@@ -6,7 +6,7 @@ I was a [Purdue Boilermaker](https://engineering.purdue.edu/ECE).
 
 Contact: ys AT ucsd DOT edu
 
-??? note "News"
+??? tip "Research News"
 	- [_Apr 2020_] __Disaggregated Persistent Memory__ accepted to __ATC'20__
 	- [_Sep 2019_] Moved to UCSD.
 	- [_May 2019_] Intern at [VMware Research](https://research.vmware.com/), with [Marcos K. Aguilera](http://mkaguilera.kawazoe.org/)
@@ -21,7 +21,7 @@ I work on distributed system, networking, operating system, FPGA, and their inte
 My recent research focus is on disaggregated datacenter, designing its hardware, OS, and upper layer applications.
 
 ### Publications 
-4. [__Towards Low-Cost, Fast, and Scalable Disaggregated Persistent Memory Systems__]()
+4. [__Disaggregating Persistent Memory and Controlling Them from Remote: An Exploration of Passive Disaggregated Key-Value Stores__]()
   <br> Shin-Yeh Tsai, *Yizhou Shan*, Yiying Zhang
   <br> __ATC 2020__ (_to appear_)
 
