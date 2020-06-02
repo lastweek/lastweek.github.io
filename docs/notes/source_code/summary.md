@@ -1,8 +1,9 @@
-# Source Code Study
+# 1. Source Code Study
 
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Jun 2, 2020| Add librcu|
 	|Apr 26, 2020| Add wayland, X, gnome, gtk etc |
 	|Apr 10, 2020| add graphics section|
 	|Apr 6, 2020| add verbs perftes|
@@ -18,7 +19,20 @@ This page links to all of them.
 
 Happy hacking!
 
-## Misc
+- [1. Source Code Study](#1-source-code-study)
+	- [1.1. Nutritions](#11-nutritions)
+	- [1.2. Operating Systems](#12-operating-systems)
+	- [1.3. Virtualization](#13-virtualization)
+	- [1.4. Compilers](#14-compilers)
+	- [1.5. Firmware](#15-firmware)
+	- [1.6. FPGA](#16-fpga)
+	- [1.7. Web Servers](#17-web-servers)
+	- [1.8. Key Value Stores](#18-key-value-stores)
+	- [1.9. Databases](#19-databases)
+	- [1.10. RDMA and More](#110-rdma-and-more)
+	- [1.11. Graphics](#111-graphics)
+
+## 1.1. Nutritions
 
 Projects supporting our day-to-day work.
 
@@ -56,9 +70,8 @@ Projects supporting our day-to-day work.
 	- Also checkout [FreeBSD](https://github.com/lastweek/source-freebsd) as it has tools like `ifconfig`, `if`. 
 - C for life
 	- Some small and useful C projects
-	- [cJSON](https://github.com/lastweek/source-cJSON)
-		- A lightweight JSON parser in C.
-		- I think iperf3 is using it.
+	- [cJSON](https://github.com/lastweek/source-cJSON): A lightweight JSON parser in C.
+	- [userspace-rcu](https://github.com/lastweek/source-userspace-rcu): A userspace RCU implementation library.
 - Outliers
 	- [CRIU: Checkpoint and Restore in Userspace](https://github.com/lastweek/source-criu)
 		- The reason I love this repo is because it has so many interesting pieces
@@ -72,11 +85,11 @@ Projects supporting our day-to-day work.
 	- [FFmpeg](https://github.com/lastweek/source-FFmpeg)
 		- FFmpeg project is famous for its clean and neat C code.
 		- Besides, this project is used by a lot online video service companies
-	- [`io_uring`](https://kernel.dk/io_uring.pdf)
+	- [io uring](https://kernel.dk/io_uring.pdf)
 		- [user liburing](https://github.com/axboe/liburing)
 		- [kernel io_uring.c](https://github.com/torvalds/linux/blob/master/fs/io_uring.c)
 
-## Operating Systems
+## 1.2. Operating Systems
 
 - [Linux 0.0.1](https://github.com/lastweek/linux-0.01)
 - [Plan 9 OS](https://github.com/lastweek/source-plan9)
@@ -100,7 +113,7 @@ Projects supporting our day-to-day work.
 ![image_unix_timeline](../../images/unix_timeline.png)
 (Image source: https://commons.wikimedia.org/wiki/File:Unix_timeline.en.svg)
 
-## Virtualization
+## 1.3. Virtualization
 
 - [libvirt: virsh and more](https://github.com/lastweek/source-libvirt)
 - [QEMU](https://github.com/lastweek/source-qemu)
@@ -109,9 +122,8 @@ Projects supporting our day-to-day work.
 - [rust-vmm](https://github.com/rust-vmm/community)
 - [cloud-hypervisor](https://github.com/cloud-hypervisor/cloud-hypervisor)
 
-## Compilers
+## 1.4. Compilers
 
-- [GNU GCC](https://github.com/gcc-mirror/gcc)
 - [Clang, LLVM, in C++](https://github.com/llvm/llvm-project)
 	- This is a collection of projects. Clang is the frontend,
 	compiles C/C++ code into LLVM's own IR format.
@@ -121,6 +133,8 @@ Projects supporting our day-to-day work.
 	as libraries, and we could invoke them to manipulate the
 	compilation results, to do source-to-source transforms,
 	modify Pass's IR etc. I found this super interesting!
+	- To get started, I strongly recommend [LLVM for Grad Students](https://www.cs.cornell.edu/~asampson/blog/llvm.html)
+- [GNU GCC](https://github.com/gcc-mirror/gcc)
 - [Rustc, in Rust](https://github.com/lastweek/source-rust)
 - [PHP, in C](https://github.com/lastweek/source-php-src)
 - [Python, in C](https://github.com/lastweek/source-cpython)
@@ -128,38 +142,16 @@ Projects supporting our day-to-day work.
 - [Apple Swift, in C++](https://github.com/lastweek/source-swift)
 - [TCL, in C](https://github.com/lastweek/source-tcl)
 - [Perl 5, in C](https://github.com/lastweek/source-perl5)
+- [SpinalHDL]()
 
-## Firmware
+## 1.5. Firmware
 
-I'm obsessed with firmware projects, maybe because that's where I got started.
-First it's SeaBIOS, the default one used by QEMU. Then UEFI, something I have never used (!).
-
-- Coreboot and Libreboot
-- [SeaBIOS: the default BIOS used by QEMU](https://github.com/lastweek/source-firmware-seabios)
-- [qboot: an alternative and lightweight BIOS for QEMU](https://github.com/lastweek/source-firmware-qboot)
-    - Those are massive hackers, respect.
-    - My experience about BIOS is calling them while the kernel (LegoOS) is running at 16-bit.
-      BIOS *is* the OS for a just-booted kernel. I remember the lower 1MB is never cleared,
-      maybe we could invoke the BIOS at 32 or 64-bit mode?
-- UEFI
-	- [UEFI EDK II ](https://github.com/lastweek/source-uefi-edk2)
-		-  "EDK II is a firmware development environment for the UEFI and UEFI Platform Initialization (PI) specifications"
-		- Part of the [TianoCore](https://www.tianocore.org/) project, an open-source UEFI platform
-		- The Unified Extensible Firmware Interface (UEFI) is a specification that
-		  defines a software interface between an operating system and platform firmware.
-		  UEFI is designed to replace the Basic Input/Output System (BIOS) firmware interface.
-		- [OVMF](https://github.com/tianocore/tianocore.github.io/wiki/OVMF): OVMF is an EDK II based project to enable UEFI support for Virtual Machines. OVMF contains sample UEFI firmware for QEMU and KVM.
-	- [Microsoft Project Mu, a separate fork of EDK II](https://microsoft.github.io/mu/)
-		- "Project Mu is a modular adaptation of TianoCore's edk2 tuned for building
-		modern devices using a scalable, maintainable, and reusable pattern"
-		- It's homepage explains the motivation behind it.
-	- A book: `Beyond BIOS Developing with the Unified Extensible Firmware Interface`.
-- Then boot loaders such as GRUB and U-Boot
+See here: http://lastweek.io/notes/source_code/20200506-on-firmware-softwares/.
 
 The open-source firmware landscape:
 ![20200506-on-firmware-landscape.png](20200506-on-firmware-landscape.png)
 
-## FPGA
+## 1.6. FPGA
 
 - [My own Collection](https://github.com/lastweek/fpga_vivado_scripts)
 - [My own Paper Readings](https://github.com/lastweek/fpga_readings)
@@ -198,13 +190,37 @@ The open-source firmware landscape:
 		- Placement and Route (`VPR`)
 
 
-## Graphics
+## 1.7. Web Servers
 
-As of today Apr 26, 2020, I sort of understand how evdev, X/Wayland, GTK/QT, and GNOME/KDE
-layers on top of each other, and how they interact with each other.
-But I still don't know how VNC comes into the picture. Let's figure out sometime!
-And draw a picture like I did for DPDK/libibverbs.
-As of today May 1, 2020, I now know how VNC fits into the big picture.
+- [Apache httpd](https://github.com/lastweek/source-httpd)
+- [nginx](https://github.com/lastweek/source-nginx)
+
+## 1.8. Key Value Stores
+
+Point of interests:
+1) in-memory, and can it extend to use disk/ssd?
+2) persistence support
+3) network support
+
+- [RocksDB: A persistent KVS for Flash and RAM Storage. C++](https://github.com/lastweek/source-rocksdb)
+- [LevelDB. C++](https://github.com/lastweek/source-leveldb)
+- [Memcached. C](https://github.com/lastweek/source-memcached)
+- [Redis. C](https://github.com/lastweek/source-redis)
+- [etcd: Distributed reliable KVS. Go](https://github.com/lastweek/source-etcd)
+
+## 1.9. Databases
+
+- [MySQL](https://github.com/lastweek/source-mysql-server)
+- [PostgresSQL](https://github.com/lastweek/source-postgres)
+- [Yugabyte, distributed SQL](https://github.com/lastweek/yugabyte-db)
+
+## 1.10. RDMA and More
+
+See here: http://lastweek.io/notes/source_code/rdma/
+
+## 1.11. Graphics
+
+More here: http://lastweek.io/notes/source_code/20200501-on-graphic-softwares/
 
 - [X Server](https://github.com/lastweek/source-xserver) and [Wayland](https://github.com/lastweek/source-wayland)
 	- X is being replaced by Wayland now..
@@ -225,82 +241,3 @@ As of today May 1, 2020, I now know how VNC fits into the big picture.
 This figure shows the software landscape:
 ![20200501-on-graphic-softwares-img3.png](20200501-on-graphic-softwares-img3.png)
 
-## Web Servers
-
-- [Apache httpd](https://github.com/lastweek/source-httpd)
-- [nginx](https://github.com/lastweek/source-nginx)
-
-## Key Value Stores
-
-Point of interests:
-1) in-memory, and can it extend to use disk/ssd?
-2) persistence support
-3) network support
-
-- [RocksDB: A persistent KVS for Flash and RAM Storage. C++](https://github.com/lastweek/source-rocksdb)
-- [LevelDB. C++](https://github.com/lastweek/source-leveldb)
-- [Memcached. C](https://github.com/lastweek/source-memcached)
-- [Redis. C](https://github.com/lastweek/source-redis)
-- [etcd: Distributed reliable KVS. Go](https://github.com/lastweek/source-etcd)
-
-## Databases
-
-- [MySQL](https://github.com/lastweek/source-mysql-server)
-- [PostgresSQL](https://github.com/lastweek/source-postgres)
-- [Yugabyte, distributed SQL](https://github.com/lastweek/yugabyte-db)
-
-## RDMA and More
-
-- RPC
-	- [gRPC](https://github.com/lastweek/source-grpc)
-	- [eRPC, NSDI'19]()
-- [Mellanox libvma](https://github.com/lastweek/source-libvma)
-	- An userspace IB verbs based layer providing POSIX socket APIs.
-	  In other words, a library like SocketDirect, SIGCOMM'19.
-- [verbs perftest](https://github.com/lastweek/source-verbs-perftest)
-	-  The collection contains a set of bandwidth and latency benchmark such as:
-	- Send        - `ib_send_bw` and `ib_send_lat`
-	- RDMA Read   - `ib_read_bw` and `ib_read_lat`
-	- RDMA Write  - `ib_write_bw` and `ib_wriet_lat`
-	- RDMA Atomic - `ib_atomic_bw` and `ib_atomic_lat`
-	- Native Ethernet (when working with MOFED2) - `raw_ethernet_bw`, `raw_ethernet_lat`
-- [rdma-core](https://github.com/lastweek/source-rdma-core)
-	- Userspace IB verbs library (e.g., libibverbs)
-	- Learn how userspace IB layer communicate with kernel, but also bypass kernel.
-	  The technique replies on `ioctl()` and `mmap()`, standard.
-	  But the ABI interface (i.e., data structures) are quite complex.
-	- `libibverbs/example`
-		- asyncwatch.c
-		- device_list.c
-		- devinfo.c
-		- pingpong.c
-		- rc_pingpong.c
-		- srq_pingpong.c
-		- uc_pingpong.c
-		- ud_pingpong.c
-		- xsrq_pingpong.c
-	- `infiniband-diags`
-		- ibv_devinfo    
-		- iblinkinfo    
-		- ibping    
-		- ibaddr
-	- [Kernel Infiniband stack](https://github.com/torvalds/linux/tree/master/drivers/infiniband)
-- [DPDK](https://github.com/lastweek/source-dpdk)
-	- DPDK uses VFIO to directly access physical device.
-	Just like how we directly assign device to guest OS in QEMU.
-	- Even though both DPDK and RDMA bypass kernel, their control
-	path is very different. For DPDK, there is a complete device
-	driver in the user space, and this driver communicate with the device via MMIO.
-	After VFIO ioctls, all data and control path bypass kernel.
-	For rdma-core, a lot control-path IB verbs (e.g., create_pd, create_cq) communicate with kernel via Infiniband device file ioctl.
-	And you can see all those uverb hanlders in `drivers/infiniband/core/uverbs.c`
-	Those control verbs will mmap some pages between user and kernel,
-	so all following datapath IB verbs (e.g., post_send) will just bypass kernel
-	and talk to device MMIO directly. Although rdma-core also has some vendor-specific
-	"drivers", but this is really different from the above DPDK's userspace PCIe driver, per se.
-	Userspace "rdma-core" vendor-driver deals with the kernel devel vendor-level driver details.
-	- FWIW, if you are using a Mellanox VPI card in Ethernet mode (e.g. CX3-5),
-	  DPDK will use its built-in mlx driver, which further use libibverbs,
-	  which further relies on kernel IB stack. It's not a complete user solution somehow.
-	  Note that DPDK built-in mlx driver uses RAW_PACKET QPs.
-	- ![image](../../images/dpdk_ibverbs.png)
