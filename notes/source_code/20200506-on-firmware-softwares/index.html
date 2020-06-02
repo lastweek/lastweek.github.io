@@ -15,7 +15,7 @@
         <meta name="author" content="Yizhou Shan">
       
       <link rel="shortcut icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.2.2">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
     
     
       
@@ -1372,14 +1372,46 @@
 </tbody>
 </table>
 </details>
+<p>I&rsquo;m obsessed with firmware projects, maybe because that&rsquo;s where I started.
+First it&rsquo;s SeaBIOS, the default one used by QEMU. Then UEFI, something I have never used (!).</p>
 <p>There are a lot open-source firmware projects.
 I was trying to understand their relationship.
 After some research, I drew the following landscape figure.</p>
-<p>It seems Microsoft Surface is using Project Wu,
-their own open-source UEFI layer.
-By default, QEMU uses SeaBIOS. But it&rsquo;s easy to use others such as qboot, Tianocore.</p>
-<p>Coreboot seems very interesting. It&rsquo;s only doing one job, which is initialize
-the very low-level memory controller and on-board resources. It uses cache as memory.</p>
+<ul>
+<li><a href="https://github.com/lastweek/source-firmware-coreboot">Coreboot</a> and Libreboot<ul>
+<li>Coreboot seems very interesting. It&rsquo;s only doing one job, which is initialize
+the very low-level memory controller and on-board resources. It uses cache as memory.</li>
+</ul>
+</li>
+<li><a href="https://github.com/lastweek/source-firmware-seabios">SeaBIOS: the default BIOS used by QEMU</a></li>
+<li><a href="https://github.com/lastweek/source-firmware-qboot">qboot: an alternative and lightweight BIOS for QEMU</a><ul>
+<li>Those are massive hackers, respect.</li>
+<li>My experience about BIOS is calling them while the kernel (LegoOS) is running at 16-bit.
+  BIOS <em>is</em> the OS for a just-booted kernel. I remember the lower 1MB is never cleared,
+  maybe we could invoke the BIOS at 32 or 64-bit mode?</li>
+</ul>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface">UEFI</a><ul>
+<li><a href="https://github.com/lastweek/source-uefi-edk2">UEFI EDK II </a><ul>
+<li>&ldquo;EDK II is a firmware development environment for the UEFI and UEFI Platform Initialization (PI) specifications&rdquo;</li>
+<li>Part of the <a href="https://www.tianocore.org/">TianoCore</a> project, an open-source UEFI platform</li>
+<li>The Unified Extensible Firmware Interface (UEFI) is a specification that
+  defines a software interface between an operating system and platform firmware.
+  UEFI is designed to replace the Basic Input/Output System (BIOS) firmware interface.</li>
+<li><a href="https://github.com/tianocore/tianocore.github.io/wiki/OVMF">OVMF</a>: OVMF is an EDK II based project to enable UEFI support for Virtual Machines. OVMF contains sample UEFI firmware for QEMU and KVM.</li>
+</ul>
+</li>
+<li><a href="https://microsoft.github.io/mu/">Microsoft Project Mu, a separate fork of EDK II</a><ul>
+<li>&ldquo;Project Mu is a modular adaptation of TianoCore&rsquo;s edk2 tuned for building
+modern devices using a scalable, maintainable, and reusable pattern&rdquo;</li>
+<li>It&rsquo;s homepage explains the motivation behind it. Microsoft Surface is using it.</li>
+</ul>
+</li>
+<li>A book: <code>Beyond BIOS Developing with the Unified Extensible Firmware Interface</code>.</li>
+</ul>
+</li>
+<li>Then boot loaders such as <a href="https://github.com/lastweek/source-grub2">GRUB</a> and <a href="https://github.com/u-boot/u-boot">U-Boot</a></li>
+</ul>
 <p>If you are using a normal laptop or desktop, chances are, none of those firmware is used.
 Normally machines are shipped with commercial firmwares.</p>
 <p>To me, I like SeaBIOS project the best. It&rsquo;s simple and can boot everything we need.
@@ -1401,7 +1433,7 @@ Normally machines are shipped with commercial firmwares.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: May 28, 2020
+      Last update: June 2, 2020
     
   </small>
 </div>
