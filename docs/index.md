@@ -2,7 +2,7 @@ Hi! I'm Yizhou Shan, a PhD student at [UCSD CSE](https://cse.ucsd.edu/),
 advised by Prof. [Yiying Zhang](https://cseweb.ucsd.edu/~yiying/).
 I'm a member of [UCSD Wuklab](http://wuklab.io) and [UCSD SysNet](https://www.sysnet.ucsd.edu/sysnet/).
 I was a [Purdue Boilermaker](https://engineering.purdue.edu/ECE).
-[CV](http://lastweek.io/pubs/cv.pdf).
+[CV](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 Contact: ys AT ucsd DOT edu
 
