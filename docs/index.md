@@ -21,9 +21,9 @@ I work on distributed system, networking, operating system, FPGA, and their inte
 My recent research focus is on disaggregated datacenter, designing its hardware, OS, and upper layer applications.
 
 ### Publications 
-4. [__Disaggregating Persistent Memory and Controlling Them from Remote: An Exploration of Passive Disaggregated Key-Value Stores__]()
+4. [__Disaggregating Persistent Memory and Controlling Them Remotely: An Exploration of Passive Disaggregated Key-Value Stores__](http://lastweek.io/pubs/ATC20-DPM.pdf)
   <br> Shin-Yeh Tsai, *Yizhou Shan*, Yiying Zhang
-  <br> __ATC 2020__ (_to appear_)
+  <br> __ATC 2020__
 
 3. [__Storm: a fast transactional dataplane for remote data structures__](https://dl.acm.org/citation.cfm?id=3325827)
   <br> Stanko Novakovic, *Yizhou Shan*, Aasheesh Kolli, Michael Cui, Yiying Zhang, Haggai Eran, Liran Liss, Michael Wei, Dan Tsafrir, Marcos Aguilera
