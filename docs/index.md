@@ -30,11 +30,11 @@ My most recent research focus is on disaggregated datacenter, designing its hard
 
 3. [__Storm: a fast transactional dataplane for remote data structures__](http://lastweek.io/pubs/SYSTOR19-Storm.pdf)
   <br> Stanko Novakovic, *Yizhou Shan*, Aasheesh Kolli, Michael Cui, Yiying Zhang, Haggai Eran, Liran Liss, Michael Wei, Dan Tsafrir, Marcos Aguilera
-  <br> __SYSTOR 2019__ <font color='#c64444'>__(Best Paper)__</font>
+  <br> __SYSTOR 2019__ <font color='#c64444'>__(Best Paper Award)__</font>
 
 2. [__LegoOS: A Disseminated, Distributed OS for Hardware Resource Disaggregation__](https://www.usenix.org/conference/osdi18/presentation/shan)
   <br> *Yizhou Shan*, Yutong Huang, Yilun Chen, Yiying Zhang
-  <br> __OSDI 2018__ <font color='#c64444'>__(Best Paper)__</font> [[Code]](https://github.com/WukLab/LegoOS)
+  <br> __OSDI 2018__ <font color='#c64444'>__(Best Paper Award)__</font> [[Code]](https://github.com/WukLab/LegoOS)
 
 1. [__Distributed Shared Persistent Memory__](http://lastweek.io/pubs/SoCC17-Hotpot.pdf)
   <br> *Yizhou Shan*, Shin-Yeh Tsai, Yiying Zhang
