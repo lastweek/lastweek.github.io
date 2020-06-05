@@ -5,7 +5,6 @@ I was a [Purdue Boilermaker](https://engineering.purdue.edu/ECE).
 My [CV](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 Contact: ys AT ucsd DOT edu
-
 <!---
 ??? tip "Research News"
 	- [_Apr 2020_] __Disaggregated Persistent Memory__ accepted to __ATC'20__
