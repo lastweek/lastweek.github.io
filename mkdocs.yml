@@ -142,13 +142,16 @@ theme:
   features:
     - instant
   palette:
-          #scheme: slate
-     primary: black
-     accent: blue
+     #scheme: slate
+     primary: indigo
+     #accent: black
 
 google_analytics:
   - 'UA-143772066-1'
   - 'auto'
+
+extra_css:
+  - stylesheets/extra.css
 
 # Options
 extra:

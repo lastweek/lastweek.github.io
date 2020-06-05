@@ -1,11 +1,12 @@
-Hi! I'm Yizhou Shan, a PhD student at [UCSD CSE](https://cse.ucsd.edu/),
+Hello! I'm Yizhou Shan, a grad student at [UCSD CSE](https://cse.ucsd.edu/),
 advised by Prof. [Yiying Zhang](https://cseweb.ucsd.edu/~yiying/).
 I'm a member of [UCSD Wuklab](http://wuklab.io) and [UCSD SysNet](https://www.sysnet.ucsd.edu/sysnet/).
 I was a [Purdue Boilermaker](https://engineering.purdue.edu/ECE).
-[CV](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
+My [CV](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 Contact: ys AT ucsd DOT edu
 
+<!---
 ??? tip "Research News"
 	- [_Apr 2020_] __Disaggregated Persistent Memory__ accepted to __ATC'20__
 	- [_Sep 2019_] Moved to UCSD.
@@ -14,13 +15,15 @@ Contact: ys AT ucsd DOT edu
 	- [_Jan 2019_] Short paper on __Disaggregated Persistent Memory__ accpeted to __NVMW'19__
 	- [_Jul 2018_] __LegoOS__ accepted to __OSDI'18__. Awarded Best Paper.
 	- [_May 2018_] Intern at [VMware Research](https://research.vmware.com/), with [Stanko Novakovic](https://sites.google.com/site/stankonovakovic/).
+-->
 
 ## Research
 
-I work on distributed system, networking, operating system, FPGA, and their intersections.
-My recent research focus is on disaggregated datacenter, designing its hardware, OS, and upper layer applications.
+During my doctoral research, I have been working on
+distributed system, networking, operating system, hardware (FPGA), and their intersections.
+My most recent research focus is on disaggregated datacenter, designing its hardware, OS, and upper layer applications.
 
-### Publications 
+### Conferences
 4. [__Disaggregating Persistent Memory and Controlling Them Remotely: An Exploration of Passive Disaggregated Key-Value Stores__](http://lastweek.io/pubs/ATC20-DPM.pdf)
   <br> Shin-Yeh Tsai, *Yizhou Shan*, Yiying Zhang
   <br> __ATC 2020__
