@@ -26,7 +26,7 @@ My most recent research focus is on disaggregated datacenter, designing its hard
 ### Conferences
 4. [__Disaggregating Persistent Memory and Controlling Them Remotely: An Exploration of Passive Disaggregated Key-Value Stores__](http://lastweek.io/pubs/ATC20-DPM.pdf)
   <br> Shin-Yeh Tsai, *Yizhou Shan*, Yiying Zhang
-  <br> __ATC 2020__
+  <br> __USENIX ATC 2020__
 
 3. [__Storm: a fast transactional dataplane for remote data structures__](http://lastweek.io/pubs/SYSTOR19-Storm.pdf)
   <br> Stanko Novakovic, *Yizhou Shan*, Aasheesh Kolli, Michael Cui, Yiying Zhang, Haggai Eran, Liran Liss, Michael Wei, Dan Tsafrir, Marcos Aguilera
