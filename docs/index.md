@@ -55,14 +55,15 @@ My recent research focus is on disaggregated datacenter, designing its hardware,
   <br> Yiying Zhang, *Yizhou Shan*, Sumukh Hallymysore
   <br> *17th International Workshop on High Performance Transaction Systems (__HPTS 2017__)*
 
-??? note "Posters"
-	[P2] [__Lego: A Distributed, Decomposed OS for Resource Disaggregation__](https://lastweek.github.io/pubs/SOSP17-Lego-Poster.pdf)
-	<br> _Yizhou Shan_, Yilun Chen, Yutong Huang, Sumukh Hallymysore, Yiying Zhang
-	<br> _Poster at the 26th ACM Symposium on Operating Systems Principles (__SOSP 2017__)_
+### Posters
 
-	[P1] [__Disaggregated Operating System__](https://lastweek.github.io/pubs/SoCC17-Lego-Poster.pdf)
-	<br> _Yizhou Shan_, Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang
-	<br> _Poster at the ACM Symposium on Cloud Computing 2017 (__SoCC 2017__)_
+2. [__Lego: A Distributed, Decomposed OS for Resource Disaggregation__](https://lastweek.github.io/pubs/SOSP17-Lego-Poster.pdf)
+   <br> *Yizhou Shan*, Yilun Chen, Yutong Huang, Sumukh Hallymysore, Yiying Zhang
+   <br> Poster at __SOSP 2017__
+
+1. [__Disaggregated Operating System__](https://lastweek.github.io/pubs/SoCC17-Lego-Poster.pdf)
+   <br> *Yizhou Shan*, Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang
+   <br> Poster at __SoCC 2017__
 
 ## Social
 
