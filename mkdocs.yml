@@ -138,13 +138,13 @@ theme:
     #text: 'Open Sans'
   icon:
           #logo: material/cloud
-    repo: fontawesome/brands/git-alt
+    repo: fontawesome/brands/gitlab
   features:
     - instant
   palette:
      #scheme: slate
      primary: indigo
-     #accent: black
+     accent: deep purple
 
 google_analytics:
   - 'UA-143772066-1'
