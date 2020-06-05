@@ -25,7 +25,7 @@ My recent research focus is on disaggregated datacenter, designing its hardware,
   <br> Shin-Yeh Tsai, *Yizhou Shan*, Yiying Zhang
   <br> __ATC 2020__
 
-3. [__Storm: a fast transactional dataplane for remote data structures__](https://dl.acm.org/citation.cfm?id=3325827)
+3. [__Storm: a fast transactional dataplane for remote data structures__](http://lastweek.io/pubs/SYSTOR19-Storm.pdf)
   <br> Stanko Novakovic, *Yizhou Shan*, Aasheesh Kolli, Michael Cui, Yiying Zhang, Haggai Eran, Liran Liss, Michael Wei, Dan Tsafrir, Marcos Aguilera
   <br> __SYSTOR 2019__ <font color='#c64444'>__(Best Paper)__</font>
 
@@ -33,13 +33,13 @@ My recent research focus is on disaggregated datacenter, designing its hardware,
   <br> *Yizhou Shan*, Yutong Huang, Yilun Chen, Yiying Zhang
   <br> __OSDI 2018__ <font color='#c64444'>__(Best Paper)__</font> [[Code]](https://github.com/WukLab/LegoOS)
 
-1. [__Distributed Shared Persistent Memory__](https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf)
+1. [__Distributed Shared Persistent Memory__](http://lastweek.io/pubs/SoCC17-Hotpot.pdf)
   <br> *Yizhou Shan*, Shin-Yeh Tsai, Yiying Zhang
   <br> __SoCC 2017__ _[[Code]](https://github.com/WukLab/Hotpot)_
 
 ### Workshops
 
-4. [__Challenges in Building and Deploying Disaggregated Persistent Memory__](http://lastweek.io/pubs/dpm-nvmw19.pdf)
+4. [__Challenges in Building and Deploying Disaggregated Persistent Memory__](http://lastweek.io/pubs/NVMW19-DPM.pdf)
   <br> *Yizhou Shan*, Yutong Huang, Yiying Zhang
   <br> *10th Annual Non-Volatile Memories Workshop (__NVMW 2019__)*
 
