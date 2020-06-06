@@ -24,47 +24,47 @@ distributed system, networking, operating system, hardware (FPGA), and their int
 My most recent research focus is on disaggregated datacenter, designing its hardware, OS, and upper layer applications.
 
 ### Conferences
-4. [__Disaggregating Persistent Memory and Controlling Them Remotely: An Exploration of Passive Disaggregated Key-Value Stores__](http://lastweek.io/pubs/ATC20-DPM.pdf)
+4. __Disaggregating Persistent Memory and Controlling Them Remotely: An Exploration of Passive Disaggregated Key-Value Stores__
   <br> Shin-Yeh Tsai, *Yizhou Shan*, Yiying Zhang
-  <br> __USENIX ATC 2020__
+  <br> *__USENIX ATC 2020__* [[Paper]](http://lastweek.io/pubs/ATC20-DPM.pdf)
 
-3. [__Storm: a fast transactional dataplane for remote data structures__](http://lastweek.io/pubs/SYSTOR19-Storm.pdf)
+3. __Storm: a fast transactional dataplane for remote data structures__
   <br> Stanko Novakovic, *Yizhou Shan*, Aasheesh Kolli, Michael Cui, Yiying Zhang, Haggai Eran, Liran Liss, Michael Wei, Dan Tsafrir, Marcos Aguilera
-  <br> __SYSTOR 2019__ <font color='#c64444'>__(Best Paper Award)__</font>
+  <br> *__SYSTOR 2019__* <font color='#c64444'>__(Best Paper Award)__</font>  [[Paper]](http://lastweek.io/pubs/SYSTOR19-Storm.pdf)
 
-2. [__LegoOS: A Disseminated, Distributed OS for Hardware Resource Disaggregation__](https://www.usenix.org/conference/osdi18/presentation/shan)
+2. __LegoOS: A Disseminated, Distributed OS for Hardware Resource Disaggregation__
   <br> *Yizhou Shan*, Yutong Huang, Yilun Chen, Yiying Zhang
-  <br> __OSDI 2018__ <font color='#c64444'>__(Best Paper Award)__</font> [[Code]](https://github.com/WukLab/LegoOS)
+  <br> *__OSDI 2018__* <font color='#c64444'>__(Best Paper Award)__</font> [[Paper]](https://www.usenix.org/conference/osdi18/presentation/shan) [[Code]](https://github.com/WukLab/LegoOS)
 
-1. [__Distributed Shared Persistent Memory__](http://lastweek.io/pubs/SoCC17-Hotpot.pdf)
+1. __Distributed Shared Persistent Memory__
   <br> *Yizhou Shan*, Shin-Yeh Tsai, Yiying Zhang
-  <br> __SoCC 2017__ _[[Code]](https://github.com/WukLab/Hotpot)_
+  <br> *__SoCC 2017__* [[Paper]](http://lastweek.io/pubs/SoCC17-Hotpot.pdf) [[Code]](https://github.com/WukLab/Hotpot)
 
 ### Workshops
 
-4. [__Challenges in Building and Deploying Disaggregated Persistent Memory__](http://lastweek.io/pubs/NVMW19-DPM.pdf)
+4. __Challenges in Building and Deploying Disaggregated Persistent Memory__
   <br> *Yizhou Shan*, Yutong Huang, Yiying Zhang
-  <br> *10th Annual Non-Volatile Memories Workshop (__NVMW 2019__)*
+  <br> *10th Annual Non-Volatile Memories Workshop (__NVMW 2019__)*  [[Paper]](http://lastweek.io/pubs/NVMW19-DPM.pdf)
 
-3. [__Disaggregating Memory with Software-Managed Virtual Cache__](http://workshops.inf.ed.ac.uk/wams/)
+3. __Disaggregating Memory with Software-Managed Virtual Cache__
   <br> _Yizhou Shan_, Yiying Zhang
-  <br> *2018 Workshop on Warehouse-scale Memory Systems (__WAMS 2018__) (co-located with ASPLOS '18)*
+  <br> *2018 Workshop on Warehouse-scale Memory Systems (__WAMS 2018__) (co-located with ASPLOS '18)*  [[Paper]](http://workshops.inf.ed.ac.uk/wams/)
 
-2. [__Distributed Shared Persistent Memory__](https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf)
+2. __Distributed Shared Persistent Memory__
   <br> *Yizhou Shan*, Shin-Yeh Tsai, Yiying Zhang
-  <br> *9th Annual Non-Volatile Memories Workshop (__NVMW 2018__)*
+  <br> *9th Annual Non-Volatile Memories Workshop (__NVMW 2018__)*  [[Paper]](https://engineering.purdue.edu/WukLab/hotpot-socc17.pdf)
 
-1. [__Disaggregated Operating System__](http://hpts.ws/papers/2017/lego.pdf)
+1. __Disaggregated Operating System__
   <br> Yiying Zhang, *Yizhou Shan*, Sumukh Hallymysore
-  <br> *17th International Workshop on High Performance Transaction Systems (__HPTS 2017__)*
+  <br> *17th International Workshop on High Performance Transaction Systems (__HPTS 2017__)*  [[Paper]](http://hpts.ws/papers/2017/lego.pdf)
 
 ### Posters
 
-2. [__Lego: A Distributed, Decomposed OS for Resource Disaggregation__](https://lastweek.github.io/pubs/SOSP17-Lego-Poster.pdf)
+2. __Lego: A Distributed, Decomposed OS for Resource Disaggregation__ [PDF](https://lastweek.github.io/pubs/SOSP17-Lego-Poster.pdf)
    <br> *Yizhou Shan*, Yilun Chen, Yutong Huang, Sumukh Hallymysore, Yiying Zhang
    <br> Poster at __SOSP 2017__
 
-1. [__Disaggregated Operating System__](https://lastweek.github.io/pubs/SoCC17-Lego-Poster.pdf)
+1. __Disaggregated Operating System__ [PDF](https://lastweek.github.io/pubs/SoCC17-Lego-Poster.pdf)
    <br> *Yizhou Shan*, Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang
    <br> Poster at __SoCC 2017__
 
