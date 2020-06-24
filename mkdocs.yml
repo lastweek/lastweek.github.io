@@ -143,7 +143,7 @@ theme:
     - instant
   palette:
      #scheme: slate
-     primary: white
+     #primary: white
      accent: deep purple
 
 google_analytics:

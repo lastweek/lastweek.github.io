@@ -30,15 +30,24 @@ My most recent research focus is on disaggregated datacenter, designing its hard
 
 3. __Storm: a fast transactional dataplane for remote data structures__
   <br> Stanko Novakovic, *Yizhou Shan*, Aasheesh Kolli, Michael Cui, Yiying Zhang, Haggai Eran, Liran Liss, Michael Wei, Dan Tsafrir, Marcos Aguilera
-  <br> *__SYSTOR 2019__* <font color='#c64444'>__(Best Paper Award)__</font>  [[Paper]](http://lastweek.io/pubs/SYSTOR19-Storm.pdf)
+  <br> *__SYSTOR 2019__* <font color='#c64444'>__(Best Paper Award)__</font>
+       [[Paper]](http://lastweek.io/pubs/SYSTOR19-Storm.pdf)
+       [[Slide]](http://www.systor.org/2019/slides/S6P1%20Storm%20A%20Fast%20Transactional%20Dataplane%20for%20Remote%20Data%20Structures.pdf)
+       [[Talk]](https://www.youtube.com/watch?v=3ozwrzUVUJ4)
 
 2. __LegoOS: A Disseminated, Distributed OS for Hardware Resource Disaggregation__
   <br> *Yizhou Shan*, Yutong Huang, Yilun Chen, Yiying Zhang
-  <br> *__OSDI 2018__* <font color='#c64444'>__(Best Paper Award)__</font> [[Paper]](https://www.usenix.org/conference/osdi18/presentation/shan) [[Code]](https://github.com/WukLab/LegoOS)
+  <br> *__USENIX OSDI 2018__* <font color='#c64444'>__(Best Paper Award)__</font>
+       [[Paper]](https://www.usenix.org/conference/osdi18/presentation/shan) [[Code]](https://github.com/WukLab/LegoOS)
+       [[Slide]](https://github.com/WukLab/LegoOS/blob/master/Documentation/LegoOS-OSDI-Slides.key)
+       [[Talk]](https://www.youtube.com/watch?v=GX74Q2-ZOQE)
 
 1. __Distributed Shared Persistent Memory__
   <br> *Yizhou Shan*, Shin-Yeh Tsai, Yiying Zhang
-  <br> *__SoCC 2017__* [[Paper]](http://lastweek.io/pubs/SoCC17-Hotpot.pdf) [[Code]](https://github.com/WukLab/Hotpot)
+  <br> *__SoCC 2017__*
+       [[Paper]](http://lastweek.io/pubs/SoCC17-Hotpot.pdf) [[Code]](https://github.com/WukLab/Hotpot)
+       [[Slide]](http://lastweek.io/pubs/slides/Yizhou-Hotpot-SoCC17.pptx)
+       [[Poster]](http://lastweek.io/pubs/slides/Poster-Hotpot-SoCC17.pptx)
 
 ### Workshops
 
@@ -60,7 +69,7 @@ My most recent research focus is on disaggregated datacenter, designing its hard
 
 ### Posters
 
-2. __Lego: A Distributed, Decomposed OS for Resource Disaggregation__ [PDF](https://lastweek.github.io/pubs/SOSP17-Lego-Poster.pdf)
+3. __Lego: A Distributed, Decomposed OS for Resource Disaggregation__ [PDF](https://lastweek.github.io/pubs/SOSP17-Lego-Poster.pdf)
    <br> *Yizhou Shan*, Yilun Chen, Yutong Huang, Sumukh Hallymysore, Yiying Zhang
    <br> Poster at __SOSP 2017__
 
