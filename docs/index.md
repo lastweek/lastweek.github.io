@@ -40,6 +40,7 @@ My most recent research focus is on disaggregated datacenter, designing its hard
   <br> *__USENIX OSDI 2018__* <font color='#c64444'>__(Best Paper Award)__</font>
        [[Paper]](https://www.usenix.org/conference/osdi18/presentation/shan) [[Code]](https://github.com/WukLab/LegoOS)
        [[Slide]](https://github.com/WukLab/LegoOS/blob/master/Documentation/LegoOS-OSDI-Slides.key)
+       [[Slide-iCloud]](https://www.icloud.com/keynote/0__Wok6UPN175iDFEuGW9YVkA#LegoOS-OSDI18-Keynote)
        [[Talk]](https://www.youtube.com/watch?v=GX74Q2-ZOQE)
 
 1. __Distributed Shared Persistent Memory__
