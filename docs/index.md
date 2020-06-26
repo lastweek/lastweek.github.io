@@ -30,7 +30,7 @@ My most recent research focus is on disaggregated datacenter, designing its hard
 
 3. __Storm: a fast transactional dataplane for remote data structures__
   <br> Stanko Novakovic, *Yizhou Shan*, Aasheesh Kolli, Michael Cui, Yiying Zhang, Haggai Eran, Liran Liss, Michael Wei, Dan Tsafrir, Marcos Aguilera
-  <br> *__SYSTOR 2019__* <font color='#c64444'>__(Best Paper Award)__</font>
+  <br> *__ACM SYSTOR 2019__* <font color='#c64444'>__(Best Paper Award)__</font>
        [[Paper]](http://lastweek.io/pubs/SYSTOR19-Storm.pdf)
        [[Slide]](http://www.systor.org/2019/slides/S6P1%20Storm%20A%20Fast%20Transactional%20Dataplane%20for%20Remote%20Data%20Structures.pdf)
        [[Talk]](https://www.youtube.com/watch?v=3ozwrzUVUJ4)
@@ -44,7 +44,7 @@ My most recent research focus is on disaggregated datacenter, designing its hard
 
 1. __Distributed Shared Persistent Memory__
   <br> *Yizhou Shan*, Shin-Yeh Tsai, Yiying Zhang
-  <br> *__SoCC 2017__*
+  <br> *__ACM SoCC 2017__*
        [[Paper]](http://lastweek.io/pubs/SoCC17-Hotpot.pdf) [[Code]](https://github.com/WukLab/Hotpot)
        [[Slide]](http://lastweek.io/pubs/slides/Yizhou-Hotpot-SoCC17.pptx)
        [[Poster]](http://lastweek.io/pubs/slides/Poster-Hotpot-SoCC17.pptx)
