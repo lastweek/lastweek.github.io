@@ -28,6 +28,7 @@ My most recent research focus is on disaggregated datacenter, designing its hard
   <br> Shin-Yeh Tsai, *Yizhou Shan*, Yiying Zhang
   <br> *__USENIX ATC 2020__*
        [[Paper]](http://lastweek.io/pubs/ATC20-DPM.pdf)
+       [[Slide]](http://lastweek.io/pubs/slides/ATC20-pDPM-07-2019-long.key)
        [[Slide-iCloud]](https://www.icloud.com/keynote/0Ox0HGeoa5L1pQ7txzyU_RkUA#ATC20-pDPM-iCloud-Public)
 
 3. __Storm: a fast transactional dataplane for remote data structures__
