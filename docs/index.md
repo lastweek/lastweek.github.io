@@ -29,8 +29,8 @@ My most recent research focus is on disaggregated datacenter, designing its hard
   <br> *__USENIX ATC 2020__*
        [[Paper]](http://lastweek.io/pubs/ATC20-DPM.pdf)
        [[Code]](https://github.com/WukLab/pDPM)
-       [[Slide]](http://lastweek.io/pubs/slides/ATC20-pDPM-07-2019-long.key)
-       [[Slide-iCloud]](https://www.icloud.com/keynote/0Ox0HGeoa5L1pQ7txzyU_RkUA#ATC20-pDPM-iCloud-Public)
+       [[Slide]](https://github.com/WukLab/pDPM/blob/master/Documentation/atc20-paper177-presentation-slides.pdf)
+       [[Keynote-iCloud]](https://www.icloud.com/keynote/0Ox0HGeoa5L1pQ7txzyU_RkUA#ATC20-pDPM-iCloud-Public)
 
 3. __Storm: a fast transactional dataplane for remote data structures__
   <br> Stanko Novakovic, *Yizhou Shan*, Aasheesh Kolli, Michael Cui, Yiying Zhang, Haggai Eran, Liran Liss, Michael Wei, Dan Tsafrir, Marcos Aguilera
@@ -43,8 +43,8 @@ My most recent research focus is on disaggregated datacenter, designing its hard
   <br> *Yizhou Shan*, Yutong Huang, Yilun Chen, Yiying Zhang
   <br> *__USENIX OSDI 2018__* <font color='#c64444'>__(Best Paper Award)__</font>
        [[Paper]](https://www.usenix.org/conference/osdi18/presentation/shan) [[Code]](https://github.com/WukLab/LegoOS)
-       [[Slide]](https://github.com/WukLab/LegoOS/blob/master/Documentation/LegoOS-OSDI-Slides.key)
-       [[Slide-iCloud]](https://www.icloud.com/keynote/0__Wok6UPN175iDFEuGW9YVkA#LegoOS-OSDI18-Keynote)
+       [[Slide]](https://www.usenix.org/sites/default/files/conference/protected-files/osdi18_slides_shan.pdf)
+       [[Keynote-iCloud]](https://www.icloud.com/keynote/0__Wok6UPN175iDFEuGW9YVkA#LegoOS-OSDI18-Keynote)
        [[Talk]](https://www.youtube.com/watch?v=GX74Q2-ZOQE)
 
 1. __Distributed Shared Persistent Memory__
