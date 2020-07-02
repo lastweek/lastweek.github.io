@@ -18,9 +18,11 @@ Even though the line blurred over the years (i think), the principle persists. I
 
 I'm no where near explaing the whole thing well (still a bit confused myself :)).
 But you can find awesome references at:
+
 1) [Wiki Display Server](https://en.wikipedia.org/wiki/Display_server),
 2) [Wayland Architecture](https://wayland.freedesktop.org/architecture.html)
 3) [StackExchange Difference between Xorg and Gnome/KDE/Xfce](https://unix.stackexchange.com/questions/345344/difference-between-xorg-and-gnome-kde-xfce)
+4) https://en.wikipedia.org/wiki/Free_and_open-source_graphics_device_driver
 
 Following are some figures I drew to show the architecture of all these softwares.
 In the graphic world, kernel's involvement is minimal, but a critical one.
