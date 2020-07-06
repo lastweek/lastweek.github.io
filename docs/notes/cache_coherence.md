@@ -1,4 +1,4 @@
-# Practical Cache Coherence Implementation
+# Practical Cache Coherence
 
 ??? note "Version History"
 	|Date|Description|
@@ -262,6 +262,7 @@ When in doubt, read the [discussion](https://software.intel.com/en-us/forums/int
     - This spec has detailed coherence message packet format and type. Unfortunately,
       it does not say anything about how they deal with coherence transaction conflicts.
       E.g., some timeline diagrams like Figrue 2/3 in this [paper](https://researchspace.auckland.ac.nz/bitstream/handle/2292/11594/MESIF-2009.pdf?sequence=6).
+- BYOC: A "Bring Your Own Core" Framework for Heterogeneous-ISA Research, ASPLOS'20
 
 ### FPGA
 
