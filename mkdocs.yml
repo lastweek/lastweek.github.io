@@ -10,6 +10,7 @@ nav:
    - 'Firmware':                    'notes/source_code/20200506-on-firmware-softwares.md'
    - 'RDMA/DPDK':                   'notes/source_code/rdma.md'
    - 'Virtualization':              'notes/source_code/virt.md'
+   - 'GPU':                         'notes/source_code/gpu.md'
    - 'Guideline & Advice':          'notes/program_advice.md'
 
 - Note:
