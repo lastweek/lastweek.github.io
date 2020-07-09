@@ -142,6 +142,7 @@ Projects supporting our day-to-day work.
 - [Apple Swift, in C++](https://github.com/lastweek/source-swift)
 - [TCL, in C](https://github.com/lastweek/source-tcl)
 - [Perl 5, in C](https://github.com/lastweek/source-perl5)
+- [Scala](https://github.com/scala/scala)
 - [SpinalHDL]()
 
 ## 1.5. Firmware
