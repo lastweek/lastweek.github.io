@@ -29,7 +29,7 @@ My most recent research focus is on disaggregated datacenter, designing its hard
   <br> *__USENIX ATC 2020__*
        [[Paper]](http://lastweek.io/pubs/ATC20-DPM.pdf)
        [[Code]](https://github.com/WukLab/pDPM)
-       [[Slide]](https://github.com/WukLab/pDPM/blob/master/Documentation/atc20-paper177-presentation-slides.pdf)
+       [[Slide]](https://github.com/WukLab/pDPM/blob/master/Documentation/ATC20-pDPM-slides.pdf)
        [[Talk]](https://youtu.be/Oexu-3Sfbxk)
        [[Keynote-iCloud]](https://www.icloud.com/keynote/0Ox0HGeoa5L1pQ7txzyU_RkUA#ATC20-pDPM-iCloud-Public)
 
