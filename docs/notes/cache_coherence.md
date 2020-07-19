@@ -10,16 +10,17 @@
 :sake:
 
 - [Practical Cache Coherence](#practical-cache-coherence)
-	- [Summary and Thoughs](#summary-and-thoughs)
-	- [Readings](#readings)
-	- [Misc Facts](#misc-facts)
-	- [Case Study](#case-study)
-		- [Intel](#intel)
-		- [AMD](#amd)
-		- [ARM](#arm)
-		- [OpenCAPI and CCIX](#opencapi-and-ccix)
-		- [OpenPiton](#openpiton)
-		- [FPGA](#fpga)
+  - [Summary and Thoughs](#summary-and-thoughs)
+  - [Readings](#readings)
+  - [Misc Facts](#misc-facts)
+  - [Case Study](#case-study)
+    - [Intel](#intel)
+    - [AMD](#amd)
+    - [ARM](#arm)
+    - [OpenCAPI and CCIX](#opencapi-and-ccix)
+    - [OpenPiton](#openpiton)
+    - [FPGA](#fpga)
+    - [Formal Verification](#formal-verification)
 
 A general collection of resources on cache coherence.
 I started this when I was having a hard time optimizing lock delegation.
@@ -233,7 +234,9 @@ List below might not be completely true. Just my understanding.
     - A coherence transaction is a multi-step distributed transaction.
       It involes sending requests, serialize conflicts, receiving responses/ACKs.
 
-When in doubt, read the [discussion](https://software.intel.com/en-us/forums/intel-moderncode-for-parallel-architectures/topic/700477) posted by Dr. Bandwidth.
+When in doubt, read the [discussion](https://software.intel.com/en-us/forums/intel-moderncode-for-parallel-architectures/topic/700477) posted by Dr. Bandwidth,
+especially this one on detailed [cache coherence flows on a procuder-consumer case](../../docs/pubs/misc/dr-bandwidth-core2core-cache-coherence-explain.pdf), which is essential if you are trying to implement high-performance spinlocks and concurrency data structures.
+
 
 ### AMD
 
