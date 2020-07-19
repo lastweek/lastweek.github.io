@@ -80,8 +80,9 @@ Left questions:
 
 - [The Architecture of the Nehalem Processor and Nehalem-EP SMP Platforms](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.455.4198&rep=rep1&type=pdf), chapter 5.2 Cache-Coherence Protocol for Multi-Processors.
 - [Intel: Performance Analysis Guide for Intel® Core™ i7 Processor and Intel® Xeon™ 5500 processors](https://software.intel.com/sites/products/collateral/hpc/vtune/performance_analysis_guide.pdf)
+- [Dr.Bandwidth on Core2Core cache coherence flows when running producer-consumer type of workload.](http://lastweek.io/pubs/misc/dr-bandwidth-core2core-cache-coherence-explain.pdf). 100% recommended.
 - [Blog: NUMA Deep Dive Part 3: Cache Coherency](https://frankdenneman.nl/2016/07/11/numa-deep-dive-part-3-cache-coherency/)
-    - By far the BEST blog I've seen on the topic of `Intel snoop models`. Frank's other articles are also amazing.
+    - The BEST blog I've seen on the topic of `Intel snoop models`.
     - Intel is using MESIF cache coherence protocol, but it has multiple cache coherence implementations.
       The first one is `Source Snoop` (or `Early Snoop`), which is more like a traditional snoop-based
       cache coherence implementation. Upon miss, the caching agent will broadcast to other agents.
@@ -235,7 +236,7 @@ List below might not be completely true. Just my understanding.
       It involes sending requests, serialize conflicts, receiving responses/ACKs.
 
 When in doubt, read the [discussion](https://software.intel.com/en-us/forums/intel-moderncode-for-parallel-architectures/topic/700477) posted by Dr. Bandwidth,
-especially this one on detailed [cache coherence flows on a procuder-consumer case](../../docs/pubs/misc/dr-bandwidth-core2core-cache-coherence-explain.pdf), which is essential if you are trying to implement high-performance spinlocks and concurrency data structures.
+especially this one on detailed [cache coherence flows on a procuder-consumer case](http://lastweek.io/pubs/misc/dr-bandwidth-core2core-cache-coherence-explain.pdf), which is essential if you are trying to implement high-performance spinlocks and concurrency data structures.
 
 
 ### AMD
