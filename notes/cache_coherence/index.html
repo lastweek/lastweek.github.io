@@ -1665,8 +1665,9 @@ a concrete understanding of current cache coherence implementations.</p>
 <ul>
 <li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.455.4198&amp;rep=rep1&amp;type=pdf">The Architecture of the Nehalem Processor and Nehalem-EP SMP Platforms</a>, chapter 5.2 Cache-Coherence Protocol for Multi-Processors.</li>
 <li><a href="https://software.intel.com/sites/products/collateral/hpc/vtune/performance_analysis_guide.pdf">Intel: Performance Analysis Guide for Intel® Core™ i7 Processor and Intel® Xeon™ 5500 processors</a></li>
+<li><a href="http://lastweek.io/pubs/misc/dr-bandwidth-core2core-cache-coherence-explain.pdf">Dr.Bandwidth on Core2Core cache coherence flows when running producer-consumer type of workload.</a>. 100% recommended.</li>
 <li><a href="https://frankdenneman.nl/2016/07/11/numa-deep-dive-part-3-cache-coherency/">Blog: NUMA Deep Dive Part 3: Cache Coherency</a><ul>
-<li>By far the BEST blog I&rsquo;ve seen on the topic of <code>Intel snoop models</code>. Frank&rsquo;s other articles are also amazing.</li>
+<li>The BEST blog I&rsquo;ve seen on the topic of <code>Intel snoop models</code>.</li>
 <li>Intel is using MESIF cache coherence protocol, but it has multiple cache coherence implementations.
   The first one is <code>Source Snoop</code> (or <code>Early Snoop</code>), which is more like a traditional snoop-based
   cache coherence implementation. Upon miss, the caching agent will broadcast to other agents.
@@ -1847,7 +1848,7 @@ workload which one is used at runtime.</p>
 </li>
 </ul>
 <p>When in doubt, read the <a href="https://software.intel.com/en-us/forums/intel-moderncode-for-parallel-architectures/topic/700477">discussion</a> posted by Dr. Bandwidth,
-especially this one on detailed <a href="../../docs/pubs/misc/dr-bandwidth-core2core-cache-coherence-explain.pdf">cache coherence flows on a procuder-consumer case</a>, which is essential if you are trying to implement high-performance spinlocks and concurrency data structures.</p>
+especially this one on detailed <a href="http://lastweek.io/pubs/misc/dr-bandwidth-core2core-cache-coherence-explain.pdf">cache coherence flows on a procuder-consumer case</a>, which is essential if you are trying to implement high-performance spinlocks and concurrency data structures.</p>
 <h3 id="amd">AMD<a class="headerlink" href="#amd" title="Permanent link">&para;</a></h3>
 <ul>
 <li>AMD HyperTransport Assit for Cache Coherence<ul>
