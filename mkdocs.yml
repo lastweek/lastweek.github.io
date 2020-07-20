@@ -142,9 +142,10 @@ theme:
     repo: fontawesome/brands/gitlab
   features:
     - instant
+    - tabs
   palette:
      #scheme: slate
-     #primary: white
+     #primary: black
      accent: deep purple
 
 google_analytics:
