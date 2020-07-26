@@ -134,6 +134,7 @@ Projects supporting our day-to-day work.
 	compilation results, to do source-to-source transforms,
 	modify Pass's IR etc. I found this super interesting!
 	- To get started, I strongly recommend [LLVM for Grad Students](https://www.cs.cornell.edu/~asampson/blog/llvm.html)
+- [OpenJDK](https://github.com/lastweek/source-jdk)
 - [GNU GCC](https://github.com/gcc-mirror/gcc)
 - [Rustc, in Rust](https://github.com/lastweek/source-rust)
 - [PHP, in C](https://github.com/lastweek/source-php-src)
