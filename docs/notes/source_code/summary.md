@@ -3,6 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Jul 26, 2020| Add OpenJDK! Hinted by Hacker News :)|
 	|Jun 2, 2020| Add librcu|
 	|Apr 26, 2020| Add wayland, X, gnome, gtk etc |
 	|Apr 10, 2020| add graphics section|
@@ -13,10 +14,8 @@
 	|Jan 18, 2020| Initial|
 
 Beautiful code is art.
-Recently I started forking good open source code
-into my own Github account and started casual reading and taking notes.
-This page links to all of them.
-
+This page collects many high quality and beautiful codes.
+It is a "digital book shelf for code".
 Happy hacking!
 
 - [1. Source Code Study](#1-source-code-study)
@@ -135,6 +134,13 @@ Projects supporting our day-to-day work.
 	modify Pass's IR etc. I found this super interesting!
 	- To get started, I strongly recommend [LLVM for Grad Students](https://www.cs.cornell.edu/~asampson/blog/llvm.html)
 - [OpenJDK](https://github.com/lastweek/source-jdk)
+	- JDK is a monster collection of resources in one place.
+	  JDK = JRE + Development Tools. JRE = JVM + Runtime Classes.
+	  The JVM here is called HotSpot, which is written in C++.
+	  Since JDK also has so many runtime support, it has a lot Java code.
+	- Personally I haven't written Java since 2013 or so.
+	  Although I'm not using it anytime soon, I'm curious how
+	  it performs nowadays.
 - [GNU GCC](https://github.com/gcc-mirror/gcc)
 - [Rustc, in Rust](https://github.com/lastweek/source-rust)
 - [PHP, in C](https://github.com/lastweek/source-php-src)
