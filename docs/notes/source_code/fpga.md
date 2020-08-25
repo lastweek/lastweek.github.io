@@ -41,9 +41,16 @@ TODO.
 - Chisel
 - Google XLS
 
+### Soft Cores
+
+- [VexRiscv, based on SpinalHDL](https://github.com/SpinalHDL/VexRiscv)
+- [ZipCPU, RISC CPU, written in Verilog](https://github.com/ZipCPU/zipcpu)
+
 ### MISC
 
 - [OpenWIFI](https://github.com/open-sdr/openwifi)
+- [NyuziProcessor, a GPGPU Processor](https://github.com/jbush001/NyuziProcessor)
+- [HDMI](https://github.com/hdl-util/hdmi)
 
 ## My Story with FPGA
 
