@@ -403,6 +403,47 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    Code
+  </a>
+  
+    <nav class="md-nav" aria-label="Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#network" class="md-nav__link">
+    Network
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory" class="md-nav__link">
+    Memory
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partial-reconfiguration" class="md-nav__link">
+    Partial Reconfiguration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compilers" class="md-nav__link">
+    Compilers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#my-story-with-fpga" class="md-nav__link">
     My Story with FPGA
   </a>
@@ -1497,6 +1538,47 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    Code
+  </a>
+  
+    <nav class="md-nav" aria-label="Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#network" class="md-nav__link">
+    Network
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory" class="md-nav__link">
+    Memory
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partial-reconfiguration" class="md-nav__link">
+    Partial Reconfiguration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compilers" class="md-nav__link">
+    Compilers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#my-story-with-fpga" class="md-nav__link">
     My Story with FPGA
   </a>
@@ -1520,6 +1602,46 @@
                 
                 
                 <h1 id="fpga">FPGA<a class="headerlink" href="#fpga" title="Permanent link">&para;</a></h1>
+<p>What is HDL? Hard and Difficult Language. :)</p>
+<p>This page reflects on various FPGA projects I came across.</p>
+<h2 id="code">Code<a class="headerlink" href="#code" title="Permanent link">&para;</a></h2>
+<h3 id="network">Network<a class="headerlink" href="#network" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://github.com/alexforencich/verilog-ethernet">Alex Forencich&rsquo;s Verilog Ethernet</a><ul>
+<li>This repo includes Ethernet PHY, MAC, IP, and UDP layer IPs.</li>
+<li>It works on various boards.</li>
+<li>THE BEST choice if you are trying to connect your board to network.</li>
+<li>Written in Verilog</li>
+</ul>
+</li>
+<li><a href="https://github.com/corundum/corundum">Alex Forencich&rsquo;s Corundum NIC</a><ul>
+<li>This repo is a full-fledged NIC implementation including the above
+  Verilog-Ethernet part, DMA engines, PCIe controller, interrupts,
+  and so on.</li>
+<li>A NIC has more features than a basic FPGA Ethenet solution.
+  You need a NIC if you are working with host softwares,
+  otherwise you should consider using the verilog-ethernet version.</li>
+<li>Written in Verilog</li>
+</ul>
+</li>
+<li><a href="https://github.com/fpgasystems/fpga-network-stack">TCP/IP, RoCEv2 from ETH</a><ul>
+<li>There are several papers published using this repo.
+  It provides the basic TCP/IP and RoCE v2 stack (StRom, EuroSys&lsquo;19).</li>
+<li>Personally I haven&rsquo;t used this repo so I don&rsquo;t have any comments.</li>
+<li>Written in Xilinx HLS.</li>
+</ul>
+</li>
+</ul>
+<h3 id="memory">Memory<a class="headerlink" href="#memory" title="Permanent link">&para;</a></h3>
+<p>TODO.</p>
+<h3 id="partial-reconfiguration">Partial Reconfiguration<a class="headerlink" href="#partial-reconfiguration" title="Permanent link">&para;</a></h3>
+<p>TODO.</p>
+<h3 id="compilers">Compilers<a class="headerlink" href="#compilers" title="Permanent link">&para;</a></h3>
+<ul>
+<li>SpinalHDL</li>
+<li>Chisel</li>
+<li>Google XLS</li>
+</ul>
 <h2 id="my-story-with-fpga">My Story with FPGA<a class="headerlink" href="#my-story-with-fpga" title="Permanent link">&para;</a></h2>
 <p>Back at late 2018, I started using FPGA to do datacenter research.
 More specific, we used FPGA to build a disaggregated memory component,
@@ -1535,8 +1657,6 @@ various hacks to avoid its limitations
 <a href="http://lastweek.io/fpga/pr/">Morphous PR</a>,
 <a href="https://forums.xilinx.com/t5/FPGA-Configuration/Issues-with-ll-and-msk-file-with-an-SSI-Ultrascale-chip-VCU118/td-p/1047253">Ultrascale SSI</a>).
 This FPGA OS project did not go well and we decided to suspend it.</p>
-<p>I came across various FPGA projects for which I will list below.</p>
-<p>TODO.</p>
                 
                   
                     
