@@ -1,5 +1,46 @@
 # FPGA
 
+What is HDL? Hard and Difficult Language. :)
+
+This page reflects on various FPGA projects I came across.
+
+## Code
+
+### Network
+
+- [Alex Forencich's Verilog Ethernet](https://github.com/alexforencich/verilog-ethernet)
+    - This repo includes Ethernet PHY, MAC, IP, and UDP layer IPs.
+    - It works on various boards.
+    - THE BEST choice if you are trying to connect your board to network.
+    - Written in Verilog
+- [Alex Forencich's Corundum NIC](https://github.com/corundum/corundum)
+    - This repo is a full-fledged NIC implementation including the above
+      Verilog-Ethernet part, DMA engines, PCIe controller, interrupts,
+      and so on.
+    - A NIC has more features than a basic FPGA Ethenet solution.
+      You need a NIC if you are working with host softwares,
+      otherwise you should consider using the verilog-ethernet version.
+    - Written in Verilog
+- [TCP/IP, RoCEv2 from ETH](https://github.com/fpgasystems/fpga-network-stack)
+    - There are several papers published using this repo.
+      It provides the basic TCP/IP and RoCE v2 stack (StRom, EuroSys'19).
+    - Personally I haven't used this repo so I don't have any comments.
+    - Written in Xilinx HLS.
+
+### Memory
+
+TODO.
+
+### Partial Reconfiguration
+
+TODO.
+
+### Compilers
+
+- SpinalHDL
+- Chisel
+- Google XLS
+
 ## My Story with FPGA
 
 Back at late 2018, I started using FPGA to do datacenter research.
@@ -17,7 +58,3 @@ various hacks to avoid its limitations
 [Morphous PR](http://lastweek.io/fpga/pr/),
 [Ultrascale SSI](https://forums.xilinx.com/t5/FPGA-Configuration/Issues-with-ll-and-msk-file-with-an-SSI-Ultrascale-chip-VCU118/td-p/1047253)).
 This FPGA OS project did not go well and we decided to suspend it.
-
-I came across various FPGA projects for which I will list below.
-
-TODO.
