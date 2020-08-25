@@ -30,8 +30,8 @@ My most recent research focus is on disaggregated datacenter, designing its hard
        [[Paper]](http://lastweek.io/pubs/ATC20-DPM.pdf)
        [[Code]](https://github.com/WukLab/pDPM)
        [[Slide]](https://github.com/WukLab/pDPM/blob/master/Documentation/ATC20-pDPM-slides.pdf)
-       [[Short-Talk (5 min)]](https://www.youtube.com/watch?v=zEVhlb9J-Iw)
-       [[Long-Talk (20 min)]](https://youtu.be/Oexu-3Sfbxk)
+       [[Short-Talk]](https://www.youtube.com/watch?v=zEVhlb9J-Iw)
+       [[Full-Talk]](https://youtu.be/Oexu-3Sfbxk)
        [[Keynote]](https://www.icloud.com/keynote/0Ox0HGeoa5L1pQ7txzyU_RkUA#ATC20-pDPM-iCloud-Public)
 
 3. __Storm: a fast transactional dataplane for remote data structures__

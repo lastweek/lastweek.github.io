@@ -11,6 +11,7 @@ nav:
    - 'RDMA/DPDK':                   'notes/source_code/rdma.md'
    - 'Virtualization':              'notes/source_code/virt.md'
    - 'GPU':                         'notes/source_code/gpu.md'
+   - 'FPGA':                        'notes/source_code/fpga.md'
    - 'Guideline & Advice':          'notes/program_advice.md'
 
 - Note:
