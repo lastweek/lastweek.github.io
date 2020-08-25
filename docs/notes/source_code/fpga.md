@@ -41,6 +41,10 @@ TODO.
 - Chisel
 - Google XLS
 
+### MISC
+
+- [OpenWIFI](https://github.com/open-sdr/openwifi)
+
 ## My Story with FPGA
 
 Back at late 2018, I started using FPGA to do datacenter research.
