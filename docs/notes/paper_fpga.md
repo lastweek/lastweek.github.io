@@ -5,6 +5,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Aug 26, 2020| Add those 2 ISCA'20 papers to Host Virtual Memory Section|
 	|Nov 30, 2019| Add a lot security papers |
 	|Oct 22, 2019| Shuffle scheduling section. More focused. Add two more recent fpga-virt papers|
 	|Oct 5, 2019| More on scheduling. Add NoC. Add Security.|
@@ -163,7 +164,7 @@ Papers deal with BRAM, registers, on-board DRAM, and host DRAM.
 Papers deal with OS Virtual Memory System (VMS). Note that, all these papers introduce some form of MMU into the FPGA
 to let FPGA be able to work with host VMS.
 This added MMU is similar to CPU's MMU and [RDMA NIC's internal cache](https://www.usenix.org/conference/usenixsecurity19/presentation/tsai).
-Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootdown and so on. What could really stands out, is to implement VMS inside FPGA.)
+Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootdown and so on.), except one recent ISCA'20 paper.
 
 - [Virtual Memory Window for Application-Specific Reconfigurable Coprocessors, DAC'04](https://ieeexplore.ieee.org/document/1664911)
 	- Early work that adds a new MMU to FPGA to let FPGA logic access `on-chip DRAM`. Note, it's not the system main memory. Thus the translation pgtable is different.
@@ -185,6 +186,16 @@ Note that the VMS still runs inside Linux (include pgfault, swapping, TLB shootd
 - [Lightweight Virtual Memory Support for Zero-Copy Sharing of Pointer-Rich Data Structures in Heterogeneous Embedded SoCs, IEEE'17](https://ieeexplore.ieee.org/document/7797491)
 	- Part of the PULP project.
 	- Essentially a software-managed IOMMU. The control path is running as a Linux kernel module. The datapath is a lightweight AXI transation translation.
+- [Flick: Fast and Lightweight ISA-Crossing Call for Heterogeneous-ISA Environments, ISCA'20]()
+	- This paper adds an MMU/TLB into FPGA-side RISC-V to fetch/translate host pgtable entries.
+	  This paper's goal is to migrate threads between different ISAs, the key is VM.
+	  But what's new?
+- [A Case for Hardware-Based Demand Paging, ISCA'20]()
+	- This paper is not FPGA-based, but does augments host MMU with pgfault handling capability.
+	- This paper targets file-backed pgfault, more specific, ultra-low-latency SSD backed files.
+	  It adds several HW units to let CPU MMU able to handle and resolve such pgfaults
+	  (essentially offload VFS->FS->BLK->NVMe Driver functionalties into HW. Some part is done via mmap() beforehand).
+	- It's async free page list, async LRU handling are used by our work as well.
 
 ### Integrate with Host OSs
 
