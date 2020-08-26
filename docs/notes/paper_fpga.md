@@ -12,8 +12,8 @@
 	|Oct 4, 2019| Add more papers extracted from AmophOS|
 	|Oct 3, 2019| Initial version from [Github](https://github.com/lastweek/FPGA)|
 
-This is a list of _academic papers_ that cover all sorts of FPGA related topic,
-more from a system researcher's point of view though.
+A list of related papers I came across while doing FPGA-related research.
+If you'd like to contribute, please comment below or create PR [here](https://github.com/lastweek/lastweek.github.io/tree/dev).
 
 - [Virtualization](#virtualization)
 	- [Scheduling](#scheduling)
