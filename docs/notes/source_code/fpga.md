@@ -51,6 +51,7 @@ TODO.
 - [OpenWIFI](https://github.com/open-sdr/openwifi)
 - [NyuziProcessor, a GPGPU Processor](https://github.com/jbush001/NyuziProcessor)
 - [HDMI](https://github.com/hdl-util/hdmi)
+- [FPGACosmacELF, based on SpinalHDL](https://github.com/lastweek/source-FPGACosmacELF)
 
 ## My Story with FPGA
 
