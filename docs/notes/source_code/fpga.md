@@ -37,9 +37,11 @@ TODO.
 
 ### Compilers
 
-- SpinalHDL
-- Chisel
-- Google XLS
+- DSL
+	- SpinalHDL
+	- Chisel
+	- Google XLS
+- Verilator
 
 ### Soft Cores
 
