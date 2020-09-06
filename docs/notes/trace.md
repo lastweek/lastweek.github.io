@@ -84,7 +84,9 @@ I tend to think this way:
     - [Github: Awesome-eBPF](https://github.com/zoidbergwill/awesome-ebpf)
     - [Cilium: BPF and XDP Reference Guide](https://cilium.readthedocs.io/en/latest/bpf/)
     - [Blog: An eBPF overview](https://www.collabora.com/news-and-blog/blog/2019/04/05/an-ebpf-overview-part-1-introduction/)
-    - [Github: Bcc](https://github.com/iovisor/bcc)
+  - To use eBPF, use:
+    - [bcc](https://github.com/iovisor/bcc)
+    - [bpftrace](https://github.com/iovisor/bpftrace)
 
 `perf`:
 
