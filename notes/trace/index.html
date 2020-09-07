@@ -468,6 +468,27 @@
           
           
 
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="Linux-Trace-and-Profile" class="md-nav__link md-nav__link--active">
+      Linux-Trace-and-Profile
+    </a>
+    
+  </li>
+
+        
+          
+          
+          
+
 
   <li class="md-nav__item">
     <a href="../rmap/" title="Linux-Reverse-Map(rmap)" class="md-nav__link">
@@ -485,27 +506,6 @@
     <a href="../userfaultfd/" title="Linux-Userfaultfd" class="md-nav__link">
       Linux-Userfaultfd
     </a>
-  </li>
-
-        
-          
-          
-          
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="./" title="Linux-Trace-and-Profile" class="md-nav__link md-nav__link--active">
-      Linux-Trace-and-Profile
-    </a>
-    
   </li>
 
         
@@ -1470,12 +1470,29 @@
                 
                 
                 <h1 id="linux-tracing">Linux Tracing<a class="headerlink" href="#linux-tracing" title="Permanent link">&para;</a></h1>
-<p><img alt="😋" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f60b.svg" title=":yum:" /><img alt="😋" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f60b.svg" title=":yum:" /><img alt="😋" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f60b.svg" title=":yum:" /></p>
-<p>Some general notes about the various tracers inside Linux kernel.</p>
-<p>Link to my old notes about the profilers/tracers in LegoOS: <a href="http://lastweek.io/lego/kernel/profile/">notes</a>.
-The <a href="http://lastweek.io/lego/kernel/profile_points/">profile points</a>,
-which is able to profile arbitray code piece is still my favorite thing.</p>
-<p>In Linux kernel, we have:</p>
+<details class="note"><summary>Version History</summary><table>
+<thead>
+<tr>
+<th align="left">Date</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Sep 6, 2020</td>
+<td>Add more eBPF</td>
+</tr>
+<tr>
+<td align="left">Jun 10, 2019</td>
+<td>Initial version</td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Notes about on various from Linux kernel.
+Also link to my old notes about the profilers/tracers in LegoOS: <a href="http://lastweek.io/lego/kernel/profile/">notes</a>,
+and <a href="http://lastweek.io/lego/kernel/profile_points/">profile points</a>.</p>
+<p>Under Linux development envionment, we have:</p>
 <ul>
 <li>ftrace</li>
 <li>kprobe</li>
@@ -1484,21 +1501,29 @@ which is able to profile arbitray code piece is still my favorite thing.</p>
 <li>tracepoints</li>
 <li>eBPF</li>
 </ul>
-<p>I tend to think this way:</p>
+<p>For all these tools, I tend to think this way:</p>
 <ul>
-<li>Tracing needs two parts, <code>1)</code> <strong>Mechanims to do callback.</strong> This means we need a way to
+<li>Tracing needs two parts, <code>1)</code> <strong>Mechanims to get data and do callback.</strong> This means we need a way to
     let our tracing/profiling code got invoked on a running system. This can be static
     or dynamic. Static means we added our tracing code to source code, like tracepoints.
     Dynamic means we added our tracing code when system is running, like ftrace and kprobe.
-    <code>2)</code> <strong>Do stuff within callback.</strong> All of them provide some sort of handling. But eBPF is the
+    <code>2)</code> <strong>Do our stuff within callback.</strong> All of them provide some sort of handling. But eBPF is the
     most extensive one.</li>
 <li>For example, <code>ftrace</code>, <code>kprobe</code>, and <code>perf_event</code> include the callback facilities,
     although they are not just limited to this.
     <code>ftrace</code> has the <code>call mount</code> way to do callback on every single function invocation.
     <code>kprobe</code> dynamically patch instructions and to do callback within exception handlers.
     <code>perf_event</code> can let CPU fire NMI interrupt. Those are all mechanisms to catch perf data.</li>
-<li>The blog from Julia explains it well: <a href="https://jvns.ca/blog/2017/07/05/linux-tracing-systems/">Linux tracing systems &amp; how they fit together</a></li>
+<li>In all, ftrace, kprobe, uprobe, perf_event, tracepoints all have mechanisms to get data and do callback.
+    ftrace is not programmable by normal users, it only prints the info.
+    kprobe allows us to attach customized pre-/post-handlers.
+    perf_event is not programmable, it only reports numbers.
+    Unlike all above subsystems, eBPF itself cannot intercept any programs,
+    but it can be attached to any of the above probes and run customized programs. That&rsquo;s why eBPF looks so versatile!</li>
 </ul>
+<p>The <a href="http://www.brendangregg.com/bpf-performance-tools-book.html">BPF Performance Tools</a> book section 2 also takes a deep dive into this topic,
+and it links all subsystems together with a bit of history as well.
+Also see the blog from Julia: <a href="https://jvns.ca/blog/2017/07/05/linux-tracing-systems/">Linux tracing systems &amp; how they fit together</a>.</p>
 <p><code>ftrace</code>:</p>
 <ul>
 <li>Mechanism<ul>
@@ -1553,7 +1578,8 @@ of a function. Neat!!</li>
 eBPF and the others.</li>
 <li>Part I: Hook. eBPF attach its program to kprobe/uprobe/ftrace/perf_event.
 You can think eBPF of <strong>a generic callback layer</strong> for kprobe/uprobe/ftrace/perf_event.
-It&rsquo;s essentially the second part of tracing as we mentioned above.</li>
+It&rsquo;s essentially the second part of tracing as we mentioned above.
+(see <code>include/uapi/linux/bpf.h</code>, you can find <code>BPF_PROG_TYPE_KPROBE</code>, <code>BPF_PROG_TYPE_PERF_EVENT</code>)</li>
 <li>Part II Run: eBPF run program when the above hook got invoked. eBPF is event-driven.
 The program can be user-written eBPF code. Other articles explained it well.</li>
 </ul>
@@ -1594,10 +1620,6 @@ The program can be user-written eBPF code. Other articles explained it well.</li
 perf stat -I <span class="m">5000</span> -e <span class="s2">&quot;page-faults,probe:do_anonymous_page&quot;</span> -- sleep <span class="m">10</span>
 perf probe --del<span class="o">=</span>probe:do_anonymous_page
 </code></pre></div></p>
-<p>&ndash;<br />
-Yizhou Shan<br />
-Created: Jun 10, 2019<br />
-Last Updated: Jul 21, 2019</p>
                 
                   
                     
@@ -1606,7 +1628,7 @@ Last Updated: Jul 21, 2019</p>
 <div class="md-source-date">
   <small>
     
-      Last update: September 6, 2020
+      Last update: September 7, 2020
     
   </small>
 </div>
@@ -1633,7 +1655,7 @@ Last Updated: Jul 21, 2019</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../userfaultfd/" title="Linux-Userfaultfd" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../paper_perf_shadows/" title="Performance-Shadows" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1642,19 +1664,19 @@ Last Updated: Jul 21, 2019</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Linux-Userfaultfd
+                Performance-Shadows
               </div>
             </div>
           </a>
         
         
-          <a href="../cgroup-swap/" title="Linux-Cgroup-and-Swap" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../rmap/" title="Linux-Reverse-Map(rmap)" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Linux-Cgroup-and-Swap
+                Linux-Reverse-Map(rmap)
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
