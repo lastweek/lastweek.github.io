@@ -1,14 +1,16 @@
 # Linux Tracing
 
-:yum::yum::yum:
+??? note "Version History"
+	|Date|Description|
+	|:---|-----------|
+	|Sep 6, 2020| Add more eBPF| 
+	|Jun 10, 2019| Initial version|
 
-Some general notes about the various tracers inside Linux kernel.
+Notes about on various from Linux kernel.
+Also link to my old notes about the profilers/tracers in LegoOS: [notes](http://lastweek.io/lego/kernel/profile/),
+and [profile points](http://lastweek.io/lego/kernel/profile_points/).
 
-Link to my old notes about the profilers/tracers in LegoOS: [notes](http://lastweek.io/lego/kernel/profile/).
-The [profile points](http://lastweek.io/lego/kernel/profile_points/),
-which is able to profile arbitray code piece is still my favorite thing.
-
-In Linux kernel, we have:
+Under Linux development envionment, we have:
 
   - ftrace
   - kprobe
@@ -17,20 +19,29 @@ In Linux kernel, we have:
   - tracepoints
   - eBPF
 
-I tend to think this way:
+For all these tools, I tend to think this way:
 
-  - Tracing needs two parts, `1)` __Mechanims to do callback.__ This means we need a way to
+  - Tracing needs two parts, `1)` __Mechanims to get data and do callback.__ This means we need a way to
     let our tracing/profiling code got invoked on a running system. This can be static
     or dynamic. Static means we added our tracing code to source code, like tracepoints.
     Dynamic means we added our tracing code when system is running, like ftrace and kprobe.
-    `2)` __Do stuff within callback.__ All of them provide some sort of handling. But eBPF is the
+    `2)` __Do our stuff within callback.__ All of them provide some sort of handling. But eBPF is the
     most extensive one.
   - For example, `ftrace`, `kprobe`, and `perf_event` include the callback facilities,
     although they are not just limited to this.
     `ftrace` has the `call mount` way to do callback on every single function invocation.
     `kprobe` dynamically patch instructions and to do callback within exception handlers.
     `perf_event` can let CPU fire NMI interrupt. Those are all mechanisms to catch perf data.
-  - The blog from Julia explains it well: [Linux tracing systems & how they fit together](https://jvns.ca/blog/2017/07/05/linux-tracing-systems/)
+  - In all, ftrace, kprobe, uprobe, perf_event, tracepoints all have mechanisms to get data and do callback.
+    ftrace is not programmable by normal users, it only prints the info.
+    kprobe allows us to attach customized pre-/post-handlers.
+    perf_event is not programmable, it only reports numbers.
+    Unlike all above subsystems, eBPF itself cannot intercept any programs,
+    but it can be attached to any of the above probes and run customized programs. That's why eBPF looks so versatile!
+
+The [BPF Performance Tools](http://www.brendangregg.com/bpf-performance-tools-book.html) book section 2 also takes a deep dive into this topic,
+and it links all subsystems together with a bit of history as well.
+Also see the blog from Julia: [Linux tracing systems & how they fit together](https://jvns.ca/blog/2017/07/05/linux-tracing-systems/).
 
 `ftrace`:
 
@@ -77,6 +88,7 @@ I tend to think this way:
     - Part I: Hook. eBPF attach its program to kprobe/uprobe/ftrace/perf_event.
     You can think eBPF of __a generic callback layer__ for kprobe/uprobe/ftrace/perf_event.
     It's essentially the second part of tracing as we mentioned above.
+    (see `include/uapi/linux/bpf.h`, you can find `BPF_PROG_TYPE_KPROBE`, `BPF_PROG_TYPE_PERF_EVENT`)
     - Part II Run: eBPF run program when the above hook got invoked. eBPF is event-driven.
     The program can be user-written eBPF code. Other articles explained it well.
   - Resources
@@ -115,8 +127,3 @@ perf probe --add do_anonymous_page
 perf stat -I 5000 -e "page-faults,probe:do_anonymous_page" -- sleep 10
 perf probe --del=probe:do_anonymous_page
 ```
-
---  
-Yizhou Shan  
-Created: Jun 10, 2019  
-Last Updated: Jul 21, 2019
