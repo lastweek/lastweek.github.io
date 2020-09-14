@@ -3,6 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Sep 13, 2020| some notes for python; add tcpstat|
 	|Jul 26, 2020| Add OpenJDK! Hinted by Hacker News :)|
 	|Jun 2, 2020| Add librcu|
 	|Apr 26, 2020| Add wayland, X, gnome, gtk etc |
@@ -14,9 +15,6 @@
 	|Jan 18, 2020| Initial|
 
 Beautiful code is art.
-This page collects many high quality and beautiful codes.
-It is a "digital book shelf for code".
-Happy hacking!
 
 - [1. Source Code Study](#1-source-code-study)
 	- [1.1. Nutritions](#11-nutritions)
@@ -66,6 +64,7 @@ Projects supporting our day-to-day work.
 	- [tcpdump](https://github.com/lastweek/source-tcpdump)
 	- [OpenSSH](https://github.com/lastweek/source-openssh-portable) is our ssh!
 	- [scapy](https://github.com/lastweek/source-scapy): Python-based interactive packet manipulation program & library. Very neat
+	- [tcpstat](https://github.com/lastweek/source-tcpstat): C-based simple tool that could dump network traffic. Seems using pcap interface, the one used by tcpdump?
 	- Also checkout [FreeBSD](https://github.com/lastweek/source-freebsd) as it has tools like `ifconfig`, `if`. 
 - C for life
 	- Some small and useful C projects
@@ -145,6 +144,10 @@ Projects supporting our day-to-day work.
 - [Rustc, in Rust](https://github.com/lastweek/source-rust)
 - [PHP, in C](https://github.com/lastweek/source-php-src)
 - [Python, in C](https://github.com/lastweek/source-cpython)
+	- cpython, as its name suggested, whose core is written in C.
+	  The core is within the [`Python`](https://github.com/lastweek/source-cpython/tree/master/Python) folder.
+	- For those common [built-in functions](https://docs.python.org/3/library/functions.html),
+	  they are organized here: https://github.com/lastweek/source-cpython/blob/master/Python/bltinmodule.c#L2878
 - [Google V8, in C++](https://github.com/lastweek/v8)
 - [Apple Swift, in C++](https://github.com/lastweek/source-swift)
 - [TCL, in C](https://github.com/lastweek/source-tcl)
