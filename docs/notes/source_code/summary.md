@@ -1,4 +1,5 @@
-# 1. Source Code Study
+Source Code Study
+---
 
 ??? note "Version History"
 	|Date|Description|
@@ -16,20 +17,20 @@
 
 Beautiful code is art.
 
-- [1. Source Code Study](#1-source-code-study)
-	- [1.1. Nutritions](#11-nutritions)
-	- [1.2. Operating Systems](#12-operating-systems)
-	- [1.3. Virtualization](#13-virtualization)
-	- [1.4. Compilers](#14-compilers)
-	- [1.5. Firmware](#15-firmware)
-	- [1.6. FPGA](#16-fpga)
-	- [1.7. Web Servers](#17-web-servers)
-	- [1.8. Key Value Stores](#18-key-value-stores)
-	- [1.9. Databases](#19-databases)
-	- [1.10. RDMA and More](#110-rdma-and-more)
-	- [1.11. Graphics](#111-graphics)
+- [Nutrition](#nutrition)
+- [Operating Systems](#operating-systems)
+- [Network](#network)
+- [Virtualization](#virtualization)
+- [Compilers](#compilers)
+- [Firmware](#firmware)
+- [FPGA](#fpga)
+- [Web Servers](#web-servers)
+- [Key Value Stores](#key-value-stores)
+- [Databases](#databases)
+- [RDMA and More](#rdma-and-more)
+- [Graphics](#graphics)
 
-## 1.1. Nutritions
+## Nutrition
 
 Projects supporting our day-to-day work.
 
@@ -59,13 +60,6 @@ Projects supporting our day-to-day work.
 - Editors
 	- [vim](https://github.com/lastweek/source-vim)
 	- [neovim](https://github.com/lastweek/source-neovim)
-- Network
-	- [iperf3](https://github.com/lastweek/source-iperf) is a TCP, UDP, and SCTP network bandwidth measurement tool
-	- [tcpdump](https://github.com/lastweek/source-tcpdump)
-	- [OpenSSH](https://github.com/lastweek/source-openssh-portable) is our ssh!
-	- [scapy](https://github.com/lastweek/source-scapy): Python-based interactive packet manipulation program & library. Very neat
-	- [tcpstat](https://github.com/lastweek/source-tcpstat): C-based simple tool that could dump network traffic. Seems using pcap interface, the one used by tcpdump?
-	- Also checkout [FreeBSD](https://github.com/lastweek/source-freebsd) as it has tools like `ifconfig`, `if`. 
 - C for life
 	- Some small and useful C projects
 	- [cJSON](https://github.com/lastweek/source-cJSON): A lightweight JSON parser in C.
@@ -87,13 +81,12 @@ Projects supporting our day-to-day work.
 		- [user liburing](https://github.com/axboe/liburing)
 		- [kernel io_uring.c](https://github.com/torvalds/linux/blob/master/fs/io_uring.c)
 
-## 1.2. Operating Systems
+## Operating Systems
 
 - [Linux 0.0.1](https://github.com/lastweek/linux-0.01)
 - [Plan 9 OS](https://github.com/lastweek/source-plan9)
 - [MSR Singularity.](https://github.com/lastweek/source-singularity)
-- [illumos](https://github.com/lastweek/source-illumos-gate)
-        - This is a fork of Oracle Solaris OS.
+- [illumos](https://github.com/lastweek/source-illumos-gate), a fork of the Oracle Solaris OS.
 - [seL4 Microkernel](https://github.com/lastweek/source-seL4)
 - [MacOS Darwin](https://github.com/lastweek/source-darwin-xnu)
 - BSD: these repos have everything you can think of
@@ -111,16 +104,25 @@ Projects supporting our day-to-day work.
 ![image_unix_timeline](../../images/unix_timeline.png)
 (Image source: https://commons.wikimedia.org/wiki/File:Unix_timeline.en.svg)
 
-## 1.3. Virtualization
+## Network
+
+- [iperf3](https://github.com/lastweek/source-iperf) is a TCP, UDP, and SCTP network bandwidth measurement tool
+- [tcpdump](https://github.com/lastweek/source-tcpdump)
+- [OpenSSH](https://github.com/lastweek/source-openssh-portable) is our ssh!
+- [scapy](https://github.com/lastweek/source-scapy): Python-based interactive packet manipulation program & library. Very neat
+- [tcpstat](https://github.com/lastweek/source-tcpstat): C-based simple tool that could dump network traffic. Seems using pcap interface, the one used by tcpdump?
+- Also checkout [FreeBSD](https://github.com/lastweek/source-freebsd) as it has tools like `ifconfig`, `if`. 
+
+## Virtualization
 
 - [libvirt: virsh and more](https://github.com/lastweek/source-libvirt)
 - [QEMU](https://github.com/lastweek/source-qemu)
-	- Check my [notes](http://lastweek.io/notes/virt/)
+	- My personal [notes](http://lastweek.io/notes/virt/)
 - [Firecracker](https://github.com/lastweek/source-firecracker)
 - [rust-vmm](https://github.com/rust-vmm/community)
 - [cloud-hypervisor](https://github.com/cloud-hypervisor/cloud-hypervisor)
 
-## 1.4. Compilers
+## Compilers
 
 - [Clang, LLVM, in C++](https://github.com/llvm/llvm-project)
 	- This is a collection of projects. Clang is the frontend,
@@ -133,21 +135,21 @@ Projects supporting our day-to-day work.
 	modify Pass's IR etc. I found this super interesting!
 	- To get started, I strongly recommend [LLVM for Grad Students](https://www.cs.cornell.edu/~asampson/blog/llvm.html)
 - [OpenJDK](https://github.com/lastweek/source-jdk)
+	- **JRE = JVM + Runtime Classes** => JVM is the one parsing the bytecode, along with some extra classes/libraries, they form JRE.
+	- **JDK = JRE + Development Tools** => JDK as in Development Kit therefore consists of some tools in addition to JRE.
 	- JDK is a monster collection of resources in one place.
-	  JDK = JRE + Development Tools. JRE = JVM + Runtime Classes.
-	  The JVM here is called HotSpot, which is written in C++.
+	  The JVM here is called `HotSpot`, a reference JVM implementation written in C++,
 	  Since JDK also has so many runtime support, it has a lot Java code.
 	- Personally I haven't written Java since 2013 or so.
-	  Although I'm not using it anytime soon, I'm curious how
-	  it performs nowadays.
-- [GNU GCC](https://github.com/gcc-mirror/gcc)
-- [Rustc, in Rust](https://github.com/lastweek/source-rust)
-- [PHP, in C](https://github.com/lastweek/source-php-src)
+	  Although I'm not using it anytime soon, I'm curious how it performs nowadays.
 - [Python, in C](https://github.com/lastweek/source-cpython)
 	- cpython, as its name suggested, whose core is written in C.
 	  The core is within the [`Python`](https://github.com/lastweek/source-cpython/tree/master/Python) folder.
 	- For those common [built-in functions](https://docs.python.org/3/library/functions.html),
 	  they are organized here: https://github.com/lastweek/source-cpython/blob/master/Python/bltinmodule.c#L2878
+- [GNU GCC](https://github.com/gcc-mirror/gcc)
+- [Rustc, in Rust](https://github.com/lastweek/source-rust)
+- [PHP, in C](https://github.com/lastweek/source-php-src)
 - [Google V8, in C++](https://github.com/lastweek/v8)
 - [Apple Swift, in C++](https://github.com/lastweek/source-swift)
 - [TCL, in C](https://github.com/lastweek/source-tcl)
@@ -155,14 +157,14 @@ Projects supporting our day-to-day work.
 - [Scala](https://github.com/scala/scala)
 - [SpinalHDL]()
 
-## 1.5. Firmware
+## Firmware
 
 See here: http://lastweek.io/notes/source_code/20200506-on-firmware-softwares/.
 
 The open-source firmware landscape:
 ![20200506-on-firmware-landscape.png](20200506-on-firmware-landscape.png)
 
-## 1.6. FPGA
+## FPGA
 
 - [My own Collection](https://github.com/lastweek/fpga_vivado_scripts)
 - [My own Paper Readings](https://github.com/lastweek/fpga_readings)
@@ -201,12 +203,12 @@ The open-source firmware landscape:
 		- Placement and Route (`VPR`)
 
 
-## 1.7. Web Servers
+## Web Servers
 
 - [Apache httpd](https://github.com/lastweek/source-httpd)
 - [nginx](https://github.com/lastweek/source-nginx)
 
-## 1.8. Key Value Stores
+## Key Value Stores
 
 Point of interests:
 1) in-memory, and can it extend to use disk/ssd?
@@ -219,17 +221,17 @@ Point of interests:
 - [Redis. C](https://github.com/lastweek/source-redis)
 - [etcd: Distributed reliable KVS. Go](https://github.com/lastweek/source-etcd)
 
-## 1.9. Databases
+## Databases
 
 - [MySQL](https://github.com/lastweek/source-mysql-server)
 - [PostgresSQL](https://github.com/lastweek/source-postgres)
 - [Yugabyte, distributed SQL](https://github.com/lastweek/yugabyte-db)
 
-## 1.10. RDMA and More
+## RDMA and More
 
 See here: http://lastweek.io/notes/source_code/rdma/
 
-## 1.11. Graphics
+## Graphics
 
 More here: http://lastweek.io/notes/source_code/20200501-on-graphic-softwares/
 
