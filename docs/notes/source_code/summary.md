@@ -115,7 +115,7 @@ Projects supporting our day-to-day work.
 
 ## Virtualization
 
-Also see http://lastweek.io/notes/virt/.
+Also see: http://lastweek.io/notes/source_code/virt/.
 
 - [libvirt: virsh and more](https://github.com/lastweek/source-libvirt)
 - [QEMU](https://github.com/lastweek/source-qemu)
