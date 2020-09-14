@@ -115,12 +115,17 @@ Projects supporting our day-to-day work.
 
 ## Virtualization
 
+Also see http://lastweek.io/notes/virt/.
+
 - [libvirt: virsh and more](https://github.com/lastweek/source-libvirt)
 - [QEMU](https://github.com/lastweek/source-qemu)
-	- My personal [notes](http://lastweek.io/notes/virt/)
 - [Firecracker](https://github.com/lastweek/source-firecracker)
 - [rust-vmm](https://github.com/rust-vmm/community)
 - [cloud-hypervisor](https://github.com/cloud-hypervisor/cloud-hypervisor)
+- Containers
+	- runc
+	- containerd
+	- Docker
 
 ## Compilers
 
@@ -253,4 +258,4 @@ More here: http://lastweek.io/notes/source_code/20200501-on-graphic-softwares/
 
 This figure shows the software landscape:
 ![20200501-on-graphic-softwares-img3.png](20200501-on-graphic-softwares-img3.png)
-
+![20200501-on-graphic-softwares-img3.png](20200501-on-graphic-softwares-img3.png)
