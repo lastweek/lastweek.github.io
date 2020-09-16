@@ -47,6 +47,7 @@ TODO.
 
 - [VexRiscv, based on SpinalHDL](https://github.com/SpinalHDL/VexRiscv)
 - [ZipCPU, RISC CPU, written in Verilog](https://github.com/ZipCPU/zipcpu)
+- [OpenPOWER a2i and a2o](https://github.com/openpower-cores/a2i)
 
 ### MISC
 
