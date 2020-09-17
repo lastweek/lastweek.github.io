@@ -128,9 +128,10 @@ Also see: http://lastweek.io/notes/source_code/virt/.
 - [rust-vmm](https://github.com/rust-vmm/community)
 - [cloud-hypervisor](https://github.com/cloud-hypervisor/cloud-hypervisor)
 - Containers
-	- runc
-	- containerd
-	- [docker](https://github.com/docker/docker-ce)
+	- runc in go.
+	- containerd in go.
+	- [docker](https://github.com/docker/docker-ce) in go.
+	- [k8s](https://github.com/kubernetes/kubernetes) in go.
 
 ## Compilers
 
