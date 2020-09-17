@@ -5,8 +5,13 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Sep 17, 2020 | add github link and usenix paper |
 	|Dec 20, 2019 | Update |
 	|Oct 24, 2019 | Created |
+
+The proof-of-concept code to decode Xilinx bitstream is here: https://github.com/lastweek/fpga_decode_bitstream.
+
+USENIX Security 2020 has a paper on understanding Xilinx bitstream: https://www.usenix.org/conference/usenixsecurity20/presentation/ender.
 
 ## Introduction
 
