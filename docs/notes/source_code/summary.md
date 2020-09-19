@@ -42,11 +42,13 @@ Projects supporting our day-to-day work.
 	- This repo has a lot commands like `as`, `ld`, `objdump`, `nm` and so on
 	- `ld` is static linker and I like the magic of its linker script
 	- I guess another useful repo is `elfutils`
-- [Standard C Library](https://en.wikipedia.org/wiki/C_standard_library)
+- [C Library](https://en.wikipedia.org/wiki/C_standard_library)
 	- [GNU glibc](https://github.com/lastweek/source-glibc) used by major Linux distributions
 	- [musl libc](https://musl.libc.org/about.html) is a small libc impl used by Alpine Linux. Clean code.
 	- [uClibc](https://www.uclibc.org/about.html) is a small libc targeting embedded cases
 	- [bionic](https://android.googlesource.com/platform/bionic/) is Android's C library, math library, and dynamic linker
+- [C++ Library]
+	- [NVIDIA libcu++](https://github.com/NVIDIA/libcudacxx) 
 - [strace](https://github.com/lastweek/source-strace)
 	- System call tracer at userspace
 	- I've designed [one](http://lastweek.io/lego/kernel/profile_strace/) for LegoOS in kernel space
