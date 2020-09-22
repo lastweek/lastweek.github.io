@@ -91,7 +91,13 @@ Projects supporting our day-to-day work.
 ## Operating Systems
 
 - [Linux 0.0.1](https://github.com/lastweek/linux-0.01)
+	- This is the first linux source code released by Linus.
+	  Despite several designs are static
+	  or obsolete from today's point of view, it showcases
+	  a simple and elegant solution.
 - [Plan 9 OS](https://github.com/lastweek/source-plan9)
+	- Legendary OS.
+	- So many systems are influended by Plan 9 (e.g., Go, gVisor)
 - [MSR Singularity.](https://github.com/lastweek/source-singularity)
 - [illumos](https://github.com/lastweek/source-illumos-gate), a fork of the Oracle Solaris OS.
 - [seL4 Microkernel](https://github.com/lastweek/source-seL4)
@@ -110,6 +116,12 @@ Projects supporting our day-to-day work.
 
 ![image_unix_timeline](../../images/unix_timeline.png)
 (Image source: https://commons.wikimedia.org/wiki/File:Unix_timeline.en.svg)
+
+### Linux Distribution
+Ever thought about how to go from Linux Kernel to a full Linux Distribution?
+
+- Read: [Linux From Scratch](http://www.linuxfromscratch.org/lfs/view/10.0/)
+- [systemd](https://systemd.io/)
 
 ## Network
 
