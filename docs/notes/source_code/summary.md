@@ -180,6 +180,7 @@ Also see: http://lastweek.io/notes/source_code/virt/.
 - [TCL, in C](https://github.com/lastweek/source-tcl)
 - [Perl 5, in C](https://github.com/lastweek/source-perl5)
 - [Lua, in C](https://github.com/lua/lua)
+- [Ruby, in C](https://github.com/ruby/ruby)
 - [Scala](https://github.com/scala/scala)
 - [SpinalHDL]()
 
