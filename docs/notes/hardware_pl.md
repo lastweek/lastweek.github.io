@@ -7,9 +7,12 @@
 
 ## Introduction
 
-There is an increasing interest from both industry and acadamic on designing high-level domain-specific
-languages for hardware development. This document reflects my effort on running these systems and
-my thoughts on their pros and cons.
+There is an increasing interest from both industry and acadamic on
+designing high-level domain-specific languages for hardware development (both FPGA and ASIC).
+These advancements would benefit both software and hardware developers.
+
+This document reflects my effort on configuring/running these systems and
+my thoughts on their pros and cons (if any).
 
 | System | Language | Sponsor/Status  |
 |:-------|----------|-----------------|

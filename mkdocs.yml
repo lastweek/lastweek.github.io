@@ -15,8 +15,8 @@ nav:
    - 'Guideline & Advice':          'notes/program_advice.md'
 
 - Note:
+   - 'Hardware-Design-Languages':      'notes/hardware_pl.md'
    - 'Practical-Cache-Coherence':      'notes/cache_coherence.md'
-   - 'Hardware-Programming-Languages': 'notes/hardware_pl.md'
    - 'FPGA-Reading':                   'notes/paper_fpga.md'
    - 'x86-Ring-Switch-Overhead':       'notes/xperf.md'
    - 'Performance-Shadows':            'notes/paper_perf_shadows.md'
