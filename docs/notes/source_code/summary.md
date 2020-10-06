@@ -132,6 +132,8 @@ Ever thought about how to go from Linux Kernel to a full Linux Distribution?
 - [tcpstat](https://github.com/lastweek/source-tcpstat): C-based simple tool that could dump network traffic. Seems using pcap interface, the one used by tcpdump?
 - Also checkout [FreeBSD](https://github.com/lastweek/source-freebsd) as it has tools like `ifconfig`, `if`. 
 
+- [Click Modular Router](https://github.com/lastweek/source-click)
+
 ## Virtualization
 
 Also see: http://lastweek.io/notes/source_code/virt/.

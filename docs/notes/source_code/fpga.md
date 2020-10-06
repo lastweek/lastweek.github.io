@@ -6,6 +6,20 @@ This page reflects on various FPGA projects I came across.
 
 ## Code
 
+### Tools
+
+- Languages
+	- SpinalHDL
+	- Chisel
+	- Google XLS
+- Simulators
+	- Verilator
+	- iVerilog
+- Misc
+	- [cocotb](https://docs.cocotb.org/en/stable/index.html)
+	- MyHDL
+- gtkwave
+
 ### Network
 
 - [Alex Forencich's Verilog Ethernet](https://github.com/alexforencich/verilog-ethernet)
@@ -34,14 +48,6 @@ TODO.
 ### Partial Reconfiguration
 
 TODO.
-
-### Compilers
-
-- DSL
-	- SpinalHDL
-	- Chisel
-	- Google XLS
-- Verilator
 
 ### Soft Cores
 
