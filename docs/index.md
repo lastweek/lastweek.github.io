@@ -6,7 +6,6 @@ You can find my latest CV [here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 Contact: ys AT ucsd DOT edu
 
-<!---
 ??? tip "Research News"
 	- [_Oct 2020_] Serve as EuroSys'20 Shadow PC
 	- [_Sep 2020_] Serve as OSDI'20 Artifact Evaluation PC
@@ -18,7 +17,6 @@ Contact: ys AT ucsd DOT edu
 	- [_Jan 2019_] Short paper on __Disaggregated Persistent Memory__ accpeted to __NVMW'19__
 	- [_Jul 2018_] __LegoOS__ accepted to __OSDI'18__. Awarded Best Paper.
 	- [_May 2018_] Intern at [VMware Research](https://research.vmware.com/), with [Stanko Novakovic](https://sites.google.com/site/stankonovakovic/).
--->
 
 ## Research
 
