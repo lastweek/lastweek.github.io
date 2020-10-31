@@ -2,7 +2,7 @@ Hello! I'm Yizhou Shan (单一舟), a Ph.D. student at [University of California
 advised by Prof. [Yiying Zhang](https://cseweb.ucsd.edu/~yiying/).
 I am a member of [UCSD Wuklab](http://wuklab.io) and [UCSD SysNet](https://www.sysnet.ucsd.edu/sysnet/).
 I was a [Purdue Boilermaker](https://engineering.purdue.edu/ECE) during 2016-2019.
-You can find my latest CV [here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
+You can find my CV [here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 Contact: ys AT ucsd DOT edu
 
@@ -25,6 +25,9 @@ distributed system, networking, operating system, hardware (FPGA), and their int
 My most recent research focus is on disaggregated datacenter, designing its hardware, OS, and upper layer applications.
 
 All of my projects are open source at https://github.com/lastweek and https://github.com/WukLab.
+
+As of now, I'm working on network design for disaggregated datacenters.
+End of the day, many of the system problems boil down to network problems. :)
 
 ### Conferences
 4. __Disaggregating Persistent Memory and Controlling Them Remotely: An Exploration of Passive Disaggregated Key-Value Stores__
