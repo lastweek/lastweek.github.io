@@ -2,12 +2,14 @@ Hello! I'm Yizhou Shan, a Ph.D. student at [University of California San Diego, 
 advised by Prof. [Yiying Zhang](https://cseweb.ucsd.edu/~yiying/).
 I am a member of [UCSD Wuklab](http://wuklab.io) and [UCSD SysNet](https://www.sysnet.ucsd.edu/sysnet/).
 I was a [Purdue Boilermaker](https://engineering.purdue.edu/ECE) during 2016-2019.
-You can find my latest CV [here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
+You can find my CV [here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 Contact: ys AT ucsd DOT edu
 
-<!---
 ??? tip "Research News"
+	- [_Oct 2020_] Serve as EuroSys'20 Shadow PC
+	- [_Sep 2020_] Serve as OSDI'20 Artifact Evaluation PC
+	- [_Sep 2020_] Serve as ASPLOS'21 External Reviewer. First major conference review!
 	- [_Apr 2020_] __Disaggregated Persistent Memory__ accepted to __ATC'20__
 	- [_Sep 2019_] Moved to UCSD.
 	- [_May 2019_] Intern at [VMware Research](https://research.vmware.com/), with [Marcos K. Aguilera](http://mkaguilera.kawazoe.org/)
@@ -15,7 +17,6 @@ Contact: ys AT ucsd DOT edu
 	- [_Jan 2019_] Short paper on __Disaggregated Persistent Memory__ accpeted to __NVMW'19__
 	- [_Jul 2018_] __LegoOS__ accepted to __OSDI'18__. Awarded Best Paper.
 	- [_May 2018_] Intern at [VMware Research](https://research.vmware.com/), with [Stanko Novakovic](https://sites.google.com/site/stankonovakovic/).
--->
 
 ## Research
 
@@ -24,6 +25,9 @@ distributed system, networking, operating system, hardware (FPGA), and their int
 My most recent research focus is on disaggregated datacenter, designing its hardware, OS, and upper layer applications.
 
 All of my projects are open source at https://github.com/lastweek and https://github.com/WukLab.
+
+As of now, I'm working on network design for disaggregated datacenters.
+End of the day, many of the system problems boil down to network problems. :)
 
 ### Conferences
 4. __Disaggregating Persistent Memory and Controlling Them Remotely: An Exploration of Passive Disaggregated Key-Value Stores__

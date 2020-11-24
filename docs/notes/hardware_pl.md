@@ -3,6 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Nov 13, 2020| Initial Version|
 	|Sep 28, 2020| Initial Version|
 
 ## Introduction
@@ -24,7 +25,22 @@ my thoughts on their pros and cons (if any).
 
 ## SpinalHDL
 
-TODO.
+SpinalHDL is a scala-based meta HLD programming language.
+SpinalHDL will convert Scala into Verilog. The generated Verilog is very simple and matches what we write in Scala.
+Besides, you can use Scala Functional Programming to express hardware, really powerful!
+
+I found the following stuff very convenient:
+1. __Connection__.
+I need to connect a lot of AxiStream interfaces very frequently.
+To connect an input port onto an output port, we can do something like the following snippets.
+```scala
+io.in >> io.out.
+```
+2. __Functional Programming__.
+I can do something like this to get the sum of an array:
+```scala
+array.foldLeft(0)(_+_)
+```
 
 ## Google XLS
 
