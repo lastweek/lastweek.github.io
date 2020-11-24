@@ -1,4 +1,4 @@
-Hello! I'm Yizhou Shan (单一舟), a Ph.D. student at [University of California San Diego, CSE](https://cse.ucsd.edu/),
+Hello! I'm Yizhou Shan, a Ph.D. student at [University of California San Diego, CSE](https://cse.ucsd.edu/),
 advised by Prof. [Yiying Zhang](https://cseweb.ucsd.edu/~yiying/).
 I am a member of [UCSD Wuklab](http://wuklab.io) and [UCSD SysNet](https://www.sysnet.ucsd.edu/sysnet/).
 I was a [Purdue Boilermaker](https://engineering.purdue.edu/ECE) during 2016-2019.

@@ -140,15 +140,15 @@ theme:
     #text: 'Montserrat'
     #text: 'Open Sans'
   icon:
-          #logo: material/cloud
+    #logo: material/cloud
     repo: fontawesome/brands/gitlab
   features:
     - instant
     - tabs
   palette:
      #scheme: slate
-     #primary: black
-     accent: deep purple
+     #primary: teal
+     #accent: deep purple
 
 google_analytics:
   - 'UA-143772066-1'
