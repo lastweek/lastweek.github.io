@@ -15,7 +15,7 @@
         <meta name="author" content="Yizhou Shan">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.2.2">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
     
     
       
@@ -24,8 +24,6 @@
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.a2408e81.min.css">
-      
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.a46bcfb3.min.css">
       
       
     
@@ -51,10 +49,7 @@
   </head>
   
   
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="" data-md-color-accent="deep-purple">
+    <body dir="ltr">
   
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -1609,6 +1604,10 @@
 </thead>
 <tbody>
 <tr>
+<td align="left">Nov 13, 2020</td>
+<td>Initial Version</td>
+</tr>
+<tr>
 <td align="left">Sep 28, 2020</td>
 <td>Initial Version</td>
 </tr>
@@ -1658,7 +1657,19 @@ my thoughts on their pros and cons (if any).</p>
 </tbody>
 </table>
 <h2 id="spinalhdl">SpinalHDL<a class="headerlink" href="#spinalhdl" title="Permanent link">&para;</a></h2>
-<p>TODO.</p>
+<p>SpinalHDL is a scala-based meta HLD programming language.
+SpinalHDL will convert Scala into Verilog. The generated Verilog is very simple and matches what we write in Scala.
+Besides, you can use Scala Functional Programming to express hardware, really powerful!</p>
+<p>I found the following stuff very convenient:
+1. <strong>Connection</strong>.
+I need to connect a lot of AxiStream interfaces very frequently.
+To connect an input port onto an output port, we can do something like the following snippets.
+<div class="highlight"><pre><span></span><code><span class="n">io</span><span class="o">.</span><span class="n">in</span> <span class="o">&gt;&gt;</span> <span class="n">io</span><span class="o">.</span><span class="n">out</span><span class="o">.</span>
+</code></pre></div>
+2. <strong>Functional Programming</strong>.
+I can do something like this to get the sum of an array:
+<div class="highlight"><pre><span></span><code><span class="n">array</span><span class="o">.</span><span class="n">foldLeft</span><span class="o">(</span><span class="mi">0</span><span class="o">)(</span><span class="k">_</span><span class="o">+</span><span class="k">_</span><span class="o">)</span>
+</code></pre></div></p>
 <h2 id="google-xls">Google XLS<a class="headerlink" href="#google-xls" title="Permanent link">&para;</a></h2>
 <p>The <a href="https://google.github.io/xls/">XLS (Accelerated HW Synthesis)</a> project is a Rust-like DSL for hardware development.</p>
 <h3 id="build">Build<a class="headerlink" href="#build" title="Permanent link">&para;</a></h3>
@@ -1708,7 +1719,7 @@ This is also an early-stage LLVM project.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: September 29, 2020
+      Last update: November 14, 2020
     
   </small>
 </div>
