@@ -43,9 +43,9 @@ The [BPF Performance Tools](http://www.brendangregg.com/bpf-performance-tools-bo
 and it links all subsystems together with a bit of history as well.
 Also see the blog from Julia: [Linux tracing systems & how they fit together](https://jvns.ca/blog/2017/07/05/linux-tracing-systems/).
 
-`ftrace`:
+## `ftrace`
 
-  - Mechanism
+- Mechanism
     - For each un-inlined function, gcc inserts a `call mcount`, or a `call fentry`
     instruction at the very beginning. This means whenever a function is called,
     the `mcount()` or the `fentry()` callback will be invoked.
@@ -61,15 +61,15 @@ Also see the blog from Julia: [Linux tracing systems & how they fit together](ht
     is pushed to stack when a function got called. So ftrace, again, can replace
     that return address, so it can catch the exit time, and calculate the latency
     of a function. Neat!!
-  - Resources
+- Resources
     - [ftrace internal from Steven](https://blog.linuxplumbersconf.org/2014/ocw/system/presentations/1773/original/ftrace-kernel-hooks-2014.pdf)
-  - Usage
+- Usage
     - `Files under /sys/kernel/debug/tracing/*`
     - `perf help ftrace`
 
-`kprobe`:
+## `kprobe`
 
-  - Mechanism
+- Mechanism
     - Kprobe replaces the original assembly instruction with an `int3` trap instruction.
       So when we ran into the PC of the original instruction, an int3 CPU exception will happen.
       Within `do_in3()`, kernel will callback to core kprobe layer to do `pre-handler`.
@@ -77,34 +77,37 @@ Also see the blog from Julia: [Linux tracing systems & how they fit together](ht
       where kprobe run `post-handler`.
     - Kprobe is powerful, because it's able to trace almost everything at instruction level.
     - Kprobe can NOT touch things inside `entry.S`. It needs a valid `pt_regs` to operate.
-  - Resources
+- Resources
     - [An introduction to kprobes (LWN)](https://lwn.net/Articles/132196/)
 
-`eBPF`:
+## `eBPF`
 
-  - Mechanism
-    - I think the most important thing is to understand what's the relationship between
-    eBPF and the others.
-    - Part I: Hook. eBPF attach its program to kprobe/uprobe/ftrace/perf_event.
+- Mechanism
+    - I think one of the most important things is to understand what's the relationship between eBPF and the others.
+    - __Part I: Hook__. eBPF attach its program to kprobe/uprobe/ftrace/perf_event.
     You can think eBPF of __a generic callback layer__ for kprobe/uprobe/ftrace/perf_event.
-    It's essentially the second part of tracing as we mentioned above.
+    It's essentially the second part of tracing we mentioned above.
     (see `include/uapi/linux/bpf.h`, you can find `BPF_PROG_TYPE_KPROBE`, `BPF_PROG_TYPE_PERF_EVENT`)
-    - Part II Run: eBPF run program when the above hook got invoked. eBPF is event-driven.
-    The program can be user-written eBPF code. Other articles explained it well.
-  - Resources
+    - __Part II: Run__. eBPF runs user supplied programs when the above hooks are invoked. eBPF is event-driven. 
+- Usually as a user, we do not need to write and load eBPF programs directly. That process is quite intense,
+  you need to compile programs into eBPF bytecode, and then use eBPF SYSCALL to load into kernel.
+  Quite a lot higher-level frameworks have been introduced. For example, bcc a layer on top of raw eBPF
+  and smooth the process. bpftrace is even a layer higher than bcc, where users can write scripts to control eBPF.
+  There are more frameworks on this space. Once you understand how it works below, it is not hard to understand
+  and use high-level frameworks.
+- Resources
     - [Brendan D. Gregg Blog](http://www.brendangregg.com/index.html)
     - [Github: Awesome-eBPF](https://github.com/zoidbergwill/awesome-ebpf)
     - [Cilium: BPF and XDP Reference Guide](https://cilium.readthedocs.io/en/latest/bpf/)
     - [Blog: An eBPF overview](https://www.collabora.com/news-and-blog/blog/2019/04/05/an-ebpf-overview-part-1-introduction/)
-  - To use eBPF, use:
     - [bcc](https://github.com/iovisor/bcc)
     - [bpftrace](https://github.com/iovisor/bpftrace)
 
-`perf`:
+## `perf`
 
-  - perf tool is simply amazing. It not only use CPU PMU, but also integrated with ftrace/kprobe/eBPF.
-  - perf is a tool to present data, but also a tool to collect data.
-  - Good references
+- perf tool is simply amazing. It not only use CPU PMU, but also integrated with ftrace/kprobe/eBPF.
+- perf is a tool to present data, but also a tool to collect data.
+- Good references
       - http://www.brendangregg.com/perf.html
       - https://developers.redhat.com/blog/2019/04/23/how-to-use-the-linux-perf-tool-to-count-software-events/
       - https://opensource.com/article/18/7/fun-perf-and-python

@@ -139,6 +139,8 @@ theme:
   font:
     #text: 'Montserrat'
     #text: 'Open Sans'
+    text: Roboto
+    code: Courier Prime
   icon:
     #logo: material/cloud
     repo: fontawesome/brands/gitlab
@@ -146,9 +148,9 @@ theme:
     - instant
     - tabs
   palette:
-     #scheme: slate
-     #primary: teal
-     #accent: deep purple
+    #scheme: slate
+    #primary: black
+    #accent: deep purple
 
 google_analytics:
   - 'UA-143772066-1'
