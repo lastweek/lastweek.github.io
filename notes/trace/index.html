@@ -31,8 +31,8 @@
     
       
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=:300,400,400i,700%7C&display=fallback">
-        <style>body,input{font-family:"",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"",SFMono-Regular,Consolas,Menlo,monospace}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CCourier+Prime&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Courier Prime",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
     
     
@@ -485,9 +485,63 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Linux-Trace-and-Profile
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
     <a href="./" title="Linux-Trace-and-Profile" class="md-nav__link md-nav__link--active">
       Linux-Trace-and-Profile
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ftrace" class="md-nav__link">
+    ftrace
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kprobe" class="md-nav__link">
+    kprobe
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ebpf" class="md-nav__link">
+    eBPF
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#perf" class="md-nav__link">
+    perf
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -1462,6 +1516,44 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ftrace" class="md-nav__link">
+    ftrace
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kprobe" class="md-nav__link">
+    kprobe
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ebpf" class="md-nav__link">
+    eBPF
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#perf" class="md-nav__link">
+    perf
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1531,7 +1623,7 @@ and <a href="http://lastweek.io/lego/kernel/profile_points/">profile points</a>.
 <p>The <a href="http://www.brendangregg.com/bpf-performance-tools-book.html">BPF Performance Tools</a> book section 2 also takes a deep dive into this topic,
 and it links all subsystems together with a bit of history as well.
 Also see the blog from Julia: <a href="https://jvns.ca/blog/2017/07/05/linux-tracing-systems/">Linux tracing systems &amp; how they fit together</a>.</p>
-<p><code>ftrace</code>:</p>
+<h2 id="ftrace"><code>ftrace</code><a class="headerlink" href="#ftrace" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Mechanism<ul>
 <li>For each un-inlined function, gcc inserts a <code>call mcount</code>, or a <code>call fentry</code>
@@ -1561,7 +1653,7 @@ of a function. Neat!!</li>
 </ul>
 </li>
 </ul>
-<p><code>kprobe</code>:</p>
+<h2 id="kprobe"><code>kprobe</code><a class="headerlink" href="#kprobe" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Mechanism<ul>
 <li>Kprobe replaces the original assembly instruction with an <code>int3</code> trap instruction.
@@ -1578,33 +1670,34 @@ of a function. Neat!!</li>
 </ul>
 </li>
 </ul>
-<p><code>eBPF</code>:</p>
+<h2 id="ebpf"><code>eBPF</code><a class="headerlink" href="#ebpf" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Mechanism<ul>
-<li>I think the most important thing is to understand what&rsquo;s the relationship between
-eBPF and the others.</li>
-<li>Part I: Hook. eBPF attach its program to kprobe/uprobe/ftrace/perf_event.
+<li>I think one of the most important things is to understand what&rsquo;s the relationship between eBPF and the others.</li>
+<li><strong>Part I: Hook</strong>. eBPF attach its program to kprobe/uprobe/ftrace/perf_event.
 You can think eBPF of <strong>a generic callback layer</strong> for kprobe/uprobe/ftrace/perf_event.
-It&rsquo;s essentially the second part of tracing as we mentioned above.
+It&rsquo;s essentially the second part of tracing we mentioned above.
 (see <code>include/uapi/linux/bpf.h</code>, you can find <code>BPF_PROG_TYPE_KPROBE</code>, <code>BPF_PROG_TYPE_PERF_EVENT</code>)</li>
-<li>Part II Run: eBPF run program when the above hook got invoked. eBPF is event-driven.
-The program can be user-written eBPF code. Other articles explained it well.</li>
+<li><strong>Part II: Run</strong>. eBPF runs user supplied programs when the above hooks are invoked. eBPF is event-driven. </li>
 </ul>
 </li>
+<li>Usually as a user, we do not need to write and load eBPF programs directly. That process is quite intense,
+  you need to compile programs into eBPF bytecode, and then use eBPF SYSCALL to load into kernel.
+  Quite a lot higher-level frameworks have been introduced. For example, bcc a layer on top of raw eBPF
+  and smooth the process. bpftrace is even a layer higher than bcc, where users can write scripts to control eBPF.
+  There are more frameworks on this space. Once you understand how it works below, it is not hard to understand
+  and use high-level frameworks.</li>
 <li>Resources<ul>
 <li><a href="http://www.brendangregg.com/index.html">Brendan D. Gregg Blog</a></li>
 <li><a href="https://github.com/zoidbergwill/awesome-ebpf">Github: Awesome-eBPF</a></li>
 <li><a href="https://cilium.readthedocs.io/en/latest/bpf/">Cilium: BPF and XDP Reference Guide</a></li>
 <li><a href="https://www.collabora.com/news-and-blog/blog/2019/04/05/an-ebpf-overview-part-1-introduction/">Blog: An eBPF overview</a></li>
-</ul>
-</li>
-<li>To use eBPF, use:<ul>
 <li><a href="https://github.com/iovisor/bcc">bcc</a></li>
 <li><a href="https://github.com/iovisor/bpftrace">bpftrace</a></li>
 </ul>
 </li>
 </ul>
-<p><code>perf</code>:</p>
+<h2 id="perf"><code>perf</code><a class="headerlink" href="#perf" title="Permanent link">&para;</a></h2>
 <ul>
 <li>perf tool is simply amazing. It not only use CPU PMU, but also integrated with ftrace/kprobe/eBPF.</li>
 <li>perf is a tool to present data, but also a tool to collect data.</li>
@@ -1635,7 +1728,7 @@ perf probe --del<span class="o">=</span>probe:do_anonymous_page
 <div class="md-source-date">
   <small>
     
-      Last update: September 7, 2020
+      Last update: November 25, 2020
     
   </small>
 </div>
