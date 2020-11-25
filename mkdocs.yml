@@ -4,7 +4,7 @@ site_url: 'http://lastweek.io'
 
 nav:
 - Home: 'index.md'
-- Code:
+- Source-Code:
    - 'All':                         'notes/source_code/summary.md'
    - 'Graphics':                    'notes/source_code/20200501-on-graphic-softwares.md'
    - 'Firmware':                    'notes/source_code/20200506-on-firmware-softwares.md'
@@ -14,7 +14,7 @@ nav:
    - 'FPGA':                        'notes/source_code/fpga.md'
    - 'Guideline & Advice':          'notes/program_advice.md'
 
-- Note:
+- Tech-Note:
    - 'Hardware-Design-Languages':      'notes/hardware_pl.md'
    - 'Practical-Cache-Coherence':      'notes/cache_coherence.md'
    - 'FPGA-Reading':                   'notes/paper_fpga.md'
@@ -30,7 +30,7 @@ nav:
    - 'Essential':                      'misc/essential.md'
    - 'Benchmarks':                     'notes/benchmark.md'
    - 'Cheatsheet':                     'misc/cheatsheet.md'
-- FPGA:
+- About-FPGA:
    - 'Language':                                        'fpga/language.md'
    - 'Bitstream Explained':                             'fpga/bitstream.md'
    - 'Morphous Partial Reconfiguration':                     'fpga/pr.md'
