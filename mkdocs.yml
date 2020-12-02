@@ -4,7 +4,8 @@ site_url: 'http://lastweek.io'
 
 nav:
 - Home: 'index.md'
-- Source-Code:
+- Code Study:
+   - 'Guideline & Advice':          'notes/program_advice.md'
    - 'All':                         'notes/source_code/summary.md'
    - 'Graphics':                    'notes/source_code/20200501-on-graphic-softwares.md'
    - 'Firmware':                    'notes/source_code/20200506-on-firmware-softwares.md'
@@ -12,12 +13,12 @@ nav:
    - 'Virtualization':              'notes/source_code/virt.md'
    - 'GPU':                         'notes/source_code/gpu.md'
    - 'FPGA':                        'notes/source_code/fpga.md'
-   - 'Guideline & Advice':          'notes/program_advice.md'
+   - 'Misc':                        'notes/source_code/misc.md'
 
-- Tech-Note:
+- Tech Note:
    - 'Hardware-Design-Languages':      'notes/hardware_pl.md'
    - 'Practical-Cache-Coherence':      'notes/cache_coherence.md'
-   - 'FPGA-Reading':                   'notes/paper_fpga.md'
+   - 'FPGA-Paper-Reading':                   'notes/paper_fpga.md'
    - 'x86-Ring-Switch-Overhead':       'notes/xperf.md'
    - 'Performance-Shadows':            'notes/paper_perf_shadows.md'
    - 'Linux-Trace-and-Profile':        'notes/trace.md'
@@ -30,12 +31,13 @@ nav:
    - 'Essential':                      'misc/essential.md'
    - 'Benchmarks':                     'notes/benchmark.md'
    - 'Cheatsheet':                     'misc/cheatsheet.md'
-- About-FPGA:
-   - 'Language':                                        'fpga/language.md'
-   - 'Bitstream Explained':                             'fpga/bitstream.md'
-   - 'Morphous Partial Reconfiguration':                     'fpga/pr.md'
-   - 'Vivado Notes':                                     'fpga/vivado.md'
-   - 'Efficient AXI-MM':                                 'fpga/hls_axi.md'
+- About FPGA:
+   - 'FPGA-Paper-Reading':                   'notes/paper_fpga.md'
+   - 'Bitstream Explained':                  'fpga/bitstream.md'
+   - 'Language':                             'fpga/language.md'
+   - 'Morphous Partial Reconfiguration':     'fpga/pr.md'
+   - 'Vivado Notes':                         'fpga/vivado.md'
+   - 'Efficient AXI-MM':                     'fpga/hls_axi.md'
 - Random:
    - '2020-04 On-Read-Once-and-Compiler-Opts':    'blog/20200404-on-read-once.md'
    - '2020-04 On-Hardware-based-Network-Transport': 'blog/20200404-on-net-transport.md'
