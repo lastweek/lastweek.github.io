@@ -3,8 +3,10 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Dec 4, 2020| Add high level libaries |
 	|May 1, 2020| Initial Version|
 
+## Part I
 
 For work reason, I use VNC a lot recently. I need to login into our lab's servers and perform
 intensive graphic operations. Somehow I'm not a fan of GUI-based systems,
@@ -73,3 +75,14 @@ And for that, I think it's all because of the clear separation of layers and goo
 This post remind me of ["What happens when you type google.com into your browser and press enter?"](https://github.com/alex/what-happens-when)?
 
 As always, hope you enjoyed this blog.
+
+## Part II
+
+This part wants to look at those high-level libaries used by developers every day.
+I somewhat got interested when I started playing Steam games and saw "Vulkan Shaders".
+
+[Vulkan](https://vulkan-tutorial.com/Introduction) is an alternative system to OpenCL/Direct3D.
+Instead of hiding details, Vulkan expose quite a lot low-level details and let programmers do the tuning.
+
+So, what's the difference between Vulkan/OpenCL/Direct3D with gtk/Qt?
+I guess the former is for graphic development, any shape. While the latter is some predefined gadgets and a framework for developing standadrd GUI apps?
