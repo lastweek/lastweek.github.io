@@ -323,9 +323,49 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Graphics
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
     <a href="./" title="Graphics" class="md-nav__link md-nav__link--active">
       Graphics
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#part-i" class="md-nav__link">
+    Part I
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-ii" class="md-nav__link">
+    Part II
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -1486,6 +1526,30 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#part-i" class="md-nav__link">
+    Part I
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-ii" class="md-nav__link">
+    Part II
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1510,12 +1574,17 @@
 </thead>
 <tbody>
 <tr>
+<td align="left">Dec 4, 2020</td>
+<td>Add high level libaries</td>
+</tr>
+<tr>
 <td align="left">May 1, 2020</td>
 <td>Initial Version</td>
 </tr>
 </tbody>
 </table>
 </details>
+<h2 id="part-i">Part I<a class="headerlink" href="#part-i" title="Permanent link">&para;</a></h2>
 <p>For work reason, I use VNC a lot recently. I need to login into our lab&rsquo;s servers and perform
 intensive graphic operations. Somehow I&rsquo;m not a fan of GUI-based systems,
 but it really got me wonder: how VNC works? Or, how graphics/GUI works in general?</p>
@@ -1569,6 +1638,13 @@ And for that, I think it&rsquo;s all because of the clear separation of layers a
 <img alt="20200501-on-graphic-softwares-img3.png" src="../20200501-on-graphic-softwares-img3.png" /></p>
 <p>This post remind me of <a href="https://github.com/alex/what-happens-when">&ldquo;What happens when you type google.com into your browser and press enter?&rdquo;</a>?</p>
 <p>As always, hope you enjoyed this blog.</p>
+<h2 id="part-ii">Part II<a class="headerlink" href="#part-ii" title="Permanent link">&para;</a></h2>
+<p>This part wants to look at those high-level libaries used by developers every day.
+I somewhat got interested when I started playing Steam games and saw &ldquo;Vulkan Shaders&rdquo;.</p>
+<p><a href="https://vulkan-tutorial.com/Introduction">Vulkan</a> is an alternative system to OpenCL/Direct3D.
+Instead of hiding details, Vulkan expose quite a lot low-level details and let programmers do the tuning.</p>
+<p>So, what&rsquo;s the difference between Vulkan/OpenCL/Direct3D with gtk/Qt?
+I guess the former is for graphic development, any shape. While the latter is some predefined gadgets and a framework for developing standadrd GUI apps?</p>
                 
                   
                     
@@ -1577,7 +1653,7 @@ And for that, I think it&rsquo;s all because of the clear separation of layers a
 <div class="md-source-date">
   <small>
     
-      Last update: July 2, 2020
+      Last update: December 5, 2020
     
   </small>
 </div>
