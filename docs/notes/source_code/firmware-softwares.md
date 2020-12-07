@@ -1,12 +1,14 @@
-# On Open-Source Firmware Systems Landscape
+# Open-Source Firmware/Bootloader Software
 
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Dec 7, 2020| add iPXE |
 	|May 6, 2020| Initial Version|
 
 I'm obsessed with firmware projects, maybe because that's where I started.
-First it's SeaBIOS, the default one used by QEMU. Then UEFI, something I have never used (!).
+At first I used SeaBIOS (the default one used by QEMU) to build my own OS.
+Then I came across UEFI, something I have never used though.
 
 There are a lot open-source firmware projects.
 I was trying to understand their relationship.
@@ -35,6 +37,17 @@ After some research, I drew the following landscape figure.
 		- It's homepage explains the motivation behind it. Microsoft Surface is using it.
 	- A book: `Beyond BIOS Developing with the Unified Extensible Firmware Interface`.
 - Then boot loaders such as [GRUB](https://github.com/lastweek/source-grub2) and [U-Boot](https://github.com/u-boot/u-boot)
+- [iPXE](https://github.com/ipxe/ipxe), network bootloader, this is an open-source version. As their website says, iPXE allows you to:
+    ```
+	boot from a web server via HTTP
+	boot from an iSCSI SAN
+	boot from a Fibre Channel SAN via FCoE
+	boot from an AoE SAN
+	boot from a wireless network
+	boot from a wide-area network
+	boot from an Infiniband network
+	control the boot process with a script
+    ```
 
 If you are using a normal laptop or desktop, chances are, none of those firmware is used.
 Normally machines are shipped with commercial firmwares.
@@ -46,6 +59,7 @@ Bottom-up:
 
 - Coreboot/Libreboot/UEFI: for motherboard init, e.g., init memory controller.
 - UEFI/BIOS
+- iPXE
 - GRUB2/U-Boto: Bootloader
 - OS
 
