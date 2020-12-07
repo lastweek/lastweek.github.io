@@ -1,4 +1,6 @@
-# Open-Source Firmware/Bootloader Software
+# Open-source BootLoader/Firmware
+
+## Landscape
 
 ??? note "Version History"
 	|Date|Description|
@@ -13,6 +15,18 @@ Then I came across UEFI, something I have never used though.
 There are a lot open-source firmware projects.
 I was trying to understand their relationship.
 After some research, I drew the following landscape figure.
+
+![20200506-on-firmware-landscape.png](20200506-on-firmware-landscape.png)
+
+Bottom-up:
+
+- Coreboot/Libreboot/UEFI: for motherboard init, e.g., init memory controller.
+- UEFI/BIOS
+- iPXE
+- GRUB2/U-Boto: Bootloader
+- OS
+
+## Note
 
 - [Coreboot](https://github.com/lastweek/source-firmware-coreboot) and Libreboot
 	- Coreboot seems very interesting. It's only doing one job, which is initialize
@@ -54,14 +68,3 @@ Normally machines are shipped with commercial firmwares.
 
 To me, I like SeaBIOS project the best. It's simple and can boot everything we need.
 (For example, Linux, LegoOS as well).
-
-Bottom-up:
-
-- Coreboot/Libreboot/UEFI: for motherboard init, e.g., init memory controller.
-- UEFI/BIOS
-- iPXE
-- GRUB2/U-Boto: Bootloader
-- OS
-
-The landscape:
-![20200506-on-firmware-landscape.png](20200506-on-firmware-landscape.png)
