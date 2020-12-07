@@ -57,7 +57,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#open-source-firmwarebootloader-software" class="md-skip">
+        <a href="#open-source-bootloaderfirmware" class="md-skip">
           Skip to content
         </a>
       
@@ -359,9 +359,49 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        BootLoader/Firmware
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
     <a href="./" title="BootLoader/Firmware" class="md-nav__link md-nav__link--active">
       BootLoader/Firmware
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#landscape" class="md-nav__link">
+    Landscape
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#note" class="md-nav__link">
+    Note
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -1486,6 +1526,30 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#landscape" class="md-nav__link">
+    Landscape
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#note" class="md-nav__link">
+    Note
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1500,7 +1564,8 @@
                   
                 
                 
-                <h1 id="open-source-firmwarebootloader-software">Open-Source Firmware/Bootloader Software<a class="headerlink" href="#open-source-firmwarebootloader-software" title="Permanent link">&para;</a></h1>
+                <h1 id="open-source-bootloaderfirmware">Open-source BootLoader/Firmware<a class="headerlink" href="#open-source-bootloaderfirmware" title="Permanent link">&para;</a></h1>
+<h2 id="landscape">Landscape<a class="headerlink" href="#landscape" title="Permanent link">&para;</a></h2>
 <details class="note"><summary>Version History</summary><table>
 <thead>
 <tr>
@@ -1526,6 +1591,16 @@ Then I came across UEFI, something I have never used though.</p>
 <p>There are a lot open-source firmware projects.
 I was trying to understand their relationship.
 After some research, I drew the following landscape figure.</p>
+<p><img alt="20200506-on-firmware-landscape.png" src="../20200506-on-firmware-landscape.png" /></p>
+<p>Bottom-up:</p>
+<ul>
+<li>Coreboot/Libreboot/UEFI: for motherboard init, e.g., init memory controller.</li>
+<li>UEFI/BIOS</li>
+<li>iPXE</li>
+<li>GRUB2/U-Boto: Bootloader</li>
+<li>OS</li>
+</ul>
+<h2 id="note">Note<a class="headerlink" href="#note" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://github.com/lastweek/source-firmware-coreboot">Coreboot</a> and Libreboot<ul>
 <li>Coreboot seems very interesting. It&rsquo;s only doing one job, which is initialize
@@ -1575,16 +1650,6 @@ control the boot process with a script
 Normally machines are shipped with commercial firmwares.</p>
 <p>To me, I like SeaBIOS project the best. It&rsquo;s simple and can boot everything we need.
 (For example, Linux, LegoOS as well).</p>
-<p>Bottom-up:</p>
-<ul>
-<li>Coreboot/Libreboot/UEFI: for motherboard init, e.g., init memory controller.</li>
-<li>UEFI/BIOS</li>
-<li>iPXE</li>
-<li>GRUB2/U-Boto: Bootloader</li>
-<li>OS</li>
-</ul>
-<p>The landscape:
-<img alt="20200506-on-firmware-landscape.png" src="../20200506-on-firmware-landscape.png" /></p>
                 
                   
                     
