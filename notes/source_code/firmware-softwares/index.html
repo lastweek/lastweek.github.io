@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
-        <link rel="canonical" href="http://lastweek.io/notes/source_code/20200506-on-firmware-softwares/">
+        <link rel="canonical" href="http://lastweek.io/notes/source_code/firmware-softwares/">
       
       
         <meta name="author" content="Yizhou Shan">
@@ -19,7 +19,7 @@
     
     
       
-        <title>Firmware - Yizhou Shan's Home Page</title>
+        <title>BootLoader/Firmware - Yizhou Shan's Home Page</title>
       
     
     
@@ -57,7 +57,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#on-open-source-firmware-systems-landscape" class="md-skip">
+        <a href="#open-source-firmwarebootloader-software" class="md-skip">
           Skip to content
         </a>
       
@@ -85,7 +85,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Firmware
+              BootLoader/Firmware
             
           </span>
         </div>
@@ -155,7 +155,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../program_advice/" class="md-tabs__link md-tabs__link--active">
+        <a href="../summary/" class="md-tabs__link md-tabs__link--active">
           Code Study
         </a>
       
@@ -291,6 +291,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../summary/" title="Summary" class="md-nav__link">
+      Summary
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../program_advice/" title="Guideline & Advice" class="md-nav__link">
       Guideline & Advice
     </a>
@@ -303,8 +315,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../summary/" title="All" class="md-nav__link">
-      All
+    <a href="../virt/" title="Virtualization" class="md-nav__link">
+      Virtualization
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rdma/" title="RDMA/DPDK" class="md-nav__link">
+      RDMA/DPDK
     </a>
   </li>
 
@@ -335,34 +359,10 @@
       
     
     
-    <a href="./" title="Firmware" class="md-nav__link md-nav__link--active">
-      Firmware
+    <a href="./" title="BootLoader/Firmware" class="md-nav__link md-nav__link--active">
+      BootLoader/Firmware
     </a>
     
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../rdma/" title="RDMA/DPDK" class="md-nav__link">
-      RDMA/DPDK
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../virt/" title="Virtualization" class="md-nav__link">
-      Virtualization
-    </a>
   </li>
 
         
@@ -1500,7 +1500,7 @@
                   
                 
                 
-                <h1 id="on-open-source-firmware-systems-landscape">On Open-Source Firmware Systems Landscape<a class="headerlink" href="#on-open-source-firmware-systems-landscape" title="Permanent link">&para;</a></h1>
+                <h1 id="open-source-firmwarebootloader-software">Open-Source Firmware/Bootloader Software<a class="headerlink" href="#open-source-firmwarebootloader-software" title="Permanent link">&para;</a></h1>
 <details class="note"><summary>Version History</summary><table>
 <thead>
 <tr>
@@ -1510,6 +1510,10 @@
 </thead>
 <tbody>
 <tr>
+<td align="left">Dec 7, 2020</td>
+<td>add iPXE</td>
+</tr>
+<tr>
 <td align="left">May 6, 2020</td>
 <td>Initial Version</td>
 </tr>
@@ -1517,7 +1521,8 @@
 </table>
 </details>
 <p>I&rsquo;m obsessed with firmware projects, maybe because that&rsquo;s where I started.
-First it&rsquo;s SeaBIOS, the default one used by QEMU. Then UEFI, something I have never used (!).</p>
+At first I used SeaBIOS (the default one used by QEMU) to build my own OS.
+Then I came across UEFI, something I have never used though.</p>
 <p>There are a lot open-source firmware projects.
 I was trying to understand their relationship.
 After some research, I drew the following landscape figure.</p>
@@ -1555,6 +1560,16 @@ modern devices using a scalable, maintainable, and reusable pattern&rdquo;</li>
 </ul>
 </li>
 <li>Then boot loaders such as <a href="https://github.com/lastweek/source-grub2">GRUB</a> and <a href="https://github.com/u-boot/u-boot">U-Boot</a></li>
+<li><a href="https://github.com/ipxe/ipxe">iPXE</a>, network bootloader, this is an open-source version. As their website says, iPXE allows you to:
+    <div class="highlight"><pre><span></span><code>boot from a web server via HTTP
+boot from an iSCSI SAN
+boot from a Fibre Channel SAN via FCoE
+boot from an AoE SAN
+boot from a wireless network
+boot from a wide-area network
+boot from an Infiniband network
+control the boot process with a script
+</code></pre></div></li>
 </ul>
 <p>If you are using a normal laptop or desktop, chances are, none of those firmware is used.
 Normally machines are shipped with commercial firmwares.</p>
@@ -1564,6 +1579,7 @@ Normally machines are shipped with commercial firmwares.</p>
 <ul>
 <li>Coreboot/Libreboot/UEFI: for motherboard init, e.g., init memory controller.</li>
 <li>UEFI/BIOS</li>
+<li>iPXE</li>
 <li>GRUB2/U-Boto: Bootloader</li>
 <li>OS</li>
 </ul>
@@ -1577,7 +1593,7 @@ Normally machines are shipped with commercial firmwares.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: June 2, 2020
+      Last update: December 7, 2020
     
   </small>
 </div>
@@ -1590,7 +1606,7 @@ Normally machines are shipped with commercial firmwares.</p>
 
   <h2 id="__comments">Comments</h2>
   <div id="disqus_thread"></div>
-  <script>var disqus_config=function(){this.page.url="http://lastweek.io/notes/source_code/20200506-on-firmware-softwares/",this.page.identifier="/notes/source_code/20200506-on-firmware-softwares/"};!function(){var e=document,i=e.createElement("script");i.src="//lastweek-io.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
+  <script>var disqus_config=function(){this.page.url="http://lastweek.io/notes/source_code/firmware-softwares/",this.page.identifier="/notes/source_code/firmware-softwares/"};!function(){var e=document,i=e.createElement("script");i.src="//lastweek-io.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
 
               
             </article>
@@ -1619,13 +1635,13 @@ Normally machines are shipped with commercial firmwares.</p>
           </a>
         
         
-          <a href="../rdma/" title="RDMA/DPDK" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../gpu/" title="GPU" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                RDMA/DPDK
+                GPU
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
