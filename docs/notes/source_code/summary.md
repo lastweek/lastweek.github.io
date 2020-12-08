@@ -191,7 +191,7 @@ Also see: http://lastweek.io/notes/source_code/virt/.
 
 ## Bootloader and Firmware
 
-See here: http://lastweek.io/notes/source_code/firmware-softwares/.
+See [here](http://lastweek.io/notes/source_code/firmware-softwares/).
 
 The open-source firmware landscape:
 ![20200506-on-firmware-landscape.png](20200506-on-firmware-landscape.png)
