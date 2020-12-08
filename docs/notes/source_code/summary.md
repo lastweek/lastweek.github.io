@@ -4,6 +4,7 @@ Source Code Study
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Dec 7, 2020| add sanitizers section|
 	|Sep 13, 2020| some notes for python; add tcpstat|
 	|Jul 26, 2020| Add OpenJDK! Hinted by Hacker News :)|
 	|Jun 2, 2020| Add librcu|
@@ -16,19 +17,21 @@ Source Code Study
 	|Jan 18, 2020| Initial|
 
 Beautiful code is art.
+This page documents all the _interesting & practical_ software/hardware/firmware I came across during my work.
 
 - [Nutrition](#nutrition)
 - [Operating Systems](#operating-systems)
 - [Network](#network)
 - [Virtualization](#virtualization)
 - [Compilers](#compilers)
-- [Firmware](#firmware)
-- [FPGA](#fpga)
+- [Bootloader and Firmware](#bootloader-and-firmware)
 - [Web Servers](#web-servers)
-- [Key Value Stores](#key-value-stores)
+- [KVS](#key-value-stores)
 - [Databases](#databases)
 - [RDMA and More](#rdma-and-more)
 - [Graphics](#graphics)
+- [FPGA](#fpga)
+- [Sanitizers](#sanitizers)
 
 ## Nutrition
 
@@ -186,7 +189,7 @@ Also see: http://lastweek.io/notes/source_code/virt/.
 - [Scala](https://github.com/scala/scala)
 - [SpinalHDL]()
 
-## Firmware
+## Bootloader and Firmware
 
 See here: http://lastweek.io/notes/source_code/firmware-softwares/.
 
@@ -258,11 +261,11 @@ Point of interests:
 
 ## RDMA and More
 
-See here: http://lastweek.io/notes/source_code/rdma/
+See [here](http://lastweek.io/notes/source_code/rdma/)
 
 ## Graphics
 
-More here: http://lastweek.io/notes/source_code/20200501-on-graphic-softwares/
+More [here](http://lastweek.io/notes/source_code/20200501-on-graphic-softwares/)
 
 - [X Server](https://github.com/lastweek/source-xserver) and [Wayland](https://github.com/lastweek/source-wayland)
 	- X is being replaced by Wayland now..
@@ -279,7 +282,20 @@ More here: http://lastweek.io/notes/source_code/20200501-on-graphic-softwares/
 - [xRDP, an RDP server. In C](https://github.com/neutrinolabs/xrdp)
 - [FreeRDP, client and server. In C](https://github.com/FreeRDP/FreeRDP)
 	- Took a brief read of the code, it's super neat. Should take a serious look sometime.
+- Vulkan/OpenCL
+- [Proton](https://www.protondb.com/)
 
-This figure shows the software landscape:
+The landscape:
 ![20200501-on-graphic-softwares-img3.png](20200501-on-graphic-softwares-img3.png)
 ![20200501-on-graphic-softwares-img3.png](20200501-on-graphic-softwares-img3.png)
+
+## Sanitizers
+
+There are many tools in both user and kernel space helping programmers
+identify various issues early on. Those issues including memory safty issue,
+threading issue, and others.
+
+Personally I have not used these tools a lot. But I am very interested in them.
+I think they could greatly improve productivity.
+
+TODO: https://github.com/google/sanitizers
