@@ -377,8 +377,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#firmware" class="md-nav__link">
-    Firmware
+  <a href="#bootloader-and-firmware" class="md-nav__link">
+    Bootloader and Firmware
   </a>
   
 </li>
@@ -421,6 +421,13 @@
         <li class="md-nav__item">
   <a href="#graphics" class="md-nav__link">
     Graphics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sanitizers" class="md-nav__link">
+    Sanitizers
   </a>
   
 </li>
@@ -1674,8 +1681,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#firmware" class="md-nav__link">
-    Firmware
+  <a href="#bootloader-and-firmware" class="md-nav__link">
+    Bootloader and Firmware
   </a>
   
 </li>
@@ -1722,6 +1729,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#sanitizers" class="md-nav__link">
+    Sanitizers
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1749,6 +1763,10 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td align="left">Dec 7, 2020</td>
+<td>add sanitizers section</td>
+</tr>
 <tr>
 <td align="left">Sep 13, 2020</td>
 <td>some notes for python; add tcpstat</td>
@@ -1792,20 +1810,22 @@
 </tbody>
 </table>
 </details>
-<p>Beautiful code is art.</p>
+<p>Beautiful code is art.
+This page documents all the <em>interesting &amp; practical</em> software/hardware/firmware I came across during my work.</p>
 <ul>
 <li><a href="#nutrition">Nutrition</a></li>
 <li><a href="#operating-systems">Operating Systems</a></li>
 <li><a href="#network">Network</a></li>
 <li><a href="#virtualization">Virtualization</a></li>
 <li><a href="#compilers">Compilers</a></li>
-<li><a href="#firmware">Firmware</a></li>
-<li><a href="#fpga">FPGA</a></li>
+<li><a href="#bootloader-and-firmware">Bootloader and Firmware</a></li>
 <li><a href="#web-servers">Web Servers</a></li>
-<li><a href="#key-value-stores">Key Value Stores</a></li>
+<li><a href="#key-value-stores">KVS</a></li>
 <li><a href="#databases">Databases</a></li>
 <li><a href="#rdma-and-more">RDMA and More</a></li>
 <li><a href="#graphics">Graphics</a></li>
+<li><a href="#fpga">FPGA</a></li>
+<li><a href="#sanitizers">Sanitizers</a></li>
 </ul>
 <h2 id="nutrition">Nutrition<a class="headerlink" href="#nutrition" title="Permanent link">&para;</a></h2>
 <p>Projects supporting our day-to-day work.</p>
@@ -2007,7 +2027,7 @@ modify Pass&rsquo;s IR etc. I found this super interesting!</li>
 <li><a href="https://github.com/scala/scala">Scala</a></li>
 <li><a href="">SpinalHDL</a></li>
 </ul>
-<h2 id="firmware">Firmware<a class="headerlink" href="#firmware" title="Permanent link">&para;</a></h2>
+<h2 id="bootloader-and-firmware">Bootloader and Firmware<a class="headerlink" href="#bootloader-and-firmware" title="Permanent link">&para;</a></h2>
 <p>See here: <a href="http://lastweek.io/notes/source_code/firmware-softwares/">http://lastweek.io/notes/source_code/firmware-softwares/</a>.</p>
 <p>The open-source firmware landscape:
 <img alt="20200506-on-firmware-landscape.png" src="../20200506-on-firmware-landscape.png" /></p>
@@ -2087,9 +2107,9 @@ Fifth, some opt modules at NIC.</li>
 <li><a href="https://github.com/lastweek/yugabyte-db">Yugabyte, distributed SQL</a></li>
 </ul>
 <h2 id="rdma-and-more">RDMA and More<a class="headerlink" href="#rdma-and-more" title="Permanent link">&para;</a></h2>
-<p>See here: <a href="http://lastweek.io/notes/source_code/rdma/">http://lastweek.io/notes/source_code/rdma/</a></p>
+<p>See <a href="http://lastweek.io/notes/source_code/rdma/">here</a></p>
 <h2 id="graphics">Graphics<a class="headerlink" href="#graphics" title="Permanent link">&para;</a></h2>
-<p>More here: <a href="http://lastweek.io/notes/source_code/20200501-on-graphic-softwares/">http://lastweek.io/notes/source_code/20200501-on-graphic-softwares/</a></p>
+<p>More <a href="http://lastweek.io/notes/source_code/20200501-on-graphic-softwares/">here</a></p>
 <ul>
 <li><a href="https://github.com/lastweek/source-xserver">X Server</a> and <a href="https://github.com/lastweek/source-wayland">Wayland</a><ul>
 <li>X is being replaced by Wayland now..</li>
@@ -2114,10 +2134,19 @@ Fifth, some opt modules at NIC.</li>
 <li>Took a brief read of the code, it&rsquo;s super neat. Should take a serious look sometime.</li>
 </ul>
 </li>
+<li>Vulkan/OpenCL</li>
+<li><a href="https://www.protondb.com/">Proton</a></li>
 </ul>
-<p>This figure shows the software landscape:
+<p>The landscape:
 <img alt="20200501-on-graphic-softwares-img3.png" src="../20200501-on-graphic-softwares-img3.png" />
 <img alt="20200501-on-graphic-softwares-img3.png" src="../20200501-on-graphic-softwares-img3.png" /></p>
+<h2 id="sanitizers">Sanitizers<a class="headerlink" href="#sanitizers" title="Permanent link">&para;</a></h2>
+<p>There are many tools in both user and kernel space helping programmers
+identify various issues early on. Those issues including memory safty issue,
+threading issue, and others.</p>
+<p>Personally I have not used these tools a lot. But I am very interested in them.
+I think they could greatly improve productivity.</p>
+<p>TODO: <a href="https://github.com/google/sanitizers">https://github.com/google/sanitizers</a></p>
                 
                   
                     
@@ -2126,7 +2155,7 @@ Fifth, some opt modules at NIC.</li>
 <div class="md-source-date">
   <small>
     
-      Last update: December 7, 2020
+      Last update: December 8, 2020
     
   </small>
 </div>
