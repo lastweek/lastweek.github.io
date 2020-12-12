@@ -38,6 +38,7 @@ nav:
    - 'Morphous Partial Reconfiguration':     'fpga/pr.md'
    - 'Vivado Notes':                         'fpga/vivado.md'
    - 'Efficient AXI-MM':                     'fpga/hls_axi.md'
+   - 'Setup and Hold Time':                  'fpga/setup_hold.md'
 - Random:
    - '2020-04 On-Read-Once-and-Compiler-Opts':    'blog/20200404-on-read-once.md'
    - '2020-04 On-Hardware-based-Network-Transport': 'blog/20200404-on-net-transport.md'
