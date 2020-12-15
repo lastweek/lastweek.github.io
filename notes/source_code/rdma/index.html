@@ -335,9 +335,69 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        RDMA/DPDK
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
     <a href="./" title="RDMA/DPDK" class="md-nav__link md-nav__link--active">
       RDMA/DPDK
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rdma" class="md-nav__link">
+    RDMA
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dpdk" class="md-nav__link">
+    DPDK
+  </a>
+  
+    <nav class="md-nav" aria-label="DPDK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#personal-notes" class="md-nav__link">
+    Personal Notes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal" class="md-nav__link">
+    Internal
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -1498,6 +1558,50 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rdma" class="md-nav__link">
+    RDMA
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dpdk" class="md-nav__link">
+    DPDK
+  </a>
+  
+    <nav class="md-nav" aria-label="DPDK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#personal-notes" class="md-nav__link">
+    Personal Notes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal" class="md-nav__link">
+    Internal
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1522,22 +1626,22 @@
 </thead>
 <tbody>
 <tr>
+<td align="left">Dec 14, 2020</td>
+<td>More on DPDK</td>
+</tr>
+<tr>
 <td align="left">May 28, 2020</td>
 <td>Copied from summary</td>
 </tr>
 </tbody>
 </table>
 </details>
-<p>(Copied from summary.)</p>
+<h2 id="rdma">RDMA<a class="headerlink" href="#rdma" title="Permanent link">&para;</a></h2>
+<p>Below is a list of RDMA-based systems I have used or the ones I think are useful.</p>
 <ul>
-<li>RPC<ul>
-<li><a href="https://github.com/lastweek/source-grpc">gRPC</a></li>
-<li><a href="">eRPC, NSDI&lsquo;19</a></li>
-</ul>
-</li>
 <li><a href="https://github.com/lastweek/source-libvma">Mellanox libvma</a><ul>
 <li>An userspace IB verbs based layer providing POSIX socket APIs.
-  In other words, a library like SocketDirect, SIGCOMM&lsquo;19.</li>
+  (The SocketDirect, SIGCOMM&lsquo;19 paper was building a similar thing).</li>
 </ul>
 </li>
 <li><a href="https://github.com/lastweek/source-verbs-perftest">verbs perftest</a><ul>
@@ -1550,10 +1654,11 @@
 </ul>
 </li>
 <li><a href="https://github.com/lastweek/source-rdma-core">rdma-core</a><ul>
-<li>Userspace IB verbs library (e.g., libibverbs)</li>
-<li>Learn how userspace IB layer communicate with kernel, but also bypass kernel.
-  The technique replies on <code>ioctl()</code> and <code>mmap()</code>, standard.
-  But the ABI interface (i.e., data structures) are quite complex.</li>
+<li>This is the core userspace IB verbs library (e.g., libibverbs). Whenever you are writing userspace RDMA applications, you are using this library.</li>
+<li>It is interesting to learn how userspace IB layer communicates with kernel.
+  It is using <code>ioctl()</code> and <code>mmap()</code> to do the trick, quite standard.
+      Not sure how io_uring would help here.
+  The ABI interface (i.e., data structures) are quite complex and has several versions.</li>
 <li><code>libibverbs/example</code><ul>
 <li>asyncwatch.c</li>
 <li>device_list.c</li>
@@ -1576,9 +1681,17 @@
 <li><a href="https://github.com/torvalds/linux/tree/master/drivers/infiniband">Kernel Infiniband stack</a></li>
 </ul>
 </li>
-<li><a href="https://github.com/lastweek/source-dpdk">DPDK</a><ul>
-<li>DPDK uses VFIO to directly access physical device.
-Just like how we directly assign device to guest OS in QEMU.</li>
+<li>RPC<ul>
+<li><a href="https://github.com/lastweek/source-grpc">gRPC</a></li>
+<li><a href="">eRPC, NSDI&lsquo;19</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="dpdk">DPDK<a class="headerlink" href="#dpdk" title="Permanent link">&para;</a></h2>
+<h3 id="personal-notes">Personal Notes<a class="headerlink" href="#personal-notes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://github.com/lastweek/source-dpdk">DPDK</a></li>
+<li>DPDK uses VFIO to directly access physical device. Just like how we directly assign device to guest OS in QEMU (AFAIK, it is different for Mellanox NICs).</li>
 <li>Even though both DPDK and RDMA bypass kernel, their control
 path is very different. For DPDK, there is a complete device
 driver in the user space, and this driver communicate with the device via MMIO.
@@ -1596,7 +1709,12 @@ Userspace &ldquo;rdma-core&rdquo; vendor-driver deals with the kernel devel vend
   Note that DPDK built-in mlx driver uses RAW_PACKET QPs.</li>
 <li><img alt="image" src="../../../images/dpdk_ibverbs.png" /></li>
 </ul>
-</li>
+<h3 id="internal">Internal<a class="headerlink" href="#internal" title="Permanent link">&para;</a></h3>
+<p>Top-down:</p>
+<ul>
+<li>The user-facing part is called <a href="https://doc.dpdk.org/guides/prog_guide/env_abstraction_layer.html">Envionmemt Abstraction Layer (EAL)</a>, which provides a set of portable interfaces among many OSes. We can think it of as a &ldquo;POSIX&rdquo; interface. This EAL has quite a lot useful and handy APIs, e.g., multicore support where you can call a function on arbitray cores (like the linux <code>on_each_cpu</code> core), timers, atomic operations, memory management APIs. I have built all these components myself, still very pleased to see this.</li>
+<li>Poll Mode Driver - we cover the mlx ones above</li>
+<li>Various other drivers</li>
 </ul>
                 
                   
@@ -1606,7 +1724,7 @@ Userspace &ldquo;rdma-core&rdquo; vendor-driver deals with the kernel devel vend
 <div class="md-source-date">
   <small>
     
-      Last update: June 1, 2020
+      Last update: December 15, 2020
     
   </small>
 </div>
