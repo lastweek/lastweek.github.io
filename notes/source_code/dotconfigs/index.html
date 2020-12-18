@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
-        <link rel="canonical" href="http://lastweek.io/lego/kernel/net_thpool/">
+        <link rel="canonical" href="http://lastweek.io/notes/source_code/dotconfigs/">
       
       
         <meta name="author" content="Yizhou Shan">
@@ -19,7 +19,7 @@
     
     
       
-        <title>Network Thpool - Yizhou Shan's Home Page</title>
+        <title>Dot Configs - Yizhou Shan's Home Page</title>
       
     
     
@@ -57,7 +57,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#thread-pool-model-for-handling-network-requests" class="md-skip">
+        <a href="#dot-configs" class="md-skip">
           Skip to content
         </a>
       
@@ -85,7 +85,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Network Thpool
+              Dot Configs
             
           </span>
         </div>
@@ -155,7 +155,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../../notes/source_code/summary/" class="md-tabs__link">
+        <a href="../summary/" class="md-tabs__link md-tabs__link--active">
           Code Study
         </a>
       
@@ -168,7 +168,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../../notes/hardware_pl/" class="md-tabs__link">
+        <a href="../../hardware_pl/" class="md-tabs__link">
           Tech Note
         </a>
       
@@ -181,7 +181,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../../notes/paper_fpga/" class="md-tabs__link">
+        <a href="../../paper_fpga/" class="md-tabs__link">
           About FPGA
         </a>
       
@@ -211,7 +211,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../boot/" class="md-tabs__link md-tabs__link--active">
+        <a href="../../../lego/kernel/boot/" class="md-tabs__link">
           LegoOS
         </a>
       
@@ -262,10 +262,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       Code Study
@@ -289,7 +291,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/source_code/summary/" title="Summary" class="md-nav__link">
+    <a href="../summary/" title="Summary" class="md-nav__link">
       Summary
     </a>
   </li>
@@ -301,7 +303,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/program_advice/" title="Guideline & Advice" class="md-nav__link">
+    <a href="../../program_advice/" title="Guideline & Advice" class="md-nav__link">
       Guideline & Advice
     </a>
   </li>
@@ -313,7 +315,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/source_code/virt/" title="Virtualization" class="md-nav__link">
+    <a href="../virt/" title="Virtualization" class="md-nav__link">
       Virtualization
     </a>
   </li>
@@ -325,7 +327,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/source_code/rdma/" title="RDMA/DPDK" class="md-nav__link">
+    <a href="../rdma/" title="RDMA/DPDK" class="md-nav__link">
       RDMA/DPDK
     </a>
   </li>
@@ -337,7 +339,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/source_code/20200501-on-graphic-softwares/" title="Graphics" class="md-nav__link">
+    <a href="../20200501-on-graphic-softwares/" title="Graphics" class="md-nav__link">
       Graphics
     </a>
   </li>
@@ -349,7 +351,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/source_code/firmware-softwares/" title="BootLoader/Firmware" class="md-nav__link">
+    <a href="../firmware-softwares/" title="BootLoader/Firmware" class="md-nav__link">
       BootLoader/Firmware
     </a>
   </li>
@@ -361,7 +363,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/source_code/gpu/" title="GPU" class="md-nav__link">
+    <a href="../gpu/" title="GPU" class="md-nav__link">
       GPU
     </a>
   </li>
@@ -373,7 +375,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/source_code/fpga/" title="FPGA" class="md-nav__link">
+    <a href="../fpga/" title="FPGA" class="md-nav__link">
       FPGA
     </a>
   </li>
@@ -383,11 +385,53 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../../notes/source_code/dotconfigs/" title="Dot Configs" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Dot Configs
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Dot Configs" class="md-nav__link md-nav__link--active">
       Dot Configs
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vim" class="md-nav__link">
+    VIM
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -397,7 +441,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/source_code/misc/" title="Misc" class="md-nav__link">
+    <a href="../misc/" title="Misc" class="md-nav__link">
       Misc
     </a>
   </li>
@@ -439,7 +483,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/hardware_pl/" title="Hardware-Design-Languages" class="md-nav__link">
+    <a href="../../hardware_pl/" title="Hardware-Design-Languages" class="md-nav__link">
       Hardware-Design-Languages
     </a>
   </li>
@@ -451,7 +495,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/cache_coherence/" title="Practical-Cache-Coherence" class="md-nav__link">
+    <a href="../../cache_coherence/" title="Practical-Cache-Coherence" class="md-nav__link">
       Practical-Cache-Coherence
     </a>
   </li>
@@ -463,7 +507,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/paper_fpga/" title="FPGA-Paper-Reading" class="md-nav__link">
+    <a href="../../paper_fpga/" title="FPGA-Paper-Reading" class="md-nav__link">
       FPGA-Paper-Reading
     </a>
   </li>
@@ -475,7 +519,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/xperf/" title="x86-Ring-Switch-Overhead" class="md-nav__link">
+    <a href="../../xperf/" title="x86-Ring-Switch-Overhead" class="md-nav__link">
       x86-Ring-Switch-Overhead
     </a>
   </li>
@@ -487,7 +531,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/paper_perf_shadows/" title="Performance-Shadows" class="md-nav__link">
+    <a href="../../paper_perf_shadows/" title="Performance-Shadows" class="md-nav__link">
       Performance-Shadows
     </a>
   </li>
@@ -499,7 +543,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/trace/" title="Linux-Trace-and-Profile" class="md-nav__link">
+    <a href="../../trace/" title="Linux-Trace-and-Profile" class="md-nav__link">
       Linux-Trace-and-Profile
     </a>
   </li>
@@ -511,7 +555,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/rmap/" title="Linux-Reverse-Map(rmap)" class="md-nav__link">
+    <a href="../../rmap/" title="Linux-Reverse-Map(rmap)" class="md-nav__link">
       Linux-Reverse-Map(rmap)
     </a>
   </li>
@@ -523,7 +567,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/userfaultfd/" title="Linux-Userfaultfd" class="md-nav__link">
+    <a href="../../userfaultfd/" title="Linux-Userfaultfd" class="md-nav__link">
       Linux-Userfaultfd
     </a>
   </li>
@@ -535,7 +579,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/cgroup-swap/" title="Linux-Cgroup-and-Swap" class="md-nav__link">
+    <a href="../../cgroup-swap/" title="Linux-Cgroup-and-Swap" class="md-nav__link">
       Linux-Cgroup-and-Swap
     </a>
   </li>
@@ -547,7 +591,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/proc/" title="Linux-Special-Files" class="md-nav__link">
+    <a href="../../proc/" title="Linux-Special-Files" class="md-nav__link">
       Linux-Special-Files
     </a>
   </li>
@@ -559,7 +603,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/linux-resource/" title="Linux-Resource" class="md-nav__link">
+    <a href="../../linux-resource/" title="Linux-Resource" class="md-nav__link">
       Linux-Resource
     </a>
   </li>
@@ -571,7 +615,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/kvm-basic/" title="Linux-KVM" class="md-nav__link">
+    <a href="../../kvm-basic/" title="Linux-KVM" class="md-nav__link">
       Linux-KVM
     </a>
   </li>
@@ -595,7 +639,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/benchmark/" title="Benchmarks" class="md-nav__link">
+    <a href="../../benchmark/" title="Benchmarks" class="md-nav__link">
       Benchmarks
     </a>
   </li>
@@ -649,7 +693,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/paper_fpga/" title="FPGA-Paper-Reading" class="md-nav__link">
+    <a href="../../paper_fpga/" title="FPGA-Paper-Reading" class="md-nav__link">
       FPGA-Paper-Reading
     </a>
   </li>
@@ -790,12 +834,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
     
     <label class="md-nav__link" for="nav-6">
       LegoOS
@@ -817,12 +859,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1">
     
     <label class="md-nav__link" for="nav-6-1">
       Kernel
@@ -846,7 +886,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../boot/" title="GRUB2 and Boot" class="md-nav__link">
+    <a href="../../../lego/kernel/boot/" title="GRUB2 and Boot" class="md-nav__link">
       GRUB2 and Boot
     </a>
   </li>
@@ -858,7 +898,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../kconfig/" title="Kconfig" class="md-nav__link">
+    <a href="../../../lego/kernel/kconfig/" title="Kconfig" class="md-nav__link">
       Kconfig
     </a>
   </li>
@@ -870,7 +910,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../debug/" title="Debug" class="md-nav__link">
+    <a href="../../../lego/kernel/debug/" title="Debug" class="md-nav__link">
       Debug
     </a>
   </li>
@@ -882,7 +922,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../grub/" title="GRUB" class="md-nav__link">
+    <a href="../../../lego/kernel/grub/" title="GRUB" class="md-nav__link">
       GRUB
     </a>
   </li>
@@ -894,7 +934,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../profile/" title="Profile" class="md-nav__link">
+    <a href="../../../lego/kernel/profile/" title="Profile" class="md-nav__link">
       Profile
     </a>
   </li>
@@ -906,7 +946,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../profile_strace/" title="Profile strace" class="md-nav__link">
+    <a href="../../../lego/kernel/profile_strace/" title="Profile strace" class="md-nav__link">
       Profile strace
     </a>
   </li>
@@ -918,7 +958,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../profile_heatmap/" title="Profile heatmap" class="md-nav__link">
+    <a href="../../../lego/kernel/profile_heatmap/" title="Profile heatmap" class="md-nav__link">
       Profile heatmap
     </a>
   </li>
@@ -930,7 +970,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../profile_points/" title="Profile points" class="md-nav__link">
+    <a href="../../../lego/kernel/profile_points/" title="Profile points" class="md-nav__link">
       Profile points
     </a>
   </li>
@@ -942,7 +982,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../trampoline/" title="Trampoline" class="md-nav__link">
+    <a href="../../../lego/kernel/trampoline/" title="Trampoline" class="md-nav__link">
       Trampoline
     </a>
   </li>
@@ -954,7 +994,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../pagefault_disable/" title="Disable pgfault" class="md-nav__link">
+    <a href="../../../lego/kernel/pagefault_disable/" title="Disable pgfault" class="md-nav__link">
       Disable pgfault
     </a>
   </li>
@@ -966,7 +1006,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../stop_machine/" title="Stop machine" class="md-nav__link">
+    <a href="../../../lego/kernel/stop_machine/" title="Stop machine" class="md-nav__link">
       Stop machine
     </a>
   </li>
@@ -978,7 +1018,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../loader/" title="Program Loader" class="md-nav__link">
+    <a href="../../../lego/kernel/loader/" title="Program Loader" class="md-nav__link">
       Program Loader
     </a>
   </li>
@@ -990,7 +1030,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../vDSO/" title="vDSO" class="md-nav__link">
+    <a href="../../../lego/kernel/vDSO/" title="vDSO" class="md-nav__link">
       vDSO
     </a>
   </li>
@@ -1002,7 +1042,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../vfs/" title="Virtual File System" class="md-nav__link">
+    <a href="../../../lego/kernel/vfs/" title="Virtual File System" class="md-nav__link">
       Virtual File System
     </a>
   </li>
@@ -1014,7 +1054,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../vm/" title="Process Virtual Memory" class="md-nav__link">
+    <a href="../../../lego/kernel/vm/" title="Process Virtual Memory" class="md-nav__link">
       Process Virtual Memory
     </a>
   </li>
@@ -1026,7 +1066,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../fpu/" title="x86 FPU" class="md-nav__link">
+    <a href="../../../lego/kernel/fpu/" title="x86 FPU" class="md-nav__link">
       x86 FPU
     </a>
   </li>
@@ -1038,7 +1078,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../irq/" title="IRQ" class="md-nav__link">
+    <a href="../../../lego/kernel/irq/" title="IRQ" class="md-nav__link">
       IRQ
     </a>
   </li>
@@ -1048,20 +1088,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="./" title="Network Thpool" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../../lego/kernel/net_thpool/" title="Network Thpool" class="md-nav__link">
       Network Thpool
     </a>
-    
   </li>
 
         
@@ -1101,7 +1132,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../syscall/facts/" title="Facts" class="md-nav__link">
+    <a href="../../../lego/syscall/facts/" title="Facts" class="md-nav__link">
       Facts
     </a>
   </li>
@@ -1113,7 +1144,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../profile_strace/" title="strace" class="md-nav__link">
+    <a href="../../../lego/kernel/profile_strace/" title="strace" class="md-nav__link">
       strace
     </a>
   </li>
@@ -1125,7 +1156,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../syscall/compat/" title="compat" class="md-nav__link">
+    <a href="../../../lego/syscall/compat/" title="compat" class="md-nav__link">
       compat
     </a>
   </li>
@@ -1137,7 +1168,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../syscall/msync/" title="msync()" class="md-nav__link">
+    <a href="../../../lego/syscall/msync/" title="msync()" class="md-nav__link">
       msync()
     </a>
   </li>
@@ -1149,7 +1180,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../syscall/mremap/" title="mremap()" class="md-nav__link">
+    <a href="../../../lego/syscall/mremap/" title="mremap()" class="md-nav__link">
       mremap()
     </a>
   </li>
@@ -1161,7 +1192,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../syscall/fork/" title="fork()" class="md-nav__link">
+    <a href="../../../lego/syscall/fork/" title="fork()" class="md-nav__link">
       fork()
     </a>
   </li>
@@ -1173,7 +1204,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../syscall/getrusage/" title="getrusage()" class="md-nav__link">
+    <a href="../../../lego/syscall/getrusage/" title="getrusage()" class="md-nav__link">
       getrusage()
     </a>
   </li>
@@ -1185,7 +1216,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../syscall/wait_and_exit/" title="wait4 and exit()" class="md-nav__link">
+    <a href="../../../lego/syscall/wait_and_exit/" title="wait4 and exit()" class="md-nav__link">
       wait4 and exit()
     </a>
   </li>
@@ -1227,7 +1258,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../pcache/config/" title="Config" class="md-nav__link">
+    <a href="../../../lego/pcache/config/" title="Config" class="md-nav__link">
       Config
     </a>
   </li>
@@ -1239,7 +1270,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../pcache/sweep/" title="Sweep" class="md-nav__link">
+    <a href="../../../lego/pcache/sweep/" title="Sweep" class="md-nav__link">
       Sweep
     </a>
   </li>
@@ -1251,7 +1282,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../pcache/tlb/" title="TLB Coherence" class="md-nav__link">
+    <a href="../../../lego/pcache/tlb/" title="TLB Coherence" class="md-nav__link">
       TLB Coherence
     </a>
   </li>
@@ -1263,7 +1294,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../pcache/pgtable-lock/" title="PageTable Lock" class="md-nav__link">
+    <a href="../../../lego/pcache/pgtable-lock/" title="PageTable Lock" class="md-nav__link">
       PageTable Lock
     </a>
   </li>
@@ -1275,7 +1306,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../pcache/victim/" title="Victim Cache" class="md-nav__link">
+    <a href="../../../lego/pcache/victim/" title="Victim Cache" class="md-nav__link">
       Victim Cache
     </a>
   </li>
@@ -1287,7 +1318,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../pcache/virtual_cache/" title="Virtual Cache" class="md-nav__link">
+    <a href="../../../lego/pcache/virtual_cache/" title="Virtual Cache" class="md-nav__link">
       Virtual Cache
     </a>
   </li>
@@ -1299,7 +1330,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../pcache/rmap/" title="Reverse Mapping" class="md-nav__link">
+    <a href="../../../lego/pcache/rmap/" title="Reverse Mapping" class="md-nav__link">
       Reverse Mapping
     </a>
   </li>
@@ -1311,7 +1342,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../pcache/evict_and_ref/" title="Evict and Refcount" class="md-nav__link">
+    <a href="../../../lego/pcache/evict_and_ref/" title="Evict and Refcount" class="md-nav__link">
       Evict and Refcount
     </a>
   </li>
@@ -1323,7 +1354,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../pcache/smp_design/" title="SMP Design" class="md-nav__link">
+    <a href="../../../lego/pcache/smp_design/" title="SMP Design" class="md-nav__link">
       SMP Design
     </a>
   </li>
@@ -1335,7 +1366,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../pcache/replication/" title="Replication" class="md-nav__link">
+    <a href="../../../lego/pcache/replication/" title="Replication" class="md-nav__link">
       Replication
     </a>
   </li>
@@ -1377,7 +1408,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../driver/pci/" title="PCI" class="md-nav__link">
+    <a href="../../../lego/driver/pci/" title="PCI" class="md-nav__link">
       PCI
     </a>
   </li>
@@ -1389,7 +1420,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../driver/ib/" title="Infiniband" class="md-nav__link">
+    <a href="../../../lego/driver/ib/" title="Infiniband" class="md-nav__link">
       Infiniband
     </a>
   </li>
@@ -1431,7 +1462,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../paper/nmp/" title="NMP" class="md-nav__link">
+    <a href="../../../lego/paper/nmp/" title="NMP" class="md-nav__link">
       NMP
     </a>
   </li>
@@ -1443,7 +1474,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../paper/processor_oom/" title="Processor OOM" class="md-nav__link">
+    <a href="../../../lego/paper/processor_oom/" title="Processor OOM" class="md-nav__link">
       Processor OOM
     </a>
   </li>
@@ -1455,7 +1486,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../paper/genz/" title="Gen-Z" class="md-nav__link">
+    <a href="../../../lego/paper/genz/" title="Gen-Z" class="md-nav__link">
       Gen-Z
     </a>
   </li>
@@ -1467,7 +1498,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../paper/replication/" title="Replication" class="md-nav__link">
+    <a href="../../../lego/paper/replication/" title="Replication" class="md-nav__link">
       Replication
     </a>
   </li>
@@ -1479,7 +1510,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../paper/related/" title="Related" class="md-nav__link">
+    <a href="../../../lego/paper/related/" title="Related" class="md-nav__link">
       Related
     </a>
   </li>
@@ -1512,6 +1543,23 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vim" class="md-nav__link">
+    VIM
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1526,17 +1574,46 @@
                   
                 
                 
-                <h1 id="thread-pool-model-for-handling-network-requests">Thread Pool Model for Handling Network Requests<a class="headerlink" href="#thread-pool-model-for-handling-network-requests" title="Permanent link">&para;</a></h1>
+                <h1 id="dot-configs">Dot Configs<a class="headerlink" href="#dot-configs" title="Permanent link">&para;</a></h1>
+<details class="note"><summary>Version History</summary><table>
+<thead>
+<tr>
+<th align="left">Date</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Dec 17, 2020</td>
+<td>started</td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Like many others, I maintain my own dot-file repo: <a href="https://github.com/lastweek/dot-home">https://github.com/lastweek/dot-home</a>.
+It helps me setup the terminal whenever I start using a new machine.</p>
+<p>I&rsquo;m a heavy terminal user. For whatever coding task (e.g., kernel, RDMA, FPGA, scala, C), I use terminal. I sometimes use terminal to write paper as well.</p>
+<p>There are several important tools I rely on: zsh, git, neovim, and tmux.
+And I&rsquo;m grateful for folks working on these tools and their plugins.</p>
 <ul>
-<li><code>Passive</code>: whenever a network request comes in, callback to thpool.</li>
-<li><code>Active</code>: thpool keep polling if there is new network requests queued.</li>
+<li>For zsh, I use oh-my-zsh.</li>
+<li>For git, I use <a href="https://github.com/GitAlias/gitalias">git alias</a>.</li>
+<li>For tmux, I use <a href="https://github.com/tmux-plugins">tpm</a>. I used to cook status line myself, but I have switched to powerline.</li>
+<li>For nvim, I use <a href="https://github.com/VundleVim/Vundle.vim">vundle</a>. And I have several cooked keys.</li>
 </ul>
-<p>Previously, our memory side use the Active mode to handle requests, which has very bad latency. Several days ago we changed to the Passive mode, which has a very good latency! One <code>ib_send_reply</code> RRT drops from <code>~20us</code> to a normal <code>~6us</code> for a TensorFlow run.</p>
-<p>Never thought this could make such a big difference (~3x slowdown)! Dark network!</p>
-<p>&ndash;<br />
-Yizhou Shan<br />
-Created: April 29, 2018<br />
-Last Updated: April 29, 2018</p>
+<h2 id="vim">VIM<a class="headerlink" href="#vim" title="Permanent link">&para;</a></h2>
+<p>I quite like my current VIM setting.
+I&rsquo;m using several popular tools: NERD Tree, NERD commenter, GitGutter, and Tagbar.</p>
+<p>I created the following mapped keys so that I could invoke them quite easily.
+Basically I press <code>\</code> first, and then press <code>t</code>, or <code>f</code>, or <code>g</code>.
+<div class="highlight"><pre><span></span><code>map \t :TagbarToggle&lt;Enter&gt;    =&gt; to toggle tagbar
+map \f :NERDTreeToggle&lt;CR&gt;     =&gt; to toggle nerd file tree
+map \g :GitGutterLineHighlightsToggle&lt;Enter&gt; :GitGutterSignsToggle&lt;Enter&gt;   =&gt; to highlight git difference
+</code></pre></div></p>
+<p>Besides, I have several extra syntax files, for C, ASM, scala, and verilog.
+I started this when I was hacking linux kernel.
+It has so many new awesome macros (e.g., <code>BUG_ON</code>, <code>for_each_cpu</code>) and I want to
+diffrentiate them from normal functions. So I added those <a href="https://github.com/lastweek/dot-home/tree/master/.vim/after/syntax"><code>after/syntax</code></a> files.</p>
                 
                   
                     
@@ -1545,7 +1622,7 @@ Last Updated: April 29, 2018</p>
 <div class="md-source-date">
   <small>
     
-      Last update: April 29, 2018
+      Last update: December 18, 2020
     
   </small>
 </div>
@@ -1558,7 +1635,7 @@ Last Updated: April 29, 2018</p>
 
   <h2 id="__comments">Comments</h2>
   <div id="disqus_thread"></div>
-  <script>var disqus_config=function(){this.page.url="http://lastweek.io/lego/kernel/net_thpool/",this.page.identifier="/lego/kernel/net_thpool/"};!function(){var e=document,i=e.createElement("script");i.src="//lastweek-io.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
+  <script>var disqus_config=function(){this.page.url="http://lastweek.io/notes/source_code/dotconfigs/",this.page.identifier="/notes/source_code/dotconfigs/"};!function(){var e=document,i=e.createElement("script");i.src="//lastweek-io.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
 
               
             </article>
@@ -1572,7 +1649,7 @@ Last Updated: April 29, 2018</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../irq/" title="IRQ" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../fpga/" title="FPGA" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1581,19 +1658,19 @@ Last Updated: April 29, 2018</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                IRQ
+                FPGA
               </div>
             </div>
           </a>
         
         
-          <a href="../../syscall/facts/" title="Facts" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../misc/" title="Misc" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Facts
+                Misc
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
