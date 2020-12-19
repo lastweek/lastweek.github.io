@@ -5,7 +5,9 @@
 	|:---|-----------|
 	|Dec 18, 2020| extracted from the summary doc|
 
-- [BootOS](https://github.com/nanochess/bootOS) OS in 512 bytes of x86 machine code
+You know what, this page is AWESOME: https://github.com/jubalh/awesome-os.
+
+## Mainstream
 - [Linux 0.0.1](https://github.com/lastweek/linux-0.01)
 	- This is the first linux source code released by Linus.
 	  Despite several designs are static
@@ -13,8 +15,6 @@
 - [Plan 9 OS](https://github.com/lastweek/source-plan9)
 	- Legendary OS.
 	- So many systems are influended by Plan 9 (e.g., Go, gVisor)
-- [Singularity.](https://github.com/lastweek/source-singularity)
-	- A research OS from MSR. Very interesting one.
 - [illumos](https://github.com/lastweek/source-illumos-gate), a fork of the Oracle Solaris OS.
 - [seL4 Microkernel](https://github.com/lastweek/source-seL4)
 - [MacOS Darwin](https://github.com/lastweek/source-darwin-xnu)
@@ -37,10 +37,25 @@
 ![image_unix_timeline](../../images/unix_timeline.png)
 (Image source: https://commons.wikimedia.org/wiki/File:Unix_timeline.en.svg)
 
-### Linux Distribution
+## Hobby
+
+- [Visopsys](https://visopsys.org/)
+	- "It features a simple but functional graphical interface, pre-emptive multitasking, and virtual memory"
+- [BootOS](https://github.com/nanochess/bootOS)
+
+## Academic
+
+- [Singularity.](https://github.com/lastweek/source-singularity)
+	- A research OS from MSR. Very interesting one.
+	  It leverages certain PL features to write secure and dependable OS.
+	  It also allows verification. It never landed as a commercial one,
+	  but it does inspire certain follow-up works.
+	- Several old research OSes have also used certain language features
+	to carry out security measures (e.g., V++).
+
+## Linux Distribution
 
 Ever thought about how to go from Linux Kernel to a full Linux Distribution?
 
 - Read: [Linux From Scratch](http://www.linuxfromscratch.org/lfs/view/10.0/)
 - [systemd](https://systemd.io/)
-
