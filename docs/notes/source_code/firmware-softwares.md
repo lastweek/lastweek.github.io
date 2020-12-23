@@ -1,6 +1,4 @@
-# Open-source BootLoader/Firmware
-
-## Landscape
+# Open-source Firmware and Bootloaders
 
 ??? note "Version History"
 	|Date|Description|
@@ -8,9 +6,13 @@
 	|Dec 7, 2020| add iPXE |
 	|May 6, 2020| Initial Version|
 
-I'm obsessed with firmware projects, maybe because that's where I started.
-At first I used SeaBIOS (the default one used by QEMU) to build my own OS.
-Then I came across UEFI, something I have never used though.
+In this blog post, I will review the current firmware and bootloader ecosystem.
+
+## Landscape
+
+I admire those firmware projects, maybe because that's where I started.
+At first I used SeaBIOS (the default one used by QEMU) to build OS.
+Then I came across UEFI, though I have never used it.
 
 There are a lot open-source firmware projects.
 I was trying to understand their relationship.
@@ -26,7 +28,7 @@ Bottom-up:
 - GRUB2/U-Boto: Bootloader
 - OS
 
-## Note
+## Projects
 
 - [Coreboot](https://github.com/lastweek/source-firmware-coreboot) and Libreboot
 	- Coreboot seems very interesting. It's only doing one job, which is initialize
@@ -66,5 +68,5 @@ Bottom-up:
 If you are using a normal laptop or desktop, chances are, none of those firmware is used.
 Normally machines are shipped with commercial firmwares.
 
-To me, I like SeaBIOS project the best. It's simple and can boot everything we need.
+To me, I like SeaBIOS project the most. It's simple and can boot everything we need.
 (For example, Linux, LegoOS as well).
