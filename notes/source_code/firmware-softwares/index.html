@@ -19,7 +19,7 @@
     
     
       
-        <title>BootLoader/Firmware - Yizhou Shan's Home Page</title>
+        <title>Firmware and Boorloader - Yizhou Shan's Home Page</title>
       
     
     
@@ -57,7 +57,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#open-source-bootloaderfirmware" class="md-skip">
+        <a href="#open-source-firmware-and-bootloaders" class="md-skip">
           Skip to content
         </a>
       
@@ -85,7 +85,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              BootLoader/Firmware
+              Firmware and Boorloader
             
           </span>
         </div>
@@ -291,8 +291,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../summary/" title="Summary" class="md-nav__link">
-      Summary
+    <a href="../summary/" title="All-in-One" class="md-nav__link">
+      All-in-One
     </a>
   </li>
 
@@ -339,20 +339,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../rdma/" title="RDMA/DPDK" class="md-nav__link">
-      RDMA/DPDK
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../20200501-on-graphic-softwares/" title="Graphics" class="md-nav__link">
-      Graphics
+    <a href="../rdma/" title="DPDK and RDMA" class="md-nav__link">
+      DPDK and RDMA
     </a>
   </li>
 
@@ -372,14 +360,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        BootLoader/Firmware
+        Firmware and Boorloader
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
         </span>
       </label>
     
-    <a href="./" title="BootLoader/Firmware" class="md-nav__link md-nav__link--active">
-      BootLoader/Firmware
+    <a href="./" title="Firmware and Boorloader" class="md-nav__link md-nav__link--active">
+      Firmware and Boorloader
     </a>
     
       
@@ -405,8 +393,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#note" class="md-nav__link">
-    Note
+  <a href="#projects" class="md-nav__link">
+    Projects
   </a>
   
 </li>
@@ -415,6 +403,18 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../20200501-on-graphic-softwares/" title="Graphics" class="md-nav__link">
+      Graphics
+    </a>
   </li>
 
         
@@ -448,8 +448,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../dotconfigs/" title="Dot Configs" class="md-nav__link">
-      Dot Configs
+    <a href="../dotconfigs/" title="Terminal Configs" class="md-nav__link">
+      Terminal Configs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../commands/" title="Terminal Commands" class="md-nav__link">
+      Terminal Commands
     </a>
   </li>
 
@@ -636,6 +648,18 @@
   <li class="md-nav__item">
     <a href="../../kvm-basic/" title="Linux-KVM" class="md-nav__link">
       Linux-KVM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux-boot/" title="Linux-Boot-After-GRUB" class="md-nav__link">
+      Linux-Boot-After-GRUB
     </a>
   </li>
 
@@ -1578,8 +1602,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#note" class="md-nav__link">
-    Note
+  <a href="#projects" class="md-nav__link">
+    Projects
   </a>
   
 </li>
@@ -1600,8 +1624,7 @@
                   
                 
                 
-                <h1 id="open-source-bootloaderfirmware">Open-source BootLoader/Firmware<a class="headerlink" href="#open-source-bootloaderfirmware" title="Permanent link">&para;</a></h1>
-<h2 id="landscape">Landscape<a class="headerlink" href="#landscape" title="Permanent link">&para;</a></h2>
+                <h1 id="open-source-firmware-and-bootloaders">Open-source Firmware and Bootloaders<a class="headerlink" href="#open-source-firmware-and-bootloaders" title="Permanent link">&para;</a></h1>
 <details class="note"><summary>Version History</summary><table>
 <thead>
 <tr>
@@ -1621,9 +1644,11 @@
 </tbody>
 </table>
 </details>
-<p>I&rsquo;m obsessed with firmware projects, maybe because that&rsquo;s where I started.
-At first I used SeaBIOS (the default one used by QEMU) to build my own OS.
-Then I came across UEFI, something I have never used though.</p>
+<p>In this blog post, I will review the current firmware and bootloader ecosystem.</p>
+<h2 id="landscape">Landscape<a class="headerlink" href="#landscape" title="Permanent link">&para;</a></h2>
+<p>I admire those firmware projects, maybe because that&rsquo;s where I started.
+At first I used SeaBIOS (the default one used by QEMU) to build OS.
+Then I came across UEFI, though I have never used it.</p>
 <p>There are a lot open-source firmware projects.
 I was trying to understand their relationship.
 After some research, I drew the following landscape figure.</p>
@@ -1636,7 +1661,7 @@ After some research, I drew the following landscape figure.</p>
 <li>GRUB2/U-Boto: Bootloader</li>
 <li>OS</li>
 </ul>
-<h2 id="note">Note<a class="headerlink" href="#note" title="Permanent link">&para;</a></h2>
+<h2 id="projects">Projects<a class="headerlink" href="#projects" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://github.com/lastweek/source-firmware-coreboot">Coreboot</a> and Libreboot<ul>
 <li>Coreboot seems very interesting. It&rsquo;s only doing one job, which is initialize
@@ -1684,7 +1709,7 @@ control the boot process with a script
 </ul>
 <p>If you are using a normal laptop or desktop, chances are, none of those firmware is used.
 Normally machines are shipped with commercial firmwares.</p>
-<p>To me, I like SeaBIOS project the best. It&rsquo;s simple and can boot everything we need.
+<p>To me, I like SeaBIOS project the most. It&rsquo;s simple and can boot everything we need.
 (For example, Linux, LegoOS as well).</p>
                 
                   
@@ -1694,7 +1719,7 @@ Normally machines are shipped with commercial firmwares.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: December 7, 2020
+      Last update: December 23, 2020
     
   </small>
 </div>
@@ -1721,7 +1746,7 @@ Normally machines are shipped with commercial firmwares.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../20200501-on-graphic-softwares/" title="Graphics" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../rdma/" title="DPDK and RDMA" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1730,19 +1755,19 @@ Normally machines are shipped with commercial firmwares.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Graphics
+                DPDK and RDMA
               </div>
             </div>
           </a>
         
         
-          <a href="../gpu/" title="GPU" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../20200501-on-graphic-softwares/" title="Graphics" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                GPU
+                Graphics
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

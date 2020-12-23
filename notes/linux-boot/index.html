@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
-        <link rel="canonical" href="http://lastweek.io/blog/20200404-on-net-transport/">
+        <link rel="canonical" href="http://lastweek.io/notes/linux-boot/">
       
       
         <meta name="author" content="Yizhou Shan">
@@ -19,7 +19,7 @@
     
     
       
-        <title>2020-04 On-Hardware-based-Network-Transport - Yizhou Shan's Home Page</title>
+        <title>Linux-Boot-After-GRUB - Yizhou Shan's Home Page</title>
       
     
     
@@ -57,7 +57,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#on-hardware-based-network-transport-design-and-implementation" class="md-skip">
+        <a href="#linux-boot-sequence-after-grub" class="md-skip">
           Skip to content
         </a>
       
@@ -85,7 +85,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              2020-04 On-Hardware-based-Network-Transport
+              Linux-Boot-After-GRUB
             
           </span>
         </div>
@@ -155,7 +155,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../notes/source_code/summary/" class="md-tabs__link">
+        <a href="../source_code/summary/" class="md-tabs__link">
           Code Study
         </a>
       
@@ -168,7 +168,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../notes/hardware_pl/" class="md-tabs__link">
+        <a href="../hardware_pl/" class="md-tabs__link md-tabs__link--active">
           Tech Note
         </a>
       
@@ -181,7 +181,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../notes/paper_fpga/" class="md-tabs__link">
+        <a href="../paper_fpga/" class="md-tabs__link">
           About FPGA
         </a>
       
@@ -194,7 +194,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../20200404-on-read-once/" class="md-tabs__link md-tabs__link--active">
+        <a href="../../blog/20200404-on-read-once/" class="md-tabs__link">
           Random
         </a>
       
@@ -289,7 +289,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/summary/" title="All-in-One" class="md-nav__link">
+    <a href="../source_code/summary/" title="All-in-One" class="md-nav__link">
       All-in-One
     </a>
   </li>
@@ -301,7 +301,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/program_advice/" title="Guideline & Advice" class="md-nav__link">
+    <a href="../program_advice/" title="Guideline & Advice" class="md-nav__link">
       Guideline & Advice
     </a>
   </li>
@@ -313,7 +313,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/os/" title="OS" class="md-nav__link">
+    <a href="../source_code/os/" title="OS" class="md-nav__link">
       OS
     </a>
   </li>
@@ -325,7 +325,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/virt/" title="Virtualization" class="md-nav__link">
+    <a href="../source_code/virt/" title="Virtualization" class="md-nav__link">
       Virtualization
     </a>
   </li>
@@ -337,7 +337,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/rdma/" title="DPDK and RDMA" class="md-nav__link">
+    <a href="../source_code/rdma/" title="DPDK and RDMA" class="md-nav__link">
       DPDK and RDMA
     </a>
   </li>
@@ -349,7 +349,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/firmware-softwares/" title="Firmware and Boorloader" class="md-nav__link">
+    <a href="../source_code/firmware-softwares/" title="Firmware and Boorloader" class="md-nav__link">
       Firmware and Boorloader
     </a>
   </li>
@@ -361,7 +361,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/20200501-on-graphic-softwares/" title="Graphics" class="md-nav__link">
+    <a href="../source_code/20200501-on-graphic-softwares/" title="Graphics" class="md-nav__link">
       Graphics
     </a>
   </li>
@@ -373,7 +373,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/gpu/" title="GPU" class="md-nav__link">
+    <a href="../source_code/gpu/" title="GPU" class="md-nav__link">
       GPU
     </a>
   </li>
@@ -385,7 +385,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/fpga/" title="FPGA" class="md-nav__link">
+    <a href="../source_code/fpga/" title="FPGA" class="md-nav__link">
       FPGA
     </a>
   </li>
@@ -397,7 +397,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/dotconfigs/" title="Terminal Configs" class="md-nav__link">
+    <a href="../source_code/dotconfigs/" title="Terminal Configs" class="md-nav__link">
       Terminal Configs
     </a>
   </li>
@@ -409,7 +409,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/commands/" title="Terminal Commands" class="md-nav__link">
+    <a href="../source_code/commands/" title="Terminal Commands" class="md-nav__link">
       Terminal Commands
     </a>
   </li>
@@ -421,7 +421,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/misc/" title="Misc" class="md-nav__link">
+    <a href="../source_code/misc/" title="Misc" class="md-nav__link">
       Misc
     </a>
   </li>
@@ -436,10 +436,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
       Tech Note
@@ -463,7 +465,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/hardware_pl/" title="Hardware-Design-Languages" class="md-nav__link">
+    <a href="../hardware_pl/" title="Hardware-Design-Languages" class="md-nav__link">
       Hardware-Design-Languages
     </a>
   </li>
@@ -475,7 +477,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/cache_coherence/" title="Practical-Cache-Coherence" class="md-nav__link">
+    <a href="../cache_coherence/" title="Practical-Cache-Coherence" class="md-nav__link">
       Practical-Cache-Coherence
     </a>
   </li>
@@ -487,7 +489,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/paper_fpga/" title="FPGA-Paper-Reading" class="md-nav__link">
+    <a href="../paper_fpga/" title="FPGA-Paper-Reading" class="md-nav__link">
       FPGA-Paper-Reading
     </a>
   </li>
@@ -499,7 +501,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/xperf/" title="x86-Ring-Switch-Overhead" class="md-nav__link">
+    <a href="../xperf/" title="x86-Ring-Switch-Overhead" class="md-nav__link">
       x86-Ring-Switch-Overhead
     </a>
   </li>
@@ -511,7 +513,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/paper_perf_shadows/" title="Performance-Shadows" class="md-nav__link">
+    <a href="../paper_perf_shadows/" title="Performance-Shadows" class="md-nav__link">
       Performance-Shadows
     </a>
   </li>
@@ -523,7 +525,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/trace/" title="Linux-Trace-and-Profile" class="md-nav__link">
+    <a href="../trace/" title="Linux-Trace-and-Profile" class="md-nav__link">
       Linux-Trace-and-Profile
     </a>
   </li>
@@ -535,7 +537,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/rmap/" title="Linux-Reverse-Map(rmap)" class="md-nav__link">
+    <a href="../rmap/" title="Linux-Reverse-Map(rmap)" class="md-nav__link">
       Linux-Reverse-Map(rmap)
     </a>
   </li>
@@ -547,7 +549,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/userfaultfd/" title="Linux-Userfaultfd" class="md-nav__link">
+    <a href="../userfaultfd/" title="Linux-Userfaultfd" class="md-nav__link">
       Linux-Userfaultfd
     </a>
   </li>
@@ -559,7 +561,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/cgroup-swap/" title="Linux-Cgroup-and-Swap" class="md-nav__link">
+    <a href="../cgroup-swap/" title="Linux-Cgroup-and-Swap" class="md-nav__link">
       Linux-Cgroup-and-Swap
     </a>
   </li>
@@ -571,7 +573,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/proc/" title="Linux-Special-Files" class="md-nav__link">
+    <a href="../proc/" title="Linux-Special-Files" class="md-nav__link">
       Linux-Special-Files
     </a>
   </li>
@@ -583,7 +585,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/linux-resource/" title="Linux-Resource" class="md-nav__link">
+    <a href="../linux-resource/" title="Linux-Resource" class="md-nav__link">
       Linux-Resource
     </a>
   </li>
@@ -595,7 +597,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/kvm-basic/" title="Linux-KVM" class="md-nav__link">
+    <a href="../kvm-basic/" title="Linux-KVM" class="md-nav__link">
       Linux-KVM
     </a>
   </li>
@@ -605,11 +607,60 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../notes/linux-boot/" title="Linux-Boot-After-GRUB" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Linux-Boot-After-GRUB
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Linux-Boot-After-GRUB" class="md-nav__link md-nav__link--active">
       Linux-Boot-After-GRUB
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#linux-boot-protocol-and-sequence" class="md-nav__link">
+    Linux Boot Protocol and Sequence
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linux-vs-linux16" class="md-nav__link">
+    linux v.s. linux16
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -631,7 +682,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/benchmark/" title="Benchmarks" class="md-nav__link">
+    <a href="../benchmark/" title="Benchmarks" class="md-nav__link">
       Benchmarks
     </a>
   </li>
@@ -685,7 +736,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/paper_fpga/" title="FPGA-Paper-Reading" class="md-nav__link">
+    <a href="../paper_fpga/" title="FPGA-Paper-Reading" class="md-nav__link">
       FPGA-Paper-Reading
     </a>
   </li>
@@ -772,12 +823,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
     <label class="md-nav__link" for="nav-5">
       Random
@@ -801,7 +850,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../20200404-on-read-once/" title="2020-04 On-Read-Once-and-Compiler-Opts" class="md-nav__link">
+    <a href="../../blog/20200404-on-read-once/" title="2020-04 On-Read-Once-and-Compiler-Opts" class="md-nav__link">
       2020-04 On-Read-Once-and-Compiler-Opts
     </a>
   </li>
@@ -811,20 +860,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="./" title="2020-04 On-Hardware-based-Network-Transport" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../blog/20200404-on-net-transport/" title="2020-04 On-Hardware-based-Network-Transport" class="md-nav__link">
       2020-04 On-Hardware-based-Network-Transport
     </a>
-    
   </li>
 
         
@@ -1546,6 +1586,30 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#linux-boot-protocol-and-sequence" class="md-nav__link">
+    Linux Boot Protocol and Sequence
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linux-vs-linux16" class="md-nav__link">
+    linux v.s. linux16
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1560,8 +1624,115 @@
                   
                 
                 
-                <h1 id="on-hardware-based-network-transport-design-and-implementation">On Hardware-based Network Transport Design and Implementation<a class="headerlink" href="#on-hardware-based-network-transport-design-and-implementation" title="Permanent link">&para;</a></h1>
-<p>TODO</p>
+                <h1 id="linux-boot-sequence-after-grub">Linux Boot Sequence after GRUB<a class="headerlink" href="#linux-boot-sequence-after-grub" title="Permanent link">&para;</a></h1>
+<details class="note"><summary>Version History</summary><table>
+<thead>
+<tr>
+<th align="left">Date</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Dec 23, 2020</td>
+<td>new</td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>This is adopted from my note <a href="https://github.com/lastweek/source-grub2">here</a>.
+I was looking into this while I was building
+the LegoOS&rsquo;s booting process. I was trying to find out
+how <a href="https://www.gnu.org/software/grub/manual/grub/grub.html#Introduction">GRUB2</a>
+loads the kernel image and how it prepares all the boot environment.</p>
+<h2 id="linux-boot-protocol-and-sequence">Linux Boot Protocol and Sequence<a class="headerlink" href="#linux-boot-protocol-and-sequence" title="Permanent link">&para;</a></h2>
+<p>Linux (x86) has a boot protocol between the bootloader and kernel image itself, described <a href="kernel.org/doc/html/latest/x86/boot.html">here</a>.</p>
+<p>Essentially, there is a contiguous memory region passing information between these two entities.
+This big region just like a big C <code>struct</code>:
+some fields are filled by kernel duing compile time (<code>arch/x86/boot/tools/build.c</code> and some in code),
+some fields are filled by GRUB2 during boot time to tell kernel some
+important addresses, e.g., kernel parameters, ramdisk locations etc.</p>
+<p>GRUB2 code follows the protocol, and you can partially tell from the <code>grub_cmd_linux()</code> function.</p>
+<p>Last time I working on this was late 2016, I truly spent a lot investigating
+how GRUB and linux boot works. I will try to document a bit, if my memory serves:</p>
+<ol>
+<li>
+<p>In the Linux kernel, file <code>arch/x86/boot/header.S</code> is the first file got run after GRUB2.
+This file is a bit complicated but not hard to understand!
+It has 3 parts.
+For the first part, it detects if it was loaded by a bootloader, if not, just by printing an error message and reboot.
+It the kernel was loaded by a bootloader like GRUB2, the first part will never execute.
+The bootload will directly jump to the second part. This is part of the boot protocol.
+For the second part, it lists all the fields described by the boot protocol.
+And finally the third part is real-mode instructions that got run after the GRUB2 jumo.
+The starting function is called <code>start_of_setup</code>, which will do some stack checking,
+and then jump to C code in <code>arch/x86/boot/main.c</code>.</p>
+</li>
+<li>
+<p><code>arch/x86/boot/main.c</code> runs on real-mode, it will do some setup and jump to protected-mode (32-bit).
+It is running after BIOS but before the actual Linux kernel.
+Thus this piece of code must rely on BIOS to do stuff, which makes it very unique.
+The major task of the setup code is to prepare the <code>struct boot_params</code>, which has all the boot information, some of them were extracted from the <code>header.S</code>. The <code>struct boot_params</code> will be passed down and used by many kernel subsystems later on.
+The final jump happens in <code>arch/x86/boot/pmjump.S</code>
+<div class="highlight"><pre><span></span><code>        <span class="cp">#</span>
+        <span class="cp"># Jump to protected-mode kernel, 0x100000</span>
+        <span class="cp"># which is the compressed/head_$(BITS).o</span>
+        <span class="cp">#</span>
+        <span class="n">jmp</span>     <span class="o">*%</span><span class="n">eax</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Then, we are in <code>arch/x86/boot/compressed/head_64.S</code>.
+Above pmjump jumps to <code>startup_32</code>, it will enable paging, tweak GDT table etc, setup pagetable, and transition to 64-bit entry point <code>startup_64</code>. 
+And finally, we are in 64-bit. The final jump will go to <code>arch/x86/kernel/head_64.S</code>. We are close!</p>
+</li>
+<li>
+<p>Now we are in <code>arch/x86/kernel/head_64.S</code>. We are in 64-bit. But some further setup is needed. This part is really low-level and engaging. I would never know I how managed to understand and port all this shit. It setup a lot GDT, IDT stuff, and some pgfault handlers. It turns out those early pgfault handlers are NECESSARY and I remember they played an very interesting role! Finally, this assembly will jump to <code>arch/x86/kernel/head64.c</code>, the C code!</p>
+<ul>
+<li>I guess an interesting part is <code>secondary_startup_64</code>. This code is actually run by non-booting CPUs, or secondary CPUs.
+  After the major boot CPU is up and running (already within <code>start_kernel()</code>), I believe its the <code>smp_init()</code> that will send IPI wakeup interrupts to all present secondary CPUs.
+  The secondary CPUs will start from real-mode, obviously. Then they will transition from 16bit to 32bit, from 32bit to 64bit. That code is in <a href="https://github.com/WukLab/LegoOS/blob/master/arch/x86/realmode/rm/trampoline.S"><code>arch/x86/realmode/rm/trampoline.S</code></a>!</li>
+<li><code>arch/x86/realmode</code> is interesting. It uses piggyback technique. All the real-mode and 32bit code are in <code>arch/x86/realmode/rm/*</code>, a special <a href="https://github.com/WukLab/LegoOS/blob/master/arch/x86/realmode/rm/ld.lds.S">linker script</a> is used to construct the code in a specific way! Think about mix 16bit, 32bit, 64bit code together, nasty!</li>
+</ul>
+</li>
+<li>
+<p>Hooray, C world. We are in <code>arch/x86/kernel/head64.c</code>. The starting function is <code>x86_64_start_kernel</code>! And the end is the <code>start_kernel</code>, the one in <code>init/main.c</code>.</p>
+</li>
+</ol>
+<p>In all, there are a lot jumps after GRUB2 loads the kernel image,
+and it&rsquo;s really a long road before we can reach <code>start_kernel()</code>.
+It probably should not be this complex, but the x86 architecture is just making it worse.</p>
+<h2 id="linux-vs-linux16">linux v.s. linux16<a class="headerlink" href="#linux-vs-linux16" title="Permanent link">&para;</a></h2>
+<p>An interesting thing is that there are two ways to
+load an kernel image in <code>grub.cfg</code>, either
+<code>linux vmlinuz-3.10.0</code> or <code>linux16 vmlinuz-3.10.0</code>.
+They have different effects, but not sure what are those differences.
+I remember only the <code>linux16</code> one works for me,
+but not remembering why. At least on CentOS 7, it&rsquo;s all <code>linux16</code>.</p>
+<p>The <code>linux16</code> and <code>initrd16</code> in <code>grub-core/loader/i386/pc/linux.c</code>:
+<div class="highlight"><pre><span></span><code><span class="n">GRUB_MOD_INIT</span><span class="p">(</span><span class="n">linux16</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">cmd_linux</span> <span class="o">=</span>
+    <span class="n">grub_register_command</span> <span class="p">(</span><span class="s">&quot;linux16&quot;</span><span class="p">,</span> <span class="n">grub_cmd_linux</span><span class="p">,</span>
+               <span class="mi">0</span><span class="p">,</span> <span class="n">N_</span><span class="p">(</span><span class="s">&quot;Load Linux.&quot;</span><span class="p">));</span>
+  <span class="n">cmd_initrd</span> <span class="o">=</span>
+    <span class="n">grub_register_command</span> <span class="p">(</span><span class="s">&quot;initrd16&quot;</span><span class="p">,</span> <span class="n">grub_cmd_initrd</span><span class="p">,</span>
+               <span class="mi">0</span><span class="p">,</span> <span class="n">N_</span><span class="p">(</span><span class="s">&quot;Load initrd.&quot;</span><span class="p">));</span>
+  <span class="n">my_mod</span> <span class="o">=</span> <span class="n">mod</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>The <code>linux</code> and <code>initrd</code> in <code>grub-core/loader/i386/linux.c</code>:
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="n">grub_command_t</span> <span class="n">cmd_linux</span><span class="p">,</span> <span class="n">cmd_initrd</span><span class="p">;</span>
+
+<span class="n">GRUB_MOD_INIT</span><span class="p">(</span><span class="n">linux</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">cmd_linux</span> <span class="o">=</span> <span class="n">grub_register_command</span> <span class="p">(</span><span class="s">&quot;linux&quot;</span><span class="p">,</span> <span class="n">grub_cmd_linux</span><span class="p">,</span>
+                     <span class="mi">0</span><span class="p">,</span> <span class="n">N_</span><span class="p">(</span><span class="s">&quot;Load Linux.&quot;</span><span class="p">));</span>
+  <span class="n">cmd_initrd</span> <span class="o">=</span> <span class="n">grub_register_command</span> <span class="p">(</span><span class="s">&quot;initrd&quot;</span><span class="p">,</span> <span class="n">grub_cmd_initrd</span><span class="p">,</span>
+                      <span class="mi">0</span><span class="p">,</span> <span class="n">N_</span><span class="p">(</span><span class="s">&quot;Load initrd.&quot;</span><span class="p">));</span>
+  <span class="n">my_mod</span> <span class="o">=</span> <span class="n">mod</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></p>
                 
                   
                     
@@ -1570,7 +1741,7 @@
 <div class="md-source-date">
   <small>
     
-      Last update: April 14, 2020
+      Last update: December 23, 2020
     
   </small>
 </div>
@@ -1583,7 +1754,7 @@
 
   <h2 id="__comments">Comments</h2>
   <div id="disqus_thread"></div>
-  <script>var disqus_config=function(){this.page.url="http://lastweek.io/blog/20200404-on-net-transport/",this.page.identifier="/blog/20200404-on-net-transport/"};!function(){var e=document,i=e.createElement("script");i.src="//lastweek-io.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
+  <script>var disqus_config=function(){this.page.url="http://lastweek.io/notes/linux-boot/",this.page.identifier="/notes/linux-boot/"};!function(){var e=document,i=e.createElement("script");i.src="//lastweek-io.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
 
               
             </article>
@@ -1597,7 +1768,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../20200404-on-read-once/" title="2020-04 On-Read-Once-and-Compiler-Opts" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../kvm-basic/" title="Linux-KVM" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1606,19 +1777,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                2020-04 On-Read-Once-and-Compiler-Opts
+                Linux-KVM
               </div>
             </div>
           </a>
         
         
-          <a href="../../lego/kernel/boot/" title="GRUB2 and Boot" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../misc/essential/" title="Essential" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                GRUB2 and Boot
+                Essential
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
