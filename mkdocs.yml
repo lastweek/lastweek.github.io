@@ -4,7 +4,7 @@ site_url: 'http://lastweek.io'
 
 nav:
 - Home: 'index.md'
-- Code Study:
+- Code:
    - 'All-in-One':                  'notes/source_code/summary.md'
    - 'Guideline & Advice':          'notes/program_advice.md'
    - 'OS':                          'notes/source_code/os.md'
@@ -18,27 +18,27 @@ nav:
    - 'Terminal Commands':           'notes/source_code/commands.md'
    - 'Misc':                        'notes/source_code/misc.md'
 
-- Tech Note:
-   - 'Hardware-Design-Languages':      'notes/hardware_pl.md'
+- Note:
    - 'Practical-Cache-Coherence':      'notes/cache_coherence.md'
-   - 'FPGA-Paper-Reading':                   'notes/paper_fpga.md'
+   - 'Dynamic-Linking':                'notes/dynamic_linking.md'
+   - 'Hardware-Design-Languages':      'notes/hardware_pl.md'
    - 'x86-Ring-Switch-Overhead':       'notes/xperf.md'
-   - 'Performance-Shadows':            'notes/paper_perf_shadows.md'
    - 'Linux-Trace-and-Profile':        'notes/trace.md'
-   - 'Linux-Reverse-Map(rmap)':        'notes/rmap.md'
+   - 'Linux-Reverse-Map (rmap)':       'notes/rmap.md'
    - 'Linux-Userfaultfd':              'notes/userfaultfd.md'
    - 'Linux-Cgroup-and-Swap':          'notes/cgroup-swap.md'
    - 'Linux-Special-Files':            'notes/proc.md'
    - 'Linux-Resource':                 'notes/linux-resource.md'
    - 'Linux-KVM':                      'notes/kvm-basic.md'
    - 'Linux-Boot-After-GRUB':          'notes/linux-boot.md'
+   - 'Performance-Shadows':            'notes/paper_perf_shadows.md'
    - 'Essential':                      'misc/essential.md'
    - 'Benchmarks':                     'notes/benchmark.md'
    - 'Cheatsheet':                     'misc/cheatsheet.md'
-- About FPGA:
-   - 'FPGA-Paper-Reading':                   'notes/paper_fpga.md'
+- FPGA:
+   - 'Papers':                               'notes/paper_fpga.md'
    - 'Bitstream Explained':                  'fpga/bitstream.md'
-   - 'Language':                             'fpga/language.md'
+   - 'Languages':                             'fpga/language.md'
    - 'Morphous Partial Reconfiguration':     'fpga/pr.md'
    - 'Vivado Notes':                         'fpga/vivado.md'
    - 'Efficient AXI-MM':                     'fpga/hls_axi.md'
@@ -144,10 +144,8 @@ plugins:
 theme:
   name: 'material'
   font:
-    #text: 'Montserrat'
-    #text: 'Open Sans'
-    text: Roboto
-    code: Courier Prime
+    text: Courier Prime Bold
+    code: Courier Prime Bold
   icon:
     #logo: material/cloud
     repo: fontawesome/brands/gitlab
