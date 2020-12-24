@@ -21,6 +21,7 @@ nav:
 - Note:
    - 'Practical-Cache-Coherence':      'notes/cache_coherence.md'
    - 'Dynamic-Linking':                'notes/dynamic_linking.md'
+   - 'Virtualization':                 'notes/source_code/virt.md'
    - 'Hardware-Design-Languages':      'notes/hardware_pl.md'
    - 'x86-Ring-Switch-Overhead':       'notes/xperf.md'
    - 'Linux-Trace-and-Profile':        'notes/trace.md'
