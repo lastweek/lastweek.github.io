@@ -10,13 +10,14 @@ nav:
    - 'OS':                          'notes/source_code/os.md'
    - 'Virtualization':              'notes/source_code/virt.md'
    - 'DPDK and RDMA':               'notes/source_code/rdma.md'
-   - 'Firmware and Boorloader':     'notes/source_code/firmware-softwares.md'
+   - 'Firmware and Bootloader':     'notes/source_code/firmware-softwares.md'
    - 'Graphics':                    'notes/source_code/20200501-on-graphic-softwares.md'
    - 'GPU':                         'notes/source_code/gpu.md'
    - 'FPGA':                        'notes/source_code/fpga.md'
+   - 'Security':                    'notes/source_code/security.md'
+   - 'Misc':                        'notes/source_code/misc.md'
    - 'Terminal Configs':            'notes/source_code/dotconfigs.md'
    - 'Terminal Commands':           'notes/source_code/commands.md'
-   - 'Misc':                        'notes/source_code/misc.md'
 
 - Note:
    - 'Practical-Cache-Coherence':      'notes/cache_coherence.md'
