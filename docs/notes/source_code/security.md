@@ -52,8 +52,10 @@ It is a block cipher. It operates on 128-bit data, and produces 128-bit encrypte
 
 ## Software
 
-- [OpenSSL](https://www.openssl.org/)
-- [OpenSSH](https://github.com/openssh/openssh-portable)
+- [OpenSSL](https://www.openssl.org/) - libcrypto
+    - their arch page is really good: https://www.openssl.org/docs/OpenSSLStrategicArchitecture.html
+    - [OpenSSL 3.0.0 Design](https://www.openssl.org/docs/OpenSSL300Design.html)
+- [OpenSSH](https://github.com/openssh/openssh-portable) - ssh/sshd/scp/etc
 
 ## Hardware
 
