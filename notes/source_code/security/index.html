@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
-        <link rel="canonical" href="http://lastweek.io/lego/pcache/evict_and_ref/">
+        <link rel="canonical" href="http://lastweek.io/notes/source_code/security/">
       
       
         <meta name="author" content="Yizhou Shan">
@@ -19,7 +19,7 @@
     
     
       
-        <title>Evict and Refcount - Yizhou Shan's Home Page</title>
+        <title>Security - Yizhou Shan's Home Page</title>
       
     
     
@@ -57,7 +57,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mumble-pcache-eviction-and-refcount" class="md-skip">
+        <a href="#security" class="md-skip">
           Skip to content
         </a>
       
@@ -85,7 +85,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Evict and Refcount
+              Security
             
           </span>
         </div>
@@ -155,7 +155,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../../notes/source_code/summary/" class="md-tabs__link">
+        <a href="../summary/" class="md-tabs__link md-tabs__link--active">
           Code
         </a>
       
@@ -168,7 +168,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../../notes/cache_coherence/" class="md-tabs__link">
+        <a href="../../cache_coherence/" class="md-tabs__link">
           Note
         </a>
       
@@ -181,7 +181,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../../notes/paper_fpga/" class="md-tabs__link">
+        <a href="../../paper_fpga/" class="md-tabs__link">
           FPGA
         </a>
       
@@ -211,7 +211,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../kernel/boot/" class="md-tabs__link">
+        <a href="../../../lego/kernel/boot/" class="md-tabs__link">
           LegoOS
         </a>
       
@@ -262,10 +262,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       Code
@@ -289,7 +291,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/source_code/summary/" title="All-in-One" class="md-nav__link">
+    <a href="../summary/" title="All-in-One" class="md-nav__link">
       All-in-One
     </a>
   </li>
@@ -301,7 +303,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/program_advice/" title="Guideline & Advice" class="md-nav__link">
+    <a href="../../program_advice/" title="Guideline & Advice" class="md-nav__link">
       Guideline & Advice
     </a>
   </li>
@@ -313,7 +315,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/source_code/os/" title="OS" class="md-nav__link">
+    <a href="../os/" title="OS" class="md-nav__link">
       OS
     </a>
   </li>
@@ -325,7 +327,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/source_code/virt/" title="Virtualization" class="md-nav__link">
+    <a href="../virt/" title="Virtualization" class="md-nav__link">
       Virtualization
     </a>
   </li>
@@ -337,7 +339,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/source_code/rdma/" title="DPDK and RDMA" class="md-nav__link">
+    <a href="../rdma/" title="DPDK and RDMA" class="md-nav__link">
       DPDK and RDMA
     </a>
   </li>
@@ -349,7 +351,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/source_code/firmware-softwares/" title="Firmware and Bootloader" class="md-nav__link">
+    <a href="../firmware-softwares/" title="Firmware and Bootloader" class="md-nav__link">
       Firmware and Bootloader
     </a>
   </li>
@@ -361,7 +363,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/source_code/20200501-on-graphic-softwares/" title="Graphics" class="md-nav__link">
+    <a href="../20200501-on-graphic-softwares/" title="Graphics" class="md-nav__link">
       Graphics
     </a>
   </li>
@@ -373,7 +375,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/source_code/gpu/" title="GPU" class="md-nav__link">
+    <a href="../gpu/" title="GPU" class="md-nav__link">
       GPU
     </a>
   </li>
@@ -385,7 +387,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/source_code/fpga/" title="FPGA" class="md-nav__link">
+    <a href="../fpga/" title="FPGA" class="md-nav__link">
       FPGA
     </a>
   </li>
@@ -395,11 +397,100 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../../notes/source_code/security/" title="Security" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Security
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Security" class="md-nav__link md-nav__link--active">
       Security
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learn" class="md-nav__link">
+    Learn
+  </a>
+  
+    <nav class="md-nav" aria-label="Learn">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aes-related" class="md-nav__link">
+    AES Related
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#software" class="md-nav__link">
+    Software
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware" class="md-nav__link">
+    Hardware
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fpga" class="md-nav__link">
+    FPGA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asic" class="md-nav__link">
+    ASIC
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -409,7 +500,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/source_code/misc/" title="Misc" class="md-nav__link">
+    <a href="../misc/" title="Misc" class="md-nav__link">
       Misc
     </a>
   </li>
@@ -421,7 +512,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/source_code/dotconfigs/" title="Terminal Configs" class="md-nav__link">
+    <a href="../dotconfigs/" title="Terminal Configs" class="md-nav__link">
       Terminal Configs
     </a>
   </li>
@@ -433,7 +524,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/source_code/commands/" title="Terminal Commands" class="md-nav__link">
+    <a href="../commands/" title="Terminal Commands" class="md-nav__link">
       Terminal Commands
     </a>
   </li>
@@ -475,7 +566,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/cache_coherence/" title="Practical-Cache-Coherence" class="md-nav__link">
+    <a href="../../cache_coherence/" title="Practical-Cache-Coherence" class="md-nav__link">
       Practical-Cache-Coherence
     </a>
   </li>
@@ -487,7 +578,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/dynamic_linking/" title="Dynamic-Linking" class="md-nav__link">
+    <a href="../../dynamic_linking/" title="Dynamic-Linking" class="md-nav__link">
       Dynamic-Linking
     </a>
   </li>
@@ -499,7 +590,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/source_code/virt/" title="Virtualization" class="md-nav__link">
+    <a href="../virt/" title="Virtualization" class="md-nav__link">
       Virtualization
     </a>
   </li>
@@ -511,7 +602,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/hardware_pl/" title="Hardware-Design-Languages" class="md-nav__link">
+    <a href="../../hardware_pl/" title="Hardware-Design-Languages" class="md-nav__link">
       Hardware-Design-Languages
     </a>
   </li>
@@ -523,7 +614,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/xperf/" title="x86-Ring-Switch-Overhead" class="md-nav__link">
+    <a href="../../xperf/" title="x86-Ring-Switch-Overhead" class="md-nav__link">
       x86-Ring-Switch-Overhead
     </a>
   </li>
@@ -535,7 +626,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/trace/" title="Linux-Trace-and-Profile" class="md-nav__link">
+    <a href="../../trace/" title="Linux-Trace-and-Profile" class="md-nav__link">
       Linux-Trace-and-Profile
     </a>
   </li>
@@ -547,7 +638,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/rmap/" title="Linux-Reverse-Map (rmap)" class="md-nav__link">
+    <a href="../../rmap/" title="Linux-Reverse-Map (rmap)" class="md-nav__link">
       Linux-Reverse-Map (rmap)
     </a>
   </li>
@@ -559,7 +650,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/userfaultfd/" title="Linux-Userfaultfd" class="md-nav__link">
+    <a href="../../userfaultfd/" title="Linux-Userfaultfd" class="md-nav__link">
       Linux-Userfaultfd
     </a>
   </li>
@@ -571,7 +662,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/cgroup-swap/" title="Linux-Cgroup-and-Swap" class="md-nav__link">
+    <a href="../../cgroup-swap/" title="Linux-Cgroup-and-Swap" class="md-nav__link">
       Linux-Cgroup-and-Swap
     </a>
   </li>
@@ -583,7 +674,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/proc/" title="Linux-Special-Files" class="md-nav__link">
+    <a href="../../proc/" title="Linux-Special-Files" class="md-nav__link">
       Linux-Special-Files
     </a>
   </li>
@@ -595,7 +686,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/linux-resource/" title="Linux-Resource" class="md-nav__link">
+    <a href="../../linux-resource/" title="Linux-Resource" class="md-nav__link">
       Linux-Resource
     </a>
   </li>
@@ -607,7 +698,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/kvm-basic/" title="Linux-KVM" class="md-nav__link">
+    <a href="../../kvm-basic/" title="Linux-KVM" class="md-nav__link">
       Linux-KVM
     </a>
   </li>
@@ -619,7 +710,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/linux-boot/" title="Linux-Boot-After-GRUB" class="md-nav__link">
+    <a href="../../linux-boot/" title="Linux-Boot-After-GRUB" class="md-nav__link">
       Linux-Boot-After-GRUB
     </a>
   </li>
@@ -631,7 +722,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/paper_perf_shadows/" title="Performance-Shadows" class="md-nav__link">
+    <a href="../../paper_perf_shadows/" title="Performance-Shadows" class="md-nav__link">
       Performance-Shadows
     </a>
   </li>
@@ -655,7 +746,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/benchmark/" title="Benchmarks" class="md-nav__link">
+    <a href="../../benchmark/" title="Benchmarks" class="md-nav__link">
       Benchmarks
     </a>
   </li>
@@ -709,7 +800,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/paper_fpga/" title="Papers" class="md-nav__link">
+    <a href="../../paper_fpga/" title="Papers" class="md-nav__link">
       Papers
     </a>
   </li>
@@ -850,12 +941,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
     
     <label class="md-nav__link" for="nav-6">
       LegoOS
@@ -904,7 +993,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/boot/" title="GRUB2 and Boot" class="md-nav__link">
+    <a href="../../../lego/kernel/boot/" title="GRUB2 and Boot" class="md-nav__link">
       GRUB2 and Boot
     </a>
   </li>
@@ -916,7 +1005,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/kconfig/" title="Kconfig" class="md-nav__link">
+    <a href="../../../lego/kernel/kconfig/" title="Kconfig" class="md-nav__link">
       Kconfig
     </a>
   </li>
@@ -928,7 +1017,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/debug/" title="Debug" class="md-nav__link">
+    <a href="../../../lego/kernel/debug/" title="Debug" class="md-nav__link">
       Debug
     </a>
   </li>
@@ -940,7 +1029,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/grub/" title="GRUB" class="md-nav__link">
+    <a href="../../../lego/kernel/grub/" title="GRUB" class="md-nav__link">
       GRUB
     </a>
   </li>
@@ -952,7 +1041,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/profile/" title="Profile" class="md-nav__link">
+    <a href="../../../lego/kernel/profile/" title="Profile" class="md-nav__link">
       Profile
     </a>
   </li>
@@ -964,7 +1053,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/profile_strace/" title="Profile strace" class="md-nav__link">
+    <a href="../../../lego/kernel/profile_strace/" title="Profile strace" class="md-nav__link">
       Profile strace
     </a>
   </li>
@@ -976,7 +1065,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/profile_heatmap/" title="Profile heatmap" class="md-nav__link">
+    <a href="../../../lego/kernel/profile_heatmap/" title="Profile heatmap" class="md-nav__link">
       Profile heatmap
     </a>
   </li>
@@ -988,7 +1077,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/profile_points/" title="Profile points" class="md-nav__link">
+    <a href="../../../lego/kernel/profile_points/" title="Profile points" class="md-nav__link">
       Profile points
     </a>
   </li>
@@ -1000,7 +1089,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/trampoline/" title="Trampoline" class="md-nav__link">
+    <a href="../../../lego/kernel/trampoline/" title="Trampoline" class="md-nav__link">
       Trampoline
     </a>
   </li>
@@ -1012,7 +1101,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/pagefault_disable/" title="Disable pgfault" class="md-nav__link">
+    <a href="../../../lego/kernel/pagefault_disable/" title="Disable pgfault" class="md-nav__link">
       Disable pgfault
     </a>
   </li>
@@ -1024,7 +1113,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/stop_machine/" title="Stop machine" class="md-nav__link">
+    <a href="../../../lego/kernel/stop_machine/" title="Stop machine" class="md-nav__link">
       Stop machine
     </a>
   </li>
@@ -1036,7 +1125,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/loader/" title="Program Loader" class="md-nav__link">
+    <a href="../../../lego/kernel/loader/" title="Program Loader" class="md-nav__link">
       Program Loader
     </a>
   </li>
@@ -1048,7 +1137,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/vDSO/" title="vDSO" class="md-nav__link">
+    <a href="../../../lego/kernel/vDSO/" title="vDSO" class="md-nav__link">
       vDSO
     </a>
   </li>
@@ -1060,7 +1149,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/vfs/" title="Virtual File System" class="md-nav__link">
+    <a href="../../../lego/kernel/vfs/" title="Virtual File System" class="md-nav__link">
       Virtual File System
     </a>
   </li>
@@ -1072,7 +1161,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/vm/" title="Process Virtual Memory" class="md-nav__link">
+    <a href="../../../lego/kernel/vm/" title="Process Virtual Memory" class="md-nav__link">
       Process Virtual Memory
     </a>
   </li>
@@ -1084,7 +1173,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/fpu/" title="x86 FPU" class="md-nav__link">
+    <a href="../../../lego/kernel/fpu/" title="x86 FPU" class="md-nav__link">
       x86 FPU
     </a>
   </li>
@@ -1096,7 +1185,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/irq/" title="IRQ" class="md-nav__link">
+    <a href="../../../lego/kernel/irq/" title="IRQ" class="md-nav__link">
       IRQ
     </a>
   </li>
@@ -1108,7 +1197,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/net_thpool/" title="Network Thpool" class="md-nav__link">
+    <a href="../../../lego/kernel/net_thpool/" title="Network Thpool" class="md-nav__link">
       Network Thpool
     </a>
   </li>
@@ -1150,7 +1239,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../syscall/facts/" title="Facts" class="md-nav__link">
+    <a href="../../../lego/syscall/facts/" title="Facts" class="md-nav__link">
       Facts
     </a>
   </li>
@@ -1162,7 +1251,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kernel/profile_strace/" title="strace" class="md-nav__link">
+    <a href="../../../lego/kernel/profile_strace/" title="strace" class="md-nav__link">
       strace
     </a>
   </li>
@@ -1174,7 +1263,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../syscall/compat/" title="compat" class="md-nav__link">
+    <a href="../../../lego/syscall/compat/" title="compat" class="md-nav__link">
       compat
     </a>
   </li>
@@ -1186,7 +1275,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../syscall/msync/" title="msync()" class="md-nav__link">
+    <a href="../../../lego/syscall/msync/" title="msync()" class="md-nav__link">
       msync()
     </a>
   </li>
@@ -1198,7 +1287,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../syscall/mremap/" title="mremap()" class="md-nav__link">
+    <a href="../../../lego/syscall/mremap/" title="mremap()" class="md-nav__link">
       mremap()
     </a>
   </li>
@@ -1210,7 +1299,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../syscall/fork/" title="fork()" class="md-nav__link">
+    <a href="../../../lego/syscall/fork/" title="fork()" class="md-nav__link">
       fork()
     </a>
   </li>
@@ -1222,7 +1311,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../syscall/getrusage/" title="getrusage()" class="md-nav__link">
+    <a href="../../../lego/syscall/getrusage/" title="getrusage()" class="md-nav__link">
       getrusage()
     </a>
   </li>
@@ -1234,7 +1323,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../syscall/wait_and_exit/" title="wait4 and exit()" class="md-nav__link">
+    <a href="../../../lego/syscall/wait_and_exit/" title="wait4 and exit()" class="md-nav__link">
       wait4 and exit()
     </a>
   </li>
@@ -1249,12 +1338,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-3" type="checkbox" id="nav-6-3" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-3" type="checkbox" id="nav-6-3">
     
     <label class="md-nav__link" for="nav-6-3">
       Pcache
@@ -1278,7 +1365,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../config/" title="Config" class="md-nav__link">
+    <a href="../../../lego/pcache/config/" title="Config" class="md-nav__link">
       Config
     </a>
   </li>
@@ -1290,7 +1377,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../sweep/" title="Sweep" class="md-nav__link">
+    <a href="../../../lego/pcache/sweep/" title="Sweep" class="md-nav__link">
       Sweep
     </a>
   </li>
@@ -1302,7 +1389,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tlb/" title="TLB Coherence" class="md-nav__link">
+    <a href="../../../lego/pcache/tlb/" title="TLB Coherence" class="md-nav__link">
       TLB Coherence
     </a>
   </li>
@@ -1314,7 +1401,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../pgtable-lock/" title="PageTable Lock" class="md-nav__link">
+    <a href="../../../lego/pcache/pgtable-lock/" title="PageTable Lock" class="md-nav__link">
       PageTable Lock
     </a>
   </li>
@@ -1326,7 +1413,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../victim/" title="Victim Cache" class="md-nav__link">
+    <a href="../../../lego/pcache/victim/" title="Victim Cache" class="md-nav__link">
       Victim Cache
     </a>
   </li>
@@ -1338,7 +1425,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../virtual_cache/" title="Virtual Cache" class="md-nav__link">
+    <a href="../../../lego/pcache/virtual_cache/" title="Virtual Cache" class="md-nav__link">
       Virtual Cache
     </a>
   </li>
@@ -1350,7 +1437,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../rmap/" title="Reverse Mapping" class="md-nav__link">
+    <a href="../../../lego/pcache/rmap/" title="Reverse Mapping" class="md-nav__link">
       Reverse Mapping
     </a>
   </li>
@@ -1360,20 +1447,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="./" title="Evict and Refcount" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../../lego/pcache/evict_and_ref/" title="Evict and Refcount" class="md-nav__link">
       Evict and Refcount
     </a>
-    
   </li>
 
         
@@ -1383,7 +1461,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../smp_design/" title="SMP Design" class="md-nav__link">
+    <a href="../../../lego/pcache/smp_design/" title="SMP Design" class="md-nav__link">
       SMP Design
     </a>
   </li>
@@ -1395,7 +1473,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../replication/" title="Replication" class="md-nav__link">
+    <a href="../../../lego/pcache/replication/" title="Replication" class="md-nav__link">
       Replication
     </a>
   </li>
@@ -1437,7 +1515,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../driver/pci/" title="PCI" class="md-nav__link">
+    <a href="../../../lego/driver/pci/" title="PCI" class="md-nav__link">
       PCI
     </a>
   </li>
@@ -1449,7 +1527,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../driver/ib/" title="Infiniband" class="md-nav__link">
+    <a href="../../../lego/driver/ib/" title="Infiniband" class="md-nav__link">
       Infiniband
     </a>
   </li>
@@ -1491,7 +1569,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../paper/nmp/" title="NMP" class="md-nav__link">
+    <a href="../../../lego/paper/nmp/" title="NMP" class="md-nav__link">
       NMP
     </a>
   </li>
@@ -1503,7 +1581,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../paper/processor_oom/" title="Processor OOM" class="md-nav__link">
+    <a href="../../../lego/paper/processor_oom/" title="Processor OOM" class="md-nav__link">
       Processor OOM
     </a>
   </li>
@@ -1515,7 +1593,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../paper/genz/" title="Gen-Z" class="md-nav__link">
+    <a href="../../../lego/paper/genz/" title="Gen-Z" class="md-nav__link">
       Gen-Z
     </a>
   </li>
@@ -1527,7 +1605,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../paper/replication/" title="Replication" class="md-nav__link">
+    <a href="../../../lego/paper/replication/" title="Replication" class="md-nav__link">
       Replication
     </a>
   </li>
@@ -1539,7 +1617,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../paper/related/" title="Related" class="md-nav__link">
+    <a href="../../../lego/paper/related/" title="Related" class="md-nav__link">
       Related
     </a>
   </li>
@@ -1572,6 +1650,70 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learn" class="md-nav__link">
+    Learn
+  </a>
+  
+    <nav class="md-nav" aria-label="Learn">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aes-related" class="md-nav__link">
+    AES Related
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#software" class="md-nav__link">
+    Software
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware" class="md-nav__link">
+    Hardware
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fpga" class="md-nav__link">
+    FPGA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asic" class="md-nav__link">
+    ASIC
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1586,99 +1728,86 @@
                   
                 
                 
-                <h1 id="mumble-pcache-eviction-and-refcount">Mumble pcache eviction and refcount<a class="headerlink" href="#mumble-pcache-eviction-and-refcount" title="Permanent link">&para;</a></h1>
-<p>This is about how Lego is doing eviction against live references of pcache. Unlike the <code>garbage collection</code> where it only reclaims object that has no references, pcache eviction may try to evict a pcache that is currently being used by another thread. Both parties need to be very careful. A tricky business.</p>
-<p>To describe the issue in a high-level, let us consider this case: the system now has two threads running on two different cores. The first thread try to evict a pcache line, and it truly find a candidate and prepare to evict. Meanwhile, the other thread is currently using this pcache line to do some operations such as <code>zap_rmap()</code>. If the first thread evict the pcache line without synchronization with the second thread, oops, the second thread is playing with a wrong pcache.</p>
-<p>The textbook idea is adding refcount. However, this is not enough in C. Because:</p>
+                <h1 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h1>
+<details class="note"><summary>Version History</summary><table>
+<thead>
+<tr>
+<th align="left">Date</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Dec 26, 2020</td>
+<td>created</td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>So today (Dec 26, 2020)
+I&rsquo;m trying to write some crypto functions to encrypt/decrypt packets,
+mainly for a research project I&rsquo;m doing.
+Then I realize my knowledge about network security is just too shallow!
+Although I know AES, SHA etc to some extent,
+I&rsquo;m not really sure how they are used and which one to use.</p>
+<p>I&rsquo;m trying to implement them for FPGA using SpinalHDL.</p>
+<h2 id="learn">Learn<a class="headerlink" href="#learn" title="Permanent link">&para;</a></h2>
+<p>Some basic concepts:</p>
 <ul>
-<li>There is no way to prevent the second thread from getting the <strong><code>pointer</code></strong> to that pcm.</li>
-<li>A simple <code>inc_refcount()</code> from the second thread can happen anytime in the middle of first thread&rsquo;s eviction.</li>
+<li><a href="https://en.wikipedia.org/wiki/Transport_Layer_Security">https://en.wikipedia.org/wiki/Transport_Layer_Security</a><ul>
+<li><a href="https://www.openssl.org/">OpenSSL</a></li>
+<li>LibreSSL</li>
 </ul>
-<p>Solutions:</p>
+</li>
+<li><a href="https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process">Understanding the SSH Encryption and Connection Process</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Cryptographic_hash_function">https://en.wikipedia.org/wiki/Cryptographic_hash_function</a><ul>
+<li>MD5</li>
+<li><a href="https://en.wikipedia.org/wiki/Secure_Hash_Algorithms">SHA-1 SHA-2 SHA-3</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Avalanche_effect">https://en.wikipedia.org/wiki/Avalanche_effect</a></li>
+</ul>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Public-key_cryptography">https://en.wikipedia.org/wiki/Public-key_cryptography</a><ul>
+<li><a href="https://en.wikipedia.org/wiki/PKCS_1">https://en.wikipedia.org/wiki/PKCS_1</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="aes-related">AES Related<a class="headerlink" href="#aes-related" title="Permanent link">&para;</a></h3>
+<p>As I know it, it two variables controlling its variations:
+1) key size, 128-bit, 192-bit, 256-bit.
+2) mode of chaining, e.g., ctr, cbc.</p>
+<p>It is a block cipher. It operates on 128-bit data, and produces 128-bit encrypted data.</p>
 <ul>
-<li>To actually prevent the second thread from getting the pointer, we should think about <em>how</em> it get the pointer? Luckily, in Lego, there is only one entry point, which is from <code>pte to pcm</code> (aka. pcache_meta). So to synchronize pte change becomes very important. Luckily, we are doing pte_lock before getting the pcm. So this simple pte lock ensures the second thread a safe, will-not-be-evicted pcm (of course, with some other checkings). This idea can also be generalized to any data structures that need pointer references: <strong>protect your pointer</strong>!</li>
-<li>Refcount checking is also necessary. In the eviction routine, we need to use  <code>atomic_xchg</code> to reset the refcount. If this fails, it means someone else is using it. Do note, this <code>atomic_xchg</code> is carried out with pcm locked. Thus the ordering of locking, get/put matters in the code.</li>
+<li><a href="https://en.wikipedia.org/wiki/Block_cipher">Block cipher</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation">Block cipher mode of operation</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Block_size_(cryptography)">Block size (cryptography)</a></li>
 </ul>
-<p>The code itself tells a much more complete story, I strongly recommend you read the code if you are interested. Here I will list the most interesting part. For the other users except eviction, they need to do this:
-<div class="highlight"><pre><span></span><code><span class="n">pcm</span> <span class="o">=</span> <span class="n">pte_to_pcache_meta</span><span class="p">(</span><span class="n">ptent</span><span class="p">);</span>
-<span class="cm">/*   </span>
-<span class="cm"> * We have a strict lock ordering everyone should obey:</span>
-<span class="cm"> *      lock pcache</span>
-<span class="cm"> *      lock pte</span>
-<span class="cm"> * The caller already locked pte, thus we should avoid deadlock here</span>
-<span class="cm"> * by droping pte lock first and then acquire both of them in order.</span>
-<span class="cm"> */</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="o">!</span><span class="n">trylock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">)))</span> <span class="p">{</span>
-    <span class="cm">/* in case it got evicted and @pcm becomes invalid */</span>
-    <span class="n">get_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
-
-    <span class="cm">/*</span>
-<span class="cm">     * Once we release the pte lock, this pcm may be</span>
-<span class="cm">     * unmapped by another thread who is doing eviction.</span>
-<span class="cm">     * Since we have grabbed one extra ref above, so even</span>
-<span class="cm">     * it is unmapped, eviction thread will not fail to free it.</span>
-<span class="cm">     */</span>
-    <span class="n">spin_unlock</span><span class="p">(</span><span class="n">ptl</span><span class="p">);</span>
-
-    <span class="n">lock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
-    <span class="n">spin_lock</span><span class="p">(</span><span class="n">ptl</span><span class="p">);</span>
-
-    <span class="cm">/*   </span>
-<span class="cm">     * Since we dropped the lock, the pcache line might</span>
-<span class="cm">     * be got evicted in the middle.</span>
-<span class="cm">     */</span>
-<span class="hll">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">pte_same</span><span class="p">(</span><span class="o">*</span><span class="n">pte</span><span class="p">,</span> <span class="n">ptent</span><span class="p">))</span> <span class="p">{</span>
-</span>        <span class="n">unlock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
-        <span class="cm">/*   </span>
-<span class="cm">         * This put maybe decreases the ref to 0</span>
-<span class="cm">         * and eventually free the pcache line.</span>
-<span class="cm">         * This happens if the @pcm was selected</span>
-<span class="cm">         * to be evicted at the same time.</span>
-<span class="cm">         */</span>
-        <span class="n">put_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
-        <span class="k">return</span> <span class="o">-</span><span class="n">EAGAIN</span><span class="p">;</span>
-    <span class="p">}</span>    
-    <span class="n">put_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></p>
-<p>As for the eviction thread, it needs to make sure it is the last user using this pcm:
-<div class="highlight"><pre><span></span><code><span class="cm">/*  </span>
-<span class="cm"> * Each rmap counts one refcount, plus the one grabbed</span>
-<span class="cm"> * during evict_find_line(), we should have (nr_mapped + 1)</span>
-<span class="cm"> * here if there are no any other users.</span>
-<span class="cm"> *</span>
-<span class="cm"> * Furthurmore, others can not go from munmap/mremap/wp to</span>
-<span class="cm"> * put_pcache() within pcache_zap_pte(), pcache_move_pte()</span>
-<span class="cm"> * or pcache_do_wp_page(). Thus the refcount must larger or</span>
-<span class="cm"> * equal to (nr_mapped + 1).</span>
-<span class="cm"> *</span>
-<span class="cm"> * But if there truly other users (refcount &gt; nr_mapped + 1),</span>
-<span class="cm"> * then we should manually sub the refcount. The other users</span>
-<span class="cm"> * which are currently holding the ref, will free the pcache</span>
-<span class="cm"> * once it call put_pcache.</span>
-<span class="cm"> */</span>
-<span class="n">PCACHE_BUG_ON_PCM</span><span class="p">(</span><span class="n">pcache_ref_count</span><span class="p">(</span><span class="n">pcm</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">nr_mapped</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pcm</span><span class="p">);</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="o">!</span><span class="n">pcache_ref_freeze</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="n">nr_mapped</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="n">pcache_ref_sub_and_test</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="n">nr_mapped</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span> <span class="p">{</span>
-        <span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;BUG: pcm refcount, nr_mapped: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">nr_mapped</span><span class="p">);</span>
-        <span class="n">dump_pcache_meta</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="s">&quot;ref error&quot;</span><span class="p">);</span>
-        <span class="n">BUG</span><span class="p">();</span>
-    <span class="p">}</span>   
-
-    <span class="n">ClearPcacheReclaim</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
-    <span class="n">add_to_lru_list</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="n">pset</span><span class="p">);</span>
-    <span class="n">unlock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
-
-    <span class="n">inc_pcache_event</span><span class="p">(</span><span class="n">PCACHE_EVICTION_EAGAIN_CONCURRENT</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">PCACHE_EVICT_EAGAIN_CONCURRENT</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></p>
-<hr />
-<p>My personal thought: live eviction against live objects/references is very hard. You first need to use refcount to ensure a correct ordering. You also need to have a way to prevent others from using the going-to-be-evicted pointer, or have a way to detect a under-use pointer.  In this Lego pcache case, we use the combination of pte lock, pcache lock, and pcache refcount, to ensure everyone is safe. And all these is quite similar to Linux page operations. I learned a lot from its code. But I still not fully understand how it ensures the page is not used by others, it has way more parties than lego that can use the page at the same time of eviction. Magic kernel folks.</p>
-<p>&ndash;<br />
-Yizhou Shan <img alt="🌿" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f33f.svg" title=":herb:" /><br />
-Created: Mar 15, 2018<br />
-Last Updated: Mar 16, 2018</p>
+<div class="admonition quote">
+<p class="admonition-title">Quote</p>
+<p>mode of operation describes how to repeatedly apply
+a cipher&rsquo;s single-block operation to securely transform
+amounts of data larger than a block</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Quote</p>
+<p>Block ciphers operate on a fixed length string of bits. The length of this bit string is the block size. Both the input (plaintext) and output (ciphertext) are the same length; the output cannot be shorter than the input – this follows logically from the pigeonhole principle and the fact that the cipher must be reversible – and it is undesirable for the output to be longer than the input.</p>
+</div>
+<h2 id="software">Software<a class="headerlink" href="#software" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://www.openssl.org/">OpenSSL</a></li>
+<li><a href="https://github.com/openssh/openssh-portable">OpenSSH</a></li>
+</ul>
+<h2 id="hardware">Hardware<a class="headerlink" href="#hardware" title="Permanent link">&para;</a></h2>
+<h3 id="fpga">FPGA<a class="headerlink" href="#fpga" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://opencores.org/projects/sha3">Opencore SHA-3</a></li>
+<li><a href="https://opencores.org/projects/tiny_aes">Opencore AES</a></li>
+<li><a href="https://github.com/SpinalHDL/SpinalCrypto">SpninalCrypto</a></li>
+</ul>
+<h3 id="asic">ASIC<a class="headerlink" href="#asic" title="Permanent link">&para;</a></h3>
+<ul>
+<li>CPU has extended instructions to accelerate AES and its friends: <a href="https://en.wikipedia.org/wiki/AES_instruction_set">AES inst set</a></li>
+</ul>
                 
                   
                     
@@ -1687,7 +1816,7 @@ Last Updated: Mar 16, 2018</p>
 <div class="md-source-date">
   <small>
     
-      Last update: March 16, 2018
+      Last update: December 27, 2020
     
   </small>
 </div>
@@ -1700,7 +1829,7 @@ Last Updated: Mar 16, 2018</p>
 
   <h2 id="__comments">Comments</h2>
   <div id="disqus_thread"></div>
-  <script>var disqus_config=function(){this.page.url="http://lastweek.io/lego/pcache/evict_and_ref/",this.page.identifier="/lego/pcache/evict_and_ref/"};!function(){var e=document,i=e.createElement("script");i.src="//lastweek-io.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
+  <script>var disqus_config=function(){this.page.url="http://lastweek.io/notes/source_code/security/",this.page.identifier="/notes/source_code/security/"};!function(){var e=document,i=e.createElement("script");i.src="//lastweek-io.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
 
               
             </article>
@@ -1714,7 +1843,7 @@ Last Updated: Mar 16, 2018</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../rmap/" title="Reverse Mapping" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../fpga/" title="FPGA" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1723,19 +1852,19 @@ Last Updated: Mar 16, 2018</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Reverse Mapping
+                FPGA
               </div>
             </div>
           </a>
         
         
-          <a href="../smp_design/" title="SMP Design" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../misc/" title="Misc" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                SMP Design
+                Misc
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
