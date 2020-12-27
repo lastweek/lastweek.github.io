@@ -99,12 +99,11 @@ See [here](http://lastweek.io/notes/source_code/os/).
 
 - [iperf3](https://github.com/lastweek/source-iperf) is a TCP, UDP, and SCTP network bandwidth measurement tool
 - [tcpdump](https://github.com/lastweek/source-tcpdump)
-- [OpenSSH](https://github.com/lastweek/source-openssh-portable) is our ssh!
 - [scapy](https://github.com/lastweek/source-scapy): Python-based interactive packet manipulation program & library. Very neat
 - [tcpstat](https://github.com/lastweek/source-tcpstat): C-based simple tool that could dump network traffic. Seems using pcap interface, the one used by tcpdump?
 - Also checkout [FreeBSD](https://github.com/lastweek/source-freebsd) as it has tools like `ifconfig`, `if`. 
-
-- [Click Modular Router](https://github.com/lastweek/source-click)
+- [OpenSSH](https://github.com/lastweek/source-openssh-portable) is our ssh!
+- [OpenSSL](https://github.com/openssl/openssl)
 
 ## Virtualization
 
