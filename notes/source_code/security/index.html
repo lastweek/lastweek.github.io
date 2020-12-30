@@ -448,6 +448,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#sha-related" class="md-nav__link">
+    SHA Related
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1673,6 +1680,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#sha-related" class="md-nav__link">
+    SHA Related
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1738,8 +1752,12 @@
 </thead>
 <tbody>
 <tr>
+<td align="left">Dec 27, 2020</td>
+<td>Updated</td>
+</tr>
+<tr>
 <td align="left">Dec 26, 2020</td>
-<td>created</td>
+<td>Created</td>
 </tr>
 </tbody>
 </table>
@@ -1754,21 +1772,32 @@ I&rsquo;m not really sure how they are used and which one to use.</p>
 <h2 id="learn">Learn<a class="headerlink" href="#learn" title="Permanent link">&para;</a></h2>
 <p>Some basic concepts:</p>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Transport_Layer_Security">https://en.wikipedia.org/wiki/Transport_Layer_Security</a><ul>
-<li><a href="https://www.openssl.org/">OpenSSL</a></li>
-<li>LibreSSL</li>
-</ul>
-</li>
-<li><a href="https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process">Understanding the SSH Encryption and Connection Process</a></li>
+<li><a href="https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values#aHashing">https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values#aHashing</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Cryptographic_hash_function">https://en.wikipedia.org/wiki/Cryptographic_hash_function</a><ul>
 <li>MD5</li>
 <li><a href="https://en.wikipedia.org/wiki/Secure_Hash_Algorithms">SHA-1 SHA-2 SHA-3</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Avalanche_effect">https://en.wikipedia.org/wiki/Avalanche_effect</a></li>
 </ul>
 </li>
-<li><a href="https://en.wikipedia.org/wiki/Public-key_cryptography">https://en.wikipedia.org/wiki/Public-key_cryptography</a><ul>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Public-key_cryptography">https://en.wikipedia.org/wiki/Public-key_cryptography</a></p>
+<ul>
 <li><a href="https://en.wikipedia.org/wiki/PKCS_1">https://en.wikipedia.org/wiki/PKCS_1</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Twofish">Twofish, 128-bit block plaintext -&gt; ciphertext</a></li>
+</ul>
+</li>
+<li>
+<p>SSH forgos a similar process as SSL/TLS. <a href="https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process">Understanding the SSH Encryption and Connection Process</a>.</p>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Transport_Layer_Security">SSL/TLS</a><ul>
+<li><a href="https://en.wikipedia.org/wiki/Cipher_suite">Cipher Suite</a></li>
+<li><a href="https://www.openssl.org/">OpenSSL</a>, LibreSSL</li>
+<li>So TLS (or DTLS for UDP) has a handshake process after a TCP or UDP port is open.
+  This handshake process uses asymmetric-keys (public/private) keys to exchange info (e.g., choose TLS info, send pub key etc).
+  They will reach a consensus on which TLS version to use, which cipher suite to use, which session key, or encryption key to use.
+  Finally they will start sending traffic using symmetric encryption (e.g., AES).
+  In addition, they will use secure hashing (e.g., SHA3) to ensure the integrity of the packets.</li>
 </ul>
 </li>
 </ul>
@@ -1780,7 +1809,22 @@ I&rsquo;m not really sure how they are used and which one to use.</p>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Block_cipher">Block cipher</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation">Block cipher mode of operation</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Block_size_(cryptography)">Block size (cryptography)</a></li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Block_size_(cryptography)">Block size (cryptography)</a></p>
+</li>
+<li>
+<p>S-Box</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/S-box">https://en.wikipedia.org/wiki/S-box</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Rijndael_S-box">https://en.wikipedia.org/wiki/Rijndael_S-box</a></li>
+</ul>
+</li>
+<li>
+<p>Key Schedule, round constant</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/AES_key_schedule">https://en.wikipedia.org/wiki/AES_key_schedule</a></li>
+</ul>
+</li>
 </ul>
 <div class="admonition quote">
 <p class="admonition-title">Quote</p>
@@ -1792,6 +1836,12 @@ amounts of data larger than a block</p>
 <p class="admonition-title">Quote</p>
 <p>Block ciphers operate on a fixed length string of bits. The length of this bit string is the block size. Both the input (plaintext) and output (ciphertext) are the same length; the output cannot be shorter than the input – this follows logically from the pigeonhole principle and the fact that the cipher must be reversible – and it is undesirable for the output to be longer than the input.</p>
 </div>
+<h3 id="sha-related">SHA Related<a class="headerlink" href="#sha-related" title="Permanent link">&para;</a></h3>
+<p>SHA-3 has several variations, depending the hash size: <code>SHA3-224, SHA3-256, SHA3-384, and SHA3-512</code>.</p>
+<ul>
+<li><a href="https://keccak.team/index.html">https://keccak.team/index.html</a></li>
+<li><a href="https://csrc.nist.gov/projects/hash-functions">https://csrc.nist.gov/projects/hash-functions</a></li>
+</ul>
 <h2 id="software">Software<a class="headerlink" href="#software" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://www.openssl.org/">OpenSSL</a> - libcrypto<ul>
@@ -1820,7 +1870,7 @@ amounts of data larger than a block</p>
 <div class="md-source-date">
   <small>
     
-      Last update: December 27, 2020
+      Last update: December 30, 2020
     
   </small>
 </div>
