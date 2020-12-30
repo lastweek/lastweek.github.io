@@ -3,7 +3,8 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
-	|Dec 26, 2020| created|
+	|Dec 27, 2020| Updated|
+	|Dec 26, 2020| Created|
 
 So today (Dec 26, 2020)
 I'm trying to write some crypto functions to encrypt/decrypt packets,
@@ -18,10 +19,7 @@ I'm trying to implement them for FPGA using SpinalHDL.
 
 Some basic concepts:
 
-- https://en.wikipedia.org/wiki/Transport_Layer_Security
-    - [OpenSSL](https://www.openssl.org/)
-    - LibreSSL
-- [Understanding the SSH Encryption and Connection Process](https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process)
+- https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values#aHashing
 - https://en.wikipedia.org/wiki/Cryptographic_hash_function
     - MD5
     - [SHA-1 SHA-2 SHA-3](https://en.wikipedia.org/wiki/Secure_Hash_Algorithms)
@@ -29,6 +27,17 @@ Some basic concepts:
 - https://en.wikipedia.org/wiki/Public-key_cryptography
     - https://en.wikipedia.org/wiki/PKCS_1
     - [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
+    - [Twofish, 128-bit block plaintext -> ciphertext](https://en.wikipedia.org/wiki/Twofish)
+
+- SSH forgos a similar process as SSL/TLS. [Understanding the SSH Encryption and Connection Process](https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process).
+- [SSL/TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security)
+    - [Cipher Suite](https://en.wikipedia.org/wiki/Cipher_suite)
+    - [OpenSSL](https://www.openssl.org/), LibreSSL
+    - So TLS (or DTLS for UDP) has a handshake process after a TCP or UDP port is open.
+      This handshake process uses asymmetric-keys (public/private) keys to exchange info (e.g., choose TLS info, send pub key etc).
+      They will reach a consensus on which TLS version to use, which cipher suite to use, which session key, or encryption key to use.
+      Finally they will start sending traffic using symmetric encryption (e.g., AES).
+      In addition, they will use secure hashing (e.g., SHA3) to ensure the integrity of the packets.
 
 ### AES Related
 
@@ -42,6 +51,13 @@ It is a block cipher. It operates on 128-bit data, and produces 128-bit encrypte
 - [Block cipher mode of operation](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation)
 - [Block size (cryptography)](https://en.wikipedia.org/wiki/Block_size_(cryptography))
 
+- S-Box
+    - https://en.wikipedia.org/wiki/S-box
+    - https://en.wikipedia.org/wiki/Rijndael_S-box
+
+- Key Schedule, round constant
+    - https://en.wikipedia.org/wiki/AES_key_schedule
+
 !!! quote
     mode of operation describes how to repeatedly apply
     a cipher's single-block operation to securely transform
@@ -49,6 +65,13 @@ It is a block cipher. It operates on 128-bit data, and produces 128-bit encrypte
 
 !!! quote
 	Block ciphers operate on a fixed length string of bits. The length of this bit string is the block size. Both the input (plaintext) and output (ciphertext) are the same length; the output cannot be shorter than the input – this follows logically from the pigeonhole principle and the fact that the cipher must be reversible – and it is undesirable for the output to be longer than the input.
+
+### SHA Related
+
+SHA-3 has several variations, depending the hash size: `SHA3-224, SHA3-256, SHA3-384, and SHA3-512`.
+
+- https://keccak.team/index.html
+- https://csrc.nist.gov/projects/hash-functions
 
 ## Software
 
