@@ -45,17 +45,30 @@ will be stored when the computing unit produces it.
 
 ## Distributed v.s. Centralized Reservation Station
 
-Textbook Tomasulo uses distributed reservation station,
+Textbook Tomasulo uses **distributed reservation station**,
 each functional unit has its own attached RS entries.
 
-Some old CPUs like PowerPC 604, Pentium 4 and newer generation CPUs like AMD Zen series are also using distributed reservation station.
+Some old CPUs like PowerPC 604, Pentium 4 and newer generation CPUs like [AMD Zen](https://en.wikichip.org/wiki/File:zen_block_diagram.svg)
+series are also using distributed reservation station.
 
-But recent Intel CPUs are all using centralized reservation station design.
+Regarding AMD Zen, the [architecture figure](https://en.wikichip.org/wiki/File:zen_block_diagram.svg)
+shows there are 6 small schedulers within the Integer execution pipeline,
+each with 14 entries, so in total 84 entries.
+It appears each scheduler is used exclusively by one execution port,
+but the `forwarding muxes` below confuses me.
+This mux maybe able to distribute
+work across different ports thereby overtime
+resource fragmentation issue of distributed reservation station approach?
+Not sure how exactly it is designed.
+
+On the contray, recent Intel CPUs are all using **centralized reservation station** design.
 There is one giant unified reservation station, or scheduler in Intel's wording,
-working for all functional units. In Skylake, this scheduler has 96 entries, meaning there can be 96 instructions currently being executed by functional units. (The number of ROB entries is larger than this number, because ROB still cache info for already excuted but uncommitted instructions).
+working for all functional units. E.g., in [Skylake](https://en.wikichip.org/wiki/File:skylake_block_diagram.svg), this scheduler has 96 entries,
+meaning there can be 96 instructions currently being executed by functional units
+(The number of ROB entries is larger than this number, because ROB still cache info for already excuted but uncommitted instructions).
 
-I don't really know the actual practical trade-off.
-But my guess for centralized v.s. distributed reservation station are:
+I don't really know the actual practical trade-off among these two choices.
+My guess for centralized v.s. distributed reservation station trade-offs are:
 
 1. For centralized design, the RS is not statically partitioned like the
 distributed design. So the RS usage can adapt to workloads to avoid some blocking.
