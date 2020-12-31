@@ -5,7 +5,7 @@
 	|:---|-----------|
 	|Dec 30, 2020| Initial|
 
-:boat:
+:sailboat:
 
 ## Reservation Station and ROB
 
