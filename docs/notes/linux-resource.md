@@ -18,6 +18,11 @@
 
 - [Evolution of the x86 context switch in Linux](http://www.maizure.org/projects/evolution_x86_context_switch_linux/)
 
+## Memory Management
+
+- [Memory: the flat, the discontiguous, and the sparse](https://lwn.net/Articles/789304/)
+- [Reducing page structures for huge pages](https://lwn.net/Articles/839737/)
+
 ## Misc
 
 - [Why printk() is so complicated (and how to fix it)](https://lwn.net/Articles/800946/)
