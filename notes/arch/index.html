@@ -1786,14 +1786,26 @@ over ROB-with-buffer is that we can greatly reduce data movement.
 The ROB no longer needs write back data to register file, it
 will be stored when the computing unit produces it.</p>
 <h2 id="distributed-vs-centralized-reservation-station">Distributed v.s. Centralized Reservation Station<a class="headerlink" href="#distributed-vs-centralized-reservation-station" title="Permanent link">&para;</a></h2>
-<p>Textbook Tomasulo uses distributed reservation station,
+<p>Textbook Tomasulo uses <strong>distributed reservation station</strong>,
 each functional unit has its own attached RS entries.</p>
-<p>Some old CPUs like PowerPC 604, Pentium 4 and newer generation CPUs like AMD Zen series are also using distributed reservation station.</p>
-<p>But recent Intel CPUs are all using centralized reservation station design.
+<p>Some old CPUs like PowerPC 604, Pentium 4 and newer generation CPUs like <a href="https://en.wikichip.org/wiki/File:zen_block_diagram.svg">AMD Zen</a>
+series are also using distributed reservation station.</p>
+<p>Regarding AMD Zen, the <a href="https://en.wikichip.org/wiki/File:zen_block_diagram.svg">architecture figure</a>
+shows there are 6 small schedulers within the Integer execution pipeline,
+each with 14 entries, so in total 84 entries.
+It appears each scheduler is used exclusively by one execution port,
+but the <code>forwarding muxes</code> below confuses me.
+This mux maybe able to distribute
+work across different ports thereby overtime
+resource fragmentation issue of distributed reservation station approach?
+Not sure how exactly it is designed.</p>
+<p>On the contray, recent Intel CPUs are all using <strong>centralized reservation station</strong> design.
 There is one giant unified reservation station, or scheduler in Intel&rsquo;s wording,
-working for all functional units. In Skylake, this scheduler has 96 entries, meaning there can be 96 instructions currently being executed by functional units. (The number of ROB entries is larger than this number, because ROB still cache info for already excuted but uncommitted instructions).</p>
-<p>I don&rsquo;t really know the actual practical trade-off.
-But my guess for centralized v.s. distributed reservation station are:</p>
+working for all functional units. E.g., in <a href="https://en.wikichip.org/wiki/File:skylake_block_diagram.svg">Skylake</a>, this scheduler has 96 entries,
+meaning there can be 96 instructions currently being executed by functional units
+(The number of ROB entries is larger than this number, because ROB still cache info for already excuted but uncommitted instructions).</p>
+<p>I don&rsquo;t really know the actual practical trade-off among these two choices.
+My guess for centralized v.s. distributed reservation station trade-offs are:</p>
 <ol>
 <li>For centralized design, the RS is not statically partitioned like the
 distributed design. So the RS usage can adapt to workloads to avoid some blocking.</li>
