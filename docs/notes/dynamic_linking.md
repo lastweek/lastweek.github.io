@@ -5,7 +5,9 @@
 	|:---|-----------|
 	|Dec 24, 2020| Adopted from my previous [note](https://github.com/lastweek/source-glibc)|
 
-For code pointers, you can find the glibc code [here](https://github.com/lastweek/source-glibc).
+:rowboat:
+
+For code pointers, see the glibc code [here](https://github.com/lastweek/source-glibc).
 
 ## C Start Up (csu)
 
