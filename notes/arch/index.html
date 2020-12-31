@@ -9,21 +9,21 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
-        <link rel="canonical" href="http://lastweek.io/notes/source_code/firmware-softwares/">
+        <link rel="canonical" href="http://lastweek.io/notes/arch/">
       
       
         <meta name="author" content="Yizhou Shan">
       
-      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
     
     
       
-        <title>Firmware and Bootloader - Yizhou Shan's Home Page</title>
+        <title>Architecture - Yizhou Shan's Home Page</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.a2408e81.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a2408e81.min.css">
       
       
     
@@ -57,7 +57,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#open-source-firmware-and-bootloaders" class="md-skip">
+        <a href="#architecture" class="md-skip">
           Skip to content
         </a>
       
@@ -85,7 +85,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Firmware and Bootloader
+              Architecture
             
           </span>
         </div>
@@ -143,7 +143,7 @@
         
   <li class="md-tabs__item">
     
-      <a href="../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         Home
       </a>
     
@@ -155,7 +155,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../summary/" class="md-tabs__link md-tabs__link--active">
+        <a href="../source_code/summary/" class="md-tabs__link">
           Code
         </a>
       
@@ -168,7 +168,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../cache_coherence/" class="md-tabs__link">
+        <a href="../cache_coherence/" class="md-tabs__link md-tabs__link--active">
           Note
         </a>
       
@@ -181,7 +181,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../paper_fpga/" class="md-tabs__link">
+        <a href="../paper_fpga/" class="md-tabs__link">
           FPGA
         </a>
       
@@ -194,7 +194,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../../blog/20200404-on-read-once/" class="md-tabs__link">
+        <a href="../../blog/20200404-on-read-once/" class="md-tabs__link">
           Random
         </a>
       
@@ -211,7 +211,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../../lego/kernel/boot/" class="md-tabs__link">
+        <a href="../../lego/kernel/boot/" class="md-tabs__link">
           LegoOS
         </a>
       
@@ -252,7 +252,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../.." title="Home" class="md-nav__link">
+    <a href="../.." title="Home" class="md-nav__link">
       Home
     </a>
   </li>
@@ -262,12 +262,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
     
     <label class="md-nav__link" for="nav-2">
       Code
@@ -291,7 +289,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../summary/" title="All-in-One" class="md-nav__link">
+    <a href="../source_code/summary/" title="All-in-One" class="md-nav__link">
       All-in-One
     </a>
   </li>
@@ -303,7 +301,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../program_advice/" title="Guideline & Advice" class="md-nav__link">
+    <a href="../program_advice/" title="Guideline & Advice" class="md-nav__link">
       Guideline & Advice
     </a>
   </li>
@@ -315,7 +313,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../os/" title="OS" class="md-nav__link">
+    <a href="../source_code/os/" title="OS" class="md-nav__link">
       OS
     </a>
   </li>
@@ -327,7 +325,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../virt/" title="Virtualization" class="md-nav__link">
+    <a href="../source_code/virt/" title="Virtualization" class="md-nav__link">
       Virtualization
     </a>
   </li>
@@ -339,7 +337,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../rdma/" title="DPDK and RDMA" class="md-nav__link">
+    <a href="../source_code/rdma/" title="DPDK and RDMA" class="md-nav__link">
       DPDK and RDMA
     </a>
   </li>
@@ -349,60 +347,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Firmware and Bootloader
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Firmware and Bootloader" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../source_code/firmware-softwares/" title="Firmware and Bootloader" class="md-nav__link">
       Firmware and Bootloader
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#landscape" class="md-nav__link">
-    Landscape
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#projects" class="md-nav__link">
-    Projects
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -412,7 +361,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../20200501-on-graphic-softwares/" title="Graphics" class="md-nav__link">
+    <a href="../source_code/20200501-on-graphic-softwares/" title="Graphics" class="md-nav__link">
       Graphics
     </a>
   </li>
@@ -424,7 +373,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../gpu/" title="GPU" class="md-nav__link">
+    <a href="../source_code/gpu/" title="GPU" class="md-nav__link">
       GPU
     </a>
   </li>
@@ -436,7 +385,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../fpga/" title="FPGA" class="md-nav__link">
+    <a href="../source_code/fpga/" title="FPGA" class="md-nav__link">
       FPGA
     </a>
   </li>
@@ -448,7 +397,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../security/" title="Security" class="md-nav__link">
+    <a href="../source_code/security/" title="Security" class="md-nav__link">
       Security
     </a>
   </li>
@@ -460,7 +409,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../misc/" title="Misc" class="md-nav__link">
+    <a href="../source_code/misc/" title="Misc" class="md-nav__link">
       Misc
     </a>
   </li>
@@ -472,7 +421,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../dotconfigs/" title="Terminal Configs" class="md-nav__link">
+    <a href="../source_code/dotconfigs/" title="Terminal Configs" class="md-nav__link">
       Terminal Configs
     </a>
   </li>
@@ -484,7 +433,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../commands/" title="Terminal Commands" class="md-nav__link">
+    <a href="../source_code/commands/" title="Terminal Commands" class="md-nav__link">
       Terminal Commands
     </a>
   </li>
@@ -499,10 +448,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
       Note
@@ -526,7 +477,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../cache_coherence/" title="Practical-Cache-Coherence" class="md-nav__link">
+    <a href="../cache_coherence/" title="Practical-Cache-Coherence" class="md-nav__link">
       Practical-Cache-Coherence
     </a>
   </li>
@@ -538,7 +489,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../dynamic_linking/" title="Dynamic Linking" class="md-nav__link">
+    <a href="../dynamic_linking/" title="Dynamic Linking" class="md-nav__link">
       Dynamic Linking
     </a>
   </li>
@@ -550,7 +501,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../virt/" title="Virtualization" class="md-nav__link">
+    <a href="../source_code/virt/" title="Virtualization" class="md-nav__link">
       Virtualization
     </a>
   </li>
@@ -560,11 +511,74 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../arch/" title="Architecture" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Architecture
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Architecture" class="md-nav__link md-nav__link--active">
       Architecture
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#reservation-station-and-rob" class="md-nav__link">
+    Reservation Station and ROB
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#physical-register-files-and-rob" class="md-nav__link">
+    Physical Register Files and ROB
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distributed-vs-centralized-reservation-station" class="md-nav__link">
+    Distributed v.s. Centralized Reservation Station
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -574,7 +588,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../hardware_pl/" title="Hardware Design Languages" class="md-nav__link">
+    <a href="../hardware_pl/" title="Hardware Design Languages" class="md-nav__link">
       Hardware Design Languages
     </a>
   </li>
@@ -586,7 +600,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../xperf/" title="Measure x86 Ring Switch Overhead" class="md-nav__link">
+    <a href="../xperf/" title="Measure x86 Ring Switch Overhead" class="md-nav__link">
       Measure x86 Ring Switch Overhead
     </a>
   </li>
@@ -598,7 +612,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../trace/" title="Linux-Trace-and-Profile" class="md-nav__link">
+    <a href="../trace/" title="Linux-Trace-and-Profile" class="md-nav__link">
       Linux-Trace-and-Profile
     </a>
   </li>
@@ -610,7 +624,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../rmap/" title="Linux-Reverse-Map (rmap)" class="md-nav__link">
+    <a href="../rmap/" title="Linux-Reverse-Map (rmap)" class="md-nav__link">
       Linux-Reverse-Map (rmap)
     </a>
   </li>
@@ -622,7 +636,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../userfaultfd/" title="Linux-Userfaultfd" class="md-nav__link">
+    <a href="../userfaultfd/" title="Linux-Userfaultfd" class="md-nav__link">
       Linux-Userfaultfd
     </a>
   </li>
@@ -634,7 +648,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../linux-boot/" title="Linux-Boot-After-GRUB" class="md-nav__link">
+    <a href="../linux-boot/" title="Linux-Boot-After-GRUB" class="md-nav__link">
       Linux-Boot-After-GRUB
     </a>
   </li>
@@ -646,7 +660,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../cgroup-swap/" title="Linux-Cgroup-and-Swap" class="md-nav__link">
+    <a href="../cgroup-swap/" title="Linux-Cgroup-and-Swap" class="md-nav__link">
       Linux-Cgroup-and-Swap
     </a>
   </li>
@@ -658,7 +672,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../proc/" title="Linux-Special-Files" class="md-nav__link">
+    <a href="../proc/" title="Linux-Special-Files" class="md-nav__link">
       Linux-Special-Files
     </a>
   </li>
@@ -670,7 +684,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../linux-resource/" title="Linux-Resource" class="md-nav__link">
+    <a href="../linux-resource/" title="Linux-Resource" class="md-nav__link">
       Linux-Resource
     </a>
   </li>
@@ -682,7 +696,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../kvm-basic/" title="Linux-KVM" class="md-nav__link">
+    <a href="../kvm-basic/" title="Linux-KVM" class="md-nav__link">
       Linux-KVM
     </a>
   </li>
@@ -694,7 +708,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../paper_perf_shadows/" title="Performance-Shadows" class="md-nav__link">
+    <a href="../paper_perf_shadows/" title="Performance-Shadows" class="md-nav__link">
       Performance-Shadows
     </a>
   </li>
@@ -706,7 +720,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../misc/essential/" title="Essential" class="md-nav__link">
+    <a href="../../misc/essential/" title="Essential" class="md-nav__link">
       Essential
     </a>
   </li>
@@ -718,7 +732,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../benchmark/" title="Benchmarks" class="md-nav__link">
+    <a href="../benchmark/" title="Benchmarks" class="md-nav__link">
       Benchmarks
     </a>
   </li>
@@ -730,7 +744,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../misc/cheatsheet/" title="Cheatsheet" class="md-nav__link">
+    <a href="../../misc/cheatsheet/" title="Cheatsheet" class="md-nav__link">
       Cheatsheet
     </a>
   </li>
@@ -772,7 +786,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../paper_fpga/" title="Papers" class="md-nav__link">
+    <a href="../paper_fpga/" title="Papers" class="md-nav__link">
       Papers
     </a>
   </li>
@@ -784,7 +798,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../fpga/bitstream/" title="Bitstream Explained" class="md-nav__link">
+    <a href="../../fpga/bitstream/" title="Bitstream Explained" class="md-nav__link">
       Bitstream Explained
     </a>
   </li>
@@ -796,7 +810,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../fpga/language/" title="Languages" class="md-nav__link">
+    <a href="../../fpga/language/" title="Languages" class="md-nav__link">
       Languages
     </a>
   </li>
@@ -808,7 +822,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../fpga/pr/" title="Morphous Partial Reconfiguration" class="md-nav__link">
+    <a href="../../fpga/pr/" title="Morphous Partial Reconfiguration" class="md-nav__link">
       Morphous Partial Reconfiguration
     </a>
   </li>
@@ -820,7 +834,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../fpga/vivado/" title="Vivado Notes" class="md-nav__link">
+    <a href="../../fpga/vivado/" title="Vivado Notes" class="md-nav__link">
       Vivado Notes
     </a>
   </li>
@@ -832,7 +846,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../fpga/hls_axi/" title="Efficient AXI-MM" class="md-nav__link">
+    <a href="../../fpga/hls_axi/" title="Efficient AXI-MM" class="md-nav__link">
       Efficient AXI-MM
     </a>
   </li>
@@ -844,7 +858,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../fpga/setup_hold/" title="Setup and Hold Time" class="md-nav__link">
+    <a href="../../fpga/setup_hold/" title="Setup and Hold Time" class="md-nav__link">
       Setup and Hold Time
     </a>
   </li>
@@ -886,7 +900,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../blog/20200404-on-read-once/" title="2020-04 On-Read-Once-and-Compiler-Opts" class="md-nav__link">
+    <a href="../../blog/20200404-on-read-once/" title="2020-04 On-Read-Once-and-Compiler-Opts" class="md-nav__link">
       2020-04 On-Read-Once-and-Compiler-Opts
     </a>
   </li>
@@ -898,7 +912,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../blog/20200404-on-net-transport/" title="2020-04 On-Hardware-based-Network-Transport" class="md-nav__link">
+    <a href="../../blog/20200404-on-net-transport/" title="2020-04 On-Hardware-based-Network-Transport" class="md-nav__link">
       2020-04 On-Hardware-based-Network-Transport
     </a>
   </li>
@@ -965,7 +979,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/kernel/boot/" title="GRUB2 and Boot" class="md-nav__link">
+    <a href="../../lego/kernel/boot/" title="GRUB2 and Boot" class="md-nav__link">
       GRUB2 and Boot
     </a>
   </li>
@@ -977,7 +991,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/kernel/kconfig/" title="Kconfig" class="md-nav__link">
+    <a href="../../lego/kernel/kconfig/" title="Kconfig" class="md-nav__link">
       Kconfig
     </a>
   </li>
@@ -989,7 +1003,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/kernel/debug/" title="Debug" class="md-nav__link">
+    <a href="../../lego/kernel/debug/" title="Debug" class="md-nav__link">
       Debug
     </a>
   </li>
@@ -1001,7 +1015,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/kernel/grub/" title="GRUB" class="md-nav__link">
+    <a href="../../lego/kernel/grub/" title="GRUB" class="md-nav__link">
       GRUB
     </a>
   </li>
@@ -1013,7 +1027,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/kernel/profile/" title="Profile" class="md-nav__link">
+    <a href="../../lego/kernel/profile/" title="Profile" class="md-nav__link">
       Profile
     </a>
   </li>
@@ -1025,7 +1039,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/kernel/profile_strace/" title="Profile strace" class="md-nav__link">
+    <a href="../../lego/kernel/profile_strace/" title="Profile strace" class="md-nav__link">
       Profile strace
     </a>
   </li>
@@ -1037,7 +1051,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/kernel/profile_heatmap/" title="Profile heatmap" class="md-nav__link">
+    <a href="../../lego/kernel/profile_heatmap/" title="Profile heatmap" class="md-nav__link">
       Profile heatmap
     </a>
   </li>
@@ -1049,7 +1063,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/kernel/profile_points/" title="Profile points" class="md-nav__link">
+    <a href="../../lego/kernel/profile_points/" title="Profile points" class="md-nav__link">
       Profile points
     </a>
   </li>
@@ -1061,7 +1075,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/kernel/trampoline/" title="Trampoline" class="md-nav__link">
+    <a href="../../lego/kernel/trampoline/" title="Trampoline" class="md-nav__link">
       Trampoline
     </a>
   </li>
@@ -1073,7 +1087,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/kernel/pagefault_disable/" title="Disable pgfault" class="md-nav__link">
+    <a href="../../lego/kernel/pagefault_disable/" title="Disable pgfault" class="md-nav__link">
       Disable pgfault
     </a>
   </li>
@@ -1085,7 +1099,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/kernel/stop_machine/" title="Stop machine" class="md-nav__link">
+    <a href="../../lego/kernel/stop_machine/" title="Stop machine" class="md-nav__link">
       Stop machine
     </a>
   </li>
@@ -1097,7 +1111,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/kernel/loader/" title="Program Loader" class="md-nav__link">
+    <a href="../../lego/kernel/loader/" title="Program Loader" class="md-nav__link">
       Program Loader
     </a>
   </li>
@@ -1109,7 +1123,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/kernel/vDSO/" title="vDSO" class="md-nav__link">
+    <a href="../../lego/kernel/vDSO/" title="vDSO" class="md-nav__link">
       vDSO
     </a>
   </li>
@@ -1121,7 +1135,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/kernel/vfs/" title="Virtual File System" class="md-nav__link">
+    <a href="../../lego/kernel/vfs/" title="Virtual File System" class="md-nav__link">
       Virtual File System
     </a>
   </li>
@@ -1133,7 +1147,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/kernel/vm/" title="Process Virtual Memory" class="md-nav__link">
+    <a href="../../lego/kernel/vm/" title="Process Virtual Memory" class="md-nav__link">
       Process Virtual Memory
     </a>
   </li>
@@ -1145,7 +1159,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/kernel/fpu/" title="x86 FPU" class="md-nav__link">
+    <a href="../../lego/kernel/fpu/" title="x86 FPU" class="md-nav__link">
       x86 FPU
     </a>
   </li>
@@ -1157,7 +1171,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/kernel/irq/" title="IRQ" class="md-nav__link">
+    <a href="../../lego/kernel/irq/" title="IRQ" class="md-nav__link">
       IRQ
     </a>
   </li>
@@ -1169,7 +1183,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/kernel/net_thpool/" title="Network Thpool" class="md-nav__link">
+    <a href="../../lego/kernel/net_thpool/" title="Network Thpool" class="md-nav__link">
       Network Thpool
     </a>
   </li>
@@ -1211,7 +1225,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/syscall/facts/" title="Facts" class="md-nav__link">
+    <a href="../../lego/syscall/facts/" title="Facts" class="md-nav__link">
       Facts
     </a>
   </li>
@@ -1223,7 +1237,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/kernel/profile_strace/" title="strace" class="md-nav__link">
+    <a href="../../lego/kernel/profile_strace/" title="strace" class="md-nav__link">
       strace
     </a>
   </li>
@@ -1235,7 +1249,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/syscall/compat/" title="compat" class="md-nav__link">
+    <a href="../../lego/syscall/compat/" title="compat" class="md-nav__link">
       compat
     </a>
   </li>
@@ -1247,7 +1261,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/syscall/msync/" title="msync()" class="md-nav__link">
+    <a href="../../lego/syscall/msync/" title="msync()" class="md-nav__link">
       msync()
     </a>
   </li>
@@ -1259,7 +1273,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/syscall/mremap/" title="mremap()" class="md-nav__link">
+    <a href="../../lego/syscall/mremap/" title="mremap()" class="md-nav__link">
       mremap()
     </a>
   </li>
@@ -1271,7 +1285,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/syscall/fork/" title="fork()" class="md-nav__link">
+    <a href="../../lego/syscall/fork/" title="fork()" class="md-nav__link">
       fork()
     </a>
   </li>
@@ -1283,7 +1297,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/syscall/getrusage/" title="getrusage()" class="md-nav__link">
+    <a href="../../lego/syscall/getrusage/" title="getrusage()" class="md-nav__link">
       getrusage()
     </a>
   </li>
@@ -1295,7 +1309,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/syscall/wait_and_exit/" title="wait4 and exit()" class="md-nav__link">
+    <a href="../../lego/syscall/wait_and_exit/" title="wait4 and exit()" class="md-nav__link">
       wait4 and exit()
     </a>
   </li>
@@ -1337,7 +1351,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/pcache/config/" title="Config" class="md-nav__link">
+    <a href="../../lego/pcache/config/" title="Config" class="md-nav__link">
       Config
     </a>
   </li>
@@ -1349,7 +1363,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/pcache/sweep/" title="Sweep" class="md-nav__link">
+    <a href="../../lego/pcache/sweep/" title="Sweep" class="md-nav__link">
       Sweep
     </a>
   </li>
@@ -1361,7 +1375,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/pcache/tlb/" title="TLB Coherence" class="md-nav__link">
+    <a href="../../lego/pcache/tlb/" title="TLB Coherence" class="md-nav__link">
       TLB Coherence
     </a>
   </li>
@@ -1373,7 +1387,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/pcache/pgtable-lock/" title="PageTable Lock" class="md-nav__link">
+    <a href="../../lego/pcache/pgtable-lock/" title="PageTable Lock" class="md-nav__link">
       PageTable Lock
     </a>
   </li>
@@ -1385,7 +1399,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/pcache/victim/" title="Victim Cache" class="md-nav__link">
+    <a href="../../lego/pcache/victim/" title="Victim Cache" class="md-nav__link">
       Victim Cache
     </a>
   </li>
@@ -1397,7 +1411,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/pcache/virtual_cache/" title="Virtual Cache" class="md-nav__link">
+    <a href="../../lego/pcache/virtual_cache/" title="Virtual Cache" class="md-nav__link">
       Virtual Cache
     </a>
   </li>
@@ -1409,7 +1423,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/pcache/rmap/" title="Reverse Mapping" class="md-nav__link">
+    <a href="../../lego/pcache/rmap/" title="Reverse Mapping" class="md-nav__link">
       Reverse Mapping
     </a>
   </li>
@@ -1421,7 +1435,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/pcache/evict_and_ref/" title="Evict and Refcount" class="md-nav__link">
+    <a href="../../lego/pcache/evict_and_ref/" title="Evict and Refcount" class="md-nav__link">
       Evict and Refcount
     </a>
   </li>
@@ -1433,7 +1447,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/pcache/smp_design/" title="SMP Design" class="md-nav__link">
+    <a href="../../lego/pcache/smp_design/" title="SMP Design" class="md-nav__link">
       SMP Design
     </a>
   </li>
@@ -1445,7 +1459,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/pcache/replication/" title="Replication" class="md-nav__link">
+    <a href="../../lego/pcache/replication/" title="Replication" class="md-nav__link">
       Replication
     </a>
   </li>
@@ -1487,7 +1501,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/driver/pci/" title="PCI" class="md-nav__link">
+    <a href="../../lego/driver/pci/" title="PCI" class="md-nav__link">
       PCI
     </a>
   </li>
@@ -1499,7 +1513,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/driver/ib/" title="Infiniband" class="md-nav__link">
+    <a href="../../lego/driver/ib/" title="Infiniband" class="md-nav__link">
       Infiniband
     </a>
   </li>
@@ -1541,7 +1555,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/paper/nmp/" title="NMP" class="md-nav__link">
+    <a href="../../lego/paper/nmp/" title="NMP" class="md-nav__link">
       NMP
     </a>
   </li>
@@ -1553,7 +1567,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/paper/processor_oom/" title="Processor OOM" class="md-nav__link">
+    <a href="../../lego/paper/processor_oom/" title="Processor OOM" class="md-nav__link">
       Processor OOM
     </a>
   </li>
@@ -1565,7 +1579,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/paper/genz/" title="Gen-Z" class="md-nav__link">
+    <a href="../../lego/paper/genz/" title="Gen-Z" class="md-nav__link">
       Gen-Z
     </a>
   </li>
@@ -1577,7 +1591,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/paper/replication/" title="Replication" class="md-nav__link">
+    <a href="../../lego/paper/replication/" title="Replication" class="md-nav__link">
       Replication
     </a>
   </li>
@@ -1589,7 +1603,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../lego/paper/related/" title="Related" class="md-nav__link">
+    <a href="../../lego/paper/related/" title="Related" class="md-nav__link">
       Related
     </a>
   </li>
@@ -1631,15 +1645,29 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#landscape" class="md-nav__link">
-    Landscape
+  <a href="#reservation-station-and-rob" class="md-nav__link">
+    Reservation Station and ROB
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#projects" class="md-nav__link">
-    Projects
+  <a href="#physical-register-files-and-rob" class="md-nav__link">
+    Physical Register Files and ROB
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distributed-vs-centralized-reservation-station" class="md-nav__link">
+    Distributed v.s. Centralized Reservation Station
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
   </a>
   
 </li>
@@ -1660,7 +1688,7 @@
                   
                 
                 
-                <h1 id="open-source-firmware-and-bootloaders">Open-source Firmware and Bootloaders<a class="headerlink" href="#open-source-firmware-and-bootloaders" title="Permanent link">&para;</a></h1>
+                <h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h1>
 <details class="note"><summary>Version History</summary><table>
 <thead>
 <tr>
@@ -1670,83 +1698,60 @@
 </thead>
 <tbody>
 <tr>
-<td align="left">Dec 7, 2020</td>
-<td>add iPXE</td>
-</tr>
-<tr>
-<td align="left">May 6, 2020</td>
-<td>Initial Version</td>
+<td align="left">Dec 30, 2020</td>
+<td>Initial</td>
 </tr>
 </tbody>
 </table>
 </details>
-<p>In this blog post, I will review the current firmware and bootloader ecosystem.</p>
-<h2 id="landscape">Landscape<a class="headerlink" href="#landscape" title="Permanent link">&para;</a></h2>
-<p>I admire those firmware projects, maybe because that&rsquo;s where I started.
-At first I used SeaBIOS (the default one used by QEMU) to build OS.
-Then I came across UEFI, though I have never used it.</p>
-<p>There are a lot open-source firmware projects.
-I was trying to understand their relationship.
-After some research, I drew the following landscape figure.</p>
-<p><img alt="20200506-on-firmware-landscape.png" src="../20200506-on-firmware-landscape.png" /></p>
-<p>Bottom-up:</p>
-<ul>
-<li>Coreboot/Libreboot/UEFI: for motherboard init, e.g., init memory controller.</li>
-<li>UEFI/BIOS</li>
-<li>iPXE</li>
-<li>GRUB2/U-Boto: Bootloader</li>
-<li>OS</li>
-</ul>
-<h2 id="projects">Projects<a class="headerlink" href="#projects" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="https://github.com/lastweek/source-firmware-coreboot">Coreboot</a> and Libreboot<ul>
-<li>Coreboot seems very interesting. It&rsquo;s only doing one job, which is initialize
-the very low-level memory controller and on-board resources. It uses cache as memory.</li>
-</ul>
-</li>
-<li><a href="https://github.com/lastweek/source-firmware-seabios">SeaBIOS: the default BIOS used by QEMU</a></li>
-<li><a href="https://github.com/lastweek/source-firmware-qboot">qboot: an alternative and lightweight BIOS for QEMU</a><ul>
-<li>Those are massive hackers, respect.</li>
-<li>My experience about BIOS is calling them while the kernel (LegoOS) is running at 16-bit.
-  BIOS <em>is</em> the OS for a just-booted kernel. I remember the lower 1MB is never cleared,
-  maybe we could invoke the BIOS at 32 or 64-bit mode?</li>
-</ul>
-</li>
-<li><a href="https://en.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface">UEFI</a><ul>
-<li><a href="https://github.com/lastweek/source-uefi-edk2">UEFI EDK II </a><ul>
-<li>&ldquo;EDK II is a firmware development environment for the UEFI and UEFI Platform Initialization (PI) specifications&rdquo;</li>
-<li>Part of the <a href="https://www.tianocore.org/">TianoCore</a> project, an open-source UEFI platform</li>
-<li>The Unified Extensible Firmware Interface (UEFI) is a specification that
-  defines a software interface between an operating system and platform firmware.
-  UEFI is designed to replace the Basic Input/Output System (BIOS) firmware interface.</li>
-<li><a href="https://github.com/tianocore/tianocore.github.io/wiki/OVMF">OVMF</a>: OVMF is an EDK II based project to enable UEFI support for Virtual Machines. OVMF contains sample UEFI firmware for QEMU and KVM.</li>
-</ul>
-</li>
-<li><a href="https://microsoft.github.io/mu/">Microsoft Project Mu, a separate fork of EDK II</a><ul>
-<li>&ldquo;Project Mu is a modular adaptation of TianoCore&rsquo;s edk2 tuned for building
-modern devices using a scalable, maintainable, and reusable pattern&rdquo;</li>
-<li>It&rsquo;s homepage explains the motivation behind it. Microsoft Surface is using it.</li>
-</ul>
-</li>
-<li>A book: <code>Beyond BIOS Developing with the Unified Extensible Firmware Interface</code>.</li>
-</ul>
-</li>
-<li>Then boot loaders such as <a href="https://github.com/lastweek/source-grub2">GRUB</a> and <a href="https://github.com/u-boot/u-boot">U-Boot</a></li>
-<li><a href="https://github.com/ipxe/ipxe">iPXE</a>, network bootloader, this is an open-source version. As their website says, iPXE allows you to:
-    <div class="highlight"><pre><span></span><code>boot from a web server via HTTP
-boot from an iSCSI SAN
-boot from a Fibre Channel SAN via FCoE
-boot from an AoE SAN
-boot from a wireless network
-boot from a wide-area network
-boot from an Infiniband network
-control the boot process with a script
-</code></pre></div></li>
-</ul>
-<p>If you are using a normal laptop or desktop, chances are, none of those firmware is used.
-Normally machines are shipped with commercial firmwares.</p>
-<p>To me, I like SeaBIOS project the most. It&rsquo;s simple and can boot everything we need.
-(For example, Linux, LegoOS as well).</p>
+<h2 id="reservation-station-and-rob">Reservation Station and ROB<a class="headerlink" href="#reservation-station-and-rob" title="Permanent link">&para;</a></h2>
+<p>They serve different purposes. ROB can not replace reservation station.
+ROB records all instructions and their control information, their order.</p>
+<p>An instruction will alloc an ROB entry alive when it enters execution enegine
+and free the entry when it finally able to commit.</p>
+<p>An instruction will alloc an reservation station entry when it enters execution
+engine, just like ROB. But it will free the entry when the functional unit
+finished execution. Essentially, the ROB entry outlives the reservation station entry.</p>
+<p>This is why the number of ROB entries is larger than the number of reservation
+station entries. E.g., in Skylake, there are 224 ROB entries, and 97 reservation
+static entries.</p>
+<p>One thing I notice is that there is still a Comman Data Bus (CDB)
+connecting the output of execution engines to the reservation station
+and ROB. <a href="https://en.wikichip.org/wiki/File:skylake_block_diagram.svg">Image</a></p>
+<h2 id="physical-register-files-and-rob">Physical Register Files and ROB<a class="headerlink" href="#physical-register-files-and-rob" title="Permanent link">&para;</a></h2>
+<p>When we add speculation to traditional Tomasulo,
+we will add a ROB table. Each entry in ROB
+has an attached buffer. Like reservation station (RS),
+ROB can also store and forward results.</p>
+<p>Physical register file is a separate unit.
+With it, the ROB no longer needs to store/forward data.
+We only need a renaming table to manage the mapping.</p>
+<p>The benefit of using a separate physical register file
+over ROB-with-buffer is that we can greatly reduce data movement.
+The ROB no longer needs write back data to register file, it
+will be stored when the computing unit produces it.</p>
+<h2 id="distributed-vs-centralized-reservation-station">Distributed v.s. Centralized Reservation Station<a class="headerlink" href="#distributed-vs-centralized-reservation-station" title="Permanent link">&para;</a></h2>
+<p>Textbook Tomasulo uses distributed reservation station,
+each functional unit has its own attached RS entries.</p>
+<p>Some old CPUs like PowerPC 604, Pentium 4 and newer generation CPUs like AMD Zen series are also using distributed reservation station.</p>
+<p>But recent Intel CPUs are all using centralized reservation station design.
+There is one giant unified reservation station, or scheduler in Intel&rsquo;s wording,
+working for all functional units. In Skylake, this scheduler has 96 entries, meaning there can be 96 instructions currently being executed by functional units. (The number of ROB entries is larger than this number, because ROB still cache info for already excuted but uncommitted instructions).</p>
+<p>I don&rsquo;t really know the actual practical trade-off.
+But my guess for centralized v.s. distributed reservation station are:</p>
+<ol>
+<li>For centralized design, the RS is not statically partitioned like the
+distributed design. So the RS usage can adapt to workloads to avoid some blocking.</li>
+<li>Centralized design for sure has more complex control logic and more challenging
+to implement!</li>
+</ol>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<p>For microarchitecture, look for</p>
+<ol>
+<li>Intel optimization manual</li>
+<li>Wikichips</li>
+<li>Agner Fog&rsquo;s optimization manuals (the microarchitecture one)</li>
+</ol>
                 
                   
                     
@@ -1755,7 +1760,7 @@ Normally machines are shipped with commercial firmwares.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: December 23, 2020
+      Last update: December 31, 2020
     
   </small>
 </div>
@@ -1768,7 +1773,7 @@ Normally machines are shipped with commercial firmwares.</p>
 
   <h2 id="__comments">Comments</h2>
   <div id="disqus_thread"></div>
-  <script>var disqus_config=function(){this.page.url="http://lastweek.io/notes/source_code/firmware-softwares/",this.page.identifier="/notes/source_code/firmware-softwares/"};!function(){var e=document,i=e.createElement("script");i.src="//lastweek-io.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
+  <script>var disqus_config=function(){this.page.url="http://lastweek.io/notes/arch/",this.page.identifier="/notes/arch/"};!function(){var e=document,i=e.createElement("script");i.src="//lastweek-io.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
 
               
             </article>
@@ -1782,7 +1787,7 @@ Normally machines are shipped with commercial firmwares.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../rdma/" title="DPDK and RDMA" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../source_code/virt/" title="Virtualization" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1791,19 +1796,19 @@ Normally machines are shipped with commercial firmwares.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                DPDK and RDMA
+                Virtualization
               </div>
             </div>
           </a>
         
         
-          <a href="../20200501-on-graphic-softwares/" title="Graphics" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../hardware_pl/" title="Hardware Design Languages" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Graphics
+                Hardware Design Languages
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
@@ -1830,15 +1835,15 @@ Normally machines are shipped with commercial firmwares.</p>
       
     </div>
     
-      <script src="../../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
-          base: "../../..",
+          base: "../..",
           features: ["instant", "tabs"],
           search: Object.assign({
-            worker: "../../../assets/javascripts/worker/search.27c6a5e6.min.js"
+            worker: "../../assets/javascripts/worker/search.27c6a5e6.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
