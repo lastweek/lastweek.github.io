@@ -5,6 +5,8 @@
 	|:---|-----------|
 	|Dec 30, 2020| Initial|
 
+:boat:
+
 ## Reservation Station and ROB
 
 They serve different purposes. ROB can not replace reservation station.
