@@ -6,6 +6,11 @@
 	|Dec 30, 2020| Initial|
 
 :sailboat:
+:sailboat:
+:sailboat:
+
+This is my personal notes on architecture related topics.
+There is a separate blog on [cache coherence](./cache_coherence.md).
 
 ## Reservation Station and ROB
 
@@ -47,7 +52,6 @@ will be stored when the computing unit produces it.
 
 Textbook Tomasulo uses **distributed reservation station**,
 each functional unit has its own attached RS entries.
-
 Some old CPUs like PowerPC 604, Pentium 4 and newer generation CPUs like [AMD Zen](https://en.wikichip.org/wiki/File:zen_block_diagram.svg)
 series are also using distributed reservation station.
 
@@ -75,9 +79,13 @@ distributed design. So the RS usage can adapt to workloads to avoid some blockin
 2. Centralized design for sure has more complex control logic and more challenging
 to implement!
 
-## References
+**Centralized Reservation Station (Intel Skylake):**
+![image](assets/intel-skylake-ee.png)
 
-For microarchitecture, look for
+**Distributed Reservation Station (AMD Zen):**
+![image](assets/amd-zen-ee.png)
+
+## References
 
 1. Intel optimization manual
 2. Wikichips
