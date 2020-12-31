@@ -134,14 +134,16 @@
         
           
 
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
         
   <li class="md-tabs__item">
     
-      <a href="../../.." class="md-tabs__link md-tabs__link--active">
+      <a href="../../.." class="md-tabs__link">
         Home
       </a>
     
@@ -209,7 +211,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../kernel/boot/" class="md-tabs__link">
+        <a href="./" class="md-tabs__link md-tabs__link--active">
           LegoOS
         </a>
       
@@ -473,8 +475,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/cache_coherence/" title="Practical-Cache-Coherence" class="md-nav__link">
-      Practical-Cache-Coherence
+    <a href="../../../notes/cache_coherence/" title="Practical Cache Coherence" class="md-nav__link">
+      Practical Cache Coherence
     </a>
   </li>
 
@@ -533,8 +535,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/xperf/" title="Measure x86 Ring Switch Overhead" class="md-nav__link">
-      Measure x86 Ring Switch Overhead
+    <a href="../../../notes/xperf/" title="Measure x86 Ring Switch" class="md-nav__link">
+      Measure x86 Ring Switch
     </a>
   </li>
 
@@ -545,8 +547,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/trace/" title="Linux-Trace-and-Profile" class="md-nav__link">
-      Linux-Trace-and-Profile
+    <a href="../../../notes/trace/" title="Linux Trace and Profile" class="md-nav__link">
+      Linux Trace and Profile
     </a>
   </li>
 
@@ -557,8 +559,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/rmap/" title="Linux-Reverse-Map (rmap)" class="md-nav__link">
-      Linux-Reverse-Map (rmap)
+    <a href="../../../notes/rmap/" title="Linux Reverse Map" class="md-nav__link">
+      Linux Reverse Map
     </a>
   </li>
 
@@ -569,8 +571,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/userfaultfd/" title="Linux-Userfaultfd" class="md-nav__link">
-      Linux-Userfaultfd
+    <a href="../../../notes/userfaultfd/" title="Linux Userfaultfd" class="md-nav__link">
+      Linux Userfaultfd
     </a>
   </li>
 
@@ -581,8 +583,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/linux-boot/" title="Linux-Boot-After-GRUB" class="md-nav__link">
-      Linux-Boot-After-GRUB
+    <a href="../../../notes/linux-boot/" title="Linux Boot After GRUB" class="md-nav__link">
+      Linux Boot After GRUB
     </a>
   </li>
 
@@ -593,8 +595,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/cgroup-swap/" title="Linux-Cgroup-and-Swap" class="md-nav__link">
-      Linux-Cgroup-and-Swap
+    <a href="../../../notes/cgroup-swap/" title="Linux Cgroup and Swap" class="md-nav__link">
+      Linux Cgroup and Swap
     </a>
   </li>
 
@@ -605,8 +607,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/proc/" title="Linux-Special-Files" class="md-nav__link">
-      Linux-Special-Files
+    <a href="../../../notes/proc/" title="Linux Special Files" class="md-nav__link">
+      Linux Special Files
     </a>
   </li>
 
@@ -617,8 +619,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/linux-resource/" title="Linux-Resource" class="md-nav__link">
-      Linux-Resource
+    <a href="../../../notes/linux-resource/" title="Linux Resource" class="md-nav__link">
+      Linux Resource
     </a>
   </li>
 
@@ -629,8 +631,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../notes/kvm-basic/" title="Linux-KVM" class="md-nav__link">
-      Linux-KVM
+    <a href="../../../notes/kvm-basic/" title="Linux KVM" class="md-nav__link">
+      Linux KVM
     </a>
   </li>
 
@@ -860,10 +862,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
     
     <label class="md-nav__link" for="nav-6">
       LegoOS
@@ -885,19 +889,84 @@
           
           
 
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1" checked>
+    
+    <label class="md-nav__link" for="nav-6-1">
+      Log
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Log" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Log
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="MISC" class="md-nav__link md-nav__link--active">
+      MISC
+    </a>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../test-note/" title="Test Script" class="md-nav__link">
+      Test Script
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-2" type="checkbox" id="nav-6-2">
     
-    <label class="md-nav__link" for="nav-6-1">
+    <label class="md-nav__link" for="nav-6-2">
       Kernel
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="Kernel" data-md-level="2">
-      <label class="md-nav__title" for="nav-6-1">
+      <label class="md-nav__title" for="nav-6-2">
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
@@ -1134,16 +1203,16 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-2" type="checkbox" id="nav-6-2">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-3" type="checkbox" id="nav-6-3">
     
-    <label class="md-nav__link" for="nav-6-2">
+    <label class="md-nav__link" for="nav-6-3">
       Syscall
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="Syscall" data-md-level="2">
-      <label class="md-nav__title" for="nav-6-2">
+      <label class="md-nav__title" for="nav-6-3">
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
@@ -1260,16 +1329,16 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-3" type="checkbox" id="nav-6-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-4" type="checkbox" id="nav-6-4">
     
-    <label class="md-nav__link" for="nav-6-3">
+    <label class="md-nav__link" for="nav-6-4">
       Pcache
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="Pcache" data-md-level="2">
-      <label class="md-nav__title" for="nav-6-3">
+      <label class="md-nav__title" for="nav-6-4">
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
@@ -1410,16 +1479,16 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-4" type="checkbox" id="nav-6-4">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-5" type="checkbox" id="nav-6-5">
     
-    <label class="md-nav__link" for="nav-6-4">
+    <label class="md-nav__link" for="nav-6-5">
       Driver
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="Driver" data-md-level="2">
-      <label class="md-nav__title" for="nav-6-4">
+      <label class="md-nav__title" for="nav-6-5">
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
@@ -1464,16 +1533,16 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-5" type="checkbox" id="nav-6-5">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-6" type="checkbox" id="nav-6-6">
     
-    <label class="md-nav__link" for="nav-6-5">
+    <label class="md-nav__link" for="nav-6-6">
       Paper
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="Paper" data-md-level="2">
-      <label class="md-nav__title" for="nav-6-5">
+      <label class="md-nav__title" for="nav-6-6">
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
@@ -1647,6 +1716,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../../../blog/20200404-on-net-transport/" title="2020-04 On-Hardware-based-Network-Transport" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                2020-04 On-Hardware-based-Network-Transport
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../test-note/" title="Test Script" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Test Script
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
