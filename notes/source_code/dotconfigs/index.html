@@ -464,6 +464,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#colorful-man-pages" class="md-nav__link">
+    Colorful Man Pages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    Git
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1684,6 +1698,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#colorful-man-pages" class="md-nav__link">
+    Colorful Man Pages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    Git
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1718,7 +1746,8 @@
 </details>
 <p>Like many others, I maintain my own dot-file repo: <a href="https://github.com/lastweek/dot-home">https://github.com/lastweek/dot-home</a>.
 It helps me setup the terminal whenever I start using a new machine.</p>
-<p>I&rsquo;m a heavy terminal user. For whatever coding task (e.g., kernel, RDMA, FPGA, scala, C), I use terminal. I sometimes use terminal to write paper as well.</p>
+<p>I&rsquo;m a heavy terminal user. For whatever coding task (e.g., kernel, RDMA, FPGA, scala, C),
+I use terminal. I sometimes use terminal to write paper as well.</p>
 <p>There are several important tools I rely on: zsh, git, neovim, and tmux.
 And I&rsquo;m grateful for folks working on these tools and their plugins.</p>
 <ul>
@@ -1728,11 +1757,10 @@ And I&rsquo;m grateful for folks working on these tools and their plugins.</p>
 <li>For nvim, I use <a href="https://github.com/VundleVim/Vundle.vim">vundle</a>. And I have several cooked keys.</li>
 </ul>
 <h2 id="vim">VIM<a class="headerlink" href="#vim" title="Permanent link">&para;</a></h2>
-<p>I quite like my current VIM setting.
-I&rsquo;m using several popular tools: NERD Tree, NERD commenter, GitGutter, and Tagbar.</p>
+<p>I&rsquo;m using several popular tools: NERD Tree, NERD commenter, GitGutter, and Tagbar.</p>
 <p>I created the following mapped keys so that I could invoke them quite easily.
 Basically I press <code>\</code> first, and then press <code>t</code>, or <code>f</code>, or <code>g</code>.
-<div class="highlight"><pre><span></span><code>map \t :TagbarToggle&lt;Enter&gt;    =&gt; to toggle tagbar
+<div class="highlight"><pre><span></span><code>map \l :TagbarToggle&lt;Enter&gt;    =&gt; to toggle tagbar list
 map \f :NERDTreeToggle&lt;CR&gt;     =&gt; to toggle nerd file tree
 map \g :GitGutterLineHighlightsToggle&lt;Enter&gt; :GitGutterSignsToggle&lt;Enter&gt;   =&gt; to highlight git difference
 </code></pre></div></p>
@@ -1740,6 +1768,31 @@ map \g :GitGutterLineHighlightsToggle&lt;Enter&gt; :GitGutterSignsToggle&lt;Ente
 I started this when I was hacking linux kernel.
 It has so many new awesome macros (e.g., <code>BUG_ON</code>, <code>for_each_cpu</code>) and I want to
 diffrentiate them from normal functions. So I added those <a href="https://github.com/lastweek/dot-home/tree/master/.vim/after/syntax"><code>after/syntax</code></a> files.</p>
+<h2 id="colorful-man-pages">Colorful Man Pages<a class="headerlink" href="#colorful-man-pages" title="Permanent link">&para;</a></h2>
+<p>This is one thing I highly recommend.
+It was always a pain reading man pages,
+not until I found this trick.
+We can, in fact, redirect man outputs into vim,
+which in turn can present the text in a colorway.</p>
+<p>Add these to your shell dotconfig:
+<div class="highlight"><pre><span></span><code>vman<span class="o">()</span> <span class="o">{</span> man <span class="nv">$*</span> <span class="p">|</span> col -b <span class="p">|</span> vim -c <span class="s1">&#39;set ft=man nomod nolist&#39;</span> -<span class="p">;</span> <span class="o">}</span>    
+<span class="nb">alias</span> <span class="nv">man</span><span class="o">=</span><span class="s2">&quot;vman&quot;</span>
+</code></pre></div></p>
+<h2 id="git">Git<a class="headerlink" href="#git" title="Permanent link">&para;</a></h2>
+<p>For git, I&rsquo;m using <a href="https://github.com/GitAlias/gitalias">git alias</a>
+and a tool call tig.</p>
+<p>The <code>git alias</code> project has quite a lot shortcuts.
+Those are my most used ones:
+<div class="highlight"><pre><span></span><code>g s
+
+g l
+g ll
+g lll
+
+g d
+g dc
+g ds
+</code></pre></div></p>
                 
                   
                     
@@ -1748,7 +1801,7 @@ diffrentiate them from normal functions. So I added those <a href="https://githu
 <div class="md-source-date">
   <small>
     
-      Last update: December 18, 2020
+      Last update: December 31, 2020
     
   </small>
 </div>
