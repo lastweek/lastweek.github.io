@@ -3,13 +3,14 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Jan 01, 2021| Add kernel module loading part|
 	|Dec 24, 2020| Adopted from my previous [note](https://github.com/lastweek/source-glibc)|
 
 :rowboat:
 
-For code pointers, see the glibc code [here](https://github.com/lastweek/source-glibc).
-
 ## C Start Up (csu)
+
+For code pointers, see the glibc code [here](https://github.com/lastweek/source-glibc).
 
 In glibc:
 
@@ -36,7 +37,7 @@ runtime. I took a brief read of the source code and found some relevant ones.
 - `GOT[2]` points to `_dl_runtime_resolve()`! This is the runtime dynamic linker entry point.
 
 File `sysdep/generic/dl-machine.c` populates `GOT[1]` and `GOT[2]`.
-```c
+```c linenums="1" hl_lines="16 20"
 /* Set up the loaded object described by L so its unrelocated PLT
    entries will jump to the on-demand fixup code in dl-runtime.c.  */
 
@@ -67,7 +68,7 @@ elf_machine_runtime_setup (struct link_map *l, int lazy)
 The flow is similar to the syscall handling: it first saves the registers,
 then calling the actual resolver, then restore all saved registers.
 For 64bit x86, the source code is in `sysdeps/x86_64/dl-trampoline.h`:
-```asm
+```asm linenums="1" hl_lines="11"
 	.globl _dl_runtime_resolve
 	.type _dl_runtime_resolve, @function
 _dl_runtime_resolve:
@@ -85,7 +86,7 @@ _dl_runtime_resolve:
 ```
 
 Bingo, `_dl_fixup()` is the final piece of the runtime dynamic linker resolver. We could find it in `elf/dl-runtime.c`, which is a file for on-demand PLT fixup.:
-```c
+```c linenums="1"
 /* This function is called through a special trampoline from the PLT the
    first time each PLT entry is called.  We must perform the relocation
    specified in the PLT of the given shared object, and return the resolved
@@ -129,13 +130,22 @@ Relationship among `.dynstr`, `.dynsym`, `.rela.dyn` or `.rela.plt`. Credit: [li
 PIC Lazy Binding. Credit: [link](https://uclibc.org/docs/psABI-x86_64.pdf):
 ![image2](assets/gotplt.png)
 
-Also that nowadays, even an non-PIC binary will always have GOT and PLT sections.
-In theory, it probably should use load-time relocation. I suspect GOT and PLT are adopted
-for the following 2 reasons:
+!!! note
+
+GOT and PLT were invented for share libraries,
+so those libraries can be used by arbitrary processes
+without changing any of the library text.
+
+However, nowadays, even an non-PIC binary will always have GOT and PLT sections.
+In theory, it probably should use **basic load-time relocation**
+to resolve dynamic symbols (See [CSAPP](https://csapp.cs.cmu.edu/) chapter 7 if you are not familiar with this).
+
+I think GOT/PLT are used over load-time relocation technique for the following 2 reasons:
 a) load-time relocation needs to
 modify code and this not good during time.
 Especially considering code section probably is not writable.
-b) GOT/PLT's lazy-binding has performance win at start-up time. However, keep in mind that
+b) GOT/PLT's lazy-binding has performance win at start-up time.
+However, keep in mind that
 GOT/PLT's lazy-bindling pay extra runtime cost!
 
 Reading:
@@ -143,12 +153,127 @@ Reading:
 - [System V Application Binary Interface](https://uclibc.org/docs/psABI-x86_64.pdf)
 - [How the ELF Ruined Christmas](https://www.usenix.org/system/files/conference/usenixsecurity15/sec15-paper-di-frederico.pdf)
 
-## Dynamic Linking for Kernel Modules
+## How Kernel Load User Program
 
-- [ ] TODO!
+Kernel loads user program via `exec()` or some variations.
+This [post](../lego/kernel/loader.md) explained the flow in great details.
 
-I'm very interested in how kernel resolves all the dynamic symbols.
-the code is in `kernel/module.c` but it is too large.
+Note that kernel can recognize dynamic linking via the `.interp` section
+and then invoke the dynamic linker `ld.so` instead of invoking user ELF binary directly.
 
-When I uses `readelf -a` on a kernel module, there are several new sections
-like `.rela.text.unlikely` and I suspect this points to the should-be-patched locations.
+## How Kernel Load Kernel Module
+
+Kernel can load modules during runtime.
+Those modules are ELF binaries.
+Let's first examine those binaries and see how kernel parses them.
+
+Suppose we have this simple C module code:
+```c linenums="1"
+int foo(void)
+{
+    printk("Hello World!\n");
+}
+
+static int hello_init(void)
+{
+    printk("Hello World!\n");
+    printk("Hello World!\n");
+    foo();
+    return 0;
+}
+```
+
+Once you compile it into a kernel module, we can examine the binary
+by using `objdump -dx hello.ko`. I will post the assmebly code only.
+Those highlighted lines mark some of the dynamic linking slots.
+They will be patched by basic load-time relocation.
+``` linenums="1" hl_lines="19-23"
+Disassembly of section .text.unlikely:
+
+0000000000000000 <foo>:
+   0:   e8 00 00 00 00          callq  5 <foo+0x5>
+                        1: R_X86_64_PLT32       __fentry__-0x4
+   5:   55                      push   %rbp
+   6:   48 c7 c7 00 00 00 00    mov    $0x0,%rdi
+                        9: R_X86_64_32S .rodata.str1.1
+   d:   48 89 e5                mov    %rsp,%rbp
+  10:   e8 00 00 00 00          callq  15 <foo+0x15>
+                        11: R_X86_64_PLT32      printk-0x4
+  15:   5d                      pop    %rbp
+  16:   c3                      retq   
+
+0000000000000017 <init_module>:
+  17:   e8 00 00 00 00          callq  1c <init_module+0x5>
+                        18: R_X86_64_PLT32      __fentry__-0x4
+  1c:   55                      push   %rbp
+  1d:   48 c7 c7 00 00 00 00    mov    $0x0,%rdi
+                        20: R_X86_64_32S        .rodata.str1.1
+  24:   48 89 e5                mov    %rsp,%rbp
+  27:   e8 00 00 00 00          callq  2c <init_module+0x15>
+                        28: R_X86_64_PLT32      printk-0x4
+  2c:   48 c7 c7 00 00 00 00    mov    $0x0,%rdi
+                        2f: R_X86_64_32S        .rodata.str1.1
+  33:   e8 00 00 00 00          callq  38 <init_module+0x21>
+                        34: R_X86_64_PLT32      printk-0x4
+  38:   e8 00 00 00 00          callq  3d <init_module+0x26>
+                        39: R_X86_64_PLT32      foo-0x4
+  3d:   31 c0                   xor    %eax,%eax
+  3f:   5d                      pop    %rbp
+  40:   c3                      retq   
+```
+
+Now let us look at how kernel load this binary and then how it resolves
+those relocation entries (e.g., the ones with `R_X86_64_XXX` above).
+
+The kernel has several system calls for module.
+The loading part is using `SYSCALL_DEFINE3(init_module)`.
+Within that, it calls the big function `load_module()`.
+
+In the begining of `load_module()`, there are some
+usual tasks examining ELF headers, allocating memory etc.
+
+After that, kernel will try to find the addresses for referenced symbols
+and then patch the code to update all the relocation entries (e.g., the R_X86_64_XXX marked instructions above).
+```c
+kernel/module.c
+
+load_module()
+        /* Fix up syms, so that st_value is a pointer to location. */
+        err = simplify_symbols(mod, info);
+        if (err < 0)
+                goto free_modinfo;
+
+        err = apply_relocations(mod, info);
+        if (err < 0)
+                goto free_modinfo;
+
+
+simplify_symbols()
+              case SHN_UNDEF:
+                        ksym = resolve_symbol_wait(mod, info, name);
+                        /* Ok if resolved.  */
+                        if (ksym && !IS_ERR(ksym)) {
+                                sym[i].st_value = kernel_symbol_value(ksym);
+                                break;
+                        }
+
+
+arch/x86/kernel/module.c
+apply_relocations() -> __apply_relocate_add()
+
+                switch (ELF64_R_TYPE(rel[i].r_info)) {
+                case R_X86_64_NONE:
+                case R_X86_64_64:
+                case R_X86_64_32:
+                case R_X86_64_32S:
+                case R_X86_64_PC32:
+                case R_X86_64_PLT32:
+                case R_X86_64_PC64:
+                default:
+                        pr_err("%s: Unknown rela relocation: %llu\n",
+                               me->name, ELF64_R_TYPE(rel[i].r_info));
+                        return -ENOEXEC;
+                }
+```
+
+There you have it.

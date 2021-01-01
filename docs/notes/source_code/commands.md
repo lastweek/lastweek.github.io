@@ -13,13 +13,21 @@ Rather, I think they should be used as references whenever we need to check how 
 Large Collections
 
 - [BusyBox](https://github.com/lastweek/source-busybox)
+    - This is a software suite that provides several Unix utilities in a **single executable file**.
+    - It has a large collection of commands. It probably has everything that GNU coreutils has.
+      BuysBox is targeting embedded environment.
 - [GNU Coreutils](https://github.com/coreutils/coreutils)
+    - This repo has the most used commands such as `cp`, `dd`, `cat`.
+    - See the full list [here](https://en.wikipedia.org/wiki/List_of_GNU_Core_Utilities_commands).
+- [GNU binutils: gas, static linker, and more](https://github.com/lastweek/source-binutils)
+    - This one has a set of programming tools for creating and
+      managing binary programs, object files, libraries, profile data, and assembly source code.
+    - See the full list [here](https://en.wikipedia.org/wiki/GNU_Binutils)
 - [util-linux](https://github.com/karelzak/util-linux)
+    - This is a standard package distributed by the Linux Kernel Organization
+      for use as part of the Linux operating system.
+    - See the full list [here](https://en.wikipedia.org/wiki/Util-linux).
 - [FreeBSD](https://github.com/lastweek/source-freebsd)
-
-- [strace](https://github.com/lastweek/source-strace)
-	- System call tracer at userspace
-	- I've designed [one](http://lastweek.io/lego/kernel/profile_strace/) for LegoOS in kernel space
 
 ### Network
 
@@ -48,6 +56,10 @@ Large Collections
 		- Detailed analysis of Linux booting sequence (how it transit from
 		  real-mode to protected mode, and finally to 64-bit mode,
 		  how to navigate Linux source code etc.)
+	- [strace](https://github.com/lastweek/source-strace)
+		- System call tracer at userspace
+		- I've designed [one](http://lastweek.io/lego/kernel/profile_strace/) for LegoOS in kernel space
+
 - Editors
 	- [vim](https://github.com/lastweek/source-vim)
 	- [neovim](https://github.com/lastweek/source-neovim)
