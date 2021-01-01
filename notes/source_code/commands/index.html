@@ -1776,19 +1776,30 @@ I don&rsquo;t think it is a good idea to blindly read the source code.
 Rather, I think they should be used as references whenever we need to check how something is implemented.</p>
 <p>Large Collections</p>
 <ul>
-<li><a href="https://github.com/lastweek/source-busybox">BusyBox</a></li>
-<li><a href="https://github.com/coreutils/coreutils">GNU Coreutils</a></li>
-<li><a href="https://github.com/karelzak/util-linux">util-linux</a></li>
-<li>
-<p><a href="https://github.com/lastweek/source-freebsd">FreeBSD</a></p>
-</li>
-<li>
-<p><a href="https://github.com/lastweek/source-strace">strace</a></p>
-<ul>
-<li>System call tracer at userspace</li>
-<li>I&rsquo;ve designed <a href="http://lastweek.io/lego/kernel/profile_strace/">one</a> for LegoOS in kernel space</li>
+<li><a href="https://github.com/lastweek/source-busybox">BusyBox</a><ul>
+<li>This is a software suite that provides several Unix utilities in a <strong>single executable file</strong>.</li>
+<li>It has a large collection of commands. It probably has everything that GNU coreutils has.
+  BuysBox is targeting embedded environment.</li>
 </ul>
 </li>
+<li><a href="https://github.com/coreutils/coreutils">GNU Coreutils</a><ul>
+<li>This repo has the most used commands such as <code>cp</code>, <code>dd</code>, <code>cat</code>.</li>
+<li>See the full list <a href="https://en.wikipedia.org/wiki/List_of_GNU_Core_Utilities_commands">here</a>.</li>
+</ul>
+</li>
+<li><a href="https://github.com/lastweek/source-binutils">GNU binutils: gas, static linker, and more</a><ul>
+<li>This one has a set of programming tools for creating and
+  managing binary programs, object files, libraries, profile data, and assembly source code.</li>
+<li>See the full list <a href="https://en.wikipedia.org/wiki/GNU_Binutils">here</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/karelzak/util-linux">util-linux</a><ul>
+<li>This is a standard package distributed by the Linux Kernel Organization
+  for use as part of the Linux operating system.</li>
+<li>See the full list <a href="https://en.wikipedia.org/wiki/Util-linux">here</a>.</li>
+</ul>
+</li>
+<li><a href="https://github.com/lastweek/source-freebsd">FreeBSD</a></li>
 </ul>
 <h3 id="network">Network<a class="headerlink" href="#network" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1802,7 +1813,9 @@ Rather, I think they should be used as references whenever we need to check how 
 </ul>
 <h2 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Tools<ul>
+<li>
+<p>Tools</p>
+<ul>
 <li><a href="https://github.com/lastweek/source-tmux">tmux</a></li>
 <li><a href="https://github.com/lastweek/source-git">git</a></li>
 <li><a href="https://github.com/lastweek/source-FFmpeg">FFmpeg</a><ul>
@@ -1823,9 +1836,16 @@ Rather, I think they should be used as references whenever we need to check how 
   how to navigate Linux source code etc.)</li>
 </ul>
 </li>
+<li><a href="https://github.com/lastweek/source-strace">strace</a><ul>
+<li>System call tracer at userspace</li>
+<li>I&rsquo;ve designed <a href="http://lastweek.io/lego/kernel/profile_strace/">one</a> for LegoOS in kernel space</li>
 </ul>
 </li>
-<li>Editors<ul>
+</ul>
+</li>
+<li>
+<p>Editors</p>
+<ul>
 <li><a href="https://github.com/lastweek/source-vim">vim</a></li>
 <li><a href="https://github.com/lastweek/source-neovim">neovim</a></li>
 </ul>
@@ -1865,7 +1885,7 @@ Rather, I think they should be used as references whenever we need to check how 
 <div class="md-source-date">
   <small>
     
-      Last update: December 23, 2020
+      Last update: January 1, 2021
     
   </small>
 </div>
