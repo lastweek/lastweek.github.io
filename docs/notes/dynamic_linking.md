@@ -153,7 +153,7 @@ Reading:
 - [System V Application Binary Interface](https://uclibc.org/docs/psABI-x86_64.pdf)
 - [How the ELF Ruined Christmas](https://www.usenix.org/system/files/conference/usenixsecurity15/sec15-paper-di-frederico.pdf)
 
-## How Kernel Load User Program
+## How Kernel Loads User Program
 
 Kernel loads user program via `exec()` or some variations.
 This [post](../lego/kernel/loader.md) explained the flow in great details.
@@ -161,7 +161,7 @@ This [post](../lego/kernel/loader.md) explained the flow in great details.
 Note that kernel can recognize dynamic linking via the `.interp` section
 and then invoke the dynamic linker `ld.so` instead of invoking user ELF binary directly.
 
-## How Kernel Load Kernel Module
+## How Kernel Loads Kernel Module
 
 Kernel can load modules during runtime.
 Those modules are ELF binaries.
@@ -184,7 +184,7 @@ static int hello_init(void)
 ```
 
 Once you compile it into a kernel module, we can examine the binary
-by using `objdump -dx hello.ko`. I will post the assmebly code only.
+by using `objdump -dx hello.ko`.
 Those highlighted lines mark some of the dynamic linking slots.
 They will be patched by basic load-time relocation.
 ``` linenums="1" hl_lines="19-23"
@@ -222,8 +222,37 @@ Disassembly of section .text.unlikely:
   40:   c3                      retq   
 ```
 
-Now let us look at how kernel load this binary and then how it resolves
-those relocation entries (e.g., the ones with `R_X86_64_XXX` above).
+It is also worth checking out the `.symtab` section.
+If your module is using kernel functions or variables,
+the compiler does not know their precise addresses during compile time.
+The compiler will add several entries into the `.symtab` with properties
+marked as `GLOBAL, UND`. For example, you can run `readelf -s hello.ko`
+to check that. I will post part of the output:
+``` linenums="1"
+Symbol table '.symtab' contains 29 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 0000000000000000     0 SECTION LOCAL  DEFAULT    1 
+    ....
+    13: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS haha.mod.c
+    ....
+    21: 0000000000000017    42 FUNC    LOCAL  DEFAULT    5 hello_init
+    22: 0000000000000000    11 FUNC    LOCAL  DEFAULT    3 hello_exit
+    23: 0000000000000000   896 OBJECT  GLOBAL DEFAULT   12 __this_module
+    24: 0000000000000000    11 FUNC    GLOBAL DEFAULT    3 cleanup_module
+    25: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __fentry__
+    26: 0000000000000017    42 FUNC    GLOBAL DEFAULT    5 init_module
+    27: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND printk
+    28: 0000000000000000    23 FUNC    GLOBAL DEFAULT    5 foo
+```
+
+The `simplify_symbols()` below will find the kernel virtual addresses
+for UNDEF symbols in the `.symtab` section. Those will further be
+used to patch dynamic relocation entries.
+
+---
+
+Now let us dive into kernel implementation.
 
 The kernel has several system calls for module.
 The loading part is using `SYSCALL_DEFINE3(init_module)`.
@@ -231,13 +260,10 @@ Within that, it calls the big function `load_module()`.
 
 In the begining of `load_module()`, there are some
 usual tasks examining ELF headers, allocating memory etc.
+After that, kernel will try to find the addresses for UNDEF symbols:
 
-After that, kernel will try to find the addresses for referenced symbols
-and then patch the code to update all the relocation entries (e.g., the R_X86_64_XXX marked instructions above).
-```c
-kernel/module.c
-
-load_module()
+```c linenums="1"
+kernel/module.c load_module()
         /* Fix up syms, so that st_value is a pointer to location. */
         err = simplify_symbols(mod, info);
         if (err < 0)
@@ -247,6 +273,10 @@ load_module()
         if (err < 0)
                 goto free_modinfo;
 
+==>
+
+This function will find the kernel virtual addresses
+for UNDEF symbols in the `.symtab` section.
 
 simplify_symbols()
               case SHN_UNDEF:
@@ -256,24 +286,48 @@ simplify_symbols()
                                 sym[i].st_value = kernel_symbol_value(ksym);
                                 break;
                         }
-
-
-arch/x86/kernel/module.c
-apply_relocations() -> __apply_relocate_add()
-
-                switch (ELF64_R_TYPE(rel[i].r_info)) {
-                case R_X86_64_NONE:
-                case R_X86_64_64:
-                case R_X86_64_32:
-                case R_X86_64_32S:
-                case R_X86_64_PC32:
-                case R_X86_64_PLT32:
-                case R_X86_64_PC64:
-                default:
-                        pr_err("%s: Unknown rela relocation: %llu\n",
-                               me->name, ELF64_R_TYPE(rel[i].r_info));
-                        return -ENOEXEC;
-                }
 ```
 
-There you have it.
+After resolving symbols to the real kernel virtual addresses,
+the next step is to patch the code to update all the relocation entries.
+If will do so for sections with these two types: `SHT_REL` and `SHT_RELA`.
+It looks like x86_64 is only using `apply_relocate_add()`, the one with explict addends.
+```c linenums="1"
+kernel/module.c apply_relocations()
+		...
+                else if (info->sechdrs[i].sh_type == SHT_REL)
+                        err = apply_relocate(info->sechdrs, info->strtab,
+                                             info->index.sym, i, mod);
+                else if (info->sechdrs[i].sh_type == SHT_RELA)
+                        err = apply_relocate_add(info->sechdrs, info->strtab,
+                                                 info->index.sym, i, mod);
+```
+
+Zoom into `apply_relocate_add()`, very interesting function.
+It is similar to the userspace linker ld.so.
+It could be summarized as follows:
+
+- Find the start of the relocation entry section in ELF.
+- Walk through each relocation entry, for each entry, do:
+    - Get the location where we need to patch the code (e.g., the assembly instructions dumped above)
+    - Find the symbol the entry is using. The symbol was alread resolved to kernel virtual address
+    - Update the location by applying certain computation on top of the resolved symbol address.
+      The computation is dictated by entry type (e.g., `R_X86_64_PLT32`)
+
+See the full kernel code [here](https://elixir.bootlin.com/linux/v5.10.4/source/arch/x86/kernel/module.c#L129).
+
+## Summary
+
+There you have it. We walk through how kernel loads user program, how kernel loads kernel module,
+and how dynamic linker resolves dynamic linking. The kernel and ld.so share a lot similarities
+in dealing with the linking process.
+
+We have not covered the static linking part in this post, but its process is
+similar to how the basic load-time relocation patches instructions.
+
+The essense of linking and loading is to do lazy information binding
+and pass information along the toolchain.
+The whole concetps involves many parties, ranging from compiler, linker, and kernel.
+Each takes its own part in the process.
+
+As always, hope you enjoyed this blog. Happy Hacking!
