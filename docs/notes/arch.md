@@ -53,7 +53,7 @@ will be stored when the computing unit produces it.
 Textbook Tomasulo uses **distributed reservation station**,
 each functional unit has its own attached RS entries.
 Some old CPUs like PowerPC 604, Pentium 4 and newer generation CPUs like [AMD Zen](https://en.wikichip.org/wiki/File:zen_block_diagram.svg)
-series are also using distributed reservation station.
+series, [RISCV-BOOM](https://github.com/riscv-boom/riscv-boom) are using the distributed reservation station design.
 
 Regarding AMD Zen, the [architecture figure](https://en.wikichip.org/wiki/File:zen_block_diagram.svg)
 shows there are 6 small schedulers within the Integer execution pipeline,
@@ -85,7 +85,7 @@ to implement!
 **Distributed Reservation Station (AMD Zen):**
 ![image](assets/amd-zen-ee.png)
 
-## References
+## Further Reading
 
 1. Intel optimization manual
 2. Wikichips
