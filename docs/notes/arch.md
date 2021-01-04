@@ -10,7 +10,10 @@
 :sailboat:
 
 This is my personal notes on architecture related topics.
-There is a separate blog on [cache coherence](./cache_coherence.md).
+
+## Cache Coherence
+
+See the [Practical Cache Coherence](./cache_coherence.md) blog.
 
 ## Reservation Station and ROB
 

@@ -7,8 +7,9 @@ You can find my CV [here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 Contact: ys AT ucsd DOT edu
 
 ??? tip "Research News"
-	- [_Oct 2020_] Serve as EuroSys'20 Shadow PC
-	- [_Sep 2020_] Serve as OSDI'20 Artifact Evaluation PC
+	- [_Dec 2020_] Invited to join the [2021 JSys Student Editorial Board](https://escholarship.org/uc/jsys/studenteb)
+	- [_Oct 2020_] Serve as [EuroSys'20 Shadow PC](https://www.eurosys2020.org/call-for-shadow-pc-participation/)
+	- [_Sep 2020_] Serve as [OSDI'20 Artifact Evaluation PC](https://sysartifacts.github.io/osdi2020/organizers.html)
 	- [_Sep 2020_] Serve as ASPLOS'21 External Reviewer. First major conference review!
 	- [_Apr 2020_] __Disaggregated Persistent Memory__ accepted to __ATC'20__
 	- [_Sep 2019_] Moved to UCSD.
