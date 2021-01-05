@@ -170,11 +170,11 @@ google_analytics:
 # Options
 extra:
   logo: "images/logo.svg"
-    social:
-    - type: 'github'
-      link: 'https://github.com/lastweek'
-    - type: 'twitter'
-      link: 'https://twitter.com/Yizhou_Shan'
-    - type: 'linkedin'
-      link: 'https://www.linkedin.com/in/lastweek/'
+    # social:
+    # - type: 'github'
+    #   link: 'https://github.com/lastweek'
+    # - type: 'twitter'
+    #   link: 'https://twitter.com/Yizhou_Shan'
+    # - type: 'linkedin'
+    #   link: 'https://www.linkedin.com/in/lastweek/'
   disqus: 'lastweek-io'
