@@ -14,7 +14,6 @@ nav:
    - 'Graphics':                    'notes/source_code/20200501-on-graphic-softwares.md'
    - 'GPU':                         'notes/source_code/gpu.md'
    - 'FPGA':                        'notes/source_code/fpga.md'
-   - 'Security':                    'notes/source_code/security.md'
    - 'Misc':                        'notes/source_code/misc.md'
    - 'Terminal Configs':            'notes/source_code/dotconfigs.md'
    - 'Terminal Commands':           'notes/source_code/commands.md'
@@ -24,6 +23,7 @@ nav:
    - 'Dynamic Linking':                'notes/dynamic_linking.md'
    - 'Virtualization':                 'notes/source_code/virt.md'
    - 'Architecture':                   'notes/arch.md'
+   - 'Cryptography':                   'notes/cryptography.md'
    - 'Hardware Design Languages':      'notes/hardware_pl.md'
    - 'Measure x86 Ring Switch':        'notes/xperf.md'
    - 'Linux Trace and Profile':        'notes/trace.md'
@@ -170,11 +170,11 @@ google_analytics:
 # Options
 extra:
   logo: "images/logo.svg"
-  #  social:
-  #  - type: 'github'
-  #    link: 'https://github.com/lastweek'
-  #  - type: 'twitter'
-  #    link: 'https://twitter.com/Yizhou_Shan'
-  #  - type: 'linkedin'
-  #    link: 'https://www.linkedin.com/in/lastweek/'
+    social:
+    - type: 'github'
+      link: 'https://github.com/lastweek'
+    - type: 'twitter'
+      link: 'https://twitter.com/Yizhou_Shan'
+    - type: 'linkedin'
+      link: 'https://www.linkedin.com/in/lastweek/'
   disqus: 'lastweek-io'
