@@ -1,4 +1,12 @@
-# Userfaultfd
+# Linux Userfaultfd
+
+??? note "Version History"
+	|Date|Description|
+	|:---|-----------|
+	|Jan 6, 2021| Minor update|
+	|Jun 4, 2019| Initial version|
+
+## Code Study
 
 (Notes based on linux 5.2-rc3)
 
@@ -15,14 +23,11 @@
 	- Userfaultfd deliver events via `userfaultfd_event_wait_completion()`
 	- I found code in mmap.c and mremap.c is NOT skipping rmap/lru code. Since userfaultfd related pages don't have these setup during pgfault, I think those rmap/lru cleanup code will notice this and handle it well. __In conclusion, userfault skip the expansive rmap/lru setup/teardown.__
 
-- Why userfaultfd?
-	- At first developed to enhance VM migration: after migration, the destination QEMU can handle pgfault and bring pages from remote via network.
-	- Some databases also use it to have customized feature: http://tech.adroll.com/blog/data/2016/11/29/traildb-mmap-s3.html
-	- My thought? The ideal use case is very similar to we did in Hotpot: get the faulting user address, and fetch it from remote. Due to kernel limitations and security constraints, the userfaultfd has to go through many layers and multiple kernel/user crossing. It would be interesting to use user eBPF code to handle pgfault.
+## Why userfaultfd?
 
+It was at first developed to enhance VM migration: after migration, the destination QEMU can handle pgfault and bring pages from remote via network.
 
+Some databases also use it to have customized feature: http://tech.adroll.com/blog/data/2016/11/29/traildb-mmap-s3.html. Some academic papers are also using it to do customized processing in user space (e.g., remote regions).
+But I don't think this is going to be practical for performance-critical systems.
 
---  
-Yizhou Shan  
-Created: Jun 4, 2019  
-Last Updated: Jun 4, 2019
+My thought? The use case is very similar to what we did in Hotpot: get the faulting user address, and fetch it from remote. Due to kernel limitations and security constraints, the userfaultfd has to go through many layers and multiple kernel/user crossing. It would be interesting to inject `eBPF code` from user to kernel to handle pgfault (any research value?)
