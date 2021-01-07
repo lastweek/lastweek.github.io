@@ -1,8 +1,15 @@
-# How cgroup Trigger SwAp
+# How linux cgroup trigger kernel swap
 
-Notes on how cgroup mm triggers swap on a user-defined `limit_in_bytes`.
-This notes assume you have adequate knowledge on overall linux mm code.
-For more information about cgroup in general, please check the [document from RedHat](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/resource_management_guide/ch01).
+??? note "Version History"
+	|Date|Description|
+	|:---|-----------|
+	|Dec 3, 2018| Initial version|
+
+This is a note on how linux `cgroup-mm` triggers swap on the user-defined `limit_in_bytes`.
+This note assumes you have adequate knowledge on linux mm code.
+For more information about cgroup, please check the [document from RedHat](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/resource_management_guide/ch01).
+
+This is NOT a complete walk through.
 
 There are several cgroup callbacks at `mm/memory.c`. Those functions are called to check if cgroup can honor this page allocation.
 All of these functions are located in `mm/memcontrol.c`
@@ -44,8 +51,3 @@ per-cpu array (`lru_add_pvec`). Once the array is full (default 15 entries),
 it will do a batch insertion into proper LRU lists (depends on `mem_cgroup_lruvec` we mentioned above).
 
 Why Linux is doing this way? To scale.
-
---  
-Yizhou Shan  
-Created: Dec 3, 2018  
-Last Updated: Jul 30, 2019
