@@ -13,7 +13,7 @@ loads the kernel image and how it prepares all the boot environment.
 
 ## Linux Boot Protocol and Sequence
 
-Linux (x86) has a boot protocol between the bootloader and kernel image itself, described [here](kernel.org/doc/html/latest/x86/boot.html).
+Linux (x86) has a boot protocol between the bootloader and kernel image itself, described [here](https://kernel.org/doc/html/latest/x86/boot.html).
 
 Essentially, there is a contiguous memory region passing information between these two entities.
 This big region just like a big C `struct`:
