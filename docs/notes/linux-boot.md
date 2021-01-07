@@ -1,17 +1,23 @@
-# Linux Boot Sequence after GRUB
+# Linux boot sequence after GRUB
 
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
-	|Dec 23, 2020| new|
+	|Jan 6, 2021| minor update |
+	|Dec 23, 2020| initial version |
 
-This is adopted from my note [here](https://github.com/lastweek/source-grub2).
+This note is aboue the linux/grub boot protocol and
+a walk through of the low-level booting code.
+
+---
+
+This is adopted from my [previous note](https://github.com/lastweek/source-grub2).
 I was looking into this while I was building
-the LegoOS's booting process. I was trying to find out
+the LegoOS boot process. I was trying to find out
 how [GRUB2](https://www.gnu.org/software/grub/manual/grub/grub.html#Introduction)
 loads the kernel image and how it prepares all the boot environment.
 
-## Linux Boot Protocol and Sequence
+## Linux Boot Protocol and Code Sequence
 
 Linux (x86) has a boot protocol between the bootloader and kernel image itself, described [here](https://kernel.org/doc/html/latest/x86/boot.html).
 
@@ -66,14 +72,14 @@ In all, there are a lot jumps after GRUB2 loads the kernel image,
 and it's really a long road before we can reach `start_kernel()`.
 It probably should not be this complex, but the x86 architecture is just making it worse.
 
-## linux v.s. linux16
+## GRUB2: linux v.s. linux16
 
 An interesting thing is that there are two ways to
-load an kernel image in `grub.cfg`, either
+load an kernel image in `/boot/grub2/grub.cfg`, either using
 `linux vmlinuz-3.10.0` or `linux16 vmlinuz-3.10.0`.
-They have different effects, but not sure what are those differences.
-I remember only the `linux16` one works for me,
-but not remembering why. At least on CentOS 7, it's all `linux16`.
+They have different effects.
+I remember only the `linux16` one works for me, but not remembering why.
+At least on CentOS 7, it's all `linux16`. Different distro may have different preferences?
 
 The `linux16` and `initrd16` in `grub-core/loader/i386/pc/linux.c`:
 ```c
