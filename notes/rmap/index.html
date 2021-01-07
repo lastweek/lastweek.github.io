@@ -57,7 +57,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#linux-reverse-map" class="md-skip">
+        <a href="#linux-reverse-mapping-rmap" class="md-skip">
           Skip to content
         </a>
       
@@ -569,9 +569,42 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Linux Reverse Map
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
     <a href="./" title="Linux Reverse Map" class="md-nav__link md-nav__link--active">
       Linux Reverse Map
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#old-notes" class="md-nav__link">
+    Old Notes
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -1636,6 +1669,23 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#old-notes" class="md-nav__link">
+    Old Notes
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1650,17 +1700,51 @@
                   
                 
                 
-                <h1 id="linux-reverse-map">Linux Reverse Map<a class="headerlink" href="#linux-reverse-map" title="Permanent link">&para;</a></h1>
+                <h1 id="linux-reverse-mapping-rmap">Linux Reverse Mapping (<code>rmap</code>)<a class="headerlink" href="#linux-reverse-mapping-rmap" title="Permanent link">&para;</a></h1>
+<details class="note"><summary>Version History</summary><table>
+<thead>
+<tr>
+<th align="left">Date</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Jan 6, 2021</td>
+<td>minor update</td>
+</tr>
+<tr>
+<td align="left">Jun 16, 2019</td>
+<td>add sanitizers section</td>
+</tr>
+</tbody>
+</table>
+</details>
 <p><img alt="🐙" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f419.svg" title=":octopus:" /></p>
-<p>Read those carefully, you will understand:</p>
 <ul>
 <li><a href="https://landley.net/kdocs/ols/2004/ols2004v2-pages-71-74.pdf">PDF: Object-based Reverse Mapping</a></li>
 <li><a href="https://lwn.net/Articles/75198/">LWN: Virtual Memory II: the return of objrmap</a></li>
 <li><a href="https://lwn.net/Articles/23732/">LWN: The object-based reverse-mapping VM</a></li>
 </ul>
+<p>Reserve map, or rmap, is a linux data structure used by the memory-management system.
+It is a reverse mapping from the physical page back to the PTEs.
+More specically, from the <code>struct page</code> back to the list of PTEs that point to the page.</p>
+<p>The <code>rmap</code> data structure is used heavily by memory related system calls,
+such as <code>mmap</code>, <code>munmap</code>, <code>madvise</code>, <code>brk</code>, and so on.
+And it is used by both anonmouys and file-backed pages.
+With the help of <code>rmap</code>, kernel is able to identify all the PTEs that point
+a certain page. Therefore, when kernel is trying to, say evict the page,
+it will be able to clear all the PTEs point to the page.</p>
+<p>The <code>rmap</code> data structured is used by both user and kernel pages.
+It makes the tracking of page sharing easier.</p>
+<p>The <code>rmap</code> concept seems simple and straightforward to implement,
+but it is very challenging to design a space- and performance-efficient one.
+The linux kernel uses quite a lot of tricks to optimize the <code>rmap</code>.</p>
+<p>You will understand how linux rmap works if you read the following articles carefully:</p>
 <p><img alt="img_1" src="../notes_rmap1.png" />
 <img alt="img_2" src="../notes_rmap2.png" /></p>
-<p>I used to implement the basic <a href="http://lastweek.io/lego/pcache/rmap/">PTE-chain based rmap for LegoOS</a>.
+<h2 id="old-notes">Old Notes<a class="headerlink" href="#old-notes" title="Permanent link">&para;</a></h2>
+<p>I implemente the basic <a href="http://lastweek.io/lego/pcache/rmap/">PTE-chain based rmap for LegoOS</a>.
 I can see the downsides of it. I tried to understand the
 linux rmap before, somehow gave up because I couldn&rsquo;t fully
 understand one thing:
@@ -1705,12 +1789,8 @@ i.e., having a data structure trampoline.</p>
 <ul>
 <li>All pages within a single VMA share just one <code>anon_vma</code>.
   <code>vma-&gt;anon_vma</code> indicates if a VMA has attached or note.
-  Related function is <code>anon_vma_prepare()</code> within <code>do_anonymous_fault()</code> <a href="https://github.com/torvalds/linux/blob/e93c9c99a629c61837d5a7fc2120cd2b6c70dbdd/mm/memory.c#L2948">1</a>.</li>
+  Related function is <code>anon_vma_prepare()</code> within <code>do_anonymous_fault()</code> <a href="https://github.com/torvalds/linux/blob/e93c9c99a629c61837d5a7fc2120cd2b6c70dbdd/mm/memory.c#L2948">link</a>.</li>
 </ul>
-<p>&ndash;<br />
-Yizhou Shan <img alt="©" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/a9.svg" title=":copyright:" /><br />
-Created: Jun 16, 2019<br />
-Last Updated: Jun 17, 2019</p>
                 
                   
                     
@@ -1719,7 +1799,7 @@ Last Updated: Jun 17, 2019</p>
 <div class="md-source-date">
   <small>
     
-      Last update: July 8, 2019
+      Last update: January 7, 2021
     
   </small>
 </div>

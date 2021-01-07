@@ -57,7 +57,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#how-cgroup-trigger-swap" class="md-skip">
+        <a href="#how-linux-cgroup-trigger-kernel-swap" class="md-skip">
           Skip to content
         </a>
       
@@ -1700,10 +1700,26 @@
                   
                 
                 
-                <h1 id="how-cgroup-trigger-swap">How cgroup Trigger SwAp<a class="headerlink" href="#how-cgroup-trigger-swap" title="Permanent link">&para;</a></h1>
-<p>Notes on how cgroup mm triggers swap on a user-defined <code>limit_in_bytes</code>.
-This notes assume you have adequate knowledge on overall linux mm code.
-For more information about cgroup in general, please check the <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/resource_management_guide/ch01">document from RedHat</a>.</p>
+                <h1 id="how-linux-cgroup-trigger-kernel-swap">How linux cgroup trigger kernel swap<a class="headerlink" href="#how-linux-cgroup-trigger-kernel-swap" title="Permanent link">&para;</a></h1>
+<details class="note"><summary>Version History</summary><table>
+<thead>
+<tr>
+<th align="left">Date</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Dec 3, 2018</td>
+<td>Initial version</td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>This is a note on how linux <code>cgroup-mm</code> triggers swap on the user-defined <code>limit_in_bytes</code>.
+This note assumes you have adequate knowledge on linux mm code.
+For more information about cgroup, please check the <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/resource_management_guide/ch01">document from RedHat</a>.</p>
+<p>This is NOT a complete walk through.</p>
 <p>There are several cgroup callbacks at <code>mm/memory.c</code>. Those functions are called to check if cgroup can honor this page allocation.
 All of these functions are located in <code>mm/memcontrol.c</code></p>
 <ul>
@@ -1755,10 +1771,6 @@ Choose the vector that will be passed down to do <code>shrink_page_list()</code>
 per-cpu array (<code>lru_add_pvec</code>). Once the array is full (default 15 entries),
 it will do a batch insertion into proper LRU lists (depends on <code>mem_cgroup_lruvec</code> we mentioned above).</p>
 <p>Why Linux is doing this way? To scale.</p>
-<p>&ndash;<br />
-Yizhou Shan<br />
-Created: Dec 3, 2018<br />
-Last Updated: Jul 30, 2019</p>
                 
                   
                     
@@ -1767,7 +1779,7 @@ Last Updated: Jul 30, 2019</p>
 <div class="md-source-date">
   <small>
     
-      Last update: July 30, 2019
+      Last update: January 7, 2021
     
   </small>
 </div>
