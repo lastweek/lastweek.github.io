@@ -57,7 +57,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#userfaultfd" class="md-skip">
+        <a href="#linux-userfaultfd" class="md-skip">
           Skip to content
         </a>
       
@@ -581,9 +581,49 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Linux Userfaultfd
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
     <a href="./" title="Linux Userfaultfd" class="md-nav__link md-nav__link--active">
       Linux Userfaultfd
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#code-study" class="md-nav__link">
+    Code Study
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-userfaultfd" class="md-nav__link">
+    Why userfaultfd?
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -1636,6 +1676,30 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#code-study" class="md-nav__link">
+    Code Study
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-userfaultfd" class="md-nav__link">
+    Why userfaultfd?
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1650,7 +1714,27 @@
                   
                 
                 
-                <h1 id="userfaultfd">Userfaultfd<a class="headerlink" href="#userfaultfd" title="Permanent link">&para;</a></h1>
+                <h1 id="linux-userfaultfd">Linux Userfaultfd<a class="headerlink" href="#linux-userfaultfd" title="Permanent link">&para;</a></h1>
+<details class="note"><summary>Version History</summary><table>
+<thead>
+<tr>
+<th align="left">Date</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Jan 6, 2021</td>
+<td>Minor update</td>
+</tr>
+<tr>
+<td align="left">Jun 4, 2019</td>
+<td>Initial version</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2 id="code-study">Code Study<a class="headerlink" href="#code-study" title="Permanent link">&para;</a></h2>
 <p>(Notes based on linux 5.2-rc3)</p>
 <ul>
 <li>Code Layout<ul>
@@ -1665,27 +1749,18 @@
 <li>Userfaultfd does not use the shared global zero page</li>
 </ul>
 </li>
-<li>
-<p><code>userfaultfd_unmap_prep(), userfaultfd_unmap_complete()</code>, called by <code>mm/mmap.c</code>, and <code>mm/mremap.c</code>:</p>
-<ul>
+<li><code>userfaultfd_unmap_prep(), userfaultfd_unmap_complete()</code>, called by <code>mm/mmap.c</code>, and <code>mm/mremap.c</code>:<ul>
 <li>Userfaultfd got notified if there are remap and unmap</li>
 <li>Userfaultfd deliver events via <code>userfaultfd_event_wait_completion()</code></li>
 <li>I found code in mmap.c and mremap.c is NOT skipping rmap/lru code. Since userfaultfd related pages don&rsquo;t have these setup during pgfault, I think those rmap/lru cleanup code will notice this and handle it well. <strong>In conclusion, userfault skip the expansive rmap/lru setup/teardown.</strong></li>
 </ul>
 </li>
-<li>
-<p>Why userfaultfd?</p>
-<ul>
-<li>At first developed to enhance VM migration: after migration, the destination QEMU can handle pgfault and bring pages from remote via network.</li>
-<li>Some databases also use it to have customized feature: <a href="http://tech.adroll.com/blog/data/2016/11/29/traildb-mmap-s3.html">http://tech.adroll.com/blog/data/2016/11/29/traildb-mmap-s3.html</a></li>
-<li>My thought? The ideal use case is very similar to we did in Hotpot: get the faulting user address, and fetch it from remote. Due to kernel limitations and security constraints, the userfaultfd has to go through many layers and multiple kernel/user crossing. It would be interesting to use user eBPF code to handle pgfault.</li>
 </ul>
-</li>
-</ul>
-<p>&ndash;<br />
-Yizhou Shan<br />
-Created: Jun 4, 2019<br />
-Last Updated: Jun 4, 2019</p>
+<h2 id="why-userfaultfd">Why userfaultfd?<a class="headerlink" href="#why-userfaultfd" title="Permanent link">&para;</a></h2>
+<p>It was at first developed to enhance VM migration: after migration, the destination QEMU can handle pgfault and bring pages from remote via network.</p>
+<p>Some databases also use it to have customized feature: <a href="http://tech.adroll.com/blog/data/2016/11/29/traildb-mmap-s3.html">http://tech.adroll.com/blog/data/2016/11/29/traildb-mmap-s3.html</a>. Some academic papers are also using it to do customized processing in user space (e.g., remote regions).
+But I don&rsquo;t think this is going to be practical for performance-critical systems.</p>
+<p>My thought? The use case is very similar to what we did in Hotpot: get the faulting user address, and fetch it from remote. Due to kernel limitations and security constraints, the userfaultfd has to go through many layers and multiple kernel/user crossing. It would be interesting to inject <code>eBPF code</code> from user to kernel to handle pgfault (any research value?)</p>
                 
                   
                     
@@ -1694,7 +1769,7 @@ Last Updated: Jun 4, 2019</p>
 <div class="md-source-date">
   <small>
     
-      Last update: June 10, 2019
+      Last update: January 7, 2021
     
   </small>
 </div>
