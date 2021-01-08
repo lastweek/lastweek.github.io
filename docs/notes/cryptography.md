@@ -26,6 +26,10 @@ Some basic concepts:
     - [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
     - [Twofish, 128-bit block plaintext -> ciphertext](https://en.wikipedia.org/wiki/Twofish)
 
+Courses:
+
+- UCSE CSE207 by Prof Mihir Bellare, https://cseweb.ucsd.edu/~mihir/cse207/index.html
+
 ## TLS and SSH
 
 SSH forgos a similar process as SSL/TLS.
