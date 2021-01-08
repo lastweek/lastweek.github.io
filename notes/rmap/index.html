@@ -1721,11 +1721,6 @@
 </table>
 </details>
 <p><img alt="🐙" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f419.svg" title=":octopus:" /></p>
-<ul>
-<li><a href="https://landley.net/kdocs/ols/2004/ols2004v2-pages-71-74.pdf">PDF: Object-based Reverse Mapping</a></li>
-<li><a href="https://lwn.net/Articles/75198/">LWN: Virtual Memory II: the return of objrmap</a></li>
-<li><a href="https://lwn.net/Articles/23732/">LWN: The object-based reverse-mapping VM</a></li>
-</ul>
 <p>Reserve map, or rmap, is a linux data structure used by the memory-management system.
 It is a reverse mapping from the physical page back to the PTEs.
 More specically, from the <code>struct page</code> back to the list of PTEs that point to the page.</p>
@@ -1741,6 +1736,11 @@ It makes the tracking of page sharing easier.</p>
 but it is very challenging to design a space- and performance-efficient one.
 The linux kernel uses quite a lot of tricks to optimize the <code>rmap</code>.</p>
 <p>You will understand how linux rmap works if you read the following articles carefully:</p>
+<ul>
+<li><a href="https://landley.net/kdocs/ols/2004/ols2004v2-pages-71-74.pdf">PDF: Object-based Reverse Mapping</a></li>
+<li><a href="https://lwn.net/Articles/75198/">LWN: Virtual Memory II: the return of objrmap</a></li>
+<li><a href="https://lwn.net/Articles/23732/">LWN: The object-based reverse-mapping VM</a></li>
+</ul>
 <p><img alt="img_1" src="../notes_rmap1.png" />
 <img alt="img_2" src="../notes_rmap2.png" /></p>
 <h2 id="old-notes">Old Notes<a class="headerlink" href="#old-notes" title="Permanent link">&para;</a></h2>
@@ -1799,7 +1799,7 @@ i.e., having a data structure trampoline.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: January 7, 2021
+      Last update: January 8, 2021
     
   </small>
 </div>
