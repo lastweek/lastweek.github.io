@@ -6,11 +6,13 @@
 	|Sep 6, 2020| Add more eBPF| 
 	|Jun 10, 2019| Initial version|
 
-Notes about on various tracers and profilers from the Linux kernel.
-Also links to some previous notes about the profilers/tracers in LegoOS: [notes](http://lastweek.io/lego/kernel/profile/),
+This is a note on various linux kernel tracers and profilers.
+Links to previous notes on LegoOS's profilers/tracers: [notes](http://lastweek.io/lego/kernel/profile/),
 and [profile points](http://lastweek.io/lego/kernel/profile_points/).
 
-Under Linux development envionment, we have:
+Kernel maintains a top-level trace index file here: https://www.kernel.org/doc/html/latest/trace/index.html.
+
+In linux, we have:
 
   - ftrace
   - kprobe
