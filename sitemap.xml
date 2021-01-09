@@ -76,10 +76,6 @@
      <lastmod>2021-01-09</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://lastweek.io/notes/xperf/</loc>
-     <lastmod>2021-01-09</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>http://lastweek.io/notes/linux-iouring/</loc>
      <lastmod>2021-01-09</lastmod>
      <changefreq>daily</changefreq>
@@ -101,6 +97,14 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>http://lastweek.io/notes/cgroup-swap/</loc>
+     <lastmod>2021-01-09</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://lastweek.io/notes/xperf/</loc>
+     <lastmod>2021-01-09</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://lastweek.io/notes/linux-x86-fpu/</loc>
      <lastmod>2021-01-09</lastmod>
      <changefreq>daily</changefreq>
     </url><url>

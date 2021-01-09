@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
-        <link rel="canonical" href="http://lastweek.io/fpga/hls_axis/">
+        <link rel="canonical" href="http://lastweek.io/notes/linux-x86-fpu/">
       
       
         <meta name="author" content="Yizhou Shan">
@@ -19,7 +19,7 @@
     
     
       
-        <title>AXI-Stream Usage in HLS - Yizhou Shan's Home Page</title>
+        <title>Linux FPU - Yizhou Shan's Home Page</title>
       
     
     
@@ -57,7 +57,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#axi-stream-usage-in-hls" class="md-skip">
+        <a href="#linuxlegoos-x86-floating-point-unit" class="md-skip">
           Skip to content
         </a>
       
@@ -85,7 +85,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              AXI-Stream Usage in HLS
+              Linux FPU
             
           </span>
         </div>
@@ -134,14 +134,16 @@
         
           
 
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
         
   <li class="md-tabs__item">
     
-      <a href="../.." class="md-tabs__link md-tabs__link--active">
+      <a href="../.." class="md-tabs__link">
         Home
       </a>
     
@@ -153,7 +155,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../notes/source_code/summary/" class="md-tabs__link">
+        <a href="../source_code/summary/" class="md-tabs__link">
           Code
         </a>
       
@@ -166,7 +168,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../notes/cache_coherence/" class="md-tabs__link">
+        <a href="../cache_coherence/" class="md-tabs__link md-tabs__link--active">
           Note
         </a>
       
@@ -179,7 +181,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../notes/paper_fpga/" class="md-tabs__link">
+        <a href="../paper_fpga/" class="md-tabs__link">
           FPGA
         </a>
       
@@ -287,7 +289,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/summary/" title="All-in-One" class="md-nav__link">
+    <a href="../source_code/summary/" title="All-in-One" class="md-nav__link">
       All-in-One
     </a>
   </li>
@@ -299,7 +301,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/program_advice/" title="Guideline & Advice" class="md-nav__link">
+    <a href="../program_advice/" title="Guideline & Advice" class="md-nav__link">
       Guideline & Advice
     </a>
   </li>
@@ -311,7 +313,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/os/" title="OS" class="md-nav__link">
+    <a href="../source_code/os/" title="OS" class="md-nav__link">
       OS
     </a>
   </li>
@@ -323,7 +325,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/virt/" title="Virtualization" class="md-nav__link">
+    <a href="../source_code/virt/" title="Virtualization" class="md-nav__link">
       Virtualization
     </a>
   </li>
@@ -335,7 +337,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/rdma/" title="DPDK and RDMA" class="md-nav__link">
+    <a href="../source_code/rdma/" title="DPDK and RDMA" class="md-nav__link">
       DPDK and RDMA
     </a>
   </li>
@@ -347,7 +349,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/firmware-softwares/" title="Firmware and Bootloader" class="md-nav__link">
+    <a href="../source_code/firmware-softwares/" title="Firmware and Bootloader" class="md-nav__link">
       Firmware and Bootloader
     </a>
   </li>
@@ -359,7 +361,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/20200501-on-graphic-softwares/" title="Graphics" class="md-nav__link">
+    <a href="../source_code/20200501-on-graphic-softwares/" title="Graphics" class="md-nav__link">
       Graphics
     </a>
   </li>
@@ -371,7 +373,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/gpu/" title="GPU" class="md-nav__link">
+    <a href="../source_code/gpu/" title="GPU" class="md-nav__link">
       GPU
     </a>
   </li>
@@ -383,7 +385,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/fpga/" title="FPGA" class="md-nav__link">
+    <a href="../source_code/fpga/" title="FPGA" class="md-nav__link">
       FPGA
     </a>
   </li>
@@ -395,7 +397,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/misc/" title="Misc" class="md-nav__link">
+    <a href="../source_code/misc/" title="Misc" class="md-nav__link">
       Misc
     </a>
   </li>
@@ -407,7 +409,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/dotconfigs/" title="Terminal Configs" class="md-nav__link">
+    <a href="../source_code/dotconfigs/" title="Terminal Configs" class="md-nav__link">
       Terminal Configs
     </a>
   </li>
@@ -419,7 +421,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/commands/" title="Terminal Commands" class="md-nav__link">
+    <a href="../source_code/commands/" title="Terminal Commands" class="md-nav__link">
       Terminal Commands
     </a>
   </li>
@@ -434,10 +436,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
       Note
@@ -461,7 +465,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/cache_coherence/" title="Practical Cache Coherence" class="md-nav__link">
+    <a href="../cache_coherence/" title="Practical Cache Coherence" class="md-nav__link">
       Practical Cache Coherence
     </a>
   </li>
@@ -473,7 +477,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/dynamic_linking/" title="Dynamic Linking" class="md-nav__link">
+    <a href="../dynamic_linking/" title="Dynamic Linking" class="md-nav__link">
       Dynamic Linking
     </a>
   </li>
@@ -485,7 +489,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/source_code/virt/" title="Virtualization" class="md-nav__link">
+    <a href="../source_code/virt/" title="Virtualization" class="md-nav__link">
       Virtualization
     </a>
   </li>
@@ -497,7 +501,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/arch/" title="Architecture" class="md-nav__link">
+    <a href="../arch/" title="Architecture" class="md-nav__link">
       Architecture
     </a>
   </li>
@@ -509,7 +513,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/cryptography/" title="Cryptography" class="md-nav__link">
+    <a href="../cryptography/" title="Cryptography" class="md-nav__link">
       Cryptography
     </a>
   </li>
@@ -521,7 +525,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/hardware_pl/" title="Hardware Design Languages" class="md-nav__link">
+    <a href="../hardware_pl/" title="Hardware Design Languages" class="md-nav__link">
       Hardware Design Languages
     </a>
   </li>
@@ -533,7 +537,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/linux-iouring/" title="Linux io_uring" class="md-nav__link">
+    <a href="../linux-iouring/" title="Linux io_uring" class="md-nav__link">
       Linux io_uring
     </a>
   </li>
@@ -545,7 +549,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/linux-boot/" title="Linux Boot Sequence" class="md-nav__link">
+    <a href="../linux-boot/" title="Linux Boot Sequence" class="md-nav__link">
       Linux Boot Sequence
     </a>
   </li>
@@ -557,7 +561,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/trace/" title="Linux Trace and Profile" class="md-nav__link">
+    <a href="../trace/" title="Linux Trace and Profile" class="md-nav__link">
       Linux Trace and Profile
     </a>
   </li>
@@ -569,7 +573,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/rmap/" title="Linux Reverse Mapping" class="md-nav__link">
+    <a href="../rmap/" title="Linux Reverse Mapping" class="md-nav__link">
       Linux Reverse Mapping
     </a>
   </li>
@@ -581,7 +585,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/userfaultfd/" title="Linux Userfaultfd" class="md-nav__link">
+    <a href="../userfaultfd/" title="Linux Userfaultfd" class="md-nav__link">
       Linux Userfaultfd
     </a>
   </li>
@@ -593,7 +597,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/cgroup-swap/" title="Linux Cgroup and Swap" class="md-nav__link">
+    <a href="../cgroup-swap/" title="Linux Cgroup and Swap" class="md-nav__link">
       Linux Cgroup and Swap
     </a>
   </li>
@@ -605,7 +609,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/xperf/" title="Linux x86 Ring Switch" class="md-nav__link">
+    <a href="../xperf/" title="Linux x86 Ring Switch" class="md-nav__link">
       Linux x86 Ring Switch
     </a>
   </li>
@@ -615,11 +619,95 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../notes/linux-x86-fpu/" title="Linux FPU" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Linux FPU
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Linux FPU" class="md-nav__link md-nav__link--active">
       Linux FPU
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#boot" class="md-nav__link">
+    Boot
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context-switch" class="md-nav__link">
+    Context Switch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#syscall" class="md-nav__link">
+    SYSCALL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exceptions" class="md-nav__link">
+    Exceptions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal" class="md-nav__link">
+    Signal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thoughts" class="md-nav__link">
+    Thoughts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -629,7 +717,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/proc/" title="Linux Special Files" class="md-nav__link">
+    <a href="../proc/" title="Linux Special Files" class="md-nav__link">
       Linux Special Files
     </a>
   </li>
@@ -641,7 +729,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/linux-resource/" title="Linux Resource" class="md-nav__link">
+    <a href="../linux-resource/" title="Linux Resource" class="md-nav__link">
       Linux Resource
     </a>
   </li>
@@ -653,7 +741,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/kvm-basic/" title="Linux KVM" class="md-nav__link">
+    <a href="../kvm-basic/" title="Linux KVM" class="md-nav__link">
       Linux KVM
     </a>
   </li>
@@ -665,7 +753,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/paper_perf_shadows/" title="Performance-Shadows" class="md-nav__link">
+    <a href="../paper_perf_shadows/" title="Performance-Shadows" class="md-nav__link">
       Performance-Shadows
     </a>
   </li>
@@ -689,7 +777,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/benchmark/" title="Benchmarks" class="md-nav__link">
+    <a href="../benchmark/" title="Benchmarks" class="md-nav__link">
       Benchmarks
     </a>
   </li>
@@ -743,7 +831,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../notes/paper_fpga/" title="Papers" class="md-nav__link">
+    <a href="../paper_fpga/" title="Papers" class="md-nav__link">
       Papers
     </a>
   </li>
@@ -755,7 +843,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../bitstream/" title="Bitstream Explained" class="md-nav__link">
+    <a href="../../fpga/bitstream/" title="Bitstream Explained" class="md-nav__link">
       Bitstream Explained
     </a>
   </li>
@@ -767,7 +855,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../language/" title="Languages" class="md-nav__link">
+    <a href="../../fpga/language/" title="Languages" class="md-nav__link">
       Languages
     </a>
   </li>
@@ -779,7 +867,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../pr/" title="Morphous Partial Reconfiguration" class="md-nav__link">
+    <a href="../../fpga/pr/" title="Morphous Partial Reconfiguration" class="md-nav__link">
       Morphous Partial Reconfiguration
     </a>
   </li>
@@ -791,7 +879,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../vivado/" title="Vivado Notes" class="md-nav__link">
+    <a href="../../fpga/vivado/" title="Vivado Notes" class="md-nav__link">
       Vivado Notes
     </a>
   </li>
@@ -803,7 +891,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../hls_axi/" title="Efficient AXI-MM" class="md-nav__link">
+    <a href="../../fpga/hls_axi/" title="Efficient AXI-MM" class="md-nav__link">
       Efficient AXI-MM
     </a>
   </li>
@@ -815,7 +903,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../setup_hold/" title="Setup and Hold Time" class="md-nav__link">
+    <a href="../../fpga/setup_hold/" title="Setup and Hold Time" class="md-nav__link">
       Setup and Hold Time
     </a>
   </li>
@@ -1647,6 +1735,65 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#boot" class="md-nav__link">
+    Boot
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context-switch" class="md-nav__link">
+    Context Switch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#syscall" class="md-nav__link">
+    SYSCALL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exceptions" class="md-nav__link">
+    Exceptions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal" class="md-nav__link">
+    Signal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thoughts" class="md-nav__link">
+    Thoughts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1661,9 +1808,82 @@
                   
                 
                 
-                <h1 id="axi-stream-usage-in-hls">AXI-Stream Usage in HLS<a class="headerlink" href="#axi-stream-usage-in-hls" title="Permanent link">&para;</a></h1>
-<p>How you should ultilize the AXI-Stream in HLS code to best describe your
-system.</p>
+                <h1 id="linuxlegoos-x86-floating-point-unit">Linux/LegoOS x86 Floating Point Unit<a class="headerlink" href="#linuxlegoos-x86-floating-point-unit" title="Permanent link">&para;</a></h1>
+<details class="note"><summary>Version History</summary><table>
+<thead>
+<tr>
+<th align="left">Date</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Feb 22, 2018</td>
+<td>Initial Version</td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>FPU is heavily used by user level code.
+You may not use it directly, but glibc library is using it a lot, e.g. the <code>strcmp</code>, <code>memcpy</code>.
+x86 FPU is really a super complex technology designed by Intel.
+Of course its performance is good and also widely used, but the legacy compatible feature? Hmm, not so yummy.</p>
+<p>I would say that without Ingo Molnar&rsquo;s <a href="https://lwn.net/Articles/643235/">x86 FPU code rewrite</a>,
+there is no way for me to easily understand it.
+The current <a href="https://elixir.bootlin.com/linux/v5.10.5/source/arch/x86/kernel/fpu">x86 FPU code</a> is well-written.
+Even though I don&rsquo;t understand most of the low-level code, I do enjoy reading it.
+The naming convention, the code organization, the file organization, the header files, it is a nice piece of art.</p>
+<p>Below I will briefly list kernel subsystems that use FPU.</p>
+<h2 id="boot">Boot<a class="headerlink" href="#boot" title="Permanent link">&para;</a></h2>
+<p>FPU detection and init happen during early boot.
+The <code>struct fpu</code> is a dynamically-sized structure.
+Its size depends on what features the underlying CPU support.
+Since <code>struct fpu</code> is part of <code>struct task_struct</code>,
+that implies <code>task_struct</code> is dynamically-sized as well
+(<code>task_struct -&gt; thread_struct -&gt; fpu</code>).
+Apparently, <code>cpu_init()</code> will also callback to init its local FPU.</p>
+<h2 id="context-switch">Context Switch<a class="headerlink" href="#context-switch" title="Permanent link">&para;</a></h2>
+<p>FPU consists of a huge amount of registers.
+Each thread will have its own FPU context.
+However, the CPU itself will not save or restore any FPU registers automatically,
+it is software&rsquo;s duty to save and restore FPU context properly.
+And alla FPU context/registers saved saved into <code>struct fpu</code>.</p>
+<p>Thus whenever we switch task, we also need to switch FPU context
+(note: not always, it is optional, kernel is using a lazy switching trick).
+<a href="https://elixir.bootlin.com/linux/v5.10.5/source/arch/x86/kernel/process_64.c#L546">Code</a>:
+<div class="highlight"><pre><span></span><code><span class="n">__visible</span> <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span>
+<span class="nf">__switch_to</span><span class="p">(</span><span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">prev_p</span><span class="p">,</span> <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">next_p</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="p">..</span>
+        <span class="n">fpu_switch</span> <span class="o">=</span> <span class="n">switch_fpu_prepare</span><span class="p">(</span><span class="n">prev_fpu</span><span class="p">,</span> <span class="n">next_fpu</span><span class="p">,</span> <span class="n">cpu</span><span class="p">);</span>
+        <span class="p">..</span>
+        <span class="n">switch_fpu_finish</span><span class="p">(</span><span class="n">next_fpu</span><span class="p">,</span> <span class="n">fpu_switch</span><span class="p">);</span>
+        <span class="p">..</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h2 id="syscall">SYSCALL<a class="headerlink" href="#syscall" title="Permanent link">&para;</a></h2>
+<ul>
+<li>fork() and clone(): When a new thread or process is created, the FPU context is copied from the calling thread.</li>
+<li>execve(): during this syscall, the FPU context will be cleared.</li>
+<li>exit(): When a thread exit, FPU will do cleanup based on whether <code>eagerfpu</code> or <code>lazyfpu</code> is used.</li>
+</ul>
+<h2 id="exceptions">Exceptions<a class="headerlink" href="#exceptions" title="Permanent link">&para;</a></h2>
+<p>Like the <code>device not available</code> exception, which may be triggered if <strong>lazyfpu</strong> is used.
+The <code>do_simd_exception()</code> and <code>do_coprocessor_error()</code> are some math related exceptions.</p>
+<h2 id="signal">Signal<a class="headerlink" href="#signal" title="Permanent link">&para;</a></h2>
+<p>Kernel needs to setup a <code>sigframe</code> for user level signal handlers.
+<code>sigframe</code> is a contiguous stack memory consists of the general purpose registers AND FPU registers.
+So signal handling part has to call back to FPU code to setup and copy the FPU registers to the in stack <code>sigframe</code>.</p>
+<p>Signal handling is another beast.</p>
+<h2 id="thoughts">Thoughts<a class="headerlink" href="#thoughts" title="Permanent link">&para;</a></h2>
+<p>Compatibility is a heavy thing to carry.
+But it is also a nice thing for marketing.
+No one can deny the success of Intel on its backward compatibility.
+Bad for low-level system developers.</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="https://unix.stackexchange.com/questions/475956/why-can-the-kernel-not-use-sse-avx-registers-and-instructions">https://unix.stackexchange.com/questions/475956/why-can-the-kernel-not-use-sse-avx-registers-and-instructions</a></li>
+</ol>
                 
                   
                     
@@ -1672,7 +1892,7 @@ system.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: May 1, 2019
+      Last update: January 9, 2021
     
   </small>
 </div>
@@ -1685,7 +1905,7 @@ system.</p>
 
   <h2 id="__comments">Comments</h2>
   <div id="disqus_thread"></div>
-  <script>var disqus_config=function(){this.page.url="http://lastweek.io/fpga/hls_axis/",this.page.identifier="/fpga/hls_axis/"};!function(){var e=document,i=e.createElement("script");i.src="//lastweek-io.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
+  <script>var disqus_config=function(){this.page.url="http://lastweek.io/notes/linux-x86-fpu/",this.page.identifier="/notes/linux-x86-fpu/"};!function(){var e=document,i=e.createElement("script");i.src="//lastweek-io.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
 
               
             </article>
@@ -1695,6 +1915,41 @@ system.</p>
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../xperf/" title="Linux x86 Ring Switch" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Linux x86 Ring Switch
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../proc/" title="Linux Special Files" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Linux Special Files
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
