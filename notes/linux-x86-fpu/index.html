@@ -1824,16 +1824,21 @@
 </tbody>
 </table>
 </details>
-<p>FPU is heavily used by user level code.
-You may not use it directly, but glibc library is using it a lot, e.g. the <code>strcmp</code>, <code>memcpy</code>.
+<p>This post describes what other kernel subsystems are using (or have to deal with) the FPU feature.</p>
+<hr />
+<p>FPU is heavily used by user level code, but not kernel.
+You may not use it directly, but glibc is using it all over the place, e.g. the <code>strcmp</code>, <code>memcpy</code>.
 x86 FPU is really a super complex technology designed by Intel.
 Of course its performance is good and also widely used, but the legacy compatible feature? Hmm, not so yummy.</p>
-<p>I would say that without Ingo Molnar&rsquo;s <a href="https://lwn.net/Articles/643235/">x86 FPU code rewrite</a>,
+<p>Without Ingo Molnar&rsquo;s <a href="https://lwn.net/Articles/643235/">x86 FPU code rewrite</a>,
 there is no way for me to easily understand it.
-The current <a href="https://elixir.bootlin.com/linux/v5.10.5/source/arch/x86/kernel/fpu">x86 FPU code</a> is well-written.
-Even though I don&rsquo;t understand most of the low-level code, I do enjoy reading it.
+In 2019, the FPU code received another huge improvement (<a href="https://lkml.org/lkml/2019/4/3/877">patch</a>).</p>
+<p>The current <a href="https://elixir.bootlin.com/linux/v5.10.5/source/arch/x86/kernel/fpu">x86 FPU code</a> is well-written.
+Even though I don&rsquo;t understand some of the low-level code, I do enjoy reading it.
 The naming convention, the code organization, the file organization, the header files, it is a nice piece of art.</p>
-<p>Below I will briefly list kernel subsystems that use FPU.</p>
+<p>Below I will briefly list kernel subsystems that use FPU.
+My understanding is based on code before the 2019 FPU patch,
+so some facts may have changed already.</p>
 <h2 id="boot">Boot<a class="headerlink" href="#boot" title="Permanent link">&para;</a></h2>
 <p>FPU detection and init happen during early boot.
 The <code>struct fpu</code> is a dynamically-sized structure.
@@ -1841,13 +1846,13 @@ Its size depends on what features the underlying CPU support.
 Since <code>struct fpu</code> is part of <code>struct task_struct</code>,
 that implies <code>task_struct</code> is dynamically-sized as well
 (<code>task_struct -&gt; thread_struct -&gt; fpu</code>).
-Apparently, <code>cpu_init()</code> will also callback to init its local FPU.</p>
+The <code>cpu_init()</code> will also callback to init its local FPU.</p>
 <h2 id="context-switch">Context Switch<a class="headerlink" href="#context-switch" title="Permanent link">&para;</a></h2>
 <p>FPU consists of a huge amount of registers.
 Each thread will have its own FPU context.
 However, the CPU itself will not save or restore any FPU registers automatically,
 it is software&rsquo;s duty to save and restore FPU context properly.
-And alla FPU context/registers saved saved into <code>struct fpu</code>.</p>
+And FPU context/registers are saved into <code>struct fpu</code>.</p>
 <p>Thus whenever we switch task, we also need to switch FPU context
 (note: not always, it is optional, kernel is using a lazy switching trick).
 <a href="https://elixir.bootlin.com/linux/v5.10.5/source/arch/x86/kernel/process_64.c#L546">Code</a>:
@@ -1883,6 +1888,7 @@ Bad for low-level system developers.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ol>
 <li><a href="https://unix.stackexchange.com/questions/475956/why-can-the-kernel-not-use-sse-avx-registers-and-instructions">https://unix.stackexchange.com/questions/475956/why-can-the-kernel-not-use-sse-avx-registers-and-instructions</a></li>
+<li>2019 FPU patch: <a href="https://lkml.org/lkml/2019/4/3/877">https://lkml.org/lkml/2019/4/3/877</a></li>
 </ol>
                 
                   
