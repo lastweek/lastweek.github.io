@@ -1818,13 +1818,17 @@
 </thead>
 <tbody>
 <tr>
+<td align="left">Jan 9, 2021</td>
+<td>repolished after reading the <a href="https://sasha-f.medium.com/why-mmap-is-faster-than-system-calls-24718e75ab37">why mmap is faster syscall post</a>. Indeed, the difference is that mmap is using user-level AVX-aided memmove while kernel cannot. This reminded me of this post so I decided to move it to here.</td>
+</tr>
+<tr>
 <td align="left">Feb 22, 2018</td>
 <td>Initial Version</td>
 </tr>
 </tbody>
 </table>
 </details>
-<p>This post describes what other kernel subsystems are using (or have to deal with) the FPU feature.</p>
+<p>This blog documents what how kernel is dealing with x86 FPU at a high level.</p>
 <hr />
 <p>FPU is heavily used by user level code, but not kernel.
 You may not use it directly, but glibc is using it all over the place, e.g. the <code>strcmp</code>, <code>memcpy</code>.
