@@ -5,18 +5,26 @@
 	|:---|-----------|
 	|Feb 22, 2018 | Initial Version|
 
-FPU is heavily used by user level code.
-You may not use it directly, but glibc library is using it a lot, e.g. the `strcmp`, `memcpy`.
+This post describes what other kernel subsystems are using (or have to deal with) the FPU feature.
+
+---
+
+FPU is heavily used by user level code, but not kernel.
+You may not use it directly, but glibc is using it all over the place, e.g. the `strcmp`, `memcpy`.
 x86 FPU is really a super complex technology designed by Intel.
 Of course its performance is good and also widely used, but the legacy compatible feature? Hmm, not so yummy.
 
-I would say that without Ingo Molnar's [x86 FPU code rewrite](https://lwn.net/Articles/643235/),
+Without Ingo Molnar's [x86 FPU code rewrite](https://lwn.net/Articles/643235/),
 there is no way for me to easily understand it.
+In 2019, the FPU code received another huge improvement ([patch](https://lkml.org/lkml/2019/4/3/877)).
+
 The current [x86 FPU code](https://elixir.bootlin.com/linux/v5.10.5/source/arch/x86/kernel/fpu) is well-written.
-Even though I don't understand most of the low-level code, I do enjoy reading it.
+Even though I don't understand some of the low-level code, I do enjoy reading it.
 The naming convention, the code organization, the file organization, the header files, it is a nice piece of art.
 
 Below I will briefly list kernel subsystems that use FPU.
+My understanding is based on code before the 2019 FPU patch,
+so some facts may have changed already.
 
 ## Boot
 
@@ -26,7 +34,7 @@ Its size depends on what features the underlying CPU support.
 Since `struct fpu` is part of `struct task_struct`,
 that implies `task_struct` is dynamically-sized as well
 (`task_struct -> thread_struct -> fpu`).
-Apparently, `cpu_init()` will also callback to init its local FPU.
+The `cpu_init()` will also callback to init its local FPU.
 
 ## Context Switch
 
@@ -34,7 +42,7 @@ FPU consists of a huge amount of registers.
 Each thread will have its own FPU context.
 However, the CPU itself will not save or restore any FPU registers automatically,
 it is software's duty to save and restore FPU context properly.
-And alla FPU context/registers saved saved into `struct fpu`.
+And FPU context/registers are saved into `struct fpu`.
 
 Thus whenever we switch task, we also need to switch FPU context
 (note: not always, it is optional, kernel is using a lazy switching trick).
@@ -79,3 +87,4 @@ Bad for low-level system developers.
 ## References
 
 1. https://unix.stackexchange.com/questions/475956/why-can-the-kernel-not-use-sse-avx-registers-and-instructions
+2. 2019 FPU patch: https://lkml.org/lkml/2019/4/3/877
