@@ -24,6 +24,7 @@ nav:
    - 'Virtualization':                 'notes/source_code/virt.md'
    - 'Architecture':                   'notes/arch.md'
    - 'Cryptography':                   'notes/cryptography.md'
+   - 'Packet Scheduling'               'notes/packet-sched.md'
    - 'Hardware Design Languages':      'notes/hardware_pl.md'
    - 'Linux io_uring':                 'notes/linux-iouring.md'
    - 'Linux Boot Sequence':            'notes/linux-boot.md'
@@ -40,6 +41,8 @@ nav:
    - 'Essential':                      'misc/essential.md'
    - 'Benchmarks':                     'notes/benchmark.md'
    - 'Cheatsheet':                     'misc/cheatsheet.md'
+   - Languages:
+       - 'Rust':                       'notes/languages/rust.md'
 - FPGA:
    - 'Papers':                               'notes/paper_fpga.md'
    - 'Bitstream Explained':                  'fpga/bitstream.md'
