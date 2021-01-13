@@ -533,9 +533,62 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Packet Scheduling
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
     <a href="./" title="Packet Scheduling" class="md-nav__link md-nav__link--active">
       Packet Scheduling
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#switch-buffering" class="md-nav__link">
+    Switch buffering
+  </a>
+  
+    <nav class="md-nav" aria-label="Switch buffering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#packet-scheduling" class="md-nav__link">
+    Packet Scheduling
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -1714,6 +1767,43 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#switch-buffering" class="md-nav__link">
+    Switch buffering
+  </a>
+  
+    <nav class="md-nav" aria-label="Switch buffering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#packet-scheduling" class="md-nav__link">
+    Packet Scheduling
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1745,7 +1835,22 @@
 </table>
 </details>
 <p>I came across this topic for a research project I&rsquo;m doing.</p>
-<p>Switch buffering</p>
+<p>I think the switch buffering architecture and packet scheduling
+are closely related. The buffering architecture could limit
+what scheduling algorithms can be used.
+However, I think they are still two different things
+and we should look at them separately.
+For example, consider a Combined Input Output Queued Switch,
+I think it is possible to use a shared memory to implement
+the output queues and use a separate PIFO blocks for packet scheduling.</p>
+<p>My current impression for state-of-the-art switches is:
+1) They use a large central packet buffer, can be as large as 64MB (i.e., Tofino2);
+2) They could have some input and output buffers independent from the central packet buffer,
+but these buffers would be small;
+3) They have something called Traffic Manager to schedule packets;
+4) They usually have fixed packet scheduler. I&rsquo;m not quite sure whether
+they have the programmable packet scheduler concept pioneered by PIFO.</p>
+<h2 id="switch-buffering">Switch buffering<a class="headerlink" href="#switch-buffering" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Input Queued<ul>
 <li>Virtual Output Queued</li>
@@ -1755,7 +1860,30 @@
 <li>Combined Input and Output Queued</li>
 <li>Shared Memory</li>
 </ul>
-<p>Packet Scheduling</p>
+<h3 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h3>
+<p>These set of papers covered the basic concept of Input/Output Queued switches.</p>
+<ol>
+<li>The iSLIP scheduling algorithm for <em>input-queued</em> switches, 1999</li>
+<li>Matching Output Queueing with a Combined Input Output Queued Switch, 1999<ul>
+<li>This paper proposed PIFO.</li>
+<li>It is trying to prove a CIOQ switch can be as good as a output queued switch.</li>
+</ul>
+</li>
+<li>Saturating the Transceiver Bandwidth: Switch Fabric Design on FPGAs, 2012<ul>
+<li>Use shared memory as switch.</li>
+</ul>
+</li>
+<li>Investigating the Feasibility of FPGA-based Network Switches, 2019</li>
+<li>High-Performance FPGA Network Switch Architecture, 2020</li>
+<li>
+<p>Scheduling Algorithms for High Performance Network Switching on FPGAs: A Survey, 2018</p>
+</li>
+<li>
+<p><a href="https://www.intel.com/content/www/us/en/design/products-and-solutions/networking-and-io/ethernet-switch-fm10000-series/technical-library.html?grouping=EMT_Content%20Type&amp;sort=title:asc">Intel® Ethernet Switch FM10000 Series</a></p>
+</li>
+<li>Intel Barefoot Tofino2 has a 64MB Unified Packet Buffer </li>
+</ol>
+<h2 id="packet-scheduling">Packet Scheduling<a class="headerlink" href="#packet-scheduling" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Programmable packet scheduling - PIFO</li>
 <li>Work-Conserving v.s. Non-Work-Conserving</li>
