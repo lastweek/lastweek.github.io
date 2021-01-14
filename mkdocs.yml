@@ -20,11 +20,11 @@ nav:
 
 - Note:
    - 'Practical Cache Coherence':      'notes/cache_coherence.md'
+   - 'Switch Buffering and Packet Scheduling':              'notes/packet-sched.md'
    - 'Dynamic Linking':                'notes/dynamic_linking.md'
    - 'Virtualization':                 'notes/source_code/virt.md'
    - 'Architecture':                   'notes/arch.md'
    - 'Cryptography':                   'notes/cryptography.md'
-   - 'Switch Buffering and Packet Scheduling':              'notes/packet-sched.md'
    - 'Hardware Design Languages':      'notes/hardware_pl.md'
    - 'Linux io_uring':                 'notes/linux-iouring.md'
    - 'Linux Boot Sequence':            'notes/linux-boot.md'

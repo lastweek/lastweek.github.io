@@ -3,6 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Jan 13, 2021 | more juicy|
 	|Jan 12, 2021 | Initial Version|
 
 I came across this topic for a research project I'm doing.
@@ -24,48 +25,81 @@ but these buffers would be small;
 4) They usually have fixed packet scheduler. I'm not quite sure whether
 they have the programmable packet scheduler concept pioneered by PIFO.
 
-
 ## Switch buffering
 
-- Input Queued
-    - Virtual Output Queued
-- Output Queued
-- Combined Input and Output Queued
-- Shared Memory
+List of different switch buffering architectures:
 
-### References
+- Input Queued (place buffer after each rx port)
+- Virtual Output Queued (each rx port has per-tx queues)
+- Output Queued (place buffer before each tx port)
+- Combined Input and Output Queued (both rx and tx ports have buffers)
+- Shared Memory (depends, it could be a central packet buffer for all tx ports while each tx port still has a small queue)
 
-These set of papers covered the basic concept of Input/Output Queued switches.
+The Output Queue (OQ) mode has the best performance (see ref-2).
+But if there is incast (multiple rx go to one tx), the buffer before each tx
+must be able to run N times faster.
+Since it is impossible to scale the memory bandwidth with respect to network bandwidth,
+the OQ is rarely used now.
 
-1. The iSLIP scheduling algorithm for *input-queued* switches, 1999
-2. Matching Output Queueing with a Combined Input Output Queued Switch, 1999
-    - This paper proposed PIFO.
-    - It is trying to prove a CIOQ switch can be as good as a output queued switch.
-3. Saturating the Transceiver Bandwidth: Switch Fabric Design on FPGAs, 2012
-    - Use shared memory as switch.
-4. Investigating the Feasibility of FPGA-based Network Switches, 2019
-5. High-Performance FPGA Network Switch Architecture, 2020
-6. Scheduling Algorithms for High Performance Network Switching on FPGAs: A Survey, 2018
+On the other hand, the memory in Input Queued (IQ) switch needs only
+run as fast as the line rate. This makes input queueing very appealing for switches with fast
+line rates, or with a large number of ports.
+For this reason, the highest performance switches and routers use input-queued
+crossbar switches (ref-2). And a lot recent FPGA-based switch papers are using
+the input-queued mode. BUTT, IQ mode suffers from HOL blocking.
+So naturally, people came up with the Virtual Output Queued (VOQ) mode,
+in which each tx port has a buffer at each rx port.
 
-1. [Intel® Ethernet Switch FM10000 Series](https://www.intel.com/content/www/us/en/design/products-and-solutions/networking-and-io/ethernet-switch-fm10000-series/technical-library.html?grouping=EMT_Content%20Type&sort=title:asc)
-2. Intel Barefoot Tofino2 has a 64MB Unified Packet Buffer 
+However, all those IQ, OQ, VOQ, and CIOQ mode can not easily share
+the buffers among different ports, i.e., not able to dynamically
+partition the buffer usage. (I think) this issue calls for the
+shared memory based switch, in which the central packet buffer
+can be easily partitioned among tx ports, just a few counters will do.
+In fact, the switches I know (though only a few), all use shared memory mode.
+For example, the Inte Barefoot programmable p4 switch Tofino2 has a 64MB central packet buffer.
+
+### Thoughts
+
+Although I think shared memory based switch works for now,
+I'm not sure whether it will continue working in the furture.
+For one, the network bandwidth is increasing, 200Gbps, 400Gbps.
+Will the memory still be able to sustain such high bandwidth? I doubt that.
+
+Also, share memory switch consumes a lot power. Not just the SRAM/DRAM,
+but also the SERDES transivers. Those guys consume A LOT energy.
+And this is exactly the reason people started looking into circuit switch.
 
 ## Packet Scheduling
 
-- Programmable packet scheduling - PIFO
-- Work-Conserving v.s. Non-Work-Conserving
+There is nothing special about packet scheduling, it is just
+scheduling a bunch of packets :).
+This topic is concerned about in which order to transmit packets
+and when to tranmit them. Just like other scheduling work,
+there is Work-Conserving v.s. Non-Work-Conserving algorithms.
 
-I think this is a very interesting topic. Yet there are
-only few papers on this topic. But there is definitely an
-increasing interest.
+The simplest algorithm is FIFO. But it could have a lot issues, e.g., HOL blocking.
+Since there might be multiple queues waiting to be transmitted, there could be RR,
+and weighted RR (WRR). And there are some advanced ones like Strict Priority, Shorted-Time-XXX.
 
-The PIFO SIGCOMM'16 paper is for sure one of the seminal work in this space. There are some very old papers (circa 1999) on switch buffering architecute. The PIFO was proposed by a 1999 INFOCOM paper.
+Normally, in our current machine, CPU will do the scheduling rather than the NIC itself.
+For example, kernel has Queuing Discipline layer that supports quite a lot algorithms.
 
-I may able to write more later.
+With the increasing bandwidth, packet scheduling is more important than before.
+It is buring CPU cycles, it may have bad perf, etc.
+So people have tried to offload that onto NIC or propose new CPU-friendly algorithms (i.e., Eiffel, NSDI'19 from Google).
+
+Packet scheduling is also a important piece for switches.
+Even for programmable switches, this part is not programmable.
+So there are work trying to solve that.
+The PIFO SIGCOMM'16 paper is for sure one of the seminal work in this space.
+
+To summarize, there are few aspects to consider:
+1. where is it running? CPU, NIC, switch, or somewhere else.
+2. is it programmable or fixed-function?
 
 ## Case Study
 
-Let us look at some implementations out there.
+Let us look at some real usages out there.
 
 ### Linux Kernel
 
@@ -82,8 +116,36 @@ The default qdisc is called `pfifo_xxx`, you can do a `git grep` to find it.
 It has quite a lot other algorithms like RED in `sch_red.c`.
 
 So all those are software-based packet scheduling implementations.
-If you are interested, you can also check out an NSDI'20 paper called `Eiffel`
+If you are interested, you can also check out an NSDI'19 paper called `Eiffel`
 from Google, which also advocates for software-based packet scheduling.
 
 ### Intel Barefoot Tofino2
-TODO
+
+See [here](https://www.servethehome.com/intel-tofino2-next-gen-programmable-switch-detailed/),
+especially the `Traffic Manager` slide.
+
+## References
+
+1. The iSLIP scheduling algorithm for *input-queued* switches, 1999
+2. Matching Output Queueing with a Combined Input Output Queued Switch, 1999
+    - This paper proposed PIFO.
+    - It is trying to prove a CIOQ switch can be as good as a output queued switch.
+3. Saturating the Transceiver Bandwidth: Switch Fabric Design on FPGAs, 2012
+    - Use shared memory as switch.
+4. Investigating the Feasibility of FPGA-based Network Switches, 2019
+5. High-Performance FPGA Network Switch Architecture, 2020
+6. Scheduling Algorithms for High Performance Network Switching on FPGAs: A Survey, 2018
+
+---
+
+1. [Intel® Ethernet Switch FM10000 Series](https://www.intel.com/content/www/us/en/design/products-and-solutions/networking-and-io/ethernet-switch-fm10000-series/technical-library.html?grouping=EMT_Content%20Type&sort=title:asc)
+2. Intel Barefoot Tofino2 has a 64MB Unified Packet Buffer 
+
+---
+
+1. PIFO, SIGCOMM'16
+2. PIEO, SIGCOMM'19
+3. Eiffel, NSDI'19
+4. Loom, NSDI'19
+5. Programmable Calendar Queue, NSDI'20
+6. Carousel, SIGCOMM'17
