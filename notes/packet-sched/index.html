@@ -547,6 +547,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#fpga-based-switching" class="md-nav__link">
+    FPGA-based Switching
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1839,6 +1846,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#fpga-based-switching" class="md-nav__link">
+    FPGA-based Switching
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1979,6 +1993,23 @@ from Google, which also advocates for software-based packet scheduling.</p>
 <h3 id="intel-barefoot-tofino2">Intel Barefoot Tofino2<a class="headerlink" href="#intel-barefoot-tofino2" title="Permanent link">&para;</a></h3>
 <p>See <a href="https://www.servethehome.com/intel-tofino2-next-gen-programmable-switch-detailed/">here</a>,
 especially the <code>Traffic Manager</code> slide.</p>
+<h3 id="fpga-based-switching">FPGA-based Switching<a class="headerlink" href="#fpga-based-switching" title="Permanent link">&para;</a></h3>
+<p>For packet scheduling: we need special data structure design.</p>
+<p>I&rsquo;m only aware of these two papers dealing with this:</p>
+<ul>
+<li>PIFO, SIGCOMM&lsquo;16</li>
+<li>PIEO, SIGCOMM&lsquo;19</li>
+</ul>
+<p>Both of them have a hardware primitive and a framework
+to express various packet scheduling algorithms on top of their primitive.</p>
+<p>PIFO&rsquo;s source code seems robust and has been used by later projects (e.g., PANIC OSDI&lsquo;20).
+But PIFO&rsquo;s verilog implementation suffers from scalability issue.
+It solely uses LUTs to implement its storage and logic, no BRAM is used.
+I&rsquo;m not sure about PIEO.</p>
+<p>Q: Will a Softcore-based packet scheduler able to keep up the throughput?
+If not, can be customize the softcore to be packet scheduler friendly?
+The benefit is probably we can write scheduling algorithm in C (and change freely during runtime)
+while have hardware (line rate) performance.</p>
 <h2 id="final-thoughts">Final Thoughts<a class="headerlink" href="#final-thoughts" title="Permanent link">&para;</a></h2>
 <p>Although the shared memory based switch works for now,
 I&rsquo;m not sure whether it will continue working in the furture.
