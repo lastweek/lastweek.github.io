@@ -475,54 +475,6 @@
           
           
 
-
-  <li class="md-nav__item">
-    <a href="../dynamic_linking/" title="Dynamic Linking" class="md-nav__link">
-      Dynamic Linking
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../source_code/virt/" title="Virtualization" class="md-nav__link">
-      Virtualization
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../arch/" title="Architecture" class="md-nav__link">
-      Architecture
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../cryptography/" title="Cryptography" class="md-nav__link">
-      Cryptography
-    </a>
-  </li>
-
-        
-          
-          
-          
-
   
 
 
@@ -568,8 +520,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    References
+  <a href="#thoughts" class="md-nav__link">
+    Thoughts
   </a>
   
 </li>
@@ -613,10 +565,65 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dynamic_linking/" title="Dynamic Linking" class="md-nav__link">
+      Dynamic Linking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../source_code/virt/" title="Virtualization" class="md-nav__link">
+      Virtualization
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arch/" title="Architecture" class="md-nav__link">
+      Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cryptography/" title="Cryptography" class="md-nav__link">
+      Cryptography
+    </a>
   </li>
 
         
@@ -1811,8 +1818,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    References
+  <a href="#thoughts" class="md-nav__link">
+    Thoughts
   </a>
   
 </li>
@@ -1856,6 +1863,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1882,6 +1896,10 @@
 </thead>
 <tbody>
 <tr>
+<td align="left">Jan 13, 2021</td>
+<td>more juicy</td>
+</tr>
+<tr>
 <td align="left">Jan 12, 2021</td>
 <td>Initial Version</td>
 </tr>
@@ -1905,17 +1923,83 @@ but these buffers would be small;
 4) They usually have fixed packet scheduler. I&rsquo;m not quite sure whether
 they have the programmable packet scheduler concept pioneered by PIFO.</p>
 <h2 id="switch-buffering">Switch buffering<a class="headerlink" href="#switch-buffering" title="Permanent link">&para;</a></h2>
+<p>List of different switch buffering architectures:</p>
 <ul>
-<li>Input Queued<ul>
-<li>Virtual Output Queued</li>
+<li>Input Queued (place buffer after each rx port)</li>
+<li>Virtual Output Queued (each rx port has per-tx queues)</li>
+<li>Output Queued (place buffer before each tx port)</li>
+<li>Combined Input and Output Queued (both rx and tx ports have buffers)</li>
+<li>Shared Memory (depends, it could be a central packet buffer for all tx ports while each tx port still has a small queue)</li>
 </ul>
-</li>
-<li>Output Queued</li>
-<li>Combined Input and Output Queued</li>
-<li>Shared Memory</li>
-</ul>
-<h3 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h3>
-<p>These set of papers covered the basic concept of Input/Output Queued switches.</p>
+<p>The Output Queue (OQ) mode has the best performance (see ref-2).
+But if there is incast (multiple rx go to one tx), the buffer before each tx
+must be able to run N times faster.
+Since it is impossible to scale the memory bandwidth with respect to network bandwidth,
+the OQ is rarely used now.</p>
+<p>On the other hand, the memory in Input Queued (IQ) switch needs only
+run as fast as the line rate. This makes input queueing very appealing for switches with fast
+line rates, or with a large number of ports.
+For this reason, the highest performance switches and routers use input-queued
+crossbar switches (ref-2). And a lot recent FPGA-based switch papers are using
+the input-queued mode. BUTT, IQ mode suffers from HOL blocking.
+So naturally, people came up with the Virtual Output Queued (VOQ) mode,
+in which each tx port has a buffer at each rx port.</p>
+<p>However, all those IQ, OQ, VOQ, and CIOQ mode can not easily share
+the buffers among different ports, i.e., not able to dynamically
+partition the buffer usage. (I think) this issue calls for the
+shared memory based switch, in which the central packet buffer
+can be easily partitioned among tx ports, just a few counters will do.
+In fact, the switches I know (though only a few), all use shared memory mode.
+For example, the Inte Barefoot programmable p4 switch Tofino2 has a 64MB central packet buffer.</p>
+<h3 id="thoughts">Thoughts<a class="headerlink" href="#thoughts" title="Permanent link">&para;</a></h3>
+<p>Although I think shared memory based switch works for now,
+I&rsquo;m not sure whether it will continue working in the furture.
+For one, the network bandwidth is increasing, 200Gbps, 400Gbps.
+Will the memory still be able to sustain such high bandwidth? I doubt that.</p>
+<p>Also, share memory switch consumes a lot power. Not just the SRAM/DRAM,
+but also the SERDES transivers. Those guys consume A LOT energy.
+And this is exactly the reason people started looking into circuit switch.</p>
+<h2 id="packet-scheduling">Packet Scheduling<a class="headerlink" href="#packet-scheduling" title="Permanent link">&para;</a></h2>
+<p>There is nothing special about packet scheduling, it is just
+scheduling a bunch of packets :).
+This topic is concerned about in which order to transmit packets
+and when to tranmit them. Just like other scheduling work,
+there is Work-Conserving v.s. Non-Work-Conserving algorithms.</p>
+<p>The simplest algorithm is FIFO. But it could have a lot issues, e.g., HOL blocking.
+Since there might be multiple queues waiting to be transmitted, there could be RR,
+and weighted RR (WRR). And there are some advanced ones like Strict Priority, Shorted-Time-XXX.</p>
+<p>Normally, in our current machine, CPU will do the scheduling rather than the NIC itself.
+For example, kernel has Queuing Discipline layer that supports quite a lot algorithms.</p>
+<p>With the increasing bandwidth, packet scheduling is more important than before.
+It is buring CPU cycles, it may have bad perf, etc.
+So people have tried to offload that onto NIC or propose new CPU-friendly algorithms (i.e., Eiffel, NSDI&lsquo;19 from Google).</p>
+<p>Packet scheduling is also a important piece for switches.
+Even for programmable switches, this part is not programmable.
+So there are work trying to solve that.
+The PIFO SIGCOMM&lsquo;16 paper is for sure one of the seminal work in this space.</p>
+<p>To summarize, there are few aspects to consider:
+1. where is it running? CPU, NIC, switch, or somewhere else.
+2. is it programmable or fixed-function?</p>
+<h2 id="case-study">Case Study<a class="headerlink" href="#case-study" title="Permanent link">&para;</a></h2>
+<p>Let us look at some real usages out there.</p>
+<h3 id="linux-kernel">Linux Kernel<a class="headerlink" href="#linux-kernel" title="Permanent link">&para;</a></h3>
+<p>Kernel has a subsystem called queuing discipline, or <code>qdisc</code>.
+It is a framework to schedule network packets.
+It is built in the classical way: a generic layer and a set of ops for callback,
+just like how VFS is built.
+You can find a lot resources about it online.</p>
+<p>Anyhow, you can find the code in <code>net/sched/sch_*.c</code>.
+You can probably look into <code>sch_api.c</code>, <code>sch_generic.c</code>, these seem to be general
+(e.g., <code>register_qdisc()</code>).
+The default qdisc is called <code>pfifo_xxx</code>, you can do a <code>git grep</code> to find it.
+It has quite a lot other algorithms like RED in <code>sch_red.c</code>.</p>
+<p>So all those are software-based packet scheduling implementations.
+If you are interested, you can also check out an NSDI&lsquo;19 paper called <code>Eiffel</code>
+from Google, which also advocates for software-based packet scheduling.</p>
+<h3 id="intel-barefoot-tofino2">Intel Barefoot Tofino2<a class="headerlink" href="#intel-barefoot-tofino2" title="Permanent link">&para;</a></h3>
+<p>See <a href="https://www.servethehome.com/intel-tofino2-next-gen-programmable-switch-detailed/">here</a>,
+especially the <code>Traffic Manager</code> slide.</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ol>
 <li>The iSLIP scheduling algorithm for <em>input-queued</em> switches, 1999</li>
 <li>Matching Output Queueing with a Combined Input Output Queued Switch, 1999<ul>
@@ -1929,42 +2013,22 @@ they have the programmable packet scheduler concept pioneered by PIFO.</p>
 </li>
 <li>Investigating the Feasibility of FPGA-based Network Switches, 2019</li>
 <li>High-Performance FPGA Network Switch Architecture, 2020</li>
-<li>
-<p>Scheduling Algorithms for High Performance Network Switching on FPGAs: A Survey, 2018</p>
-</li>
-<li>
-<p><a href="https://www.intel.com/content/www/us/en/design/products-and-solutions/networking-and-io/ethernet-switch-fm10000-series/technical-library.html?grouping=EMT_Content%20Type&amp;sort=title:asc">Intel® Ethernet Switch FM10000 Series</a></p>
-</li>
+<li>Scheduling Algorithms for High Performance Network Switching on FPGAs: A Survey, 2018</li>
+</ol>
+<hr />
+<ol>
+<li><a href="https://www.intel.com/content/www/us/en/design/products-and-solutions/networking-and-io/ethernet-switch-fm10000-series/technical-library.html?grouping=EMT_Content%20Type&amp;sort=title:asc">Intel® Ethernet Switch FM10000 Series</a></li>
 <li>Intel Barefoot Tofino2 has a 64MB Unified Packet Buffer </li>
 </ol>
-<h2 id="packet-scheduling">Packet Scheduling<a class="headerlink" href="#packet-scheduling" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Programmable packet scheduling - PIFO</li>
-<li>Work-Conserving v.s. Non-Work-Conserving</li>
-</ul>
-<p>I think this is a very interesting topic. Yet there are
-only few papers on this topic. But there is definitely an
-increasing interest.</p>
-<p>The PIFO SIGCOMM&lsquo;16 paper is for sure one of the seminal work in this space. There are some very old papers (circa 1999) on switch buffering architecute. The PIFO was proposed by a 1999 INFOCOM paper.</p>
-<p>I may able to write more later.</p>
-<h2 id="case-study">Case Study<a class="headerlink" href="#case-study" title="Permanent link">&para;</a></h2>
-<p>Let us look at some implementations out there.</p>
-<h3 id="linux-kernel">Linux Kernel<a class="headerlink" href="#linux-kernel" title="Permanent link">&para;</a></h3>
-<p>Kernel has a subsystem called queuing discipline, or <code>qdisc</code>.
-It is a framework to schedule network packets.
-It is built in the classical way: a generic layer and a set of ops for callback,
-just like how VFS is built.
-You can find a lot resources about it online.</p>
-<p>Anyhow, you can find the code in <code>net/sched/sch_*.c</code>.
-You can probably look into <code>sch_api.c</code>, <code>sch_generic.c</code>, these seem to be general
-(e.g., <code>register_qdisc()</code>).
-The default qdisc is called <code>pfifo_xxx</code>, you can do a <code>git grep</code> to find it.
-It has quite a lot other algorithms like RED in <code>sch_red.c</code>.</p>
-<p>So all those are software-based packet scheduling implementations.
-If you are interested, you can also check out an NSDI&lsquo;20 paper called <code>Eiffel</code>
-from Google, which also advocates for software-based packet scheduling.</p>
-<h3 id="intel-barefoot-tofino2">Intel Barefoot Tofino2<a class="headerlink" href="#intel-barefoot-tofino2" title="Permanent link">&para;</a></h3>
-<p>TODO</p>
+<hr />
+<ol>
+<li>PIFO, SIGCOMM&lsquo;16</li>
+<li>PIEO, SIGCOMM&lsquo;19</li>
+<li>Eiffel, NSDI&lsquo;19</li>
+<li>Loom, NSDI&lsquo;19</li>
+<li>Programmable Calendar Queue, NSDI&lsquo;20</li>
+<li>Carousel, SIGCOMM&lsquo;17</li>
+</ol>
                 
                   
                     
@@ -2000,7 +2064,7 @@ from Google, which also advocates for software-based packet scheduling.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../cryptography/" title="Cryptography" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../cache_coherence/" title="Practical Cache Coherence" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -2009,19 +2073,19 @@ from Google, which also advocates for software-based packet scheduling.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Cryptography
+                Practical Cache Coherence
               </div>
             </div>
           </a>
         
         
-          <a href="../hardware_pl/" title="Hardware Design Languages" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../dynamic_linking/" title="Dynamic Linking" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Hardware Design Languages
+                Dynamic Linking
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
