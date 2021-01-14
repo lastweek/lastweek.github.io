@@ -516,19 +516,6 @@
     Switch buffering
   </a>
   
-    <nav class="md-nav" aria-label="Switch buffering">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#thoughts" class="md-nav__link">
-    Thoughts
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -562,6 +549,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-thoughts" class="md-nav__link">
+    Final Thoughts
+  </a>
   
 </li>
       
@@ -1814,19 +1808,6 @@
     Switch buffering
   </a>
   
-    <nav class="md-nav" aria-label="Switch buffering">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#thoughts" class="md-nav__link">
-    Thoughts
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1860,6 +1841,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-thoughts" class="md-nav__link">
+    Final Thoughts
+  </a>
   
 </li>
       
@@ -1951,14 +1939,6 @@ shared memory based switch, in which the central packet buffer
 can be easily partitioned among tx ports, just a few counters will do.
 In fact, the switches I know (though only a few), all use shared memory mode.
 For example, the Inte Barefoot programmable p4 switch Tofino2 has a 64MB central packet buffer.</p>
-<h3 id="thoughts">Thoughts<a class="headerlink" href="#thoughts" title="Permanent link">&para;</a></h3>
-<p>Although I think shared memory based switch works for now,
-I&rsquo;m not sure whether it will continue working in the furture.
-For one, the network bandwidth is increasing, 200Gbps, 400Gbps.
-Will the memory still be able to sustain such high bandwidth? I doubt that.</p>
-<p>Also, share memory switch consumes a lot power. Not just the SRAM/DRAM,
-but also the SERDES transivers. Those guys consume A LOT energy.
-And this is exactly the reason people started looking into circuit switch.</p>
 <h2 id="packet-scheduling">Packet Scheduling<a class="headerlink" href="#packet-scheduling" title="Permanent link">&para;</a></h2>
 <p>There is nothing special about packet scheduling, it is just
 scheduling a bunch of packets :).
@@ -1999,6 +1979,19 @@ from Google, which also advocates for software-based packet scheduling.</p>
 <h3 id="intel-barefoot-tofino2">Intel Barefoot Tofino2<a class="headerlink" href="#intel-barefoot-tofino2" title="Permanent link">&para;</a></h3>
 <p>See <a href="https://www.servethehome.com/intel-tofino2-next-gen-programmable-switch-detailed/">here</a>,
 especially the <code>Traffic Manager</code> slide.</p>
+<h2 id="final-thoughts">Final Thoughts<a class="headerlink" href="#final-thoughts" title="Permanent link">&para;</a></h2>
+<p>Although the shared memory based switch works for now,
+I&rsquo;m not sure whether it will continue working in the furture.
+For one, the network bandwidth is increasing, 200Gbps, 400Gbps.
+Will the memory still be able to sustain such high bandwidth? I doubt that.</p>
+<p>Also, share memory switch consumes a lot power. Not just the SRAM/DRAM,
+but also the SERDES transivers. Those guys consume A LOT energy.
+And this is exactly the reason people started looking into circuit switch.</p>
+<p>As for packet scheduling, I think there is definitely space for future work.
+For example, a better FPGA-friendly programmable framework,
+a dynamic framework shifting the packet scheduling task among CPU/NIC/Switch,
+a better p4-based algorithm etc.
+With the growing network bandwidth, all things should be revisted.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ol>
 <li>The iSLIP scheduling algorithm for <em>input-queued</em> switches, 1999</li>
