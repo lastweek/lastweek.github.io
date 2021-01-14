@@ -586,6 +586,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#case-study" class="md-nav__link">
+    Case Study
+  </a>
+  
+    <nav class="md-nav" aria-label="Case Study">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-kernel" class="md-nav__link">
+    Linux Kernel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intel-barefoot-tofino2" class="md-nav__link">
+    Intel Barefoot Tofino2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1802,6 +1829,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#case-study" class="md-nav__link">
+    Case Study
+  </a>
+  
+    <nav class="md-nav" aria-label="Case Study">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-kernel" class="md-nav__link">
+    Linux Kernel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intel-barefoot-tofino2" class="md-nav__link">
+    Intel Barefoot Tofino2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1893,6 +1947,23 @@ only few papers on this topic. But there is definitely an
 increasing interest.</p>
 <p>The PIFO SIGCOMM&lsquo;16 paper is for sure one of the seminal work in this space. There are some very old papers (circa 1999) on switch buffering architecute. The PIFO was proposed by a 1999 INFOCOM paper.</p>
 <p>I may able to write more later.</p>
+<h2 id="case-study">Case Study<a class="headerlink" href="#case-study" title="Permanent link">&para;</a></h2>
+<p>Let us look at some implementations out there.</p>
+<h3 id="linux-kernel">Linux Kernel<a class="headerlink" href="#linux-kernel" title="Permanent link">&para;</a></h3>
+<p>Kernel has a subsystem called queuing discipline, or <code>qdisc</code>.
+It is a framework to schedule network packets.
+It is built in the classical way: a generic layer and a set of ops for callback,
+just like how VFS is built.
+You can fine a lot resources about it online.</p>
+<p>Anyhow, you can find the code in <code>net/sched/sch_*.c</code>.
+You can probably look into <code>sch_api.c</code>, <code>sch_generic.c</code>, these seem to be general.
+The default qdisc is called <code>pfifo_xxx</code>, you can do a <code>git grep</code> to find it.
+It has quite a lot other algorithms like RED in <code>sch_red.c</code>.</p>
+<p>So all those a software-based packet scheduling implementations.
+If you are interested, you can also check out an NSDI&lsquo;20 paper called <code>Eiffel</code>
+from Google, which also advocates for software-based packet scheduling.</p>
+<h3 id="intel-barefoot-tofino2">Intel Barefoot Tofino2<a class="headerlink" href="#intel-barefoot-tofino2" title="Permanent link">&para;</a></h3>
+<p>TODO</p>
                 
                   
                     
@@ -1901,7 +1972,7 @@ increasing interest.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: January 13, 2021
+      Last update: January 14, 2021
     
   </small>
 </div>
