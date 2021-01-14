@@ -73,14 +73,15 @@ Kernel has a subsystem called queuing discipline, or `qdisc`.
 It is a framework to schedule network packets.
 It is built in the classical way: a generic layer and a set of ops for callback,
 just like how VFS is built.
-You can fine a lot resources about it online.
+You can find a lot resources about it online.
 
 Anyhow, you can find the code in `net/sched/sch_*.c`.
-You can probably look into `sch_api.c`, `sch_generic.c`, these seem to be general.
+You can probably look into `sch_api.c`, `sch_generic.c`, these seem to be general
+(e.g., `register_qdisc()`).
 The default qdisc is called `pfifo_xxx`, you can do a `git grep` to find it.
 It has quite a lot other algorithms like RED in `sch_red.c`.
 
-So all those a software-based packet scheduling implementations.
+So all those are software-based packet scheduling implementations.
 If you are interested, you can also check out an NSDI'20 paper called `Eiffel`
 from Google, which also advocates for software-based packet scheduling.
 
