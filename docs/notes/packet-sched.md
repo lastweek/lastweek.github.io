@@ -62,3 +62,27 @@ increasing interest.
 The PIFO SIGCOMM'16 paper is for sure one of the seminal work in this space. There are some very old papers (circa 1999) on switch buffering architecute. The PIFO was proposed by a 1999 INFOCOM paper.
 
 I may able to write more later.
+
+## Case Study
+
+Let us look at some implementations out there.
+
+### Linux Kernel
+
+Kernel has a subsystem called queuing discipline, or `qdisc`.
+It is a framework to schedule network packets.
+It is built in the classical way: a generic layer and a set of ops for callback,
+just like how VFS is built.
+You can fine a lot resources about it online.
+
+Anyhow, you can find the code in `net/sched/sch_*.c`.
+You can probably look into `sch_api.c`, `sch_generic.c`, these seem to be general.
+The default qdisc is called `pfifo_xxx`, you can do a `git grep` to find it.
+It has quite a lot other algorithms like RED in `sch_red.c`.
+
+So all those a software-based packet scheduling implementations.
+If you are interested, you can also check out an NSDI'20 paper called `Eiffel`
+from Google, which also advocates for software-based packet scheduling.
+
+### Intel Barefoot Tofino2
+TODO
