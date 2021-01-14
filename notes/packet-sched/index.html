@@ -1954,12 +1954,13 @@ increasing interest.</p>
 It is a framework to schedule network packets.
 It is built in the classical way: a generic layer and a set of ops for callback,
 just like how VFS is built.
-You can fine a lot resources about it online.</p>
+You can find a lot resources about it online.</p>
 <p>Anyhow, you can find the code in <code>net/sched/sch_*.c</code>.
-You can probably look into <code>sch_api.c</code>, <code>sch_generic.c</code>, these seem to be general.
+You can probably look into <code>sch_api.c</code>, <code>sch_generic.c</code>, these seem to be general
+(e.g., <code>register_qdisc()</code>).
 The default qdisc is called <code>pfifo_xxx</code>, you can do a <code>git grep</code> to find it.
 It has quite a lot other algorithms like RED in <code>sch_red.c</code>.</p>
-<p>So all those a software-based packet scheduling implementations.
+<p>So all those are software-based packet scheduling implementations.
 If you are interested, you can also check out an NSDI&lsquo;20 paper called <code>Eiffel</code>
 from Google, which also advocates for software-based packet scheduling.</p>
 <h3 id="intel-barefoot-tofino2">Intel Barefoot Tofino2<a class="headerlink" href="#intel-barefoot-tofino2" title="Permanent link">&para;</a></h3>
