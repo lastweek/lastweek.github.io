@@ -58,17 +58,6 @@ can be easily partitioned among tx ports, just a few counters will do.
 In fact, the switches I know (though only a few), all use shared memory mode.
 For example, the Inte Barefoot programmable p4 switch Tofino2 has a 64MB central packet buffer.
 
-### Thoughts
-
-Although I think shared memory based switch works for now,
-I'm not sure whether it will continue working in the furture.
-For one, the network bandwidth is increasing, 200Gbps, 400Gbps.
-Will the memory still be able to sustain such high bandwidth? I doubt that.
-
-Also, share memory switch consumes a lot power. Not just the SRAM/DRAM,
-but also the SERDES transivers. Those guys consume A LOT energy.
-And this is exactly the reason people started looking into circuit switch.
-
 ## Packet Scheduling
 
 There is nothing special about packet scheduling, it is just
@@ -123,6 +112,23 @@ from Google, which also advocates for software-based packet scheduling.
 
 See [here](https://www.servethehome.com/intel-tofino2-next-gen-programmable-switch-detailed/),
 especially the `Traffic Manager` slide.
+
+## Final Thoughts
+
+Although the shared memory based switch works for now,
+I'm not sure whether it will continue working in the furture.
+For one, the network bandwidth is increasing, 200Gbps, 400Gbps.
+Will the memory still be able to sustain such high bandwidth? I doubt that.
+
+Also, share memory switch consumes a lot power. Not just the SRAM/DRAM,
+but also the SERDES transivers. Those guys consume A LOT energy.
+And this is exactly the reason people started looking into circuit switch.
+
+As for packet scheduling, I think there is definitely space for future work.
+For example, a better FPGA-friendly programmable framework,
+a dynamic framework shifting the packet scheduling task among CPU/NIC/Switch,
+a better p4-based algorithm etc.
+With the growing network bandwidth, all things should be revisted.
 
 ## References
 
