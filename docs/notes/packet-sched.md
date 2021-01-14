@@ -3,7 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
-	|Jan 13, 2021 | more juicy|
+	|Jan 13, 2021 | more|
 	|Jan 12, 2021 | Initial Version|
 
 I came across this topic for a research project I'm doing.
