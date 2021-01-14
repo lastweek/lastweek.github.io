@@ -113,6 +113,28 @@ from Google, which also advocates for software-based packet scheduling.
 See [here](https://www.servethehome.com/intel-tofino2-next-gen-programmable-switch-detailed/),
 especially the `Traffic Manager` slide.
 
+### FPGA-based Switching
+
+For packet scheduling: we need special data structure design.
+
+I'm only aware of these two papers dealing with this:
+
+- PIFO, SIGCOMM'16
+- PIEO, SIGCOMM'19
+
+Both of them have a hardware primitive and a framework
+to express various packet scheduling algorithms on top of their primitive.
+
+PIFO's source code seems robust and has been used by later projects (e.g., PANIC OSDI'20).
+But PIFO's verilog implementation suffers from scalability issue.
+It solely uses LUTs to implement its storage and logic, no BRAM is used.
+I'm not sure about PIEO.
+
+Q: Will a Softcore-based packet scheduler able to keep up the throughput?
+If not, can be customize the softcore to be packet scheduler friendly?
+The benefit is probably we can write scheduling algorithm in C (and change freely during runtime)
+while have hardware (line rate) performance.
+
 ## Final Thoughts
 
 Although the shared memory based switch works for now,
