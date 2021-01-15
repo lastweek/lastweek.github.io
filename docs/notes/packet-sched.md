@@ -111,7 +111,18 @@ from Google, which also advocates for software-based packet scheduling.
 ### Intel Barefoot Tofino2
 
 See [here](https://www.servethehome.com/intel-tofino2-next-gen-programmable-switch-detailed/),
-especially the `Traffic Manager` slide.
+especially the `Traffic Manager` slide:
+
+![image](assets/tofino2-tm.png)
+
+### Intel FM10000 Multi-Host Switch
+
+This is a shared-memory switch. This is from their spec.
+Only payload goes into the shared memory.
+Headers go into frame processing pipeline,
+in which a lot queues will be formed.
+![image](assets/FM1000-arch.png)
+![image](assets/FM1000-sched.png)
 
 ### FPGA-based Switching
 
