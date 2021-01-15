@@ -3,6 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Jan 15, 2021 | add some FM10000 figs|
 	|Jan 13, 2021 | more|
 	|Jan 12, 2021 | Initial Version|
 
@@ -141,9 +142,13 @@ especially the `Traffic Manager` slide:
 
 This is a shared-memory switch. This is from their spec.
 Only payload goes into the shared memory.
-Headers go into frame processing pipeline,
-in which a lot queues will be formed.
+Headers go into frame processing pipeline.
 ![image](assets/FM1000-arch.png)
+
+This one shows how headers and payload are separated.
+Essentially, the `packet scheduler` only deals with HEADERS.
+This switch has 8 queues per TX port.
+If there is multicast, the headers will will duplicated multiple times.
 ![image](assets/FM1000-sched.png)
 
 ## Final Thoughts
