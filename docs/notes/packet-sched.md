@@ -108,22 +108,6 @@ So all those are software-based packet scheduling implementations.
 If you are interested, you can also check out an NSDI'19 paper called `Eiffel`
 from Google, which also advocates for software-based packet scheduling.
 
-### Intel Barefoot Tofino2
-
-See [here](https://www.servethehome.com/intel-tofino2-next-gen-programmable-switch-detailed/),
-especially the `Traffic Manager` slide:
-
-![image](assets/tofino2-tm.png)
-
-### Intel FM10000 Multi-Host Switch
-
-This is a shared-memory switch. This is from their spec.
-Only payload goes into the shared memory.
-Headers go into frame processing pipeline,
-in which a lot queues will be formed.
-![image](assets/FM1000-arch.png)
-![image](assets/FM1000-sched.png)
-
 ### FPGA-based Switching
 
 For packet scheduling: we need special data structure design.
@@ -145,6 +129,22 @@ Q: Will a Softcore-based packet scheduler able to keep up the throughput?
 If not, can be customize the softcore to be packet scheduler friendly?
 The benefit is probably we can write scheduling algorithm in C (and change freely during runtime)
 while have hardware (line rate) performance.
+
+### Intel Barefoot Tofino2
+
+See [here](https://www.servethehome.com/intel-tofino2-next-gen-programmable-switch-detailed/),
+especially the `Traffic Manager` slide:
+
+![image](assets/tofino2-tm.png)
+
+### Intel FM10000 Multi-Host Switch
+
+This is a shared-memory switch. This is from their spec.
+Only payload goes into the shared memory.
+Headers go into frame processing pipeline,
+in which a lot queues will be formed.
+![image](assets/FM1000-arch.png)
+![image](assets/FM1000-sched.png)
 
 ## Final Thoughts
 
