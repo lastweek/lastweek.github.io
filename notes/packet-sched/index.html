@@ -1900,6 +1900,10 @@
 </thead>
 <tbody>
 <tr>
+<td align="left">Jan 15, 2021</td>
+<td>add some FM10000 figs</td>
+</tr>
+<tr>
 <td align="left">Jan 13, 2021</td>
 <td>more</td>
 </tr>
@@ -2016,9 +2020,12 @@ especially the <code>Traffic Manager</code> slide:</p>
 <h3 id="intel-fm10000-multi-host-switch">Intel FM10000 Multi-Host Switch<a class="headerlink" href="#intel-fm10000-multi-host-switch" title="Permanent link">&para;</a></h3>
 <p>This is a shared-memory switch. This is from their spec.
 Only payload goes into the shared memory.
-Headers go into frame processing pipeline,
-in which a lot queues will be formed.
-<img alt="image" src="../assets/FM1000-arch.png" />
+Headers go into frame processing pipeline.
+<img alt="image" src="../assets/FM1000-arch.png" /></p>
+<p>This one shows how headers and payload are separated.
+Essentially, the <code>packet scheduler</code> only deals with HEADERS.
+This switch has 8 queues per TX port.
+If there is multicast, the headers will will duplicated multiple times.
 <img alt="image" src="../assets/FM1000-sched.png" /></p>
 <h2 id="final-thoughts">Final Thoughts<a class="headerlink" href="#final-thoughts" title="Permanent link">&para;</a></h2>
 <p>Although the shared memory based switch works for now,
