@@ -541,6 +541,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#fpga-based-switching" class="md-nav__link">
+    FPGA-based Switching
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#intel-barefoot-tofino2" class="md-nav__link">
     Intel Barefoot Tofino2
   </a>
@@ -550,13 +557,6 @@
           <li class="md-nav__item">
   <a href="#intel-fm10000-multi-host-switch" class="md-nav__link">
     Intel FM10000 Multi-Host Switch
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fpga-based-switching" class="md-nav__link">
-    FPGA-based Switching
   </a>
   
 </li>
@@ -1835,6 +1835,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#fpga-based-switching" class="md-nav__link">
+    FPGA-based Switching
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#intel-barefoot-tofino2" class="md-nav__link">
     Intel Barefoot Tofino2
   </a>
@@ -1844,13 +1851,6 @@
           <li class="md-nav__item">
   <a href="#intel-fm10000-multi-host-switch" class="md-nav__link">
     Intel FM10000 Multi-Host Switch
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fpga-based-switching" class="md-nav__link">
-    FPGA-based Switching
   </a>
   
 </li>
@@ -1992,17 +1992,6 @@ It has quite a lot other algorithms like RED in <code>sch_red.c</code>.</p>
 <p>So all those are software-based packet scheduling implementations.
 If you are interested, you can also check out an NSDI&lsquo;19 paper called <code>Eiffel</code>
 from Google, which also advocates for software-based packet scheduling.</p>
-<h3 id="intel-barefoot-tofino2">Intel Barefoot Tofino2<a class="headerlink" href="#intel-barefoot-tofino2" title="Permanent link">&para;</a></h3>
-<p>See <a href="https://www.servethehome.com/intel-tofino2-next-gen-programmable-switch-detailed/">here</a>,
-especially the <code>Traffic Manager</code> slide:</p>
-<p><img alt="image" src="../assets/tofino2-tm.png" /></p>
-<h3 id="intel-fm10000-multi-host-switch">Intel FM10000 Multi-Host Switch<a class="headerlink" href="#intel-fm10000-multi-host-switch" title="Permanent link">&para;</a></h3>
-<p>This is a shared-memory switch. This is from their spec.
-Only payload goes into the shared memory.
-Headers go into frame processing pipeline,
-in which a lot queues will be formed.
-<img alt="image" src="../assets/FM1000-arch.png" />
-<img alt="image" src="../assets/FM1000-sched.png" /></p>
 <h3 id="fpga-based-switching">FPGA-based Switching<a class="headerlink" href="#fpga-based-switching" title="Permanent link">&para;</a></h3>
 <p>For packet scheduling: we need special data structure design.</p>
 <p>I&rsquo;m only aware of these two papers dealing with this:</p>
@@ -2020,6 +2009,17 @@ I&rsquo;m not sure about PIEO.</p>
 If not, can be customize the softcore to be packet scheduler friendly?
 The benefit is probably we can write scheduling algorithm in C (and change freely during runtime)
 while have hardware (line rate) performance.</p>
+<h3 id="intel-barefoot-tofino2">Intel Barefoot Tofino2<a class="headerlink" href="#intel-barefoot-tofino2" title="Permanent link">&para;</a></h3>
+<p>See <a href="https://www.servethehome.com/intel-tofino2-next-gen-programmable-switch-detailed/">here</a>,
+especially the <code>Traffic Manager</code> slide:</p>
+<p><img alt="image" src="../assets/tofino2-tm.png" /></p>
+<h3 id="intel-fm10000-multi-host-switch">Intel FM10000 Multi-Host Switch<a class="headerlink" href="#intel-fm10000-multi-host-switch" title="Permanent link">&para;</a></h3>
+<p>This is a shared-memory switch. This is from their spec.
+Only payload goes into the shared memory.
+Headers go into frame processing pipeline,
+in which a lot queues will be formed.
+<img alt="image" src="../assets/FM1000-arch.png" />
+<img alt="image" src="../assets/FM1000-sched.png" /></p>
 <h2 id="final-thoughts">Final Thoughts<a class="headerlink" href="#final-thoughts" title="Permanent link">&para;</a></h2>
 <p>Although the shared memory based switch works for now,
 I&rsquo;m not sure whether it will continue working in the furture.
