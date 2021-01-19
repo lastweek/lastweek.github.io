@@ -654,6 +654,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1818,6 +1825,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1861,9 +1875,6 @@
 <p>This blog tries to explain how various linux tracers work,
 especially their core low-level mechanisms and relationships with each other.</p>
 <hr />
-<p>I have built the LegoOS <a href="http://lastweek.io/lego/kernel/profile/">profilers</a>,
-and <a href="http://lastweek.io/lego/kernel/profile_points/">profile points</a> before.</p>
-<p>Kernel maintains a top-level trace index file <a href="https://www.kernel.org/doc/html/latest/trace/index.html">here</a>.</p>
 <h2 id="intro">Intro<a class="headerlink" href="#intro" title="Permanent link">&para;</a></h2>
 <p>In Linux, we have:</p>
 <ul>
@@ -1994,6 +2005,10 @@ It&rsquo;s essentially the second part of tracing we mentioned above.
 perf stat -I <span class="m">5000</span> -e <span class="s2">&quot;page-faults,probe:do_anonymous_page&quot;</span> -- sleep <span class="m">10</span>
 perf probe --del<span class="o">=</span>probe:do_anonymous_page
 </code></pre></div></p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<p>I have built the LegoOS <a href="http://lastweek.io/lego/kernel/profile/">profilers</a>,
+and <a href="http://lastweek.io/lego/kernel/profile_points/">profile points</a> before.</p>
+<p>Kernel maintains a top-level trace index file <a href="https://www.kernel.org/doc/html/latest/trace/index.html">here</a>.</p>
                 
                   
                     
