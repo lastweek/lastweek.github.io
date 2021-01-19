@@ -136,10 +136,6 @@
      <lastmod>2021-01-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://lastweek.io/notes/benchmark/</loc>
-     <lastmod>2021-01-19</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>http://lastweek.io/misc/cheatsheet/</loc>
      <lastmod>2021-01-19</lastmod>
      <changefreq>daily</changefreq>
@@ -148,11 +144,11 @@
      <lastmod>2021-01-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://lastweek.io/notes/paper_fpga/</loc>
+     <loc>http://lastweek.io/fpga/bitstream/</loc>
      <lastmod>2021-01-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://lastweek.io/fpga/bitstream/</loc>
+     <loc>http://lastweek.io/notes/paper_fpga/</loc>
      <lastmod>2021-01-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -160,19 +156,15 @@
      <lastmod>2021-01-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://lastweek.io/fpga/pr/</loc>
-     <lastmod>2021-01-19</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>http://lastweek.io/fpga/vivado/</loc>
      <lastmod>2021-01-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://lastweek.io/fpga/hls_axi/</loc>
+     <loc>http://lastweek.io/fpga/setup_hold/</loc>
      <lastmod>2021-01-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://lastweek.io/fpga/setup_hold/</loc>
+     <loc>http://lastweek.io/fpga/pr/</loc>
      <lastmod>2021-01-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
