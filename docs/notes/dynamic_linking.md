@@ -8,6 +8,11 @@
 
 :rowboat:
 
+This blog looks at some part of the user-space dynamic linker,
+how kernel loads user program, and how kernel loads kernel modules.
+
+---
+
 ## C Start Up (csu)
 
 For code pointers, see the glibc code [here](https://github.com/lastweek/source-glibc).
