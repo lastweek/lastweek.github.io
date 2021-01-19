@@ -12,11 +12,6 @@ especially their core low-level mechanisms and relationships with each other.
 
 ---
 
-I have built the LegoOS [profilers](http://lastweek.io/lego/kernel/profile/),
-and [profile points](http://lastweek.io/lego/kernel/profile_points/) before.
-
-Kernel maintains a top-level trace index file [here](https://www.kernel.org/doc/html/latest/trace/index.html).
-
 ## Intro
 
 In Linux, we have:
@@ -139,3 +134,11 @@ perf probe --add do_anonymous_page
 perf stat -I 5000 -e "page-faults,probe:do_anonymous_page" -- sleep 10
 perf probe --del=probe:do_anonymous_page
 ```
+
+
+## References
+
+I have built the LegoOS [profilers](http://lastweek.io/lego/kernel/profile/),
+and [profile points](http://lastweek.io/lego/kernel/profile_points/) before.
+
+Kernel maintains a top-level trace index file [here](https://www.kernel.org/doc/html/latest/trace/index.html).
