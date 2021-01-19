@@ -620,6 +620,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#intro" class="md-nav__link">
+    Intro
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ftrace" class="md-nav__link">
     ftrace
   </a>
@@ -1777,6 +1784,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#intro" class="md-nav__link">
+    Intro
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ftrace" class="md-nav__link">
     ftrace
   </a>
@@ -1830,6 +1844,10 @@
 </thead>
 <tbody>
 <tr>
+<td align="left">Jan 18, 2021</td>
+<td>Minor update</td>
+</tr>
+<tr>
 <td align="left">Sep 6, 2020</td>
 <td>Add more eBPF</td>
 </tr>
@@ -1840,11 +1858,14 @@
 </tbody>
 </table>
 </details>
-<p>This is a note on various linux kernel tracers and profilers.
-Links to previous notes on LegoOS&rsquo;s profilers/tracers: <a href="http://lastweek.io/lego/kernel/profile/">notes</a>,
-and <a href="http://lastweek.io/lego/kernel/profile_points/">profile points</a>.</p>
-<p>Kernel maintains a top-level trace index file here: <a href="https://www.kernel.org/doc/html/latest/trace/index.html">https://www.kernel.org/doc/html/latest/trace/index.html</a>.</p>
-<p>In linux, we have:</p>
+<p>This blog tries to explain how various linux tracers work,
+especially their core low-level mechanisms and relationships with each other.</p>
+<hr />
+<p>I have built the LegoOS <a href="http://lastweek.io/lego/kernel/profile/">profilers</a>,
+and <a href="http://lastweek.io/lego/kernel/profile_points/">profile points</a> before.</p>
+<p>Kernel maintains a top-level trace index file <a href="https://www.kernel.org/doc/html/latest/trace/index.html">here</a>.</p>
+<h2 id="intro">Intro<a class="headerlink" href="#intro" title="Permanent link">&para;</a></h2>
+<p>In Linux, we have:</p>
 <ul>
 <li>ftrace</li>
 <li>kprobe</li>
@@ -1853,7 +1874,7 @@ and <a href="http://lastweek.io/lego/kernel/profile_points/">profile points</a>.
 <li>tracepoints</li>
 <li>eBPF</li>
 </ul>
-<p>For all these tools, I tend to think this way:</p>
+<p>For all these tools, we can think this way:</p>
 <ul>
 <li>Tracing needs two parts, <code>1)</code> <strong>Mechanims to get data and do callback.</strong> This means we need a way to
     let our tracing/profiling code got invoked on a running system. This can be static
@@ -1981,7 +2002,7 @@ perf probe --del<span class="o">=</span>probe:do_anonymous_page
 <div class="md-source-date">
   <small>
     
-      Last update: January 8, 2021
+      Last update: January 19, 2021
     
   </small>
 </div>
