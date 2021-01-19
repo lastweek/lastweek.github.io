@@ -6,7 +6,7 @@
 	|Jan 9, 2021| repolished after reading the [why mmap is faster syscall post](https://sasha-f.medium.com/why-mmap-is-faster-than-system-calls-24718e75ab37). Indeed, the difference is that mmap is using user-level AVX-aided memmove while kernel cannot. This reminded me of this post so I decided to move it to here.|
 	|Feb 22, 2018 | Initial Version|
 
-This blog documents what how kernel is dealing with x86 FPU at a high level.
+This blog documents how kernel is dealing with x86 FPU at a high level.
 
 ---
 

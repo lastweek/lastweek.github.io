@@ -40,18 +40,18 @@ nav:
    - 'Linux KVM':                      'notes/kvm-basic.md'
    - 'Performance-Shadows':            'notes/paper_perf_shadows.md'
    - 'Essential':                      'misc/essential.md'
-   - 'Benchmarks':                     'notes/benchmark.md'
+   #- 'Benchmarks':                     'notes/benchmark.md'
    - 'Cheatsheet':                     'misc/cheatsheet.md'
    - Languages:
        - 'Rust':                       'notes/languages/rust.md'
 - FPGA:
-   - 'Papers':                               'notes/paper_fpga.md'
    - 'Bitstream Explained':                  'fpga/bitstream.md'
+   - 'Papers':                               'notes/paper_fpga.md'
    - 'Languages':                            'fpga/language.md'
-   - 'Morphous Partial Reconfiguration':     'fpga/pr.md'
    - 'Vivado Notes':                         'fpga/vivado.md'
-   - 'Efficient AXI-MM':                     'fpga/hls_axi.md'
    - 'Setup and Hold Time':                  'fpga/setup_hold.md'
+   - 'Partial Reconfiguration':              'fpga/pr.md'
+   #- 'Efficient AXI-MM':                     'fpga/hls_axi.md'
 - Random:
    - 'On Read Once and Compiler Optimization':    'blog/20200404-on-read-once.md'
 - LegoOS:
