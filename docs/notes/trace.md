@@ -3,16 +3,23 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Jan 18, 2021| Minor update|
 	|Sep 6, 2020| Add more eBPF| 
 	|Jun 10, 2019| Initial version|
 
-This is a note on various linux kernel tracers and profilers.
-Links to previous notes on LegoOS's profilers/tracers: [notes](http://lastweek.io/lego/kernel/profile/),
-and [profile points](http://lastweek.io/lego/kernel/profile_points/).
+This blog tries to explain how various linux tracers work,
+especially their core low-level mechanisms and relationships with each other.
 
-Kernel maintains a top-level trace index file here: https://www.kernel.org/doc/html/latest/trace/index.html.
+---
 
-In linux, we have:
+I have built the LegoOS [profilers](http://lastweek.io/lego/kernel/profile/),
+and [profile points](http://lastweek.io/lego/kernel/profile_points/) before.
+
+Kernel maintains a top-level trace index file [here](https://www.kernel.org/doc/html/latest/trace/index.html).
+
+## Intro
+
+In Linux, we have:
 
   - ftrace
   - kprobe
@@ -21,7 +28,7 @@ In linux, we have:
   - tracepoints
   - eBPF
 
-For all these tools, I tend to think this way:
+For all these tools, we can think this way:
 
   - Tracing needs two parts, `1)` __Mechanims to get data and do callback.__ This means we need a way to
     let our tracing/profiling code got invoked on a running system. This can be static
