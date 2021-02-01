@@ -7,6 +7,7 @@ You can find my CV [here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 Contact: ys AT ucsd DOT edu
 
 ??? tip "Research News"
+	- [_Jan 2021_] The DPM work is accepted to present at [NVMW'21](http://nvmw.ucsd.edu/)
 	- [_Dec 2020_] Invited to join the [2021 JSys Student Editorial Board](https://escholarship.org/uc/jsys/studenteb)
 	- [_Oct 2020_] Serve as [EuroSys'20 Shadow PC](https://www.eurosys2020.org/call-for-shadow-pc-participation/)
 	- [_Sep 2020_] Serve as [OSDI'20 Artifact Evaluation PC](https://sysartifacts.github.io/osdi2020/organizers.html)
@@ -65,9 +66,15 @@ End of the day, many of the system problems boil down to network problems. :)
 
 ### Workshops
 
+5. __Disaggregating Persistent Memory and Controlling Them Remotely: An Exploration of Passive Disaggregated Key-Value Stores__
+  <br> Shin-Yeh Tsai, *Yizhou Shan*, Yiying Zhang
+  <br> *12th Annual Non-Volatile Memories Workshop (__NVMW 2021__)*
+       [[Paper]](http://lastweek.io/pubs/ATC20-DPM.pdf)
+
 4. __Challenges in Building and Deploying Disaggregated Persistent Memory__
   <br> *Yizhou Shan*, Yutong Huang, Yiying Zhang
-  <br> *10th Annual Non-Volatile Memories Workshop (__NVMW 2019__)*  [[Paper]](http://lastweek.io/pubs/NVMW19-DPM.pdf)
+  <br> *10th Annual Non-Volatile Memories Workshop (__NVMW 2019__)*
+       [[Paper]](http://lastweek.io/pubs/NVMW19-DPM.pdf)
 
 3. __Disaggregating Memory with Software-Managed Virtual Cache__
   <br> _Yizhou Shan_, Yiying Zhang
