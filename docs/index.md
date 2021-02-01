@@ -8,6 +8,7 @@ Contact: ys AT ucsd DOT edu
 
 ??? tip "Research News"
 	- [_Jan 2021_] The DPM work is accepted to present at [NVMW'21](http://nvmw.ucsd.edu/)
+	- [_Jan 2021_] This summer, I'm going to intern at [MSR Redmond](https://www.microsoft.com/en-us/research/group/security-and-privacy-research-group-redmond/) on [cloud confidential computing](https://azure.microsoft.com/en-us/solutions/confidential-compute/).
 	- [_Dec 2020_] Invited to join the [2021 JSys Student Editorial Board](https://escholarship.org/uc/jsys/studenteb)
 	- [_Oct 2020_] Serve as [EuroSys'20 Shadow PC](https://www.eurosys2020.org/call-for-shadow-pc-participation/)
 	- [_Sep 2020_] Serve as [OSDI'20 Artifact Evaluation PC](https://sysartifacts.github.io/osdi2020/organizers.html)
