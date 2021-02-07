@@ -18,28 +18,32 @@ They find a vulnerability in the 7-series chip and in turn able to decrypt a ful
 
 A bitstream can configure an FPGA.
 A bitstream includes the descriptions of the hardware logic, routing, and initial
-values of registers and on-chip memory.
-The common impression is that a bitstream has vendor-specific format and cannot be reversed.
-The answer is yes and no.
-The fact is that the bitstream file is more than the bits to configure an FPGA,
-it also has certain human-readable fields to describe the contents.
-In addition, it has a simple assembly-like instruction set to describe the FPGA configuration process.
+values of the registers and the on-chip memory.
+The common impression is that a bitstream has vendor-specific format thus cannot be reversed or understood.
+This impression is partially true.
+
+A bitstream file is more than the bits to configure an FPGA,
+it also has certain human-readable fields to describe those bits.
+In fact, it has a **assembly-like instruction set** to describe the FPGA configuration process.
 This note is trying to walk through this.
 
-At a high-level, a bitstream file is similar to an executable program,
-in the sense that it describes everything of a desired functionality.
-Analogous to the ELF format, a bistream has its own format to describe
-the contents. Note that, this file format is publicly documented [1](https://www.xilinx.com/support/documentation/user_guides/ug570-ultrascale-configuration.pdf).
-That means you can analyze the contents of a bitstream file.
-The undocument part is the configuration bits: FPGA vendor
-does not document the format of the configuration bits,
-and how they may to hardware resources.
+At a high-level, a bitstream file is similar to an executable program.
+Analogous to the ELF format, a bistream has its own format to describe the contents.
+Note, the file format is publicly documented [1](https://www.xilinx.com/support/documentation/user_guides/ug570-ultrascale-configuration.pdf).
+Thus, you **can** analyze the contents of a bitstream file, meaning you can understand the steps taken to configure the FPGA.
+The un-documented part is the **bits mapping**:
+the format of the configuration bits,
+especially how the bitstream bits map to specific on-chip LUTs, wires etc.
+Think this way, you can understand that the assembly instruction is doing addition on registers,
+but it does not tell you which register.
 
 As a normal FPGA user, you mostly do not need to understand neither of these.
-These understandings are only required if you plan to do bitstream readback, preemption scheduling and so forth.
+You only need to understand these if you are planning to do **bitstream readback**,
+**preemption scheduling**, and so on.
 
-After reading this note, you will understand that a bitstream file is a sequence of instructions and data.
-The FPGA has a simple state machine to parse the bitstream and then configure the chip.
+After reading this note, I hope you could understand that a bitstream file is just
+a sequence of instructions and data.
+The FPGA itself has a simple state machine to parse the bitstream and then configure the chip (ICAP in Xilinx).
 Part of the bistream file format is public, the mapping between the bitstream configuration bits
 and the actual physical resource is undocumented.
 
