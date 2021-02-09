@@ -5,4 +5,8 @@
 	|:---|-----------|
 	|Jan 16, 2021| Planned |
 
-Planned.
+Definition: https://en.wikipedia.org/wiki/Cryptocurrency#Formal_definition
+
+## Bitcoin
+
+Paper: https://bitcoin.org/bitcoin.pdf
