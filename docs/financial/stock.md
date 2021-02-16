@@ -6,10 +6,15 @@ I just want to document a few useful things to understand the stocks.
 I'm truly amazed and grateful for so many great CREATORS out there
 sharing their knowledges and deep insights.
 
+I start seriously review data behind stocks because I don't want to take bets and make pure guess.
+But being able to reason the data does not give me the power to predict market,
+it only makes me feel more confident to make choices - right or wrong, both are fine.
+
 ## Indicators
 
 !!! important inline end
-    Trade what you see, not what you think
+    Trade what you see, not what you think.
+    Avoid confirmation bias.
 
 TODO:
 1. Catagorize by purposes.
