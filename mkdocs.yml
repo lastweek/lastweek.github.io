@@ -4,7 +4,7 @@ site_url: 'http://lastweek.io'
 
 nav:
 - Home: 'index.md'
-- Code:
+- Code Study:
    - 'All-in-One':                  'notes/source_code/summary.md'
    - 'Guideline & Advice':          'notes/program_advice.md'
    - 'OS':                          'notes/source_code/os.md'
@@ -17,8 +17,7 @@ nav:
    - 'Misc':                        'notes/source_code/misc.md'
    - 'Terminal Configs':            'notes/source_code/dotconfigs.md'
    - 'Terminal Commands':           'notes/source_code/commands.md'
-
-- Note:
+- Tech Notes:
    - 'Practical Cache Coherence':      'notes/cache_coherence.md'
    - 'Switch Buffering and Packet Scheduling':              'notes/packet-sched.md'
    - 'Dynamic Linking':                'notes/dynamic_linking.md'
@@ -42,9 +41,10 @@ nav:
    - 'Essential':                      'misc/essential.md'
    #- 'Benchmarks':                     'notes/benchmark.md'
    - 'Cheatsheet':                     'misc/cheatsheet.md'
+   - 'On Read Once and Compiler Optimization':    'blog/20200404-on-read-once.md'
    - Languages:
        - 'Rust':                       'notes/languages/rust.md'
-- FPGA:
+- FPGAs:
    - 'Bitstream Explained':                  'fpga/bitstream.md'
    - 'Papers':                               'notes/paper_fpga.md'
    - 'Languages':                            'fpga/language.md'
@@ -52,9 +52,7 @@ nav:
    - 'Setup and Hold Time':                  'fpga/setup_hold.md'
    - 'Partial Reconfiguration':              'fpga/pr.md'
    #- 'Efficient AXI-MM':                     'fpga/hls_axi.md'
-- Random:
-   - 'On Read Once and Compiler Optimization':    'blog/20200404-on-read-once.md'
-- LegoOS:
+- LegoOS Notes:
    - 'Log':
 #           - 'TODO':                    'lego/log/TODO.md'
            - 'MISC':                    'lego/log/misc.md'
@@ -112,6 +110,12 @@ nav:
            - 'Gen-Z': 'lego/paper/genz.md'
            - 'Replication': 'lego/paper/replication.md'
            - 'Related': 'lego/paper/related.md'
+
+- Financial:
+    - "Stock": 'financial/stock.md'
+    - "Behavior Economics": 'financial/economics_behavior.md'
+    - "Economics": 'financial/economics.md'
+
 markdown_extensions:
   - admonition
   - tables
