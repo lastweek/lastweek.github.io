@@ -32,6 +32,8 @@ TODO:
 
 ## Options
 
+Option is risky.
+
 - [Options Playbook](https://optionsplaybook.com/)
 
 ### Unusual Whales
@@ -44,6 +46,8 @@ Read more tactics here: https://unusualwhales.com/spears.
 4. Pay attention to the strike price and date. I haven't fully grasp the core idea. Yet to learn.
 5. Mon/Fri close/mornings options somehow have  higher average max return.
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Before futures open, here&#39;s something neat.<br><br>Take a look at this chart, it shows the average max return from 2020 and breaks it down to time and week day, and the option type from the whale.<br><br>You can see that Friday after 12pm EST, Monday Morning, and Monday close have the ... <a href="https://t.co/QRSIstpqsx">pic.twitter.com/QRSIstpqsx</a></p>&mdash; unusual_whales (@unusual_whales) <a href="https://twitter.com/unusual_whales/status/1348387698973712385?ref_src=twsrc%5Etfw">January 10, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+- [Whale Winner and Loser MEGA Report](https://unusualwhales.com/analytics/win)
 
 ## Tools
 
