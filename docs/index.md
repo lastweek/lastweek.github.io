@@ -23,14 +23,13 @@ Contact: ys AT ucsd DOT edu
 
 ## Research
 
-During my doctoral research, I have been working on
+During my doctoral research, I'm working on
 distributed system, networking, operating system, hardware (FPGA), and their intersections.
 My most recent research focus is on disaggregated datacenter, designing its hardware, OS, and upper layer applications.
 
 All of my projects are open source at https://github.com/lastweek and https://github.com/WukLab.
 
-As of now, I'm working on network design for disaggregated datacenters.
-End of the day, many of the system problems boil down to network problems. :)
+See full publication list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAAAAAJ&hl=en).
 
 ### Conferences
 4. __Disaggregating Persistent Memory and Controlling Them Remotely: An Exploration of Passive Disaggregated Key-Value Stores__
@@ -107,3 +106,4 @@ End of the day, many of the system problems boil down to network problems. :)
 * [Github](https://github.com/lastweek)
 * [Twitter](https://twitter.com/Yizhou_Shan)
 * [LinkedIn](https://www.linkedin.com/in/lastweek/)
+* [Goodreads](https://www.goodreads.com/user/show/117378875-yizhou-shan)
