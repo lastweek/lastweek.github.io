@@ -113,8 +113,8 @@ nav:
 
 - Financial:
     - "Stock": 'financial/stock.md'
-    - "Behavior Economics": 'financial/economics_behavior.md'
-    - "Economics": 'financial/economics.md'
+    # - "Behavior Economics": 'financial/economics_behavior.md'
+    # - "Economics": 'financial/economics.md'
 
 markdown_extensions:
   - admonition
