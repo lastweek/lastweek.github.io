@@ -39,6 +39,7 @@ TODO:
 Option is risky.
 
 - [Options Playbook](https://optionsplaybook.com/)
+- [Option Profit Calculator](https://www.optionsprofitcalculator.com/)
 
 ### Unusual Whales
 
