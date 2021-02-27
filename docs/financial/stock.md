@@ -40,6 +40,7 @@ Option is risky.
 
 - [Options Playbook](https://optionsplaybook.com/)
 - [Option Profit Calculator](https://www.optionsprofitcalculator.com/)
+- [Understanding NOPE](https://helgridly.github.io/finstuff/understanding-NOPE/)
 
 ### Unusual Whales
 
