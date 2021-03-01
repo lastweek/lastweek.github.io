@@ -14,6 +14,7 @@ Contact: ys AT ucsd DOT edu
 	- [_Sep 2020_] Serve as [OSDI'20 Artifact Evaluation PC](https://sysartifacts.github.io/osdi2020/organizers.html)
 	- [_Sep 2020_] Serve as ASPLOS'21 External Reviewer. First major conference review!
 	- [_Apr 2020_] __Disaggregated Persistent Memory__ accepted to __ATC'20__
+	- [_Feb 2020_] Talk about [FPGA OS](https://cseweb.ucsd.edu/~yiying/cse291j-winter20/reading/FPGA-Virtualization.pdf)
 	- [_Sep 2019_] Moved to UCSD.
 	- [_May 2019_] Intern at [VMware Research](https://research.vmware.com/), with [Marcos K. Aguilera](http://mkaguilera.kawazoe.org/)
 	- [_Apr 2019_] __Storm__ accpeted to __SYSTOR'19__. Awarded Best Paper.
