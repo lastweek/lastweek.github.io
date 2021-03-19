@@ -3,6 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Mar 19, 2021| add sth about LD_PRELOAD |
 	|Jan 01, 2021| Add kernel module loading part|
 	|Dec 24, 2020| Adopted from my previous [note](https://github.com/lastweek/source-glibc)|
 
@@ -10,6 +11,8 @@
 
 This blog looks at some part of the user-space dynamic linker,
 how kernel loads user program, and how kernel loads kernel modules.
+
+The related code: glibc, kernel execve loader, kernel module loader.
 
 ---
 
@@ -35,7 +38,13 @@ runtime. I took a brief read of the source code and found some relevant ones.
 
 ### ld.so
 
-- ELF's `.interp` section points to the dynamic linker, and here it is.
+ld.so is the dynamic linker/loader:
+The programs ld.so find and load the shared objects (shared libraries) needed by a program, prepare the program to run, and then run it.
+You can run `man ld.so` to see more details.
+
+ld.so is a program, after all. It is part of glibc library.
+
+- ELF's `.interp` section points to the dynamic linker. During execve(), kernel will jump to ld.so instead of user code entry point.
 - Related code: `elf/rtld.c`, `sysdep/generic`, `sysdep/x86_64/`, and more
 - Inside `dl_main()`, you can see how `LD_PRELOAD` is handled.
 - `GOT[1]` contains address of the `link_map` data structure.
@@ -112,6 +121,13 @@ _dl_fixup (
 ```
 
 Understanding this piece of code requires some effort. Happy hacking!
+
+#### Fun fact about LD_PRELOAD
+
+If you use `LD_PRELOAD` to run a program,
+it will affect `popen()` since it will inherit environment variables.
+Hence, if you are doing some one time initilization within in your LD_PRELOAD library via, say `constructor` marked function,
+you should call `unsetenv("LD_PRELOAD")` before `popen()` call.
 
 ### Understanding
 
