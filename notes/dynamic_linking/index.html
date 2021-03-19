@@ -543,6 +543,19 @@
     ld.so
   </a>
   
+    <nav class="md-nav" aria-label="ld.so">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fun-fact-about-ld_preload" class="md-nav__link">
+    Fun fact about LD_PRELOAD
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1811,6 +1824,19 @@
     ld.so
   </a>
   
+    <nav class="md-nav" aria-label="ld.so">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fun-fact-about-ld_preload" class="md-nav__link">
+    Fun fact about LD_PRELOAD
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1872,6 +1898,10 @@
 </thead>
 <tbody>
 <tr>
+<td align="left">Mar 19, 2021</td>
+<td>add sth about LD_PRELOAD</td>
+</tr>
+<tr>
 <td align="left">Jan 01, 2021</td>
 <td>Add kernel module loading part</td>
 </tr>
@@ -1885,6 +1915,7 @@
 <p><img alt="🚣" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f6a3.svg" title=":rowboat:" /></p>
 <p>This blog looks at some part of the user-space dynamic linker,
 how kernel loads user program, and how kernel loads kernel modules.</p>
+<p>The related code: glibc, kernel execve loader, kernel module loader.</p>
 <hr />
 <h2 id="c-start-up-csu">C Start Up (csu)<a class="headerlink" href="#c-start-up-csu" title="Permanent link">&para;</a></h2>
 <p>For code pointers, see the glibc code <a href="https://github.com/lastweek/source-glibc">here</a>.</p>
@@ -1902,8 +1933,12 @@ how kernel loads user program, and how kernel loads kernel modules.</p>
 <p>I was particularly interested in how it resolves the dynamic symbols during
 runtime. I took a brief read of the source code and found some relevant ones.</p>
 <h3 id="ldso">ld.so<a class="headerlink" href="#ldso" title="Permanent link">&para;</a></h3>
+<p>ld.so is the dynamic linker/loader:
+The programs ld.so find and load the shared objects (shared libraries) needed by a program, prepare the program to run, and then run it.
+You can run <code>man ld.so</code> to see more details.</p>
+<p>ld.so is a program, after all. It is part of glibc library.</p>
 <ul>
-<li>ELF&rsquo;s <code>.interp</code> section points to the dynamic linker, and here it is.</li>
+<li>ELF&rsquo;s <code>.interp</code> section points to the dynamic linker. During execve(), kernel will jump to ld.so instead of user code entry point.</li>
 <li>Related code: <code>elf/rtld.c</code>, <code>sysdep/generic</code>, <code>sysdep/x86_64/</code>, and more</li>
 <li>Inside <code>dl_main()</code>, you can see how <code>LD_PRELOAD</code> is handled.</li>
 <li><code>GOT[1]</code> contains address of the <code>link_map</code> data structure.</li>
@@ -2029,6 +2064,11 @@ For 64bit x86, the source code is in <code>sysdeps/x86_64/dl-trampoline.h</code>
 </code></pre></div>
 </td></tr></table></p>
 <p>Understanding this piece of code requires some effort. Happy hacking!</p>
+<h4 id="fun-fact-about-ld_preload">Fun fact about LD_PRELOAD<a class="headerlink" href="#fun-fact-about-ld_preload" title="Permanent link">&para;</a></h4>
+<p>If you use <code>LD_PRELOAD</code> to run a program,
+it will affect <code>popen()</code> since it will inherit environment variables.
+Hence, if you are doing some one time initilization within in your LD_PRELOAD library via, say <code>constructor</code> marked function,
+you should call <code>unsetenv("LD_PRELOAD")</code> before <code>popen()</code> call.</p>
 <h3 id="understanding">Understanding<a class="headerlink" href="#understanding" title="Permanent link">&para;</a></h3>
 <p>Most recent ELF produced by GCC is slightly different than
 the ones described by previous textbook or papers.
@@ -2323,7 +2363,7 @@ Each takes its own part in the process.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: January 19, 2021
+      Last update: March 19, 2021
     
   </small>
 </div>
