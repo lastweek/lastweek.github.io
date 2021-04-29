@@ -11,14 +11,14 @@
 
 The proof-of-concept code to decode Xilinx bitstream is here: https://github.com/lastweek/fpga_decode_bitstream.
 
-USENIX Security 2020 has a paper on decrypting Xilinx bitstream: https://www.usenix.org/conference/usenixsecurity20/presentation/ender.
+[USENIX Security 2020](https://www.usenix.org/conference/usenixsecurity20/presentation/ender) has a paper on decrypting Xilinx bitstream.
 They find a vulnerability in the 7-series chip and in turn able to decrypt a fully encrypted bitstream. WHAT A HACK!
 
 ## Introduction
 
-A bitstream can configure an FPGA.
-A bitstream includes the descriptions of the hardware logic, routing, and initial
-values of the registers and the on-chip memory.
+An FPGA bitstream can configure an FPGA.
+A bitstream includes the description of the hardware logic, routing, and initial
+values for both registers and on-chip memory (e.g., LUT).
 The common impression is that a bitstream has vendor-specific format thus cannot be reversed or understood.
 This impression is partially true.
 
@@ -213,7 +213,8 @@ aa995566  SYNC
 00000000			<- The first 4 bytes of the configuration bits!
 ```
 
-Hope you have learned something.
+Thank you for reading. Hope you enjoyed this post.
+
 
 ## References
 
