@@ -117,6 +117,7 @@ nav:
     # - "Economics": 'financial/economics.md'
 
 markdown_extensions:
+  - attr_list
   - admonition
   - tables
   - smarty

@@ -1,3 +1,7 @@
+<p align="left">
+<img src="images/me.png" height=150 width=100>
+</p>
+
 Hello! I'm Yizhou Shan, a Ph.D. student at [University of California San Diego, CSE](https://cse.ucsd.edu/),
 advised by Prof. [Yiying Zhang](https://cseweb.ucsd.edu/~yiying/).
 I am a member of [UCSD Wuklab](http://wuklab.io) and [UCSD SysNet](https://www.sysnet.ucsd.edu/sysnet/).
