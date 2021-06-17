@@ -2,7 +2,7 @@
 <img src="images/me.png" height=150 width=100>
 </p>
 
-Hello! I'm Yizhou Shan, a Ph.D. student at [University of California San Diego, CSE](https://cse.ucsd.edu/),
+Hello! I'm Yizhou Shan, a Ph.D. candidate at [University of California San Diego, CSE](https://cse.ucsd.edu/),
 advised by Prof. [Yiying Zhang](https://cseweb.ucsd.edu/~yiying/).
 I am a member of [UCSD Wuklab](http://wuklab.io) and [UCSD SysNet](https://www.sysnet.ucsd.edu/sysnet/).
 I was a [Purdue Boilermaker](https://engineering.purdue.edu/ECE) during 2016-2019.
@@ -11,6 +11,8 @@ You can find my CV [here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 Contact: ys AT ucsd DOT edu
 
 ??? tip "Research News"
+	- [_Jun 2021_] Start my final internship at Microsoft Research, working on Security + System.
+	- [_Jun 2021_] I proposed my thesis and became a Ph.D candidate.
 	- [_Jan 2021_] The DPM work is accepted to present at [NVMW'21](http://nvmw.ucsd.edu/)
 	- [_Jan 2021_] This summer, I'm going to do my last internship at [MSR Redmond](https://www.microsoft.com/en-us/research/group/security-and-privacy-research-group-redmond/) on [cloud confidential computing](https://azure.microsoft.com/en-us/solutions/confidential-compute/).
 	- [_Dec 2020_] Invited to join the [2021 JSys Student Editorial Board](https://escholarship.org/uc/jsys/studenteb)

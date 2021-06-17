@@ -8,6 +8,7 @@ nav:
    - 'All-in-One':                  'notes/source_code/summary.md'
    - 'Guideline & Advice':          'notes/program_advice.md'
    - 'OS':                          'notes/source_code/os.md'
+   - 'RISC-V':                      'notes/source_code/risc-v.md'
    - 'Virtualization':              'notes/source_code/virt.md'
    - 'DPDK and RDMA':               'notes/source_code/rdma.md'
    - 'Firmware and Bootloader':     'notes/source_code/firmware-softwares.md'
