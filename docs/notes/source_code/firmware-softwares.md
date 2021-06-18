@@ -8,6 +8,7 @@
 	|May 6, 2020| Initial Version|
 
 In this blog post, I will review the current firmware and bootloader ecosystem.
+Note that this is very x86-centric.
 
 ## Landscape
 
@@ -36,8 +37,8 @@ Stage 0:
 Stage 1:
 
 - coreboot/libreboot/UEFI.
-- From software's pespective, they are the first to run.
-- One of their major job is to initialize DRAM, processor, and other low level things.
+- One of their major job is to initialize DRAM, processor, and other low level things,
+  prepare HW so that later software can run.
   Their early stage code must ran from on-chip SRAM/Cache! They will init DRAM so that
   later firmware/bootloader/OS can use it.
 - Once that is done, they will pass control to later stage software.
@@ -68,12 +69,20 @@ Different distro may choose different bootloaders.
 - [Coreboot](https://github.com/lastweek/source-firmware-coreboot) and Libreboot
 	- Coreboot seems very interesting. It's only doing one job, which is initialize
 	the very low-level memory controller and on-board resources. It uses cache as memory.
+	- We don't need it on QEMU.
 - [SeaBIOS: the default BIOS used by QEMU](https://github.com/lastweek/source-firmware-seabios)
+	- This is good code to learn from.
+	- SeaBIOS also works on physical machines.
 - [qboot: an alternative and lightweight BIOS for QEMU](https://github.com/lastweek/source-firmware-qboot)
     - Those are massive hackers, respect.
     - My experience about BIOS is calling them while the kernel (LegoOS) is running at 16-bit.
       BIOS *is* the OS for a just-booted kernel. I remember the lower 1MB is never cleared,
       maybe we could invoke the BIOS at 32 or 64-bit mode?
+- [u-boot]()
+	- Generally u-boot is used as the primary bootloader after BIOS.
+	- But u-boot is much more. Based on its description, it can init HW just like coreboot.
+	  Besides, it also provides some UEFI interfaces. So a mix of different things.
+	- u-boot is used by Chromebook.
 - [UEFI](https://en.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface)
 	- [UEFI EDK II ](https://github.com/lastweek/source-uefi-edk2)
 		-  "EDK II is a firmware development environment for the UEFI and UEFI Platform Initialization (PI) specifications"
@@ -99,6 +108,8 @@ Different distro may choose different bootloaders.
 	boot from an Infiniband network
 	control the boot process with a script
     ```
+- [LinuxBoot](https://www.linuxboot.org/)
+	- Use Linux as the firmware, directly runs after HW is initialized (e.g., after coreboot).
 
 If you are using a normal laptop or desktop, chances are, none of those firmware is used.
 Normally machines are shipped with commercial firmwares.
@@ -106,6 +117,12 @@ Normally machines are shipped with commercial firmwares.
 To me, I like SeaBIOS project the most. It's simple and can boot everything we need.
 (For example, Linux, LegoOS as well).
 
+
+### Thoughts
+
+I've read most of the project source code.
+I do find a lot redundant code/steps.
+A lot of them will do some initial setup, do hardware probe etc.
 
 ## Device Tree
 
