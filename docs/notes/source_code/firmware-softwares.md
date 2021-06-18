@@ -70,6 +70,10 @@ Different distro may choose different bootloaders.
 	- Coreboot seems very interesting. It's only doing one job, which is initialize
 	the very low-level memory controller and on-board resources. It uses cache as memory.
 	- We don't need it on QEMU.
+	- Image from [here](https://doc.coreboot.org/getting_started/architecture.html).
+	It shows the Cache-as-RAM v.s. DRAM timeline, the coreboot timline, and where it hands over to next stage.
+	- ![coreboot_uefi.svg](coreboot_uefi.svg)
+
 - [SeaBIOS: the default BIOS used by QEMU](https://github.com/lastweek/source-firmware-seabios)
 	- This is good code to learn from.
 	- SeaBIOS also works on physical machines.
