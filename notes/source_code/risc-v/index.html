@@ -1846,6 +1846,11 @@
 <li>I/O, I/O MMU</li>
 </ul>
 <h2 id="firmwarebootloader">Firmware/Bootloader<a class="headerlink" href="#firmwarebootloader" title="Permanent link">&para;</a></h2>
+<p><a href="https://riscv.org/wp-content/uploads/2019/06/13.30-RISCV_OpenSBI_Deep_Dive_v5.pdf">OpenSBI</a>.
+This is the default firmware in QEMU for RISC-V. It replaces the old BBL.
+This one runs after ROM and coreboot (if any).
+This one will discover/probe hardware (i suppose).
+After that, it passes control to normal bootloaders like u-boot or GRUB.</p>
 <h2 id="kernel">Kernel<a class="headerlink" href="#kernel" title="Permanent link">&para;</a></h2>
 <h2 id="toolchain">Toolchain<a class="headerlink" href="#toolchain" title="Permanent link">&para;</a></h2>
                 
@@ -1856,7 +1861,7 @@
 <div class="md-source-date">
   <small>
     
-      Last update: June 17, 2021
+      Last update: June 18, 2021
     
   </small>
 </div>

@@ -405,8 +405,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#projects" class="md-nav__link">
-    Projects
+  <a href="#stages" class="md-nav__link">
+    Stages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-details" class="md-nav__link">
+    Project Details
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#device-tree" class="md-nav__link">
+    Device Tree
   </a>
   
 </li>
@@ -1770,8 +1784,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#projects" class="md-nav__link">
-    Projects
+  <a href="#stages" class="md-nav__link">
+    Stages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-details" class="md-nav__link">
+    Project Details
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#device-tree" class="md-nav__link">
+    Device Tree
   </a>
   
 </li>
@@ -1802,6 +1830,10 @@
 </thead>
 <tbody>
 <tr>
+<td align="left">Jun 17, 2021</td>
+<td>some reorg</td>
+</tr>
+<tr>
 <td align="left">Dec 7, 2020</td>
 <td>add iPXE</td>
 </tr>
@@ -1814,22 +1846,57 @@
 </details>
 <p>In this blog post, I will review the current firmware and bootloader ecosystem.</p>
 <h2 id="landscape">Landscape<a class="headerlink" href="#landscape" title="Permanent link">&para;</a></h2>
-<p>I admire those firmware projects, maybe because that&rsquo;s where I started.
-At first I used SeaBIOS (the default one used by QEMU) to build OS.
-Then I came across UEFI, though I have never used it.</p>
+<p><img alt="20200506-on-firmware-landscape.png" src="../20200506-on-firmware-landscape.png" />
+(Arrow from A to B means A can run after B. The combination and flow is very flexible.)</p>
 <p>There are a lot open-source firmware projects.
 I was trying to understand their relationship.
-After some research, I drew the following landscape figure.</p>
-<p><img alt="20200506-on-firmware-landscape.png" src="../20200506-on-firmware-landscape.png" /></p>
+After some research, I drew the above figure.
+This figure is very x86-centric. Other architecture have other firmwares.</p>
 <p>Bottom-up:</p>
-<ul>
+<ol>
 <li>Coreboot/Libreboot/UEFI: for motherboard init, e.g., init memory controller.</li>
 <li>UEFI/BIOS</li>
-<li>iPXE</li>
-<li>GRUB2/U-Boto: Bootloader</li>
+<li>GRUB2/u-boot/iPXE: Bootloader<ul>
+<li>u-boot implements some UEFI spec as well.</li>
+</ul>
+</li>
+<li>OS</li>
+</ol>
+<h2 id="stages">Stages<a class="headerlink" href="#stages" title="Permanent link">&para;</a></h2>
+<p>Stage 0:</p>
+<ul>
+<li>For some boards, some ROM code gets run first no matter what.</li>
+</ul>
+<p>Stage 1:</p>
+<ul>
+<li>coreboot/libreboot/UEFI.</li>
+<li>From software&rsquo;s pespective, they are the first to run.</li>
+<li>One of their major job is to initialize DRAM, processor, and other low level things.
+  Their early stage code must ran from on-chip SRAM/Cache! They will init DRAM so that
+  later firmware/bootloader/OS can use it.</li>
+<li>Once that is done, they will pass control to later stage software.</li>
+</ul>
+<p>Stage 2:</p>
+<ul>
+<li>UEFI/SeaBIOS for x86/OpenSBI for risc-v</li>
+<li>Those are the firmware in general sense. They will discover hardware, prepare
+  the memory map, prepare device tree, and so on. Essentially, they gather info.</li>
+<li>Note that, some of them live even after they pass control to OS.</li>
+<li>E.g., UEFI is also a service that OS can use.</li>
+</ul>
+<p>Stage 3:</p>
+<ul>
+<li>U-boot/GRUB/iPXE</li>
+<li>This is the normal bootloader. Their responsibility is to load the OS kernel.</li>
+<li>They understand filesystem, network, and other stuff. They are a small OS in some sense.</li>
+</ul>
+<p>Stage 4:</p>
+<ul>
 <li>OS</li>
 </ul>
-<h2 id="projects">Projects<a class="headerlink" href="#projects" title="Permanent link">&para;</a></h2>
+<p>You can generally test all these firmware and bootloaders using QEMU.
+Different distro may choose different bootloaders.</p>
+<h2 id="project-details">Project Details<a class="headerlink" href="#project-details" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://github.com/lastweek/source-firmware-coreboot">Coreboot</a> and Libreboot<ul>
 <li>Coreboot seems very interesting. It&rsquo;s only doing one job, which is initialize
@@ -1879,6 +1946,14 @@ control the boot process with a script
 Normally machines are shipped with commercial firmwares.</p>
 <p>To me, I like SeaBIOS project the most. It&rsquo;s simple and can boot everything we need.
 (For example, Linux, LegoOS as well).</p>
+<h2 id="device-tree">Device Tree<a class="headerlink" href="#device-tree" title="Permanent link">&para;</a></h2>
+<p>There is a <a href="https://devicetree-specification.readthedocs.io/en/v0.3/introduction.html">device tree specification</a>.</p>
+<div class="admonition quote">
+<p class="admonition-title">Quote</p>
+<p>A DTSpec-compliant devicetree describes device information in a system that cannot necessarily be dynamically detected by a client program. For example, the architecture of PCI enables a client to probe and detect attached devices, and thus devicetree nodes describing PCI devices might not be required. However, a device node is required to describe a PCI host bridge device in the system if it cannot be detected by probing.</p>
+</div>
+<p>==&gt; So it is intended for devices that cannot be dynamically probed.
+    Devices like PCIe that could be probed shouldn&rsquo;t be included in a device tree.</p>
                 
                   
                     
@@ -1887,7 +1962,7 @@ Normally machines are shipped with commercial firmwares.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: December 23, 2020
+      Last update: June 18, 2021
     
   </small>
 </div>
