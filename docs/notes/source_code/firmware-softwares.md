@@ -3,6 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Jun 17, 2021| some reorg|
 	|Dec 7, 2020| add iPXE |
 	|May 6, 2020| Initial Version|
 
@@ -10,25 +11,59 @@ In this blog post, I will review the current firmware and bootloader ecosystem.
 
 ## Landscape
 
-I admire those firmware projects, maybe because that's where I started.
-At first I used SeaBIOS (the default one used by QEMU) to build OS.
-Then I came across UEFI, though I have never used it.
+![20200506-on-firmware-landscape.png](20200506-on-firmware-landscape.png)
+(Arrow from A to B means A can run after B. The combination and flow is very flexible.)
 
 There are a lot open-source firmware projects.
 I was trying to understand their relationship.
-After some research, I drew the following landscape figure.
-
-![20200506-on-firmware-landscape.png](20200506-on-firmware-landscape.png)
+After some research, I drew the above figure.
+This figure is very x86-centric. Other architecture have other firmwares.
 
 Bottom-up:
 
-- Coreboot/Libreboot/UEFI: for motherboard init, e.g., init memory controller.
-- UEFI/BIOS
-- iPXE
-- GRUB2/U-Boto: Bootloader
+1. Coreboot/Libreboot/UEFI: for motherboard init, e.g., init memory controller.
+2. UEFI/BIOS
+3. GRUB2/u-boot/iPXE: Bootloader
+	- u-boot implements some UEFI spec as well.
+4. OS
+
+## Stages
+
+Stage 0:
+
+- For some boards, some ROM code gets run first no matter what.
+
+Stage 1:
+
+- coreboot/libreboot/UEFI.
+- From software's pespective, they are the first to run.
+- One of their major job is to initialize DRAM, processor, and other low level things.
+  Their early stage code must ran from on-chip SRAM/Cache! They will init DRAM so that
+  later firmware/bootloader/OS can use it.
+- Once that is done, they will pass control to later stage software.
+
+Stage 2:
+
+- UEFI/SeaBIOS for x86/OpenSBI for risc-v
+- Those are the firmware in general sense. They will discover hardware, prepare
+  the memory map, prepare device tree, and so on. Essentially, they gather info.
+- Note that, some of them live even after they pass control to OS.
+- E.g., UEFI is also a service that OS can use.
+
+Stage 3:
+
+- U-boot/GRUB/iPXE
+- This is the normal bootloader. Their responsibility is to load the OS kernel.
+- They understand filesystem, network, and other stuff. They are a small OS in some sense.
+
+Stage 4:
+
 - OS
 
-## Projects
+You can generally test all these firmware and bootloaders using QEMU.
+Different distro may choose different bootloaders.
+
+## Project Details
 
 - [Coreboot](https://github.com/lastweek/source-firmware-coreboot) and Libreboot
 	- Coreboot seems very interesting. It's only doing one job, which is initialize
@@ -70,3 +105,14 @@ Normally machines are shipped with commercial firmwares.
 
 To me, I like SeaBIOS project the most. It's simple and can boot everything we need.
 (For example, Linux, LegoOS as well).
+
+
+## Device Tree
+
+There is a [device tree specification](https://devicetree-specification.readthedocs.io/en/v0.3/introduction.html).
+
+!!! quote
+    A DTSpec-compliant devicetree describes device information in a system that cannot necessarily be dynamically detected by a client program. For example, the architecture of PCI enables a client to probe and detect attached devices, and thus devicetree nodes describing PCI devices might not be required. However, a device node is required to describe a PCI host bridge device in the system if it cannot be detected by probing.
+
+==> So it is intended for devices that cannot be dynamically probed.
+    Devices like PCIe that could be probed shouldn't be included in a device tree.
