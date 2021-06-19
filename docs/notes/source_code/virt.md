@@ -8,7 +8,7 @@
 	|Jan 26, 2020| Minor adjustment|
 	|Jan 25, 2020| Initial Document|
 
-:rat:
+Also check out [Awesome-Virtualization](https://github.com/Wenzel/awesome-virtualization/issues)
 
 In order to truly understand the whole virtualization thing,
 I decided to read QEMU/KVM/etc source code.
@@ -27,6 +27,11 @@ and this is where all the tricks happen),
 5) and finally, if I want to write a new virtual machine monitor like QEMU,
 what should I build. Several recent projects (e.g., rust-vmm, firecracker)
 have some hints on this.
+
+My favorite quote:
+
+!!! quote
+     And at the end of the day, all virtualization really means is running a particular set of assembly instructions (the guest OS) to manipulate locations within a giant memory map for causing a particular set of side effects, where QEMU is just a user-space application providing a memory map and mimicking the same side effects you would get when executing those guest instructions on the appropriate bare metal hardware
 
 - <a href="https://gdoc.pub/doc/e/2PACX-1vSsskD0A2XgHoZhaYLAkS7lmCOrfxkGXk1WTovWEAyeoELVdBjrE-NzD8h-NvJfKhxMpUg2aXzaD-XG" target="_blank">Google Doc Version</a>
 - <a href="http://lastweek.io/pubs/virt_note.pdf" target="_blank">PDF Version</a>
