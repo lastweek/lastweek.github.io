@@ -7,14 +7,14 @@ nav:
 - Code Study:
    - 'All-in-One':                  'notes/source_code/summary.md'
    - 'Guideline & Advice':          'notes/program_advice.md'
-   - 'OS':                          'notes/source_code/os.md'
-   - 'RISC-V':                      'notes/source_code/risc-v.md'
+   - 'Firmware and Bootloader':     'notes/source_code/firmware-softwares.md'
+   - 'Operating System':            'notes/source_code/os.md'
    - 'Virtualization':              'notes/source_code/virt.md'
    - 'DPDK and RDMA':               'notes/source_code/rdma.md'
-   - 'Firmware and Bootloader':     'notes/source_code/firmware-softwares.md'
    - 'Graphics':                    'notes/source_code/20200501-on-graphic-softwares.md'
    - 'GPU':                         'notes/source_code/gpu.md'
    - 'FPGA':                        'notes/source_code/fpga.md'
+   - 'RISC-V':                      'notes/source_code/risc-v.md'
    - 'Misc':                        'notes/source_code/misc.md'
    - 'Terminal Configs':            'notes/source_code/dotconfigs.md'
    - 'Terminal Commands':           'notes/source_code/commands.md'
@@ -44,7 +44,7 @@ nav:
    - 'Cheatsheet':                     'misc/cheatsheet.md'
    - 'On Read Once and Compiler Optimization':    'blog/20200404-on-read-once.md'
    - Languages:
-       - 'Rust':                       'notes/languages/rust.md'
+     - 'Rust':                       'notes/languages/rust.md'
 - FPGAs:
    - 'Bitstream Explained':                  'fpga/bitstream.md'
    - 'Papers':                               'notes/paper_fpga.md'
@@ -112,8 +112,8 @@ nav:
            - 'Replication': 'lego/paper/replication.md'
            - 'Related': 'lego/paper/related.md'
 
-- Financial:
-    - "Stock": 'financial/stock.md'
+#- Financial:
+    #    - "Stock": 'financial/stock.md'
     # - "Behavior Economics": 'financial/economics_behavior.md'
     # - "Economics": 'financial/economics.md'
 
