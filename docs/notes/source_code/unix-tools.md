@@ -1,11 +1,19 @@
-# Terminal Commands
+# Unix Tools
 
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Jun 21, 2021| Update|
 	|Dec 23, 2020| extracted from the summary doc|
 
-## Essential Unix Commands
+## Alternative UNIX commands
+
+Old wine in new bottles. Those are moden rewrite of common commands.
+
+- https://github.com/ibraheemdev/modern-unix
+
+## Essential Commands
+
 The following repos have the essential UNIX commands like ls, cat, demsg.
 I don't think it is a good idea to blindly read the source code.
 Rather, I think they should be used as references whenever we need to check how something is implemented.
@@ -29,7 +37,7 @@ Large Collections
     - See the full list [here](https://en.wikipedia.org/wiki/Util-linux).
 - [FreeBSD](https://github.com/lastweek/source-freebsd)
 
-### Network
+### Network Commands
 
 - [iperf3](https://github.com/lastweek/source-iperf) is a TCP, UDP, and SCTP network bandwidth measurement tool
 - [arping](https://github.com/ThomasHabets/arping)
@@ -43,7 +51,7 @@ Large Collections
 
 - Tools
 	- [tmux](https://github.com/lastweek/source-tmux)
-	- [git](https://github.com/lastweek/source-git)
+	- [git](htgps://github.com/lastweek/source-git)
 	- [FFmpeg](https://github.com/lastweek/source-FFmpeg)
 		- FFmpeg project is famous for its clean and neat C code.
 		- This project is used by a lot online video service companies
