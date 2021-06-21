@@ -116,6 +116,10 @@
      <lastmod>2021-06-21</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>http://lastweek.io/notes/source_code/unix-tools/</loc>
+     <lastmod>2021-06-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>http://lastweek.io/notes/source_code/virt/</loc>
      <lastmod>2021-06-21</lastmod>
      <changefreq>daily</changefreq>
@@ -140,15 +144,11 @@
      <lastmod>2021-06-21</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://lastweek.io/notes/source_code/misc/</loc>
-     <lastmod>2021-06-21</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>http://lastweek.io/notes/source_code/dotconfigs/</loc>
      <lastmod>2021-06-21</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://lastweek.io/notes/source_code/commands/</loc>
+     <loc>http://lastweek.io/notes/source_code/misc/</loc>
      <lastmod>2021-06-21</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
