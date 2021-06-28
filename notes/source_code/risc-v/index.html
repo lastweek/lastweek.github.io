@@ -312,7 +312,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../virt/" title="Virtualization" class="md-nav__link">
+    <a href="../../virt/" title="Virtualization" class="md-nav__link">
       Virtualization
     </a>
   </li>
@@ -790,6 +790,46 @@
         <li class="md-nav__item">
   <a href="#firmwarebootloader" class="md-nav__link">
     Firmware/Bootloader
+  </a>
+  
+    <nav class="md-nav" aria-label="Firmware/Bootloader">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opensbi" class="md-nav__link">
+    OpenSBI
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenSBI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-study" class="md-nav__link">
+    Code Study
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scripts" class="md-nav__link">
+    Scripts
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qemu" class="md-nav__link">
+    QEMU
   </a>
   
 </li>
@@ -1733,6 +1773,46 @@
     Firmware/Bootloader
   </a>
   
+    <nav class="md-nav" aria-label="Firmware/Bootloader">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opensbi" class="md-nav__link">
+    OpenSBI
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenSBI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-study" class="md-nav__link">
+    Code Study
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scripts" class="md-nav__link">
+    Scripts
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qemu" class="md-nav__link">
+    QEMU
+  </a>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1791,11 +1871,27 @@
 <li>I/O, I/O MMU</li>
 </ul>
 <h2 id="firmwarebootloader">Firmware/Bootloader<a class="headerlink" href="#firmwarebootloader" title="Permanent link">&para;</a></h2>
+<h3 id="opensbi">OpenSBI<a class="headerlink" href="#opensbi" title="Permanent link">&para;</a></h3>
 <p><a href="https://riscv.org/wp-content/uploads/2019/06/13.30-RISCV_OpenSBI_Deep_Dive_v5.pdf">OpenSBI</a>.
 This is the default firmware in QEMU for RISC-V. It replaces the old BBL.
 This one runs after ROM and coreboot (if any).
-This one will discover/probe hardware (i suppose).
-After that, it passes control to normal bootloaders like u-boot or GRUB.</p>
+This one will discover/probe hardware (I suppose).
+After that, it passes control to normal bootloaders like u-boot or GRUB, or just to linux kernel.</p>
+<h4 id="code-study">Code Study<a class="headerlink" href="#code-study" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>firmware/fw_base.S</code> is the entry point.</li>
+<li>mostly doing the usual, setting up envionment for C functions. It will save some critical information into a struct passed to C.</li>
+<li>In the end, it will call into C <code>sbi_init(struct sbi_scratch *)</code>. Note the <code>sbi_scratch</code> structure is filled with crutial info by fw_base.S.</li>
+<li>It seems every hart will do the same?</li>
+<li><code>lib/sbi/sbi_init.c</code>.</li>
+<li></li>
+</ul>
+<h4 id="scripts">Scripts<a class="headerlink" href="#scripts" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>make <span class="nv">V</span><span class="o">=</span><span class="m">1</span> <span class="nv">CROSS_COMPILE</span><span class="o">=</span>riscv64-linux-gnu- <span class="nv">PLATFORM</span><span class="o">=</span>generic <span class="nv">FW_PAYLOAD_PATH</span><span class="o">=</span>../linux/arch/riscv/boot/Image
+</code></pre></div>
+
+<h2 id="qemu">QEMU<a class="headerlink" href="#qemu" title="Permanent link">&para;</a></h2>
+<p>Code in <code>hw/riscv/</code>, <code>hw/intc/*_clint_*</code>.</p>
 <h2 id="kernel">Kernel<a class="headerlink" href="#kernel" title="Permanent link">&para;</a></h2>
 <h2 id="toolchain">Toolchain<a class="headerlink" href="#toolchain" title="Permanent link">&para;</a></h2>
                 
@@ -1806,7 +1902,7 @@ After that, it passes control to normal bootloaders like u-boot or GRUB.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: June 18, 2021
+      Last update: June 28, 2021
     
   </small>
 </div>

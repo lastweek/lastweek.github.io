@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
-        <link rel="canonical" href="http://lastweek.io/notes/cgroup-swap/">
+        <link rel="canonical" href="http://lastweek.io/notes/virt/">
       
       
         <meta name="author" content="Yizhou Shan">
@@ -19,7 +19,7 @@
     
     
       
-        <title>Linux Cgroup and Swap - Yizhou Shan's Home Page</title>
+        <title>Virtualization - Yizhou Shan's Home Page</title>
       
     
     
@@ -57,7 +57,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#how-linux-cgroup-trigger-kernel-swap" class="md-skip">
+        <a href="#virtualization" class="md-skip">
           Skip to content
         </a>
       
@@ -85,7 +85,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Linux Cgroup and Swap
+              Virtualization
             
           </span>
         </div>
@@ -312,11 +312,60 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../virt/" title="Virtualization" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Virtualization
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Virtualization" class="md-nav__link md-nav__link--active">
       Virtualization
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#history-of-virtualization" class="md-nav__link">
+    History of Virtualization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#note" class="md-nav__link">
+    Note
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -432,53 +481,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Linux Cgroup and Swap
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Linux Cgroup and Swap" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../cgroup-swap/" title="Linux Cgroup and Swap" class="md-nav__link">
       Linux Cgroup and Swap
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#lru-lists-maintainence" class="md-nav__link">
-    LRU Lists Maintainence
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -1701,8 +1708,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#lru-lists-maintainence" class="md-nav__link">
-    LRU Lists Maintainence
+  <a href="#history-of-virtualization" class="md-nav__link">
+    History of Virtualization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#note" class="md-nav__link">
+    Note
   </a>
   
 </li>
@@ -1723,7 +1737,7 @@
                   
                 
                 
-                <h1 id="how-linux-cgroup-trigger-kernel-swap">How linux cgroup trigger kernel swap<a class="headerlink" href="#how-linux-cgroup-trigger-kernel-swap" title="Permanent link">&para;</a></h1>
+                <h1 id="virtualization">Virtualization<a class="headerlink" href="#virtualization" title="Permanent link">&para;</a></h1>
 <details class="note"><summary>Version History</summary><table>
 <thead>
 <tr>
@@ -1733,67 +1747,64 @@
 </thead>
 <tbody>
 <tr>
-<td align="left">Dec 3, 2018</td>
-<td>Initial version</td>
+<td align="left">Jun 22, 2021</td>
+<td>add steps and bare-metal virt</td>
+</tr>
+<tr>
+<td align="left">Dec 31, 2020</td>
+<td>minor update</td>
+</tr>
+<tr>
+<td align="left">Feb 4, 2020</td>
+<td>Add VFIO stuff</td>
+</tr>
+<tr>
+<td align="left">Jan 26, 2020</td>
+<td>Minor adjustment</td>
+</tr>
+<tr>
+<td align="left">Jan 25, 2020</td>
+<td>Initial Document</td>
 </tr>
 </tbody>
 </table>
 </details>
-<p>This is a note on how linux <code>cgroup-mm</code> triggers swap on the user-defined <code>limit_in_bytes</code>.
-This note assumes you have adequate knowledge on linux mm code.
-For more information about cgroup, please check the <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/resource_management_guide/ch01">document from RedHat</a>.</p>
-<p>This is NOT a complete walk through.</p>
-<p>There are several cgroup callbacks at <code>mm/memory.c</code>. Those functions are called to check if cgroup can honor this page allocation.
-All of these functions are located in <code>mm/memcontrol.c</code></p>
+<p>Also check out <a href="https://github.com/Wenzel/awesome-virtualization/issues">Awesome-Virtualization</a></p>
+<p>Why? In order to truly understand the whole virtualization thing,
+I decided to read QEMU/KVM/etc source code.
+The document was orginally written in a Google Document.</p>
+<p>The questions I&rsquo;ve focused on are:</p>
 <ul>
-<li><code>mem_cgroup_try_charge()</code></li>
-<li><code>mem_cgroup_commit_charge()</code></li>
-<li><code>mem_cgroup_cancel_charge()</code></li>
+<li>1) how QEMU emulates all the devices (essentially, CPU and device communicates via addresses,
+and this is where all the tricks happen),</li>
+<li>2) how KVM uses CPU features to switch between VMs, catch faults, return to QEMU etc,</li>
+<li>3) how KVM and QEMU work together,</li>
+<li>4) how virto works and how device-passthrough works (via VFIO),</li>
+<li>5) and finally, if I want to write a new virtual machine monitor like QEMU,
+what should I build. Several recent projects (e.g., rust-vmm, firecracker)
+have some hints on this.</li>
 </ul>
-<p>Some <em>facts</em> about the implementation (up to linux 5.2)</p>
+<p>My favorite quote about QEMU (in fact, about virtualization in general):</p>
+<div class="admonition quote">
+<p class="admonition-title">Quote</p>
+<p>And at the end of the day, all virtualization really means is running a particular set of assembly instructions (the guest OS) to manipulate locations within a giant memory map for causing a particular set of side effects, where QEMU is just a user-space application providing a memory map and mimicking the same side effects you would get when executing those guest instructions on the appropriate bare metal hardware</p>
+</div>
+<h2 id="history-of-virtualization">History of Virtualization<a class="headerlink" href="#history-of-virtualization" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Software-based Virtualization. This is where VMware started. No hardware support. Smart tricks.</li>
+<li>Para-virtualization. This is what Xen invented. They will change the guest OS in order for better emulation. No hardware support. But the guest OS is changed.</li>
+<li>Hardware-assited virtualization. This is what AMD and Intel Vt-d, IOMMU started. The CPU itself would support virtualization mode and non-virtualization mode. The hardware change alone cannot work. They are usually used to accelerate existing technologies. Hence, you can run Xen+Vt-d, QEMU+Vt-d (which is enabled by KVM).</li>
+<li>Offload virtualization to dedicated hardware, e.g., AWS Nitro. Rather than using QEMU (or vendor kernel) to emulate storage/network devices, they build customized cards that would handle all that in hardware! The idea is simple, the guest MMIO space would be handled by the dedicated device. This approach can greatly save host CPU usage. Exmaples: AWS Nitro, Microsoft SmartNIC for their network offloading (i.e., openvswitch), Huawei. Google seems doing everything in SW.</li>
+<li>Bare-metal virtualization.</li>
+</ol>
+<h2 id="note">Note<a class="headerlink" href="#note" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Each memory cgroup has its own LRU list vector</li>
-<li>All memory cgroup&rsquo;s LRU lists and even the global LRU lists, they share a global LRU lock on a per-node basis. (Weird! Why?).</li>
+<li><a href="https://gdoc.pub/doc/e/2PACX-1vSsskD0A2XgHoZhaYLAkS7lmCOrfxkGXk1WTovWEAyeoELVdBjrE-NzD8h-NvJfKhxMpUg2aXzaD-XG" target="_blank">Google Doc Version</a></li>
+<li><a href="http://lastweek.io/pubs/virt_note.pdf" target="_blank">PDF Version</a></li>
 </ul>
-<p>Take a closer look of <code>mem_cgroup_try_charge()</code>, whose behavior is actually
-quite similar to the case of a real OOM: check if we still available
-memory (here means memory usage is smaller than <code>limit_in_bytes</code>),
-if unfortunately we run out of memory, it will then try to reclaim
-form the memory cgroup&rsquo;s LRU lists. If that did not work either,
-final step would be do OOM actions.</p>
-<ul>
-<li>
-<p><code>mem_cgroup_try_charge()</code></p>
-<ul>
-<li><code>try_charge()</code><ul>
-<li>page_counter_try_charge():<ul>
-<li>Check if we hit <code>limit_in_bytes</code> counter.</li>
-<li>Hierarchically charge pages, costly.</li>
-</ul>
-</li>
-<li>try_to_free_mem_cgroup_pages()<ul>
-<li>Callback to <code>mm/vmscan.c</code> to shrink the list (<em>Bingo!</em>)</li>
-</ul>
-</li>
-<li>Also, reclaimer will establish swap pte entries</li>
-<li>mem_cgroup_oom()</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><code>mem_cgroup_lruvec()</code></p>
-<ul>
-<li>Other than the global zone-wide LRU lists vector, each cgroup has its own LRU lists vector.
-Choose the vector that will be passed down to do <code>shrink_page_list()</code> etc.</li>
-</ul>
-</li>
-</ul>
-<h2 id="lru-lists-maintainence">LRU Lists Maintainence<a class="headerlink" href="#lru-lists-maintainence" title="Permanent link">&para;</a></h2>
-<p>Insertion to LRU lists is performed as follows: first, it will be inserted into a
-per-cpu array (<code>lru_add_pvec</code>). Once the array is full (default 15 entries),
-it will do a batch insertion into proper LRU lists (depends on <code>mem_cgroup_lruvec</code> we mentioned above).</p>
-<p>Why Linux is doing this way? To scale.</p>
+<iframe style="width: 100%; height: 800px;" frameborder="1" allowfullscreen 
+    src="https://docs.google.com/document/d/e/2PACX-1vSsskD0A2XgHoZhaYLAkS7lmCOrfxkGXk1WTovWEAyeoELVdBjrE-NzD8h-NvJfKhxMpUg2aXzaD-XG/pub?embedded=true">        
+</iframe>
                 
                   
                     
@@ -1802,7 +1813,7 @@ it will do a batch insertion into proper LRU lists (depends on <code>mem_cgroup_
 <div class="md-source-date">
   <small>
     
-      Last update: January 7, 2021
+      Last update: June 28, 2021
     
   </small>
 </div>
@@ -1815,7 +1826,7 @@ it will do a batch insertion into proper LRU lists (depends on <code>mem_cgroup_
 
   <h2 id="__comments">Comments</h2>
   <div id="disqus_thread"></div>
-  <script>var disqus_config=function(){this.page.url="http://lastweek.io/notes/cgroup-swap/",this.page.identifier="/notes/cgroup-swap/"};!function(){var e=document,i=e.createElement("script");i.src="//lastweek-io.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
+  <script>var disqus_config=function(){this.page.url="http://lastweek.io/notes/virt/",this.page.identifier="/notes/virt/"};!function(){var e=document,i=e.createElement("script");i.src="//lastweek-io.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
 
               
             </article>
@@ -1829,7 +1840,7 @@ it will do a batch insertion into proper LRU lists (depends on <code>mem_cgroup_
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../userfaultfd/" title="Linux Userfaultfd" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../dynamic_linking/" title="Dynamic Linking" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1838,19 +1849,19 @@ it will do a batch insertion into proper LRU lists (depends on <code>mem_cgroup_
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Linux Userfaultfd
+                Dynamic Linking
               </div>
             </div>
           </a>
         
         
-          <a href="../xperf/" title="Linux x86 Ring Switch" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../arch/" title="Architecture" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Linux x86 Ring Switch
+                Architecture
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
