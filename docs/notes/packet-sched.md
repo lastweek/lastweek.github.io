@@ -1,32 +1,31 @@
-# Switch Buffering and Packet Scheduling
+# Switch Buffering Architecture and Packet Scheduling Algorithms
 
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Jun 28, 2021 | minor update|
 	|Jan 15, 2021 | add some FM10000 figs|
 	|Jan 13, 2021 | more|
 	|Jan 12, 2021 | Initial Version|
 
 I came across this topic for a research project I'm doing.
 
-I think the switch buffering architecture and packet scheduling
-are closely related. The buffering architecture could limit
-what scheduling algorithms can be used.
-However, I think they are still two different things
-and we should look at them separately.
-For example, consider a Combined Input Output Queued Switch,
-I think it is possible to use a shared memory to implement
-the output queues and use a separate PIFO blocks for packet scheduling.
+`switch buffering architecture` and `packet scheduling` are two closely related topics.
+The buffering architecture could limit which scheduling algorithms can be used.
+Nonetheless, I think they are two different things and we should look at them separately.
+For example, consider a Combined Input Output Queued Switch (CIOQ),
+it is possible to use a Shared Memory Buffer to implement
+the output queues and use a separate `PIFO` blocks for packet scheduling.
 
-My current impression for state-of-the-art switches is:
-1) They use a large central packet buffer, can be as large as 64MB (i.e., Tofino2);
-2) They could have some input and output buffers independent from the central packet buffer,
-but these buffers would be small;
-3) They have something called Traffic Manager to schedule packets;
-4) They usually have fixed packet scheduler. I'm not quite sure whether
-they have the programmable packet scheduler concept pioneered by PIFO.
+Facts about state-of-the-art switches:
 
-## Switch buffering
+1. They use a large central packet buffer, can be as large as 64MB (i.e., Tofino2).
+2. They could have some input and output buffers independent from the central packet buffer,
+but these buffers would be small.
+3. They have something called `Traffic Manager` for packet scheduling.
+4. They usually have fixed packet scheduler, as in the algorithms cannot be changed after production. The typical ones are priority-based scheduling and so on. I'm not quite sure whether they have the programmable packet scheduler concept pioneered by the PIFO paper.
+
+## Switch Buffering Architecture
 
 List of different switch buffering architectures:
 
@@ -150,6 +149,12 @@ Essentially, the `packet scheduler` only deals with HEADERS.
 This switch has 8 queues per TX port.
 If there is multicast, the headers will will duplicated multiple times.
 ![image](assets/FM1000-sched.png)
+
+### Broadcom Trident
+
+Resources:
+
+- https://docs.broadcom.com/doc/12395356
 
 ## Final Thoughts
 
