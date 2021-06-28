@@ -57,7 +57,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#switch-buffering-and-packet-scheduling" class="md-skip">
+        <a href="#switch-buffering-architecture-and-packet-scheduling-algorithms" class="md-skip">
           Skip to content
         </a>
       
@@ -325,8 +325,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#switch-buffering" class="md-nav__link">
-    Switch buffering
+  <a href="#switch-buffering-architecture" class="md-nav__link">
+    Switch Buffering Architecture
   </a>
   
 </li>
@@ -370,6 +370,13 @@
           <li class="md-nav__item">
   <a href="#intel-fm10000-multi-host-switch" class="md-nav__link">
     Intel FM10000 Multi-Host Switch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broadcom-trident" class="md-nav__link">
+    Broadcom Trident
   </a>
   
 </li>
@@ -1763,8 +1770,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#switch-buffering" class="md-nav__link">
-    Switch buffering
+  <a href="#switch-buffering-architecture" class="md-nav__link">
+    Switch Buffering Architecture
   </a>
   
 </li>
@@ -1812,6 +1819,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#broadcom-trident" class="md-nav__link">
+    Broadcom Trident
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1847,7 +1861,7 @@
                   
                 
                 
-                <h1 id="switch-buffering-and-packet-scheduling">Switch Buffering and Packet Scheduling<a class="headerlink" href="#switch-buffering-and-packet-scheduling" title="Permanent link">&para;</a></h1>
+                <h1 id="switch-buffering-architecture-and-packet-scheduling-algorithms">Switch Buffering Architecture and Packet Scheduling Algorithms<a class="headerlink" href="#switch-buffering-architecture-and-packet-scheduling-algorithms" title="Permanent link">&para;</a></h1>
 <details class="note"><summary>Version History</summary><table>
 <thead>
 <tr>
@@ -1856,6 +1870,10 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td align="left">Jun 28, 2021</td>
+<td>minor update</td>
+</tr>
 <tr>
 <td align="left">Jan 15, 2021</td>
 <td>add some FM10000 figs</td>
@@ -1872,22 +1890,21 @@
 </table>
 </details>
 <p>I came across this topic for a research project I&rsquo;m doing.</p>
-<p>I think the switch buffering architecture and packet scheduling
-are closely related. The buffering architecture could limit
-what scheduling algorithms can be used.
-However, I think they are still two different things
-and we should look at them separately.
-For example, consider a Combined Input Output Queued Switch,
-I think it is possible to use a shared memory to implement
-the output queues and use a separate PIFO blocks for packet scheduling.</p>
-<p>My current impression for state-of-the-art switches is:
-1) They use a large central packet buffer, can be as large as 64MB (i.e., Tofino2);
-2) They could have some input and output buffers independent from the central packet buffer,
-but these buffers would be small;
-3) They have something called Traffic Manager to schedule packets;
-4) They usually have fixed packet scheduler. I&rsquo;m not quite sure whether
-they have the programmable packet scheduler concept pioneered by PIFO.</p>
-<h2 id="switch-buffering">Switch buffering<a class="headerlink" href="#switch-buffering" title="Permanent link">&para;</a></h2>
+<p><code>switch buffering architecture</code> and <code>packet scheduling</code> are two closely related topics.
+The buffering architecture could limit which scheduling algorithms can be used.
+Nonetheless, I think they are two different things and we should look at them separately.
+For example, consider a Combined Input Output Queued Switch (CIOQ),
+it is possible to use a Shared Memory Buffer to implement
+the output queues and use a separate <code>PIFO</code> blocks for packet scheduling.</p>
+<p>Facts about state-of-the-art switches:</p>
+<ol>
+<li>They use a large central packet buffer, can be as large as 64MB (i.e., Tofino2).</li>
+<li>They could have some input and output buffers independent from the central packet buffer,
+but these buffers would be small.</li>
+<li>They have something called <code>Traffic Manager</code> for packet scheduling.</li>
+<li>They usually have fixed packet scheduler, as in the algorithms cannot be changed after production. The typical ones are priority-based scheduling and so on. I&rsquo;m not quite sure whether they have the programmable packet scheduler concept pioneered by the PIFO paper.</li>
+</ol>
+<h2 id="switch-buffering-architecture">Switch Buffering Architecture<a class="headerlink" href="#switch-buffering-architecture" title="Permanent link">&para;</a></h2>
 <p>List of different switch buffering architectures:</p>
 <ul>
 <li>Input Queued (place buffer after each rx port)</li>
@@ -1984,6 +2001,11 @@ Essentially, the <code>packet scheduler</code> only deals with HEADERS.
 This switch has 8 queues per TX port.
 If there is multicast, the headers will will duplicated multiple times.
 <img alt="image" src="../assets/FM1000-sched.png" /></p>
+<h3 id="broadcom-trident">Broadcom Trident<a class="headerlink" href="#broadcom-trident" title="Permanent link">&para;</a></h3>
+<p>Resources:</p>
+<ul>
+<li><a href="https://docs.broadcom.com/doc/12395356">https://docs.broadcom.com/doc/12395356</a></li>
+</ul>
 <h2 id="final-thoughts">Final Thoughts<a class="headerlink" href="#final-thoughts" title="Permanent link">&para;</a></h2>
 <p>Although the shared memory based switch works for now,
 I&rsquo;m not sure whether it will continue working in the furture.
@@ -2035,7 +2057,7 @@ With the growing network bandwidth, all things should be revisted.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: January 15, 2021
+      Last update: June 28, 2021
     
   </small>
 </div>
