@@ -20,6 +20,7 @@
     - [AMD](#amd)
     - [ARM](#arm)
     - [OpenCAPI and CCIX](#opencapi-and-ccix)
+    - [CXL](#CXL)
     - [OpenPiton](#openpiton)
     - [FPGA](#fpga)
     - [Formal Verification](#formal-verification)
