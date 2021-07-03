@@ -347,13 +347,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#intel-protocol-breakdown" class="md-nav__link">
-    Intel Protocol Breakdown
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#case-study" class="md-nav__link">
     Case Study
   </a>
@@ -1831,13 +1824,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#intel-protocol-breakdown" class="md-nav__link">
-    Intel Protocol Breakdown
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#case-study" class="md-nav__link">
     Case Study
   </a>
@@ -1925,6 +1911,10 @@
 </thead>
 <tbody>
 <tr>
+<td align="left">Jul 2, 2021</td>
+<td>add implication discussion</td>
+</tr>
+<tr>
 <td align="left">Feb 24, 2020</td>
 <td>Kobe and Gigi. Add Intel CCIP.</td>
 </tr>
@@ -1948,7 +1938,6 @@
 </ul>
 </li>
 <li><a href="#readings">Readings</a></li>
-<li><a href="#intel-protocol-breakdown">Intel Protocol Breakdown</a></li>
 <li><a href="#case-study">Case Study</a><ul>
 <li><a href="#intel">Intel</a></li>
 <li><a href="#amd">AMD</a></li>
@@ -2029,7 +2018,12 @@ value. By doing so, the first read will not trigger any cache invalidation to ot
 save latency and on-chip bandwidth.</p>
 <p>As for memory consistency, it affects how many barriers should be inserted
 and whether a release/acquire semantic should be used.</p>
-<p>Anyway, if you are implementing synchronization primitive, pay attention to cache coherence.</p>
+<p>Anyway, if you are implementing synchronization primitive, pay attention to cache coherence.
+Read the
+<a href="https://software.intel.com/en-us/forums/intel-moderncode-for-parallel-architectures/topic/700477">discussion</a>
+posted by Dr. Bandwidth, especially this one on
+<a href="http://lastweek.io/pubs/misc/dr-bandwidth-core2core-cache-coherence-explain.pdf">cache coherence flows on a procuder-consumer case</a>.
+It is very useful if you are trying to implement high-performance spinlocks and concurrency data structures.</p>
 <h3 id="implication-for-on-chip-bandwidth-and-numa">Implication for On-Chip Bandwidth and NUMA<a class="headerlink" href="#implication-for-on-chip-bandwidth-and-numa" title="Permanent link">&para;</a></h3>
 <p>Cache coherence consumes a LOT on-chip bandwidth.
 Think about all the messages it will send for a single transation.
@@ -2160,7 +2154,9 @@ Other measures? I don&rsquo;t know.</p>
 </ul>
 </li>
 </ul>
-<h2 id="intel-protocol-breakdown">Intel Protocol Breakdown<a class="headerlink" href="#intel-protocol-breakdown" title="Permanent link">&para;</a></h2>
+<h2 id="case-study">Case Study<a class="headerlink" href="#case-study" title="Permanent link">&para;</a></h2>
+<h3 id="intel">Intel<a class="headerlink" href="#intel" title="Permanent link">&para;</a></h3>
+<p><strong>Misc Facts.</strong></p>
 <ul>
 <li>Intel Caching Agent (Cbox) is per core (or per LLC slice). Intel Home Agent is per memory controller.<ul>
 <li>&ldquo;The LLC coherence engine (CBo) manages the interface between the core and the last
@@ -2188,15 +2184,15 @@ collecting snoop responses from the local cores when the MESIF protocol requires
 <li>To provide sufficient bandwidth, shared caches are typically interleaved
   by addresses with banks physically distributed across the chip.</li>
 </ul>
-<h2 id="case-study">Case Study<a class="headerlink" href="#case-study" title="Permanent link">&para;</a></h2>
-<h3 id="intel">Intel<a class="headerlink" href="#intel" title="Permanent link">&para;</a></h3>
+<p><strong>A Transaction Breakdown.</strong></p>
 <p>Intel does not disclose too much details about their cache coherence implementations.
 The most valuable information is extracted from uncore PMU manuals, and discussions
 from Dr. Bandwidth. According to Dr. Bandwidth, the Intel CPU could dynamically
 adapt its coherence strategy during runtime according to workload. There won&rsquo;t
 be one fixed cache coherence implementation, there will be many. It depends on
 workload which one is used at runtime.</p>
-<p>List below might not be completely true. Just my understanding.</p>
+<p>What happens when a core tries to access a cache line?
+A detailed cache protocl breakdown derived from Dr.Bandwidth&rsquo;s comment.</p>
 <ul>
 <li>Physical addresses are uniquely hashed into L3 slices. That means each individual
   physical address belongs to a L3 slice, and also belongs to a home agent.</li>
@@ -2232,7 +2228,7 @@ workload which one is used at runtime.</p>
 </ul>
 </li>
 </ul>
-<p>When in doubt, read the <a href="https://software.intel.com/en-us/forums/intel-moderncode-for-parallel-architectures/topic/700477">discussion</a> posted by Dr. Bandwidth,
+<p>Read the <a href="https://software.intel.com/en-us/forums/intel-moderncode-for-parallel-architectures/topic/700477">discussion</a> posted by Dr. Bandwidth,
 especially this one on detailed <a href="http://lastweek.io/pubs/misc/dr-bandwidth-core2core-cache-coherence-explain.pdf">cache coherence flows on a procuder-consumer case</a>, which is essential if you are trying to implement high-performance spinlocks and concurrency data structures.</p>
 <h3 id="amd">AMD<a class="headerlink" href="#amd" title="Permanent link">&para;</a></h3>
 <ul>
