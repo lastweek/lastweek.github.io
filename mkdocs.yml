@@ -166,8 +166,8 @@ theme:
   features:
     - instant
     - tabs
-    - navigation.top
-    - toc.integrate
+      #    - navigation.top
+      # - toc.integrate
   palette:
     #scheme: slate
     #primary: black
@@ -191,3 +191,5 @@ extra:
     # - type: 'linkedin'
     #   link: 'https://www.linkedin.com/in/lastweek/'
   disqus: 'lastweek-io'
+
+  #repo_url: https://github.com/lastweek/lastweek.github.io
