@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
-        <link rel="canonical" href="http://lastweek.io/notes/cache_coherence/">
+        <link rel="canonical" href="http://lastweek.io/notes/consistency/">
       
       
         <meta name="author" content="Yizhou Shan">
@@ -19,7 +19,7 @@
     
     
       
-        <title>Practical Cache Coherence - Yizhou Shan's Home Page</title>
+        <title>Consistency - Yizhou Shan's Home Page</title>
       
     
     
@@ -57,7 +57,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#practical-cache-coherence" class="md-skip">
+        <a href="#consistency" class="md-skip">
           Skip to content
         </a>
       
@@ -85,7 +85,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Practical Cache Coherence
+              Consistency
             
           </span>
         </div>
@@ -134,16 +134,14 @@
         
           
 
-  
-
-<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
         
   <li class="md-tabs__item">
     
-      <a href="../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link md-tabs__link--active">
         Home
       </a>
     
@@ -155,7 +153,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="./" class="md-tabs__link md-tabs__link--active">
+        <a href="../cache_coherence/" class="md-tabs__link">
           Notes
         </a>
       
@@ -249,12 +247,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
     
     <label class="md-nav__link" for="nav-2">
       Notes
@@ -276,149 +272,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Practical Cache Coherence
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Practical Cache Coherence" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../cache_coherence/" title="Practical Cache Coherence" class="md-nav__link">
       Practical Cache Coherence
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#summary-and-thoughs" class="md-nav__link">
-    Summary and Thoughs
-  </a>
-  
-    <nav class="md-nav" aria-label="Summary and Thoughs">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#implication-for-synchronization" class="md-nav__link">
-    Implication for Synchronization
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#implication-for-on-chip-bandwidth-and-numa" class="md-nav__link">
-    Implication for On-Chip Bandwidth and NUMA
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#readings" class="md-nav__link">
-    Readings
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#intel-protocol-breakdown" class="md-nav__link">
-    Intel Protocol Breakdown
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#case-study" class="md-nav__link">
-    Case Study
-  </a>
-  
-    <nav class="md-nav" aria-label="Case Study">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#intel" class="md-nav__link">
-    Intel
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#amd" class="md-nav__link">
-    AMD
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#arm" class="md-nav__link">
-    ARM
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#opencapi-and-ccix" class="md-nav__link">
-    OpenCAPI and CCIX
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#openpiton" class="md-nav__link">
-    OpenPiton
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fpga" class="md-nav__link">
-    FPGA
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#formal-verification" class="md-nav__link">
-    Formal Verification
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -1797,105 +1655,23 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#summary-and-thoughs" class="md-nav__link">
-    Summary and Thoughs
-  </a>
-  
-    <nav class="md-nav" aria-label="Summary and Thoughs">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#implication-for-synchronization" class="md-nav__link">
-    Implication for Synchronization
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#implication-for-on-chip-bandwidth-and-numa" class="md-nav__link">
-    Implication for On-Chip Bandwidth and NUMA
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#readings" class="md-nav__link">
-    Readings
+  <a href="#introduction" class="md-nav__link">
+    Introduction
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#intel-protocol-breakdown" class="md-nav__link">
-    Intel Protocol Breakdown
+  <a href="#processors" class="md-nav__link">
+    Processors
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#case-study" class="md-nav__link">
-    Case Study
+  <a href="#distributed-systems" class="md-nav__link">
+    Distributed Systems
   </a>
-  
-    <nav class="md-nav" aria-label="Case Study">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#intel" class="md-nav__link">
-    Intel
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#amd" class="md-nav__link">
-    AMD
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#arm" class="md-nav__link">
-    ARM
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#opencapi-and-ccix" class="md-nav__link">
-    OpenCAPI and CCIX
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#openpiton" class="md-nav__link">
-    OpenPiton
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fpga" class="md-nav__link">
-    FPGA
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#formal-verification" class="md-nav__link">
-    Formal Verification
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1915,7 +1691,7 @@
                   
                 
                 
-                <h1 id="practical-cache-coherence">Practical Cache Coherence<a class="headerlink" href="#practical-cache-coherence" title="Permanent link">&para;</a></h1>
+                <h1 id="consistency">Consistency<a class="headerlink" href="#consistency" title="Permanent link">&para;</a></h1>
 <details class="note"><summary>Version History</summary><table>
 <thead>
 <tr>
@@ -1925,388 +1701,16 @@
 </thead>
 <tbody>
 <tr>
-<td align="left">Feb 24, 2020</td>
-<td>Kobe and Gigi. Add Intel CCIP.</td>
-</tr>
-<tr>
-<td align="left">Oct 3, 2019</td>
-<td>Add FPGA related discussion</td>
-</tr>
-<tr>
-<td align="left">Jun 28, 2019</td>
-<td>Initial draft</td>
+<td align="left">Jun 30, 2021</td>
+<td>Initial</td>
 </tr>
 </tbody>
 </table>
 </details>
-<p><img alt="🍶" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f376.svg" title=":sake:" /></p>
-<ul>
-<li><a href="#practical-cache-coherence">Practical Cache Coherence</a></li>
-<li><a href="#summary-and-thoughs">Summary and Thoughs</a><ul>
-<li><a href="#implication-for-synchronization">Implication for Synchronization</a></li>
-<li><a href="#implication-for-on-chip-bandwidth-and-numa">Implication for On-Chip Bandwidth and NUMA</a></li>
-</ul>
-</li>
-<li><a href="#readings">Readings</a></li>
-<li><a href="#intel-protocol-breakdown">Intel Protocol Breakdown</a></li>
-<li><a href="#case-study">Case Study</a><ul>
-<li><a href="#intel">Intel</a></li>
-<li><a href="#amd">AMD</a></li>
-<li><a href="#arm">ARM</a></li>
-<li><a href="#opencapi-and-ccix">OpenCAPI and CCIX</a></li>
-<li><a href="#openpiton">OpenPiton</a></li>
-<li><a href="#fpga">FPGA</a></li>
-<li><a href="#formal-verification">Formal Verification</a></li>
-</ul>
-</li>
-</ul>
-<p>TL;DR.
-This is a note on how cache coherence protocols are implemented in real hardware.
-This note is NOT just about acadamic new ideas.</p>
-<p>I started this when I was having a hard time optimizing <code>lock delegation</code>,
-which relies on fine-tuning cache coherence to achieve extremely fast locks.</p>
-<h2 id="summary-and-thoughs">Summary and Thoughs<a class="headerlink" href="#summary-and-thoughs" title="Permanent link">&para;</a></h2>
-<p>The textbooks tough us the basic concept of MESI. And specific algorithms
-like <em>snoop</em> and <em>directory.</em> What usually missing is the implementation
-details when it comes to: 1) how to solve conflicts, 2) what if there is no single shared bus.</p>
-<p>Modern processors have <em>Network-on-Chip (NoC)</em>.
-Within the die, cores, cache slices (large LLC is usually divided into slices),
-memory controllers and other components are connected via
-an on-chip network (e.g., a ring in old-generation Xeon, or a mesh in Xeon Scalable).
-This architecture is no different from connecting a set of distributed servers.
-The NoC has its own protocol (I guess ranging from L1 to L3, must be reliable data delivery).
-And all on-chip components communicate by sending/receiving packets.
-There is no central coordinator.</p>
-<p><em>What this means for cache coherence?</em></p>
-<p>Cache requests generated by MESI protocols should appear <strong>atomic</strong> to requesting cores.
-Given the distributed nature of all resources (via NoC), those cache requests
-are implemented like <strong>distributed transactions</strong>!
-This brings great complexity to a performant and correct cache coherence implementation.
-Hardware is much much faster than a set of distributed nodes. Besides, it cannot
-implement arbitrary logic, whatever protocol they design has a tight time budget.</p>
-<p>For example, Intel uses the MESIF cache coherence protocol.
-In their implementation,
-when a core made a <em>read</em> to an invalid line, the corresponding cache
-will perform a <em>cache read transaction</em> to get the data from
-either other caches or memory. This transaction consists of multiple
-steps, such as: send requests, collect responses, and finally send ACKs.</p>
-<p>Those transactions will conflict if multiple reads and writes
-happen at the same time. <strong>Someone has to resolve it</strong>.
-It can be resolved by different cache controllers, or by a single
-serialization point like home agent.</p>
-<p>Just like you can have many ways to implement transactions
-for distributed systems, there are also many ways to do
-cache coherence transactions. And there are many.</p>
-<p>Atomic Read-Modify-Write (RMW) instructions will make cache coherence
-implementations even more complex. Those instructions include
-<code>read-and-inc</code>, <code>test-and-set</code>, and <code>lock;</code>-prefixed.
-I think, there will some &ldquo;lock the bus&rdquo;, or &ldquo;locked state&rdquo; at the
-home agent per cache line. Having atomic RMW instructions
-will add more complexity to the overall transaction design.</p>
-<p>While reading Intel related cache coherence diagrams/transactions,
-you might find many different descriptions. Don&rsquo;t panic. They are
-just different implementations proposed by Intel. Different
-implementations will have different trade-offs and performance,
-you can check <a href="https://frankdenneman.nl/2016/07/11/numa-deep-dive-part-3-cache-coherency/">Frank&rsquo;s post</a>
-for more details.</p>
-<p>Directory-based cache coherence protocol and implementation will
-be the future for multicore machines. Because it incurs much less
-coherence traffic than snoop-based ones, thus more scalable.
-The trend is confirmed by recent Intel UPI directory-based approach.
-Related readings:
-  - [1]: <a href="http://www.cis.upenn.edu/acg/papers/cacm12_why_coherence.pdf">Why On-Chip Cache Coherence Is Here to Stay</a>
-  - [2]: <a href="https://www.realworldtech.com/qpi-evolved/3/">QPI 1.1 Invovled</a>
-  - [3]: <a href="http://research.cs.wisc.edu/multifacet/papers/isca99_multicast_talk_pdf.pdf">Paper: Multicast Snooping: A New Coherence Method Using a Multicast Address Network, ISCA &lsquo;99</a>
-  - [4]: <a href="https://www.cis.upenn.edu/~milom/papers/isca03_destination_set_prediction.pdf">Paper: Using Destination-Set Prediction to Improve the Latency/Bandwidth Tradeoff in Shared-Memory Multiprocessors, ISCA&lsquo;03</a>
-  - [5]: The trade-off: <img alt="img_1" src="../cache_coherence_img1.png" /></p>
-<p>Left questions:
-- Do cache coherence implementations ensure <strong>fairness</strong> among cores?</p>
-<h3 id="implication-for-synchronization">Implication for Synchronization<a class="headerlink" href="#implication-for-synchronization" title="Permanent link">&para;</a></h3>
-<p>Synchronization code (e.g., locking code) has deep relation with cache coherence and memory consistency.
-A lot optimizations are playing with certain cache coherence protocols.
-For example, a locking primitive may want to first read the lock then try to atomically change its
-value. By doing so, the first read will not trigger any cache invalidation to other cores, hence
-save latency and on-chip bandwidth.</p>
-<p>As for memory consistency, it affects how many barriers should be inserted
-and whether a release/acquire semantic should be used.</p>
-<p>Anyway, if you are implementing synchronization primitive, pay attention to cache coherence.</p>
-<h3 id="implication-for-on-chip-bandwidth-and-numa">Implication for On-Chip Bandwidth and NUMA<a class="headerlink" href="#implication-for-on-chip-bandwidth-and-numa" title="Permanent link">&para;</a></h3>
-<p>Cache coherence consumes a LOT on-chip bandwidth.
-Think about all the messages it will send for a single transation.
-And this transaction can be easily triggered by normal read/write.
-So the cache coherent protocol end up using a lot on-chip bandwidth.</p>
-<p>This is problematic for two reasons:
-a) the NoC bus/ring is shared. It will affect other traffic hence performance.
-b) In a NUMA architecture, the interconnection between CPU dies is responsible for a lot things
-like data transfer, cache coherence traffic, and other misc traffic. If cache coherence uses
-a lot, there is little room for others.</p>
-<p>Many have complained this.</p>
-<p>So what&rsquo;s the mitigation?
-The first try is to move from Snoop to Directory so to avoid excessive traffic.
-Some sort of centralized coordinator could resolve conflicts therefore save tons of traffic.
-Intel&rsquo;s cache coherence protocol has involved for this direction as well.
-Other measures? I don&rsquo;t know.</p>
-<h2 id="readings">Readings<a class="headerlink" href="#readings" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.455.4198&amp;rep=rep1&amp;type=pdf">The Architecture of the Nehalem Processor and Nehalem-EP SMP Platforms</a>, chapter 5.2 Cache-Coherence Protocol for Multi-Processors.</li>
-<li><a href="https://software.intel.com/sites/products/collateral/hpc/vtune/performance_analysis_guide.pdf">Intel: Performance Analysis Guide for Intel® Core™ i7 Processor and Intel® Xeon™ 5500 processors</a></li>
-<li><a href="http://lastweek.io/pubs/misc/dr-bandwidth-core2core-cache-coherence-explain.pdf">Dr.Bandwidth on Core2Core cache coherence flows when running producer-consumer type of workload.</a>. 100% recommended.</li>
-<li><a href="https://frankdenneman.nl/2016/07/11/numa-deep-dive-part-3-cache-coherency/">Blog: NUMA Deep Dive Part 3: Cache Coherency</a><ul>
-<li>The BEST blog I&rsquo;ve seen on the topic of <code>Intel snoop models</code>.</li>
-<li>Intel is using MESIF cache coherence protocol, but it has multiple cache coherence implementations.
-  The first one is <code>Source Snoop</code> (or <code>Early Snoop</code>), which is more like a traditional snoop-based
-  cache coherence implementation. Upon miss, the caching agent will broadcast to other agents.
-  The second one is <code>Home Snoop</code>, which is more like a directory-based cache coherence implementation.
-  Upon miss, the caching agent will contact home agent, and then the home agent will send requests
-  to other caching agents who have the requested cache line.
-  There are other implementations like Cluster-on-Die.
-  Intel UPI gets rid of all this complexity, it is only using directory-based, in the hope to reduce
-  cache coherence traffic, which make sense.</li>
-<li>Related: <a href="https://software.intel.com/en-us/articles/intel-xeon-processor-e5-2600-v4-product-family-technical-overview">Broadwell EP Snoop Models</a></li>
-<li>Related: <a href="https://software.intel.com/en-us/articles/intel-xeon-processor-scalable-family-technical-overview">Skylay UPI</a></li>
-</ul>
-</li>
-<li><a href="https://researchspace.auckland.ac.nz/bitstream/handle/2292/11594/MESIF-2009.pdf?sequence=6">Paper: MESIF: A Two-Hop Cache Coherency Protocol for Point-to-Point Interconnects (2009)__</a><ul>
-<li>A MUST read.</li>
-<li>This paper has the most extensive description of the MESIF protocol implementation.
-  It has many <code>timing diagrams</code> than describe how cache requests actually proceed.
-  Those diagrams can help us understand what is needed to finish a cache request.</li>
-<li>Their <a href="https://parlab.eecs.berkeley.edu/sites/all/parlab/files/20091029-goodman-ssccp.pdf">slides</a>
-  has more timing diagrams.</li>
-<li>But do note: the implementation described by this paper is different from
-  what <a href="https://www.intel.ca/content/dam/doc/white-paper/quick-path-interconnect-introduction-paper.pdf">Intel QPI</a>
-  has in products. The difference is discussed at chapter 4. MESIF and QPI, namely,
-  other caching agents will send responses to Home agent rather than to requesting agent.
-  QPI relies on Home agent to solve conflict.</li>
-<li>Also note: this is just one of the possible implementations to realize MESIF protocol.
-  There could be many other ways, e.g., QPI source snooping, QPI home snooping.
-  But all of them share the essential and general concepts and ideas.</li>
-</ul>
-</li>
-<li><a href="https://www.elsevier.com/books-and-journals/book-companion/9780128119051">Appendix I: Large-Scale Multiprocessors and Scientific Applications</a>,
-  chapter 7 Implementing Cache Coherence.<ul>
-<li>This is probably some most insightful discussion about real implementation of cache coherence.
-  With the distributed nature and Network-on-Chip, implementing cache coherence in modern
-  processors is no different than implementing a distributed transaction protocol.</li>
-<li>Cache activities like read miss or write miss have multi-step operations, but they
-  need to appear as &ldquo;atomic&rdquo; to users. Put in another way, misses are like transactions,
-  they have multiple steps but they must be atomic. They can be retried.</li>
-<li>Having directory for cache coherence will make implementation easier. Because
-  the place (e.g., L3) where directory resides can serve as the serialization point.
-  They can solve write races.</li>
-<li><code>Home directory controller</code> and <code>cache controller</code> will exchange messages like a set of distributed machines.
-  In fact, with NoC, they are actually distributed system.</li>
-</ul>
-</li>
-<li><a href="https://www.intel.ca/content/dam/doc/white-paper/quick-path-interconnect-introduction-paper.pdf">Intel: An Introduction to the Intel® QuickPath Interconnect</a>,
-  page 15 MESIF.<ul>
-<li><a href="https://www.hotchips.org/wp-content/uploads/hc_archives/hc21/1_sun/HC21.23.1.SystemInterconnectTutorial-Epub/HC21.23.120.Safranek-Intel-QPI.pdf">HotChips slide</a>, has timing diagrams.</li>
-<li>It explains the <code>Home Snoop</code> and <code>Source Snoop</code> used by Intel.</li>
-<li>Based on their explanation, it seems both <code>Home Snoop</code> and <code>Source Snoop</code> are using a combination of
-    snoop and directory. The Processor#4 (pg 17 and 18) maintains the directory.</li>
-<li>And this is a perfect demonstration of the details described in <a href="https://www.elsevier.com/books-and-journals/book-companion/9780128119051">Appendix I: Large-Scale Multiprocessors and Scientific Applications</a>.</li>
-<li>Related patent: <a href="https://patents.google.com/patent/US20150081977">Extending a cache coherency snoop broadcast protocol with directory information</a></li>
-</ul>
-</li>
-<li><a href="http://research.cs.wisc.edu/multifacet/papers/isca99_multicast_talk_pdf.pdf">Paper: Multicast Snooping: A New Coherence Method Using a Multicast Address Network, ISCA &lsquo;99</a><ul>
-<li>A hybrid snoop and directory cache coherence implementation. The insight is snoop
-  cause too much bandwidth, directory incurs longer latency.</li>
-<li>So this paper proposed <code>Multicast snoop</code>, where it multicasts coherence transactions
-  to selected processors, lowering the address bandwidth required for snooping.</li>
-</ul>
-</li>
-<li><a href="http://www.cis.upenn.edu/acg/papers/cacm12_why_coherence.pdf">Paper: Why On-Chip Cache Coherence Is Here to Stay, Communications of ACM&lsquo;02</a><ul>
-<li>This paper discusses why cache coherence can scale. A nice read.</li>
-<li>R1: Coherence’s interconnection network traffic per miss scales
-      when precisely tracking sharers. (Okay increased directory bits,
-  what about those storage cost? See R2).</li>
-<li>R2: Hierarchy combined with inclusion enables efficient scaling
-      of the storage cost for exact encoding of sharers.</li>
-<li>R3: private evictions should send explicit messages to shared cache
-      to enable precise tracking. Thus the recall (<em>back invalidation</em>) traffic can be
-  reduced when shared cache is evicting (assume inclusion cache).</li>
-<li>R4: Latencies of cache request can be amortized.</li>
-</ul>
-</li>
-<li><a href="https://www.amazon.com/Parallel-Computer-Organization-Design-Professor/dp/0521886759">Book: Parallel Computer Organization and Design</a>, Chapter 7.<ul>
-<li>Links coherence and consistency together. This chapter uses detailed graphs to show
-  how different cache coherence implementations affect consistency.</li>
-</ul>
-</li>
-<li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.225.9278&amp;rep=rep1&amp;type=pdf">Book: A Primer on Memory Consistency and Cache Coherence</a><ul>
-<li>Best book for this topic.</li>
-</ul>
-</li>
-<li><a href="https://software.intel.com/en-us/forums/intel-moderncode-for-parallel-architectures/topic/700477">Dr.Bandwidth on explaining core-to-core communication transactions!</a><ul>
-<li>Seriously, it&rsquo;s so good!</li>
-<li>Although, I just feel there are so many unpublished details about the exact coherence transactions.
-  Dr.Bandwidth himself used a lot &ldquo;maybe&rdquo;, and listed possible actions.</li>
-</ul>
-</li>
-<li><a href="http://www.mavam.com/lance/publications/tcc_ISCA04.pdf">Transactional Memory Coherence and Consistency, ISCA&lsquo;04</a></li>
-<li><a href="http://www.mavam.com/lance/publications/tcc_ASPLOS04.pdf">Programming with Transactional Coherence and Consistency (TCC)</a><ul>
-<li><a href="http://www.mavam.com/lance/publications/tcc_ASPLOS04Talk.pdf">Slide1</a></li>
-<li>Awarded the most influential paper at ISCA 2019. I took a read today (Jul 21, 2019).</li>
-<li>I feels like it&rsquo;s using the &ldquo;batch&rdquo; optimization for all time. The TCC design,
-  kind of combines both cache coherence and memory consistency: how transactions
-  commit or orders, determins the coherence and consistency.</li>
-<li>It seems the load/store speculative execution used in their context is so similar
-  to what Dr.Bandwidth said about Intel&rsquo;s implementation. Basically, the processor
-  might read some data from L1/L2 and continue execution, but there is a chance,
-  that the data is modifed by others, and the L3 caching agent or home agent
-  could decide to revoke it. Once receiving such revoke message,
-  the processor must cancel all executions that use the speculatively read data. </li>
-<li>It mentions couple Thread-Level Speculation papers, I think they should on this topic.</li>
-</ul>
-</li>
-</ul>
-<h2 id="intel-protocol-breakdown">Intel Protocol Breakdown<a class="headerlink" href="#intel-protocol-breakdown" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Intel Caching Agent (Cbox) is per core (or per LLC slice). Intel Home Agent is per memory controller.<ul>
-<li>&ldquo;The LLC coherence engine (CBo) manages the interface between the core and the last
-level cache (LLC). All core transactions that access the LLC are directed from the core
-to a CBo via the ring interconnect. The CBo is responsible for managing data delivery
-from the LLC to the requesting core. It is also responsible for maintaining coherence
-between the cores within the socket that share the LLC; generating snoops and
-collecting snoop responses from the local cores when the MESIF protocol requires it.&rdquo;</li>
-<li>&ldquo;Every physical memory address in the system is uniquely associated with a single Cbox
-  instance via a proprietary hashing algorithm that is designed to keep the distribution of
-  traffic across the CBox instances relatively uniform for a wide range of possible address patterns.&rdquo;</li>
-<li>Read more <a href="https://www.intel.com/content/dam/www/public/us/en/documents/manuals/xeon-e5-2600-v2-uncore-manual.pdf">here, chapter 2.3</a>.</li>
-<li>Starting from Intel UPI, Caching Agent and Home Agent are combined as CHA.</li>
-</ul>
-</li>
-<li>A good <a href="https://www.realworldtech.com/qpi-evolved/3/">discussion</a> about why QPI gradually drop <code>Source Snoop</code> and solely use <code>Home Snoop</code>.<ul>
-<li>The motivation is scalability. It turns out the new UPI only supports directory-based protocol.</li>
-<li>This makes sense because 1) inter socket bandwidth is precious, 2) snoop will consume a lot bandwidth.</li>
-</ul>
-</li>
-<li>Intel UPI is using directory-based home snoop coherency protocol<ul>
-<li><a href="https://software.intel.com/en-us/articles/intel-xeon-processor-scalable-family-technical-overview">Intel® Xeon® Processor Scalable Family Technical Overview</a></li>
-</ul>
-</li>
-<li>To provide sufficient bandwidth, shared caches are typically interleaved
-  by addresses with banks physically distributed across the chip.</li>
-</ul>
-<h2 id="case-study">Case Study<a class="headerlink" href="#case-study" title="Permanent link">&para;</a></h2>
-<h3 id="intel">Intel<a class="headerlink" href="#intel" title="Permanent link">&para;</a></h3>
-<p>Intel does not disclose too much details about their cache coherence implementations.
-The most valuable information is extracted from uncore PMU manuals, and discussions
-from Dr. Bandwidth. According to Dr. Bandwidth, the Intel CPU could dynamically
-adapt its coherence strategy during runtime according to workload. There won&rsquo;t
-be one fixed cache coherence implementation, there will be many. It depends on
-workload which one is used at runtime.</p>
-<p>List below might not be completely true. Just my understanding.</p>
-<ul>
-<li>Physical addresses are uniquely hashed into L3 slices. That means each individual
-  physical address belongs to a L3 slice, and also belongs to a home agent.</li>
-<li>Upon L2 miss, it will send requests to corresponding L3 slice. If the L3 slice
-  is in the local socket, the request can be delievered within the same socket.
-  If the L3 slice belongs to another remote socket, the L2 miss request will
-  be sent over QPI/UPI. Also note that the L2 controller will not send snoop requests.
-  (This is answering the question of &ldquo;why using local memory is faster than remote&rdquo;
-   from the cache coherence perspective.)</li>
-<li>At L3, when received the request from a L2,<ul>
-<li>If it&rsquo;s in source snoop model, it will send <code>snoop messages</code> to other sockets.</li>
-<li>If it&rsquo;s in home snoop model, it will send <code>read message</code> to other sockets.
-  The another socket will generate snoop and collect responses. (R3QPI or home?)</li>
-<li>Quote Dr. Bandwidth: Maintaining consistency is easier if the data is sent
-  to the L3 first, and then to the requesting core, but it is also possible to
-  send to both at the same time (e.g., &ldquo;Direct2Core&rdquo;). In recent processors,
-  these return paths are chosen dynamically based on undocumented states and
-  settings of the processor.</li>
-<li>I&rsquo;m not sure who will ACK L2 at last. L3 or home agent? Both are possible.</li>
-</ul>
-</li>
-<li>I think both L3 and home agent have directory information. They know where
-  to send snoop/read messages. And both of them can serialize coherence transactions!
-  It&rsquo;s just undocumented who is doing what.</li>
-<li>In generall, we need to bear the fact that we cannot just figure out how Intel
-  cache coherence works underlying. We maybe just need to &ldquo;vaguely&rdquo; know the fact that:<ul>
-<li>Both directory and snoop will be used in combination.</li>
-<li>L3/home agent will serialize conflicting transactions</li>
-<li>L3/home agent will send data to requesting core</li>
-<li>L3/home agent will send final ACK to requesting L2</li>
-<li>A coherence transaction is a multi-step distributed transaction.
-  It involes sending requests, serialize conflicts, receiving responses/ACKs.</li>
-</ul>
-</li>
-</ul>
-<p>When in doubt, read the <a href="https://software.intel.com/en-us/forums/intel-moderncode-for-parallel-architectures/topic/700477">discussion</a> posted by Dr. Bandwidth,
-especially this one on detailed <a href="http://lastweek.io/pubs/misc/dr-bandwidth-core2core-cache-coherence-explain.pdf">cache coherence flows on a procuder-consumer case</a>, which is essential if you are trying to implement high-performance spinlocks and concurrency data structures.</p>
-<h3 id="amd">AMD<a class="headerlink" href="#amd" title="Permanent link">&para;</a></h3>
-<ul>
-<li>AMD HyperTransport Assit for Cache Coherence<ul>
-<li><a href="https://www.hotchips.org/wp-content/uploads/hc_archives/hc14/3_Tue/28_AMD_Hammer_MP_HC_v8.pdf">Slide</a></li>
-<li><a href="http://www.hotchips.org/wp-content/uploads/hc_archives/hc21/2_mon/HC21.24.100.ServerSystemsI-Epub/HC21.24.110.Conway-AMD-Magny-Cours.pdf">Slide</a></li>
-</ul>
-</li>
-</ul>
-<h3 id="arm">ARM<a class="headerlink" href="#arm" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="https://developer.arm.com/architectures/system-architectures/amba/documentation?_ga=2.147594999.1797165765.1562530195-129127748.1561485892">AMBA CHI Specifications</a><ul>
-<li>This is probabaly the most comprehensive document I&rsquo;ve ever seen about cache coherence.
-  Although terms used by ARM differs from the ones used by Intel, still, you can map them.
-  Chapter 5 Interconnect Protocol Flows has a lot timing diagrams regarding read/write/atomic
-  coherence transactions.</li>
-<li>It&rsquo;s a good reference to know, but it would be hard to actually understand the details.</li>
-</ul>
-</li>
-</ul>
-<h3 id="opencapi-and-ccix">OpenCAPI and CCIX<a class="headerlink" href="#opencapi-and-ccix" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="https://docs.wixstatic.com/ugd/0c1418_c6d7ec2210ae47f99f58042df0006c3d.pdf">CCIX White Paper</a></li>
-<li><a href="">OpenCAPI</a></li>
-</ul>
-<h3 id="openpiton">OpenPiton<a class="headerlink" href="#openpiton" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="https://parallel.princeton.edu/openpiton/docs/micro_arch.pdf">OpenPiton Microarchitecture Specification</a><ul>
-<li>Directory-based MESI</li>
-<li>This spec has detailed coherence message packet format and type. Unfortunately,
-  it does not say anything about how they deal with coherence transaction conflicts.
-  E.g., some timeline diagrams like Figrue &#8532; in this <a href="https://researchspace.auckland.ac.nz/bitstream/handle/2292/11594/MESIF-2009.pdf?sequence=6">paper</a>.</li>
-</ul>
-</li>
-<li>BYOC: A &ldquo;Bring Your Own Core&rdquo; Framework for Heterogeneous-ISA Research, ASPLOS&lsquo;20</li>
-</ul>
-<h3 id="fpga">FPGA<a class="headerlink" href="#fpga" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Analysis and Optimization of I/O Cache Coherency Strategies for SoC-FPGA Device, FPL&lsquo;19</li>
-<li>LEAP Shared Memories: Automating the Construction of FPGA Coherent Memories, FCCM&lsquo;14.<ul>
-<li>This work is built on their earlier work, which basically add the data caching
-  concept to FPGA: using BRAM as L1, on-board DRAM as L2, host or remote DRAM as L3.</li>
-<li>In their earlier work, each FPGA application (or bitstream) has a private L1 cache.</li>
-<li>In this work, the add MESI coherence to these private L1 caches, as in they can make
-  multiple L1 cache cache-coherent.</li>
-<li>The techniques and protocols from this paper are similar to the exisiting ones. For example,
-  1) they use a global serializing point to serialize transactions, 2) they designed a lot
-  messaging types such as INV, RESP and so on.</li>
-</ul>
-</li>
-<li><a href="https://research.vmware.com/publications/project-pberry-fpga-acceleration-for-remote-memory">VMware Research Project PBerry</a><ul>
-<li>A very interesting and promising project.</li>
-</ul>
-</li>
-<li><a href="https://www.intel.com/content/www/us/en/programmable/documentation/bfr1522087299048.html">Intel FPGA PAC</a><ul>
-<li>Intel itself is building a FPGA-CPU cache coherent setting. They use the Intel UPI interconnect
-  to natually the spectrum. The FPGA shell has some modules to handle this.</li>
-</ul>
-</li>
-<li>
-<p><a href="https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/manual/mnl-ias-ccip.pdf">Intel FPGA CCIP</a></p>
-<ul>
-<li>Maybe the ASPLOS&lsquo;20 Optimus paper is uing CCIP-related research platform?</li>
-</ul>
-</li>
-<li>
-<p>Also some pointer chasing related stuff</p>
-<ul>
-<li><a href="https://users.ece.cmu.edu/~jhoe/distribution/2016/fpga16.pdf">A Study of Pointer-Chasing Performance on Shared-Memory Processor-FPGA Systems, FPGA&lsquo;16</a></li>
-</ul>
-</li>
-</ul>
-<h3 id="formal-verification">Formal Verification<a class="headerlink" href="#formal-verification" title="Permanent link">&para;</a></h3>
-<p>I remember there are couple works from Princiton doing cache protocol verification.</p>
+<p><a href="https://www.zotero.org/lastweek/collections/MVL55B3M">zotero collection</a>.</p>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h2 id="processors">Processors<a class="headerlink" href="#processors" title="Permanent link">&para;</a></h2>
+<h2 id="distributed-systems">Distributed Systems<a class="headerlink" href="#distributed-systems" title="Permanent link">&para;</a></h2>
                 
                   
                     
@@ -2328,7 +1732,7 @@ especially this one on detailed <a href="http://lastweek.io/pubs/misc/dr-bandwid
 
   <h2 id="__comments">Comments</h2>
   <div id="disqus_thread"></div>
-  <script>var disqus_config=function(){this.page.url="http://lastweek.io/notes/cache_coherence/",this.page.identifier="/notes/cache_coherence/"};!function(){var e=document,i=e.createElement("script");i.src="//lastweek-io.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
+  <script>var disqus_config=function(){this.page.url="http://lastweek.io/notes/consistency/",this.page.identifier="/notes/consistency/"};!function(){var e=document,i=e.createElement("script");i.src="//lastweek-io.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
 
               
             </article>
@@ -2338,41 +1742,6 @@ especially this one on detailed <a href="http://lastweek.io/pubs/misc/dr-bandwid
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href="../.." title="Home" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-            </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Home
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="../packet-sched/" title="Switch Buffering and Packet Scheduling" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Switch Buffering and Packet Scheduling
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
