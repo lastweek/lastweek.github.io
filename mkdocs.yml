@@ -166,6 +166,8 @@ theme:
   features:
     - instant
     - tabs
+    - navigation.top
+    - toc.integrate
   palette:
     #scheme: slate
     #primary: black
