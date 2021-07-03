@@ -3,6 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Jul 2, 2021| add implication discussion|
 	|Feb 24, 2020| Kobe and Gigi. Add Intel CCIP. |
 	|Oct 3, 2019| Add FPGA related discussion|
 	|Jun 28, 2019| Initial draft|
@@ -14,7 +15,6 @@
     - [Implication for Synchronization](#implication-for-synchronization)
     - [Implication for On-Chip Bandwidth and NUMA](#implication-for-on-chip-bandwidth-and-numa)
   - [Readings](#readings)
-  - [Intel Protocol Breakdown](#intel-protocol-breakdown)
   - [Case Study](#case-study)
     - [Intel](#intel)
     - [AMD](#amd)
@@ -111,6 +111,11 @@ As for memory consistency, it affects how many barriers should be inserted
 and whether a release/acquire semantic should be used.
 
 Anyway, if you are implementing synchronization primitive, pay attention to cache coherence.
+Read the
+[discussion](https://software.intel.com/en-us/forums/intel-moderncode-for-parallel-architectures/topic/700477)
+posted by Dr. Bandwidth, especially this one on
+[cache coherence flows on a procuder-consumer case](http://lastweek.io/pubs/misc/dr-bandwidth-core2core-cache-coherence-explain.pdf).
+It is very useful if you are trying to implement high-performance spinlocks and concurrency data structures.
 
 ### Implication for On-Chip Bandwidth and NUMA
 
@@ -227,7 +232,11 @@ Other measures? I don't know.
       the processor must cancel all executions that use the speculatively read data. 
     - It mentions couple Thread-Level Speculation papers, I think they should on this topic.
 
-## Intel Protocol Breakdown
+## Case Study
+
+### Intel
+
+**Misc Facts.**
 
 - Intel Caching Agent (Cbox) is per core (or per LLC slice). Intel Home Agent is per memory controller.
     - "The LLC coherence engine (CBo) manages the interface between the core and the last
@@ -249,9 +258,7 @@ collecting snoop responses from the local cores when the MESIF protocol requires
 - To provide sufficient bandwidth, shared caches are typically interleaved
   by addresses with banks physically distributed across the chip.
 
-## Case Study
-
-### Intel
+**A Transaction Breakdown.**
 
 Intel does not disclose too much details about their cache coherence implementations.
 The most valuable information is extracted from uncore PMU manuals, and discussions
@@ -260,7 +267,8 @@ adapt its coherence strategy during runtime according to workload. There won't
 be one fixed cache coherence implementation, there will be many. It depends on
 workload which one is used at runtime.
 
-List below might not be completely true. Just my understanding.
+What happens when a core tries to access a cache line?
+A detailed cache protocl breakdown derived from Dr.Bandwidth's comment.
 
 - Physical addresses are uniquely hashed into L3 slices. That means each individual
   physical address belongs to a L3 slice, and also belongs to a home agent.
@@ -292,9 +300,8 @@ List below might not be completely true. Just my understanding.
     - A coherence transaction is a multi-step distributed transaction.
       It involes sending requests, serialize conflicts, receiving responses/ACKs.
 
-When in doubt, read the [discussion](https://software.intel.com/en-us/forums/intel-moderncode-for-parallel-architectures/topic/700477) posted by Dr. Bandwidth,
+Read the [discussion](https://software.intel.com/en-us/forums/intel-moderncode-for-parallel-architectures/topic/700477) posted by Dr. Bandwidth,
 especially this one on detailed [cache coherence flows on a procuder-consumer case](http://lastweek.io/pubs/misc/dr-bandwidth-core2core-cache-coherence-explain.pdf), which is essential if you are trying to implement high-performance spinlocks and concurrency data structures.
-
 
 ### AMD
 
