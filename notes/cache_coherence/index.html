@@ -383,6 +383,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#cxl" class="md-nav__link">
+    CXL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#openpiton" class="md-nav__link">
     OpenPiton
   </a>
@@ -1860,6 +1867,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#cxl" class="md-nav__link">
+    CXL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#openpiton" class="md-nav__link">
     OpenPiton
   </a>
@@ -1943,6 +1957,7 @@
 <li><a href="#amd">AMD</a></li>
 <li><a href="#arm">ARM</a></li>
 <li><a href="#opencapi-and-ccix">OpenCAPI and CCIX</a></li>
+<li><a href="#CXL">CXL</a></li>
 <li><a href="#openpiton">OpenPiton</a></li>
 <li><a href="#fpga">FPGA</a></li>
 <li><a href="#formal-verification">Formal Verification</a></li>
@@ -2254,6 +2269,10 @@ especially this one on detailed <a href="http://lastweek.io/pubs/misc/dr-bandwid
 <li><a href="https://docs.wixstatic.com/ugd/0c1418_c6d7ec2210ae47f99f58042df0006c3d.pdf">CCIX White Paper</a></li>
 <li><a href="">OpenCAPI</a></li>
 </ul>
+<h3 id="cxl">CXL<a class="headerlink" href="#cxl" title="Permanent link">&para;</a></h3>
+<p>Like OpenCAPI and CCIX, it builds on top of PCIe.
+It is intra-server cache coherence protocol.</p>
+<p>Not very exciting to me. But it does receive some spotlight recently.</p>
 <h3 id="openpiton">OpenPiton<a class="headerlink" href="#openpiton" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://parallel.princeton.edu/openpiton/docs/micro_arch.pdf">OpenPiton Microarchitecture Specification</a><ul>
@@ -2281,6 +2300,10 @@ especially this one on detailed <a href="http://lastweek.io/pubs/misc/dr-bandwid
 </li>
 <li><a href="https://research.vmware.com/publications/project-pberry-fpga-acceleration-for-remote-memory">VMware Research Project PBerry</a><ul>
 <li>A very interesting and promising project.</li>
+<li>They have this follow up work &ldquo;Rethinking software runtimes for disaggregated memory, ASPLOS&lsquo;21&rdquo;.
+  But it is simulation using the HotOS paper idea. The real FPGA has not been built yet.
+  They need to know Intel&rsquo;s protocol to build it, which is.. impossible?
+  I think it is probably better to use RISC-V.</li>
 </ul>
 </li>
 <li><a href="https://www.intel.com/content/www/us/en/programmable/documentation/bfr1522087299048.html">Intel FPGA PAC</a><ul>
