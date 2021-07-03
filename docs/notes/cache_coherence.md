@@ -323,6 +323,14 @@ especially this one on detailed [cache coherence flows on a procuder-consumer ca
 - [CCIX White Paper](https://docs.wixstatic.com/ugd/0c1418_c6d7ec2210ae47f99f58042df0006c3d.pdf)
 - [OpenCAPI]()
 
+
+### CXL
+
+Like OpenCAPI and CCIX, it builds on top of PCIe.
+It is intra-server cache coherence protocol.
+
+Not very exciting to me. But it does receive some spotlight recently.
+
 ### OpenPiton
 
 - [OpenPiton Microarchitecture Specification](https://parallel.princeton.edu/openpiton/docs/micro_arch.pdf)
@@ -346,6 +354,10 @@ especially this one on detailed [cache coherence flows on a procuder-consumer ca
       messaging types such as INV, RESP and so on.
 - [VMware Research Project PBerry](https://research.vmware.com/publications/project-pberry-fpga-acceleration-for-remote-memory)
     - A very interesting and promising project.
+    - They have this follow up work "Rethinking software runtimes for disaggregated memory, ASPLOS'21".
+      But it is simulation using the HotOS paper idea. The real FPGA has not been built yet.
+      They need to know Intel's protocol to build it, which is.. impossible?
+      I think it is probably better to use RISC-V.
 - [Intel FPGA PAC](https://www.intel.com/content/www/us/en/programmable/documentation/bfr1522087299048.html)
     - Intel itself is building a FPGA-CPU cache coherent setting. They use the Intel UPI interconnect
       to natually the spectrum. The FPGA shell has some modules to handle this.
