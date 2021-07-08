@@ -1,11 +1,17 @@
-# wuklab
+# Yizhou Shan's Home Page
 
-## Installed features
+## Deploy
 
-### https://github.com/zhaoterryy/mkdocs-pdf-export-plugin
+Method 1: Install all tools.
+```
+./install.sh
+mkdocs serve
+mkdocs gh-deploy -b master
+```
 
-pip3 install mkdocs-material
-pip3 install pymdown-extensions
-pip3 install mkdocs-pdf-export-plugin
-pip3 install mkdocs-git-revision-date-localized-plugin
-pip3 install mkdocs-gitbook
+Method 2: Use docker.
+```
+# We have a Dockerfile
+./build_docker.sh
+docker run --rm -it -v ~/.ssh:/root/.ssh -v ${PWD}:/docs squidfunk/mkdocs-material:7.1.8 gh-deploy -b master
+```
