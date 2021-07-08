@@ -10,6 +10,7 @@ nav:
    - 'Dynamic Linking':                'notes/dynamic_linking.md'
    - 'Virtualization':                 'notes/virt.md'
    - 'Architecture':                   'notes/arch.md'
+   - 'SysML':                          'notes/sysml.md'
    - 'Cryptography':                   'notes/cryptography.md'
    - 'Cryptocurrency':                 'notes/cryptocurrency.md'
    - 'Hardware Design Languages':      'notes/hardware_pl.md'
