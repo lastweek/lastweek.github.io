@@ -14,7 +14,7 @@
         <link rel="canonical" href="http://lastweek.io/notes/source_code/risc-v/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
     
     
       
@@ -404,6 +404,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../sysml/" class="md-nav__link">
+        SysML
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../cryptography/" class="md-nav__link">
         Cryptography
       </a>
@@ -430,18 +442,6 @@
     <li class="md-nav__item">
       <a href="../../hardware_pl/" class="md-nav__link">
         Hardware Design Languages
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../linux-iouring/" class="md-nav__link">
-        Linux io_uring
       </a>
     </li>
   
@@ -536,32 +536,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../proc/" class="md-nav__link">
-        Linux Special Files
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../linux-resource/" class="md-nav__link">
-        Linux Resource
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../kvm-basic/" class="md-nav__link">
-        Linux KVM
+      <a href="../../linux-iouring/" class="md-nav__link">
+        Linux io_uring
       </a>
     </li>
   
@@ -607,6 +583,27 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_21" type="checkbox" id="__nav_2_21" >
+      
+      <label class="md-nav__link" for="__nav_2_21">
+        Misc
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Misc" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_21">
+          <span class="md-nav__icon md-icon"></span>
+          Misc
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../blog/20200404-on-read-once/" class="md-nav__link">
         On Read Once and Compiler Optimization
@@ -619,22 +616,37 @@
   
   
   
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_24" type="checkbox" id="__nav_2_24" >
-      
-      <label class="md-nav__link" for="__nav_2_24">
-        Languages
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Languages" data-md-level="2">
-        <label class="md-nav__title" for="__nav_2_24">
-          <span class="md-nav__icon md-icon"></span>
-          Languages
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+    <li class="md-nav__item">
+      <a href="../../linux-resource/" class="md-nav__link">
+        Linux Resource
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../proc/" class="md-nav__link">
+        Linux Special Files
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kvm-basic/" class="md-nav__link">
+        Linux KVM
+      </a>
+    </li>
+  
+
           
             
   
@@ -1910,8 +1922,9 @@
 </table>
 </details>
 <p><img alt="⛵" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/26f5.svg" title=":sailboat:" /></p>
-<p>This is work-in-progress.</p>
 <h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<p>First of all, explore its architecture designs, such as ISA, virtual memory, virtualization support, devices, and so on.
+At the time of writing, RISC-V&rsquo;s hypervisor extension has not been defined yet (hence not IOMMU as well).</p>
 <ul>
 <li>ISA</li>
 <li>VM</li>
@@ -1919,6 +1932,17 @@
 <li>I/O, I/O MMU</li>
 </ul>
 <h2 id="firmwarebootloader">Firmware/Bootloader<a class="headerlink" href="#firmwarebootloader" title="Permanent link">&para;</a></h2>
+<p>This section discuss the boot flow and the firmware status.
+RISC-V has been ported to most of the major firmware and bootloaders,
+e.g., coreboot (first-stage-bootloader, prepare RAM), UEFI, U-Boot.</p>
+<p>RISC-V has a cleaner design compared to X86.
+Rather than relying on messed up ACPI interfaces,
+it relys on a layer defined by SBI (an open-source implementation called OpenSBI).
+The OpenSBI layer sits in Machine-Mode, i.e., the most priviledged mode.
+It directly manages hardware and exposes standard APIs to upperlayer OS.
+For example, it exposed <code>send_IPI</code>, <code>reset</code> APIs. Hence, in Linux,
+it could simply call SBI to send IPI rather than implementing on its own and concerns about hardware details.
+I like this separation of concerns. </p>
 <h3 id="opensbi">OpenSBI<a class="headerlink" href="#opensbi" title="Permanent link">&para;</a></h3>
 <p><a href="https://riscv.org/wp-content/uploads/2019/06/13.30-RISCV_OpenSBI_Deep_Dive_v5.pdf">OpenSBI</a>.
 This is the default firmware in QEMU for RISC-V. It replaces the old BBL.
@@ -1931,9 +1955,11 @@ After that, it passes control to normal bootloaders like u-boot or GRUB, or just
 <li>mostly doing the usual, setting up envionment for C functions. It will save some critical information into a struct passed to C.</li>
 <li>In the end, it will call into C <code>sbi_init(struct sbi_scratch *)</code>. Note the <code>sbi_scratch</code> structure is filled with crutial info by fw_base.S.</li>
 <li>It seems every hart will do the same?</li>
-<li><code>lib/sbi/sbi_init.c</code>.</li>
-<li></li>
+<li><code>lib/sbi/sbi_init.c</code> is the C entry point after assembly.</li>
 </ul>
+<p>Reset:
+- See <code>sbi_system.c</code> and <code>sbi_ipi.c</code>. It looks like the reset is: send an IPI to target HART, which will then ran a sbi_ipi_process_halt handler to halt.
+- Is this warm or cold reboot? Or neither?</p>
 <h4 id="scripts">Scripts<a class="headerlink" href="#scripts" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>make <span class="nv">V</span><span class="o">=</span><span class="m">1</span> <span class="nv">CROSS_COMPILE</span><span class="o">=</span>riscv64-linux-gnu- <span class="nv">PLATFORM</span><span class="o">=</span>generic <span class="nv">FW_PAYLOAD_PATH</span><span class="o">=</span>../linux/arch/riscv/boot/Image
 </code></pre></div>
@@ -1949,7 +1975,7 @@ After that, it passes control to normal bootloaders like u-boot or GRUB, or just
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 27, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 8, 2021</span>
       
     
   </small>
@@ -2033,10 +2059,10 @@ After that, it passes control to normal bootloaders like u-boot or GRUB, or just
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.82b56eb2.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.76f349be.min.js"></script>
       
     
   </body>
