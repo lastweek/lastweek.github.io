@@ -13,4 +13,6 @@ I mostly focus on the system aspects, in particular, how to design efficient lar
 I care about operating system, network, storage, new hardware, and any other system related stuff.
 ML workload has its unique traits.
 
-<iframe src="https://docs.google.com/document/d/e/2PACX-1vSKPS-jR7o2bwlnfMz5ICxauh8rO2APj534fHMs56FG8h1cqv_eRnRx9IfV-DloCHFmpeKrKhdJX9Ir/pub?embedded=true"></iframe>
+<iframe style="width: 100%; height: 800px;" frameborder="1" allowfullscreen 
+	src="https://docs.google.com/document/d/e/2PACX-1vSKPS-jR7o2bwlnfMz5ICxauh8rO2APj534fHMs56FG8h1cqv_eRnRx9IfV-DloCHFmpeKrKhdJX9Ir/pub?embedded=true">
+</iframe>
