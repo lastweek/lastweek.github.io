@@ -5,7 +5,7 @@
 	|:---|-----------|
 	|Jul 7, 2021| new|
 
-I'm learning Machine Learning, from the very beginning.
+I'm learning SysML and DNN, from the very beginning.
 As always, I will document and share my learning process.
 Let me know if you have reading recommendations, always welcomed!
 
