@@ -1931,15 +1931,19 @@ Guest VMs are not aware of these because they only see the MMIO spaces. It is ju
 <li>more</li>
 </ol>
 <h2 id="note">Note<a class="headerlink" href="#note" title="Permanent link">&para;</a></h2>
-<p>The questions I&rsquo;ve focused on are:
-- 1) how QEMU emulates all the devices.
-- 2) how KVM uses CPU features to switch between VMs, catch faults, return to QEMU etc.
-- 3) how KVM and QEMU work together.
-- 4) how virto works and how device-passthrough works (via VFIO).
-- 5) Finally, if I want to write a new virtual machine monitor like QEMU,
-what should I build. Several recent projects (e.g., rust-vmm, firecracker) have hints on this.</p>
+<p>The questions I&rsquo;ve focused on are:</p>
 <ul>
-<li><a href="https://gdoc.pub/doc/e/2PACX-1vSsskD0A2XgHoZhaYLAkS7lmCOrfxkGXk1WTovWEAyeoELVdBjrE-NzD8h-NvJfKhxMpUg2aXzaD-XG" target="_blank">Google Doc Version</a></li>
+<li>1) how QEMU emulates all the devices.</li>
+<li>2) how KVM uses CPU features to switch between VMs, catch faults, return to QEMU etc.</li>
+<li>3) how KVM and QEMU work together.</li>
+<li>4) how virto works and how device-passthrough works (via VFIO).</li>
+<li>
+<p>5) Finally, if I want to write a new virtual machine monitor like QEMU,
+what should I build. Several recent projects (e.g., rust-vmm, firecracker) have hints on this.</p>
+</li>
+<li>
+<p><a href="https://gdoc.pub/doc/e/2PACX-1vSsskD0A2XgHoZhaYLAkS7lmCOrfxkGXk1WTovWEAyeoELVdBjrE-NzD8h-NvJfKhxMpUg2aXzaD-XG" target="_blank">Google Doc Version</a></p>
+</li>
 <li><a href="http://lastweek.io/pubs/virt_note.pdf" target="_blank">PDF Version</a></li>
 </ul>
 <iframe style="width: 100%; height: 800px;" frameborder="1" allowfullscreen 
