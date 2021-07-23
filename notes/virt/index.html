@@ -18,7 +18,7 @@
     
     
       
-        <title>Virtualization - Yizhou Shan's Home Page</title>
+        <title>Modern Virtualization - Yizhou Shan's Home Page</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#virtualization" class="md-skip">
+        <a href="#modern-virtualization-technology" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Virtualization
+              Modern Virtualization
             
           </span>
         </div>
@@ -392,12 +392,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Virtualization
+          Modern Virtualization
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Virtualization
+        Modern Virtualization
       </a>
       
         
@@ -415,9 +415,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#intro" class="md-nav__link">
+    Intro
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#history-of-virtualization" class="md-nav__link">
     History of Virtualization
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modern-virtualization-hardware" class="md-nav__link">
+    Modern Virtualization Hardware
+  </a>
+  
+    <nav class="md-nav" aria-label="Modern Virtualization Hardware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principles" class="md-nav__link">
+    Principles
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-studies" class="md-nav__link">
+    Case Studies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1767,9 +1801,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#intro" class="md-nav__link">
+    Intro
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#history-of-virtualization" class="md-nav__link">
     History of Virtualization
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modern-virtualization-hardware" class="md-nav__link">
+    Modern Virtualization Hardware
+  </a>
+  
+    <nav class="md-nav" aria-label="Modern Virtualization Hardware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principles" class="md-nav__link">
+    Principles
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-studies" class="md-nav__link">
+    Case Studies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1797,7 +1865,7 @@
                   </a>
                 
                 
-                <h1 id="virtualization">Virtualization<a class="headerlink" href="#virtualization" title="Permanent link">&para;</a></h1>
+                <h1 id="modern-virtualization-technology">Modern Virtualization Technology<a class="headerlink" href="#modern-virtualization-technology" title="Permanent link">&para;</a></h1>
 <details class="note"><summary>Version History</summary><table>
 <thead>
 <tr>
@@ -1829,35 +1897,47 @@
 </tbody>
 </table>
 </details>
-<p>Also check out <a href="https://github.com/Wenzel/awesome-virtualization/issues">Awesome-Virtualization</a></p>
-<p>Why? In order to truly understand the whole virtualization thing,
-I decided to read QEMU/KVM/etc source code.
-The document was orginally written in a Google Document.</p>
-<p>The questions I&rsquo;ve focused on are:</p>
-<ul>
-<li>1) how QEMU emulates all the devices (essentially, CPU and device communicates via addresses,
-and this is where all the tricks happen),</li>
-<li>2) how KVM uses CPU features to switch between VMs, catch faults, return to QEMU etc,</li>
-<li>3) how KVM and QEMU work together,</li>
-<li>4) how virto works and how device-passthrough works (via VFIO),</li>
-<li>5) and finally, if I want to write a new virtual machine monitor like QEMU,
-what should I build. Several recent projects (e.g., rust-vmm, firecracker)
-have some hints on this.</li>
-</ul>
-<p>My favorite quote about QEMU (in fact, about virtualization in general):</p>
+<h2 id="intro">Intro<a class="headerlink" href="#intro" title="Permanent link">&para;</a></h2>
+<p>Why this doc?
+I started this when I was trying to understand how virtualization actually works.
+I was just reading QEMU/KVM and taking notes, but I end up exploring more.
+Most of the stuff is just basic but hopefully you find them useful.</p>
+<p>Favorite quote about QEMU (in fact, about virtualization in general):</p>
 <div class="admonition quote">
 <p class="admonition-title">Quote</p>
 <p>And at the end of the day, all virtualization really means is running a particular set of assembly instructions (the guest OS) to manipulate locations within a giant memory map for causing a particular set of side effects, where QEMU is just a user-space application providing a memory map and mimicking the same side effects you would get when executing those guest instructions on the appropriate bare metal hardware</p>
 </div>
+<p>Also check out <a href="https://github.com/Wenzel/awesome-virtualization/issues">Awesome-Virtualization</a>.</p>
 <h2 id="history-of-virtualization">History of Virtualization<a class="headerlink" href="#history-of-virtualization" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Software-based Virtualization. This is where VMware started. No hardware support. Smart tricks.</li>
-<li>Para-virtualization. This is what Xen invented. They will change the guest OS in order for better emulation. No hardware support. But the guest OS is changed.</li>
-<li>Hardware-assited virtualization. This is what AMD and Intel Vt-d, IOMMU started. The CPU itself would support virtualization mode and non-virtualization mode. The hardware change alone cannot work. They are usually used to accelerate existing technologies. Hence, you can run Xen+Vt-d, QEMU+Vt-d (which is enabled by KVM).</li>
-<li>Offload virtualization to dedicated hardware, e.g., AWS Nitro. Rather than using QEMU (or vendor kernel) to emulate storage/network devices, they build customized cards that would handle all that in hardware! The idea is simple, the guest MMIO space would be handled by the dedicated device. This approach can greatly save host CPU usage. Exmaples: AWS Nitro, Microsoft SmartNIC for their network offloading (i.e., openvswitch), Huawei. Google seems doing everything in SW.</li>
-<li>Bare-metal virtualization.</li>
+<li>Software-based Virtualization. This is where VMware started. No hardware support but just smart software tricks. You should read their papers.</li>
+<li>Para-virtualization. This is what Xen invented. They changed the guest OS for a better emulation. No hardware support still. But the guest OS is changed.</li>
+<li>Hardware-assited virtualization. This is what AMD and Intel Vt-d + IOMMU for. The CPU would support virtualization mode and non-virtualization mode (in x86, each mode has Ring 0-3). However, the hardware change alone cannot work. They must work a virtual machine monitor for at least device emulation and other things. This is where KVM and QEMU came in. KVM lets Linux able to use those hardware features and turn Linux into a type-2 hypervisor. QEMU, acting as a VMM, helps setup KVM and emulates devices.</li>
+<li>Offload virtualization to dedicated hardware. This is what big cloud vendors are doing. For example, AWS Nitro cards, Mirosoft FPGA based SmartNIC cards.
+Rather than using QEMU (or vendor kernel) to emulate storage/network devices, these vendors build customized cards that would handle all that in hardware!
+Guest VMs are not aware of these because they only see the MMIO spaces. It is just that the MMIO space directly maps a to real hardware rather than captured by QEMU. This approach can greatly save host CPU usage, hence reduce Datacenter Virtualization Tax.</li>
+<li>Bare-metal virtualization. Going back to where we started!</li>
+</ol>
+<h2 id="modern-virtualization-hardware">Modern Virtualization Hardware<a class="headerlink" href="#modern-virtualization-hardware" title="Permanent link">&para;</a></h2>
+<p>Examples AWS Nitro cards, Microsoft FPGA based SmartNIC cards.</p>
+<h3 id="principles">Principles<a class="headerlink" href="#principles" title="Permanent link">&para;</a></h3>
+<p>TODO</p>
+<h3 id="case-studies">Case Studies<a class="headerlink" href="#case-studies" title="Permanent link">&para;</a></h3>
+<p>TODO</p>
+<ol>
+<li>Network Device and VNF</li>
+<li>Block layer NVMe</li>
+<li>Security</li>
+<li>more</li>
 </ol>
 <h2 id="note">Note<a class="headerlink" href="#note" title="Permanent link">&para;</a></h2>
+<p>The questions I&rsquo;ve focused on are:
+- 1) how QEMU emulates all the devices.
+- 2) how KVM uses CPU features to switch between VMs, catch faults, return to QEMU etc.
+- 3) how KVM and QEMU work together.
+- 4) how virto works and how device-passthrough works (via VFIO).
+- 5) Finally, if I want to write a new virtual machine monitor like QEMU,
+what should I build. Several recent projects (e.g., rust-vmm, firecracker) have hints on this.</p>
 <ul>
 <li><a href="https://gdoc.pub/doc/e/2PACX-1vSsskD0A2XgHoZhaYLAkS7lmCOrfxkGXk1WTovWEAyeoELVdBjrE-NzD8h-NvJfKhxMpUg2aXzaD-XG" target="_blank">Google Doc Version</a></li>
 <li><a href="http://lastweek.io/pubs/virt_note.pdf" target="_blank">PDF Version</a></li>
@@ -1873,7 +1953,7 @@ have some hints on this.</li>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 28, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 23, 2021</span>
       
     
   </small>
