@@ -8,7 +8,7 @@ nav:
    - 'Practical Cache Coherence':                           'notes/cache_coherence.md'
    - 'Switch Buffering and Packet Scheduling':              'notes/packet-sched.md'
    - 'Dynamic Linking':                'notes/dynamic_linking.md'
-   - 'Virtualization':                 'notes/virt.md'
+   - 'Modern Virtualization':          'notes/virt.md'
    - 'Architecture':                   'notes/arch.md'
    - 'SysML':                          'notes/sysml.md'
    - 'Cryptography':                   'notes/cryptography.md'

@@ -1,4 +1,4 @@
-# Virtualization
+# Modern Virtualization Technology
 
 ??? note "Version History"
 	|Date|Description|
@@ -11,26 +11,17 @@
 
 ## Intro
 
-Check out [Awesome-Virtualization](https://github.com/Wenzel/awesome-virtualization/issues)
+Why this doc?
+I started this when I was trying to understand how virtualization actually works.
+I was just reading QEMU/KVM and taking notes, but I end up exploring more.
+Most of the stuff is just basic but hopefully you find them useful.
 
-Why this doc? In order to truly understand the whole virtualization thing,
-I decided to start from reading the QEMU/KVM/etc source code.
-
-The questions I've focused on are:
-
-- 1) how QEMU emulates all the devices (essentially, CPU and device communicates via addresses,
-and this is where all the tricks happen),
-- 2) how KVM uses CPU features to switch between VMs, catch faults, return to QEMU etc,
-- 3) how KVM and QEMU work together,
-- 4) how virto works and how device-passthrough works (via VFIO),
-- 5) and finally, if I want to write a new virtual machine monitor like QEMU,
-what should I build. Several recent projects (e.g., rust-vmm, firecracker)
-have some hints on this.
-
-My favorite quote about QEMU (in fact, about virtualization in general):
+Favorite quote about QEMU (in fact, about virtualization in general):
 
 !!! quote
      And at the end of the day, all virtualization really means is running a particular set of assembly instructions (the guest OS) to manipulate locations within a giant memory map for causing a particular set of side effects, where QEMU is just a user-space application providing a memory map and mimicking the same side effects you would get when executing those guest instructions on the appropriate bare metal hardware
+
+Also check out [Awesome-Virtualization](https://github.com/Wenzel/awesome-virtualization/issues).
 
 ## History of Virtualization
 
@@ -42,7 +33,7 @@ Rather than using QEMU (or vendor kernel) to emulate storage/network devices, th
 Guest VMs are not aware of these because they only see the MMIO spaces. It is just that the MMIO space directly maps a to real hardware rather than captured by QEMU. This approach can greatly save host CPU usage, hence reduce Datacenter Virtualization Tax.
 5. Bare-metal virtualization. Going back to where we started!
 
-## Virtualization Hardware
+## Modern Virtualization Hardware
 
 Examples AWS Nitro cards, Microsoft FPGA based SmartNIC cards.
 
@@ -60,6 +51,14 @@ TODO
 4. more
 
 ## Note
+
+The questions I've focused on are:
+- 1) how QEMU emulates all the devices.
+- 2) how KVM uses CPU features to switch between VMs, catch faults, return to QEMU etc.
+- 3) how KVM and QEMU work together.
+- 4) how virto works and how device-passthrough works (via VFIO).
+- 5) Finally, if I want to write a new virtual machine monitor like QEMU,
+what should I build. Several recent projects (e.g., rust-vmm, firecracker) have hints on this.
 
 - <a href="https://gdoc.pub/doc/e/2PACX-1vSsskD0A2XgHoZhaYLAkS7lmCOrfxkGXk1WTovWEAyeoELVdBjrE-NzD8h-NvJfKhxMpUg2aXzaD-XG" target="_blank">Google Doc Version</a>
 - <a href="http://lastweek.io/pubs/virt_note.pdf" target="_blank">PDF Version</a>
