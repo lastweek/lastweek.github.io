@@ -9,11 +9,12 @@
 	|Jan 26, 2020| Minor adjustment|
 	|Jan 25, 2020| Initial Document|
 
-Also check out [Awesome-Virtualization](https://github.com/Wenzel/awesome-virtualization/issues)
+## Intro
 
-Why? In order to truly understand the whole virtualization thing,
-I decided to read QEMU/KVM/etc source code.
-The document was orginally written in a Google Document.
+Check out [Awesome-Virtualization](https://github.com/Wenzel/awesome-virtualization/issues)
+
+Why this doc? In order to truly understand the whole virtualization thing,
+I decided to start from reading the QEMU/KVM/etc source code.
 
 The questions I've focused on are:
 
@@ -33,11 +34,30 @@ My favorite quote about QEMU (in fact, about virtualization in general):
 
 ## History of Virtualization
 
-1. Software-based Virtualization. This is where VMware started. No hardware support. Smart tricks.
-2. Para-virtualization. This is what Xen invented. They will change the guest OS in order for better emulation. No hardware support. But the guest OS is changed.
-3. Hardware-assited virtualization. This is what AMD and Intel Vt-d, IOMMU started. The CPU itself would support virtualization mode and non-virtualization mode. The hardware change alone cannot work. They are usually used to accelerate existing technologies. Hence, you can run Xen+Vt-d, QEMU+Vt-d (which is enabled by KVM).
-4. Offload virtualization to dedicated hardware, e.g., AWS Nitro. Rather than using QEMU (or vendor kernel) to emulate storage/network devices, they build customized cards that would handle all that in hardware! The idea is simple, the guest MMIO space would be handled by the dedicated device. This approach can greatly save host CPU usage. Exmaples: AWS Nitro, Microsoft SmartNIC for their network offloading (i.e., openvswitch), Huawei. Google seems doing everything in SW.
-5. Bare-metal virtualization.
+1. Software-based Virtualization. This is where VMware started. No hardware support but just smart software tricks. You should read their papers.
+2. Para-virtualization. This is what Xen invented. They changed the guest OS for a better emulation. No hardware support still. But the guest OS is changed.
+3. Hardware-assited virtualization. This is what AMD and Intel Vt-d + IOMMU for. The CPU would support virtualization mode and non-virtualization mode (in x86, each mode has Ring 0-3). However, the hardware change alone cannot work. They must work a virtual machine monitor for at least device emulation and other things. This is where KVM and QEMU came in. KVM lets Linux able to use those hardware features and turn Linux into a type-2 hypervisor. QEMU, acting as a VMM, helps setup KVM and emulates devices.
+4. Offload virtualization to dedicated hardware. This is what big cloud vendors are doing. For example, AWS Nitro cards, Mirosoft FPGA based SmartNIC cards.
+Rather than using QEMU (or vendor kernel) to emulate storage/network devices, these vendors build customized cards that would handle all that in hardware!
+Guest VMs are not aware of these because they only see the MMIO spaces. It is just that the MMIO space directly maps a to real hardware rather than captured by QEMU. This approach can greatly save host CPU usage, hence reduce Datacenter Virtualization Tax.
+5. Bare-metal virtualization. Going back to where we started!
+
+## Virtualization Hardware
+
+Examples AWS Nitro cards, Microsoft FPGA based SmartNIC cards.
+
+### Principles
+
+TODO
+
+### Case Studies
+
+TODO
+
+1. Network Device and VNF
+2. Block layer NVMe
+3. Security
+4. more
 
 ## Note
 
