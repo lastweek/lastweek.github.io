@@ -53,6 +53,7 @@ TODO
 ## Note
 
 The questions I've focused on are:
+
 - 1) how QEMU emulates all the devices.
 - 2) how KVM uses CPU features to switch between VMs, catch faults, return to QEMU etc.
 - 3) how KVM and QEMU work together.
