@@ -401,13 +401,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#principles" class="md-nav__link">
-    Principles
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#case-studies" class="md-nav__link">
     Case Studies
   </a>
@@ -1823,13 +1816,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#principles" class="md-nav__link">
-    Principles
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#case-studies" class="md-nav__link">
     Case Studies
   </a>
@@ -1912,18 +1898,24 @@ Most of the stuff is just basic but hopefully you find them useful.</p>
 <ol>
 <li>Software-based Virtualization. This is where VMware started. No hardware support but just smart software tricks. You should read their papers.</li>
 <li>Para-virtualization. This is what Xen invented. They changed the guest OS for a better emulation. No hardware support still. But the guest OS is changed.</li>
-<li>Hardware-assited virtualization. This is what AMD and Intel Vt-d + IOMMU for. The CPU would support virtualization mode and non-virtualization mode (in x86, each mode has Ring 0-3). However, the hardware change alone cannot work. They must work a virtual machine monitor for at least device emulation and other things. This is where KVM and QEMU came in. KVM lets Linux able to use those hardware features and turn Linux into a type-2 hypervisor. QEMU, acting as a VMM, helps setup KVM and emulates devices.</li>
+<li>Hardware-assited virtualization. This is what AMD and Intel Vt-d + IOMMU for. The CPU would support virtualization mode and non-virtualization mode (in x86, each mode has Ring 0-3). However, the hardware change alone cannot work. They must work a virtual machine monitor for at least device emulation and other things. This is where KVM and QEMU came in. KVM enables Linux to use those CPU features and turns Linux into a type-2 hypervisor. Userspace QEMU, acting as a VMM, helps setup KVM and emulates devices (QEMU can also do passthrough via VFIO).</li>
 <li>Offload virtualization to dedicated hardware. This is what big cloud vendors are doing. For example, AWS Nitro cards, Mirosoft FPGA based SmartNIC cards.
-Rather than using QEMU (or vendor kernel) to emulate storage/network devices, these vendors build customized cards that would handle all that in hardware!
-Guest VMs are not aware of these because they only see the MMIO spaces. It is just that the MMIO space directly maps a to real hardware rather than captured by QEMU. This approach can greatly save host CPU usage, hence reduce Datacenter Virtualization Tax.</li>
-<li>Bare-metal virtualization. Going back to where we started!</li>
+Emulation is costly. Especially for I/O data path. This problem got worse since hardware is faster and faster (e.g., 100G networking).
+So rather than relying on QEMU (or vendor kernel) to emulate storage/network/misc devices, these vendors build customized cards that would handle the &ldquo;device emulation&rdquo; part in hardware!
+Other than that, vendors offload quite a lot hypervisor functionalaties as well. E.g., Microsoft offload OpenVSwitch alike modules to their FPGA (called GFT in the NSDI&lsquo;18 paper).
+Guest VMs, of course, are not aware any of these. They see the same MMIO spaces. This approach greatly saves host CPU usage, hence reduces Datacenter Virtualization Tax.</li>
+<li>Bare-metal virtualization. Going back to where we started! Even with those great virtulization cards, the CPU still has virtualization modes enabled, and this has a cost!
+In particular, the 2-level page table (EPT) is still in play and guest VMs will exit on certain instructions (e.g., CPUID). All these take a toll on performance even if the VM does no I/O.
+Since vendors usually have 1-to-1 pCPU and vCPU mapping, this virtualization overhead is simply annoying and should be avoided.
+Hence bare-metal virtualization, as in no hypervisors and no virtualization modes, yet we are still able to pack untrusted tenant VMs on one physical machine. Isn&rsquo;t this amazing?</li>
 </ol>
 <h2 id="modern-virtualization-hardware">Modern Virtualization Hardware<a class="headerlink" href="#modern-virtualization-hardware" title="Permanent link">&para;</a></h2>
-<p>Examples AWS Nitro cards, Microsoft FPGA based SmartNIC cards.</p>
-<h3 id="principles">Principles<a class="headerlink" href="#principles" title="Permanent link">&para;</a></h3>
-<p>TODO</p>
+<p>Examples are AWS Nitro cards, Microsoft FPGA based SmartNIC cards (NSDI&lsquo;18).</p>
 <h3 id="case-studies">Case Studies<a class="headerlink" href="#case-studies" title="Permanent link">&para;</a></h3>
 <p>TODO</p>
+<p>I want to walk through each device type and
+discuss what functions should be implemented in their virtualization cards.
+Some are required for virtualization and are vendor-placed modules.</p>
 <ol>
 <li>Network Device and VNF</li>
 <li>Block layer NVMe</li>
@@ -1931,7 +1923,8 @@ Guest VMs are not aware of these because they only see the MMIO spaces. It is ju
 <li>more</li>
 </ol>
 <h2 id="note">Note<a class="headerlink" href="#note" title="Permanent link">&para;</a></h2>
-<p>The questions I&rsquo;ve focused on are:</p>
+<p>Below is the note I took when I was reading QEMU/KVM source code.
+The questions I&rsquo;ve focused on are:</p>
 <ul>
 <li>1) how QEMU emulates all the devices.</li>
 <li>2) how KVM uses CPU features to switch between VMs, catch faults, return to QEMU etc.</li>
@@ -1957,7 +1950,7 @@ what should I build. Several recent projects (e.g., rust-vmm, firecracker) have 
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 23, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 24, 2021</span>
       
     
   </small>
