@@ -10,8 +10,8 @@ You can find my CV [here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 I also own these domains:
 
-- [Disaggregated.Cloud][https://www.disaggregated.cloud/]
-- [LegoOS.io][legoos.io]
+- [Disaggregated.Cloud](https://www.disaggregated.cloud/)
+- [LegoOS.io](legoos.io)
 
 Contact: ys AT ucsd DOT edu
 
