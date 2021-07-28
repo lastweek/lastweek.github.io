@@ -8,6 +8,11 @@ I am a member of [UCSD Wuklab](http://wuklab.io) and [UCSD SysNet](https://www.s
 I was a [Purdue Boilermaker](https://engineering.purdue.edu/ECE) during 2016-2019.
 You can find my CV [here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
+I also own these domains:
+
+- [Disaggregated.Cloud][https://www.disaggregated.cloud/]
+- [LegoOS.io][legoos.io]
+
 Contact: ys AT ucsd DOT edu
 
 ??? tip "Research News"
