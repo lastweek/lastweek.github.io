@@ -55,7 +55,7 @@ nav:
    - 'Partial Reconfiguration':              'fpga/pr.md'
    #- 'Efficient AXI-MM':                     'fpga/hls_axi.md'
 - HowTo:
-   - "How to add an IOMMU device in QEMU?"   'howto/qemu-iommu.md'
+   - "How to add an IOMMU device in QEMU?":   'howto/qemu-iommu.md'
 - LegoOS:
    - 'Log':
 #           - 'TODO':                    'lego/log/TODO.md'
