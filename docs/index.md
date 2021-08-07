@@ -46,10 +46,7 @@ See full publication list at [Google Scholar](https://scholar.google.com/citatio
 ### Conferences
 5. __Clio: A Hardware-Software Co-Designed Disaggregated Memory System__
   <br> *Yizhou Shan, Zhiyuan Guo (co-first authors)*, Xuhao Luo, Yutong Huang, Yiying Zhang
-       [[Paper]](http://lastweek.io/pubs/clio.pdf)
-  <br> *__USENIX ATC 2020__*
-       [[Paper]](http://lastweek.io/pubs/ATC20-DPM.pdf)
-       [[Code]](https://github.com/WukLab/pDPM)
+  <br> [[Preprint]](http://lastweek.io/pubs/clio.pdf)
 4. __Disaggregating Persistent Memory and Controlling Them Remotely: An Exploration of Passive Disaggregated Key-Value Stores__
   <br> Shin-Yeh Tsai, *Yizhou Shan*, Yiying Zhang
   <br> *__USENIX ATC 2020__*
