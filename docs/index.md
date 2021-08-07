@@ -16,6 +16,7 @@ I also own these domains:
 Contact: ys AT ucsd DOT edu
 
 ??? tip "Research News"
+	- [_Aug 2021_] We made our Clio paper public. It is an FPGA-based disaggregated memory system.
 	- [_Jun 2021_] Start my final internship at Microsoft Research, working on Security + System.
 	- [_Jun 2021_] I proposed my thesis and became a Ph.D candidate.
 	- [_Jan 2021_] The DPM work is accepted to present at [NVMW'21](http://nvmw.ucsd.edu/)
