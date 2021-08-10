@@ -46,10 +46,10 @@ See full publication list at [Google Scholar](https://scholar.google.com/citatio
 
 ### Conferences
 5. __Clio: A Hardware-Software Co-Designed Disaggregated Memory System__
-  <br> *Yizhou Shan, Zhiyuan Guo (co-first authors)*, Xuhao Luo, Yutong Huang, Yiying Zhang
-  <br> [[Preprint]](http://lastweek.io/pubs/clio.pdf)
+  <br> **Yizhou Shan, Zhiyuan Guo (co-first authors)**, Xuhao Luo, Yutong Huang, Yiying Zhang
+  <br> [[Preprint]](https://arxiv.org/pdf/2108.03492.pdf)
 4. __Disaggregating Persistent Memory and Controlling Them Remotely: An Exploration of Passive Disaggregated Key-Value Stores__
-  <br> Shin-Yeh Tsai, *Yizhou Shan*, Yiying Zhang
+  <br> Shin-Yeh Tsai, **Yizhou Shan**, Yiying Zhang
   <br> *__USENIX ATC 2020__*
        [[Paper]](http://lastweek.io/pubs/ATC20-DPM.pdf)
        [[Code]](https://github.com/WukLab/pDPM)
@@ -59,14 +59,14 @@ See full publication list at [Google Scholar](https://scholar.google.com/citatio
        [[Keynote]](https://www.icloud.com/keynote/0Ox0HGeoa5L1pQ7txzyU_RkUA#ATC20-pDPM-iCloud-Public)
 
 3. __Storm: a fast transactional dataplane for remote data structures__
-  <br> Stanko Novakovic, *Yizhou Shan*, Aasheesh Kolli, Michael Cui, Yiying Zhang, Haggai Eran, Liran Liss, Michael Wei, Dan Tsafrir, Marcos Aguilera
+  <br> Stanko Novakovic, **Yizhou Shan**, Aasheesh Kolli, Michael Cui, Yiying Zhang, Haggai Eran, Liran Liss, Michael Wei, Dan Tsafrir, Marcos Aguilera
   <br> *__ACM SYSTOR 2019__* <font color='#c64444'>__(Best Paper Award)__</font>
        [[Paper]](http://lastweek.io/pubs/SYSTOR19-Storm.pdf)
        [[Slide]](http://www.systor.org/2019/slides/S6P1%20Storm%20A%20Fast%20Transactional%20Dataplane%20for%20Remote%20Data%20Structures.pdf)
        [[Talk]](https://www.youtube.com/watch?v=3ozwrzUVUJ4)
 
 2. __LegoOS: A Disseminated, Distributed OS for Hardware Resource Disaggregation__
-  <br> *Yizhou Shan*, Yutong Huang, Yilun Chen, Yiying Zhang
+  <br> **Yizhou Shan**, Yutong Huang, Yilun Chen, Yiying Zhang
   <br> *__USENIX OSDI 2018__* <font color='#c64444'>__(Best Paper Award)__</font>
        [[Paper]](https://www.usenix.org/conference/osdi18/presentation/shan) [[Code]](https://github.com/WukLab/LegoOS)
        [[Slide]](https://www.usenix.org/sites/default/files/conference/protected-files/osdi18_slides_shan.pdf)
@@ -74,7 +74,7 @@ See full publication list at [Google Scholar](https://scholar.google.com/citatio
        [[Talk]](https://www.youtube.com/watch?v=GX74Q2-ZOQE)
 
 1. __Distributed Shared Persistent Memory__
-  <br> *Yizhou Shan*, Shin-Yeh Tsai, Yiying Zhang
+  <br> **Yizhou Shan**, Shin-Yeh Tsai, Yiying Zhang
   <br> *__ACM SoCC 2017__*
        [[Paper]](http://lastweek.io/pubs/SoCC17-Hotpot.pdf) [[Code]](https://github.com/WukLab/Hotpot)
        [[Slide]](http://lastweek.io/pubs/slides/Yizhou-Hotpot-SoCC17.pptx)
