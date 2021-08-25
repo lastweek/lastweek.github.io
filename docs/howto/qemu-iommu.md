@@ -10,3 +10,5 @@ This blog explains how QEMU simulate IOMMU device
 and how you can add one of your own.
 We will take a brief read of Intel IOMMU, ARM SMMU, and Virtio-IOMMU.
 Finally we will add a new one to RISC-V virt machine mode.
+
+The plan is to write this doc at the end of Sep 2021.
