@@ -5,10 +5,10 @@ site_url: 'http://lastweek.io'
 nav:
 - Home: 'index.md'
 - Notes:
-   - 'Data Center Networking':                              'notes/dcn.md'
    - 'Modern Virtualization':                               'notes/virt.md'
    - 'Practical Cache Coherence':                           'notes/cache_coherence.md'
    - 'Dynamic Linking':                                     'notes/dynamic_linking.md'
+   - 'Data Center Networking':                              'notes/dcn.md'
    - 'Switch Buffering and Packet Scheduling':              'notes/packet-sched.md'
    - 'SysML':                                               'notes/sysml.md'
    - 'Architecture':                                        'notes/arch.md'
