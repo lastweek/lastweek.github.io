@@ -6,12 +6,8 @@ Hello! I'm Yizhou Shan, a Ph.D. candidate at [University of California San Diego
 advised by Prof. [Yiying Zhang](https://cseweb.ucsd.edu/~yiying/).
 I am a member of [UCSD Wuklab](http://wuklab.io) and [UCSD SysNet](https://www.sysnet.ucsd.edu/sysnet/).
 I was a [Purdue Boilermaker](https://engineering.purdue.edu/ECE) during 2016-2019.
-You can find my CV [here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
-I also own these domains:
-
-- [Disaggregated.Cloud](https://www.disaggregated.cloud/)
-- [LegoOS.io](https://www.legoos.io)
+My [CV](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 Contact: ys AT ucsd DOT edu
 
