@@ -31,14 +31,12 @@ Contact: ys AT ucsd DOT edu
 	- [_Jul 2018_] __LegoOS__ accepted to __OSDI'18__. Awarded Best Paper.
 	- [_May 2018_] Intern at [VMware Research](https://research.vmware.com/), with [Stanko Novakovic](https://sites.google.com/site/stankonovakovic/).
 
-## Research
+## Conference Publications
 
 I work on distributed system, networking, OS, hardware (FPGA), and their intersections.
 I'm getting into ML and database recently.
 
-### Conferences
-
-Full publication list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAAAAAJ&hl=en).
+[Google Scholar](https://scholar.google.com/citations?user=qgxGqYAAAAAJ&hl=en).
 
 6. __Disaggregating and Consolidating Network Functionalities with SuperNIC__
   <br> Yizhou Shan, Will Lin, Ryan Kosta, Arvind Krishnamurthy, Yiying Zhang
@@ -78,7 +76,7 @@ Full publication list at [Google Scholar](https://scholar.google.com/citations?u
        [[Slide]](http://lastweek.io/pubs/slides/Yizhou-Hotpot-SoCC17.pptx)
        [[Poster]](http://lastweek.io/pubs/slides/Poster-Hotpot-SoCC17.pptx)
 
-### Workshops
+## Workshops
 
 5. __Disaggregating Persistent Memory and Controlling Them Remotely: An Exploration of Passive Disaggregated Key-Value Stores__
   <br> Shin-Yeh Tsai, *Yizhou Shan*, Yiying Zhang
@@ -102,7 +100,7 @@ Full publication list at [Google Scholar](https://scholar.google.com/citations?u
   <br> Yiying Zhang, *Yizhou Shan*, Sumukh Hallymysore
   <br> *17th International Workshop on High Performance Transaction Systems (__HPTS 2017__)*  [[Paper]](http://hpts.ws/papers/2017/lego.pdf)
 
-### Posters
+## Posters
 
 3. __Lego: A Distributed, Decomposed OS for Resource Disaggregation__ [PDF](https://lastweek.github.io/pubs/SOSP17-Lego-Poster.pdf)
    <br> *Yizhou Shan*, Yilun Chen, Yutong Huang, Sumukh Hallymysore, Yiying Zhang
