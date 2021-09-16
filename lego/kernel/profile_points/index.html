@@ -14,7 +14,7 @@
         <link rel="canonical" href="http://lastweek.io/lego/kernel/profile_points/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.6">
     
     
       
@@ -22,10 +22,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ca7ac06f.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.802231af.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.f1a3b89f.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -123,14 +123,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -1873,33 +1877,33 @@
 <p>Lego profile points facility is added to trace specific functions, or even a small piece of code. It is added in the hope that it can help to find performance bottleneck. It is added in the hope that it can reduce the redundant coding chore.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <p>To trace TLB shootdown cost.
-<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">DEFINE_PROFILE_POINT</span><span class="p">(</span><span class="n">flush_tlb_others</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">DEFINE_PROFILE_POINT</span><span class="p">(</span><span class="n">flush_tlb_others</span><span class="p">)</span><span class="w"></span>
 </span>
-<span class="kt">void</span> <span class="n">flush_tlb_others</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="nc">cpumask</span> <span class="o">*</span><span class="n">cpumask</span><span class="p">,</span> <span class="k">struct</span> <span class="nc">mm_struct</span> <span class="o">*</span><span class="n">mm</span><span class="p">,</span>
-                      <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">start</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">end</span><span class="p">)</span>
-<span class="p">{</span>       
-        <span class="k">struct</span> <span class="nc">flush_tlb_info</span> <span class="n">info</span><span class="p">;</span>
-<span class="hll">        <span class="n">PROFILE_POINT_TIME</span><span class="p">(</span><span class="n">flush_tlb_others</span><span class="p">)</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">flush_tlb_others</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">struct</span> <span class="nc">cpumask</span><span class="w"> </span><span class="o">*</span><span class="n">cpumask</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span> <span class="nc">mm_struct</span><span class="w"> </span><span class="o">*</span><span class="n">mm</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">end</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w">       </span>
+<span class="w">        </span><span class="k">struct</span> <span class="nc">flush_tlb_info</span><span class="w"> </span><span class="n">info</span><span class="p">;</span><span class="w"></span>
+<span class="hll"><span class="w">        </span><span class="n">PROFILE_POINT_TIME</span><span class="p">(</span><span class="n">flush_tlb_others</span><span class="p">)</span><span class="w"></span>
 </span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">end</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-                <span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">PAGE_SIZE</span><span class="p">;</span>
-        <span class="n">info</span><span class="p">.</span><span class="n">flush_mm</span> <span class="o">=</span> <span class="n">mm</span><span class="p">;</span>
-        <span class="n">info</span><span class="p">.</span><span class="n">flush_start</span> <span class="o">=</span> <span class="n">start</span><span class="p">;</span>
-        <span class="n">info</span><span class="p">.</span><span class="n">flush_end</span> <span class="o">=</span> <span class="n">end</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">end</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">PAGE_SIZE</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">info</span><span class="p">.</span><span class="n">flush_mm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mm</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">info</span><span class="p">.</span><span class="n">flush_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">start</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">info</span><span class="p">.</span><span class="n">flush_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">end</span><span class="p">;</span><span class="w"></span>
 
-<span class="hll">        <span class="n">profile_point_start</span><span class="p">(</span><span class="n">flush_tlb_others</span><span class="p">);</span>
-</span>        <span class="n">smp_call_function_many</span><span class="p">(</span><span class="n">cpumask</span><span class="p">,</span> <span class="n">flush_tlb_func</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">info</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<span class="hll">        <span class="n">profile_point_leave</span><span class="p">(</span><span class="n">flush_tlb_others</span><span class="p">);</span>
-</span><span class="p">}</span>
+<span class="hll"><span class="w">        </span><span class="n">profile_point_start</span><span class="p">(</span><span class="n">flush_tlb_others</span><span class="p">);</span><span class="w"></span>
+</span><span class="w">        </span><span class="n">smp_call_function_many</span><span class="p">(</span><span class="n">cpumask</span><span class="p">,</span><span class="w"> </span><span class="n">flush_tlb_func</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">info</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="hll"><span class="w">        </span><span class="n">profile_point_leave</span><span class="p">(</span><span class="n">flush_tlb_others</span><span class="p">);</span><span class="w"></span>
+</span><span class="p">}</span><span class="w"></span>
 </code></pre></div></p>
 <p>Explanation: <code>DEFINE_PROFILE_POINT()</code> will define a local structure, that contains the profile point name, number of invoked times, and total execution time. <code>PROFILE_POINT_TIME()</code> will define a stack local variable, to save the starting time. <code>profile_point_start()</code> will save the current time in nanosecond, while <code>profile_point_leave()</code> will calculate the execution of this run, and update the global counters defined by <code>DEFINE_PROFILE_POINT()</code>.</p>
 <p>System-wide profile points will be printed together if you invoke <code>print_profile_points()</code>:
-<div class="highlight"><pre><span></span><code><span class="p">[</span> <span class="mf">1017.422911</span><span class="p">]</span> <span class="n">Kernel</span> <span class="n">Profile</span> <span class="n">Points</span>
-<span class="p">[</span> <span class="mf">1017.426594</span><span class="p">]</span>  <span class="n">status</span>                  <span class="n">name</span>             <span class="n">total</span>                <span class="n">nr</span>            <span class="n">avg</span><span class="p">.</span><span class="n">ns</span>
-<span class="p">[</span> <span class="mf">1017.436292</span><span class="p">]</span> <span class="o">-------</span>  <span class="o">--------------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>
-<span class="p">[</span> <span class="mf">1017.445988</span><span class="p">]</span>     <span class="n">off</span>      <span class="n">flush_tlb_others</span>       <span class="mf">0.000153470</span>                <span class="mi">55</span>              <span class="mi">2791</span>
-<span class="p">[</span> <span class="mf">1017.455685</span><span class="p">]</span>     <span class="n">off</span>     <span class="n">pcache_cache_miss</span>      <span class="mf">16.147020152</span>            <span class="mi">274698</span>             <span class="mi">58781</span>
-<span class="p">[</span> <span class="mf">1017.465381</span><span class="p">]</span> <span class="o">-------</span>  <span class="o">--------------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>  <span class="o">----------------</span>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="w"> </span><span class="mf">1017.422911</span><span class="p">]</span><span class="w"> </span><span class="n">Kernel</span><span class="w"> </span><span class="n">Profile</span><span class="w"> </span><span class="n">Points</span><span class="w"></span>
+<span class="p">[</span><span class="w"> </span><span class="mf">1017.426594</span><span class="p">]</span><span class="w">  </span><span class="n">status</span><span class="w">                  </span><span class="n">name</span><span class="w">             </span><span class="n">total</span><span class="w">                </span><span class="n">nr</span><span class="w">            </span><span class="n">avg</span><span class="p">.</span><span class="n">ns</span><span class="w"></span>
+<span class="p">[</span><span class="w"> </span><span class="mf">1017.436292</span><span class="p">]</span><span class="w"> </span><span class="o">-------</span><span class="w">  </span><span class="o">--------------------</span><span class="w">  </span><span class="o">----------------</span><span class="w">  </span><span class="o">----------------</span><span class="w">  </span><span class="o">----------------</span><span class="w"></span>
+<span class="p">[</span><span class="w"> </span><span class="mf">1017.445988</span><span class="p">]</span><span class="w">     </span><span class="n">off</span><span class="w">      </span><span class="n">flush_tlb_others</span><span class="w">       </span><span class="mf">0.000153470</span><span class="w">                </span><span class="mi">55</span><span class="w">              </span><span class="mi">2791</span><span class="w"></span>
+<span class="p">[</span><span class="w"> </span><span class="mf">1017.455685</span><span class="p">]</span><span class="w">     </span><span class="n">off</span><span class="w">     </span><span class="n">pcache_cache_miss</span><span class="w">      </span><span class="mf">16.147020152</span><span class="w">            </span><span class="mi">274698</span><span class="w">             </span><span class="mi">58781</span><span class="w"></span>
+<span class="p">[</span><span class="w"> </span><span class="mf">1017.465381</span><span class="p">]</span><span class="w"> </span><span class="o">-------</span><span class="w">  </span><span class="o">--------------------</span><span class="w">  </span><span class="o">----------------</span><span class="w">  </span><span class="o">----------------</span><span class="w">  </span><span class="o">----------------</span><span class="w"></span>
 </code></pre></div></p>
 <h2 id="mechanism">Mechanism<a class="headerlink" href="#mechanism" title="Permanent link">&para;</a></h2>
 <p>Once again, the profile points are aggregated by linker script. Each profile point will be in a special section <code>.profile.point</code>. The linker will merge them into one section, and export the starting and ending address of this section.</p>
@@ -1908,27 +1912,27 @@
 
 <span class="cp">#define DEFINE_PROFILE_POINT(name)                                                      \</span>
 <span class="cp">        struct profile_point _PP_NAME(name) __profile_point = {</span>
-        <span class="p">...</span>
-        <span class="p">...</span>
-        <span class="p">};</span>
+<span class="w">        </span><span class="p">...</span><span class="w"></span>
+<span class="w">        </span><span class="p">...</span><span class="w"></span>
+<span class="w">        </span><span class="p">};</span><span class="w"></span>
 </code></pre></div></p>
 <p>Part II. Link script merge.
-<div class="highlight"><pre><span></span><code><span class="p">.</span> <span class="o">=</span> <span class="n">ALIGN</span><span class="p">(</span><span class="n">L1_CACHE_BYTES</span><span class="p">);</span>
-<span class="p">.</span><span class="n">profile</span><span class="p">.</span><span class="nl">point</span> <span class="p">:</span> <span class="n">AT</span><span class="p">(</span><span class="n">ADDR</span><span class="p">(.</span><span class="n">profile</span><span class="p">.</span><span class="n">point</span><span class="p">)</span> <span class="o">-</span> <span class="n">LOAD_OFFSET</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">__sprofilepoint</span> <span class="o">=</span> <span class="p">.;</span>
-    <span class="o">*</span><span class="p">(.</span><span class="n">profile</span><span class="p">.</span><span class="n">point</span><span class="p">)</span>
-    <span class="n">__eprofilepoint</span> <span class="o">=</span> <span class="p">.;</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="p">.</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ALIGN</span><span class="p">(</span><span class="n">L1_CACHE_BYTES</span><span class="p">);</span><span class="w"></span>
+<span class="p">.</span><span class="n">profile</span><span class="p">.</span><span class="nl">point</span> <span class="p">:</span><span class="w"> </span><span class="n">AT</span><span class="p">(</span><span class="n">ADDR</span><span class="p">(.</span><span class="n">profile</span><span class="p">.</span><span class="n">point</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">LOAD_OFFSET</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">__sprofilepoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.;</span><span class="w"></span>
+<span class="w">    </span><span class="o">*</span><span class="p">(.</span><span class="n">profile</span><span class="p">.</span><span class="n">point</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">__eprofilepoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div></p>
 <p>Part III. Walk through.
-<div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">print_profile_points</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-        <span class="k">struct</span> <span class="nc">profile_point</span> <span class="o">*</span><span class="n">pp</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">print_profile_points</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">struct</span> <span class="nc">profile_point</span><span class="w"> </span><span class="o">*</span><span class="n">pp</span><span class="p">;</span><span class="w"></span>
 
-        <span class="k">for</span> <span class="p">(</span><span class="n">pp</span> <span class="o">=</span> <span class="n">__sprofilepoint</span><span class="p">;</span> <span class="n">pp</span> <span class="o">&lt;</span> <span class="n">__eprofilepoint</span><span class="p">;</span> <span class="n">pp</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">print_profile_point</span><span class="p">(</span><span class="n">pp</span><span class="p">);</span>
-        <span class="p">...</span>
-    <span class="p">}</span>  
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">pp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__sprofilepoint</span><span class="p">;</span><span class="w"> </span><span class="n">pp</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">__eprofilepoint</span><span class="p">;</span><span class="w"> </span><span class="n">pp</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">print_profile_point</span><span class="p">(</span><span class="n">pp</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w">  </span>
 </code></pre></div></p>
 <p>I really love the linker script. ;-)</p>
 <p>&ndash;<br />
@@ -1964,8 +1968,9 @@ Last Updated: April 06, 2018</p>
           </div>
         </div>
         
-          <a href="#" class="md-top md-icon" title="Back to top" data-md-component="top" data-md-state="hidden">
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
           </a>
         
       </main>
@@ -2027,10 +2032,10 @@ Last Updated: April 06, 2018</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.409db549.min.js", "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.76f349be.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.756773cc.min.js"></script>
       
     
   </body>
