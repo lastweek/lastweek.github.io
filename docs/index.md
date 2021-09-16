@@ -12,6 +12,7 @@ My [CV](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 Contact: ys AT ucsd DOT edu
 
 ??? tip "Research News"
+	- [_Sep 2021_] We made our SuperNIC paper public. Network? Disaggregate!
 	- [_Aug 2021_] We made our Clio paper public. It is an FPGA-based disaggregated memory system.
 	- [_Jun 2021_] Start my final internship at Microsoft Research, working on Security + System.
 	- [_Jun 2021_] I proposed my thesis and became a Ph.D candidate.
@@ -41,6 +42,9 @@ All of my projects are open source at https://github.com/lastweek and https://gi
 See full publication list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAAAAAJ&hl=en).
 
 ### Conferences
+6. __Disaggregating and Consolidating Network Functionalities with SuperNIC__
+  <br> Yizhou Shan, Will Lin, Ryan Kosta, Arvind Krishnamurthy, Yiying Zhang
+  <br> [[Preprint]](http://lastweek.io/pubs/snic-arxiv.pdf)
 5. __Clio: A Hardware-Software Co-Designed Disaggregated Memory System__
   <br> *Yizhou Shan, Zhiyuan Guo (co-first authors)*, Xuhao Luo, Yutong Huang, Yiying Zhang
   <br> [[Preprint]](https://arxiv.org/pdf/2108.03492.pdf)
