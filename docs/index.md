@@ -2,7 +2,7 @@
 <img src="images/me.png" height=150 width=100>
 </p>
 
-Hello! I'm Yizhou Shan, a Ph.D. candidate at [University of California San Diego, CSE](https://cse.ucsd.edu/),
+Hello! I'm Yizhou Shan, a Ph.D. candidate at [University of California San Diego](https://cse.ucsd.edu/),
 advised by Prof. [Yiying Zhang](https://cseweb.ucsd.edu/~yiying/).
 I am a member of [UCSD Wuklab](http://wuklab.io) and [UCSD SysNet](https://www.sysnet.ucsd.edu/sysnet/).
 I was a [Purdue Boilermaker](https://engineering.purdue.edu/ECE) during 2016-2019.
@@ -33,21 +33,19 @@ Contact: ys AT ucsd DOT edu
 
 ## Research
 
-During my doctoral research, I'm working on
-distributed system, networking, operating system, hardware (FPGA), and their intersections.
-My most recent research focus is on disaggregated datacenter, designing its hardware, OS, and upper layer applications.
-
-All of my projects are open source at https://github.com/lastweek and https://github.com/WukLab.
-
-See full publication list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAAAAAJ&hl=en).
+I work on distributed system, networking, OS, hardware (FPGA), and their intersections.
+I'm getting into ML and database recently.
 
 ### Conferences
+
+Full publication list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAAAAAJ&hl=en).
+
 6. __Disaggregating and Consolidating Network Functionalities with SuperNIC__
   <br> Yizhou Shan, Will Lin, Ryan Kosta, Arvind Krishnamurthy, Yiying Zhang
-  <br> [[Preprint]](http://lastweek.io/pubs/snic-arxiv.pdf)
+  <br> [[Preprint 2021]](http://lastweek.io/pubs/snic-arxiv.pdf)
 5. __Clio: A Hardware-Software Co-Designed Disaggregated Memory System__
-  <br> *Yizhou Shan, Zhiyuan Guo (co-first authors)*, Xuhao Luo, Yutong Huang, Yiying Zhang
-  <br> [[Preprint]](https://arxiv.org/pdf/2108.03492.pdf)
+  <br> Yizhou Shan, Zhiyuan Guo (co-first authors), Xuhao Luo, Yutong Huang, Yiying Zhang
+  <br> [[Preprint 2021]](https://arxiv.org/pdf/2108.03492.pdf)
 4. __Disaggregating Persistent Memory and Controlling Them Remotely: An Exploration of Passive Disaggregated Key-Value Stores__
   <br> Shin-Yeh Tsai, *Yizhou Shan*, Yiying Zhang
   <br> *__USENIX ATC 2020__*
