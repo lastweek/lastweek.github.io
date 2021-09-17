@@ -14,7 +14,7 @@
         <link rel="canonical" href="http://lastweek.io/notes/hardware_pl/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
     
     
       
@@ -1991,11 +1991,11 @@ Besides, you can use Scala Functional Programming to express hardware, really po
 1. <strong>Connection</strong>.
 I need to connect a lot of AxiStream interfaces very frequently.
 To connect an input port onto an output port, we can do something like the following snippets.
-<div class="highlight"><pre><span></span><code><span class="n">io</span><span class="p">.</span><span class="n">in</span> <span class="o">&gt;&gt;</span> <span class="n">io</span><span class="p">.</span><span class="n">out</span><span class="p">.</span>
+<div class="highlight"><pre><span></span><code><span class="n">io</span><span class="o">.</span><span class="n">in</span> <span class="o">&gt;&gt;</span> <span class="n">io</span><span class="o">.</span><span class="n">out</span><span class="o">.</span>
 </code></pre></div>
 2. <strong>Functional Programming</strong>.
 I can do something like this to get the sum of an array:
-<div class="highlight"><pre><span></span><code><span class="n">array</span><span class="p">.</span><span class="n">foldLeft</span><span class="p">(</span><span class="mi">0</span><span class="p">)(</span><span class="n">_+_</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">array</span><span class="o">.</span><span class="n">foldLeft</span><span class="o">(</span><span class="mi">0</span><span class="o">)(</span><span class="k">_</span><span class="o">+</span><span class="k">_</span><span class="o">)</span>
 </code></pre></div></p>
 <h2 id="google-xls">Google XLS<a class="headerlink" href="#google-xls" title="Permanent link">&para;</a></h2>
 <p>The <a href="https://google.github.io/xls/">XLS (Accelerated HW Synthesis)</a> project is a Rust-like DSL for hardware development.</p>
@@ -2045,7 +2045,7 @@ This is also an early-stage LLVM project.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 14, 2020</span>
+      Last update: November 14, 2020
       
     
   </small>
@@ -2129,10 +2129,10 @@ This is also an early-stage LLVM project.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.76f349be.min.js"></script>
+      <script src="../../assets/javascripts/bundle.82b56eb2.min.js"></script>
       
     
   </body>

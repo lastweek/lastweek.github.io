@@ -14,7 +14,7 @@
         <link rel="canonical" href="http://lastweek.io/lego/kernel/stop_machine/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
     
     
       
@@ -1813,11 +1813,11 @@
                 <h1 id="the-highest-priority-thread-in-kernel">The highest priority thread in kernel<a class="headerlink" href="#the-highest-priority-thread-in-kernel" title="Permanent link">&para;</a></h1>
 <p>This document is about <code>migration/N</code> kernel threads, <code>stop_sched</code> schdueling class, and the interesting source file <code>kernel/stop_machine.c</code>. Background on kernel scheduler design is recommended.</p>
 <p>Scheduler uses the following code to pick the next runnable task:
-<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kr">inline</span> <span class="k">struct</span> <span class="nc">task_struct</span> <span class="o">*</span>
-<span class="n">pick_next_task</span><span class="p">(</span><span class="k">struct</span> <span class="nc">rq</span> <span class="o">*</span><span class="n">rq</span><span class="p">,</span> <span class="k">struct</span> <span class="nc">task_struct</span> <span class="o">*</span><span class="n">prev</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kr">inline</span> <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span>
+<span class="nf">pick_next_task</span><span class="p">(</span><span class="k">struct</span> <span class="n">rq</span> <span class="o">*</span><span class="n">rq</span><span class="p">,</span> <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">prev</span><span class="p">)</span>
 <span class="p">{</span>
-        <span class="k">struct</span> <span class="nc">task_struct</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
-        <span class="k">const</span> <span class="k">struct</span> <span class="nc">sched_class</span> <span class="o">*</span><span class="n">class</span><span class="p">;</span>
+        <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+        <span class="k">const</span> <span class="k">struct</span> <span class="n">sched_class</span> <span class="o">*</span><span class="n">class</span><span class="p">;</span>
 
 <span class="nl">again</span><span class="p">:</span>
         <span class="n">for_each_class</span><span class="p">(</span><span class="n">class</span><span class="p">)</span> <span class="p">{</span>
@@ -1839,12 +1839,12 @@
 <p>Clearly, the highest priority class is <code>stop_sched_class</code>. Whenever this scheduling has class runnable threads, scheduler will always run them first. So what kernel threads are using this scheduling class? Well, you must have seen something like <code>migration/0</code> when you do <code>ps aux</code> in Linux. And yes, these kernel threads are the only users.</p>
 <p>These threads are sleeping most of their lifetime, they will be invoked to do some very urgent stuff. For example, when a user thread that is currently running on CPU0 calls <code>sched_setaffinity()</code> to bind to CPU1, kernel is not able to do this because this user thread is currently running (runqueue can not move a <em>running</em> task out, it can only move queued task out). Then, scheduler has to ask <code>migration/0</code> for help. Once there is a job enqueued, <code>migration/0</code> will be invoked. Since it has the highest-priority, it will start execution immediately. Thus the migration from CPU0 to CPU1 is performed safely and fast.</p>
 <p><code>migration</code> code is defined in <code>kernel/stop_machine.c</code>. They are created during early boot. They use the <code>smpboot_register_percpu_thread</code> to create threads. They are written in this way because Linux supports cpu hotplug. To simplify we can also create them manually through <code>kthread_create</code>. Since Lego does not support cpu hotplug, and this <code>cpu_stop_init</code> is called after SMP is initialized, so Lego has slight different initialiaztion:
-<div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="n">__init</span> <span class="n">cpu_stop_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="n">__init</span> <span class="nf">cpu_stop_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">cpu</span><span class="p">;</span>
 
         <span class="n">for_each_possible_cpu</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">struct</span> <span class="nc">cpu_stopper</span> <span class="o">*</span><span class="n">stopper</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">per_cpu</span><span class="p">(</span><span class="n">cpu_stopper</span><span class="p">,</span> <span class="n">cpu</span><span class="p">);</span>
+                <span class="k">struct</span> <span class="n">cpu_stopper</span> <span class="o">*</span><span class="n">stopper</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">per_cpu</span><span class="p">(</span><span class="n">cpu_stopper</span><span class="p">,</span> <span class="n">cpu</span><span class="p">);</span>
 
                 <span class="n">spin_lock_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stopper</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">);</span>
                 <span class="n">INIT_LIST_HEAD</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stopper</span><span class="o">-&gt;</span><span class="n">works</span><span class="p">);</span>
@@ -1864,15 +1864,15 @@
 <p>Internally, it also use a list to keep enqueued jobs. Once the thread is waken up, it tries to lookup this list and dequeue jobs (similar to kthread creation, kworker etc.):
 <div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">void</span> <span class="nf">cpu_stopper_thread</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">cpu</span><span class="p">)</span>
 <span class="p">{</span>
-        <span class="k">struct</span> <span class="nc">cpu_stopper</span> <span class="o">*</span><span class="n">stopper</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">per_cpu</span><span class="p">(</span><span class="n">cpu_stopper</span><span class="p">,</span> <span class="n">cpu</span><span class="p">);</span>
-        <span class="k">struct</span> <span class="nc">cpu_stop_work</span> <span class="o">*</span><span class="n">work</span><span class="p">;</span>
+        <span class="k">struct</span> <span class="n">cpu_stopper</span> <span class="o">*</span><span class="n">stopper</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">per_cpu</span><span class="p">(</span><span class="n">cpu_stopper</span><span class="p">,</span> <span class="n">cpu</span><span class="p">);</span>
+        <span class="k">struct</span> <span class="n">cpu_stop_work</span> <span class="o">*</span><span class="n">work</span><span class="p">;</span>
 
 <span class="nl">repeat</span><span class="p">:</span>
         <span class="n">work</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
         <span class="n">spin_lock_irq</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stopper</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">);</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">list_empty</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stopper</span><span class="o">-&gt;</span><span class="n">works</span><span class="p">))</span> <span class="p">{</span>
                 <span class="n">work</span> <span class="o">=</span> <span class="n">list_first_entry</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stopper</span><span class="o">-&gt;</span><span class="n">works</span><span class="p">,</span>
-                                        <span class="k">struct</span> <span class="nc">cpu_stop_work</span><span class="p">,</span> <span class="n">list</span><span class="p">);</span>
+                                        <span class="k">struct</span> <span class="n">cpu_stop_work</span><span class="p">,</span> <span class="n">list</span><span class="p">);</span>
                 <span class="n">list_del_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">work</span><span class="o">-&gt;</span><span class="n">list</span><span class="p">);</span>
         <span class="p">}</span>   
         <span class="n">spin_unlock_irq</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stopper</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">);</span>
@@ -1887,8 +1887,8 @@
 </code></pre></div></p>
 <p>It has several interesting public APIs that are quite similar to <code>smp_call_functions</code>, but the difference is: this set of APIs provide a guaranteed time-to-execute waiting time, because it will simply preempt anything running on CPU.</p>
 <div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">stop_one_cpu</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">cpu</span><span class="p">,</span> <span class="n">cpu_stop_fn_t</span> <span class="n">fn</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
-<span class="kt">int</span> <span class="nf">stop_cpus</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="nc">cpumask</span> <span class="o">*</span><span class="n">cpumask</span><span class="p">,</span> <span class="n">cpu_stop_fn_t</span> <span class="n">fn</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
-<span class="kt">int</span> <span class="nf">try_stop_cpus</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="nc">cpumask</span> <span class="o">*</span><span class="n">cpumask</span><span class="p">,</span> <span class="n">cpu_stop_fn_t</span> <span class="n">fn</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">stop_cpus</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">cpumask</span> <span class="o">*</span><span class="n">cpumask</span><span class="p">,</span> <span class="n">cpu_stop_fn_t</span> <span class="n">fn</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">try_stop_cpus</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">cpumask</span> <span class="o">*</span><span class="n">cpumask</span><span class="p">,</span> <span class="n">cpu_stop_fn_t</span> <span class="n">fn</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
 </code></pre></div>
 <p>They are used only when there are some very urgent things to do. So, please use with caution.</p>
 <p>&ndash;<br />
@@ -1903,7 +1903,7 @@ Last Updated: Feb 12, 2018</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 20, 2018</span>
+      Last update: February 20, 2018
       
     
   </small>
@@ -1987,10 +1987,10 @@ Last Updated: Feb 12, 2018</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.76f349be.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.82b56eb2.min.js"></script>
       
     
   </body>

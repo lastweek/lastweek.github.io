@@ -14,7 +14,7 @@
         <link rel="canonical" href="http://lastweek.io/lego/kernel/loader/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
     
     
       
@@ -2218,7 +2218,7 @@
 <p>Memory manager side will do most of the dirty loading work. It will parse the ELF image, create new VMAs based on ELF information. After that, it only pass <code>start_ip</code> and <code>start_stack</code> back to processor manager. Once processor manager starts running this new execution, pages will be fetched from memory component on demand.</p>
 <h4 id="load-ld-linux">Load ld-linux<a class="headerlink" href="#load-ld-linux" title="Permanent link">&para;</a></h4>
 <p>For dynamically-linked images, kernel ELF loader needs to load the <code>ld-linux.so</code> as well. It will first try to map the <code>ld-linux.so</code> into this process&rsquo;s virtual address space. Furthermore, the first user instruction that will run is no longer <code>__libc_main_start</code>, kernel will transfer the kernel to <code>ld-linux.so</code> instead. Thus, for a normal user program, <code>ld-linux.so</code> will load all the shared libraries before running glibc.</p>
-<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">int</span> <span class="nf">load_elf_binary</span><span class="p">(</span><span class="k">struct</span> <span class="nc">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="nc">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">int</span> <span class="nf">load_elf_binary</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
                            <span class="n">u64</span> <span class="o">*</span><span class="n">new_ip</span><span class="p">,</span> <span class="n">u64</span> <span class="o">*</span><span class="n">new_sp</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">argv_len</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">envp_len</span><span class="p">)</span>
 <span class="p">{</span>
 
@@ -2272,9 +2272,9 @@
 <p>We also need to release the old mm, and allocate a new mm. The new mm only has the high address kernel mapping established. Do note that in Lego, pgtable is used to emulate the processor cache:
 <div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">int</span> <span class="nf">exec_mmap</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
-        <span class="k">struct</span> <span class="nc">mm_struct</span> <span class="o">*</span><span class="n">new_mm</span><span class="p">;</span>
-        <span class="k">struct</span> <span class="nc">mm_struct</span> <span class="o">*</span><span class="n">old_mm</span><span class="p">;</span>
-        <span class="k">struct</span> <span class="nc">task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">;</span>
+        <span class="k">struct</span> <span class="n">mm_struct</span> <span class="o">*</span><span class="n">new_mm</span><span class="p">;</span>
+        <span class="k">struct</span> <span class="n">mm_struct</span> <span class="o">*</span><span class="n">old_mm</span><span class="p">;</span>
+        <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">;</span>
 
         <span class="n">new_mm</span> <span class="o">=</span> <span class="n">mm_alloc</span><span class="p">();</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">new_mm</span><span class="p">)</span>
@@ -2299,7 +2299,7 @@
 <p>This is performed by <code>flush_thread()</code>, which is an architecture-specific callback. In x86, we need to clear FPU state, and reset TLS array:
 <div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">flush_thread</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
-        <span class="k">struct</span> <span class="nc">task_struct</span> <span class="o">*</span><span class="n">tsk</span> <span class="o">=</span> <span class="n">current</span><span class="p">;</span>
+        <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">tsk</span> <span class="o">=</span> <span class="n">current</span><span class="p">;</span>
         <span class="n">memset</span><span class="p">(</span><span class="n">tsk</span><span class="o">-&gt;</span><span class="kr">thread</span><span class="p">.</span><span class="n">tls_array</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">tsk</span><span class="o">-&gt;</span><span class="kr">thread</span><span class="p">.</span><span class="n">tls_array</span><span class="p">));</span>
 
         <span class="n">fpu__clear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tsk</span><span class="o">-&gt;</span><span class="kr">thread</span><span class="p">.</span><span class="n">fpu</span><span class="p">);</span>
@@ -2325,7 +2325,7 @@
 <span class="cm"> * @new_ip: the first instruction IP of user thread</span>
 <span class="cm"> * @new_sp: the new stack pointer of user thread</span>
 <span class="cm"> */</span>
-<span class="kt">void</span> <span class="nf">start_thread</span><span class="p">(</span><span class="k">struct</span> <span class="nc">pt_regs</span> <span class="o">*</span><span class="n">regs</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">new_ip</span><span class="p">,</span>
+<span class="kt">void</span> <span class="nf">start_thread</span><span class="p">(</span><span class="k">struct</span> <span class="n">pt_regs</span> <span class="o">*</span><span class="n">regs</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">new_ip</span><span class="p">,</span>
                   <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">new_sp</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="n">loadsegment</span><span class="p">(</span><span class="n">fs</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
@@ -2401,11 +2401,11 @@
 <hr />
 <h4 id="pre-populated-bss-and-brk">Pre-Populated <code>.bss</code> and <code>.brk</code><a class="headerlink" href="#pre-populated-bss-and-brk" title="Permanent link">&para;</a></h4>
 <p>The heap vma created at loading time is a combination of <code>.bss</code> and <code>.brk</code> segments. Since brk usage is 0 (will it be non-zero?) at this moment, so the heap vma is essentially just <code>.bss</code> pages. Normally, Linux kernel does not populate pages for this vma during loading, but Lego does. It can save several page allocation cost for heap pcache miss. It is controlled by <code>vm_brk()</code>.
-<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">vm_brk</span><span class="p">(</span><span class="k">struct</span> <span class="nc">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">vm_brk</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span>
            <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">start</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">len</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="kt">int</span> <span class="n">ret</span><span class="p">;</span>
-        <span class="k">struct</span> <span class="nc">lego_mm_struct</span> <span class="o">*</span><span class="n">mm</span> <span class="o">=</span> <span class="n">tsk</span><span class="o">-&gt;</span><span class="n">mm</span><span class="p">;</span>
+        <span class="k">struct</span> <span class="n">lego_mm_struct</span> <span class="o">*</span><span class="n">mm</span> <span class="o">=</span> <span class="n">tsk</span><span class="o">-&gt;</span><span class="n">mm</span><span class="p">;</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="n">down_write_killable</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mm</span><span class="o">-&gt;</span><span class="n">mmap_sem</span><span class="p">))</span>
                 <span class="k">return</span> <span class="o">-</span><span class="n">EINTR</span><span class="p">;</span>
@@ -2426,7 +2426,7 @@
 <div class="highlight"><pre><span></span><code>7ffffffde000-7ffffffff000 rw-p 00000000 [stack]
 </code></pre></div></p>
 <p>The code to expand stack is done when ELF loader tries to finalize the stack vma, by calling <code>setup_arg_pages()</code>:
-<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">setup_arg_pages</span><span class="p">(</span><span class="k">struct</span> <span class="nc">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="nc">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">setup_arg_pages</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
                     <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">stack_top</span><span class="p">,</span> <span class="kt">int</span> <span class="n">executable_stack</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="p">...</span>
@@ -2448,7 +2448,7 @@
 <hr />
 <h4 id="disabled-randomized-top-of-stack">Disabled Randomized Top of Stack<a class="headerlink" href="#disabled-randomized-top-of-stack" title="Permanent link">&para;</a></h4>
 <p>Lego currently does not randomize the stack top. The stack vma is allocated by <code>bprm_mm_init()</code> at early execve time. There is no randomization at the allocation time, and this applies to all exectuable formats. The end of vma is just <code>TASK_SIZE</code>:
-<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">int</span> <span class="nf">__bprm_mm_init</span><span class="p">(</span><span class="k">struct</span> <span class="nc">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">int</span> <span class="nf">__bprm_mm_init</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="p">...</span>
         <span class="n">vma</span><span class="o">-&gt;</span><span class="n">vm_end</span> <span class="o">=</span> <span class="n">TASK_SIZE</span><span class="p">;</span>
@@ -2457,11 +2457,11 @@
 <span class="p">(</span><span class="n">managers</span><span class="o">/</span><span class="n">memory</span><span class="o">/</span><span class="n">loader</span><span class="o">/</span><span class="n">elf</span><span class="p">.</span><span class="n">c</span><span class="p">)</span>
 </code></pre></div></p>
 <p>Top of stack randomization happens within each specific format loader. They do this by calling back to virtual loader layer&rsquo;s <code>setup_arg_pages()</code> function, which is used to finalize the top of stack:
-<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">setup_arg_pages</span><span class="p">(</span><span class="k">struct</span> <span class="nc">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="nc">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">setup_arg_pages</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
                     <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">stack_top</span><span class="p">,</span> <span class="kt">int</span> <span class="n">executable_stack</span><span class="p">);</span>
 </code></pre></div></p>
 <p>So, to actually randomize the top of stack, you can simply do the following:
-<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">randomize_stack_top</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">stack_top</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="nf">randomize_stack_top</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">stack_top</span><span class="p">)</span>
 <span class="p">{</span>                                
         <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">random_variable</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
@@ -2478,7 +2478,7 @@
 <span class="cp">#endif</span>
 <span class="p">}</span>
 
-<span class="k">static</span> <span class="kt">int</span> <span class="n">load_elf_binary</span><span class="p">(</span><span class="k">struct</span> <span class="nc">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="nc">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">load_elf_binary</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
                            <span class="n">u64</span> <span class="o">*</span><span class="n">new_ip</span><span class="p">,</span> <span class="n">u64</span> <span class="o">*</span><span class="n">new_sp</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">argv_len</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">envp_len</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="p">...</span>
@@ -2488,7 +2488,7 @@
 <span class="p">}</span>
 </code></pre></div></p>
 <p>However, current Lego disables randomization by passing <code>TASK_SIZE</code>:
-<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">int</span> <span class="nf">load_elf_binary</span><span class="p">(</span><span class="k">struct</span> <span class="nc">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="nc">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">int</span> <span class="nf">load_elf_binary</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
                            <span class="n">u64</span> <span class="o">*</span><span class="n">new_ip</span><span class="p">,</span> <span class="n">u64</span> <span class="o">*</span><span class="n">new_sp</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">argv_len</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">envp_len</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="p">...</span>
@@ -2508,7 +2508,7 @@
 </ul>
 <p>The reason to add it back is simple: if those syscalls are used <code>a lot</code> and hurt overall performance. Do note that when we add it back, it will be different from the common design: vDSO <code>must</code> be mapped at processor side, mapped in our emulated pgtable.</p>
 <p>Below is the original part where loader maps vDSO:
-<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">int</span> <span class="nf">load_elf_binary</span><span class="p">(</span><span class="k">struct</span> <span class="nc">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="nc">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">int</span> <span class="nf">load_elf_binary</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
                            <span class="n">u64</span> <span class="o">*</span><span class="n">new_ip</span><span class="p">,</span> <span class="n">u64</span> <span class="o">*</span><span class="n">new_sp</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">argv_len</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">envp_len</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="p">...</span>
@@ -2535,8 +2535,8 @@
 <span class="p">}</span>
 </code></pre></div></p>
 <p>Besides, don&rsquo;t forget to report the <code>vDSO</code> address in the aux vector:
-<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">int</span> <span class="nf">create_elf_tables</span><span class="p">(</span><span class="k">struct</span> <span class="nc">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="nc">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
-                <span class="k">struct</span> <span class="nc">elfhdr</span> <span class="o">*</span><span class="n">exec</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">load_addr</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">interp_load_addr</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">int</span> <span class="nf">create_elf_tables</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
+                <span class="k">struct</span> <span class="n">elfhdr</span> <span class="o">*</span><span class="n">exec</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">load_addr</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">interp_load_addr</span><span class="p">,</span>
                 <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">argv_len</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">envp_len</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="p">...</span>
@@ -2564,7 +2564,7 @@ Last Updated: Feb 27, 2018</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 27, 2018</span>
+      Last update: February 27, 2018
       
     
   </small>
@@ -2648,10 +2648,10 @@ Last Updated: Feb 27, 2018</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.76f349be.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.82b56eb2.min.js"></script>
       
     
   </body>

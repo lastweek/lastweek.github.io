@@ -14,7 +14,7 @@
         <link rel="canonical" href="http://lastweek.io/notes/dynamic_linking/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
     
     
       
@@ -2032,34 +2032,34 @@ You can run <code>man ld.so</code> to see more details.</p>
 <li><code>GOT[2]</code> points to <code>_dl_runtime_resolve()</code>! This is the runtime dynamic linker entry point.</li>
 </ul>
 <p>File <code>sysdep/generic/dl-machine.c</code> populates <code>GOT[1]</code> and <code>GOT[2]</code>.
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="cm">/* Set up the loaded object described by L so its unrelocated PLT</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="cm">/* Set up the loaded object described by L so its unrelocated PLT</span>
 <span class="cm">   entries will jump to the on-demand fixup code in dl-runtime.c.  */</span>
 
 <span class="k">static</span> <span class="kr">inline</span> <span class="kt">int</span>
-<span class="nf">elf_machine_runtime_setup</span> <span class="p">(</span><span class="k">struct</span> <span class="nc">link_map</span> <span class="o">*</span><span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">lazy</span><span class="p">)</span>
+<span class="nf">elf_machine_runtime_setup</span> <span class="p">(</span><span class="k">struct</span> <span class="n">link_map</span> <span class="o">*</span><span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">lazy</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="k">extern</span> <span class="kt">void</span> <span class="n">_dl_runtime_resolve</span> <span class="p">(</span><span class="n">Elf32_Word</span><span class="p">);</span>
 
@@ -2085,20 +2085,20 @@ You can run <code>man ld.so</code> to see more details.</p>
 The flow is similar to the syscall handling: it first saves the registers,
 then calling the actual resolver, then restore all saved registers.
 For 64bit x86, the source code is in <code>sysdeps/x86_64/dl-trampoline.h</code>:
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    <span class="na">.globl</span> <span class="no">_dl_runtime_resolve</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    <span class="na">.globl</span> <span class="no">_dl_runtime_resolve</span>
     <span class="na">.type</span> <span class="no">_dl_runtime_resolve</span><span class="p">,</span> <span class="na">@function</span>
 <span class="nl">_dl_runtime_resolve:</span>
     <span class="na">...</span>
@@ -2115,23 +2115,23 @@ For 64bit x86, the source code is in <code>sysdeps/x86_64/dl-trampoline.h</code>
 </code></pre></div>
 </td></tr></table></p>
 <p>Bingo, <code>_dl_fixup()</code> is the final piece of the runtime dynamic linker resolver. We could find it in <code>elf/dl-runtime.c</code>, which is a file for on-demand PLT fixup.:
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="cm">/* This function is called through a special trampoline from the PLT the</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="cm">/* This function is called through a special trampoline from the PLT the</span>
 <span class="cm">   first time each PLT entry is called.  We must perform the relocation</span>
 <span class="cm">   specified in the PLT of the given shared object, and return the resolved</span>
 <span class="cm">   function address to the trampoline, which will restart the original call</span>
@@ -2139,12 +2139,12 @@ For 64bit x86, the source code is in <code>sysdeps/x86_64/dl-trampoline.h</code>
 <span class="cm">   function.  */</span>
 
 <span class="n">DL_FIXUP_VALUE_TYPE</span>
-<span class="n">attribute_hidden</span> <span class="n">__attribute</span> <span class="p">((</span><span class="n">noinline</span><span class="p">))</span> <span class="n">ARCH_FIXUP_ATTRIBUTE</span>
+<span class="n">attribute_hidden</span> <span class="nf">__attribute</span> <span class="p">((</span><span class="n">noinline</span><span class="p">))</span> <span class="n">ARCH_FIXUP_ATTRIBUTE</span>
 <span class="n">_dl_fixup</span> <span class="p">(</span>
 <span class="cp"># ifdef ELF_MACHINE_RUNTIME_FIXUP_ARGS</span>
        <span class="n">ELF_MACHINE_RUNTIME_FIXUP_ARGS</span><span class="p">,</span>
 <span class="cp"># endif</span>
-       <span class="k">struct</span> <span class="nc">link_map</span> <span class="o">*</span><span class="n">l</span><span class="p">,</span> <span class="n">ElfW</span><span class="p">(</span><span class="n">Word</span><span class="p">)</span> <span class="n">reloc_arg</span><span class="p">)</span>
+       <span class="k">struct</span> <span class="n">link_map</span> <span class="o">*</span><span class="n">l</span><span class="p">,</span> <span class="n">ElfW</span><span class="p">(</span><span class="n">Word</span><span class="p">)</span> <span class="n">reloc_arg</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="p">...</span>
 <span class="p">}</span>
@@ -2206,18 +2206,18 @@ and then invoke the dynamic linker <code>ld.so</code> instead of invoking user E
 Those modules are ELF binaries.
 Let&rsquo;s first examine those binaries and see how kernel parses them.</p>
 <p>Suppose we have this simple C module code:
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">foo</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">foo</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">printk</span><span class="p">(</span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
 <span class="p">}</span>
@@ -2235,38 +2235,38 @@ Let&rsquo;s first examine those binaries and see how kernel parses them.</p>
 by using <code>objdump -dx hello.ko</code>.
 Those highlighted lines mark some of the dynamic linking slots.
 They will be patched by basic load-time relocation.
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Disassembly of section .text.unlikely:
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Disassembly of section .text.unlikely:
 
 0000000000000000 &lt;foo&gt;:
    0:   e8 00 00 00 00          callq  5 &lt;foo+0x5&gt;
@@ -2306,21 +2306,21 @@ the compiler does not know their precise addresses during compile time.
 The compiler will add several entries into the <code>.symtab</code> with properties
 marked as <code>GLOBAL, UND</code>. For example, you can run <code>readelf -s hello.ko</code>
 to check that. I will post part of the output:
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Symbol table &#39;.symtab&#39; contains 29 entries:
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Symbol table &#39;.symtab&#39; contains 29 entries:
    Num:    Value          Size Type    Bind   Vis      Ndx Name
      0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
      1: 0000000000000000     0 SECTION LOCAL  DEFAULT    1 
@@ -2348,29 +2348,29 @@ Within that, it calls the big function <code>load_module()</code>.</p>
 <p>In the begining of <code>load_module()</code>, there are some
 usual tasks examining ELF headers, allocating memory etc.
 After that, kernel will try to find the addresses for UNDEF symbols:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">kernel</span><span class="o">/</span><span class="n">module</span><span class="p">.</span><span class="n">c</span> <span class="n">load_module</span><span class="p">()</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">kernel</span><span class="o">/</span><span class="n">module</span><span class="p">.</span><span class="n">c</span> <span class="n">load_module</span><span class="p">()</span>
         <span class="cm">/* Fix up syms, so that st_value is a pointer to location. */</span>
         <span class="n">err</span> <span class="o">=</span> <span class="n">simplify_symbols</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">info</span><span class="p">);</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">err</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
@@ -2399,19 +2399,19 @@ After that, kernel will try to find the addresses for UNDEF symbols:</p>
 the next step is to patch the code to update all the relocation entries.
 If will do so for sections with these two types: <code>SHT_REL</code> and <code>SHT_RELA</code>.
 It looks like x86_64 is only using <code>apply_relocate_add()</code>, the one with explict addends.
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">kernel</span><span class="o">/</span><span class="n">module</span><span class="p">.</span><span class="n">c</span> <span class="n">apply_relocations</span><span class="p">()</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">kernel</span><span class="o">/</span><span class="n">module</span><span class="p">.</span><span class="n">c</span> <span class="n">apply_relocations</span><span class="p">()</span>
         <span class="p">...</span>
                 <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">info</span><span class="o">-&gt;</span><span class="n">sechdrs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">sh_type</span> <span class="o">==</span> <span class="n">SHT_REL</span><span class="p">)</span>
                         <span class="n">err</span> <span class="o">=</span> <span class="n">apply_relocate</span><span class="p">(</span><span class="n">info</span><span class="o">-&gt;</span><span class="n">sechdrs</span><span class="p">,</span> <span class="n">info</span><span class="o">-&gt;</span><span class="n">strtab</span><span class="p">,</span>
                                              <span class="n">info</span><span class="o">-&gt;</span><span class="n">index</span><span class="p">.</span><span class="n">sym</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">mod</span><span class="p">);</span>
-                <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">info</span><span class="o">-&gt;</span><span class="n">sechdrs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">sh_type</span> <span class="o">==</span> <span class="n">SHT_RELA</span><span class="p">)</span>
+                <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">info</span><span class="o">-&gt;</span><span class="n">sechdrs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">sh_type</span> <span class="o">==</span> <span class="n">SHT_RELA</span><span class="p">)</span>
                         <span class="n">err</span> <span class="o">=</span> <span class="n">apply_relocate_add</span><span class="p">(</span><span class="n">info</span><span class="o">-&gt;</span><span class="n">sechdrs</span><span class="p">,</span> <span class="n">info</span><span class="o">-&gt;</span><span class="n">strtab</span><span class="p">,</span>
                                                  <span class="n">info</span><span class="o">-&gt;</span><span class="n">index</span><span class="p">.</span><span class="n">sym</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">mod</span><span class="p">);</span>
 </code></pre></div>
@@ -2449,7 +2449,7 @@ Each takes its own part in the process.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 19, 2021</span>
+      Last update: March 19, 2021
       
     
   </small>
@@ -2533,10 +2533,10 @@ Each takes its own part in the process.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.76f349be.min.js"></script>
+      <script src="../../assets/javascripts/bundle.82b56eb2.min.js"></script>
       
     
   </body>

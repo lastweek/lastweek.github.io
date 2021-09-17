@@ -14,7 +14,7 @@
         <link rel="canonical" href="http://lastweek.io/lego/kernel/fpu/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
     
     
       
@@ -1935,8 +1935,8 @@
 <h2 id="context-switch">Context Switch<a class="headerlink" href="#context-switch" title="Permanent link">&para;</a></h2>
 <p>FPU consists a lot registers, and each thread has its own FPU context. However, CPU will not save the FPU registers for us, it is software&rsquo;s duty to save and restore FPU context properly. FPU context is saved in <code>struct fpu</code>.</p>
 <p>Thus whenever we switch task, we also need to switch FPU context:
-<div class="highlight"><pre><span></span><code><span class="n">__visible</span> <span class="k">struct</span> <span class="nc">task_struct</span> <span class="o">*</span>
-<span class="n">__switch_to</span><span class="p">(</span><span class="k">struct</span> <span class="nc">task_struct</span> <span class="o">*</span><span class="n">prev_p</span><span class="p">,</span> <span class="k">struct</span> <span class="nc">task_struct</span> <span class="o">*</span><span class="n">next_p</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">__visible</span> <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span>
+<span class="nf">__switch_to</span><span class="p">(</span><span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">prev_p</span><span class="p">,</span> <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">next_p</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="p">..</span>
         <span class="n">fpu_switch</span> <span class="o">=</span> <span class="n">switch_fpu_prepare</span><span class="p">(</span><span class="n">prev_fpu</span><span class="p">,</span> <span class="n">next_fpu</span><span class="p">,</span> <span class="n">cpu</span><span class="p">);</span>
@@ -1977,7 +1977,7 @@ Last Updated: Feb 23, 2018</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 24, 2018</span>
+      Last update: February 24, 2018
       
     
   </small>
@@ -2061,10 +2061,10 @@ Last Updated: Feb 23, 2018</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.76f349be.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.82b56eb2.min.js"></script>
       
     
   </body>

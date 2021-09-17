@@ -14,7 +14,7 @@
         <link rel="canonical" href="http://lastweek.io/blog/20200404-on-read-once/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
     
     
       
@@ -1841,12 +1841,12 @@ it will optmize away repeated memory accesses
 if it thinks the accessed variable/data is thread-local.
 For instance, the following code snippet shows how gcc -O2 removes the memory access part.
 Without -O2, a simple assembly loop is generated. With -O2, gcc generates a deadlock itself.</p>
-<div class="highlight"><pre><span></span><code>          <span class="n">Original</span> <span class="n">C</span>                        <span class="n">Assembly</span>                 <span class="n">Assembly</span>
+<div class="highlight"><pre><span></span><code>          <span class="n">Original</span> <span class="n">C</span>                        <span class="n">Assembly</span>                 <span class="nf">Assembly</span>
                                             <span class="p">(</span><span class="n">gcc</span> <span class="o">-</span><span class="n">S</span><span class="p">)</span>               <span class="p">(</span><span class="n">gcc</span> <span class="o">-</span><span class="n">S</span> <span class="o">-</span><span class="n">O2</span><span class="p">)</span>
 <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>                           <span class="o">|</span>                            <span class="o">|</span>
                                  <span class="o">|</span> <span class="p">.</span><span class="nl">L2</span><span class="p">:</span>                       <span class="o">|</span> <span class="p">.</span><span class="nl">L2</span><span class="p">:</span>
 <span class="cm">/* Spin until x becomes true */</span>  <span class="o">|</span>     <span class="n">movl</span>    <span class="n">x</span><span class="p">(</span><span class="o">%</span><span class="n">rip</span><span class="p">),</span> <span class="o">%</span><span class="n">eax</span>  <span class="o">|</span>     <span class="n">jmp</span> <span class="p">.</span><span class="n">L2</span>
-<span class="kt">void</span> <span class="n">wait_for_x</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>            <span class="o">|</span>     <span class="n">cmpl</span>    <span class="n">$1</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>       <span class="o">|</span>
+<span class="kt">void</span> <span class="n">wait_for_x</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>            <span class="o">|</span>     <span class="n">cmpl</span>    <span class="err">$</span><span class="mi">1</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>       <span class="o">|</span>
 <span class="p">{</span>                                <span class="o">|</span>     <span class="n">je</span>      <span class="p">.</span><span class="n">L2</span>            <span class="o">|</span>
         <span class="k">while</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>           <span class="o">|</span>                            <span class="o">|</span>
                 <span class="p">;</span>                <span class="o">|</span>                            <span class="o">|</span>
@@ -1888,7 +1888,7 @@ For more information, refers to <a href="https://github.com/torvalds/linux/blob/
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 14, 2020</span>
+      Last update: April 14, 2020
       
     
   </small>
@@ -1972,10 +1972,10 @@ For more information, refers to <a href="https://github.com/torvalds/linux/blob/
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.76f349be.min.js"></script>
+      <script src="../../assets/javascripts/bundle.82b56eb2.min.js"></script>
       
     
   </body>
