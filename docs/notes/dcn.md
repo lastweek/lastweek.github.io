@@ -24,15 +24,19 @@ I will try to cover the following topics:
 
 ## Overview
 
-## Gateways and Routing
+I should draw a figure, including host side network stack/nic, switch, topologies, sdn controllers and so on.
+And list which parts demand attention.
+
+## Peering, Gateway, and Routing
 
 ## Topology
+Clos, fat-tree, jupiter, vl2, fb's 40/100g topology.
 
 ### SDN and OpenFlow
-..
+Orion, and its predecessor.
 
 ### Upgrade 
-..
+NSDI papers, live update, cost.
 
 ## Network Virtualization
 openvswitch, Andromeda.
@@ -42,40 +46,40 @@ Snap.
 
 
 
-# Special Topics
+## Special Topics
 
 This section covers special topics.
 
-## Special Topcis on Transport Design
+### Special Topcis on Transport Design
 
 and programmable transport
 
-### Congestion Control
+#### Congestion Control
 
 Shallow switch buffer. DCTCP.
 
-## Special Topics on RDMA and RoCE
+### Special Topics on RDMA and RoCE
 
-## Speical Topics on Programmable Switch and SmartNIC
+### Speical Topics on Programmable Switch and SmartNIC
 
-## Special Topics on Kernel-Bypassing Netork Stacks
+### Special Topics on Kernel-Bypassing Netork Stacks
 
 RPC papers. ZygOS, Shenengo, Arrakis etc. whole stack design.
 
 
-## Special Topics on Packet Scheduling
+### Special Topics on Packet Scheduling
 PIFO etc.
 
-## Special Topics on Datacenter Traffic Study
+### Special Topics on Datacenter Traffic Study
 IMC'10 etc.
 
-## Special Topics on Middlebox and Network Function Virtualization (NFV)
+### Special Topics on Middlebox and Network Function Virtualization (NFV)
 
 
-## Special Topics on Circuit Switches
+### Special Topics on Circuit Switches
 TBD
 
-## Special Topics on Failure, Reliability
+### Special Topics on Failure, Reliability
 
 Link error rate.
 Applied erasure coding on packets.
