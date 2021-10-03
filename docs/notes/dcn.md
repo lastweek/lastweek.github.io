@@ -1,12 +1,82 @@
-# A Gentle Introduction to Modern Data Center Networking
+# Notes on Modern Data Center Networking
 
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
-	|Aug 24, 2021| initial|
+	|Oct 2, 2021| Planning |
 
-For the past 1.5 years, I've been doing a networking related project
-and was fortunate enough to read quite some datacenter networking (DCN) related work (thanks to those big companies).
-I had a rough top-down DCN walk though in a google doc, touches both industry practice and academic ideas (e.g., pSwitch/pNIC etc). My plan is to polish that and link to it.
+This is my note on datacenter networking. This is work-in-progress.
+I will try to cover the following topics:
 
-Well, I'm still quite busy for the following month. So the plan is to finish this roughly at the end of Sep 2021.
+- Peering
+- Cloud gateways
+- Cloud internal routing
+- Networking Topology
+- Software Defined Networking (SDN) and OpenFlow
+- Networking Load Balancers
+- Networking Upgrade
+- Switch Hardware and Software (e.g., p4 switch)
+- Host-side NIC Design
+- Host-side Network Virtualization (e.g., OpenVSwitch and VPC)
+- Transport Design (Retransmission and Congestion Control)
+- RDMA and RoCE
+- Host-side Networking Stack Design
+
+## Overview
+
+## Gateways and Routing
+
+## Topology
+
+### SDN and OpenFlow
+..
+
+### Upgrade 
+..
+
+## Network Virtualization
+openvswitch, Andromeda.
+
+## Host Networking Stack
+Snap.
+
+
+
+# Special Topics
+
+This section covers special topics.
+
+## Special Topcis on Transport Design
+
+and programmable transport
+
+### Congestion Control
+
+Shallow switch buffer. DCTCP.
+
+## Special Topics on RDMA and RoCE
+
+## Speical Topics on Programmable Switch and SmartNIC
+
+## Special Topics on Kernel-Bypassing Netork Stacks
+
+RPC papers. ZygOS, Shenengo, Arrakis etc. whole stack design.
+
+
+## Special Topics on Packet Scheduling
+PIFO etc.
+
+## Special Topics on Datacenter Traffic Study
+IMC'10 etc.
+
+## Special Topics on Middlebox and Network Function Virtualization (NFV)
+
+
+## Special Topics on Circuit Switches
+TBD
+
+## Special Topics on Failure, Reliability
+
+Link error rate.
+Applied erasure coding on packets.
+Trace studies.
