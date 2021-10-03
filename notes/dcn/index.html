@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#a-gentle-introduction-to-modern-data-center-networking" class="md-skip">
+        <a href="#notes-on-modern-data-center-networking" class="md-skip">
           Skip to content
         </a>
       
@@ -411,9 +411,87 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Data Center Networking
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Data Center Networking
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gateways-and-routing" class="md-nav__link">
+    Gateways and Routing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#topology" class="md-nav__link">
+    Topology
+  </a>
+  
+    <nav class="md-nav" aria-label="Topology">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdn-and-openflow" class="md-nav__link">
+    SDN and OpenFlow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upgrade" class="md-nav__link">
+    Upgrade
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-virtualization" class="md-nav__link">
+    Network Virtualization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#host-networking-stack" class="md-nav__link">
+    Host Networking Stack
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1797,6 +1875,69 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gateways-and-routing" class="md-nav__link">
+    Gateways and Routing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#topology" class="md-nav__link">
+    Topology
+  </a>
+  
+    <nav class="md-nav" aria-label="Topology">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdn-and-openflow" class="md-nav__link">
+    SDN and OpenFlow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upgrade" class="md-nav__link">
+    Upgrade
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-virtualization" class="md-nav__link">
+    Network Virtualization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#host-networking-stack" class="md-nav__link">
+    Host Networking Stack
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1812,7 +1953,7 @@
                   </a>
                 
                 
-                <h1 id="a-gentle-introduction-to-modern-data-center-networking">A Gentle Introduction to Modern Data Center Networking<a class="headerlink" href="#a-gentle-introduction-to-modern-data-center-networking" title="Permanent link">&para;</a></h1>
+                <h1 id="notes-on-modern-data-center-networking">Notes on Modern Data Center Networking<a class="headerlink" href="#notes-on-modern-data-center-networking" title="Permanent link">&para;</a></h1>
 <details class="note"><summary>Version History</summary><table>
 <thead>
 <tr>
@@ -1822,16 +1963,61 @@
 </thead>
 <tbody>
 <tr>
-<td align="left">Aug 24, 2021</td>
-<td>initial</td>
+<td align="left">Oct 2, 2021</td>
+<td>Planning</td>
 </tr>
 </tbody>
 </table>
 </details>
-<p>For the past 1.5 years, I&rsquo;ve been doing a networking related project
-and was fortunate enough to read quite some datacenter networking (DCN) related work (thanks to those big companies).
-I had a rough top-down DCN walk though in a google doc, touches both industry practice and academic ideas (e.g., pSwitch/pNIC etc). My plan is to polish that and link to it.</p>
-<p>Well, I&rsquo;m still quite busy for the following month. So the plan is to finish this roughly at the end of Sep 2021.</p>
+<p>This is my note on datacenter networking. This is work-in-progress.
+I will try to cover the following topics:</p>
+<ul>
+<li>Peering</li>
+<li>Cloud gateways</li>
+<li>Cloud internal routing</li>
+<li>Networking Topology</li>
+<li>Software Defined Networking (SDN) and OpenFlow</li>
+<li>Networking Load Balancers</li>
+<li>Networking Upgrade</li>
+<li>Switch Hardware and Software (e.g., p4 switch)</li>
+<li>Host-side NIC Design</li>
+<li>Host-side Network Virtualization (e.g., OpenVSwitch and VPC)</li>
+<li>Transport Design (Retransmission and Congestion Control)</li>
+<li>RDMA and RoCE</li>
+<li>Host-side Networking Stack Design</li>
+</ul>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<h2 id="gateways-and-routing">Gateways and Routing<a class="headerlink" href="#gateways-and-routing" title="Permanent link">&para;</a></h2>
+<h2 id="topology">Topology<a class="headerlink" href="#topology" title="Permanent link">&para;</a></h2>
+<h3 id="sdn-and-openflow">SDN and OpenFlow<a class="headerlink" href="#sdn-and-openflow" title="Permanent link">&para;</a></h3>
+<p>..</p>
+<h3 id="upgrade">Upgrade<a class="headerlink" href="#upgrade" title="Permanent link">&para;</a></h3>
+<p>..</p>
+<h2 id="network-virtualization">Network Virtualization<a class="headerlink" href="#network-virtualization" title="Permanent link">&para;</a></h2>
+<p>openvswitch, Andromeda.</p>
+<h2 id="host-networking-stack">Host Networking Stack<a class="headerlink" href="#host-networking-stack" title="Permanent link">&para;</a></h2>
+<p>Snap.</p>
+<h1 id="special-topics">Special Topics<a class="headerlink" href="#special-topics" title="Permanent link">&para;</a></h1>
+<p>This section covers special topics.</p>
+<h2 id="special-topcis-on-transport-design">Special Topcis on Transport Design<a class="headerlink" href="#special-topcis-on-transport-design" title="Permanent link">&para;</a></h2>
+<p>and programmable transport</p>
+<h3 id="congestion-control">Congestion Control<a class="headerlink" href="#congestion-control" title="Permanent link">&para;</a></h3>
+<p>Shallow switch buffer. DCTCP.</p>
+<h2 id="special-topics-on-rdma-and-roce">Special Topics on RDMA and RoCE<a class="headerlink" href="#special-topics-on-rdma-and-roce" title="Permanent link">&para;</a></h2>
+<h2 id="speical-topics-on-programmable-switch-and-smartnic">Speical Topics on Programmable Switch and SmartNIC<a class="headerlink" href="#speical-topics-on-programmable-switch-and-smartnic" title="Permanent link">&para;</a></h2>
+<h2 id="special-topics-on-kernel-bypassing-netork-stacks">Special Topics on Kernel-Bypassing Netork Stacks<a class="headerlink" href="#special-topics-on-kernel-bypassing-netork-stacks" title="Permanent link">&para;</a></h2>
+<p>RPC papers. ZygOS, Shenengo, Arrakis etc. whole stack design.</p>
+<h2 id="special-topics-on-packet-scheduling">Special Topics on Packet Scheduling<a class="headerlink" href="#special-topics-on-packet-scheduling" title="Permanent link">&para;</a></h2>
+<p>PIFO etc.</p>
+<h2 id="special-topics-on-datacenter-traffic-study">Special Topics on Datacenter Traffic Study<a class="headerlink" href="#special-topics-on-datacenter-traffic-study" title="Permanent link">&para;</a></h2>
+<p>IMC&lsquo;10 etc.</p>
+<h2 id="special-topics-on-middlebox-and-network-function-virtualization-nfv">Special Topics on Middlebox and Network Function Virtualization (NFV)<a class="headerlink" href="#special-topics-on-middlebox-and-network-function-virtualization-nfv" title="Permanent link">&para;</a></h2>
+<h2 id="special-topics-on-circuit-switches">Special Topics on Circuit Switches<a class="headerlink" href="#special-topics-on-circuit-switches" title="Permanent link">&para;</a></h2>
+<p>TBD</p>
+<h2 id="special-topics-on-failure-reliability">Special Topics on Failure, Reliability<a class="headerlink" href="#special-topics-on-failure-reliability" title="Permanent link">&para;</a></h2>
+<p>Link error rate.
+Applied erasure coding on packets.
+Trace studies.</p>
                 
                   
                     
@@ -1840,7 +2026,7 @@ I had a rough top-down DCN walk though in a google doc, touches both industry pr
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 24, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 2, 2021</span>
       
     
   </small>
