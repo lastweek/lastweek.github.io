@@ -84,3 +84,21 @@ TBD
 Link error rate.
 Applied erasure coding on packets.
 Trace studies.
+
+## Cloud Case Studies
+
+In this section, we look at popular cloud vendors and briefly their networking stack status.
+
+### GCP
+
+Their networking services https://github.com/priyankavergadia/google-cloud-4-words#networking.
+
+## Azure
+SmartNIC
+
+## Google Cloud
+1RMA, Swifit, Snap, Orion
+
+## Alibaba
+
+p4 switch.

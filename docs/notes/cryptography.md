@@ -3,6 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Oct 11, 2021| Add the github awesome link|
 	|Jan 16, 2021| Updated|
 	|Dec 27, 2020| Updated|
 	|Dec 26, 2020| Created|
@@ -14,6 +15,8 @@ Although I know AES, SHA etc to some extent,
 I'm not really sure how to build them.
 
 ## Learning
+
+Try this one: [awesome-cryptograghy](https://github.com/sobolevn/awesome-cryptography).
 
 Some basic concepts:
 
