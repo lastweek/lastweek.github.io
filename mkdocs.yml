@@ -38,6 +38,7 @@ nav:
    - 'Guideline & Advice':          'notes/program_advice.md'
    - 'Firmware & Bootloader':       'notes/source_code/firmware-softwares.md'
    - 'Operating System':            'notes/source_code/os.md'
+   - 'Compilers':                   'notes/source_code/compilers.md'
    - 'Unix Tools':                  'notes/source_code/unix-tools.md'
    - 'Virtualization':              'notes/source_code/virt.md'
    - 'DPDK and RDMA':               'notes/source_code/rdma.md'

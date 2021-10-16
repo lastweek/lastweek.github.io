@@ -4,6 +4,7 @@ Source Code Study
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Oct 16, 2021| Move compilers section to a separate file|
 	|Dec 7, 2020| add sanitizers section|
 	|Sep 13, 2020| some notes for python; add tcpstat|
 	|Jul 26, 2020| Add OpenJDK! Hinted by Hacker News :)|
@@ -123,40 +124,7 @@ Also see: http://lastweek.io/notes/source_code/virt/.
 
 ## Compilers
 
-- [Clang, LLVM, in C++](https://github.com/llvm/llvm-project)
-	- This is a collection of projects. Clang is the frontend,
-	compiles C/C++ code into LLVM's own IR format.
-	The the backend LLVM will take multiple Passes to optimize
-	the IR and the finally generate the assembly.
-	- The beauty of Clang and LLVM is that they can be used
-	as libraries, and we could invoke them to manipulate the
-	compilation results, to do source-to-source transforms,
-	modify Pass's IR etc. I found this super interesting!
-	- To get started, I strongly recommend [LLVM for Grad Students](https://www.cs.cornell.edu/~asampson/blog/llvm.html)
-- [OpenJDK](https://github.com/lastweek/source-jdk)
-	- **JRE = JVM + Runtime Classes** => JVM is the one parsing the bytecode, along with some extra classes/libraries, they form JRE.
-	- **JDK = JRE + Development Tools** => JDK as in Development Kit therefore consists of some tools in addition to JRE.
-	- JDK is a monster collection of resources in one place.
-	  The JVM here is called `HotSpot`, a reference JVM implementation written in C++,
-	  Since JDK also has so many runtime support, it has a lot Java code.
-	- Personally I haven't written Java since 2013 or so.
-	  Although I'm not using it anytime soon, I'm curious how it performs nowadays.
-- [Python, in C](https://github.com/lastweek/source-cpython)
-	- cpython, as its name suggested, whose core is written in C.
-	  The core is within the [`Python`](https://github.com/lastweek/source-cpython/tree/master/Python) folder.
-	- For those common [built-in functions](https://docs.python.org/3/library/functions.html),
-	  they are organized here: https://github.com/lastweek/source-cpython/blob/master/Python/bltinmodule.c#L2878
-- [GNU GCC](https://github.com/gcc-mirror/gcc)
-- [Rustc, in Rust](https://github.com/lastweek/source-rust)
-- [PHP, in C](https://github.com/lastweek/source-php-src)
-- [Google V8, in C++](https://github.com/lastweek/v8)
-- [Apple Swift, in C++](https://github.com/lastweek/source-swift)
-- [TCL, in C](https://github.com/lastweek/source-tcl)
-- [Perl 5, in C](https://github.com/lastweek/source-perl5)
-- [Lua, in C](https://github.com/lua/lua)
-- [Ruby, in C](https://github.com/ruby/ruby)
-- [Scala](https://github.com/scala/scala)
-- [SpinalHDL]()
+See [here](http://lastweek.io/notes/source_code/compilers/).
 
 ## Bootloader and Firmware
 
