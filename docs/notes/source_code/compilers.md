@@ -18,18 +18,7 @@ The general ones:
 	modify Pass's IR etc. I found this super interesting!
 	- To get started, I strongly recommend [LLVM for Grad Students](https://www.cs.cornell.edu/~asampson/blog/llvm.html)
 - [OpenJDK](https://github.com/lastweek/source-jdk)
-	- **JRE = JVM + Runtime Classes** => JVM is the one parsing the bytecode, along with some extra classes/libraries, they form JRE.
-	- **JDK = JRE + Development Tools** => JDK as in Development Kit therefore consists of some tools in addition to JRE.
-	- JDK is a monster collection of resources in one place.
-	  The JVM here is called `HotSpot`, a reference JVM implementation written in C++,
-	  Since JDK also has so many runtime support, it has a lot Java code.
-	- Personally I haven't written Java since 2013 or so.
-	  Although I'm not using it anytime soon, I'm curious how it performs nowadays.
-- [Python, in C](https://github.com/lastweek/source-cpython)
-	- cpython, as its name suggested, whose core is written in C.
-	  The core is within the [`Python`](https://github.com/lastweek/source-cpython/tree/master/Python) folder.
-	- For those common [built-in functions](https://docs.python.org/3/library/functions.html),
-	  they are organized here: https://github.com/lastweek/source-cpython/blob/master/Python/bltinmodule.c#L2878
+- [CPython](https://github.com/lastweek/source-cpython)
 - [GNU GCC](https://github.com/gcc-mirror/gcc)
 - [Rustc, in Rust](https://github.com/lastweek/source-rust)
 - [PHP, in C](https://github.com/lastweek/source-php-src)
@@ -60,7 +49,30 @@ there will a python library file under `Lib/csv.py`, then optionally a C acceler
 Essentially the whole thing is built like a Exokernel, the base is written in C for performance and portability among OSes.
 Then a more rich python wrapper on top of that, which will be the default built-in python libraries we use day-to-day.
 
+For those common [built-in functions](https://docs.python.org/3/library/functions.html),
+they are organized [here](https://github.com/lastweek/source-cpython/blob/master/Python/bltinmodule.c#L2878)
+
 0. [Your Guide to the CPython Source Code](https://realpython.com/cpython-source-code-guide/#part-1-introduction-to-cpython)
 1. [Exploring CPython’s Internals](https://devguide.python.org/exploring/)
 2. [Design of CPython’s Compiler](https://devguide.python.org/compiler/)
 3. [Yet another guided tour of CPython](https://paper.dropbox.com/doc/Yet-another-guided-tour-of-CPython-XY7KgFGn88zMNivGJ4Jzv)
+
+## Java
+
+- [OpenJDK](https://github.com/lastweek/source-jdk)
+	- **JRE = JVM + Runtime Classes** => JVM is the one parsing the bytecode, along with some extra classes/libraries, they form JRE.
+	- **JDK = JRE + Development Tools** => JDK as in Development Kit therefore consists of some tools in addition to JRE.
+	- JDK is a monster collection of resources in one place.
+	  The JVM here is called `HotSpot`, a reference JVM implementation written in C++,
+	  Since JDK also has so many runtime support, it has a lot Java code.
+	- Personally I haven't written Java since 2013 or so.
+	  Although I'm not using it anytime soon, I'm curious how it performs nowadays.
+	- The repo is VERY WELL organized. see `src/`
+
+- [HotSpot JVM](https://github.com/lastweek/source-openj9)
+	- This one is included in the OpenJDK Repo, written in C++.
+	- e.g., the GC code is under `src/hotspot/share/gc`.
+- [Eclipse Openj9 JVM](https://github.com/lastweek/source-openj9)
+	- A JVM for OpenJDK that's optimized for small footprint, fast start-up, and high throughput
+
+All these OpenJDK components follow the [Java Language Spec and JVM Spec](https://docs.oracle.com/javase/specs/).
