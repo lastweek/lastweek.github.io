@@ -910,6 +910,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../compilers/" class="md-nav__link">
+        Compilers
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../unix-tools/" class="md-nav__link">
         Unix Tools
       </a>
@@ -2045,6 +2057,10 @@
 </thead>
 <tbody>
 <tr>
+<td align="left">Oct 16, 2021</td>
+<td>Move compilers section to a separate file</td>
+</tr>
+<tr>
 <td align="left">Dec 7, 2020</td>
 <td>add sanitizers section</td>
 </tr>
@@ -2223,48 +2239,7 @@ This page documents all the <em>interesting &amp; practical</em> software/hardwa
 </li>
 </ul>
 <h2 id="compilers">Compilers<a class="headerlink" href="#compilers" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="https://github.com/llvm/llvm-project">Clang, LLVM, in C++</a><ul>
-<li>This is a collection of projects. Clang is the frontend,
-compiles C/C++ code into LLVM&rsquo;s own IR format.
-The the backend LLVM will take multiple Passes to optimize
-the IR and the finally generate the assembly.</li>
-<li>The beauty of Clang and LLVM is that they can be used
-as libraries, and we could invoke them to manipulate the
-compilation results, to do source-to-source transforms,
-modify Pass&rsquo;s IR etc. I found this super interesting!</li>
-<li>To get started, I strongly recommend <a href="https://www.cs.cornell.edu/~asampson/blog/llvm.html">LLVM for Grad Students</a></li>
-</ul>
-</li>
-<li><a href="https://github.com/lastweek/source-jdk">OpenJDK</a><ul>
-<li><strong>JRE = JVM + Runtime Classes</strong> =&gt; JVM is the one parsing the bytecode, along with some extra classes/libraries, they form JRE.</li>
-<li><strong>JDK = JRE + Development Tools</strong> =&gt; JDK as in Development Kit therefore consists of some tools in addition to JRE.</li>
-<li>JDK is a monster collection of resources in one place.
-  The JVM here is called <code>HotSpot</code>, a reference JVM implementation written in C++,
-  Since JDK also has so many runtime support, it has a lot Java code.</li>
-<li>Personally I haven&rsquo;t written Java since 2013 or so.
-  Although I&rsquo;m not using it anytime soon, I&rsquo;m curious how it performs nowadays.</li>
-</ul>
-</li>
-<li><a href="https://github.com/lastweek/source-cpython">Python, in C</a><ul>
-<li>cpython, as its name suggested, whose core is written in C.
-  The core is within the <a href="https://github.com/lastweek/source-cpython/tree/master/Python"><code>Python</code></a> folder.</li>
-<li>For those common <a href="https://docs.python.org/3/library/functions.html">built-in functions</a>,
-  they are organized here: <a href="https://github.com/lastweek/source-cpython/blob/master/Python/bltinmodule.c#L2878">https://github.com/lastweek/source-cpython/blob/master/Python/bltinmodule.c#L2878</a></li>
-</ul>
-</li>
-<li><a href="https://github.com/gcc-mirror/gcc">GNU GCC</a></li>
-<li><a href="https://github.com/lastweek/source-rust">Rustc, in Rust</a></li>
-<li><a href="https://github.com/lastweek/source-php-src">PHP, in C</a></li>
-<li><a href="https://github.com/lastweek/v8">Google V8, in C++</a></li>
-<li><a href="https://github.com/lastweek/source-swift">Apple Swift, in C++</a></li>
-<li><a href="https://github.com/lastweek/source-tcl">TCL, in C</a></li>
-<li><a href="https://github.com/lastweek/source-perl5">Perl 5, in C</a></li>
-<li><a href="https://github.com/lua/lua">Lua, in C</a></li>
-<li><a href="https://github.com/ruby/ruby">Ruby, in C</a></li>
-<li><a href="https://github.com/scala/scala">Scala</a></li>
-<li><a href="">SpinalHDL</a></li>
-</ul>
+<p>See <a href="http://lastweek.io/notes/source_code/compilers/">here</a>.</p>
 <h2 id="bootloader-and-firmware">Bootloader and Firmware<a class="headerlink" href="#bootloader-and-firmware" title="Permanent link">&para;</a></h2>
 <p>See <a href="http://lastweek.io/notes/source_code/firmware-softwares/">here</a>.</p>
 <p>The open-source firmware landscape:
@@ -2393,7 +2368,7 @@ I think they could greatly improve productivity.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 7, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 16, 2021</span>
       
     
   </small>
