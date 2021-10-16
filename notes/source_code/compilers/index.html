@@ -822,6 +822,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#java" class="md-nav__link">
+    Java
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1852,6 +1859,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#java" class="md-nav__link">
+    Java
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1899,23 +1913,8 @@ modify Pass&rsquo;s IR etc. I found this super interesting!</li>
 <li>To get started, I strongly recommend <a href="https://www.cs.cornell.edu/~asampson/blog/llvm.html">LLVM for Grad Students</a></li>
 </ul>
 </li>
-<li><a href="https://github.com/lastweek/source-jdk">OpenJDK</a><ul>
-<li><strong>JRE = JVM + Runtime Classes</strong> =&gt; JVM is the one parsing the bytecode, along with some extra classes/libraries, they form JRE.</li>
-<li><strong>JDK = JRE + Development Tools</strong> =&gt; JDK as in Development Kit therefore consists of some tools in addition to JRE.</li>
-<li>JDK is a monster collection of resources in one place.
-  The JVM here is called <code>HotSpot</code>, a reference JVM implementation written in C++,
-  Since JDK also has so many runtime support, it has a lot Java code.</li>
-<li>Personally I haven&rsquo;t written Java since 2013 or so.
-  Although I&rsquo;m not using it anytime soon, I&rsquo;m curious how it performs nowadays.</li>
-</ul>
-</li>
-<li><a href="https://github.com/lastweek/source-cpython">Python, in C</a><ul>
-<li>cpython, as its name suggested, whose core is written in C.
-  The core is within the <a href="https://github.com/lastweek/source-cpython/tree/master/Python"><code>Python</code></a> folder.</li>
-<li>For those common <a href="https://docs.python.org/3/library/functions.html">built-in functions</a>,
-  they are organized here: <a href="https://github.com/lastweek/source-cpython/blob/master/Python/bltinmodule.c#L2878">https://github.com/lastweek/source-cpython/blob/master/Python/bltinmodule.c#L2878</a></li>
-</ul>
-</li>
+<li><a href="https://github.com/lastweek/source-jdk">OpenJDK</a></li>
+<li><a href="https://github.com/lastweek/source-cpython">CPython</a></li>
 <li><a href="https://github.com/gcc-mirror/gcc">GNU GCC</a></li>
 <li><a href="https://github.com/lastweek/source-rust">Rustc, in Rust</a></li>
 <li><a href="https://github.com/lastweek/source-php-src">PHP, in C</a></li>
@@ -1941,12 +1940,42 @@ And the way they organize the repo is also interesting. For a common python libr
 there will a python library file under <code>Lib/csv.py</code>, then optionally a C accelerated version in <code>Modules/_csv.c</code>.
 Essentially the whole thing is built like a Exokernel, the base is written in C for performance and portability among OSes.
 Then a more rich python wrapper on top of that, which will be the default built-in python libraries we use day-to-day.</p>
+<p>For those common <a href="https://docs.python.org/3/library/functions.html">built-in functions</a>,
+they are organized <a href="https://github.com/lastweek/source-cpython/blob/master/Python/bltinmodule.c#L2878">here</a></p>
 <ol>
 <li><a href="https://realpython.com/cpython-source-code-guide/#part-1-introduction-to-cpython">Your Guide to the CPython Source Code</a></li>
 <li><a href="https://devguide.python.org/exploring/">Exploring CPython’s Internals</a></li>
 <li><a href="https://devguide.python.org/compiler/">Design of CPython’s Compiler</a></li>
 <li><a href="https://paper.dropbox.com/doc/Yet-another-guided-tour-of-CPython-XY7KgFGn88zMNivGJ4Jzv">Yet another guided tour of CPython</a></li>
 </ol>
+<h2 id="java">Java<a class="headerlink" href="#java" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><a href="https://github.com/lastweek/source-jdk">OpenJDK</a></p>
+<ul>
+<li><strong>JRE = JVM + Runtime Classes</strong> =&gt; JVM is the one parsing the bytecode, along with some extra classes/libraries, they form JRE.</li>
+<li><strong>JDK = JRE + Development Tools</strong> =&gt; JDK as in Development Kit therefore consists of some tools in addition to JRE.</li>
+<li>JDK is a monster collection of resources in one place.
+  The JVM here is called <code>HotSpot</code>, a reference JVM implementation written in C++,
+  Since JDK also has so many runtime support, it has a lot Java code.</li>
+<li>Personally I haven&rsquo;t written Java since 2013 or so.
+  Although I&rsquo;m not using it anytime soon, I&rsquo;m curious how it performs nowadays.</li>
+<li>The repo is VERY WELL organized. see <code>src/</code></li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/lastweek/source-openj9">HotSpot JVM</a></p>
+<ul>
+<li>This one is included in the OpenJDK Repo, written in C++.</li>
+<li>e.g., the GC code is under <code>src/hotspot/share/gc</code>.</li>
+</ul>
+</li>
+<li><a href="https://github.com/lastweek/source-openj9">Eclipse Openj9 JVM</a><ul>
+<li>A JVM for OpenJDK that&rsquo;s optimized for small footprint, fast start-up, and high throughput</li>
+</ul>
+</li>
+</ul>
+<p>All these OpenJDK components follow the <a href="https://docs.oracle.com/javase/specs/">Java Language Spec and JVM Spec</a>.</p>
                 
                   
                     
