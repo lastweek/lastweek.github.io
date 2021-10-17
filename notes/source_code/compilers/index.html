@@ -829,6 +829,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#jvm-based-languages" class="md-nav__link">
+    JVM-based Languages
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1866,6 +1873,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#jvm-based-languages" class="md-nav__link">
+    JVM-based Languages
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1970,12 +1984,40 @@ they are organized <a href="https://github.com/lastweek/source-cpython/blob/mast
 <li>e.g., the GC code is under <code>src/hotspot/share/gc</code>.</li>
 </ul>
 </li>
-<li><a href="https://github.com/lastweek/source-openj9">Eclipse Openj9 JVM</a><ul>
+<li>
+<p><a href="https://github.com/lastweek/source-openj9">Eclipse Openj9 JVM</a></p>
+<ul>
 <li>A JVM for OpenJDK that&rsquo;s optimized for small footprint, fast start-up, and high throughput</li>
+</ul>
+</li>
+<li>
+<p><a href="https://asm.ow2.io/">ASM</a></p>
+<ul>
+<li>ASM is an all purpose Java bytecode manipulation and analysis framework.</li>
+<li>It can be used to modify existing classes or to dynamically generate classes, directly in binary form.</li>
 </ul>
 </li>
 </ul>
 <p>All these OpenJDK components follow the <a href="https://docs.oracle.com/javase/specs/">Java Language Spec and JVM Spec</a>.</p>
+<p>An important note: Java is NOT the only language that can run on a JVM.
+A lot of other languages are using JVM as well! Such as Kotlin, Scala, Clojure etc.
+I think the reason is that JVM is production-ready and proven to be stable across platforms.
+If a new language compiles into JVM bytecode, then this new language can instantly run all architectures.
+Without it, the new language&rsquo;s compiler needs to emit different ISA&rsquo;s assembly, which is difficult and quite an effort.</p>
+<h2 id="jvm-based-languages">JVM-based Languages<a class="headerlink" href="#jvm-based-languages" title="Permanent link">&para;</a></h2>
+<p>There is a <a href="https://en.wikipedia.org/wiki/List_of_JVM_languages">List of JVM languages</a>:
+<em>This list of JVM Languages comprises notable computer programming languages that are used to produce computer software that runs on the Java virtual machine (JVM). Some of these languages are interpreted by a Java program, and some are compiled to Java bytecode and JIT-compiled during execution as regular Java programs to improve performance.</em>
+The most popurlar ones are: 1) Java, 2) Groovy, 3) Scala, 4) Clojure, 5) Kotlin.</p>
+<p>So follow up on the Java section, I want to spend some time on JVM-based languages,
+the rationale and benefits behind it, and how should one create a new language on JVM.
+Great explanation <a href="https://www.toptal.com/software/creating-jvm-languages-an-overview">here</a>.</p>
+<p>JVM is a virtual MACHINE, with its own machine model and ISA. Hence it has assembly instructions
+and assmeblers (e.g., <a href="http://jasmin.sourceforge.net/">Jasmin</a>)
+compiling annoted assembly into Java class file / bytecode (or binary for the JVM, in some sense).
+Some people seem to use Java <a href="https://asm.ow2.io/">ASM</a> tool to generate bytecode as well.</p>
+<p>Several blogs I found via google that try to build a new language on top of JVM.
+There must be more.
+1) <a href="https://github.com/ftomassetti/LangSandbox">https://github.com/ftomassetti/LangSandbox</a>, 2) <a href="http://jakubdziworski.github.io/categories.html#Enkel-ref">http://jakubdziworski.github.io/categories.html#Enkel-ref</a></p>
                 
                   
                     
