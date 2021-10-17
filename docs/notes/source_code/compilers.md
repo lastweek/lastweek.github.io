@@ -75,4 +75,33 @@ they are organized [here](https://github.com/lastweek/source-cpython/blob/master
 - [Eclipse Openj9 JVM](https://github.com/lastweek/source-openj9)
 	- A JVM for OpenJDK that's optimized for small footprint, fast start-up, and high throughput
 
+- [ASM](https://asm.ow2.io/)
+	- ASM is an all purpose Java bytecode manipulation and analysis framework.
+	- It can be used to modify existing classes or to dynamically generate classes, directly in binary form.
+
 All these OpenJDK components follow the [Java Language Spec and JVM Spec](https://docs.oracle.com/javase/specs/).
+
+An important note: Java is NOT the only language that can run on a JVM.
+A lot of other languages are using JVM as well! Such as Kotlin, Scala, Clojure etc.
+I think the reason is that JVM is production-ready and proven to be stable across platforms.
+If a new language compiles into JVM bytecode, then this new language can instantly run all architectures.
+Without it, the new language's compiler needs to emit different ISA's assembly, which is difficult and quite an effort.
+
+## JVM-based Languages
+
+There is a [List of JVM languages](https://en.wikipedia.org/wiki/List_of_JVM_languages):
+_This list of JVM Languages comprises notable computer programming languages that are used to produce computer software that runs on the Java virtual machine (JVM). Some of these languages are interpreted by a Java program, and some are compiled to Java bytecode and JIT-compiled during execution as regular Java programs to improve performance._
+The most popurlar ones are: 1) Java, 2) Groovy, 3) Scala, 4) Clojure, 5) Kotlin.
+
+So follow up on the Java section, I want to spend some time on JVM-based languages,
+the rationale and benefits behind it, and how should one create a new language on JVM.
+Great explanation [here](https://www.toptal.com/software/creating-jvm-languages-an-overview).
+
+JVM is a virtual MACHINE, with its own machine model and ISA. Hence it has assembly instructions
+and assmeblers (e.g., [Jasmin](http://jasmin.sourceforge.net/))
+compiling annoted assembly into Java class file / bytecode (or binary for the JVM, in some sense).
+Some people seem to use Java [ASM](https://asm.ow2.io/) tool to generate bytecode as well.
+
+Several blogs I found via google that try to build a new language on top of JVM.
+There must be more.
+1) https://github.com/ftomassetti/LangSandbox, 2) http://jakubdziworski.github.io/categories.html#Enkel-ref
