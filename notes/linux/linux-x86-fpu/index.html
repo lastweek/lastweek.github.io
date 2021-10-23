@@ -11,21 +11,21 @@
         <meta name="author" content="Yizhou Shan">
       
       
-        <link rel="canonical" href="http://lastweek.io/notes/linux-boot/">
+        <link rel="canonical" href="http://lastweek.io/notes/linux/linux-x86-fpu/">
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.6">
     
     
       
-        <title>Linux Boot Sequence - Yizhou Shan's Home Page</title>
+        <title>Linux FPU - Yizhou Shan's Home Page</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.802231af.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.802231af.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -68,7 +68,7 @@
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
   
     
-    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#linux-boot-sequence-after-grub" class="md-skip">
+        <a href="#linuxlegoos-x86-floating-point-unit" class="md-skip">
           Skip to content
         </a>
       
@@ -87,7 +87,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Yizhou Shan&#39;s Home Page" class="md-header__button md-logo" aria-label="Yizhou Shan's Home Page" data-md-component="logo">
+    <a href="../../.." title="Yizhou Shan&#39;s Home Page" class="md-header__button md-logo" aria-label="Yizhou Shan's Home Page" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Linux Boot Sequence
+              Linux FPU
             
           </span>
         </div>
@@ -181,10 +181,26 @@
 
 
   <li class="md-tabs__item">
-    <a href="../.." class="md-tabs__link">
+    <a href="../../.." class="md-tabs__link">
       Home
     </a>
   </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../virt/" class="md-tabs__link">
+        Notes
+      </a>
+    </li>
+  
 
       
         
@@ -198,23 +214,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../virt/" class="md-tabs__link md-tabs__link--active">
-        Notes
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../source_code/summary/" class="md-tabs__link">
+      <a href="../../source_code/summary/" class="md-tabs__link md-tabs__link--active">
         Code
       </a>
     </li>
@@ -230,24 +230,8 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../fpga/bitstream/" class="md-tabs__link">
+      <a href="../../../fpga/bitstream/" class="md-tabs__link">
         FPGA
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../howto/qemu-iommu/" class="md-tabs__link">
-        HowTo
       </a>
     </li>
   
@@ -267,7 +251,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../lego/log/misc/" class="md-tabs__link">
+      <a href="../../../lego/log/misc/" class="md-tabs__link">
         LegoOS
       </a>
     </li>
@@ -296,7 +280,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Yizhou Shan&#39;s Home Page" class="md-nav__button md-logo" aria-label="Yizhou Shan's Home Page" data-md-component="logo">
+    <a href="../../.." title="Yizhou Shan&#39;s Home Page" class="md-nav__button md-logo" aria-label="Yizhou Shan's Home Page" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -328,7 +312,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -341,14 +325,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
       <label class="md-nav__link" for="__nav_2">
         Notes
@@ -366,7 +348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../virt/" class="md-nav__link">
+      <a href="../../virt/" class="md-nav__link">
         Modern Virtualization
       </a>
     </li>
@@ -378,7 +360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cache_coherence/" class="md-nav__link">
+      <a href="../../cache_coherence/" class="md-nav__link">
         Practical Cache Coherence
       </a>
     </li>
@@ -390,7 +372,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dynamic_linking/" class="md-nav__link">
+      <a href="../../dynamic_linking/" class="md-nav__link">
         Dynamic Linking
       </a>
     </li>
@@ -402,7 +384,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dcn/" class="md-nav__link">
+      <a href="../../dcn/" class="md-nav__link">
         Data Center Networking
       </a>
     </li>
@@ -414,7 +396,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../packet-sched/" class="md-nav__link">
+      <a href="../../packet-sched/" class="md-nav__link">
         Switch Buffering and Packet Scheduling
       </a>
     </li>
@@ -426,7 +408,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sysml/" class="md-nav__link">
+      <a href="../../sysml/" class="md-nav__link">
         SysML
       </a>
     </li>
@@ -438,7 +420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../arch/" class="md-nav__link">
+      <a href="../../arch/" class="md-nav__link">
         Architecture
       </a>
     </li>
@@ -450,7 +432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cryptography/" class="md-nav__link">
+      <a href="../../cryptography/" class="md-nav__link">
         Cryptography
       </a>
     </li>
@@ -462,7 +444,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cryptocurrency/" class="md-nav__link">
+      <a href="../../cryptocurrency/" class="md-nav__link">
         Cryptocurrency
       </a>
     </li>
@@ -474,7 +456,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware_pl/" class="md-nav__link">
+      <a href="../../hardware_pl/" class="md-nav__link">
         Hardware Design Languages
       </a>
     </li>
@@ -486,8 +468,195 @@
   
   
     <li class="md-nav__item">
-      <a href="../linux/fork/" class="md-nav__link">
+      <a href="../../paper_perf_shadows/" class="md-nav__link">
+        Performance-Shadows
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/essential/" class="md-nav__link">
+        Essential
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/cheatsheet/" class="md-nav__link">
+        Cheatsheet
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/20200404-on-read-once/" class="md-nav__link">
+        On Read Once and Compiler Optimization
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        Code
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Code" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Code
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source_code/summary/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        Linux
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fork/" class="md-nav__link">
         Linux fork/switch_to
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-boot/" class="md-nav__link">
+        Linux Boot Sequence
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/" class="md-nav__link">
+        Linux Trace and Profile
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rmap/" class="md-nav__link">
+        Linux Reverse Mapping
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../userfaultfd/" class="md-nav__link">
+        Linux Userfaultfd
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cgroup-swap/" class="md-nav__link">
+        Linux Cgroup and Swap
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../xperf/" class="md-nav__link">
+        Linux x86 Ring Switch
       </a>
     </li>
   
@@ -508,12 +677,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Linux Boot Sequence
+          Linux FPU
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Linux Boot Sequence
+        Linux FPU
       </a>
       
         
@@ -531,15 +700,50 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#linux-boot-protocol-and-code-sequence" class="md-nav__link">
-    Linux Boot Protocol and Code Sequence
+  <a href="#boot" class="md-nav__link">
+    Boot
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#grub2-linux-vs-linux16" class="md-nav__link">
-    GRUB2: linux v.s. linux16
+  <a href="#context-switch" class="md-nav__link">
+    Context Switch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#syscall" class="md-nav__link">
+    SYSCALL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exceptions" class="md-nav__link">
+    Exceptions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal" class="md-nav__link">
+    Signal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thoughts" class="md-nav__link">
+    Thoughts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
   </a>
   
 </li>
@@ -557,149 +761,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../trace/" class="md-nav__link">
-        Linux Trace and Profile
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../rmap/" class="md-nav__link">
-        Linux Reverse Mapping
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../userfaultfd/" class="md-nav__link">
-        Linux Userfaultfd
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../cgroup-swap/" class="md-nav__link">
-        Linux Cgroup and Swap
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../xperf/" class="md-nav__link">
-        Linux x86 Ring Switch
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../linux-x86-fpu/" class="md-nav__link">
-        Linux FPU
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../linux-iouring/" class="md-nav__link">
         Linux io_uring
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../paper_perf_shadows/" class="md-nav__link">
-        Performance-Shadows
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../misc/essential/" class="md-nav__link">
-        Essential
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../misc/cheatsheet/" class="md-nav__link">
-        Cheatsheet
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_23" type="checkbox" id="__nav_2_23" >
-      
-      <label class="md-nav__link" for="__nav_2_23">
-        Misc
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Misc" data-md-level="2">
-        <label class="md-nav__title" for="__nav_2_23">
-          <span class="md-nav__icon md-icon"></span>
-          Misc
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../blog/20200404-on-read-once/" class="md-nav__link">
-        On Read Once and Compiler Optimization
       </a>
     </li>
   
@@ -722,7 +785,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../proc/" class="md-nav__link">
+      <a href="../../proc/" class="md-nav__link">
         Linux Special Files
       </a>
     </li>
@@ -734,79 +797,25 @@
   
   
     <li class="md-nav__item">
-      <a href="../kvm-basic/" class="md-nav__link">
+      <a href="../../kvm-basic/" class="md-nav__link">
         Linux KVM
       </a>
     </li>
   
 
           
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../languages/rust/" class="md-nav__link">
-        Rust
-      </a>
-    </li>
-  
-
-          
         </ul>
       </nav>
     </li>
   
 
           
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
-      
-      <label class="md-nav__link" for="__nav_3">
-        Code
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Code" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
-          <span class="md-nav__icon md-icon"></span>
-          Code
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
             
   
   
   
     <li class="md-nav__item">
-      <a href="../source_code/summary/" class="md-nav__link">
-        Index
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../program_advice/" class="md-nav__link">
+      <a href="../../program_advice/" class="md-nav__link">
         Guideline & Advice
       </a>
     </li>
@@ -818,7 +827,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../source_code/firmware-softwares/" class="md-nav__link">
+      <a href="../../source_code/firmware-softwares/" class="md-nav__link">
         Firmware & Bootloader
       </a>
     </li>
@@ -830,7 +839,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../source_code/os/" class="md-nav__link">
+      <a href="../../source_code/os/" class="md-nav__link">
         Operating System
       </a>
     </li>
@@ -842,7 +851,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../source_code/compilers/" class="md-nav__link">
+      <a href="../../source_code/compilers/" class="md-nav__link">
         Compilers
       </a>
     </li>
@@ -854,7 +863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../source_code/unix-tools/" class="md-nav__link">
+      <a href="../../source_code/unix-tools/" class="md-nav__link">
         Unix Tools
       </a>
     </li>
@@ -866,7 +875,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../source_code/virt/" class="md-nav__link">
+      <a href="../../source_code/virt/" class="md-nav__link">
         Virtualization
       </a>
     </li>
@@ -878,7 +887,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../source_code/rdma/" class="md-nav__link">
+      <a href="../../source_code/rdma/" class="md-nav__link">
         DPDK and RDMA
       </a>
     </li>
@@ -890,7 +899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../source_code/20200501-on-graphic-softwares/" class="md-nav__link">
+      <a href="../../source_code/20200501-on-graphic-softwares/" class="md-nav__link">
         Graphics
       </a>
     </li>
@@ -902,7 +911,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../source_code/gpu/" class="md-nav__link">
+      <a href="../../source_code/gpu/" class="md-nav__link">
         GPU
       </a>
     </li>
@@ -914,7 +923,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../source_code/fpga/" class="md-nav__link">
+      <a href="../../source_code/fpga/" class="md-nav__link">
         FPGA
       </a>
     </li>
@@ -926,7 +935,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../source_code/risc-v/" class="md-nav__link">
+      <a href="../../source_code/risc-v/" class="md-nav__link">
         RISC-V
       </a>
     </li>
@@ -938,7 +947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../source_code/dotconfigs/" class="md-nav__link">
+      <a href="../../source_code/dotconfigs/" class="md-nav__link">
         Dot-Configs
       </a>
     </li>
@@ -950,7 +959,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../source_code/misc/" class="md-nav__link">
+      <a href="../../source_code/misc/" class="md-nav__link">
         Misc
       </a>
     </li>
@@ -992,7 +1001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fpga/bitstream/" class="md-nav__link">
+      <a href="../../../fpga/bitstream/" class="md-nav__link">
         Bitstream Explained
       </a>
     </li>
@@ -1004,7 +1013,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../paper_fpga/" class="md-nav__link">
+      <a href="../../paper_fpga/" class="md-nav__link">
         Papers
       </a>
     </li>
@@ -1016,7 +1025,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fpga/language/" class="md-nav__link">
+      <a href="../../../fpga/language/" class="md-nav__link">
         Languages
       </a>
     </li>
@@ -1028,7 +1037,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fpga/vivado/" class="md-nav__link">
+      <a href="../../../fpga/vivado/" class="md-nav__link">
         Vivado Notes
       </a>
     </li>
@@ -1040,7 +1049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fpga/setup_hold/" class="md-nav__link">
+      <a href="../../../fpga/setup_hold/" class="md-nav__link">
         Setup and Hold Time
       </a>
     </li>
@@ -1052,7 +1061,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fpga/pr/" class="md-nav__link">
+      <a href="../../../fpga/pr/" class="md-nav__link">
         Partial Reconfiguration
       </a>
     </li>
@@ -1079,53 +1088,11 @@
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
       
       <label class="md-nav__link" for="__nav_5">
-        HowTo
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="HowTo" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
-          <span class="md-nav__icon md-icon"></span>
-          HowTo
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../howto/qemu-iommu/" class="md-nav__link">
-        How to add an IOMMU device in QEMU?
-      </a>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
-      
-      <label class="md-nav__link" for="__nav_6">
         LegoOS
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="LegoOS" data-md-level="1">
-        <label class="md-nav__title" for="__nav_6">
+        <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           LegoOS
         </label>
@@ -1139,14 +1106,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
       
-      <label class="md-nav__link" for="__nav_6_1">
+      <label class="md-nav__link" for="__nav_5_1">
         Log
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Log" data-md-level="2">
-        <label class="md-nav__title" for="__nav_6_1">
+        <label class="md-nav__title" for="__nav_5_1">
           <span class="md-nav__icon md-icon"></span>
           Log
         </label>
@@ -1157,7 +1124,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/log/misc/" class="md-nav__link">
+      <a href="../../../lego/log/misc/" class="md-nav__link">
         MISC
       </a>
     </li>
@@ -1169,7 +1136,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/log/test-note/" class="md-nav__link">
+      <a href="../../../lego/log/test-note/" class="md-nav__link">
         Test Script
       </a>
     </li>
@@ -1190,14 +1157,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
       
-      <label class="md-nav__link" for="__nav_6_2">
+      <label class="md-nav__link" for="__nav_5_2">
         Kernel
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Kernel" data-md-level="2">
-        <label class="md-nav__title" for="__nav_6_2">
+        <label class="md-nav__title" for="__nav_5_2">
           <span class="md-nav__icon md-icon"></span>
           Kernel
         </label>
@@ -1208,7 +1175,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/kernel/boot/" class="md-nav__link">
+      <a href="../../../lego/kernel/boot/" class="md-nav__link">
         GRUB2 and Boot
       </a>
     </li>
@@ -1220,7 +1187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/kernel/kconfig/" class="md-nav__link">
+      <a href="../../../lego/kernel/kconfig/" class="md-nav__link">
         Kconfig
       </a>
     </li>
@@ -1232,7 +1199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/kernel/debug/" class="md-nav__link">
+      <a href="../../../lego/kernel/debug/" class="md-nav__link">
         Debug
       </a>
     </li>
@@ -1244,7 +1211,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/kernel/grub/" class="md-nav__link">
+      <a href="../../../lego/kernel/grub/" class="md-nav__link">
         GRUB
       </a>
     </li>
@@ -1256,7 +1223,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/kernel/profile/" class="md-nav__link">
+      <a href="../../../lego/kernel/profile/" class="md-nav__link">
         Profile
       </a>
     </li>
@@ -1268,7 +1235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/kernel/profile_strace/" class="md-nav__link">
+      <a href="../../../lego/kernel/profile_strace/" class="md-nav__link">
         Profile strace
       </a>
     </li>
@@ -1280,7 +1247,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/kernel/profile_heatmap/" class="md-nav__link">
+      <a href="../../../lego/kernel/profile_heatmap/" class="md-nav__link">
         Profile heatmap
       </a>
     </li>
@@ -1292,7 +1259,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/kernel/profile_points/" class="md-nav__link">
+      <a href="../../../lego/kernel/profile_points/" class="md-nav__link">
         Profile points
       </a>
     </li>
@@ -1304,7 +1271,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/kernel/trampoline/" class="md-nav__link">
+      <a href="../../../lego/kernel/trampoline/" class="md-nav__link">
         Trampoline
       </a>
     </li>
@@ -1316,7 +1283,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/kernel/pagefault_disable/" class="md-nav__link">
+      <a href="../../../lego/kernel/pagefault_disable/" class="md-nav__link">
         Disable pgfault
       </a>
     </li>
@@ -1328,7 +1295,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/kernel/stop_machine/" class="md-nav__link">
+      <a href="../../../lego/kernel/stop_machine/" class="md-nav__link">
         Stop machine
       </a>
     </li>
@@ -1340,7 +1307,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/kernel/loader/" class="md-nav__link">
+      <a href="../../../lego/kernel/loader/" class="md-nav__link">
         Program Loader
       </a>
     </li>
@@ -1352,7 +1319,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/kernel/vDSO/" class="md-nav__link">
+      <a href="../../../lego/kernel/vDSO/" class="md-nav__link">
         vDSO
       </a>
     </li>
@@ -1364,7 +1331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/kernel/vfs/" class="md-nav__link">
+      <a href="../../../lego/kernel/vfs/" class="md-nav__link">
         Virtual File System
       </a>
     </li>
@@ -1376,7 +1343,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/kernel/vm/" class="md-nav__link">
+      <a href="../../../lego/kernel/vm/" class="md-nav__link">
         Process Virtual Memory
       </a>
     </li>
@@ -1388,7 +1355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/kernel/fpu/" class="md-nav__link">
+      <a href="../../../lego/kernel/fpu/" class="md-nav__link">
         x86 FPU
       </a>
     </li>
@@ -1400,7 +1367,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/kernel/irq/" class="md-nav__link">
+      <a href="../../../lego/kernel/irq/" class="md-nav__link">
         IRQ
       </a>
     </li>
@@ -1412,7 +1379,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/kernel/net_thpool/" class="md-nav__link">
+      <a href="../../../lego/kernel/net_thpool/" class="md-nav__link">
         Network Thpool
       </a>
     </li>
@@ -1433,14 +1400,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" >
       
-      <label class="md-nav__link" for="__nav_6_3">
+      <label class="md-nav__link" for="__nav_5_3">
         Syscall
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Syscall" data-md-level="2">
-        <label class="md-nav__title" for="__nav_6_3">
+        <label class="md-nav__title" for="__nav_5_3">
           <span class="md-nav__icon md-icon"></span>
           Syscall
         </label>
@@ -1451,7 +1418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/syscall/facts/" class="md-nav__link">
+      <a href="../../../lego/syscall/facts/" class="md-nav__link">
         Facts
       </a>
     </li>
@@ -1463,7 +1430,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/kernel/profile_strace/" class="md-nav__link">
+      <a href="../../../lego/kernel/profile_strace/" class="md-nav__link">
         strace
       </a>
     </li>
@@ -1475,7 +1442,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/syscall/compat/" class="md-nav__link">
+      <a href="../../../lego/syscall/compat/" class="md-nav__link">
         compat
       </a>
     </li>
@@ -1487,7 +1454,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/syscall/msync/" class="md-nav__link">
+      <a href="../../../lego/syscall/msync/" class="md-nav__link">
         msync()
       </a>
     </li>
@@ -1499,7 +1466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/syscall/mremap/" class="md-nav__link">
+      <a href="../../../lego/syscall/mremap/" class="md-nav__link">
         mremap()
       </a>
     </li>
@@ -1511,7 +1478,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/syscall/fork/" class="md-nav__link">
+      <a href="../../../lego/syscall/fork/" class="md-nav__link">
         fork()
       </a>
     </li>
@@ -1523,7 +1490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/syscall/getrusage/" class="md-nav__link">
+      <a href="../../../lego/syscall/getrusage/" class="md-nav__link">
         getrusage()
       </a>
     </li>
@@ -1535,7 +1502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/syscall/wait_and_exit/" class="md-nav__link">
+      <a href="../../../lego/syscall/wait_and_exit/" class="md-nav__link">
         wait4 and exit()
       </a>
     </li>
@@ -1556,14 +1523,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" >
       
-      <label class="md-nav__link" for="__nav_6_4">
+      <label class="md-nav__link" for="__nav_5_4">
         Pcache
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Pcache" data-md-level="2">
-        <label class="md-nav__title" for="__nav_6_4">
+        <label class="md-nav__title" for="__nav_5_4">
           <span class="md-nav__icon md-icon"></span>
           Pcache
         </label>
@@ -1574,7 +1541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/pcache/config/" class="md-nav__link">
+      <a href="../../../lego/pcache/config/" class="md-nav__link">
         Config
       </a>
     </li>
@@ -1586,7 +1553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/pcache/sweep/" class="md-nav__link">
+      <a href="../../../lego/pcache/sweep/" class="md-nav__link">
         Sweep
       </a>
     </li>
@@ -1598,7 +1565,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/pcache/tlb/" class="md-nav__link">
+      <a href="../../../lego/pcache/tlb/" class="md-nav__link">
         TLB Coherence
       </a>
     </li>
@@ -1610,7 +1577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/pcache/pgtable-lock/" class="md-nav__link">
+      <a href="../../../lego/pcache/pgtable-lock/" class="md-nav__link">
         PageTable Lock
       </a>
     </li>
@@ -1622,7 +1589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/pcache/victim/" class="md-nav__link">
+      <a href="../../../lego/pcache/victim/" class="md-nav__link">
         Victim Cache
       </a>
     </li>
@@ -1634,7 +1601,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/pcache/virtual_cache/" class="md-nav__link">
+      <a href="../../../lego/pcache/virtual_cache/" class="md-nav__link">
         Virtual Cache
       </a>
     </li>
@@ -1646,7 +1613,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/pcache/rmap/" class="md-nav__link">
+      <a href="../../../lego/pcache/rmap/" class="md-nav__link">
         Reverse Mapping
       </a>
     </li>
@@ -1658,7 +1625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/pcache/evict_and_ref/" class="md-nav__link">
+      <a href="../../../lego/pcache/evict_and_ref/" class="md-nav__link">
         Evict and Refcount
       </a>
     </li>
@@ -1670,7 +1637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/pcache/smp_design/" class="md-nav__link">
+      <a href="../../../lego/pcache/smp_design/" class="md-nav__link">
         SMP Design
       </a>
     </li>
@@ -1682,7 +1649,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/pcache/replication/" class="md-nav__link">
+      <a href="../../../lego/pcache/replication/" class="md-nav__link">
         Replication
       </a>
     </li>
@@ -1703,14 +1670,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_5" type="checkbox" id="__nav_6_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_5" type="checkbox" id="__nav_5_5" >
       
-      <label class="md-nav__link" for="__nav_6_5">
+      <label class="md-nav__link" for="__nav_5_5">
         Driver
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Driver" data-md-level="2">
-        <label class="md-nav__title" for="__nav_6_5">
+        <label class="md-nav__title" for="__nav_5_5">
           <span class="md-nav__icon md-icon"></span>
           Driver
         </label>
@@ -1721,7 +1688,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/driver/pci/" class="md-nav__link">
+      <a href="../../../lego/driver/pci/" class="md-nav__link">
         PCI
       </a>
     </li>
@@ -1733,7 +1700,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/driver/ib/" class="md-nav__link">
+      <a href="../../../lego/driver/ib/" class="md-nav__link">
         Infiniband
       </a>
     </li>
@@ -1754,14 +1721,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_6" type="checkbox" id="__nav_6_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_6" type="checkbox" id="__nav_5_6" >
       
-      <label class="md-nav__link" for="__nav_6_6">
+      <label class="md-nav__link" for="__nav_5_6">
         Paper
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Paper" data-md-level="2">
-        <label class="md-nav__title" for="__nav_6_6">
+        <label class="md-nav__title" for="__nav_5_6">
           <span class="md-nav__icon md-icon"></span>
           Paper
         </label>
@@ -1772,7 +1739,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/paper/nmp/" class="md-nav__link">
+      <a href="../../../lego/paper/nmp/" class="md-nav__link">
         NMP
       </a>
     </li>
@@ -1784,7 +1751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/paper/processor_oom/" class="md-nav__link">
+      <a href="../../../lego/paper/processor_oom/" class="md-nav__link">
         Processor OOM
       </a>
     </li>
@@ -1796,7 +1763,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/paper/genz/" class="md-nav__link">
+      <a href="../../../lego/paper/genz/" class="md-nav__link">
         Gen-Z
       </a>
     </li>
@@ -1808,7 +1775,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/paper/replication/" class="md-nav__link">
+      <a href="../../../lego/paper/replication/" class="md-nav__link">
         Replication
       </a>
     </li>
@@ -1820,7 +1787,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lego/paper/related/" class="md-nav__link">
+      <a href="../../../lego/paper/related/" class="md-nav__link">
         Related
       </a>
     </li>
@@ -1865,15 +1832,50 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#linux-boot-protocol-and-code-sequence" class="md-nav__link">
-    Linux Boot Protocol and Code Sequence
+  <a href="#boot" class="md-nav__link">
+    Boot
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#grub2-linux-vs-linux16" class="md-nav__link">
-    GRUB2: linux v.s. linux16
+  <a href="#context-switch" class="md-nav__link">
+    Context Switch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#syscall" class="md-nav__link">
+    SYSCALL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exceptions" class="md-nav__link">
+    Exceptions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal" class="md-nav__link">
+    Signal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thoughts" class="md-nav__link">
+    Thoughts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
   </a>
   
 </li>
@@ -1890,12 +1892,12 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/lastweek/lastweek.github.io/edit/master/docs/notes/linux-boot.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/lastweek/lastweek.github.io/edit/master/docs/notes/linux/linux-x86-fpu.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="linux-boot-sequence-after-grub">Linux boot sequence after GRUB<a class="headerlink" href="#linux-boot-sequence-after-grub" title="Permanent link">&para;</a></h1>
+                <h1 id="linuxlegoos-x86-floating-point-unit">Linux/LegoOS x86 Floating Point Unit<a class="headerlink" href="#linuxlegoos-x86-floating-point-unit" title="Permanent link">&para;</a></h1>
 <details class="note"><summary>Version History</summary><table>
 <thead>
 <tr>
@@ -1905,112 +1907,82 @@
 </thead>
 <tbody>
 <tr>
-<td align="left">Jan 6, 2021</td>
-<td>minor update</td>
+<td align="left">Jan 9, 2021</td>
+<td>repolished after reading the <a href="https://sasha-f.medium.com/why-mmap-is-faster-than-system-calls-24718e75ab37">why mmap is faster syscall post</a>. Indeed, the difference is that mmap is using user-level AVX-aided memmove while kernel cannot. This reminded me of this post so I decided to move it to here.</td>
 </tr>
 <tr>
-<td align="left">Dec 23, 2020</td>
-<td>initial version</td>
+<td align="left">Feb 22, 2018</td>
+<td>Initial Version</td>
 </tr>
 </tbody>
 </table>
 </details>
-<p>This note is aboue the linux/grub boot protocol and
-a walk through of the low-level booting code.</p>
+<p>This blog documents how kernel is dealing with x86 FPU at a high level.</p>
 <hr />
-<p>This is adopted from my <a href="https://github.com/lastweek/source-grub2">previous note</a>.
-I was looking into this while I was building
-the LegoOS boot process. I was trying to find out
-how <a href="https://www.gnu.org/software/grub/manual/grub/grub.html#Introduction">GRUB2</a>
-loads the kernel image and how it prepares all the boot environment.</p>
-<h2 id="linux-boot-protocol-and-code-sequence">Linux Boot Protocol and Code Sequence<a class="headerlink" href="#linux-boot-protocol-and-code-sequence" title="Permanent link">&para;</a></h2>
-<p>Linux (x86) has a boot protocol between the bootloader and kernel image itself, described <a href="https://kernel.org/doc/html/latest/x86/boot.html">here</a>.</p>
-<p>Essentially, there is a contiguous memory region passing information between these two entities.
-This big region just like a big C <code>struct</code>:
-some fields are filled by kernel duing compile time (<code>arch/x86/boot/tools/build.c</code> and some in code),
-some fields are filled by GRUB2 during boot time to tell kernel some
-important addresses, e.g., kernel parameters, ramdisk locations etc.</p>
-<p>GRUB2 code follows the protocol, and you can partially tell from the <code>grub_cmd_linux()</code> function.</p>
-<p>Last time I working on this was late 2016, I truly spent a lot investigating
-how GRUB and linux boot works. I will try to document a bit, if my memory serves:</p>
-<ol>
-<li>
-<p>In the Linux kernel, file <code>arch/x86/boot/header.S</code> is the first file got run after GRUB2.
-This file is a bit complicated but not hard to understand!
-It has 3 parts.
-For the first part, it detects if it was loaded by a bootloader, if not, just by printing an error message and reboot.
-It the kernel was loaded by a bootloader like GRUB2, the first part will never execute.
-The bootload will directly jump to the second part. This is part of the boot protocol.
-For the second part, it lists all the fields described by the boot protocol.
-And finally the third part is real-mode instructions that got run after the GRUB2 jumo.
-The starting function is called <code>start_of_setup</code>, which will do some stack checking,
-and then jump to C code in <code>arch/x86/boot/main.c</code>.</p>
-</li>
-<li>
-<p><code>arch/x86/boot/main.c</code> runs on real-mode, it will do some setup and jump to protected-mode (32-bit).
-It is running after BIOS but before the actual Linux kernel.
-Thus this piece of code must rely on BIOS to do stuff, which makes it very unique.
-The major task of the setup code is to prepare the <code>struct boot_params</code>, which has all the boot information, some of them were extracted from the <code>header.S</code>. The <code>struct boot_params</code> will be passed down and used by many kernel subsystems later on.
-The final jump happens in <code>arch/x86/boot/pmjump.S</code>
-<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="cp">#</span>
-<span class="w">        </span><span class="cp"># Jump to protected-mode kernel, 0x100000</span>
-<span class="w">        </span><span class="cp"># which is the compressed/head_$(BITS).o</span>
-<span class="w">        </span><span class="cp">#</span>
-<span class="w">        </span><span class="n">jmp</span><span class="w">     </span><span class="o">*%</span><span class="n">eax</span><span class="w"></span>
+<p>FPU is heavily used by user level code, but not kernel.
+You may not use it directly, but glibc is using it all over the place, e.g. the <code>strcmp</code>, <code>memcpy</code>.
+x86 FPU is really a super complex technology designed by Intel.
+Of course its performance is good and also widely used, but the legacy compatible feature? Hmm, not so yummy.</p>
+<p>Without Ingo Molnar&rsquo;s <a href="https://lwn.net/Articles/643235/">x86 FPU code rewrite</a>,
+there is no way for me to easily understand it.
+In 2019, the FPU code received another huge improvement (<a href="https://lkml.org/lkml/2019/4/3/877">patch</a>).</p>
+<p>The current <a href="https://elixir.bootlin.com/linux/v5.10.5/source/arch/x86/kernel/fpu">x86 FPU code</a> is well-written.
+Even though I don&rsquo;t understand some of the low-level code, I do enjoy reading it.
+The naming convention, the code organization, the file organization, the header files, it is a nice piece of art.</p>
+<p>Below I will briefly list kernel subsystems that use FPU.
+My understanding is based on code before the 2019 FPU patch,
+so some facts may have changed already.</p>
+<h2 id="boot">Boot<a class="headerlink" href="#boot" title="Permanent link">&para;</a></h2>
+<p>FPU detection and init happen during early boot.
+The <code>struct fpu</code> is a dynamically-sized structure.
+Its size depends on what features the underlying CPU support.
+Since <code>struct fpu</code> is part of <code>struct task_struct</code>,
+that implies <code>task_struct</code> is dynamically-sized as well
+(<code>task_struct -&gt; thread_struct -&gt; fpu</code>).
+The <code>cpu_init()</code> will also callback to init its local FPU.</p>
+<h2 id="context-switch">Context Switch<a class="headerlink" href="#context-switch" title="Permanent link">&para;</a></h2>
+<p>FPU consists of a huge amount of registers.
+Each thread will have its own FPU context.
+However, the CPU itself will not save or restore any FPU registers automatically,
+it is software&rsquo;s duty to save and restore FPU context properly.
+And FPU context/registers are saved into <code>struct fpu</code>.</p>
+<p>Thus whenever we switch task, we also need to switch FPU context
+(note: not always, it is optional, kernel is using a lazy switching trick).
+<a href="https://elixir.bootlin.com/linux/v5.10.5/source/arch/x86/kernel/process_64.c#L546">Code</a>:
+<div class="highlight"><pre><span></span><code><span class="n">__visible</span><span class="w"> </span><span class="k">struct</span> <span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="n">__switch_to</span><span class="p">(</span><span class="k">struct</span> <span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">prev_p</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span> <span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">next_p</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="p">..</span><span class="w"></span>
+<span class="w">        </span><span class="n">fpu_switch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">switch_fpu_prepare</span><span class="p">(</span><span class="n">prev_fpu</span><span class="p">,</span><span class="w"> </span><span class="n">next_fpu</span><span class="p">,</span><span class="w"> </span><span class="n">cpu</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">..</span><span class="w"></span>
+<span class="w">        </span><span class="n">switch_fpu_finish</span><span class="p">(</span><span class="n">next_fpu</span><span class="p">,</span><span class="w"> </span><span class="n">fpu_switch</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">..</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div></p>
-</li>
-<li>
-<p>Then, we are in <code>arch/x86/boot/compressed/head_64.S</code>.
-Above pmjump jumps to <code>startup_32</code>, it will enable paging, tweak GDT table etc, setup pagetable, and transition to 64-bit entry point <code>startup_64</code>. 
-And finally, we are in 64-bit. The final jump will go to <code>arch/x86/kernel/head_64.S</code>. We are close!</p>
-</li>
-<li>
-<p>Now we are in <code>arch/x86/kernel/head_64.S</code>. We are in 64-bit. But some further setup is needed. This part is really low-level and engaging. I would never know I how managed to understand and port all this shit. It setup a lot GDT, IDT stuff, and some pgfault handlers. It turns out those early pgfault handlers are NECESSARY and I remember they played an very interesting role! Finally, this assembly will jump to <code>arch/x86/kernel/head64.c</code>, the C code!</p>
+<h2 id="syscall">SYSCALL<a class="headerlink" href="#syscall" title="Permanent link">&para;</a></h2>
 <ul>
-<li>I guess an interesting part is <code>secondary_startup_64</code>. This code is actually run by non-booting CPUs, or secondary CPUs.
-  After the major boot CPU is up and running (already within <code>start_kernel()</code>), I believe its the <code>smp_init()</code> that will send IPI wakeup interrupts to all present secondary CPUs.
-  The secondary CPUs will start from real-mode, obviously. Then they will transition from 16bit to 32bit, from 32bit to 64bit. That code is in <a href="https://github.com/WukLab/LegoOS/blob/master/arch/x86/realmode/rm/trampoline.S"><code>arch/x86/realmode/rm/trampoline.S</code></a>!</li>
-<li><code>arch/x86/realmode</code> is interesting. It uses piggyback technique. All the real-mode and 32bit code are in <code>arch/x86/realmode/rm/*</code>, a special <a href="https://github.com/WukLab/LegoOS/blob/master/arch/x86/realmode/rm/ld.lds.S">linker script</a> is used to construct the code in a specific way! Think about mix 16bit, 32bit, 64bit code together, nasty!</li>
+<li>fork() and clone(): When a new thread or process is created, the FPU context is copied from the calling thread.</li>
+<li>execve(): during this syscall, the FPU context will be cleared.</li>
+<li>exit(): When a thread exit, FPU will do cleanup based on whether <code>eagerfpu</code> or <code>lazyfpu</code> is used.</li>
 </ul>
-</li>
-<li>
-<p>Hooray, C world. We are in <code>arch/x86/kernel/head64.c</code>. The starting function is <code>x86_64_start_kernel</code>! And the end is the <code>start_kernel</code>, the one in <code>init/main.c</code>.</p>
-</li>
+<h2 id="exceptions">Exceptions<a class="headerlink" href="#exceptions" title="Permanent link">&para;</a></h2>
+<p>Like the <code>device not available</code> exception, which may be triggered if <strong>lazyfpu</strong> is used.
+The <code>do_simd_exception()</code> and <code>do_coprocessor_error()</code> are some math related exceptions.</p>
+<h2 id="signal">Signal<a class="headerlink" href="#signal" title="Permanent link">&para;</a></h2>
+<p>Kernel needs to setup a <code>sigframe</code> for user level signal handlers.
+<code>sigframe</code> is a contiguous stack memory consists of the general purpose registers AND FPU registers.
+So signal handling part has to call back to FPU code to setup and copy the FPU registers to the in stack <code>sigframe</code>.</p>
+<p>Signal handling is another beast.</p>
+<h2 id="thoughts">Thoughts<a class="headerlink" href="#thoughts" title="Permanent link">&para;</a></h2>
+<p>Compatibility is a heavy thing to carry.
+But it is also a nice thing for marketing.
+No one can deny the success of Intel on its backward compatibility.
+Bad for low-level system developers.</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="https://unix.stackexchange.com/questions/475956/why-can-the-kernel-not-use-sse-avx-registers-and-instructions">https://unix.stackexchange.com/questions/475956/why-can-the-kernel-not-use-sse-avx-registers-and-instructions</a></li>
+<li>2019 FPU patch: <a href="https://lkml.org/lkml/2019/4/3/877">https://lkml.org/lkml/2019/4/3/877</a></li>
 </ol>
-<p>In all, there are a lot jumps after GRUB2 loads the kernel image,
-and it&rsquo;s really a long road before we can reach <code>start_kernel()</code>.
-It probably should not be this complex, but the x86 architecture is just making it worse.</p>
-<h2 id="grub2-linux-vs-linux16">GRUB2: linux v.s. linux16<a class="headerlink" href="#grub2-linux-vs-linux16" title="Permanent link">&para;</a></h2>
-<p>An interesting thing is that there are two ways to
-load an kernel image in <code>/boot/grub2/grub.cfg</code>, either using
-<code>linux vmlinuz-3.10.0</code> or <code>linux16 vmlinuz-3.10.0</code>.
-They have different effects.
-I remember only the <code>linux16</code> one works for me, but not remembering why.
-At least on CentOS 7, it&rsquo;s all <code>linux16</code>. Different distro may have different preferences?</p>
-<p>The <code>linux16</code> and <code>initrd16</code> in <code>grub-core/loader/i386/pc/linux.c</code>:
-<div class="highlight"><pre><span></span><code><span class="n">GRUB_MOD_INIT</span><span class="p">(</span><span class="n">linux16</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">cmd_linux</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="n">grub_register_command</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;linux16&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">grub_cmd_linux</span><span class="p">,</span><span class="w"></span>
-<span class="w">               </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">N_</span><span class="p">(</span><span class="s">&quot;Load Linux.&quot;</span><span class="p">));</span><span class="w"></span>
-<span class="w">  </span><span class="n">cmd_initrd</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="n">grub_register_command</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;initrd16&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">grub_cmd_initrd</span><span class="p">,</span><span class="w"></span>
-<span class="w">               </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">N_</span><span class="p">(</span><span class="s">&quot;Load initrd.&quot;</span><span class="p">));</span><span class="w"></span>
-<span class="w">  </span><span class="n">my_mod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mod</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div></p>
-<p>The <code>linux</code> and <code>initrd</code> in <code>grub-core/loader/i386/linux.c</code>:
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="n">grub_command_t</span><span class="w"> </span><span class="n">cmd_linux</span><span class="p">,</span><span class="w"> </span><span class="n">cmd_initrd</span><span class="p">;</span><span class="w"></span>
-
-<span class="n">GRUB_MOD_INIT</span><span class="p">(</span><span class="n">linux</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">cmd_linux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grub_register_command</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;linux&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">grub_cmd_linux</span><span class="p">,</span><span class="w"></span>
-<span class="w">                     </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">N_</span><span class="p">(</span><span class="s">&quot;Load Linux.&quot;</span><span class="p">));</span><span class="w"></span>
-<span class="w">  </span><span class="n">cmd_initrd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grub_register_command</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;initrd&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">grub_cmd_initrd</span><span class="p">,</span><span class="w"></span>
-<span class="w">                      </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">N_</span><span class="p">(</span><span class="s">&quot;Load initrd.&quot;</span><span class="p">));</span><span class="w"></span>
-<span class="w">  </span><span class="n">my_mod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mod</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div></p>
                 
                   
                     
@@ -2019,7 +1991,7 @@ At least on CentOS 7, it&rsquo;s all <code>linux16</code>. Different distro may 
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 6, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 23, 2021</span>
       
     
   </small>
@@ -2033,7 +2005,7 @@ At least on CentOS 7, it&rsquo;s all <code>linux16</code>. Different distro may 
 
   <h2 id="__comments">Comments</h2>
   <div id="disqus_thread"></div>
-  <script>var disqus_config=function(){this.page.url="http://lastweek.io/notes/linux-boot/",this.page.identifier="notes/linux-boot/"};window.addEventListener("load",function(){var e=document,i=e.createElement("script");i.src="//lastweek-io.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)})</script>
+  <script>var disqus_config=function(){this.page.url="http://lastweek.io/notes/linux/linux-x86-fpu/",this.page.identifier="notes/linux/linux-x86-fpu/"};window.addEventListener("load",function(){var e=document,i=e.createElement("script");i.src="//lastweek-io.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)})</script>
 
               
             </article>
@@ -2053,7 +2025,7 @@ At least on CentOS 7, it&rsquo;s all <code>linux16</code>. Different distro may 
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../linux/fork/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Linux fork/switch_to" rel="prev">
+        <a href="../../xperf/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Linux x86 Ring Switch" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2062,20 +2034,20 @@ At least on CentOS 7, it&rsquo;s all <code>linux16</code>. Different distro may 
               <span class="md-footer__direction">
                 Previous
               </span>
-              Linux fork/switch_to
+              Linux x86 Ring Switch
             </div>
           </div>
         </a>
       
       
         
-        <a href="../trace/" class="md-footer__link md-footer__link--next" aria-label="Next: Linux Trace and Profile" rel="next">
+        <a href="../linux-iouring/" class="md-footer__link md-footer__link--next" aria-label="Next: Linux io_uring" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Linux Trace and Profile
+              Linux io_uring
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -2104,10 +2076,10 @@ At least on CentOS 7, it&rsquo;s all <code>linux16</code>. Different distro may 
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.409db549.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.409db549.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.756773cc.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.756773cc.min.js"></script>
       
     
   </body>
