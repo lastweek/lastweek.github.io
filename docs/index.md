@@ -13,6 +13,7 @@ I'm on job market! My [CV](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 ??? tip "Research News"
 	- [_Sep 2021_] We made our SuperNIC paper public. Network? Disaggregate!
+	- [_Sep 2021_] Serve as [OSDI'21 Artifact Evaluation PC](https://sysartifacts.github.io/osdi2021/organizers.html)
 	- [_Aug 2021_] We made our Clio paper public. It is an FPGA-based disaggregated memory system.
 	- [_Jun 2021_] Start my final internship at Microsoft Research, working on Security + System.
 	- [_Jun 2021_] I proposed my thesis and became a Ph.D candidate.
