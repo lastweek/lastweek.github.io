@@ -366,11 +366,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>http://lastweek.io/linux/fork/</loc>
-         <lastmod>2021-10-23</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>http://lastweek.io/misc/cheatsheet/</loc>
          <lastmod>2021-10-23</lastmod>
          <changefreq>daily</changefreq>
@@ -532,6 +527,11 @@
     </url>
     <url>
          <loc>http://lastweek.io/notes/languages/rust/</loc>
+         <lastmod>2021-10-23</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://lastweek.io/notes/linux/fork/</loc>
          <lastmod>2021-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
