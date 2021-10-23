@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#about-linux-fork" class="md-skip">
+        <a href="#misc-on-linux-fork-switch_to-and-scheduling" class="md-skip">
           Skip to content
         </a>
       
@@ -526,9 +526,50 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#running-for-the-first-time" class="md-nav__link">
-    Running for the first time
+  <a href="#running-for-the-first-time-after-fork" class="md-nav__link">
+    Running For the first time after fork()
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#misc" class="md-nav__link">
+    Misc
+  </a>
+  
+    <nav class="md-nav" aria-label="Misc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-current" class="md-nav__link">
+    Linux current
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-pt_regs" class="md-nav__link">
+    Linux pt_regs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leveraging-ret-and-iret" class="md-nav__link">
+    Leveraging ret and iret
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kernel-exception-handling" class="md-nav__link">
+    Kernel Exception Handling
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1872,9 +1913,50 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#running-for-the-first-time" class="md-nav__link">
-    Running for the first time
+  <a href="#running-for-the-first-time-after-fork" class="md-nav__link">
+    Running For the first time after fork()
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#misc" class="md-nav__link">
+    Misc
+  </a>
+  
+    <nav class="md-nav" aria-label="Misc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-current" class="md-nav__link">
+    Linux current
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-pt_regs" class="md-nav__link">
+    Linux pt_regs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leveraging-ret-and-iret" class="md-nav__link">
+    Leveraging ret and iret
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kernel-exception-handling" class="md-nav__link">
+    Kernel Exception Handling
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1895,7 +1977,7 @@
                   </a>
                 
                 
-                <h1 id="about-linux-fork">About Linux fork()<a class="headerlink" href="#about-linux-fork" title="Permanent link">&para;</a></h1>
+                <h1 id="misc-on-linux-fork-switch_to-and-scheduling">Misc on Linux fork, switch_to, and scheduling<a class="headerlink" href="#misc-on-linux-fork-switch_to-and-scheduling" title="Permanent link">&para;</a></h1>
 <details class="note"><summary>Version History</summary><table>
 <thead>
 <tr>
@@ -1918,9 +2000,9 @@ Then I recalled the moment I reliazed how switch_to/fork etc works, it was amazi
 So I decide to read the source code again and do some documentation.
 I&rsquo;m mostly reading my LegoOS code. This note is quite uncomplete though.
 I won&rsquo;t have time going through the obvious.</p>
-<p>copy_process() -&gt; copy_thread().</p>
 <h2 id="prepare-kernel-stack-and-function-pointers">Prepare Kernel Stack and Function Pointers<a class="headerlink" href="#prepare-kernel-stack-and-function-pointers" title="Permanent link">&para;</a></h2>
-<p>This is the stack layout after copy_thread().
+<p>copy_process() -&gt; copy_thread().</p>
+<p>This is the stack layout after <code>copy_thread()</code>.
 Also the rough layout when the newly created thread is enqueued into runqueue.
 <img alt="stack_layout_fork" src="../stack_layout_fork.png" /></p>
 <p>The <code>copy_thread()</code> is architecture specific, I&rsquo;m using x86 as an example.
@@ -1969,7 +2051,7 @@ will be used later on in the assembly (<code>entry_64.S</code>).
 </code></pre></div></p>
 <p>Then the newly created thread will be enqueued into the runqueue.
 Eventually it will gets running.</p>
-<h2 id="running-for-the-first-time">Running for the first time<a class="headerlink" href="#running-for-the-first-time" title="Permanent link">&para;</a></h2>
+<h2 id="running-for-the-first-time-after-fork">Running For the first time after fork()<a class="headerlink" href="#running-for-the-first-time-after-fork" title="Permanent link">&para;</a></h2>
 <p>When the scheduler decides to run a thread, it will at least call <code>context_switch()</code>,
 which internally calls <code>switch_to()</code>, which is just a macro around <code>__switch_to_asm</code>.
 <div class="highlight"><pre><span></span><code><span class="cp">#define switch_to(prev, next, last)                                     \    </span>
@@ -1985,51 +2067,133 @@ Hence no return address will be pushed into the stack.
 Later on, when <code>__switch_to()</code> finishes and returns, the hardware
 will use the last field in the stack, which is the <code>ret_addr</code> field we placed there during <code>copy_thread()</code>! Elegant, isn&rsquo;t it? </p>
 <p>So, for a newly created process, the control flow is as follows
-<div class="highlight"><pre><span></span><code>context_switch (c)
-__switch_to_asm (asm)
-__switch_to (c)
-ret_from_fork (asm)
-   ==&gt; return system call
-   ==&gt; run kernel function
+<div class="highlight"><pre><span></span><code><span class="n">context_switch</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"></span>
+<span class="n">__switch_to_asm</span><span class="w"> </span><span class="p">(</span><span class="k">asm</span><span class="p">)</span><span class="w"></span>
+<span class="n">__switch_to</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"></span>
+<span class="n">ret_from_fork</span><span class="w"> </span><span class="p">(</span><span class="k">asm</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="o">==&gt;</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">system</span><span class="w"> </span><span class="n">call</span><span class="w"></span>
+<span class="w">   </span><span class="o">==&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">kernel</span><span class="w"> </span><span class="n">function</span><span class="w"></span>
 </code></pre></div></p>
-<p>So what about other normal threads, i.e., after the first run?
-Well, then the stack layout is different.
-<code>ret_field</code> is actually pointing to the <code>context_switch</code> itself.
-So it will return back there.</p>
-<div class="highlight"><pre><span></span><code>/*
- * %rdi: prev task
- * %rsi: next task
- */
-ENTRY(__switch_to_asm)
-        pushq   %rbp    
-        pushq   %rbx    
-        pushq   %r12    
-        pushq   %r13    
-        pushq   %r14    
-        pushq   %r15    
+<p>Note the two lines switching stack.
+The <code>TASK_threadsp</code> is actually referring to <code>p-&gt;thread.sp</code>.
+For a newly created thread, <code>p-&gt;thread.sp</code> was set during <code>copy_thread()</code>
+and it directly points to the starting address of <code>struct fork_frame</code>.</p>
+<p>Note that there is a key difference with regard to normal threads scheduling,
+i.e., threading got de-scheduled and scheduled again.
+For the normal case, threads either willingly give up control or got preempted.
+Either way, the kernel stack will have all the calling trace (different from
+a newly forked thread&rsquo;s stack, which is clean), and the <code>p-&gt;thread.sp</code> points there.
+Assume we have 2 threads A and B. A is originally running. A willingly goes to sleep by
+calling schedule(), inside which, it eventually calls <code>context_switch()-&gt;__switch_to_asm()</code>.
+This saves a return address to <code>context_switch()</code> into the bottom of the kernel stack (and
+this is the <code>ret_field</code> position for <code>struct fork_frame</code>)!
+When A got re-scheduled again, it runs into <code>__switch_to_asm</code> again.
+Unlike the fork case, here the ret_field points to where A gave up control, essentially the original
+<code>context_switch()</code>. So A will resume to <code>context_switch()</code> and run into <code>finish_task_switch()</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="cm">/*</span>
+<span class="cm"> * %rdi: prev task</span>
+<span class="cm"> * %rsi: next task</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="n">ENTRY</span><span class="p">(</span><span class="n">__switch_to_asm</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">pushq</span><span class="w">   </span><span class="o">%</span><span class="n">rbp</span><span class="w">    </span>
+<span class="w">        </span><span class="n">pushq</span><span class="w">   </span><span class="o">%</span><span class="n">rbx</span><span class="w">    </span>
+<span class="w">        </span><span class="n">pushq</span><span class="w">   </span><span class="o">%</span><span class="n">r12</span><span class="w">    </span>
+<span class="w">        </span><span class="n">pushq</span><span class="w">   </span><span class="o">%</span><span class="n">r13</span><span class="w">    </span>
+<span class="w">        </span><span class="n">pushq</span><span class="w">   </span><span class="o">%</span><span class="n">r14</span><span class="w">    </span>
+<span class="w">        </span><span class="n">pushq</span><span class="w">   </span><span class="o">%</span><span class="n">r15</span><span class="w">    </span>
 
-        /* Switch stack */    
-        movq    %rsp, TASK_threadsp(%rdi)    
-        movq    TASK_threadsp(%rsi), %rsp    
+<span class="w">        </span><span class="cm">/* Switch stack */</span><span class="w">    </span>
+<span class="w">        </span><span class="n">movq</span><span class="w">    </span><span class="o">%</span><span class="n">rsp</span><span class="p">,</span><span class="w"> </span><span class="n">TASK_threadsp</span><span class="p">(</span><span class="o">%</span><span class="n">rdi</span><span class="p">)</span><span class="w">    </span>
+<span class="w">        </span><span class="n">movq</span><span class="w">    </span><span class="n">TASK_threadsp</span><span class="p">(</span><span class="o">%</span><span class="n">rsi</span><span class="p">),</span><span class="w"> </span><span class="o">%</span><span class="n">rsp</span><span class="w">    </span>
 
-        /* restore callee-saved registers */    
-        popq    %r15    
-        popq    %r14    
-        popq    %r13    
-        popq    %r12    
-        popq    %rbx    
-        popq    %rbp    
+<span class="w">        </span><span class="cm">/* restore callee-saved registers */</span><span class="w">    </span>
+<span class="w">        </span><span class="n">popq</span><span class="w">    </span><span class="o">%</span><span class="n">r15</span><span class="w">    </span>
+<span class="w">        </span><span class="n">popq</span><span class="w">    </span><span class="o">%</span><span class="n">r14</span><span class="w">    </span>
+<span class="w">        </span><span class="n">popq</span><span class="w">    </span><span class="o">%</span><span class="n">r13</span><span class="w">    </span>
+<span class="w">        </span><span class="n">popq</span><span class="w">    </span><span class="o">%</span><span class="n">r12</span><span class="w">    </span>
+<span class="w">        </span><span class="n">popq</span><span class="w">    </span><span class="o">%</span><span class="n">rbx</span><span class="w">    </span>
+<span class="w">        </span><span class="n">popq</span><span class="w">    </span><span class="o">%</span><span class="n">rbp</span><span class="w">    </span>
 
-        /*
-         * Note:
-         * After popping out the above fields, now we only have
-         * the `ret_field` left in the stack, which was pushed
-         * into the stack by `copy_thread()`!
-         * This is a *JUMP* to __switch_to() function!
-         */
-        jmp     __switch_to
-END(__switch_to_asm)
+<span class="w">        </span><span class="cm">/*</span>
+<span class="cm">         * Note:</span>
+<span class="cm">         * After popping out the above fields, now we only have</span>
+<span class="cm">         * the `ret_field` left in the stack, which was pushed</span>
+<span class="cm">         * into the stack by `copy_thread()`!</span>
+<span class="cm">         * This is a *JUMP* to __switch_to() function!</span>
+<span class="cm">         */</span><span class="w"></span>
+<span class="w">        </span><span class="n">jmp</span><span class="w">     </span><span class="n">__switch_to</span><span class="w"></span>
+<span class="n">END</span><span class="p">(</span><span class="n">__switch_to_asm</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
+<p>I want to spend a few words on <code>ret_from_fork</code> as well.
+It is a quite interesting function.
+As we discussed above, a newly created thread will first run <code>ret_from_fork()</code>.
+And it got into this function by simply return from <code>__switch_to()</code>.</p>
+<p>As you can see, it will check whether we are creating a new kernel thread.
+If it is, we will invoke the kernel function directly (this is how kthread
+create new kernel thread). And this kernel thread is allowed to return
+to userspace by calling exec and its friends!</p>
+<div class="highlight"><pre><span></span><code><span class="cm">/*                                                                                           </span>
+<span class="cm"> * A newly forked process directly context switches into this address.                                                                                           </span>
+<span class="cm"> *                                                                                           </span>
+<span class="cm"> * rax: prev task we switched from                                                                                           </span>
+<span class="cm"> * rbx: kernel thread func (NULL for user thread)                                                                                           </span>
+<span class="cm"> * r12: kernel thread arg                                                                                           </span>
+<span class="cm"> */</span><span class="w">                                                                                           </span>
+<span class="n">ENTRY</span><span class="p">(</span><span class="n">ret_from_fork</span><span class="p">)</span><span class="w">                                                                                           </span>
+<span class="w">        </span><span class="n">movq</span><span class="w">    </span><span class="o">%</span><span class="n">rax</span><span class="p">,</span><span class="w"> </span><span class="o">%</span><span class="n">rdi</span><span class="w"></span>
+<span class="w">        </span><span class="n">call</span><span class="w">    </span><span class="n">schedule_tail</span><span class="w">           </span><span class="cm">/* rdi: &#39;prev&#39; task parameter */</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">testq</span><span class="w">   </span><span class="o">%</span><span class="n">rbx</span><span class="p">,</span><span class="w"> </span><span class="o">%</span><span class="n">rbx</span><span class="w">              </span><span class="cm">/* from kernel_thread? */</span><span class="w"></span>
+<span class="w">        </span><span class="n">jnz</span><span class="w">     </span><span class="mf">1f</span><span class="w">                      </span><span class="cm">/* kernel threads are uncommon */</span><span class="w"></span>
+
+<span class="mi">2</span><span class="o">:</span><span class="w">                                                                                           </span>
+<span class="w">        </span><span class="n">movq</span><span class="w">    </span><span class="o">%</span><span class="n">rsp</span><span class="p">,</span><span class="w"> </span><span class="o">%</span><span class="n">rdi</span><span class="w"></span>
+<span class="w">        </span><span class="n">call</span><span class="w">    </span><span class="n">syscall_return_slowpath</span><span class="w"> </span><span class="cm">/* return with IRQs disabled */</span><span class="w"></span>
+<span class="w">        </span><span class="n">SWAPGS</span><span class="w">                          </span><span class="cm">/* switch to user gs.base */</span><span class="w"></span>
+<span class="w">        </span><span class="n">jmp</span><span class="w">     </span><span class="n">restore_regs_and_iret</span><span class="w"></span>
+
+<span class="mi">1</span><span class="o">:</span><span class="w">                                                                                           </span>
+<span class="w">        </span><span class="cm">/* kernel thread */</span><span class="w"></span>
+<span class="w">        </span><span class="n">movq</span><span class="w">    </span><span class="o">%</span><span class="n">r12</span><span class="p">,</span><span class="w"> </span><span class="o">%</span><span class="n">rdi</span><span class="w"></span>
+<span class="w">        </span><span class="n">call</span><span class="w">    </span><span class="o">*%</span><span class="n">rbx</span><span class="w"></span>
+<span class="w">        </span><span class="cm">/*    </span>
+<span class="cm">         * A kernel thread is allowed to return here after successfully    </span>
+<span class="cm">         * calling do_execve().  Exit to userspace to complete the execve()    </span>
+<span class="cm">         * syscall:    </span>
+<span class="cm">         */</span><span class="w"></span>
+<span class="w">        </span><span class="n">movq</span><span class="w">    </span><span class="n">$0</span><span class="p">,</span><span class="w"> </span><span class="n">RAX</span><span class="p">(</span><span class="o">%</span><span class="n">rsp</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">jmp</span><span class="w">     </span><span class="mi">2</span><span class="n">b</span><span class="w"></span>
+<span class="n">END</span><span class="p">(</span><span class="n">ret_from_fork</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+<h2 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link">&para;</a></h2>
+<h3 id="linux-current">Linux <code>current</code><a class="headerlink" href="#linux-current" title="Permanent link">&para;</a></h3>
+<p>The <code>current</code> macro refers to the current running thread.
+It is very convient variable and it works like magic before.
+Long time ago, <code>current</code> is a macro that has a set of assmebly instructions
+calculating the pointer to <code>task_struct</code> based on the current <code>kernel stack pointer</code>.
+Since the kernel stack has a fixed size, so it is easy to derive the bottom of
+the kernel stack by masking the current sp pointer. Then, kernel saved some extra
+info there to make a connection to the task_struct. Simple and works well.</p>
+<p>Nowadays, in x86, the current becomes a per-cpu variable. IMO, it is actually much cleaner.
+The variable is called <code>current_task</code>. It got updated inside <code>__switch_to</code>.
+<code>current</code> becomes a function reading the <code>current_task</code>, should is much lightweigh than old solutions.</p>
+<h3 id="linux-pt_regs">Linux <code>pt_regs</code><a class="headerlink" href="#linux-pt_regs" title="Permanent link">&para;</a></h3>
+<p>PT stands for program trace. <code>pt_regs</code> includes the whole register status, very arch-specific.
+They live at the top of the kernel stack. When a program trap from user to kernel space,
+the first thing kernel would do is to construct such pt_regs (check <code>entry_64.S</code>).</p>
+<p>However, things might got tricky though. Threads in kernel can be interrupted as well.
+So we could have multiple <code>pt_regs</code> instances inside kernel stack frame.
+So logically, there is a stack of <code>pt_regs</code>, and kernel code should use the right <code>pt_regs</code>
+rather than blindly use the top of the kernel stack!</p>
+<h3 id="leveraging-ret-and-iret">Leveraging <code>ret</code> and <code>iret</code><a class="headerlink" href="#leveraging-ret-and-iret" title="Permanent link">&para;</a></h3>
+<p>Kernel uses this trick a lot. At its core, <code>ret</code> and <code>iret</code>
+transfer control to the addresses saved in the stack.
+So if we change the saved addresses, C&rsquo;s <code>return XX</code>  becomes very magical.
+It can return to unexpected places. This trick is used by <code>__switch_to_asm</code> and <code>ret_from_fork</code>.</p>
+<h3 id="kernel-exception-handling">Kernel Exception Handling<a class="headerlink" href="#kernel-exception-handling" title="Permanent link">&para;</a></h3>
+<p>Kernel can handle exceptions from kernel itself, or fixup exceptions.
+Some of the exceptions are okay. Say <code>copy_from_user()</code>, there might be page fault during this call.
+And kernel should be able to recognize that in the page fault handler and resume execution.</p>
                 
                   
                     
