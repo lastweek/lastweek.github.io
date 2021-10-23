@@ -15,6 +15,7 @@ nav:
    - 'Cryptography':                                        'notes/cryptography.md'
    - 'Cryptocurrency':                                      'notes/cryptocurrency.md'
    - 'Hardware Design Languages':                           'notes/hardware_pl.md'
+   - 'Linux fork/switch_to':                                'notes/linux/fork.md'
    - 'Linux Boot Sequence':                                 'notes/linux-boot.md'
    - 'Linux Trace and Profile':                             'notes/trace.md'
    - 'Linux Reverse Mapping':                               'notes/rmap.md'
