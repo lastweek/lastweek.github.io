@@ -531,6 +531,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>http://lastweek.io/notes/linux/linux-rcu/</loc>
+         <lastmod>2021-10-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>http://lastweek.io/notes/linux/linux-resource/</loc>
          <lastmod>2021-10-24</lastmod>
          <changefreq>daily</changefreq>
