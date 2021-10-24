@@ -616,9 +616,53 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Linux RCU
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Linux RCU
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-rcu" class="md-nav__link">
+    How to use RCU?
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1777,6 +1821,35 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-rcu" class="md-nav__link">
+    How to use RCU?
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1808,6 +1881,17 @@
 </tbody>
 </table>
 </details>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="https://lwn.net/Articles/262464/">What is RCU, Fundamentally?</a><ul>
+<li>This is a great article.</li>
+<li>You should really understand the example cases in this article. It could give a better understanding on why RCU works and how to modify your code to use it.</li>
+</ul>
+</li>
+<li><a href="https://pdos.csail.mit.edu/6.828/2017/readings/rcu-decade-later.pdf">RCU Usage In the Linux Kernel: One Decade Later</a></li>
+<li><a href="http://blog.foool.net/wp-content/uploads/linuxdocs/RCU.pdf">http://blog.foool.net/wp-content/uploads/linuxdocs/RCU.pdf</a></li>
+</ol>
+<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <p>RCU is just brilliant but also painfully hard to understand in the first place.
 I want to walk through how RCU is actually implemented in the kernel and take some notes.</p>
 <p>The <code>synchronize_rcu()</code> is the most interesting function.
@@ -1826,10 +1910,6 @@ Anymore, I didn&rsquo;t expect to understand RCU impl in just few hours.
 I should use this a bit more and read a bit more.
 <div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">synchronize_rcu</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">RCU_LOCKDEP_WARN</span><span class="p">(</span><span class="n">lock_is_held</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rcu_bh_lock_map</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"></span>
-<span class="w">             </span><span class="n">lock_is_held</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rcu_lock_map</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"></span>
-<span class="w">             </span><span class="n">lock_is_held</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rcu_sched_lock_map</span><span class="p">),</span><span class="w"></span>
-<span class="w">             </span><span class="s">&quot;Illegal synchronize_rcu() in RCU read-side critical section&quot;</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rcu_blocking_is_gp</span><span class="p">())</span><span class="w"></span>
 <span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w">  </span><span class="c1">// Context allows vacuous grace periods.</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rcu_gp_is_expedited</span><span class="p">())</span><span class="w"></span>
@@ -1839,6 +1919,30 @@ I should use this a bit more and read a bit more.
 <span class="p">}</span><span class="w"></span>
 <span class="n">EXPORT_SYMBOL_GPL</span><span class="p">(</span><span class="n">synchronize_rcu</span><span class="p">);</span><span class="w"></span>
 </code></pre></div></p>
+<p>Ah, I think the RCU usage paper gives a nice high-level summary on Linux&rsquo;s implementaiton:</p>
+<ul>
+<li>In practice Linux implements <code>synchronize_rcu</code> by waiting for all CPUs in the system to pass through a context switch, instead of scheduling a thread on each CPU. This design optimizes the Linux RCU implementation for low-cost RCU critical sections, but at the cost of delaying synchronize_rcu callers longer than necessary. In principle, a writer waiting for a particular reader need only wait for that reader to complete an RCU critical section. The reader, however, must communicate to the writer that the RCU critical section is complete. The Linux RCU implementation essentially batches reader-to-writer communication by waiting for context switches. When possible, writers can use an asynchronous version of <code>synchronize_rcu</code>, <code>call_rcu</code>, that will asynchronously invokes a specified callback after all CPUs have passed through at least one context switch.</li>
+<li>The Linux RCU implementation tries to amortize the cost of detecting context switches over many <code>synchronize_rcu</code> and <code>call_rcu</code> operations. <strong>Detecting context switches requires maintaining state shared between CPUs</strong>. A CPU must update state, which other CPUs read, that indicate it executed a context switch. Updating shared state can be costly, because it causes other CPUs to cache miss. <strong>RCU reduces this cost by reporting per-CPU state roughly once per scheduling clock tick</strong>. If the kernel calls <code>synchronize_rcu</code> and <code>call_rcu</code> many times in that period, RCU will have reduced the average cost of each call to <code>synchronize_rcu</code> and <code>call_rcu</code> at the cost of higher latency. Linux can satisfy more than 1,000 calls to <code>synchronize_rcu</code> and <code>call_rcu</code> in a single batch [22]. For latency sensitive kernel subsystems, RCU provides expedited synchronization functions that execute without waiting for all CPUs to execute multiple context switches.
+```</li>
+</ul>
+<h2 id="how-to-use-rcu">How to use RCU?<a class="headerlink" href="#how-to-use-rcu" title="Permanent link">&para;</a></h2>
+<p>After reading several RCU code snippets, it is not hard to notice that they have a common theme.
+Especicially for the List related operations, there is no final atomic modification in the updater thread.
+This atomic update serves as a barrier. The reaeders rely on this pointer to grab info pointed by this pointer.
+This is very important trick to leverage RCU. If you code is not like, you should add this level of indirection,
+package your data behind a pointer and modify the reader to follow the pointer.</p>
+<p>Also, the List RCU related operations may seem confusing in the start, because, naturally,
+we&rsquo;d think there are so many operations inside list walk, insert and removal, how come they are safe?
+The catch is that, usually for readers who are doing list-walk, they only use the <code>next</code> pointer.
+So for <code>insert</code> and <code>removal</code>, they only need to gurantee the of <code>next</code>, meaning, they need to make sure that
+the list/data is correct (no NULL pointer) for both before and after updaing <code>next</code> pointer.
+And this is sufficient for readers!</p>
+<p>In all, changing to RCU requires a good understanding on your own logic.
+If your data structrue is not packaged, package it behind some pointers.
+And make sure the readers integrity can be ensured by relying on this single pointer.</p>
+<p>One more thing is Reader Retry. It is obvious that the readers might see stale data.
+So it is up to the designers to retry. The designer can rely on the Sequence Lock for this purpose for example.</p>
+<p>You can read the RCU usage paper for more suggestions.</p>
                 
                   
                     
@@ -1847,7 +1951,7 @@ I should use this a bit more and read a bit more.
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 23, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 24, 2021</span>
       
     
   </small>
