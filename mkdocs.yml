@@ -23,6 +23,7 @@ nav:
 - Code:
    - 'Index':                       'notes/source_code/summary.md'
    - Linux:
+     - 'Linux Index':                                         'notes/linux/index.md'
      - 'Linux fork/switch_to':                                'notes/linux/fork.md'
      - 'Linux Boot Sequence':                                 'notes/linux/linux-boot.md'
      - 'Linux Trace and Profile':                             'notes/trace.md'
@@ -32,9 +33,9 @@ nav:
      - 'Linux x86 Ring Switch':                               'notes/xperf.md'
      - 'Linux FPU':                                           'notes/linux/linux-x86-fpu.md'
      - 'Linux io_uring':                                      'notes/linux/linux-iouring.md'
-     - 'Linux Resource':                                       'notes/linux/linux-resource.md'
-     - 'Linux Special Files':                                  'notes/proc.md'
-     - 'Linux KVM':                                            'notes/kvm-basic.md'
+     - 'Linux Resource':                                      'notes/linux/linux-resource.md'
+     - 'Linux Special Files':                                 'notes/proc.md'
+     - 'Linux KVM':                                           'notes/kvm-basic.md'
    - 'Guideline & Advice':          'notes/program_advice.md'
    - 'Firmware & Bootloader':       'notes/source_code/firmware-softwares.md'
    - 'Operating System':            'notes/source_code/os.md'
