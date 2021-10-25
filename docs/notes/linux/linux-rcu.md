@@ -3,6 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Oct 24, 2021| Add code reading section |
 	|Oct 23, 2021| Initial|
 
 ## References
@@ -13,10 +14,15 @@
 1. [RCU Usage In the Linux Kernel: One Decade Later](https://pdos.csail.mit.edu/6.828/2017/readings/rcu-decade-later.pdf)
 2. http://blog.foool.net/wp-content/uploads/linuxdocs/RCU.pdf
 
+I write this note as I read the related blog and the code.
+So my understanding expressed in this note is sequential.
+After reading various blogs and the kernel source code,
+I did reach a good conclusion and have a good understanding in the end.
+
 ## Notes
 
 RCU is just brilliant but also painfully hard to understand in the first place.
-I want to walk through how RCU is actually implemented in the kernel and take some notes.
+I want to walk through how RCU is actually implemented in the kernel and take some notes (Oct 23, 2021).
 
 The `synchronize_rcu()` is the most interesting function.
 By definition, it will only return after making sure no other CPUs are still in the reader side critical section.
@@ -122,7 +128,7 @@ Note, if we are calling from `synchronize_rcu`, this `crcu_array[i]` is essentia
 call_rcu(&rs_array[i].head, wakeme_after_rcu);
 ```
 
-In `__call_rcu`, I think the core is the following couple lines. It packages the incoming function callback and enqueue into the rcu segcblist:
+In `__call_rcu`, I think the core is the following couple lines. It packages the incoming function callback and enqueue into the rcu segcblist. Not only `synchronize_rcu()` calls `call_rcu()`, any kernel code can call this to register a function to, say, free an object! Nice. Since callbacks MUST be called after it is safe to do so, meaning all CPUs have context switched. So we should find the place where callbacks are run.
 ```c
 __call_rcu()
 	...
@@ -133,8 +139,8 @@ __call_rcu()
 	..
 ```
 
-As I understand it, `__call_rcu` register a callback function into a seglist framework.
-And in the following func, the `rsclp->tails` caught my eye. Someone MUST deal with this array.
+Now try to find the place run callbacks.
+First up, examine the enqueue function. ThenIn the following func, the `rsclp->tails` caught my eye. Follow this.
 ```c
 void rcu_segcblist_enqueue(struct rcu_segcblist *rsclp,
 			   struct rcu_head *rhp)
@@ -149,11 +155,42 @@ void rcu_segcblist_enqueue(struct rcu_segcblist *rsclp,
 
 Since someone MUST call these callbacks after grace period.
 If we found that place, we will know which code represent the end of grace period.
-So I search for `func` and `tails`. Bang, we are in `rcu_do_batch()`, which is called by `rcu_core()` only, which is called by `rcu_cpu_kthread()`
+So I search for `func` and `tails`. Bang, we are in `rcu_do_batch()`.
+As you can see, it will walk through the callback list and run one by one.
+Note this callbacks come from either other kernel code or rcu itself.
+This callback is short, usually free the object or complete sth.
+```c
+/*
+ * Invoke any RCU callbacks that have made it to the end of their grace
+ * period.  Throttle as specified by rdp->blimit.
+ */
+static void rcu_do_batch(struct rcu_data *rdp)
+{
+	...
 
-This `rcu_cpu_kthread()` is different from the `rcu_gp_thread` (the one who START grace period). They register this function via the `smpboot_regsiter_percpu_thread()` framework.
-Well, this framework creates a thread repeatly calling the registered callbacks.
-I eventually looks at the `thread_should_run` -> `rcu_cpu_has_work` -> `invoke_rcu_core_kthread()` -> `invoke_rcu_core()`.
+	/* Invoke callbacks. */
+	tick_dep_set_task(current, TICK_DEP_BIT_RCU);
+	rhp = rcu_cblist_dequeue(&rcl);
+
+	for (; rhp; rhp = rcu_cblist_dequeue(&rcl)) {
+		...
+		f = rhp->func;
+		WRITE_ONCE(rhp->func, (rcu_callback_t)0L);
+		f(rhp);
+		...
+	}
+	...
+}
+```
+
+Now we should find who calls `rcu_do_batch`.
+It is called by `rcu_core()` only, which is called by `rcu_cpu_kthread()`.
+
+This `rcu_cpu_kthread()` is different from the `rcu_gp_thread` (the one who START grace period).
+This function is registered via the `smpboot_regsiter_percpu_thread()` framework.
+This framework creates an internal thread repeatly calling the registered callbacks.
+So `rcu_cpu_kthread()` is actually running in a loop! It is just that the Loop logic is within the smpbook framework.
+It runs if `rcu_data.rcu_cpu_has_work` is 1, which is only set by `invoke_rcu_core_kthread()`.
 ```c
 /*
  * Wake up this CPU's rcuc kthread to do RCU core processing.
@@ -169,7 +206,7 @@ static void invoke_rcu_core(void)
 }
 ```
 
-I mean, seems quite close, right? It is used to wake up rcuc kthreads to do RCU core processing, which essentially are those callbacks that are supposed to be called after grace period. Then I started searching who called `invoke_rcu_core()`.
+_So, WHOEVER calls `invoke_rcu_core()` should be the one checking whether a grace period has expired!!_
 
 The cloest caller I found is this.
 The description is inline with what the RCU usage paper said. They do batch processing
@@ -233,3 +270,12 @@ And several threads, `rcu_gp_kthread()`, who advances grace period. `rcu_cpu_kth
 who actually run the registered callbacks from call_rcu/synchronize_rcu.
 
 Anyway this is conclusion for me, for now (Oct 24, 2021). I might look into the userspace impl later. Nonetheless the core of `synchronize_rcu()` is fairly simple: make sure a grace period has gone (e.g., all other CPUs have context switched). But a real efficient implementation is quite complicated, esp in Linux kernel.
+
+## After Thought
+
+Finished code reading.
+
+So it appears that for normal kernel code, use `call_rcu()` to register a callback is better than `synchronize_rcu()`.
+The former simply register the callback (e.g., free an object) and returns. The callback will be invoked once a grace period has expired.
+On the other hand, `synchronize_rcu()` is synchronize, it waits a grace period has actually passed.
+For most code, this is not necessary, as most code just want to do some cleanup code, as long as it is done.
