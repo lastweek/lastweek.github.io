@@ -667,6 +667,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#after-thought" class="md-nav__link">
+    After Thought
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1862,6 +1869,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#after-thought" class="md-nav__link">
+    After Thought
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1889,6 +1903,10 @@
 </thead>
 <tbody>
 <tr>
+<td align="left">Oct 24, 2021</td>
+<td>Add code reading section</td>
+</tr>
+<tr>
 <td align="left">Oct 23, 2021</td>
 <td>Initial</td>
 </tr>
@@ -1905,9 +1923,13 @@
 <li><a href="https://pdos.csail.mit.edu/6.828/2017/readings/rcu-decade-later.pdf">RCU Usage In the Linux Kernel: One Decade Later</a></li>
 <li><a href="http://blog.foool.net/wp-content/uploads/linuxdocs/RCU.pdf">http://blog.foool.net/wp-content/uploads/linuxdocs/RCU.pdf</a></li>
 </ol>
+<p>I write this note as I read the related blog and the code.
+So my understanding expressed in this note is sequential.
+After reading various blogs and the kernel source code,
+I did reach a good conclusion and have a good understanding in the end.</p>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <p>RCU is just brilliant but also painfully hard to understand in the first place.
-I want to walk through how RCU is actually implemented in the kernel and take some notes.</p>
+I want to walk through how RCU is actually implemented in the kernel and take some notes (Oct 23, 2021).</p>
 <p>The <code>synchronize_rcu()</code> is the most interesting function.
 By definition, it will only return after making sure no other CPUs are still in the reader side critical section.
 In a non-preemptive kernel, it can simply wait all other CPUs to have a context switch.
@@ -1990,7 +2012,7 @@ Based on various functions, it appears that if they need a grace period, they wi
 <p>Note, if we are calling from <code>synchronize_rcu</code>, this <code>crcu_array[i]</code> is essentially <code>call_rcu()</code> function. So the above callback essentially becomes:
 <div class="highlight"><pre><span></span><code><span class="n">call_rcu</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rs_array</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">head</span><span class="p">,</span><span class="w"> </span><span class="n">wakeme_after_rcu</span><span class="p">);</span><span class="w"></span>
 </code></pre></div></p>
-<p>In <code>__call_rcu</code>, I think the core is the following couple lines. It packages the incoming function callback and enqueue into the rcu segcblist:
+<p>In <code>__call_rcu</code>, I think the core is the following couple lines. It packages the incoming function callback and enqueue into the rcu segcblist. Not only <code>synchronize_rcu()</code> calls <code>call_rcu()</code>, any kernel code can call this to register a function to, say, free an object! Nice. Since callbacks MUST be called after it is safe to do so, meaning all CPUs have context switched. So we should find the place where callbacks are run.
 <div class="highlight"><pre><span></span><code><span class="n">__call_rcu</span><span class="p">()</span><span class="w"></span>
 <span class="w">    </span><span class="p">...</span><span class="w"></span>
 <span class="w">    </span><span class="n">head</span><span class="o">-&gt;</span><span class="n">func</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">func</span><span class="p">;</span><span class="w"></span>
@@ -1999,8 +2021,8 @@ Based on various functions, it appears that if they need a grace period, they wi
 <span class="w">    </span><span class="n">rcu_segcblist_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rdp</span><span class="o">-&gt;</span><span class="n">cblist</span><span class="p">,</span><span class="w"> </span><span class="n">head</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="p">..</span><span class="w"></span>
 </code></pre></div></p>
-<p>As I understand it, <code>__call_rcu</code> register a callback function into a seglist framework.
-And in the following func, the <code>rsclp-&gt;tails</code> caught my eye. Someone MUST deal with this array.
+<p>Now try to find the place run callbacks.
+First up, examine the enqueue function. ThenIn the following func, the <code>rsclp-&gt;tails</code> caught my eye. Follow this.
 <div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">rcu_segcblist_enqueue</span><span class="p">(</span><span class="k">struct</span> <span class="nc">rcu_segcblist</span><span class="w"> </span><span class="o">*</span><span class="n">rsclp</span><span class="p">,</span><span class="w"></span>
 <span class="w">               </span><span class="k">struct</span> <span class="nc">rcu_head</span><span class="w"> </span><span class="o">*</span><span class="n">rhp</span><span class="p">)</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
@@ -2013,10 +2035,39 @@ And in the following func, the <code>rsclp-&gt;tails</code> caught my eye. Someo
 </code></pre></div></p>
 <p>Since someone MUST call these callbacks after grace period.
 If we found that place, we will know which code represent the end of grace period.
-So I search for <code>func</code> and <code>tails</code>. Bang, we are in <code>rcu_do_batch()</code>, which is called by <code>rcu_core()</code> only, which is called by <code>rcu_cpu_kthread()</code></p>
-<p>This <code>rcu_cpu_kthread()</code> is different from the <code>rcu_gp_thread</code> (the one who START grace period). They register this function via the <code>smpboot_regsiter_percpu_thread()</code> framework.
-Well, this framework creates a thread repeatly calling the registered callbacks.
-I eventually looks at the <code>thread_should_run</code> -&gt; <code>rcu_cpu_has_work</code> -&gt; <code>invoke_rcu_core_kthread()</code> -&gt; <code>invoke_rcu_core()</code>.
+So I search for <code>func</code> and <code>tails</code>. Bang, we are in <code>rcu_do_batch()</code>.
+As you can see, it will walk through the callback list and run one by one.
+Note this callbacks come from either other kernel code or rcu itself.
+This callback is short, usually free the object or complete sth.
+<div class="highlight"><pre><span></span><code><span class="cm">/*</span>
+<span class="cm"> * Invoke any RCU callbacks that have made it to the end of their grace</span>
+<span class="cm"> * period.  Throttle as specified by rdp-&gt;blimit.</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">rcu_do_batch</span><span class="p">(</span><span class="k">struct</span> <span class="nc">rcu_data</span><span class="w"> </span><span class="o">*</span><span class="n">rdp</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+
+<span class="w">    </span><span class="cm">/* Invoke callbacks. */</span><span class="w"></span>
+<span class="w">    </span><span class="n">tick_dep_set_task</span><span class="p">(</span><span class="n">current</span><span class="p">,</span><span class="w"> </span><span class="n">TICK_DEP_BIT_RCU</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">rhp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rcu_cblist_dequeue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rcl</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(;</span><span class="w"> </span><span class="n">rhp</span><span class="p">;</span><span class="w"> </span><span class="n">rhp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rcu_cblist_dequeue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rcl</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="p">...</span><span class="w"></span>
+<span class="w">        </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rhp</span><span class="o">-&gt;</span><span class="n">func</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">WRITE_ONCE</span><span class="p">(</span><span class="n">rhp</span><span class="o">-&gt;</span><span class="n">func</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">rcu_callback_t</span><span class="p">)</span><span class="mf">0L</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">f</span><span class="p">(</span><span class="n">rhp</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div></p>
+<p>Now we should find who calls <code>rcu_do_batch</code>.
+It is called by <code>rcu_core()</code> only, which is called by <code>rcu_cpu_kthread()</code>.</p>
+<p>This <code>rcu_cpu_kthread()</code> is different from the <code>rcu_gp_thread</code> (the one who START grace period).
+This function is registered via the <code>smpboot_regsiter_percpu_thread()</code> framework.
+This framework creates an internal thread repeatly calling the registered callbacks.
+So <code>rcu_cpu_kthread()</code> is actually running in a loop! It is just that the Loop logic is within the smpbook framework.
+It runs if <code>rcu_data.rcu_cpu_has_work</code> is 1, which is only set by <code>invoke_rcu_core_kthread()</code>.
 <div class="highlight"><pre><span></span><code><span class="cm">/*</span>
 <span class="cm"> * Wake up this CPU&#39;s rcuc kthread to do RCU core processing.</span>
 <span class="cm"> */</span><span class="w"></span>
@@ -2030,7 +2081,7 @@ I eventually looks at the <code>thread_should_run</code> -&gt; <code>rcu_cpu_has
 <span class="w">        </span><span class="n">invoke_rcu_core_kthread</span><span class="p">();</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div></p>
-<p>I mean, seems quite close, right? It is used to wake up rcuc kthreads to do RCU core processing, which essentially are those callbacks that are supposed to be called after grace period. Then I started searching who called <code>invoke_rcu_core()</code>.</p>
+<p><em>So, WHOEVER calls <code>invoke_rcu_core()</code> should be the one checking whether a grace period has expired!!</em></p>
 <p>The cloest caller I found is this.
 The description is inline with what the RCU usage paper said. They do batch processing
 every scheduling-tick. Pay attention to  <code>rcu_pending()</code>.
@@ -2087,6 +2138,12 @@ mostly do the <code>complete()</code> call.</p>
 And several threads, <code>rcu_gp_kthread()</code>, who advances grace period. <code>rcu_cpu_kthread()</code> 
 who actually run the registered callbacks from call_rcu/synchronize_rcu.</p>
 <p>Anyway this is conclusion for me, for now (Oct 24, 2021). I might look into the userspace impl later. Nonetheless the core of <code>synchronize_rcu()</code> is fairly simple: make sure a grace period has gone (e.g., all other CPUs have context switched). But a real efficient implementation is quite complicated, esp in Linux kernel.</p>
+<h2 id="after-thought">After Thought<a class="headerlink" href="#after-thought" title="Permanent link">&para;</a></h2>
+<p>Finished code reading.</p>
+<p>So it appears that for normal kernel code, use <code>call_rcu()</code> to register a callback is better than <code>synchronize_rcu()</code>.
+The former simply register the callback (e.g., free an object) and returns. The callback will be invoked once a grace period has expired.
+On the other hand, <code>synchronize_rcu()</code> is synchronize, it waits a grace period has actually passed.
+For most code, this is not necessary, as most code just want to do some cleanup code, as long as it is done.</p>
                 
                   
                     
@@ -2095,7 +2152,7 @@ who actually run the registered callbacks from call_rcu/synchronize_rcu.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 24, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 25, 2021</span>
       
     
   </small>
