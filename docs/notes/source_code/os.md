@@ -1,13 +1,21 @@
-# Awesome Operating System
+# Operating Systems
 
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Oct 26, 2021| Add the Mach family references|
 	|Dec 18, 2020| extracted from the summary doc|
 
-You know what, this page is AWESOME: https://github.com/jubalh/awesome-os.
+My personal interest in CS starts from OS.
+I started by writing my own OS, it was such a rewarding and joyful journey.
+Since then, I'm hooked with any OS related projects.
+This page, is my attempt to document the well-known and less well-known OSes.
+This list is not meant to be complete, a lot of acedemic OS papers are not mentioned here.
+
+This [awsome-os](https://github.com/jubalh/awesome-os) has a more complete list.
 
 ## Mainstream
+
 - [Linux 0.0.1](https://github.com/lastweek/linux-0.01)
 	- This is the first linux source code released by Linus.
 	  Despite several designs are static
@@ -17,8 +25,11 @@ You know what, this page is AWESOME: https://github.com/jubalh/awesome-os.
 	- So many systems are influended by Plan 9 (e.g., Go, gVisor)
 - [illumos](https://github.com/lastweek/source-illumos-gate), a fork of the Oracle Solaris OS.
 - [seL4 Microkernel](https://github.com/lastweek/source-seL4)
-- [MacOS Darwin](https://github.com/lastweek/source-darwin-xnu)
-- BSD
+- [Mach Family](https://en.wikipedia.org/wiki/Mach_(kernel))
+	- [Mach 3.0](https://www.cs.cmu.edu/afs/cs/project/mach/public/www/sources/sources_top.html) the last version from CMU. [Code in Github](https://github.com/lastweek/source-mach).
+	- [GNU Mach](https://en.wikipedia.org/wiki/GNU_Mach) and [GNU Hurd](https://en.wikipedia.org/wiki/GNU_Hurd)
+        - [MacOS Darwin XNU](https://github.com/lastweek/source-darwin-xnu)
+- BSD Family
 	- BSD releases all the companion software packages along with the kernel.
 	  So there is a tighter relation between them.
 	  If you ever wondered how XXX is done, or how to get YYY from OS, this is where you can look into.
