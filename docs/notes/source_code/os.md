@@ -63,6 +63,8 @@ This [awsome-os](https://github.com/jubalh/awesome-os) has a more complete list.
 	  but it does inspire certain follow-up works.
 	- Several old research OSes have also used certain language features
 	to carry out security measures (e.g., V++).
+- [MIT Corey](https://github.com/lastweek/source-corey)
+	- I think the code itself is based on jos.
 
 ## Linux Distribution
 
