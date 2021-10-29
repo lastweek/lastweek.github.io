@@ -26,6 +26,7 @@ nav:
      - 'Linux Index':                                         'notes/linux/index.md'
      - 'Linux fork/switch_to':                                'notes/linux/fork.md'
      - 'Linux RCU':                                           'notes/linux/linux-rcu.md'
+     - 'Linux Completion/swait':                              'notes/linux/linux-completion.md'
      - 'Linux Boot Sequence':                                 'notes/linux/linux-boot.md'
      - 'Linux Trace and Profile':                             'notes/trace.md'
      - 'Linux Reverse Mapping':                               'notes/rmap.md'
