@@ -1,5 +1,18 @@
 # Linux Work Queue
 
+??? note "Version History"
+	|Date|Description|
+	|:---|-----------|
+	|Oct 29, 2021| Initial|
+
+NOTE: like a lot of my other notes. This is written for myself.
+The note is not a high-level summary. It documents my journery on
+reading the source code and **gradually** understand the workqueue subsystem.
+I wrote it sequentially and I ask questions. Most of the questions are answered
+in a later section.
+
+## Intro
+
 Work queue is a generic async execution with shared worker pool in linux kernel. It does what is designed to do, it runs "your function" across
 a set of worker threads. The subsystem is huge. As of v5.9, the `workqueue.c` has more than 6K lines of code.
 
@@ -155,6 +168,78 @@ alloc_workqueue()				- Public API
 					-> get_unbound_pool()
 						-> create_worker()
 ```
+
+Actually, look closely into `get_unbound_pool()`.
+It actually has quite some logic before calling into `create_worker()`.
+This logic is checking whether we already have a matching pool and return early.
+And this is why our `alloc_workqueue()` won't create kworker right away.
+But I'm wondering whether it creates later on.. Any way, I'm done!
+
+## The worker
+
+The worker is created by the function `create_worker()`. Duh.
+The worker thread is fairly straightforward, it repeatly sleep, wakeup,
+check if there are any pending work, do it, sleep.
+It appears that workers get work from the `struct worker_pool`.
+So now I understand what the pool concept is used here.
+And, it sorts of also answered my earlier question:
+the workers are generic and it appears `alloc_workqueue` actually
+will not create new threads. New users reuse the old worker threads.
+Though the worker may create more depends on load (that func is simple too..).
+
+```c
+/**
+ * worker_thread - the worker thread function
+ * @__worker: self
+ *
+ * The worker thread function.  All workers belong to a worker_pool -
+ * either a per-cpu one or dynamic unbound one.  These workers process all
+ * work items regardless of their specific target workqueue.  The only
+ * exception is work items which belong to workqueues with a rescuer which
+ * will be explained in rescuer_thread().
+ *
+ * Return: 0
+ */
+static int worker_thread(void *__worker)
+{
+	struct worker *worker = __worker;
+	struct worker_pool *pool = worker->pool;
+
+	...
+
+	do {
+		//
+		// Yizhou:
+		// See, we are dequeuing work from the pool
+		// So, we can check who/when enqueue into worklist
+		//
+		struct work_struct *work =
+			list_first_entry(&pool->worklist,
+					 struct work_struct, entry);
+
+		pool->watchdog_ts = jiffies;
+
+		if (likely(!(*work_data_bits(work) & WORK_STRUCT_LINKED))) {
+			/* optimization path, not strictly necessary */
+			process_one_work(worker, work);
+			if (unlikely(!list_empty(&worker->scheduled)))
+				process_scheduled_works(worker);
+		} else {
+			move_linked_works(work, &worker->scheduled, NULL);
+			process_scheduled_works(worker);
+		}
+	} while (keep_working(pool));
+}
+```
+
+So, checking out `worklist`. It is simply modified by `__queue_work()`.
+Now the last question, I guess, is to figure out how `__queue_work()` decide
+which pool to insert the new work into.
+
+The `__queue_work()` only gets the `wq` returned by `alloc_workqueue()`. Let's see.
+Ok, looks like there are quite a lot flags controlling these.
+`WQ_UNBOUND`, `WORK_CPU_UNBOUND` and so on.
+These flags control, sort of, which pool to use.
 
 ## TODO
 I need to try it out.
