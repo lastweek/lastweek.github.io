@@ -11,14 +11,14 @@
         <meta name="author" content="Yizhou Shan">
       
       
-        <link rel="canonical" href="http://lastweek.io/notes/linux/linux-workqueue/">
+        <link rel="canonical" href="http://lastweek.io/notes/linux/linux-percpu/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
-        <title>Linux Work Queue - Yizhou Shan's Home Page</title>
+        <title>Linux percpu - Yizhou Shan's Home Page</title>
       
     
     
@@ -75,11 +75,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#linux-work-queue" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -108,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Linux Work Queue
+              Linux percpu
             
           </span>
         </div>
@@ -2012,148 +2007,19 @@
               </div>
             
             
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#key-data-structures-and-functions" class="md-nav__link">
-    Key Data Structures and Functions
-  </a>
-  
-    <nav class="md-nav" aria-label="Key Data Structures and Functions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create-workers" class="md-nav__link">
-    Create workers
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#workflow" class="md-nav__link">
-    Workflow
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    References
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/lastweek/lastweek.github.io/edit/master/docs/notes/linux/linux-workqueue.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/lastweek/lastweek.github.io/edit/master/docs/notes/linux/linux-percpu.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="linux-work-queue">Linux Work Queue<a class="headerlink" href="#linux-work-queue" title="Permanent link">&para;</a></h1>
-<p>Work queue is a generic async execution with shared worker pool in linux kernel. It does what is designed to do, it runs &ldquo;your function&rdquo; across
-a set of worker threads. The subsystem is huge. As of v5.9, the <code>workqueue.c</code> has more than 6K lines of code.</p>
-<p>The internal documentation is at <code>Documentation/core-api/workqueue.rst</code>.</p>
-<p>APIs</p>
-<ul>
-<li><code>alloc_workqueue()</code></li>
-<li><code>queue_work()</code></li>
-</ul>
-<h2 id="key-data-structures-and-functions">Key Data Structures and Functions<a class="headerlink" href="#key-data-structures-and-functions" title="Permanent link">&para;</a></h2>
-<p>Data Structures</p>
-<ul>
-<li><code>struct work_struct</code>, the work item, including the func</li>
-<li><code>struct worker</code>, the actual worker thread<ul>
-<li>has a <code>struct task_struct *task</code></li>
-</ul>
-</li>
-<li>
-<p><code>struct worker_pool</code>, multiple workers can form a pool</p>
-</li>
-<li>
-<p>So it looks like there 2 worker pools per cpu, and it is accessed by macro. But can we create more pools?
-<div class="highlight"><pre><span></span><code><span class="n">NR_STD_WORKER_POOLS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
-<span class="cm">/* the per-cpu worker pools */</span><span class="w"></span>
-<span class="k">static</span><span class="w"> </span><span class="n">DEFINE_PER_CPU_SHARED_ALIGNED</span><span class="p">(</span><span class="k">struct</span> <span class="nc">worker_pool</span><span class="w"> </span><span class="p">[</span><span class="n">NR_STD_WORKER_POOLS</span><span class="p">],</span><span class="w"> </span><span class="n">cpu_worker_pools</span><span class="p">);</span><span class="w"></span>
-
-
-<span class="cp">#define for_each_cpu_worker_pool(pool, cpu)             \</span>
-<span class="cp">    for ((pool) = &amp;per_cpu(cpu_worker_pools, cpu)[0];       \</span>
-<span class="cp">         (pool) &lt; &amp;per_cpu(cpu_worker_pools, cpu)[NR_STD_WORKER_POOLS]; \</span>
-<span class="cp">         (pool)++)</span>
-</code></pre></div></p>
-</li>
-</ul>
-<h3 id="create-workers">Create workers<a class="headerlink" href="#create-workers" title="Permanent link">&para;</a></h3>
-<p>The first is I want to understand is how workers are created,
-and how many of them are created. I think I will do a bottom-up
-fashion instead of top-down. So I started from the function
-to create a single worker, then I check who calls it.</p>
-<p>The <code>create_worker()</code> - creates a worker thread.
-The steps are straightforward. Calling into <code>kthread_create</code>,
-attach it to a <code>worker_pool</code>. So this is how worker and pool got connected.
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="k">struct</span> <span class="nc">worker</span><span class="w"> </span><span class="o">*</span><span class="n">create_worker</span><span class="p">(</span><span class="k">struct</span> <span class="nc">worker_pool</span><span class="w"> </span><span class="o">*</span><span class="n">pool</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="p">...</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">worker</span><span class="o">-&gt;</span><span class="n">task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kthread_create_on_node</span><span class="p">(</span><span class="n">worker_thread</span><span class="p">,</span><span class="w"> </span><span class="n">worker</span><span class="p">,</span><span class="w"> </span><span class="n">pool</span><span class="o">-&gt;</span><span class="n">node</span><span class="p">,</span><span class="w"></span>
-<span class="w">                          </span><span class="s">&quot;kworker/%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">id_buf</span><span class="p">);</span><span class="w"></span>
-
-
-<span class="w">    </span><span class="cm">/* successful, attach the worker to the pool */</span><span class="w"></span>
-<span class="w">    </span><span class="n">worker_attach_to_pool</span><span class="p">(</span><span class="n">worker</span><span class="p">,</span><span class="w"> </span><span class="n">pool</span><span class="p">);</span><span class="w"></span>
-
-
-<span class="w">    </span><span class="cm">/* start the newly created worker */</span><span class="w"></span>
-<span class="w">    </span><span class="n">raw_spin_lock_irq</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pool</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">worker</span><span class="o">-&gt;</span><span class="n">pool</span><span class="o">-&gt;</span><span class="n">nr_workers</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">worker_enter_idle</span><span class="p">(</span><span class="n">worker</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">wake_up_process</span><span class="p">(</span><span class="n">worker</span><span class="o">-&gt;</span><span class="n">task</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">raw_spin_unlock_irq</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pool</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div></p>
-<p>The <code>worker_attach_to_pool()</code> is quite simple, just some list op.
-<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="n">list_add_tail</span><span class="p">(</span><span class="o">&amp;</span><span class="n">worker</span><span class="o">-&gt;</span><span class="n">node</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pool</span><span class="o">-&gt;</span><span class="n">workers</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">worker</span><span class="o">-&gt;</span><span class="n">pool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pool</span><span class="p">;</span><span class="w"></span>
-</code></pre></div></p>
-<p>Okay, now I want to see who calls <code>create_worker()</code>.</p>
-<h2 id="workflow">Workflow<a class="headerlink" href="#workflow" title="Permanent link">&para;</a></h2>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="https://events.static.linuxfound.org/sites/events/files/slides/Async%20execution%20with%20wqs.pdf">https://events.static.linuxfound.org/sites/events/files/slides/Async%20execution%20with%20wqs.pdf</a> </li>
-</ul>
+                  <h1>Linux percpu</h1>
+                
+                
                 
                   
                     
@@ -2176,7 +2042,7 @@ attach it to a <code>worker_pool</code>. So this is how worker and pool got conn
 
   <h2 id="__comments">Comments</h2>
   <div id="disqus_thread"></div>
-  <script>var script,disqus_config=function(){this.page.url="http://lastweek.io/notes/linux/linux-workqueue/",this.page.identifier="notes/linux/linux-workqueue/"};"undefined"==typeof DISQUS?((script=document.createElement("script")).async=!0,script.src="https://lastweek-io.disqus.com/embed.js",script.setAttribute("data-timestamp",Date.now()),document.body.appendChild(script)):DISQUS.reset({reload:!0,config:disqus_config})</script>
+  <script>var script,disqus_config=function(){this.page.url="http://lastweek.io/notes/linux/linux-percpu/",this.page.identifier="notes/linux/linux-percpu/"};"undefined"==typeof DISQUS?((script=document.createElement("script")).async=!0,script.src="https://lastweek-io.disqus.com/embed.js",script.setAttribute("data-timestamp",Date.now()),document.body.appendChild(script)):DISQUS.reset({reload:!0,config:disqus_config})</script>
 
               
             </article>
