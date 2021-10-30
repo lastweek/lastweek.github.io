@@ -11,6 +11,8 @@ reading the source code and **gradually** understand the workqueue subsystem.
 I wrote it sequentially and I ask questions. Most of the questions are answered
 in a later section.
 
+My simple testing code is here: https://github.com/lastweek/linux-sample-modules/tree/master/workqueue.
+
 ## Intro
 
 Work queue is a generic async execution with shared worker pool in linux kernel. It does what is designed to do, it runs "your function" across
