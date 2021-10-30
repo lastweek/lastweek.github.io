@@ -11,14 +11,14 @@
         <meta name="author" content="Yizhou Shan">
       
       
-        <link rel="canonical" href="http://lastweek.io/lego/kernel/pagefault_disable/">
+        <link rel="canonical" href="http://lastweek.io/notes/linux/linux-linker-script/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
-        <title>Disable pgfault - Yizhou Shan's Home Page</title>
+        <title>Linux Linker Script - Yizhou Shan's Home Page</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#the-story-of-pagefault_disableenable" class="md-skip">
+        <a href="#linux-linker-script-framework" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Disable pgfault
+              Linux Linker Script
             
           </span>
         </div>
@@ -200,7 +200,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../notes/virt/" class="md-tabs__link">
+      <a href="../../virt/" class="md-tabs__link">
         Notes
       </a>
     </li>
@@ -210,13 +210,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../../../notes/source_code/summary/" class="md-tabs__link">
+      <a href="../../source_code/summary/" class="md-tabs__link md-tabs__link--active">
         Code
       </a>
     </li>
@@ -242,8 +244,6 @@
         
   
   
-    
-  
 
 
   
@@ -255,7 +255,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../log/misc/" class="md-tabs__link md-tabs__link--active">
+      <a href="../../../lego/log/misc/" class="md-tabs__link">
         LegoOS
       </a>
     </li>
@@ -358,7 +358,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/virt/" class="md-nav__link">
+      <a href="../../virt/" class="md-nav__link">
         Modern Virtualization
       </a>
     </li>
@@ -372,7 +372,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/cache_coherence/" class="md-nav__link">
+      <a href="../../cache_coherence/" class="md-nav__link">
         Practical Cache Coherence
       </a>
     </li>
@@ -386,7 +386,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/dynamic_linking/" class="md-nav__link">
+      <a href="../../dynamic_linking/" class="md-nav__link">
         Dynamic Linking
       </a>
     </li>
@@ -400,7 +400,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/dcn/" class="md-nav__link">
+      <a href="../../dcn/" class="md-nav__link">
         Data Center Networking
       </a>
     </li>
@@ -414,7 +414,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/packet-sched/" class="md-nav__link">
+      <a href="../../packet-sched/" class="md-nav__link">
         Switch Buffering and Packet Scheduling
       </a>
     </li>
@@ -428,7 +428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/sysml/" class="md-nav__link">
+      <a href="../../sysml/" class="md-nav__link">
         SysML
       </a>
     </li>
@@ -442,7 +442,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/arch/" class="md-nav__link">
+      <a href="../../arch/" class="md-nav__link">
         Architecture
       </a>
     </li>
@@ -456,7 +456,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/cryptography/" class="md-nav__link">
+      <a href="../../cryptography/" class="md-nav__link">
         Cryptography
       </a>
     </li>
@@ -470,7 +470,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/cryptocurrency/" class="md-nav__link">
+      <a href="../../cryptocurrency/" class="md-nav__link">
         Cryptocurrency
       </a>
     </li>
@@ -484,7 +484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/hardware_pl/" class="md-nav__link">
+      <a href="../../hardware_pl/" class="md-nav__link">
         Hardware Design Languages
       </a>
     </li>
@@ -498,7 +498,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/paper_perf_shadows/" class="md-nav__link">
+      <a href="../../paper_perf_shadows/" class="md-nav__link">
         Performance-Shadows
       </a>
     </li>
@@ -560,12 +560,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
       
       
       
@@ -588,7 +590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/source_code/summary/" class="md-nav__link">
+      <a href="../../source_code/summary/" class="md-nav__link">
         Index
       </a>
     </li>
@@ -600,12 +602,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
       
       
       
@@ -628,7 +632,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/linux/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         Linux Index
       </a>
     </li>
@@ -642,7 +646,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/linux/fork/" class="md-nav__link">
+      <a href="../fork/" class="md-nav__link">
         Linux fork/switch_to
       </a>
     </li>
@@ -656,7 +660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/linux/linux-rcu/" class="md-nav__link">
+      <a href="../linux-rcu/" class="md-nav__link">
         Linux RCU
       </a>
     </li>
@@ -670,7 +674,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/linux/linux-completion/" class="md-nav__link">
+      <a href="../linux-completion/" class="md-nav__link">
         Linux Completion/swait
       </a>
     </li>
@@ -684,7 +688,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/linux/linux-workqueue/" class="md-nav__link">
+      <a href="../linux-workqueue/" class="md-nav__link">
         Linux workqueue
       </a>
     </li>
@@ -696,11 +700,65 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../../notes/linux/linux-linker-script/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Linux Linker Script
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Linux Linker Script
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#intro" class="md-nav__link">
+    Intro
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel" class="md-nav__link">
+    Kernel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boring-details" class="md-nav__link">
+    Boring Details
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -712,7 +770,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/linux/linux-boot/" class="md-nav__link">
+      <a href="../linux-boot/" class="md-nav__link">
         Linux Boot Sequence
       </a>
     </li>
@@ -726,7 +784,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/trace/" class="md-nav__link">
+      <a href="../../trace/" class="md-nav__link">
         Linux Trace and Profile
       </a>
     </li>
@@ -740,7 +798,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/rmap/" class="md-nav__link">
+      <a href="../../rmap/" class="md-nav__link">
         Linux Reverse Mapping
       </a>
     </li>
@@ -754,7 +812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/userfaultfd/" class="md-nav__link">
+      <a href="../../userfaultfd/" class="md-nav__link">
         Linux Userfaultfd
       </a>
     </li>
@@ -768,7 +826,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/cgroup-swap/" class="md-nav__link">
+      <a href="../../cgroup-swap/" class="md-nav__link">
         Linux Cgroup and Swap
       </a>
     </li>
@@ -782,7 +840,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/xperf/" class="md-nav__link">
+      <a href="../../xperf/" class="md-nav__link">
         Linux x86 Ring Switch
       </a>
     </li>
@@ -796,7 +854,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/linux/linux-x86-fpu/" class="md-nav__link">
+      <a href="../linux-x86-fpu/" class="md-nav__link">
         Linux FPU
       </a>
     </li>
@@ -810,7 +868,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/linux/linux-iouring/" class="md-nav__link">
+      <a href="../linux-iouring/" class="md-nav__link">
         Linux io_uring
       </a>
     </li>
@@ -824,7 +882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/linux/linux-resource/" class="md-nav__link">
+      <a href="../linux-resource/" class="md-nav__link">
         Linux Resource
       </a>
     </li>
@@ -838,7 +896,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/proc/" class="md-nav__link">
+      <a href="../../proc/" class="md-nav__link">
         Linux Special Files
       </a>
     </li>
@@ -852,7 +910,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/kvm-basic/" class="md-nav__link">
+      <a href="../../kvm-basic/" class="md-nav__link">
         Linux KVM
       </a>
     </li>
@@ -873,7 +931,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/program_advice/" class="md-nav__link">
+      <a href="../../program_advice/" class="md-nav__link">
         Guideline & Advice
       </a>
     </li>
@@ -887,7 +945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/source_code/firmware-softwares/" class="md-nav__link">
+      <a href="../../source_code/firmware-softwares/" class="md-nav__link">
         Firmware & Bootloader
       </a>
     </li>
@@ -901,7 +959,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/source_code/os/" class="md-nav__link">
+      <a href="../../source_code/os/" class="md-nav__link">
         Operating System
       </a>
     </li>
@@ -915,7 +973,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/source_code/compilers/" class="md-nav__link">
+      <a href="../../source_code/compilers/" class="md-nav__link">
         Compilers
       </a>
     </li>
@@ -929,7 +987,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/source_code/unix-tools/" class="md-nav__link">
+      <a href="../../source_code/unix-tools/" class="md-nav__link">
         Unix Tools
       </a>
     </li>
@@ -943,7 +1001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/source_code/virt/" class="md-nav__link">
+      <a href="../../source_code/virt/" class="md-nav__link">
         Virtualization
       </a>
     </li>
@@ -957,7 +1015,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/source_code/rdma/" class="md-nav__link">
+      <a href="../../source_code/rdma/" class="md-nav__link">
         DPDK and RDMA
       </a>
     </li>
@@ -971,7 +1029,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/source_code/20200501-on-graphic-softwares/" class="md-nav__link">
+      <a href="../../source_code/20200501-on-graphic-softwares/" class="md-nav__link">
         Graphics
       </a>
     </li>
@@ -985,7 +1043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/source_code/gpu/" class="md-nav__link">
+      <a href="../../source_code/gpu/" class="md-nav__link">
         GPU
       </a>
     </li>
@@ -999,7 +1057,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/source_code/fpga/" class="md-nav__link">
+      <a href="../../source_code/fpga/" class="md-nav__link">
         FPGA
       </a>
     </li>
@@ -1013,7 +1071,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/source_code/risc-v/" class="md-nav__link">
+      <a href="../../source_code/risc-v/" class="md-nav__link">
         RISC-V
       </a>
     </li>
@@ -1027,7 +1085,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/source_code/dotconfigs/" class="md-nav__link">
+      <a href="../../source_code/dotconfigs/" class="md-nav__link">
         Dot-Configs
       </a>
     </li>
@@ -1041,7 +1099,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/source_code/misc/" class="md-nav__link">
+      <a href="../../source_code/misc/" class="md-nav__link">
         Misc
       </a>
     </li>
@@ -1103,7 +1161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notes/paper_fpga/" class="md-nav__link">
+      <a href="../../paper_fpga/" class="md-nav__link">
         Papers
       </a>
     </li>
@@ -1179,14 +1237,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
       
       
       
@@ -1235,7 +1291,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../log/misc/" class="md-nav__link">
+      <a href="../../../lego/log/misc/" class="md-nav__link">
         MISC
       </a>
     </li>
@@ -1249,7 +1305,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../log/test-note/" class="md-nav__link">
+      <a href="../../../lego/log/test-note/" class="md-nav__link">
         Test Script
       </a>
     </li>
@@ -1268,14 +1324,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
       
       
       
@@ -1298,7 +1352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../boot/" class="md-nav__link">
+      <a href="../../../lego/kernel/boot/" class="md-nav__link">
         GRUB2 and Boot
       </a>
     </li>
@@ -1312,7 +1366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../kconfig/" class="md-nav__link">
+      <a href="../../../lego/kernel/kconfig/" class="md-nav__link">
         Kconfig
       </a>
     </li>
@@ -1326,7 +1380,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../debug/" class="md-nav__link">
+      <a href="../../../lego/kernel/debug/" class="md-nav__link">
         Debug
       </a>
     </li>
@@ -1340,7 +1394,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../grub/" class="md-nav__link">
+      <a href="../../../lego/kernel/grub/" class="md-nav__link">
         GRUB
       </a>
     </li>
@@ -1354,7 +1408,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../profile/" class="md-nav__link">
+      <a href="../../../lego/kernel/profile/" class="md-nav__link">
         Profile
       </a>
     </li>
@@ -1368,7 +1422,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../profile_strace/" class="md-nav__link">
+      <a href="../../../lego/kernel/profile_strace/" class="md-nav__link">
         Profile strace
       </a>
     </li>
@@ -1382,7 +1436,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../profile_heatmap/" class="md-nav__link">
+      <a href="../../../lego/kernel/profile_heatmap/" class="md-nav__link">
         Profile heatmap
       </a>
     </li>
@@ -1396,7 +1450,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../profile_points/" class="md-nav__link">
+      <a href="../../../lego/kernel/profile_points/" class="md-nav__link">
         Profile points
       </a>
     </li>
@@ -1410,7 +1464,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../trampoline/" class="md-nav__link">
+      <a href="../../../lego/kernel/trampoline/" class="md-nav__link">
         Trampoline
       </a>
     </li>
@@ -1422,21 +1476,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../lego/kernel/pagefault_disable/" class="md-nav__link">
         Disable pgfault
       </a>
-      
     </li>
   
 
@@ -1448,7 +1492,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../stop_machine/" class="md-nav__link">
+      <a href="../../../lego/kernel/stop_machine/" class="md-nav__link">
         Stop machine
       </a>
     </li>
@@ -1462,7 +1506,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../loader/" class="md-nav__link">
+      <a href="../../../lego/kernel/loader/" class="md-nav__link">
         Program Loader
       </a>
     </li>
@@ -1476,7 +1520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../vDSO/" class="md-nav__link">
+      <a href="../../../lego/kernel/vDSO/" class="md-nav__link">
         vDSO
       </a>
     </li>
@@ -1490,7 +1534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../vfs/" class="md-nav__link">
+      <a href="../../../lego/kernel/vfs/" class="md-nav__link">
         Virtual File System
       </a>
     </li>
@@ -1504,7 +1548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../vm/" class="md-nav__link">
+      <a href="../../../lego/kernel/vm/" class="md-nav__link">
         Process Virtual Memory
       </a>
     </li>
@@ -1518,7 +1562,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../fpu/" class="md-nav__link">
+      <a href="../../../lego/kernel/fpu/" class="md-nav__link">
         x86 FPU
       </a>
     </li>
@@ -1532,7 +1576,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../irq/" class="md-nav__link">
+      <a href="../../../lego/kernel/irq/" class="md-nav__link">
         IRQ
       </a>
     </li>
@@ -1546,7 +1590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../net_thpool/" class="md-nav__link">
+      <a href="../../../lego/kernel/net_thpool/" class="md-nav__link">
         Network Thpool
       </a>
     </li>
@@ -1593,7 +1637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../syscall/facts/" class="md-nav__link">
+      <a href="../../../lego/syscall/facts/" class="md-nav__link">
         Facts
       </a>
     </li>
@@ -1607,7 +1651,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../profile_strace/" class="md-nav__link">
+      <a href="../../../lego/kernel/profile_strace/" class="md-nav__link">
         strace
       </a>
     </li>
@@ -1621,7 +1665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../syscall/compat/" class="md-nav__link">
+      <a href="../../../lego/syscall/compat/" class="md-nav__link">
         compat
       </a>
     </li>
@@ -1635,7 +1679,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../syscall/msync/" class="md-nav__link">
+      <a href="../../../lego/syscall/msync/" class="md-nav__link">
         msync()
       </a>
     </li>
@@ -1649,7 +1693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../syscall/mremap/" class="md-nav__link">
+      <a href="../../../lego/syscall/mremap/" class="md-nav__link">
         mremap()
       </a>
     </li>
@@ -1663,7 +1707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../syscall/fork/" class="md-nav__link">
+      <a href="../../../lego/syscall/fork/" class="md-nav__link">
         fork()
       </a>
     </li>
@@ -1677,7 +1721,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../syscall/getrusage/" class="md-nav__link">
+      <a href="../../../lego/syscall/getrusage/" class="md-nav__link">
         getrusage()
       </a>
     </li>
@@ -1691,7 +1735,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../syscall/wait_and_exit/" class="md-nav__link">
+      <a href="../../../lego/syscall/wait_and_exit/" class="md-nav__link">
         wait4 and exit()
       </a>
     </li>
@@ -1738,7 +1782,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pcache/config/" class="md-nav__link">
+      <a href="../../../lego/pcache/config/" class="md-nav__link">
         Config
       </a>
     </li>
@@ -1752,7 +1796,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pcache/sweep/" class="md-nav__link">
+      <a href="../../../lego/pcache/sweep/" class="md-nav__link">
         Sweep
       </a>
     </li>
@@ -1766,7 +1810,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pcache/tlb/" class="md-nav__link">
+      <a href="../../../lego/pcache/tlb/" class="md-nav__link">
         TLB Coherence
       </a>
     </li>
@@ -1780,7 +1824,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pcache/pgtable-lock/" class="md-nav__link">
+      <a href="../../../lego/pcache/pgtable-lock/" class="md-nav__link">
         PageTable Lock
       </a>
     </li>
@@ -1794,7 +1838,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pcache/victim/" class="md-nav__link">
+      <a href="../../../lego/pcache/victim/" class="md-nav__link">
         Victim Cache
       </a>
     </li>
@@ -1808,7 +1852,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pcache/virtual_cache/" class="md-nav__link">
+      <a href="../../../lego/pcache/virtual_cache/" class="md-nav__link">
         Virtual Cache
       </a>
     </li>
@@ -1822,7 +1866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pcache/rmap/" class="md-nav__link">
+      <a href="../../../lego/pcache/rmap/" class="md-nav__link">
         Reverse Mapping
       </a>
     </li>
@@ -1836,7 +1880,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pcache/evict_and_ref/" class="md-nav__link">
+      <a href="../../../lego/pcache/evict_and_ref/" class="md-nav__link">
         Evict and Refcount
       </a>
     </li>
@@ -1850,7 +1894,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pcache/smp_design/" class="md-nav__link">
+      <a href="../../../lego/pcache/smp_design/" class="md-nav__link">
         SMP Design
       </a>
     </li>
@@ -1864,7 +1908,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pcache/replication/" class="md-nav__link">
+      <a href="../../../lego/pcache/replication/" class="md-nav__link">
         Replication
       </a>
     </li>
@@ -1911,7 +1955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../driver/pci/" class="md-nav__link">
+      <a href="../../../lego/driver/pci/" class="md-nav__link">
         PCI
       </a>
     </li>
@@ -1925,7 +1969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../driver/ib/" class="md-nav__link">
+      <a href="../../../lego/driver/ib/" class="md-nav__link">
         Infiniband
       </a>
     </li>
@@ -1972,7 +2016,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../paper/nmp/" class="md-nav__link">
+      <a href="../../../lego/paper/nmp/" class="md-nav__link">
         NMP
       </a>
     </li>
@@ -1986,7 +2030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../paper/processor_oom/" class="md-nav__link">
+      <a href="../../../lego/paper/processor_oom/" class="md-nav__link">
         Processor OOM
       </a>
     </li>
@@ -2000,7 +2044,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../paper/genz/" class="md-nav__link">
+      <a href="../../../lego/paper/genz/" class="md-nav__link">
         Gen-Z
       </a>
     </li>
@@ -2014,7 +2058,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../paper/replication/" class="md-nav__link">
+      <a href="../../../lego/paper/replication/" class="md-nav__link">
         Replication
       </a>
     </li>
@@ -2028,7 +2072,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../paper/related/" class="md-nav__link">
+      <a href="../../../lego/paper/related/" class="md-nav__link">
         Related
       </a>
     </li>
@@ -2068,6 +2112,35 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#intro" class="md-nav__link">
+    Intro
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel" class="md-nav__link">
+    Kernel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boring-details" class="md-nav__link">
+    Boring Details
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2078,20 +2151,162 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/lastweek/lastweek.github.io/edit/master/docs/lego/kernel/pagefault_disable.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/lastweek/lastweek.github.io/edit/master/docs/notes/linux/linux-linker-script.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="the-story-of-pagefault_disableenable">The story of pagefault_disable/enable<a class="headerlink" href="#the-story-of-pagefault_disableenable" title="Permanent link">&para;</a></h1>
-<p><code>pagefault_disable()</code> is not really disabling the whole pgfault handling code. It is used to disable only the handling of pgfault that landed from <code>user virtual address</code>. Please note the difference between <code>user virtual address</code> and <code>user mode fault</code>. The first means the faulting address belongs to user virtual address space, while it can come from either user mode (CPL3) or kernel mode (CPL0). The second is a fault come from user mode (CPL3).</p>
-<p>If pgfault is disabled, then <code>do_page_fault()</code> function will <strong>NOT</strong> try to solve the pgfault by calling into <code>pcache</code>, instead, it will go straight to <code>fixup</code> code (in no_context()).</p>
-<p>This function is not intended to be used standalone. Normally, we do <strong>1)</strong> <code>pagefault_disable()</code>, <strong>2)</strong> then use some functions that have <code>fixup</code> code, <strong>3)</strong> then <code>pagefault_enable()</code>. (The <code>fixup</code> code is another magic inside kernel. We will cover it in another document.)</p>
-<p>Currently in Lego, this is only used by <code>futex</code>, which needs something like <code>atomic_cmpxchg()</code> with an user virtual address. If pgfault happens in the middle, then this will not be atomic since kernel need to do pcache operations, which further needs to through network.</p>
-<p>However, do note the difference with <code>uaccess</code> family functions. Most <code>uaccess</code> functions will not disable pgfault handling, which means pcache will be invoked. If pcache returns a <code>SEGFAULT</code>, pgfault code will go into <code>fixup</code> code. And that, my friend, is where <code>uaccess</code> returns <code>-EFAULT</code> to caller.</p>
-<p>&ndash;<br />
-Yizhou Shan<br />
-Feb 01, 2018</p>
+                <h1 id="linux-linker-script-framework">Linux Linker Script Framework<a class="headerlink" href="#linux-linker-script-framework" title="Permanent link">&para;</a></h1>
+<details class="note"><summary>Version History</summary><table>
+<thead>
+<tr>
+<th align="left">Date</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Oct 30, 2021</td>
+<td>Initial</td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>Has nothing better to do, so to write some random note on linker script.</p>
+<h2 id="intro">Intro<a class="headerlink" href="#intro" title="Permanent link">&para;</a></h2>
+<p>The kernel is complied in a very controlled way.
+It has a linker script to control exactly what sections are
+generated and where they are.
+The linker script is architecture specific.
+I will examine <code>arch/x86/kernel/vmliniux.ld.S</code>.
+Yes, it is an assembly file. The build framework will compile it into <code>vmlinux.ld</code>. 
+The reason that it is in assembly format is simple.
+We need to use a lot of macros, that are shared with C code.
+Assembly files allow us to do that, linker script does not.</p>
+<p>When I wrote LegoOS, I used the exact framework.
+The whole thing was very confusing to me in the beginning.
+The kernel code interacts with the linker script quite a lot, actually.
+The most common use, is to annnotate C code (say put into a special section),
+and then the linker script will aggregate them. Let me summarize the common flow:</p>
+<ol>
+<li>Create a new section name. And use it to annotate your function and data. For example, I can create <code>__section("test")</code>, and mark <code>int foo __section("test")</code>. </li>
+<li>Then look into <code>vmlinux.lds.S</code>, add a new section. Also, add begin and end marcos before and after the section. You can use these macros in your C code.
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p">.</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ALIGN</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="nl">test_section</span> <span class="p">:</span><span class="w"> </span><span class="n">AT</span><span class="p">(</span><span class="n">ADDR</span><span class="p">(.</span><span class="n">test_section</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">LOAD_OFFSET</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">__test_section_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.;</span><span class="w"></span>
+<span class="w">        </span><span class="o">*</span><span class="p">(.</span><span class="n">test</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">__test_section_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</code></pre></div></li>
+<li>And in your C code, you can declare <code>__test_section_start</code> and <code>__test_section_end</code>,
+and use them. Kernel uses this trick a lot. If everything in this section is the same
+type of data structures, you can simply walk through it as if it is an array.</li>
+</ol>
+<p>Let&rsquo;s look at an example, say the x86 apicdrivers.</p>
+<p>They defined a macro to annotate apic drivers.
+<div class="highlight"><pre><span></span><code><span class="cp">#define apic_driver(sym)                                        \    </span>
+<span class="w">        </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span> <span class="nc">apic</span><span class="w"> </span><span class="o">*</span><span class="n">__apicdrivers_</span><span class="err">##</span><span class="n">sym</span><span class="w"> </span><span class="n">__used</span><span class="w">            </span><span class="err">\</span><span class="w">    </span>
+<span class="w">        </span><span class="n">__aligned</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="nc">apic</span><span class="w"> </span><span class="o">*</span><span class="p">))</span><span class="w">                        </span><span class="err">\</span><span class="w">    </span>
+<span class="w">        </span><span class="n">__section</span><span class="p">(</span><span class="s">&quot;.apicdrivers&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sym</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span> <span class="nc">apic</span><span class="w"> </span><span class="n">testAPICdriver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<span class="n">apic_driver</span><span class="p">(</span><span class="n">testAPICdriver</span><span class="p">)</span><span class="w"></span>
+</code></pre></div></p>
+<p>And inside linker script, they define:
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p">.</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ALIGN</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="nl">apicdrivers</span> <span class="p">:</span><span class="w"> </span><span class="n">AT</span><span class="p">(</span><span class="n">ADDR</span><span class="p">(.</span><span class="n">apicdrivers</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">LOAD_OFFSET</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">__apicdrivers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.;</span><span class="w"></span>
+<span class="w">        </span><span class="o">*</span><span class="p">(.</span><span class="n">apicdrivers</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">__apicdrivers_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</code></pre></div></p>
+<p>Finally, define them in C and use it.
+<div class="highlight"><pre><span></span><code><span class="k">extern</span><span class="w"> </span><span class="k">struct</span> <span class="nc">apic</span><span class="w"> </span><span class="o">*</span><span class="n">__apicdrivers</span><span class="p">[],</span><span class="w"> </span><span class="o">*</span><span class="n">__apicdrivers_end</span><span class="p">[];</span><span class="w"></span>
+
+<span class="k">struct</span> <span class="nc">apic</span><span class="w"> </span><span class="o">**</span><span class="n">drv</span><span class="p">;</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">drv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__apicdrivers</span><span class="p">;</span><span class="w"> </span><span class="n">drv</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">__apicdrivers_end</span><span class="p">;</span><span class="w"> </span><span class="n">drv</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div></p>
+<p>The kernel scheduler code the trick to define various scheduler drivers too.</p>
+<h2 id="kernel">Kernel<a class="headerlink" href="#kernel" title="Permanent link">&para;</a></h2>
+<p>Various things that use linker script to organize their data and functions.</p>
+<ol>
+<li>per-cpu data</li>
+<li>ftrace</li>
+<li>init and exit functions</li>
+<li>ACPI, APIC</li>
+<li>IRQCHIP</li>
+<li>Exception handlers</li>
+<li>cacheline aligned</li>
+</ol>
+<h2 id="boring-details">Boring Details<a class="headerlink" href="#boring-details" title="Permanent link">&para;</a></h2>
+<p>In the <code>vmlinux.lds.S</code>, those header files are included.
+The most important one is <code>vmlinux.lds.h</code>.
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm-generic/vmlinux.lds.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/asm-offsets.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/thread_info.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/page_types.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/orc_lookup.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/cache.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/boot.h&gt;</span><span class="cp"></span>
+</code></pre></div></p>
+<p>And be sure to checkout the <a href="https://github.com/torvalds/linux/blob/master/include/asm-generic/vmlinux.lds.h"><code>vmlinux.lds.h</code></a>.
+The top comments. It lays out the basic structrue of a linker script in linux.
+And it defines all the macros used in the assembly linker file.
+<div class="highlight"><pre><span></span><code><span class="cm">/*</span>
+<span class="cm"> * Helper macros to support writing architecture specific</span>
+<span class="cm"> * linker scripts.</span>
+<span class="cm"> *</span>
+<span class="cm"> * A minimal linker scripts has following content:</span>
+<span class="cm"> * [This is a sample, architectures may have special requiriements]</span>
+<span class="cm"> *</span>
+<span class="cm"> * OUTPUT_FORMAT(...)</span>
+<span class="cm"> * OUTPUT_ARCH(...)</span>
+<span class="cm"> * ENTRY(...)</span>
+<span class="cm"> * SECTIONS</span>
+<span class="cm"> * {</span>
+<span class="cm"> *  . = START;</span>
+<span class="cm"> *  __init_begin = .;</span>
+<span class="cm"> *  HEAD_TEXT_SECTION</span>
+<span class="cm"> *  INIT_TEXT_SECTION(PAGE_SIZE)</span>
+<span class="cm"> *  INIT_DATA_SECTION(...)</span>
+<span class="cm"> *  PERCPU_SECTION(CACHELINE_SIZE)</span>
+<span class="cm"> *  __init_end = .;</span>
+<span class="cm"> *</span>
+<span class="cm"> *  _stext = .;</span>
+<span class="cm"> *  TEXT_SECTION = 0</span>
+<span class="cm"> *  _etext = .;</span>
+<span class="cm"> *</span>
+<span class="cm"> *      _sdata = .;</span>
+<span class="cm"> *  RO_DATA(PAGE_SIZE)</span>
+<span class="cm"> *  RW_DATA(...)</span>
+<span class="cm"> *  _edata = .;</span>
+<span class="cm"> *</span>
+<span class="cm"> *  EXCEPTION_TABLE(...)</span>
+<span class="cm"> *</span>
+<span class="cm"> *  BSS_SECTION(0, 0, 0)</span>
+<span class="cm"> *  _end = .;</span>
+<span class="cm"> *</span>
+<span class="cm"> *  STABS_DEBUG</span>
+<span class="cm"> *  DWARF_DEBUG</span>
+<span class="cm"> *  ELF_DETAILS</span>
+<span class="cm"> *</span>
+<span class="cm"> *  DISCARDS        // must be the last</span>
+<span class="cm"> * }</span>
+<span class="cm"> *</span>
+<span class="cm"> * [__init_begin, __init_end] is the init section that may be freed after init</span>
+<span class="cm"> *  // __init_begin and __init_end should be page aligned, so that we can</span>
+<span class="cm"> *  // free the whole .init memory</span>
+<span class="cm"> * [_stext, _etext] is the text section</span>
+<span class="cm"> * [_sdata, _edata] is the data section</span>
+<span class="cm"> *</span>
+<span class="cm"> * Some of the included output section have their own set of constants.</span>
+<span class="cm"> * Examples are: [__initramfs_start, __initramfs_end] for initramfs and</span>
+<span class="cm"> *               [__nosave_begin, __nosave_end] for the nosave data</span>
+<span class="cm"> */</span><span class="w"></span>
+</code></pre></div></p>
                 
                   
                     
@@ -2100,7 +2315,7 @@ Feb 01, 2018</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 13, 2018</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 30, 2021</span>
       
     
   </small>
@@ -2114,7 +2329,7 @@ Feb 01, 2018</p>
 
   <h2 id="__comments">Comments</h2>
   <div id="disqus_thread"></div>
-  <script>var script,disqus_config=function(){this.page.url="http://lastweek.io/lego/kernel/pagefault_disable/",this.page.identifier="lego/kernel/pagefault_disable/"};"undefined"==typeof DISQUS?((script=document.createElement("script")).async=!0,script.src="https://lastweek-io.disqus.com/embed.js",script.setAttribute("data-timestamp",Date.now()),document.body.appendChild(script)):DISQUS.reset({reload:!0,config:disqus_config})</script>
+  <script>var script,disqus_config=function(){this.page.url="http://lastweek.io/notes/linux/linux-linker-script/",this.page.identifier="notes/linux/linux-linker-script/"};"undefined"==typeof DISQUS?((script=document.createElement("script")).async=!0,script.src="https://lastweek-io.disqus.com/embed.js",script.setAttribute("data-timestamp",Date.now()),document.body.appendChild(script)):DISQUS.reset({reload:!0,config:disqus_config})</script>
 
               
             </article>
@@ -2134,7 +2349,7 @@ Feb 01, 2018</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../trampoline/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Trampoline" rel="prev">
+        <a href="../linux-workqueue/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Linux workqueue" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2143,20 +2358,20 @@ Feb 01, 2018</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Trampoline
+              Linux workqueue
             </div>
           </div>
         </a>
       
       
         
-        <a href="../stop_machine/" class="md-footer__link md-footer__link--next" aria-label="Next: Stop machine" rel="next">
+        <a href="../linux-boot/" class="md-footer__link md-footer__link--next" aria-label="Next: Linux Boot Sequence" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Stop machine
+              Linux Boot Sequence
             </div>
           </div>
           <div class="md-footer__button md-icon">
