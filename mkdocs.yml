@@ -41,6 +41,7 @@ nav:
      - 'Linux Resource':                                      'notes/linux/linux-resource.md'
      - 'Linux Special Files':                                 'notes/proc.md'
      - 'Linux KVM':                                           'notes/kvm-basic.md'
+     - 'Linux Rust':                                          'notes/linux/rust.md'
    - 'Guideline & Advice':          'notes/program_advice.md'
    - 'Firmware & Bootloader':       'notes/source_code/firmware-softwares.md'
    - 'Operating System':            'notes/source_code/os.md'
