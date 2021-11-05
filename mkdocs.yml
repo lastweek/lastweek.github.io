@@ -24,6 +24,7 @@ nav:
    - 'Index':                       'notes/source_code/summary.md'
    - Linux:
          - 'Linux Index':                                         'notes/linux/index.md'
+         - 'Linux Dump Function Graph':                           'notes/linux/linux-function-trace.md'
          - 'Linux fork/switch_to':                                'notes/linux/fork.md'
          - 'Linux RCU':                                           'notes/linux/linux-rcu.md'
          - 'Linux Completion/swait':                              'notes/linux/linux-completion.md'
@@ -40,6 +41,7 @@ nav:
          - 'Linux Resource':                                      'notes/linux/linux-resource.md'
          - 'Linux Special Files':                                 'notes/proc.md'
          - 'Linux KVM':                                           'notes/kvm-basic.md'
+         - 'Linux Rust':                                          'notes/linux/rust.md'
    - Go:
          - 'Learn Go'                                             'notes/go/golang.md'
          - 'gVisor':                                              'notes/go/gVisor.md'
