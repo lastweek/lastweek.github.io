@@ -90,7 +90,9 @@ Directory-based cache coherence protocol and implementation will
 be the future for multicore machines. Because it incurs much less
 coherence traffic than snoop-based ones, thus more scalable.
 The trend is confirmed by recent Intel UPI directory-based approach.
+
 Related readings:
+
   - [1]: [Why On-Chip Cache Coherence Is Here to Stay](http://www.cis.upenn.edu/acg/papers/cacm12_why_coherence.pdf)
   - [2]: [QPI 1.1 Invovled](https://www.realworldtech.com/qpi-evolved/3/)
   - [3]: [Paper: Multicast Snooping: A New Coherence Method Using a Multicast Address Network, ISCA '99](http://research.cs.wisc.edu/multifacet/papers/isca99_multicast_talk_pdf.pdf)
