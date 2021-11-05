@@ -43,7 +43,7 @@ nav:
          - 'Linux KVM':                                           'notes/kvm-basic.md'
          - 'Linux Rust':                                          'notes/linux/rust.md'
    - Go:
-         - 'Learn Go'                                             'notes/go/golang.md'
+         - 'Learn Go':                                            'notes/go/golang.md'
          - 'gVisor':                                              'notes/go/gVisor.md'
    - 'Guideline & Advice':          'notes/program_advice.md'
    - 'Firmware & Bootloader':       'notes/source_code/firmware-softwares.md'
