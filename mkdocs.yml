@@ -185,18 +185,25 @@ theme:
     - instant
     - tabs
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.top
-#  palette:
-    #scheme: slate
-    #primary: black
-    #accent: deep purple
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      #accent: red
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
 
 google_analytics:
   - 'UA-143772066-1'
   - 'auto'
-
-#extra_css:
-#  - stylesheets/extra.css
 
 # Options
 extra:
