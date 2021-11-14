@@ -30,9 +30,10 @@ Also, check out [The True Cost of Containing: A gVisor Case Study, HotClou'19](h
 ## Note
 
 Source code is https://github.com/google/gvisor.
-
 I actually not particular sure where should I start.
 We don't really need to understand gVisor in order to use it though.
+I did a quick go through. The major kernel can be found in `pkg/` and `pkg/sentry`.
+The sentry is their core kernel.
 
 I decided to run it. I followed the docker+gVisor quick start guide.
 So apparently, docker can use gVisor instead of Linux to launch the container.

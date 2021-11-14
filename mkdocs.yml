@@ -21,6 +21,7 @@ nav:
    - 'Cheatsheet':                                          'misc/cheatsheet.md'
    - 'On Read Once and Compiler Optimization':    'blog/20200404-on-read-once.md'
 - Code:
+   - 'Index':                       'notes/source_code/summary.md'
    - Linux:
          - 'Linux Index':                                         'notes/linux/index.md'
          - 'Linux Dump Function Graph':                           'notes/linux/linux-function-trace.md'
@@ -43,11 +44,10 @@ nav:
          - 'Linux Rust':                                          'notes/linux/rust.md'
    - Go:
          - 'Learn Go':                                            'notes/go/golang.md'
-         - 'gVisor':                                              'notes/go/gVisor.md'
+         - 'gVisor':                                              'notes/go/gvisor.md'
    - Rust:
          - 'Learn Rust':                                          'notes/rust/rust.md'
          - 'Firecracker':                                         'notes/rust/firecracker.md'
-   - 'Index':                       'notes/source_code/summary.md'
    - 'Guideline & Advice':          'notes/program_advice.md'
    - 'Firmware & Bootloader':       'notes/source_code/firmware-softwares.md'
    - 'Operating System':            'notes/source_code/os.md'
