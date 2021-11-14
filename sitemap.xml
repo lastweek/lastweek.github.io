@@ -511,6 +511,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>http://lastweek.io/notes/go/gvisor/</loc>
+         <lastmod>2021-11-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>http://lastweek.io/notes/languages/rust/</loc>
          <lastmod>2021-11-14</lastmod>
          <changefreq>daily</changefreq>
