@@ -25,7 +25,10 @@ Both are using Go to write OS functionalties.
 
 They have a good explanation on their architecture [here](https://gvisor.dev/docs/).
 
-Also, check out [The True Cost of Containing: A gVisor Case Study, HotClou'19](https://www.usenix.org/conference/hotcloud19/presentation/young).
+Papers:
+
+- [The True Cost of Containing: A gVisor Case Study, HotCloud'19](https://www.usenix.org/conference/hotcloud19/presentation/young).
+- [Blending Containers and Virtual Machines: A Study of Firecracker and gVisor, VEE’20](https://pages.cs.wisc.edu/~swift/papers/vee20-isolation.pdf)
 
 ## Note
 
