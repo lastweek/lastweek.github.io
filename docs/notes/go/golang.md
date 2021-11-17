@@ -37,3 +37,17 @@ I have bad memories on maintaining the error handling code in C,
 especially in kernel: I have to carefully order the error handling
 code at the end of function, have proper labels and write proper goto.
 Here, `defer` elegantly solves this complex error handling issue.
+
+**Goroutine**
+
+Stack: a goroutine usually has a small stack typically 2KB. But unlike
+an OS thread, a goroutine's stack is not fixed; it grows and shrinks as needed.
+It could beas much as 1GB.
+
+Scheduling: what's the policy there? Does the runtime use some sort of timer if user code is
+not giving up control? It is an M:N scheduler. Some internal documentation: https://github.com/golang/go/blob/master/src/runtime/HACKING.md
+
+## Go Runtime
+
+The source code is here under this directory [src/runtime](https://github.com/golang/go/tree/master/src/runtime).
+A huge directory with a lot of files. Why not create more subdirectories to better organize all these files?
