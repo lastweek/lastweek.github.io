@@ -469,8 +469,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#note" class="md-nav__link">
-    Note
+  <a href="#detailed-note-on-qemukvm" class="md-nav__link">
+    Detailed Note on QEMU/KVM
   </a>
   
 </li>
@@ -2377,8 +2377,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#note" class="md-nav__link">
-    Note
+  <a href="#detailed-note-on-qemukvm" class="md-nav__link">
+    Detailed Note on QEMU/KVM
   </a>
   
 </li>
@@ -2442,8 +2442,10 @@
 <li><a href="http://lastweek.io/pubs/Virtualization_Cards_Yizhou_Shan.pdf" target="_blank">Slides on Cloud Virtualization Cards</a></li>
 </ol>
 <h2 id="intro">Intro<a class="headerlink" href="#intro" title="Permanent link">&para;</a></h2>
-<p>Why this doc?
-I started this when I was trying to understand how virtualization actually works.
+<p>This blog tries to cover a short history on virtualization,
+the practices used by cloud vendors, the specialized virtualization cards (e.g., AWS Nitro),
+and some detailed notes on QEMU/KVM.</p>
+<p>I started this doc when I was trying to understand how virtualization actually works.
 I was just reading QEMU/KVM and taking notes, but I end up exploring more.</p>
 <p>Favorite quote about QEMU (in fact, about virtualization in general):</p>
 <div class="admonition quote">
@@ -2467,30 +2469,43 @@ Since vendors usually have 1-to-1 pCPU and vCPU mapping, this virtualization ove
 Hence bare-metal virtualization, as in no hypervisors and no virtualization modes, yet we are still able to pack untrusted tenant VMs on one physical machine. Isn&rsquo;t this amazing?</li>
 </ol>
 <h2 id="details">Details<a class="headerlink" href="#details" title="Permanent link">&para;</a></h2>
-<p>Images below come from this slide: <a href="http://lastweek.io/pubs/Virtualization_Cards_Yizhou_Shan.pdf" target="_blank">Slides on Cloud Virtualization Cards</a>.</p>
+<p>Images below come from this slide I made: <a href="http://lastweek.io/pubs/Virtualization_Cards_Yizhou_Shan.pdf" target="_blank">Slides on Cloud Virtualization Cards</a>.</p>
 <h3 id="kvm-and-qemufirecraker-workflow">KVM and QEMU/Firecraker Workflow<a class="headerlink" href="#kvm-and-qemufirecraker-workflow" title="Permanent link">&para;</a></h3>
-<p>Green line represents SR-IOV enabled passthrough.
-The VM can skip all hypervisor modules. SR-IOV is an all-or-nothing solution.</p>
+<p>The following image shows the typical workflow when a VM tries to access I/O devices.
+It will VM exit to the KVM module, which then dispatch (essentially return the ioctl call)
+the events to the userspace hypervisor (e.g., QEMU, Firecracker).
+Inside those hypervisors, there would be many implementation choices.
+Say the VM is tring to send out a packet via the emualted NIC,
+QEMU at this point will send out that packet using normal sockets (via host Linux).</p>
+<p>This is the basic flow: VM -&gt; KVM -&gt; QEMU/Firecracker -&gt; host Linux.
+Internally, it could have many variantions.</p>
+<p>The green line represents SR-IOV enabled passthrough path.
+The VM can skip all hypervisor modules.
+SR-IOV is an all-or-nothing solution, so, once enabled,
+a cloud vendor / sysadmin has no way to control VM&rsquo;s usage on I/O devices.</p>
 <p><img alt="image1" src="../assets/virt-1.png" /></p>
 <h3 id="cloud-vendors-reserve-cores-to-run-hypervisor">Cloud Vendors Reserve Cores to Run Hypervisor<a class="headerlink" href="#cloud-vendors-reserve-cores-to-run-hypervisor" title="Permanent link">&para;</a></h3>
-<p>Reserve cores to run the hypervisor.
+<p>Vendors would reserve cores to run the hypervisor.
+For several important reasons. First, they want to have separate
+processing provisioning. Second, to reduce switches on user core.
 This is a common practice for some cloud vendors.
-They try to move away from it by using speciazed hardware
+But they try to move away from it by using speciazed hardware
 and save the cores for users.</p>
 <p><img alt="image2" src="../assets/virt-2.png" /></p>
 <h2 id="modern-virtualization-hardware">Modern Virtualization Hardware<a class="headerlink" href="#modern-virtualization-hardware" title="Permanent link">&para;</a></h2>
-<p>Cloud vendors have been using specialized Virtualization
-cards to speed up virtualization and to reduce datacenter tax.
-Those cards are particularly useful for high-speed I/O devices.
-Examples include AWS Nitro cards, Microsoft FPGA based SmartNIC cards (NSDI&lsquo;18). You can use Intel IPU to build one as well.</p>
-<p>Those cards, essentially move the hypervisor into the hardware. Of course, the vendor modules are more feature-rich
-than QEMU&rsquo;s. But you get the idea.</p>
-<p>At a high-level, they are &ldquo;SR-IOV + Hardware-based QEMU&rdquo;.</p>
+<p>Cloud vendors have been using specialized virtualization
+cards to speed up virtualization and to reduce datacenter infrastructue tax.
+Those cards are particularly useful for high-speed I/O devices (recall the workflow
+we presented earlier, it has huge perf cost).
+Examples include AWS Nitro cards, Microsoft FPGA based SmartNIC cards (NSDI&lsquo;18).
+You can use NVIDIA DPU or Intel IPU to build a similar one as well.</p>
+<p>Those cards, essentially move the hypervisor modules into the hardware.
+At a high-level, they are <strong>&ldquo;SR-IOV + Hardware-based QEMU&rdquo;</strong>.</p>
 <p><img alt="image3" src="../assets/virt-3.png" /></p>
-<p>For storage + NIC, they can have two discrete cards or a unified one. The latter avoids the PCIe crossing. You can
-have NVMe-over-Fabric really easily.
-<img alt="image3" src="../assets/virt-4.png" /></p>
-<h2 id="note">Note<a class="headerlink" href="#note" title="Permanent link">&para;</a></h2>
+<p>For storage + NIC, they can have two discrete cards or a unified one.
+The latter avoids the PCIe crossing. You can have NVMe-over-Fabric really easily.</p>
+<p><img alt="image3" src="../assets/virt-4.png" /></p>
+<h2 id="detailed-note-on-qemukvm">Detailed Note on QEMU/KVM<a class="headerlink" href="#detailed-note-on-qemukvm" title="Permanent link">&para;</a></h2>
 <p>Below is the note I took when I was reading QEMU/KVM source code.
 The questions I&rsquo;ve focused on are:</p>
 <ul>
