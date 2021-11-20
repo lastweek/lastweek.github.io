@@ -17,8 +17,11 @@ Deliverables
 
 ## Intro
 
-Why this doc?
-I started this when I was trying to understand how virtualization actually works.
+This blog tries to cover a short history on virtualization,
+the practices used by cloud vendors, the specialized virtualization cards (e.g., AWS Nitro),
+and some detailed notes on QEMU/KVM.
+
+I started this doc when I was trying to understand how virtualization actually works.
 I was just reading QEMU/KVM and taking notes, but I end up exploring more.
 
 Favorite quote about QEMU (in fact, about virtualization in general):
@@ -45,44 +48,59 @@ Hence bare-metal virtualization, as in no hypervisors and no virtualization mode
 
 ## Details
 
-Images below come from this slide: <a href="http://lastweek.io/pubs/Virtualization_Cards_Yizhou_Shan.pdf" target="_blank">Slides on Cloud Virtualization Cards</a>.
+Images below come from this slide I made: <a href="http://lastweek.io/pubs/Virtualization_Cards_Yizhou_Shan.pdf" target="_blank">Slides on Cloud Virtualization Cards</a>.
 
 ### KVM and QEMU/Firecraker Workflow
 
-Green line represents SR-IOV enabled passthrough.
-The VM can skip all hypervisor modules. SR-IOV is an all-or-nothing solution.
+The following image shows the typical workflow when a VM tries to access I/O devices.
+It will VM exit to the KVM module, which then dispatch (essentially return the ioctl call)
+the events to the userspace hypervisor (e.g., QEMU, Firecracker).
+Inside those hypervisors, there would be many implementation choices.
+Say the VM is tring to send out a packet via the emualted NIC,
+QEMU at this point will send out that packet using normal sockets (via host Linux).
+
+This is the basic flow: VM -> KVM -> QEMU/Firecracker -> host Linux.
+Internally, it could have many variantions.
+
+The green line represents SR-IOV enabled passthrough path.
+The VM can skip all hypervisor modules.
+SR-IOV is an all-or-nothing solution, so, once enabled,
+a cloud vendor / sysadmin has no way to control VM's usage on I/O devices.
 
 ![image1](assets/virt-1.png)
 
 ### Cloud Vendors Reserve Cores to Run Hypervisor
 
-Reserve cores to run the hypervisor.
+Vendors would reserve cores to run the hypervisor.
+For several important reasons. First, they want to have separate
+processing provisioning. Second, to reduce switches on user core.
 This is a common practice for some cloud vendors.
-They try to move away from it by using speciazed hardware
+But they try to move away from it by using speciazed hardware
 and save the cores for users.
 
 ![image2](assets/virt-2.png)
 
 ## Modern Virtualization Hardware
 
-Cloud vendors have been using specialized Virtualization
-cards to speed up virtualization and to reduce datacenter tax.
-Those cards are particularly useful for high-speed I/O devices.
-Examples include AWS Nitro cards, Microsoft FPGA based SmartNIC cards (NSDI'18). You can use Intel IPU to build one as well.
+Cloud vendors have been using specialized virtualization
+cards to speed up virtualization and to reduce datacenter infrastructue tax.
+Those cards are particularly useful for high-speed I/O devices (recall the workflow
+we presented earlier, it has huge perf cost).
+Examples include AWS Nitro cards, Microsoft FPGA based SmartNIC cards (NSDI'18).
+You can use NVIDIA DPU or Intel IPU to build a similar one as well.
 
-Those cards, essentially move the hypervisor into the hardware. Of course, the vendor modules are more feature-rich
-than QEMU's. But you get the idea.
-
-At a high-level, they are "SR-IOV + Hardware-based QEMU".
+Those cards, essentially move the hypervisor modules into the hardware.
+At a high-level, they are **"SR-IOV + Hardware-based QEMU"**.
 
 ![image3](assets/virt-3.png)
 
-For storage + NIC, they can have two discrete cards or a unified one. The latter avoids the PCIe crossing. You can
-have NVMe-over-Fabric really easily.
+For storage + NIC, they can have two discrete cards or a unified one.
+The latter avoids the PCIe crossing. You can have NVMe-over-Fabric really easily.
+
 ![image3](assets/virt-4.png)
 
 
-## Note
+## Detailed Note on QEMU/KVM
 
 Below is the note I took when I was reading QEMU/KVM source code.
 The questions I've focused on are:
