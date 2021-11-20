@@ -3,18 +3,23 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Nov 19, 2021| Add slides|
 	|Jun 22, 2021| add steps and bare-metal virt |
 	|Dec 31, 2020| minor update|
 	|Feb 4, 2020| Add VFIO stuff|
 	|Jan 26, 2020| Minor adjustment|
 	|Jan 25, 2020| Initial Document|
 
+Deliverables
+
+1.  <a href="http://lastweek.io/pubs/virt_note.pdf" target="_blank">Detailed note on QEMU/KVM/Others</a>
+2.  <a href="http://lastweek.io/pubs/Virtualization_Cards_Yizhou_Shan.pdf" target="_blank">Slides on Cloud Virtualization Cards</a>
+
 ## Intro
 
 Why this doc?
 I started this when I was trying to understand how virtualization actually works.
 I was just reading QEMU/KVM and taking notes, but I end up exploring more.
-Most of the stuff is just basic but hopefully you find them useful.
 
 Favorite quote about QEMU (in fact, about virtualization in general):
 
@@ -23,7 +28,7 @@ Favorite quote about QEMU (in fact, about virtualization in general):
 
 Also check out [Awesome-Virtualization](https://github.com/Wenzel/awesome-virtualization/issues).
 
-## History of Virtualization
+## A Short History of Virtualization
 
 1. Software-based Virtualization. This is where VMware started. No hardware support but just smart software tricks. You should read their papers.
 2. Para-virtualization. This is what Xen invented. They changed the guest OS for a better emulation. No hardware support still. But the guest OS is changed.
@@ -38,23 +43,44 @@ In particular, the 2-level page table (EPT) is still in play and guest VMs will 
 Since vendors usually have 1-to-1 pCPU and vCPU mapping, this virtualization overhead is simply annoying and should be avoided.
 Hence bare-metal virtualization, as in no hypervisors and no virtualization modes, yet we are still able to pack untrusted tenant VMs on one physical machine. Isn't this amazing?
 
+## Details
+
+Images below come from this slide: <a href="http://lastweek.io/pubs/Virtualization_Cards_Yizhou_Shan.pdf" target="_blank">Slides on Cloud Virtualization Cards</a>.
+
+### KVM and QEMU/Firecraker Workflow
+
+Green line represents SR-IOV enabled passthrough.
+The VM can skip all hypervisor modules. SR-IOV is an all-or-nothing solution.
+
+![image1](assets/virt-1.png)
+
+### Cloud Vendors Reserve Cores to Run Hypervisor
+
+Reserve cores to run the hypervisor.
+This is a common practice for some cloud vendors.
+They try to move away from it by using speciazed hardware
+and save the cores for users.
+
+![image2](assets/virt-2.png)
+
 ## Modern Virtualization Hardware
 
-Examples are AWS Nitro cards, Microsoft FPGA based SmartNIC cards (NSDI'18).
+Cloud vendors have been using specialized Virtualization
+cards to speed up virtualization and to reduce datacenter tax.
+Those cards are particularly useful for high-speed I/O devices.
+Examples include AWS Nitro cards, Microsoft FPGA based SmartNIC cards (NSDI'18). You can use Intel IPU to build one as well.
 
-### Case Studies
+Those cards, essentially move the hypervisor into the hardware. Of course, the vendor modules are more feature-rich
+than QEMU's. But you get the idea.
 
-TODO
+At a high-level, they are "SR-IOV + Hardware-based QEMU".
 
-I want to walk through each device type and
-discuss what functions should be implemented in their virtualization cards.
-Some are required for virtualization and are vendor-placed modules.
+![image3](assets/virt-3.png)
 
+For storage + NIC, they can have two discrete cards or a unified one. The latter avoids the PCIe crossing. You can
+have NVMe-over-Fabric really easily.
+![image3](assets/virt-4.png)
 
-1. Network Device and VNF
-2. Block layer NVMe
-3. Security
-4. more
 
 ## Note
 
