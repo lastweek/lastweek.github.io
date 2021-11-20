@@ -14,7 +14,7 @@
         <link rel="canonical" href="http://lastweek.io/notes/virt/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -22,7 +22,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.802231af.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.db9e7362.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -89,7 +89,11 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Yizhou Shan&#39;s Home Page" class="md-header__button md-logo" aria-label="Yizhou Shan's Home Page" data-md-component="logo">
       
@@ -190,13 +194,9 @@
       </div>
     
   </nav>
-</header>
+  
     
-    <div class="md-container" data-md-component="container">
       
-      
-        
-          
 <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
@@ -289,6 +289,13 @@
     </ul>
   </div>
 </nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
         
       
       <main class="md-main" data-md-component="main">
@@ -360,10 +367,14 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
-      <label class="md-nav__link" for="__nav_2">
-        Notes
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Notes" data-md-level="1">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
@@ -372,6 +383,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
     
@@ -416,9 +428,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#history-of-virtualization" class="md-nav__link">
-    History of Virtualization
+  <a href="#a-short-history-of-virtualization" class="md-nav__link">
+    A Short History of Virtualization
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#details" class="md-nav__link">
+    Details
+  </a>
+  
+    <nav class="md-nav" aria-label="Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kvm-and-qemufirecraker-workflow" class="md-nav__link">
+    KVM and QEMU/Firecraker Workflow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloud-vendors-reserve-cores-to-run-hypervisor" class="md-nav__link">
+    Cloud Vendors Reserve Cores to Run Hypervisor
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -426,19 +465,6 @@
   <a href="#modern-virtualization-hardware" class="md-nav__link">
     Modern Virtualization Hardware
   </a>
-  
-    <nav class="md-nav" aria-label="Modern Virtualization Hardware">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#case-studies" class="md-nav__link">
-    Case Studies
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -456,8 +482,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -468,8 +496,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -480,8 +510,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -492,8 +524,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -504,8 +538,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -516,8 +552,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -528,8 +566,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -540,8 +580,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -552,8 +594,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -564,8 +608,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -576,8 +622,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -588,8 +636,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -600,8 +650,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -612,6 +664,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -632,10 +685,14 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
-      <label class="md-nav__link" for="__nav_3">
-        Code
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Code
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Code" data-md-level="1">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
@@ -644,6 +701,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -654,8 +712,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -665,10 +725,14 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
       
-      <label class="md-nav__link" for="__nav_3_2">
-        Linux
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Linux" data-md-level="2">
         <label class="md-nav__title" for="__nav_3_2">
           <span class="md-nav__icon md-icon"></span>
@@ -677,6 +741,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -687,8 +752,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -699,8 +766,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -711,8 +780,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -723,8 +794,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -735,8 +808,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -747,8 +822,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -759,8 +836,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -771,8 +850,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -783,8 +864,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -795,8 +878,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -807,8 +892,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -819,8 +906,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -831,8 +920,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -843,8 +934,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -855,8 +948,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -867,8 +962,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -879,8 +976,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -891,8 +990,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -903,14 +1004,17 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -920,10 +1024,14 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
       
-      <label class="md-nav__link" for="__nav_3_3">
-        Go
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3">
+          Go
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Go" data-md-level="2">
         <label class="md-nav__title" for="__nav_3_3">
           <span class="md-nav__icon md-icon"></span>
@@ -932,6 +1040,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -942,8 +1051,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -954,14 +1065,17 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -971,10 +1085,14 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" type="checkbox" id="__nav_3_4" >
       
-      <label class="md-nav__link" for="__nav_3_4">
-        Rust
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_4">
+          Rust
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Rust" data-md-level="2">
         <label class="md-nav__title" for="__nav_3_4">
           <span class="md-nav__icon md-icon"></span>
@@ -983,6 +1101,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -993,8 +1112,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1005,14 +1126,17 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1023,8 +1147,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1035,8 +1161,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1047,8 +1175,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1059,8 +1189,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1071,8 +1203,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1083,8 +1217,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1095,8 +1231,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1107,8 +1245,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1119,8 +1259,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1131,8 +1273,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1143,8 +1287,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1155,8 +1301,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1167,6 +1315,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -1187,10 +1336,14 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
       
-      <label class="md-nav__link" for="__nav_4">
-        FPGA
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          FPGA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="FPGA" data-md-level="1">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
@@ -1199,6 +1352,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -1209,8 +1363,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1221,8 +1377,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1233,8 +1391,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1245,8 +1405,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1257,8 +1419,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1269,6 +1433,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -1289,10 +1454,14 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
       
-      <label class="md-nav__link" for="__nav_5">
-        LegoOS
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          LegoOS
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="LegoOS" data-md-level="1">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
@@ -1301,6 +1470,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -1310,10 +1480,14 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
       
-      <label class="md-nav__link" for="__nav_5_1">
-        Log
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          Log
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Log" data-md-level="2">
         <label class="md-nav__title" for="__nav_5_1">
           <span class="md-nav__icon md-icon"></span>
@@ -1322,6 +1496,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -1332,8 +1507,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1344,14 +1521,17 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1361,10 +1541,14 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
       
-      <label class="md-nav__link" for="__nav_5_2">
-        Kernel
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Kernel
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Kernel" data-md-level="2">
         <label class="md-nav__title" for="__nav_5_2">
           <span class="md-nav__icon md-icon"></span>
@@ -1373,6 +1557,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -1383,8 +1568,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1395,8 +1582,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1407,8 +1596,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1419,8 +1610,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1431,8 +1624,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1443,8 +1638,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1455,8 +1652,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1467,8 +1666,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1479,8 +1680,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1491,8 +1694,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1503,8 +1708,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1515,8 +1722,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1527,8 +1736,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1539,8 +1750,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1551,8 +1764,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1563,8 +1778,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1575,8 +1792,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1587,14 +1806,17 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1604,10 +1826,14 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" >
       
-      <label class="md-nav__link" for="__nav_5_3">
-        Syscall
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Syscall
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Syscall" data-md-level="2">
         <label class="md-nav__title" for="__nav_5_3">
           <span class="md-nav__icon md-icon"></span>
@@ -1616,6 +1842,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -1626,8 +1853,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1638,8 +1867,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1650,8 +1881,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1662,8 +1895,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1674,8 +1909,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1686,8 +1923,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1698,8 +1937,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1710,14 +1951,17 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1727,10 +1971,14 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" >
       
-      <label class="md-nav__link" for="__nav_5_4">
-        Pcache
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Pcache
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Pcache" data-md-level="2">
         <label class="md-nav__title" for="__nav_5_4">
           <span class="md-nav__icon md-icon"></span>
@@ -1739,6 +1987,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -1749,8 +1998,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1761,8 +2012,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1773,8 +2026,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1785,8 +2040,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1797,8 +2054,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1809,8 +2068,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1821,8 +2082,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1833,8 +2096,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1845,8 +2110,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1857,14 +2124,17 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1874,10 +2144,14 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_5" type="checkbox" id="__nav_5_5" >
       
-      <label class="md-nav__link" for="__nav_5_5">
-        Driver
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_5">
+          Driver
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Driver" data-md-level="2">
         <label class="md-nav__title" for="__nav_5_5">
           <span class="md-nav__icon md-icon"></span>
@@ -1886,6 +2160,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -1896,8 +2171,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1908,14 +2185,17 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1925,10 +2205,14 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_6" type="checkbox" id="__nav_5_6" >
       
-      <label class="md-nav__link" for="__nav_5_6">
-        Paper
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_6">
+          Paper
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Paper" data-md-level="2">
         <label class="md-nav__title" for="__nav_5_6">
           <span class="md-nav__icon md-icon"></span>
@@ -1937,6 +2221,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -1947,8 +2232,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1959,8 +2246,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1971,8 +2260,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1983,8 +2274,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -1995,12 +2288,14 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -2041,9 +2336,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#history-of-virtualization" class="md-nav__link">
-    History of Virtualization
+  <a href="#a-short-history-of-virtualization" class="md-nav__link">
+    A Short History of Virtualization
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#details" class="md-nav__link">
+    Details
+  </a>
+  
+    <nav class="md-nav" aria-label="Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kvm-and-qemufirecraker-workflow" class="md-nav__link">
+    KVM and QEMU/Firecraker Workflow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloud-vendors-reserve-cores-to-run-hypervisor" class="md-nav__link">
+    Cloud Vendors Reserve Cores to Run Hypervisor
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2051,19 +2373,6 @@
   <a href="#modern-virtualization-hardware" class="md-nav__link">
     Modern Virtualization Hardware
   </a>
-  
-    <nav class="md-nav" aria-label="Modern Virtualization Hardware">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#case-studies" class="md-nav__link">
-    Case Studies
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2101,6 +2410,10 @@
 </thead>
 <tbody>
 <tr>
+<td align="left">Nov 19, 2021</td>
+<td>Add slides</td>
+</tr>
+<tr>
 <td align="left">Jun 22, 2021</td>
 <td>add steps and bare-metal virt</td>
 </tr>
@@ -2123,18 +2436,22 @@
 </tbody>
 </table>
 </details>
+<p>Deliverables</p>
+<ol>
+<li><a href="http://lastweek.io/pubs/virt_note.pdf" target="_blank">Detailed note on QEMU/KVM/Others</a></li>
+<li><a href="http://lastweek.io/pubs/Virtualization_Cards_Yizhou_Shan.pdf" target="_blank">Slides on Cloud Virtualization Cards</a></li>
+</ol>
 <h2 id="intro">Intro<a class="headerlink" href="#intro" title="Permanent link">&para;</a></h2>
 <p>Why this doc?
 I started this when I was trying to understand how virtualization actually works.
-I was just reading QEMU/KVM and taking notes, but I end up exploring more.
-Most of the stuff is just basic but hopefully you find them useful.</p>
+I was just reading QEMU/KVM and taking notes, but I end up exploring more.</p>
 <p>Favorite quote about QEMU (in fact, about virtualization in general):</p>
 <div class="admonition quote">
 <p class="admonition-title">Quote</p>
 <p>And at the end of the day, all virtualization really means is running a particular set of assembly instructions (the guest OS) to manipulate locations within a giant memory map for causing a particular set of side effects, where QEMU is just a user-space application providing a memory map and mimicking the same side effects you would get when executing those guest instructions on the appropriate bare metal hardware</p>
 </div>
 <p>Also check out <a href="https://github.com/Wenzel/awesome-virtualization/issues">Awesome-Virtualization</a>.</p>
-<h2 id="history-of-virtualization">History of Virtualization<a class="headerlink" href="#history-of-virtualization" title="Permanent link">&para;</a></h2>
+<h2 id="a-short-history-of-virtualization">A Short History of Virtualization<a class="headerlink" href="#a-short-history-of-virtualization" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Software-based Virtualization. This is where VMware started. No hardware support but just smart software tricks. You should read their papers.</li>
 <li>Para-virtualization. This is what Xen invented. They changed the guest OS for a better emulation. No hardware support still. But the guest OS is changed.</li>
@@ -2149,19 +2466,30 @@ In particular, the 2-level page table (EPT) is still in play and guest VMs will 
 Since vendors usually have 1-to-1 pCPU and vCPU mapping, this virtualization overhead is simply annoying and should be avoided.
 Hence bare-metal virtualization, as in no hypervisors and no virtualization modes, yet we are still able to pack untrusted tenant VMs on one physical machine. Isn&rsquo;t this amazing?</li>
 </ol>
+<h2 id="details">Details<a class="headerlink" href="#details" title="Permanent link">&para;</a></h2>
+<p>Images below come from this slide: <a href="http://lastweek.io/pubs/Virtualization_Cards_Yizhou_Shan.pdf" target="_blank">Slides on Cloud Virtualization Cards</a>.</p>
+<h3 id="kvm-and-qemufirecraker-workflow">KVM and QEMU/Firecraker Workflow<a class="headerlink" href="#kvm-and-qemufirecraker-workflow" title="Permanent link">&para;</a></h3>
+<p>Green line represents SR-IOV enabled passthrough.
+The VM can skip all hypervisor modules. SR-IOV is an all-or-nothing solution.</p>
+<p><img alt="image1" src="../assets/virt-1.png" /></p>
+<h3 id="cloud-vendors-reserve-cores-to-run-hypervisor">Cloud Vendors Reserve Cores to Run Hypervisor<a class="headerlink" href="#cloud-vendors-reserve-cores-to-run-hypervisor" title="Permanent link">&para;</a></h3>
+<p>Reserve cores to run the hypervisor.
+This is a common practice for some cloud vendors.
+They try to move away from it by using speciazed hardware
+and save the cores for users.</p>
+<p><img alt="image2" src="../assets/virt-2.png" /></p>
 <h2 id="modern-virtualization-hardware">Modern Virtualization Hardware<a class="headerlink" href="#modern-virtualization-hardware" title="Permanent link">&para;</a></h2>
-<p>Examples are AWS Nitro cards, Microsoft FPGA based SmartNIC cards (NSDI&lsquo;18).</p>
-<h3 id="case-studies">Case Studies<a class="headerlink" href="#case-studies" title="Permanent link">&para;</a></h3>
-<p>TODO</p>
-<p>I want to walk through each device type and
-discuss what functions should be implemented in their virtualization cards.
-Some are required for virtualization and are vendor-placed modules.</p>
-<ol>
-<li>Network Device and VNF</li>
-<li>Block layer NVMe</li>
-<li>Security</li>
-<li>more</li>
-</ol>
+<p>Cloud vendors have been using specialized Virtualization
+cards to speed up virtualization and to reduce datacenter tax.
+Those cards are particularly useful for high-speed I/O devices.
+Examples include AWS Nitro cards, Microsoft FPGA based SmartNIC cards (NSDI&lsquo;18). You can use Intel IPU to build one as well.</p>
+<p>Those cards, essentially move the hypervisor into the hardware. Of course, the vendor modules are more feature-rich
+than QEMU&rsquo;s. But you get the idea.</p>
+<p>At a high-level, they are &ldquo;SR-IOV + Hardware-based QEMU&rdquo;.</p>
+<p><img alt="image3" src="../assets/virt-3.png" /></p>
+<p>For storage + NIC, they can have two discrete cards or a unified one. The latter avoids the PCIe crossing. You can
+have NVMe-over-Fabric really easily.
+<img alt="image3" src="../assets/virt-4.png" /></p>
 <h2 id="note">Note<a class="headerlink" href="#note" title="Permanent link">&para;</a></h2>
 <p>Below is the note I took when I was reading QEMU/KVM source code.
 The questions I&rsquo;ve focused on are:</p>
@@ -2190,7 +2518,7 @@ what should I build. Several recent projects (e.g., rust-vmm, firecracker) have 
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 23, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 19, 2021</span>
       
     
   </small>
@@ -2204,7 +2532,7 @@ what should I build. Several recent projects (e.g., rust-vmm, firecracker) have 
 
   <h2 id="__comments">Comments</h2>
   <div id="disqus_thread"></div>
-  <script>var disqus_config=function(){this.page.url="http://lastweek.io/notes/virt/",this.page.identifier="notes/virt/"};window.addEventListener("load",function(){var e=document,i=e.createElement("script");i.src="//lastweek-io.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)})</script>
+  <script>var script,disqus_config=function(){this.page.url="http://lastweek.io/notes/virt/",this.page.identifier="notes/virt/"};"undefined"==typeof DISQUS?((script=document.createElement("script")).async=!0,script.src="https://lastweek-io.disqus.com/embed.js",script.setAttribute("data-timestamp",Date.now()),document.body.appendChild(script)):DISQUS.reset({reload:!0,config:disqus_config})</script>
 
               
             </article>
@@ -2260,10 +2588,12 @@ what should I build. Several recent projects (e.g., rust-vmm, firecracker) have 
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -2275,10 +2605,10 @@ what should I build. Several recent projects (e.g., rust-vmm, firecracker) have 
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.tabs.sticky", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.409db549.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.tabs.sticky", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.756773cc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>
