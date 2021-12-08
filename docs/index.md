@@ -7,14 +7,14 @@ advised by Prof. [Yiying Zhang](https://cseweb.ucsd.edu/~yiying/).
 I am a member of [UCSD Wuklab](http://wuklab.io) and [UCSD SysNet](https://www.sysnet.ucsd.edu/sysnet/).
 I was a [Purdue Boilermaker](https://engineering.purdue.edu/ECE) during 2016-2019.
 
-Contact: ys AT ucsd DOT edu
+Contact: **ys** AT **ucsd** DOT **edu**
 
-I'm on job market! My [CV](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
+You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 ??? tip "Research News"
 	- [_Oct 2021_] Serve as [EuroSys'22 Shadow PC](https://2022.eurosys.org/)
 	- [_Sep 2021_] We made our [SuperNIC]() paper public.
-	- [_Sep 2021_] Serve as [OSDI'21 Artifact Evaluation PC](https://sysartifacts.github.io/osdi2021/organizers.html)
+	- [_Sep 2021_] Serve as [SOSP'21 Artifact Evaluation PC]()
 	- [_Aug 2021_] We made our [Clio]() paper public.
 	- [_Jun 2021_] Start my final internship at Microsoft Research, working on Security + System.
 	- [_Jun 2021_] I proposed my thesis and became a Ph.D candidate.
@@ -35,7 +35,7 @@ I'm on job market! My [CV](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 ## Conferences
 
-I work on distributed system, networking, OS, hardware (FPGA), and their intersections.
+My main research interests are ondistributed system, networking, OS, hardware (FPGA), and their intersections.
 I'm getting into Confidential Computing, ML, and database recently.
 
 Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAAAAAJ&hl=en).
