@@ -6,27 +6,35 @@
 	|Dec 14, 2020| More on DPDK|
 	|May 28, 2020| Copied from summary|
 
+This note details how DPDK interacts with the RDMA subsystem.
+And how libibverbs communicates with kernel.
+
 ## DPDK
 
-### Personal Notes
+DPDK uses **VFIO** to directly access physical devices in users space.
+QEMU also uses VFIO to directly assign devices to guest OSes.
 
-- [DPDK](https://github.com/lastweek/source-dpdk)
-- DPDK uses VFIO to directly access physical device. Just like how we directly assign device to guest OS in QEMU (AFAIK, it is different for Mellanox NICs).
-- Even though both DPDK and RDMA bypass kernel, their control
-path is very different. For DPDK, there is a complete device
-driver in the user space, and this driver communicate with the device via MMIO.
-After VFIO ioctls, all data and control path bypass kernel.
-For rdma-core, a lot control-path IB verbs (e.g., create_pd, create_cq) communicate with kernel via Infiniband device file ioctl.
-And you can see all those uverb hanlders in `drivers/infiniband/core/uverbs.c`
-Those control verbs will mmap some pages between user and kernel,
+Though both DPDK and RDMA bypass kernel, their **control path** are very different.
+For most NICs in DPDK, there are **complete** self-contained device drivers in the user space,
+and these drivers communicate with the hardware device via MMIO.
+After VFIO ioctls, all data and control path in DPDK will bypass kernel. Nice, huh？
+
+However, for rdma-core, a lot of control-path IB verbs (e.g., `create_pd`, `create_cq`) still
+communicate with kernel via Infiniband device file ioctl.
+And those in-kernel uverb hanlders are in `drivers/infiniband/core/uverbs.c`.
+This is a very complicated way to build communicatation channel between user and kernel space,
+though the most efficient.
+Those control verbs will **mmap** some pages between user and kernel,
 so all following datapath IB verbs (e.g., post_send) will just bypass kernel
 and talk to device MMIO directly. Although rdma-core also has some vendor-specific
-"drivers", but this is really different from the above DPDK's userspace PCIe driver, per se.
-Userspace "rdma-core" vendor-driver deals with the kernel devel vendor-level driver details.
-- FWIW, if you are using a Mellanox VPI card in Ethernet mode (e.g. CX3-5),
+"drivers", this is really different from the above DPDK's userspace PCIe driver.
+Userspace "rdma-core" vendor-driver deals with the kernel devel vendor-level driver details (same for the ones inside DPDK).
+
+FWIW, if you are using a Mellanox VPI card in Ethernet mode (e.g. CX3-5),
   DPDK will use its built-in mlx driver, which further use libibverbs,
   which further relies on kernel IB stack. It's not a complete user solution somehow.
   Note that DPDK built-in mlx driver uses RAW_PACKET QPs.
+
 - ![image](../../images/dpdk_ibverbs.png)
 
 ### Internal
@@ -40,6 +48,9 @@ Top-down:
 ## RDMA
 
 Below is a list of RDMA-based systems I have used or the ones I think are useful.
+
+For RDMA programming tricks, see this seminal work:
+[Design Guidelines for High Performance RDMA Systems, ATC'16](https://www.usenix.org/conference/atc16/technical-sessions/presentation/kalia)
 
 - [Mellanox libvma](https://github.com/lastweek/source-libvma)
 	- An userspace IB verbs based layer providing POSIX socket APIs.
