@@ -40,6 +40,8 @@ I'm getting into Confidential Computing, ML, and database recently.
 
 Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAAAAAJ&hl=en).
 
+7. __De-virtualize the Virtualized Cloud__
+   Under submission (my internship work at MSR)
 6. __Disaggregating and Consolidating Network Functionalities with SuperNIC__
   <br> Yizhou Shan, Will Lin, Ryan Kosta, Arvind Krishnamurthy, Yiying Zhang
   <br> [Preprint](https://arxiv.org/pdf/2109.07744.pdf) Under submission
