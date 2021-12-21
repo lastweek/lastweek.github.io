@@ -43,10 +43,10 @@ Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAA
 7. __De-virtualize the Virtualized Cloud for Performance and Security__
    <br> Draft available upon request
 6. __Disaggregating and Consolidating Network Functionalities with SuperNIC__
-  <br> Yizhou Shan, Will Lin, Ryan Kosta, Arvind Krishnamurthy, Yiying Zhang
+  <br> *Yizhou Shan*, Will Lin, Ryan Kosta, Arvind Krishnamurthy, Yiying Zhang
   <br> [[Preprint]](https://arxiv.org/pdf/2109.07744.pdf)
 5. __Clio: A Hardware-Software Co-Designed Disaggregated Memory System__
-  <br> Yizhou Shan, Zhiyuan Guo (co-first authors), Xuhao Luo, Yutong Huang, Yiying Zhang
+  <br> *Yizhou Shan*, Zhiyuan Guo (co-first authors), Xuhao Luo, Yutong Huang, Yiying Zhang
   <br> *__ASPLOS '22__*
        [[Preprint]](https://arxiv.org/pdf/2108.03492.pdf)
        [[Code]](https://github.com/WukLab/Clio)
