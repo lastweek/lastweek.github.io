@@ -41,19 +41,22 @@ I'm getting into Confidential Computing, ML, and database recently.
 Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAAAAAJ&hl=en).
 
 7. __De-virtualize the Virtualized Cloud for Performance and Security__
-   <br> Under submission.
+   <br> Draft available upon request
+
 6. __Disaggregating and Consolidating Network Functionalities with SuperNIC__
-  <br> Yizhou Shan, Will Lin, Ryan Kosta, Arvind Krishnamurthy, Yiying Zhang
-  <br> [Preprint](https://arxiv.org/pdf/2109.07744.pdf) Under submission
+  <br> *Yizhou Shan*, Will Lin, Ryan Kosta, Arvind Krishnamurthy, Yiying Zhang
+  <br> [[Preprint]](https://arxiv.org/pdf/2109.07744.pdf)
+
 5. __Clio: A Hardware-Software Co-Designed Disaggregated Memory System__
   <br> *Yizhou Shan*, Zhiyuan Guo (Equal Contribution), Xuhao Luo, Yutong Huang, Yiying Zhang
   <br> *__ASPLOS 2022__*
        [[Paper]](http://lastweek.io/pubs/ASPLOS22-Clio.pdf)
        [[Code]](https://github.com/WukLab/Clio)
        [[Slide]]()
+
 4. __Disaggregating Persistent Memory and Controlling Them Remotely: An Exploration of Passive Disaggregated Key-Value Stores__
   <br> Shin-Yeh Tsai, *Yizhou Shan*, Yiying Zhang
-  <br> *__USENIX ATC 2020__*
+  <br> *__ATC 2020__*
        [[Paper]](http://lastweek.io/pubs/ATC20-DPM.pdf)
        [[Code]](https://github.com/WukLab/pDPM)
        [[Slide]](https://github.com/WukLab/pDPM/blob/master/Documentation/ATC20-pDPM-slides.pdf)
@@ -63,14 +66,14 @@ Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAA
 
 3. __Storm: a fast transactional dataplane for remote data structures__
   <br> Stanko Novakovic, *Yizhou Shan*, Aasheesh Kolli, Michael Cui, Yiying Zhang, Haggai Eran, Liran Liss, Michael Wei, Dan Tsafrir, Marcos Aguilera
-  <br> *__ACM SYSTOR 2019__* <font color='#c64444'>__(Best Paper Award)__</font>
+  <br> *__SYSTOR 2019__* <font color='#c64444'>__(Best Paper Award)__</font>
        [[Paper]](http://lastweek.io/pubs/SYSTOR19-Storm.pdf)
        [[Slide]](http://www.systor.org/2019/slides/S6P1%20Storm%20A%20Fast%20Transactional%20Dataplane%20for%20Remote%20Data%20Structures.pdf)
        [[Talk]](https://www.youtube.com/watch?v=3ozwrzUVUJ4)
 
 2. __LegoOS: A Disseminated, Distributed OS for Hardware Resource Disaggregation__
   <br> *Yizhou Shan*, Yutong Huang, Yilun Chen, Yiying Zhang
-  <br> *__USENIX OSDI 2018__* <font color='#c64444'>__(Best Paper Award)__</font>
+  <br> *__OSDI 2018__* <font color='#c64444'>__(Best Paper Award)__</font>
        [[Paper]](https://www.usenix.org/conference/osdi18/presentation/shan) [[Code]](https://github.com/WukLab/LegoOS)
        [[Slide]](https://www.usenix.org/sites/default/files/conference/protected-files/osdi18_slides_shan.pdf)
        [[Keynote-iCloud]](https://www.icloud.com/keynote/0__Wok6UPN175iDFEuGW9YVkA#LegoOS-OSDI18-Keynote)
@@ -78,7 +81,7 @@ Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAA
 
 1. __Distributed Shared Persistent Memory__
   <br> *Yizhou Shan*, Shin-Yeh Tsai, Yiying Zhang
-  <br> *__ACM SoCC 2017__*
+  <br> *__SoCC 2017__*
        [[Paper]](http://lastweek.io/pubs/SoCC17-Hotpot.pdf) [[Code]](https://github.com/WukLab/Hotpot)
        [[Slide]](http://lastweek.io/pubs/slides/Yizhou-Hotpot-SoCC17.pptx)
        [[Poster]](http://lastweek.io/pubs/slides/Poster-Hotpot-SoCC17.pptx)
