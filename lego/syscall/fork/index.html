@@ -14,7 +14,7 @@
         <link rel="canonical" href="http://lastweek.io/lego/syscall/fork/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.6">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
     
     
       
@@ -22,10 +22,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.802231af.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ca7ac06f.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.3f5d1f46.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.f1a3b89f.min.css">
         
       
     
@@ -149,18 +149,14 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-        </button>
-      </nav>
-      
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -2288,19 +2284,19 @@
 <p>We need to duplicate the address space in the memory manager side. Follow the traditional <code>fork()</code> semantic, both the existing and newly created address space will be write-protected.</p>
 <p>Since we have the flexibility to implement any VM organization, we should be careful while duplicating the address space. Currently, we are using page-based VM, thus the duplicating is basically creating a new <code>pgd</code> and copy existing pgtables, and further downgrade permission to read-only. This is now performed by <code>lego_copy_page_range()</code>.</p>
 <p>The final write-protect is performed by <code>lego_copy_one_pte()</code>:
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">lego_copy_one_pte</span><span class="p">(..)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="p">..</span><span class="w"></span>
-<span class="w">    </span><span class="cm">/*</span>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kr">inline</span> <span class="kt">int</span> <span class="nf">lego_copy_one_pte</span><span class="p">(..)</span>
+<span class="p">{</span>
+    <span class="p">..</span>
+    <span class="cm">/*</span>
 <span class="cm">     * If it&#39;s a COW mapping, write protect it both</span>
 <span class="cm">     * in the parent and the child</span>
-<span class="cm">     */</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">is_cow_mapping</span><span class="p">(</span><span class="n">vm_flags</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">ptep_set_wrprotect</span><span class="p">(</span><span class="n">src_pte</span><span class="p">);</span><span class="w">   </span>
-<span class="w">        </span><span class="n">pte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pte_wrprotect</span><span class="p">(</span><span class="n">pte</span><span class="p">);</span><span class="w">      </span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="cm">     */</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">is_cow_mapping</span><span class="p">(</span><span class="n">vm_flags</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">ptep_set_wrprotect</span><span class="p">(</span><span class="n">src_pte</span><span class="p">);</span>   
+        <span class="n">pte</span> <span class="o">=</span> <span class="n">pte_wrprotect</span><span class="p">(</span><span class="n">pte</span><span class="p">);</span>      
+    <span class="p">}</span>
+    <span class="p">...</span>
+<span class="p">}</span>
 </code></pre></div></p>
 <h3 id="duplicate-vm-free-pool">Duplicate VM Free Pool<a class="headerlink" href="#duplicate-vm-free-pool" title="Permanent link">&para;</a></h3>
 <p><mark class="critic">TODO</mark> Yutong</p>
@@ -2320,51 +2316,51 @@
 <p>The routine is kind of boring. It do a lot dirty work to copy information from calling thread to new thread. The most important data structures of course are <code>task_struct</code>, <code>mm_sturct</code>, <code>sighand</code>, and so on. This section only talks about few of them, and leave others to readers who are interested.</p>
 <h5 id="sanity-checking">Sanity Checking<a class="headerlink" href="#sanity-checking" title="Permanent link">&para;</a></h5>
 <p>Mainly check if <code>clone_flags</code> are passed properly. For example, if user is creating a new thread, that implies certain data structures are shared, cause new thread belongs to the same process with the calling thread. If <code>CLONE_THREAD</code> is passed, then <code>CLONE_SIGHAND</code>, <code>CLONE_VM</code>, and so on must be set as well.
-<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="cm">/*</span>
+<div class="highlight"><pre><span></span><code>    <span class="cm">/*</span>
 <span class="cm">     * Thread groups must share signals as well, and detached threads</span>
 <span class="cm">     * can only be started up within the thread group.</span>
-<span class="cm">     */</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">clone_flags</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">CLONE_THREAD</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">clone_flags</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">CLONE_SIGHAND</span><span class="p">))</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ERR_PTR</span><span class="p">(</span><span class="o">-</span><span class="n">EINVAL</span><span class="p">);</span><span class="w"></span>
+<span class="cm">     */</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">clone_flags</span> <span class="o">&amp;</span> <span class="n">CLONE_THREAD</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="p">(</span><span class="n">clone_flags</span> <span class="o">&amp;</span> <span class="n">CLONE_SIGHAND</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">ERR_PTR</span><span class="p">(</span><span class="o">-</span><span class="n">EINVAL</span><span class="p">);</span>
 
-<span class="w">    </span><span class="cm">/*</span>
+    <span class="cm">/*</span>
 <span class="cm">     * Shared signal handlers imply shared VM. By way of the above,</span>
 <span class="cm">     * thread groups also imply shared VM. Blocking this case allows</span>
 <span class="cm">     * for various simplifications in other code.</span>
-<span class="cm">     */</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">clone_flags</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">CLONE_SIGHAND</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">clone_flags</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">CLONE_VM</span><span class="p">))</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ERR_PTR</span><span class="p">(</span><span class="o">-</span><span class="n">EINVAL</span><span class="p">);</span><span class="w"></span>
+<span class="cm">     */</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">clone_flags</span> <span class="o">&amp;</span> <span class="n">CLONE_SIGHAND</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="p">(</span><span class="n">clone_flags</span> <span class="o">&amp;</span> <span class="n">CLONE_VM</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">ERR_PTR</span><span class="p">(</span><span class="o">-</span><span class="n">EINVAL</span><span class="p">);</span>
 </code></pre></div></p>
 <h5 id="dup_task_struct">dup_task_struct()<a class="headerlink" href="#dup_task_struct" title="Permanent link">&para;</a></h5>
 <p>Two main things: 1) duplicate a new <code>task_struct</code>, 2) duplicate a new kernel stack. x86 is just a weird architecture, the size of <code>task_struct</code> depends on the size of fpu. So the allocation and duplication need to callback to x86-specific code to duplicate the task_struct and fpu info.
-<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">arch_dup_task_struct</span><span class="p">(</span><span class="k">struct</span> <span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span> <span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">src</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">memcpy</span><span class="p">(</span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">arch_task_struct_size</span><span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">arch_dup_task_struct</span><span class="p">(</span><span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">dst</span><span class="p">,</span> <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">src</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">memcpy</span><span class="p">(</span><span class="n">dst</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">arch_task_struct_size</span><span class="p">);</span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">fpu__copy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dst</span><span class="o">-&gt;</span><span class="kr">thread</span><span class="p">.</span><span class="n">fpu</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">src</span><span class="o">-&gt;</span><span class="kr">thread</span><span class="p">.</span><span class="n">fpu</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+    <span class="k">return</span> <span class="n">fpu__copy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dst</span><span class="o">-&gt;</span><span class="kr">thread</span><span class="p">.</span><span class="n">fpu</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">src</span><span class="o">-&gt;</span><span class="kr">thread</span><span class="p">.</span><span class="n">fpu</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div>
 The stack duplication is fairly simple, just copy everything from the old stack to new stack. Of course, it needs to setup the <code>thread_info</code> to points to this new thread, so the <code>current</code> macro will work.
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setup_thread_stack</span><span class="p">(</span><span class="k">struct</span> <span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span> <span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">org</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="cm">/* Duplicate whole stack! */</span><span class="w"></span>
-<span class="w">        </span><span class="o">*</span><span class="n">task_thread_info</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">task_thread_info</span><span class="p">(</span><span class="n">org</span><span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">void</span> <span class="nf">setup_thread_stack</span><span class="p">(</span><span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">org</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="cm">/* Duplicate whole stack! */</span>
+        <span class="o">*</span><span class="n">task_thread_info</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">=</span> <span class="o">*</span><span class="n">task_thread_info</span><span class="p">(</span><span class="n">org</span><span class="p">);</span>
 
-<span class="w">        </span><span class="cm">/* Make the `current&#39; macro work */</span><span class="w"></span>
-<span class="w">        </span><span class="n">task_thread_info</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+        <span class="cm">/* Make the `current&#39; macro work */</span>
+        <span class="n">task_thread_info</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">task</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div></p>
 <h5 id="copy_mm">copy_mm()<a class="headerlink" href="#copy_mm" title="Permanent link">&para;</a></h5>
 <p>This is where threads within a process will share the virtual address space happens. If we are creating a new process, then this function will create a new <code>mm_struct</code>, and also a new <code>pgd</code>:
 <div class="highlight"><pre><span></span><code><span class="cm">/*</span>
 <span class="cm"> * pgd_alloc() will duplicate the identity kernel mapping</span>
 <span class="cm"> * but leaves other entries empty:</span>
-<span class="cm"> */</span><span class="w"></span>
-<span class="n">mm</span><span class="o">-&gt;</span><span class="n">pgd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pgd_alloc</span><span class="p">(</span><span class="n">mm</span><span class="p">);</span><span class="w"></span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="o">!</span><span class="n">mm</span><span class="o">-&gt;</span><span class="n">pgd</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">kfree</span><span class="p">(</span><span class="n">mm</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="cm"> */</span>
+<span class="n">mm</span><span class="o">-&gt;</span><span class="n">pgd</span> <span class="o">=</span> <span class="n">pgd_alloc</span><span class="p">(</span><span class="n">mm</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="o">!</span><span class="n">mm</span><span class="o">-&gt;</span><span class="n">pgd</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">kfree</span><span class="p">(</span><span class="n">mm</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div></p>
 <h5 id="duplicate-pcache-data">Duplicate pcache data<a class="headerlink" href="#duplicate-pcache-data" title="Permanent link">&para;</a></h5>
 <p><mark class="critic">TODO</mark></p>
@@ -2372,49 +2368,49 @@ The stack duplication is fairly simple, just copy everything from the old stack 
 </details>
 <h5 id="setup_sched_fork">setup_sched_fork()<a class="headerlink" href="#setup_sched_fork" title="Permanent link">&para;</a></h5>
 <p>Callback to scheduler to setup this new task. It may reset all scheduler related information. Here we also have a chance to change this task&rsquo;s scheduler class:</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">setup_sched_fork</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">clone_flags</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span> <span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">cpu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_cpu</span><span class="p">();</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">setup_sched_fork</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">clone_flags</span><span class="p">,</span> <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">p</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="kt">int</span> <span class="n">cpu</span> <span class="o">=</span> <span class="n">get_cpu</span><span class="p">();</span>
 
-<span class="w">        </span><span class="n">__sched_fork</span><span class="p">(</span><span class="n">clone_flags</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+        <span class="n">__sched_fork</span><span class="p">(</span><span class="n">clone_flags</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
 
-<span class="w">        </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TASK_NEW</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">sched_reset_on_fork</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">task_has_rt_policy</span><span class="p">(</span><span class="n">p</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                        </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">policy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SCHED_NORMAL</span><span class="p">;</span><span class="w"></span>
-<span class="w">                        </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">static_prio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NICE_TO_PRIO</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="w">                        </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">rt_priority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PRIO_TO_NICE</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">static_prio</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
-<span class="w">                        </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">static_prio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NICE_TO_PRIO</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+        <span class="n">p</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">TASK_NEW</span><span class="p">;</span>
+        <span class="p">...</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">sched_reset_on_fork</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">task_has_rt_policy</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="n">p</span><span class="o">-&gt;</span><span class="n">policy</span> <span class="o">=</span> <span class="n">SCHED_NORMAL</span><span class="p">;</span>
+                        <span class="n">p</span><span class="o">-&gt;</span><span class="n">static_prio</span> <span class="o">=</span> <span class="n">NICE_TO_PRIO</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+                        <span class="n">p</span><span class="o">-&gt;</span><span class="n">rt_priority</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">PRIO_TO_NICE</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">static_prio</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+                        <span class="n">p</span><span class="o">-&gt;</span><span class="n">static_prio</span> <span class="o">=</span> <span class="n">NICE_TO_PRIO</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 
-<span class="w">                </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">prio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">normal_prio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__normal_prio</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="n">set_load_weight</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="p">...</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w">    </span>
+                <span class="n">p</span><span class="o">-&gt;</span><span class="n">prio</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">normal_prio</span> <span class="o">=</span> <span class="n">__normal_prio</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+                <span class="n">set_load_weight</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+                <span class="p">...</span>
+        <span class="p">}</span>    
 
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rt_prio</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">prio</span><span class="p">))</span><span class="w"></span>
-<span class="w">                </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">sched_class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rt_sched_class</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">sched_class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">fair_sched_class</span><span class="p">;</span><span class="w"></span>
-<span class="w">                </span><span class="n">set_load_weight</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w">    </span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rt_prio</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">prio</span><span class="p">))</span>
+                <span class="n">p</span><span class="o">-&gt;</span><span class="n">sched_class</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">rt_sched_class</span><span class="p">;</span>
+        <span class="k">else</span> <span class="p">{</span>
+                <span class="n">p</span><span class="o">-&gt;</span><span class="n">sched_class</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">fair_sched_class</span><span class="p">;</span>
+                <span class="n">set_load_weight</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+        <span class="p">}</span>    
 
-<span class="w">        </span><span class="n">__set_task_cpu</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">cpu</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">sched_class</span><span class="o">-&gt;</span><span class="n">task_fork</span><span class="p">)</span><span class="w"></span>
-<span class="w">                </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">sched_class</span><span class="o">-&gt;</span><span class="n">task_fork</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+        <span class="n">__set_task_cpu</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">cpu</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">sched_class</span><span class="o">-&gt;</span><span class="n">task_fork</span><span class="p">)</span>
+                <span class="n">p</span><span class="o">-&gt;</span><span class="n">sched_class</span><span class="o">-&gt;</span><span class="n">task_fork</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
 
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+        <span class="p">...</span>
+<span class="p">}</span>
 </code></pre></div>
 <h5 id="allocate-new-pid">Allocate new pid<a class="headerlink" href="#allocate-new-pid" title="Permanent link">&para;</a></h5>
 <p>In both Lego and Linux, we don&rsquo;t allocate new pid for a new thread, if that thread is an <code>idle thread</code>. So callers of <code>do_fork</code> needs to pass something to let <code>do_fork</code> know. In Linux, they use <code>struct pid, init_struct_pid</code> to check. In Lego, we introduce an new clone_flag <code>CLONE_IDLE_THREAD</code>. If that flag is set, <code>do_fork()</code> will try to allocate a new pid for the new thread. Otherwise, it will be 0:
-<div class="highlight"><pre><span></span><code><span class="cm">/* clone idle thread, whose pid is 0 */</span><span class="w"></span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">clone_flags</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">CLONE_IDLE_THREAD</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">alloc_pid</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">pid</span><span class="p">)</span><span class="w"></span>
-<span class="w">                </span><span class="k">goto</span><span class="w"> </span><span class="n">out_cleanup_thread</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="cm">/* clone idle thread, whose pid is 0 */</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">clone_flags</span> <span class="o">&amp;</span> <span class="n">CLONE_IDLE_THREAD</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">pid</span> <span class="o">=</span> <span class="n">alloc_pid</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">pid</span><span class="p">)</span>
+                <span class="k">goto</span> <span class="n">out_cleanup_thread</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div></p>
 <p>So, only the <code>init_idle()</code> function can pass this <code>CLONE_IDLE_THREAD</code> down. All other usages are wrong and should be reported.</p>
 <p>In order to avoid conflict with Linux clone_flag, we define it as:
@@ -2422,27 +2418,27 @@ The stack duplication is fairly simple, just copy everything from the old stack 
 </code></pre></div></p>
 <h5 id="settidcleartid">SETTID/CLEARTID<a class="headerlink" href="#settidcleartid" title="Permanent link">&para;</a></h5>
 <p>These are some futex related stuff. I will cover these stuff in futex document:
-<div class="highlight"><pre><span></span><code><span class="n">p</span><span class="o">-&gt;</span><span class="n">set_child_tid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">clone_flags</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">CLONE_CHILD_SETTID</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nl">child_tidptr</span> <span class="p">:</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">p</span><span class="o">-&gt;</span><span class="n">set_child_tid</span> <span class="o">=</span> <span class="p">(</span><span class="n">clone_flags</span> <span class="o">&amp;</span> <span class="n">CLONE_CHILD_SETTID</span><span class="p">)</span> <span class="o">?</span> <span class="nl">child_tidptr</span> <span class="p">:</span> <span class="nb">NULL</span><span class="p">;</span>
 <span class="cm">/*  </span>
 <span class="cm"> * Clear TID on mm_release()?</span>
-<span class="cm"> */</span><span class="w"></span>
-<span class="n">p</span><span class="o">-&gt;</span><span class="n">clear_child_tid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">clone_flags</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">CLONE_CHILD_CLEARTID</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nl">child_tidptr</span> <span class="p">:</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"></span>
+<span class="cm"> */</span>
+<span class="n">p</span><span class="o">-&gt;</span><span class="n">clear_child_tid</span> <span class="o">=</span> <span class="p">(</span><span class="n">clone_flags</span> <span class="o">&amp;</span> <span class="n">CLONE_CHILD_CLEARTID</span><span class="p">)</span> <span class="o">?</span> <span class="nl">child_tidptr</span> <span class="p">:</span> <span class="nb">NULL</span><span class="p">;</span>
 
 <span class="cp">#ifdef CONFIG_FUTEX</span>
-<span class="n">p</span><span class="o">-&gt;</span><span class="n">robust_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"></span>
+<span class="n">p</span><span class="o">-&gt;</span><span class="n">robust_list</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
 <span class="cp">#endif</span>
 </code></pre></div></p>
 <h5 id="copy_thread_tls">copy_thread_tls()<a class="headerlink" href="#copy_thread_tls" title="Permanent link">&para;</a></h5>
 <p>This is the most interesting function. Cover later.</p>
 <h4 id="p2m_fork">p2m_fork()<a class="headerlink" href="#p2m_fork" title="Permanent link">&para;</a></h4>
 <p>In order to track user activities, we need to know when user are going to create new process. Fork is the best time and the only time we kernel know. So, Lego adds this special hook to tell remote global monitor or memory manager that there is a new process going to be created. Upon receiving this message, remote monitor will update its bookkeeping for this specific user/vNode.</p>
-<div class="highlight"><pre><span></span><code><span class="cm">/* Tell remote memory component */</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="cm">/* Tell remote memory component */</span>
 <span class="cp">#ifdef CONFIG_COMP_PROCESSOR</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">clone_flags</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">CLONE_GLOBAL_THREAD</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="w">        </span><span class="n">p2m_fork</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">clone_flags</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w">   </span>
+<span class="k">if</span> <span class="p">(</span><span class="n">clone_flags</span> <span class="o">&amp;</span> <span class="n">CLONE_GLOBAL_THREAD</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">...</span>
+        <span class="n">p2m_fork</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">clone_flags</span><span class="p">);</span>
+        <span class="p">...</span>
+<span class="p">}</span>   
 <span class="cp">#endif</span>
 </code></pre></div>
 <p>The <code>CLONE_GLOBAL_THREAD</code> should only be set, if the following cases happen:</p>
@@ -2456,36 +2452,36 @@ The stack duplication is fairly simple, just copy everything from the old stack 
 </code></pre></div></p>
 <h4 id="wake_up_new_task">wake_up_new_task()<a class="headerlink" href="#wake_up_new_task" title="Permanent link">&para;</a></h4>
 <p>The last step of <code>do_fork</code> is waking up the new thread or process, which is performed by <code>wake_up_new_task()</code> function. The first question this function will ask is: <code>which cpu to land?</code> The answer comes from <code>select_task_rq()</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"></span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">select_task_rq</span><span class="p">(</span><span class="k">struct</span> <span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">cpu</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">sd_flags</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">wake_flags</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">nr_cpus_allowed</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
-<span class="w">                </span><span class="n">cpu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">sched_class</span><span class="o">-&gt;</span><span class="n">select_task_rq</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">cpu</span><span class="p">,</span><span class="w"> </span><span class="n">sd_flags</span><span class="p">,</span><span class="w"> </span><span class="n">wake_flags</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">else</span><span class="w"></span>
-<span class="w">                </span><span class="n">cpu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cpumask_any</span><span class="p">(</span><span class="o">&amp;</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">cpus_allowed</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kr">inline</span>
+<span class="kt">int</span> <span class="nf">select_task_rq</span><span class="p">(</span><span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="kt">int</span> <span class="n">cpu</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sd_flags</span><span class="p">,</span> <span class="kt">int</span> <span class="n">wake_flags</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">nr_cpus_allowed</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">cpu</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">sched_class</span><span class="o">-&gt;</span><span class="n">select_task_rq</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">cpu</span><span class="p">,</span> <span class="n">sd_flags</span><span class="p">,</span> <span class="n">wake_flags</span><span class="p">);</span>
+        <span class="k">else</span>
+                <span class="n">cpu</span> <span class="o">=</span> <span class="n">cpumask_any</span><span class="p">(</span><span class="o">&amp;</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">cpus_allowed</span><span class="p">);</span>
+        <span class="p">...</span>
+<span class="p">}</span>
 </code></pre></div>
 <p>Clearly, this is determined by <code>cpus_allowed</code>, which is the same with its parent at this point. That being said, if the parent is only able to run on one specific CPU, then all its children will end up running on the same CPU when they wake up (they could change their affinity later). This is also the default on Linux: <code>A child created via fork(2) inherits its parent's CPU affinity mask. The affinity mask is preserved across an execve(2).</code></p>
 <p>After landing CPU is selected, following operation is simple: just enqueue this task into landing CPU&rsquo;s runqueue, and we are done:</p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">wake_up_new_task</span><span class="p">(</span><span class="k">struct</span> <span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="cm">/* Select a CPU for new thread to run */</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">wake_up_new_task</span><span class="p">(</span><span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">p</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="p">...</span>
+<span class="cm">/* Select a CPU for new thread to run */</span>
 <span class="cp">#ifdef CONFIG_SMP</span>
-<span class="w">        </span><span class="cm">/*   </span>
+        <span class="cm">/*   </span>
 <span class="cm">         * Fork balancing, do it here and not earlier because:</span>
 <span class="cm">         *  - cpus_allowed can change in the fork path</span>
 <span class="cm">         *  - any previously selected cpu might disappear through hotplug</span>
-<span class="cm">         */</span><span class="w"></span>
-<span class="w">        </span><span class="n">set_task_cpu</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">select_task_rq</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">task_cpu</span><span class="p">(</span><span class="n">p</span><span class="p">),</span><span class="w"> </span><span class="n">SD_BALANCE_FORK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span><span class="w"></span>
+<span class="cm">         */</span>
+        <span class="n">set_task_cpu</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">select_task_rq</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">task_cpu</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">SD_BALANCE_FORK</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
 <span class="cp">#endif</span>
 
-<span class="w">        </span><span class="n">rq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__task_rq_lock</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">activate_task</span><span class="p">(</span><span class="n">rq</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">on_rq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TASK_ON_RQ_QUEUED</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+        <span class="n">rq</span> <span class="o">=</span> <span class="n">__task_rq_lock</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+        <span class="n">activate_task</span><span class="p">(</span><span class="n">rq</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="n">p</span><span class="o">-&gt;</span><span class="n">on_rq</span> <span class="o">=</span> <span class="n">TASK_ON_RQ_QUEUED</span><span class="p">;</span>
+        <span class="p">...</span>
+<span class="p">}</span>
 </code></pre></div>
 <p>&ndash;<br />
 Yizhou Shan<br />
@@ -2499,7 +2495,7 @@ Last Updated: Feb 27, 2018</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 27, 2018</span>
+      Last update: February 28, 2018
       
     
   </small>
@@ -2520,9 +2516,8 @@ Last Updated: Feb 27, 2018</p>
           </div>
         </div>
         
-          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+          <a href="#" class="md-top md-icon" title="Back to top" data-md-component="top" data-md-state="hidden">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
-            Back to top
           </a>
         
       </main>
@@ -2584,10 +2579,10 @@ Last Updated: Feb 27, 2018</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.tabs.sticky", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.409db549.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.tabs.sticky", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.756773cc.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.82b56eb2.min.js"></script>
       
     
   </body>

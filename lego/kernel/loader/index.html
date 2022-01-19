@@ -14,7 +14,7 @@
         <link rel="canonical" href="http://lastweek.io/lego/kernel/loader/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.6">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
     
     
       
@@ -22,10 +22,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.802231af.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ca7ac06f.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.3f5d1f46.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.f1a3b89f.min.css">
         
       
     
@@ -149,18 +149,14 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-        </button>
-      </nav>
-      
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -2378,60 +2374,60 @@
 <p>Lego basically divide the Linux loader into two parts, one in memory manager and other in processor manager. Most dirty work is done by memory manager. Processor manager only needs to make sure the new execution has a fresh environment to start.</p>
 <h3 id="entry-point">Entry Point<a class="headerlink" href="#entry-point" title="Permanent link">&para;</a></h3>
 <p>So the normal entry point is <code>do_execve()</code>. Above that, it can be invoked by syscall from user space, or from kernel space by calling <code>do_execve()</code> directly. There are not too many places that will call <code>do_execve</code> within kernel. One notable case is how kernel starts the <code>pid 1</code> user program. This happens after kernel finished all initialization. The code is:
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">run_init_process</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">init_filename</span><span class="p">)</span><span class="w">                                                    </span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">argv_init</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">init_filename</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">do_execve</span><span class="p">(</span><span class="n">init_filename</span><span class="p">,</span><span class="w"> </span><span class="n">argv_init</span><span class="p">,</span><span class="w"> </span><span class="n">envp_init</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">int</span> <span class="nf">run_init_process</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">init_filename</span><span class="p">)</span>                                                    
+<span class="p">{</span>
+        <span class="n">argv_init</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">init_filename</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">do_execve</span><span class="p">(</span><span class="n">init_filename</span><span class="p">,</span> <span class="n">argv_init</span><span class="p">,</span> <span class="n">envp_init</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div></p>
 <h3 id="memory-managers-job">Memory Manager&rsquo;s Job<a class="headerlink" href="#memory-managers-job" title="Permanent link">&para;</a></h3>
 <p>Memory manager side will do most of the dirty loading work. It will parse the ELF image, create new VMAs based on ELF information. After that, it only pass <code>start_ip</code> and <code>start_stack</code> back to processor manager. Once processor manager starts running this new execution, pages will be fetched from memory component on demand.</p>
 <h4 id="load-ld-linux">Load ld-linux<a class="headerlink" href="#load-ld-linux" title="Permanent link">&para;</a></h4>
 <p>For dynamically-linked images, kernel ELF loader needs to load the <code>ld-linux.so</code> as well. It will first try to map the <code>ld-linux.so</code> into this process&rsquo;s virtual address space. Furthermore, the first user instruction that will run is no longer <code>__libc_main_start</code>, kernel will transfer the kernel to <code>ld-linux.so</code> instead. Thus, for a normal user program, <code>ld-linux.so</code> will load all the shared libraries before running glibc.</p>
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">load_elf_binary</span><span class="p">(</span><span class="k">struct</span> <span class="nc">lego_task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">tsk</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span> <span class="nc">lego_binprm</span><span class="w"> </span><span class="o">*</span><span class="n">bprm</span><span class="p">,</span><span class="w"></span>
-<span class="w">                           </span><span class="n">u64</span><span class="w"> </span><span class="o">*</span><span class="n">new_ip</span><span class="p">,</span><span class="w"> </span><span class="n">u64</span><span class="w"> </span><span class="o">*</span><span class="n">new_sp</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="n">argv_len</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="n">envp_len</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">int</span> <span class="nf">load_elf_binary</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
+                           <span class="n">u64</span> <span class="o">*</span><span class="n">new_ip</span><span class="p">,</span> <span class="n">u64</span> <span class="o">*</span><span class="n">new_sp</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">argv_len</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">envp_len</span><span class="p">)</span>
+<span class="p">{</span>
 
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="w">        </span><span class="cm">/* Dynamically-linked */</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">elf_interpreter</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">interp_map_addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+        <span class="p">...</span>
+        <span class="cm">/* Dynamically-linked */</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">elf_interpreter</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">interp_map_addr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-<span class="hll"><span class="w">                </span><span class="n">elf_entry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">load_elf_interp</span><span class="p">(</span><span class="n">tsk</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">loc</span><span class="o">-&gt;</span><span class="n">interp_elf_ex</span><span class="p">,</span><span class="w"></span>
-</span><span class="w">                                            </span><span class="n">interpreter</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                            </span><span class="o">&amp;</span><span class="n">interp_map_addr</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                            </span><span class="n">load_bias</span><span class="p">,</span><span class="w"> </span><span class="n">interp_elf_phdata</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">IS_ERR</span><span class="p">((</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">elf_entry</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                        </span><span class="cm">/*</span>
+<span class="hll">                <span class="n">elf_entry</span> <span class="o">=</span> <span class="n">load_elf_interp</span><span class="p">(</span><span class="n">tsk</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">loc</span><span class="o">-&gt;</span><span class="n">interp_elf_ex</span><span class="p">,</span>
+</span>                                            <span class="n">interpreter</span><span class="p">,</span>
+                                            <span class="o">&amp;</span><span class="n">interp_map_addr</span><span class="p">,</span>
+                                            <span class="n">load_bias</span><span class="p">,</span> <span class="n">interp_elf_phdata</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">IS_ERR</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">elf_entry</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="cm">/*</span>
 <span class="cm">                         * load_elf_interp() returns relocation</span>
 <span class="cm">                         * adjustment</span>
-<span class="cm">                         */</span><span class="w"></span>
-<span class="w">                        </span><span class="n">interp_load_addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">elf_entry</span><span class="p">;</span><span class="w"></span>
-<span class="w">                        </span><span class="n">elf_entry</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">loc</span><span class="o">-&gt;</span><span class="n">interp_elf_ex</span><span class="p">.</span><span class="n">e_entry</span><span class="p">;</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"></span>
-<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">BAD_ADDR</span><span class="p">(</span><span class="n">elf_entry</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                        </span><span class="n">retval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IS_ERR</span><span class="p">((</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">elf_entry</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"></span>
-<span class="w">                                        </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nl">elf_entry</span> <span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="n">EINVAL</span><span class="p">;</span><span class="w"></span>
-<span class="w">                        </span><span class="k">goto</span><span class="w"> </span><span class="n">out_free_dentry</span><span class="p">;</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"></span>
-<span class="w">                </span><span class="n">reloc_func_desc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">interp_load_addr</span><span class="p">;</span><span class="w"></span>
+<span class="cm">                         */</span>
+                        <span class="n">interp_load_addr</span> <span class="o">=</span> <span class="n">elf_entry</span><span class="p">;</span>
+                        <span class="n">elf_entry</span> <span class="o">+=</span> <span class="n">loc</span><span class="o">-&gt;</span><span class="n">interp_elf_ex</span><span class="p">.</span><span class="n">e_entry</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">BAD_ADDR</span><span class="p">(</span><span class="n">elf_entry</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="n">retval</span> <span class="o">=</span> <span class="n">IS_ERR</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">elf_entry</span><span class="p">)</span> <span class="o">?</span>
+                                        <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nl">elf_entry</span> <span class="p">:</span> <span class="o">-</span><span class="n">EINVAL</span><span class="p">;</span>
+                        <span class="k">goto</span> <span class="n">out_free_dentry</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="n">reloc_func_desc</span> <span class="o">=</span> <span class="n">interp_load_addr</span><span class="p">;</span>
 
-<span class="w">                </span><span class="n">put_lego_file</span><span class="p">(</span><span class="n">interpreter</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="n">kfree</span><span class="p">(</span><span class="n">elf_interpreter</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="cm">/* Statically-linked */</span><span class="w"></span>
-<span class="w">                </span><span class="cm">/*</span>
+                <span class="n">put_lego_file</span><span class="p">(</span><span class="n">interpreter</span><span class="p">);</span>
+                <span class="n">kfree</span><span class="p">(</span><span class="n">elf_interpreter</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="cm">/* Statically-linked */</span>
+                <span class="cm">/*</span>
 <span class="cm">                 * e_entry is the VA to which the system first transfers control</span>
 <span class="cm">                 * Not the start_code! Normally, it is the &lt;_start&gt; function.</span>
-<span class="cm">                 */</span><span class="w"></span>
-<span class="hll"><span class="w">                </span><span class="n">elf_entry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loc</span><span class="o">-&gt;</span><span class="n">elf_ex</span><span class="p">.</span><span class="n">e_entry</span><span class="p">;</span><span class="w"></span>
-</span><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">BAD_ADDR</span><span class="p">(</span><span class="n">elf_entry</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                        </span><span class="n">retval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">EINVAL</span><span class="p">;</span><span class="w"></span>
-<span class="w">                        </span><span class="k">goto</span><span class="w"> </span><span class="n">out_free_dentry</span><span class="p">;</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="cm">                 */</span>
+<span class="hll">                <span class="n">elf_entry</span> <span class="o">=</span> <span class="n">loc</span><span class="o">-&gt;</span><span class="n">elf_ex</span><span class="p">.</span><span class="n">e_entry</span><span class="p">;</span>
+</span>                <span class="k">if</span> <span class="p">(</span><span class="n">BAD_ADDR</span><span class="p">(</span><span class="n">elf_entry</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="n">retval</span> <span class="o">=</span> <span class="o">-</span><span class="n">EINVAL</span><span class="p">;</span>
+                        <span class="k">goto</span> <span class="n">out_free_dentry</span><span class="p">;</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="p">...</span>
+<span class="p">}</span>
 </code></pre></div>
 <h3 id="processor-managers-job">Processor Manager&rsquo;s Job<a class="headerlink" href="#processor-managers-job" title="Permanent link">&para;</a></h3>
 <p>It needs to flush old execution environment, and setup the new execution environment, such as signal, FPU. Notably, processor manager need to run <code>flush_old_exec()</code>, and <code>setup_new_exec()</code>.</p>
@@ -2440,52 +2436,52 @@
 <p><code>de_thread</code> is used to kill other threads within the same thread group, thus make sure this process has its own signal table. Furthermore, A <code>exec</code> starts a new thread group with the same TGID of the previous thread group, so we probably also need to switch PID if calling thread is not a leader.</p>
 <h5 id="switch-to-new-address-space">Switch to new address space<a class="headerlink" href="#switch-to-new-address-space" title="Permanent link">&para;</a></h5>
 <p>We also need to release the old mm, and allocate a new mm. The new mm only has the high address kernel mapping established. Do note that in Lego, pgtable is used to emulate the processor cache:
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">exec_mmap</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">struct</span> <span class="nc">mm_struct</span><span class="w"> </span><span class="o">*</span><span class="n">new_mm</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">struct</span> <span class="nc">mm_struct</span><span class="w"> </span><span class="o">*</span><span class="n">old_mm</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">struct</span> <span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">tsk</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">int</span> <span class="nf">exec_mmap</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="k">struct</span> <span class="n">mm_struct</span> <span class="o">*</span><span class="n">new_mm</span><span class="p">;</span>
+        <span class="k">struct</span> <span class="n">mm_struct</span> <span class="o">*</span><span class="n">old_mm</span><span class="p">;</span>
+        <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">;</span>
 
-<span class="w">        </span><span class="n">new_mm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mm_alloc</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">new_mm</span><span class="p">)</span><span class="w"></span>
-<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="n">ENOMEM</span><span class="p">;</span><span class="w"></span>
+        <span class="n">new_mm</span> <span class="o">=</span> <span class="n">mm_alloc</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">new_mm</span><span class="p">)</span>
+                <span class="k">return</span> <span class="o">-</span><span class="n">ENOMEM</span><span class="p">;</span>
 
-<span class="w">        </span><span class="n">tsk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">old_mm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="o">-&gt;</span><span class="n">mm</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">mm_release</span><span class="p">(</span><span class="n">tsk</span><span class="p">,</span><span class="w"> </span><span class="n">old_mm</span><span class="p">);</span><span class="w"></span>
+        <span class="n">tsk</span> <span class="o">=</span> <span class="n">current</span><span class="p">;</span>
+        <span class="n">old_mm</span> <span class="o">=</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">mm</span><span class="p">;</span>
+        <span class="n">mm_release</span><span class="p">(</span><span class="n">tsk</span><span class="p">,</span> <span class="n">old_mm</span><span class="p">);</span>
 
-<span class="w">        </span><span class="n">task_lock</span><span class="p">(</span><span class="n">tsk</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">tsk</span><span class="o">-&gt;</span><span class="n">mm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_mm</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">tsk</span><span class="o">-&gt;</span><span class="n">active_mm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_mm</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">activate_mm</span><span class="p">(</span><span class="n">old_mm</span><span class="p">,</span><span class="w"> </span><span class="n">new_mm</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">task_unlock</span><span class="p">(</span><span class="n">tsk</span><span class="p">);</span><span class="w"></span>
+        <span class="n">task_lock</span><span class="p">(</span><span class="n">tsk</span><span class="p">);</span>
+        <span class="n">tsk</span><span class="o">-&gt;</span><span class="n">mm</span> <span class="o">=</span> <span class="n">new_mm</span><span class="p">;</span>
+        <span class="n">tsk</span><span class="o">-&gt;</span><span class="n">active_mm</span> <span class="o">=</span> <span class="n">new_mm</span><span class="p">;</span>
+        <span class="n">activate_mm</span><span class="p">(</span><span class="n">old_mm</span><span class="p">,</span> <span class="n">new_mm</span><span class="p">);</span>
+        <span class="n">task_unlock</span><span class="p">(</span><span class="n">tsk</span><span class="p">);</span>
 
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">old_mm</span><span class="p">)</span><span class="w"></span>
-<span class="w">                </span><span class="n">mmput</span><span class="p">(</span><span class="n">old_mm</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">old_mm</span><span class="p">)</span>
+                <span class="n">mmput</span><span class="p">(</span><span class="n">old_mm</span><span class="p">);</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div></p>
 <h5 id="clear-architecture-specific-state">Clear Architecture-Specific state<a class="headerlink" href="#clear-architecture-specific-state" title="Permanent link">&para;</a></h5>
 <p>This is performed by <code>flush_thread()</code>, which is an architecture-specific callback. In x86, we need to clear FPU state, and reset TLS array:
-<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">flush_thread</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">struct</span> <span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">tsk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">memset</span><span class="p">(</span><span class="n">tsk</span><span class="o">-&gt;</span><span class="kr">thread</span><span class="p">.</span><span class="n">tls_array</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">tsk</span><span class="o">-&gt;</span><span class="kr">thread</span><span class="p">.</span><span class="n">tls_array</span><span class="p">));</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">flush_thread</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">tsk</span> <span class="o">=</span> <span class="n">current</span><span class="p">;</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">tsk</span><span class="o">-&gt;</span><span class="kr">thread</span><span class="p">.</span><span class="n">tls_array</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">tsk</span><span class="o">-&gt;</span><span class="kr">thread</span><span class="p">.</span><span class="n">tls_array</span><span class="p">));</span>
 
-<span class="w">        </span><span class="n">fpu__clear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tsk</span><span class="o">-&gt;</span><span class="kr">thread</span><span class="p">.</span><span class="n">fpu</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+        <span class="n">fpu__clear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tsk</span><span class="o">-&gt;</span><span class="kr">thread</span><span class="p">.</span><span class="n">fpu</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div></p>
 <h4 id="setup-new-context-setup_new_exec">Setup new context: setup_new_exec()<a class="headerlink" href="#setup-new-context-setup_new_exec" title="Permanent link">&para;</a></h4>
 <p>Lego&rsquo;s <code>setup_new_exec()</code> is quite different from Linux&rsquo;s default implementation. Lego moves several functions to memory component, like the <code>arch_pick_mmap_layout</code> stuff. Thus, Lego only flush the signal handlers and reset the signal stack stuff:
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setup_new_exec</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">filename</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="cm">/* This is the point of no return */</span><span class="w"></span>
-<span class="w">        </span><span class="n">current</span><span class="o">-&gt;</span><span class="n">sas_ss_sp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="o">-&gt;</span><span class="n">sas_ss_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">void</span> <span class="nf">setup_new_exec</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">filename</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="cm">/* This is the point of no return */</span>
+        <span class="n">current</span><span class="o">-&gt;</span><span class="n">sas_ss_sp</span> <span class="o">=</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">sas_ss_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-<span class="w">        </span><span class="n">set_task_comm</span><span class="p">(</span><span class="n">current</span><span class="p">,</span><span class="w"> </span><span class="n">kbasename</span><span class="p">(</span><span class="n">filename</span><span class="p">));</span><span class="w"></span>
+        <span class="n">set_task_comm</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">kbasename</span><span class="p">(</span><span class="n">filename</span><span class="p">));</span>
 
-<span class="w">        </span><span class="n">flush_signal_handlers</span><span class="p">(</span><span class="n">current</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+        <span class="n">flush_signal_handlers</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div></p>
 <h4 id="change-return-frame-in-stack">Change return frame in stack<a class="headerlink" href="#change-return-frame-in-stack" title="Permanent link">&para;</a></h4>
 <p>We do not return to user mode here, we simply replace the return IP of the regs frame. While the kernel thread returns, it will simply merge to syscall return path (check ret_from_fork() in entry.S for detail).
@@ -2494,20 +2490,20 @@
 <span class="cm"> * @regs: pointer to pt_regs</span>
 <span class="cm"> * @new_ip: the first instruction IP of user thread</span>
 <span class="cm"> * @new_sp: the new stack pointer of user thread</span>
-<span class="cm"> */</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">start_thread</span><span class="p">(</span><span class="k">struct</span> <span class="nc">pt_regs</span><span class="w"> </span><span class="o">*</span><span class="n">regs</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">new_ip</span><span class="p">,</span><span class="w"></span>
-<span class="w">                  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">new_sp</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">loadsegment</span><span class="p">(</span><span class="n">fs</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">loadsegment</span><span class="p">(</span><span class="n">es</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">loadsegment</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">load_gs_index</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">regs</span><span class="o">-&gt;</span><span class="n">ip</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="n">new_ip</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">regs</span><span class="o">-&gt;</span><span class="n">sp</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="n">new_sp</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">regs</span><span class="o">-&gt;</span><span class="n">cs</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="n">__USER_CS</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">regs</span><span class="o">-&gt;</span><span class="n">ss</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="n">__USER_DS</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">regs</span><span class="o">-&gt;</span><span class="n">flags</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="n">X86_EFLAGS_IF</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">start_thread</span><span class="p">(</span><span class="k">struct</span> <span class="n">pt_regs</span> <span class="o">*</span><span class="n">regs</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">new_ip</span><span class="p">,</span>
+                  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">new_sp</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="n">loadsegment</span><span class="p">(</span><span class="n">fs</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="n">loadsegment</span><span class="p">(</span><span class="n">es</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="n">loadsegment</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="n">load_gs_index</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="n">regs</span><span class="o">-&gt;</span><span class="n">ip</span>                <span class="o">=</span> <span class="n">new_ip</span><span class="p">;</span>
+        <span class="n">regs</span><span class="o">-&gt;</span><span class="n">sp</span>                <span class="o">=</span> <span class="n">new_sp</span><span class="p">;</span>
+        <span class="n">regs</span><span class="o">-&gt;</span><span class="n">cs</span>                <span class="o">=</span> <span class="n">__USER_CS</span><span class="p">;</span>
+        <span class="n">regs</span><span class="o">-&gt;</span><span class="n">ss</span>                <span class="o">=</span> <span class="n">__USER_DS</span><span class="p">;</span>
+        <span class="n">regs</span><span class="o">-&gt;</span><span class="n">flags</span>             <span class="o">=</span> <span class="n">X86_EFLAGS_IF</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div></p>
 <p>If calling <code>execve()</code> from userspace, the return frame is saved in the stack, we can simply do <code>start_thread</code> above, and merge to syscall return path. However, if calling <code>execve()</code> from a kernel thread, things changed. As you can see, all forked threads will run from <code>ret_from_fork</code> when it wakes for the first time. If it is a kernel thread, it jumps to <code>line 23</code>, to execute the kernel function. Normally, the function should not return. If it does return, it normally has called an <code>execve()</code>, and return frame has been changed by <code>start_thread()</code>. So we jump to <code>line 16</code> to let it merge to syscall return path.</p>
 <div class="highlight"><pre><span></span><code><span class="cm">/*</span>
@@ -2552,7 +2548,7 @@
 <div class="highlight"><pre><span></span><code>[sysctl_mmap_min_addr, TASK_SIZE)
 </code></pre></div></p>
 <p>By default,
-<div class="highlight"><pre><span></span><code><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">sysctl_mmap_min_addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PAGE_SIZE</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">sysctl_mmap_min_addr</span> <span class="o">=</span> <span class="n">PAGE_SIZE</span><span class="p">;</span>
 
 <span class="cm">/*</span>
 <span class="cm"> * User space process size. 47bits minus one guard page.  The guard</span>
@@ -2562,7 +2558,7 @@
 <span class="cm"> * address, and SYSRET will explode dangerously.  We avoid this</span>
 <span class="cm"> * particular problem by preventing anything from being mapped</span>
 <span class="cm"> * at the maximum canonical address.</span>
-<span class="cm"> */</span><span class="w">                                                                                                       </span>
+<span class="cm"> */</span>                                                                                                       
 <span class="cp">#define TASK_SIZE       ((1UL &lt;&lt; 47) - PAGE_SIZE)</span>
 </code></pre></div></p>
 <p>Essentially:
@@ -2571,24 +2567,24 @@
 <hr />
 <h4 id="pre-populated-bss-and-brk">Pre-Populated <code>.bss</code> and <code>.brk</code><a class="headerlink" href="#pre-populated-bss-and-brk" title="Permanent link">&para;</a></h4>
 <p>The heap vma created at loading time is a combination of <code>.bss</code> and <code>.brk</code> segments. Since brk usage is 0 (will it be non-zero?) at this moment, so the heap vma is essentially just <code>.bss</code> pages. Normally, Linux kernel does not populate pages for this vma during loading, but Lego does. It can save several page allocation cost for heap pcache miss. It is controlled by <code>vm_brk()</code>.
-<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">vm_brk</span><span class="p">(</span><span class="k">struct</span> <span class="nc">lego_task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">tsk</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">len</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">struct</span> <span class="nc">lego_mm_struct</span><span class="w"> </span><span class="o">*</span><span class="n">mm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tsk</span><span class="o">-&gt;</span><span class="n">mm</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">vm_brk</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span>
+           <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">start</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="kt">int</span> <span class="n">ret</span><span class="p">;</span>
+        <span class="k">struct</span> <span class="n">lego_mm_struct</span> <span class="o">*</span><span class="n">mm</span> <span class="o">=</span> <span class="n">tsk</span><span class="o">-&gt;</span><span class="n">mm</span><span class="p">;</span>
 
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">down_write_killable</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mm</span><span class="o">-&gt;</span><span class="n">mmap_sem</span><span class="p">))</span><span class="w"></span>
-<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="n">EINTR</span><span class="p">;</span><span class="w"></span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">down_write_killable</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mm</span><span class="o">-&gt;</span><span class="n">mmap_sem</span><span class="p">))</span>
+                <span class="k">return</span> <span class="o">-</span><span class="n">EINTR</span><span class="p">;</span>
 
-<span class="w">        </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">do_brk</span><span class="p">(</span><span class="n">tsk</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">up_write</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mm</span><span class="o">-&gt;</span><span class="n">mmap_sem</span><span class="p">);</span><span class="w"></span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">do_brk</span><span class="p">(</span><span class="n">tsk</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+        <span class="n">up_write</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mm</span><span class="o">-&gt;</span><span class="n">mmap_sem</span><span class="p">);</span>
 
-<span class="w">        </span><span class="cm">/* Prepopulate brk pages */</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ret</span><span class="p">)</span><span class="w"></span>
-<span class="w">                </span><span class="n">lego_mm_populate</span><span class="p">(</span><span class="n">mm</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">);</span><span class="w"></span>
+        <span class="cm">/* Prepopulate brk pages */</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">ret</span><span class="p">)</span>
+                <span class="n">lego_mm_populate</span><span class="p">(</span><span class="n">mm</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
 
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div></p>
 <hr />
 <h4 id="un-populated-stack">Un-Populated stack<a class="headerlink" href="#un-populated-stack" title="Permanent link">&para;</a></h4>
@@ -2596,21 +2592,21 @@
 <div class="highlight"><pre><span></span><code>7ffffffde000-7ffffffff000 rw-p 00000000 [stack]
 </code></pre></div></p>
 <p>The code to expand stack is done when ELF loader tries to finalize the stack vma, by calling <code>setup_arg_pages()</code>:
-<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">setup_arg_pages</span><span class="p">(</span><span class="k">struct</span> <span class="nc">lego_task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">tsk</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span> <span class="nc">lego_binprm</span><span class="w"> </span><span class="o">*</span><span class="n">bprm</span><span class="p">,</span><span class="w"></span>
-<span class="w">                    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">stack_top</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">executable_stack</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="w">        </span><span class="cm">/*</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">setup_arg_pages</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
+                    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">stack_top</span><span class="p">,</span> <span class="kt">int</span> <span class="n">executable_stack</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="p">...</span>
+        <span class="cm">/*</span>
 <span class="cm">         * 32*4k (or 2*64k) pages</span>
-<span class="cm">         */</span><span class="w"></span>
-<span class="w">        </span><span class="n">stack_expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">131072UL</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">stack_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vma</span><span class="o">-&gt;</span><span class="n">vm_end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">vma</span><span class="o">-&gt;</span><span class="n">vm_start</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">stack_base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vma</span><span class="o">-&gt;</span><span class="n">vm_start</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">stack_expand</span><span class="p">;</span><span class="w"></span>
+<span class="cm">         */</span>
+        <span class="n">stack_expand</span> <span class="o">=</span> <span class="mi">131072UL</span><span class="p">;</span>
+        <span class="n">stack_size</span> <span class="o">=</span> <span class="n">vma</span><span class="o">-&gt;</span><span class="n">vm_end</span> <span class="o">-</span> <span class="n">vma</span><span class="o">-&gt;</span><span class="n">vm_start</span><span class="p">;</span>
+        <span class="n">stack_base</span> <span class="o">=</span> <span class="n">vma</span><span class="o">-&gt;</span><span class="n">vm_start</span> <span class="o">-</span> <span class="n">stack_expand</span><span class="p">;</span>
 
-<span class="w">        </span><span class="n">mm</span><span class="o">-&gt;</span><span class="n">start_stack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bprm</span><span class="o">-&gt;</span><span class="n">p</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">expand_stack</span><span class="p">(</span><span class="n">vma</span><span class="p">,</span><span class="w"> </span><span class="n">stack_base</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+        <span class="n">mm</span><span class="o">-&gt;</span><span class="n">start_stack</span> <span class="o">=</span> <span class="n">bprm</span><span class="o">-&gt;</span><span class="n">p</span><span class="p">;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">expand_stack</span><span class="p">(</span><span class="n">vma</span><span class="p">,</span> <span class="n">stack_base</span><span class="p">);</span>
+        <span class="p">...</span>
+<span class="p">}</span>
 </code></pre></div></p>
 <hr />
 <h4 id="un-populated-text-and-data">Un-Populated <code>.text</code> and <code>.data</code><a class="headerlink" href="#un-populated-text-and-data" title="Permanent link">&para;</a></h4>
@@ -2618,54 +2614,54 @@
 <hr />
 <h4 id="disabled-randomized-top-of-stack">Disabled Randomized Top of Stack<a class="headerlink" href="#disabled-randomized-top-of-stack" title="Permanent link">&para;</a></h4>
 <p>Lego currently does not randomize the stack top. The stack vma is allocated by <code>bprm_mm_init()</code> at early execve time. There is no randomization at the allocation time, and this applies to all exectuable formats. The end of vma is just <code>TASK_SIZE</code>:
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">__bprm_mm_init</span><span class="p">(</span><span class="k">struct</span> <span class="nc">lego_binprm</span><span class="w"> </span><span class="o">*</span><span class="n">bprm</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="w">        </span><span class="n">vma</span><span class="o">-&gt;</span><span class="n">vm_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TASK_SIZE</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="p">(</span><span class="n">managers</span><span class="o">/</span><span class="n">memory</span><span class="o">/</span><span class="n">loader</span><span class="o">/</span><span class="n">elf</span><span class="p">.</span><span class="n">c</span><span class="p">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">int</span> <span class="nf">__bprm_mm_init</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="p">...</span>
+        <span class="n">vma</span><span class="o">-&gt;</span><span class="n">vm_end</span> <span class="o">=</span> <span class="n">TASK_SIZE</span><span class="p">;</span>
+        <span class="p">...</span>
+<span class="p">}</span>
+<span class="p">(</span><span class="n">managers</span><span class="o">/</span><span class="n">memory</span><span class="o">/</span><span class="n">loader</span><span class="o">/</span><span class="n">elf</span><span class="p">.</span><span class="n">c</span><span class="p">)</span>
 </code></pre></div></p>
 <p>Top of stack randomization happens within each specific format loader. They do this by calling back to virtual loader layer&rsquo;s <code>setup_arg_pages()</code> function, which is used to finalize the top of stack:
-<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">setup_arg_pages</span><span class="p">(</span><span class="k">struct</span> <span class="nc">lego_task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">tsk</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span> <span class="nc">lego_binprm</span><span class="w"> </span><span class="o">*</span><span class="n">bprm</span><span class="p">,</span><span class="w"></span>
-<span class="w">                    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">stack_top</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">executable_stack</span><span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">setup_arg_pages</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
+                    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">stack_top</span><span class="p">,</span> <span class="kt">int</span> <span class="n">executable_stack</span><span class="p">);</span>
 </code></pre></div></p>
 <p>So, to actually randomize the top of stack, you can simply do the following:
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">randomize_stack_top</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">stack_top</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w">                                </span>
-<span class="w">        </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">random_variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="nf">randomize_stack_top</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">stack_top</span><span class="p">)</span>
+<span class="p">{</span>                                
+        <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">random_variable</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">current</span><span class="o">-&gt;</span><span class="n">flags</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">PF_RANDOMIZE</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"></span>
-<span class="w">                </span><span class="o">!</span><span class="p">(</span><span class="n">current</span><span class="o">-&gt;</span><span class="n">personality</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">ADDR_NO_RANDOMIZE</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">random_variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_random_long</span><span class="p">();</span><span class="w"></span>
-<span class="w">                </span><span class="n">random_variable</span><span class="w"> </span><span class="o">&amp;=</span><span class="w"> </span><span class="n">STACK_RND_MASK</span><span class="p">;</span><span class="w"></span>
-<span class="w">                </span><span class="n">random_variable</span><span class="w"> </span><span class="o">&lt;&lt;=</span><span class="w"> </span><span class="n">PAGE_SHIFT</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">current</span><span class="o">-&gt;</span><span class="n">flags</span> <span class="o">&amp;</span> <span class="n">PF_RANDOMIZE</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+                <span class="o">!</span><span class="p">(</span><span class="n">current</span><span class="o">-&gt;</span><span class="n">personality</span> <span class="o">&amp;</span> <span class="n">ADDR_NO_RANDOMIZE</span><span class="p">))</span> <span class="p">{</span>
+                <span class="n">random_variable</span> <span class="o">=</span> <span class="n">get_random_long</span><span class="p">();</span>
+                <span class="n">random_variable</span> <span class="o">&amp;=</span> <span class="n">STACK_RND_MASK</span><span class="p">;</span>
+                <span class="n">random_variable</span> <span class="o">&lt;&lt;=</span> <span class="n">PAGE_SHIFT</span><span class="p">;</span>
+        <span class="p">}</span>
 <span class="cp">#ifdef CONFIG_STACK_GROWSUP</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">PAGE_ALIGN</span><span class="p">(</span><span class="n">stack_top</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">random_variable</span><span class="p">;</span><span class="w"></span>
+        <span class="k">return</span> <span class="n">PAGE_ALIGN</span><span class="p">(</span><span class="n">stack_top</span><span class="p">)</span> <span class="o">+</span> <span class="n">random_variable</span><span class="p">;</span>
 <span class="cp">#else           </span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">PAGE_ALIGN</span><span class="p">(</span><span class="n">stack_top</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">random_variable</span><span class="p">;</span><span class="w"></span>
+        <span class="k">return</span> <span class="n">PAGE_ALIGN</span><span class="p">(</span><span class="n">stack_top</span><span class="p">)</span> <span class="o">-</span> <span class="n">random_variable</span><span class="p">;</span>
 <span class="cp">#endif</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 
-<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">load_elf_binary</span><span class="p">(</span><span class="k">struct</span> <span class="nc">lego_task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">tsk</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span> <span class="nc">lego_binprm</span><span class="w"> </span><span class="o">*</span><span class="n">bprm</span><span class="p">,</span><span class="w"></span>
-<span class="w">                           </span><span class="n">u64</span><span class="w"> </span><span class="o">*</span><span class="n">new_ip</span><span class="p">,</span><span class="w"> </span><span class="n">u64</span><span class="w"> </span><span class="o">*</span><span class="n">new_sp</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="n">argv_len</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="n">envp_len</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="w">        </span><span class="n">retval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">setup_arg_pages</span><span class="p">(</span><span class="n">bprm</span><span class="p">,</span><span class="w"> </span><span class="n">randomize_stack_top</span><span class="p">(</span><span class="n">TASK_SIZE</span><span class="p">),</span><span class="w"></span>
-<span class="w">                                 </span><span class="n">executable_stack</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">load_elf_binary</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
+                           <span class="n">u64</span> <span class="o">*</span><span class="n">new_ip</span><span class="p">,</span> <span class="n">u64</span> <span class="o">*</span><span class="n">new_sp</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">argv_len</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">envp_len</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="p">...</span>
+        <span class="n">retval</span> <span class="o">=</span> <span class="n">setup_arg_pages</span><span class="p">(</span><span class="n">bprm</span><span class="p">,</span> <span class="n">randomize_stack_top</span><span class="p">(</span><span class="n">TASK_SIZE</span><span class="p">),</span>
+                                 <span class="n">executable_stack</span><span class="p">);</span>
+        <span class="p">...</span>
+<span class="p">}</span>
 </code></pre></div></p>
 <p>However, current Lego disables randomization by passing <code>TASK_SIZE</code>:
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">load_elf_binary</span><span class="p">(</span><span class="k">struct</span> <span class="nc">lego_task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">tsk</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span> <span class="nc">lego_binprm</span><span class="w"> </span><span class="o">*</span><span class="n">bprm</span><span class="p">,</span><span class="w"></span>
-<span class="w">                           </span><span class="n">u64</span><span class="w"> </span><span class="o">*</span><span class="n">new_ip</span><span class="p">,</span><span class="w"> </span><span class="n">u64</span><span class="w"> </span><span class="o">*</span><span class="n">new_sp</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="n">argv_len</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="n">envp_len</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="w">        </span><span class="n">retval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">setup_arg_pages</span><span class="p">(</span><span class="n">tsk</span><span class="p">,</span><span class="w"> </span><span class="n">bprm</span><span class="p">,</span><span class="w"> </span><span class="n">TASK_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">executable_stack</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="p">(</span><span class="n">managers</span><span class="o">/</span><span class="n">memory</span><span class="o">/</span><span class="n">loader</span><span class="o">/</span><span class="n">elf</span><span class="p">.</span><span class="n">c</span><span class="p">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">int</span> <span class="nf">load_elf_binary</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
+                           <span class="n">u64</span> <span class="o">*</span><span class="n">new_ip</span><span class="p">,</span> <span class="n">u64</span> <span class="o">*</span><span class="n">new_sp</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">argv_len</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">envp_len</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="p">...</span>
+        <span class="n">retval</span> <span class="o">=</span> <span class="n">setup_arg_pages</span><span class="p">(</span><span class="n">tsk</span><span class="p">,</span> <span class="n">bprm</span><span class="p">,</span> <span class="n">TASK_SIZE</span><span class="p">,</span> <span class="n">executable_stack</span><span class="p">);</span>
+        <span class="p">...</span>
+<span class="p">}</span>
+<span class="p">(</span><span class="n">managers</span><span class="o">/</span><span class="n">memory</span><span class="o">/</span><span class="n">loader</span><span class="o">/</span><span class="n">elf</span><span class="p">.</span><span class="n">c</span><span class="p">)</span>
 </code></pre></div></p>
 <hr />
 <h4 id="no-vdso">No vDSO<a class="headerlink" href="#no-vdso" title="Permanent link">&para;</a></h4>
@@ -2678,49 +2674,49 @@
 </ul>
 <p>The reason to add it back is simple: if those syscalls are used <code>a lot</code> and hurt overall performance. Do note that when we add it back, it will be different from the common design: vDSO <code>must</code> be mapped at processor side, mapped in our emulated pgtable.</p>
 <p>Below is the original part where loader maps vDSO:
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">load_elf_binary</span><span class="p">(</span><span class="k">struct</span> <span class="nc">lego_task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">tsk</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span> <span class="nc">lego_binprm</span><span class="w"> </span><span class="o">*</span><span class="n">bprm</span><span class="p">,</span><span class="w"></span>
-<span class="w">                           </span><span class="n">u64</span><span class="w"> </span><span class="o">*</span><span class="n">new_ip</span><span class="p">,</span><span class="w"> </span><span class="n">u64</span><span class="w"> </span><span class="o">*</span><span class="n">new_sp</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="n">argv_len</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="n">envp_len</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">int</span> <span class="nf">load_elf_binary</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
+                           <span class="n">u64</span> <span class="o">*</span><span class="n">new_ip</span><span class="p">,</span> <span class="n">u64</span> <span class="o">*</span><span class="n">new_sp</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">argv_len</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">envp_len</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="p">...</span>
 <span class="cp">#ifdef ARCH_HAS_SETUP_ADDITIONAL_PAGES</span>
-<span class="w">        </span><span class="cm">/*</span>
+        <span class="cm">/*</span>
 <span class="cm">         * TODO: vdso</span>
 <span class="cm">         * x86 can map vdso vma here</span>
-<span class="cm">         */</span><span class="w"></span>
+<span class="cm">         */</span>
 <span class="cp">#endif</span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="n">managers</span><span class="o">/</span><span class="n">memory</span><span class="o">/</span><span class="n">loader</span><span class="o">/</span><span class="n">elf</span><span class="p">.</span><span class="n">c</span><span class="w"></span>
+        <span class="p">...</span>
+<span class="p">}</span>
+<span class="n">managers</span><span class="o">/</span><span class="n">memory</span><span class="o">/</span><span class="n">loader</span><span class="o">/</span><span class="n">elf</span><span class="p">.</span><span class="n">c</span>
 </code></pre></div></p>
 <p>For lego, we should move it to processor right before <code>start_thread()</code>:
-<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">do_execve</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">filename</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="n">envp</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="w">        </span><span class="cm">/* Should be here */</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">do_execve</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">filename</span><span class="p">,</span>
+              <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">,</span>
+              <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="k">const</span> <span class="o">*</span><span class="n">envp</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="p">...</span>
+        <span class="cm">/* Should be here */</span>
 
-<span class="w">        </span><span class="n">start_thread</span><span class="p">(</span><span class="n">regs</span><span class="p">,</span><span class="w"> </span><span class="n">new_ip</span><span class="p">,</span><span class="w"> </span><span class="n">new_sp</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+        <span class="n">start_thread</span><span class="p">(</span><span class="n">regs</span><span class="p">,</span> <span class="n">new_ip</span><span class="p">,</span> <span class="n">new_sp</span><span class="p">);</span>
+        <span class="p">...</span>
+<span class="p">}</span>
 </code></pre></div></p>
 <p>Besides, don&rsquo;t forget to report the <code>vDSO</code> address in the aux vector:
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">create_elf_tables</span><span class="p">(</span><span class="k">struct</span> <span class="nc">lego_task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">tsk</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span> <span class="nc">lego_binprm</span><span class="w"> </span><span class="o">*</span><span class="n">bprm</span><span class="p">,</span><span class="w"></span>
-<span class="w">                </span><span class="k">struct</span> <span class="nc">elfhdr</span><span class="w"> </span><span class="o">*</span><span class="n">exec</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">load_addr</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">interp_load_addr</span><span class="p">,</span><span class="w"></span>
-<span class="w">                </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="n">argv_len</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="n">envp_len</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">int</span> <span class="nf">create_elf_tables</span><span class="p">(</span><span class="k">struct</span> <span class="n">lego_task_struct</span> <span class="o">*</span><span class="n">tsk</span><span class="p">,</span> <span class="k">struct</span> <span class="n">lego_binprm</span> <span class="o">*</span><span class="n">bprm</span><span class="p">,</span>
+                <span class="k">struct</span> <span class="n">elfhdr</span> <span class="o">*</span><span class="n">exec</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">load_addr</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">interp_load_addr</span><span class="p">,</span>
+                <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">argv_len</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">envp_len</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="p">...</span>
 <span class="cp">#ifdef ARCH_DLINFO</span>
-<span class="w">        </span><span class="cm">/*</span>
+        <span class="cm">/*</span>
 <span class="cm">         * ARCH_DLINFO must come first so PPC can do its special alignment of</span>
 <span class="cm">         * AUXV.</span>
 <span class="cm">         * update AT_VECTOR_SIZE_ARCH if the number of NEW_AUX_ENT() in</span>
 <span class="cm">         * ARCH_DLINFO changes</span>
-<span class="cm">         */</span><span class="w"></span>
-<span class="w">        </span><span class="n">ARCH_DLINFO</span><span class="p">;</span><span class="w"></span>
+<span class="cm">         */</span>
+        <span class="n">ARCH_DLINFO</span><span class="p">;</span>
 <span class="cp">#endif</span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+        <span class="p">...</span>
+<span class="p">}</span>
 </code></pre></div></p>
 <p>&ndash;<br />
 Yizhou Shan<br />
@@ -2734,7 +2730,7 @@ Last Updated: Feb 27, 2018</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 27, 2018</span>
+      Last update: February 27, 2018
       
     
   </small>
@@ -2755,9 +2751,8 @@ Last Updated: Feb 27, 2018</p>
           </div>
         </div>
         
-          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+          <a href="#" class="md-top md-icon" title="Back to top" data-md-component="top" data-md-state="hidden">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
-            Back to top
           </a>
         
       </main>
@@ -2819,10 +2814,10 @@ Last Updated: Feb 27, 2018</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.tabs.sticky", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.409db549.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.tabs.sticky", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.756773cc.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.82b56eb2.min.js"></script>
       
     
   </body>
