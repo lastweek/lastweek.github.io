@@ -14,7 +14,7 @@
         <link rel="canonical" href="http://lastweek.io/lego/pcache/evict_and_ref/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.6">
     
     
       
@@ -22,10 +22,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ca7ac06f.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.802231af.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.f1a3b89f.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -149,14 +149,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -1990,46 +1994,46 @@
 <li>Refcount checking is also necessary. In the eviction routine, we need to use  <code>atomic_xchg</code> to reset the refcount. If this fails, it means someone else is using it. Do note, this <code>atomic_xchg</code> is carried out with pcm locked. Thus the ordering of locking, get/put matters in the code.</li>
 </ul>
 <p>The code itself tells a much more complete story, I strongly recommend you read the code if you are interested. Here I will list the most interesting part. For the other users except eviction, they need to do this:
-<div class="highlight"><pre><span></span><code><span class="n">pcm</span> <span class="o">=</span> <span class="n">pte_to_pcache_meta</span><span class="p">(</span><span class="n">ptent</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">pcm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pte_to_pcache_meta</span><span class="p">(</span><span class="n">ptent</span><span class="p">);</span><span class="w"></span>
 <span class="cm">/*   </span>
 <span class="cm"> * We have a strict lock ordering everyone should obey:</span>
 <span class="cm"> *      lock pcache</span>
 <span class="cm"> *      lock pte</span>
 <span class="cm"> * The caller already locked pte, thus we should avoid deadlock here</span>
 <span class="cm"> * by droping pte lock first and then acquire both of them in order.</span>
-<span class="cm"> */</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="o">!</span><span class="n">trylock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">)))</span> <span class="p">{</span>
-    <span class="cm">/* in case it got evicted and @pcm becomes invalid */</span>
-    <span class="n">get_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="o">!</span><span class="n">trylock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="cm">/* in case it got evicted and @pcm becomes invalid */</span><span class="w"></span>
+<span class="w">    </span><span class="n">get_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span><span class="w"></span>
 
-    <span class="cm">/*</span>
+<span class="w">    </span><span class="cm">/*</span>
 <span class="cm">     * Once we release the pte lock, this pcm may be</span>
 <span class="cm">     * unmapped by another thread who is doing eviction.</span>
 <span class="cm">     * Since we have grabbed one extra ref above, so even</span>
 <span class="cm">     * it is unmapped, eviction thread will not fail to free it.</span>
-<span class="cm">     */</span>
-    <span class="n">spin_unlock</span><span class="p">(</span><span class="n">ptl</span><span class="p">);</span>
+<span class="cm">     */</span><span class="w"></span>
+<span class="w">    </span><span class="n">spin_unlock</span><span class="p">(</span><span class="n">ptl</span><span class="p">);</span><span class="w"></span>
 
-    <span class="n">lock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
-    <span class="n">spin_lock</span><span class="p">(</span><span class="n">ptl</span><span class="p">);</span>
+<span class="w">    </span><span class="n">lock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">spin_lock</span><span class="p">(</span><span class="n">ptl</span><span class="p">);</span><span class="w"></span>
 
-    <span class="cm">/*   </span>
+<span class="w">    </span><span class="cm">/*   </span>
 <span class="cm">     * Since we dropped the lock, the pcache line might</span>
 <span class="cm">     * be got evicted in the middle.</span>
-<span class="cm">     */</span>
-<span class="hll">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">pte_same</span><span class="p">(</span><span class="o">*</span><span class="n">pte</span><span class="p">,</span> <span class="n">ptent</span><span class="p">))</span> <span class="p">{</span>
-</span>        <span class="n">unlock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
-        <span class="cm">/*   </span>
+<span class="cm">     */</span><span class="w"></span>
+<span class="hll"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">pte_same</span><span class="p">(</span><span class="o">*</span><span class="n">pte</span><span class="p">,</span><span class="w"> </span><span class="n">ptent</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+</span><span class="w">        </span><span class="n">unlock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="cm">/*   </span>
 <span class="cm">         * This put maybe decreases the ref to 0</span>
 <span class="cm">         * and eventually free the pcache line.</span>
 <span class="cm">         * This happens if the @pcm was selected</span>
 <span class="cm">         * to be evicted at the same time.</span>
-<span class="cm">         */</span>
-        <span class="n">put_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
-        <span class="k">return</span> <span class="o">-</span><span class="n">EAGAIN</span><span class="p">;</span>
-    <span class="p">}</span>    
-    <span class="n">put_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="cm">         */</span><span class="w"></span>
+<span class="w">        </span><span class="n">put_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="n">EAGAIN</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w">    </span>
+<span class="w">    </span><span class="n">put_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div></p>
 <p>As for the eviction thread, it needs to make sure it is the last user using this pcm:
 <div class="highlight"><pre><span></span><code><span class="cm">/*  </span>
@@ -2046,22 +2050,22 @@
 <span class="cm"> * then we should manually sub the refcount. The other users</span>
 <span class="cm"> * which are currently holding the ref, will free the pcache</span>
 <span class="cm"> * once it call put_pcache.</span>
-<span class="cm"> */</span>
-<span class="n">PCACHE_BUG_ON_PCM</span><span class="p">(</span><span class="n">pcache_ref_count</span><span class="p">(</span><span class="n">pcm</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">nr_mapped</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pcm</span><span class="p">);</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="o">!</span><span class="n">pcache_ref_freeze</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="n">nr_mapped</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="n">pcache_ref_sub_and_test</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="n">nr_mapped</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span> <span class="p">{</span>
-        <span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;BUG: pcm refcount, nr_mapped: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">nr_mapped</span><span class="p">);</span>
-        <span class="n">dump_pcache_meta</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="s">&quot;ref error&quot;</span><span class="p">);</span>
-        <span class="n">BUG</span><span class="p">();</span>
-    <span class="p">}</span>   
+<span class="cm"> */</span><span class="w"></span>
+<span class="n">PCACHE_BUG_ON_PCM</span><span class="p">(</span><span class="n">pcache_ref_count</span><span class="p">(</span><span class="n">pcm</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nr_mapped</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">pcm</span><span class="p">);</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="o">!</span><span class="n">pcache_ref_freeze</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span><span class="w"> </span><span class="n">nr_mapped</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="n">pcache_ref_sub_and_test</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span><span class="w"> </span><span class="n">nr_mapped</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;BUG: pcm refcount, nr_mapped: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nr_mapped</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">dump_pcache_meta</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ref error&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">BUG</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w">   </span>
 
-    <span class="n">ClearPcacheReclaim</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
-    <span class="n">add_to_lru_list</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="n">pset</span><span class="p">);</span>
-    <span class="n">unlock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ClearPcacheReclaim</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">add_to_lru_list</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span><span class="w"> </span><span class="n">pset</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">unlock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span><span class="w"></span>
 
-    <span class="n">inc_pcache_event</span><span class="p">(</span><span class="n">PCACHE_EVICTION_EAGAIN_CONCURRENT</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">PCACHE_EVICT_EAGAIN_CONCURRENT</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="n">inc_pcache_event</span><span class="p">(</span><span class="n">PCACHE_EVICTION_EAGAIN_CONCURRENT</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">PCACHE_EVICT_EAGAIN_CONCURRENT</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div></p>
 <hr />
 <p>My personal thought: live eviction against live objects/references is very hard. You first need to use refcount to ensure a correct ordering. You also need to have a way to prevent others from using the going-to-be-evicted pointer, or have a way to detect a under-use pointer.  In this Lego pcache case, we use the combination of pte lock, pcache lock, and pcache refcount, to ensure everyone is safe. And all these is quite similar to Linux page operations. I learned a lot from its code. But I still not fully understand how it ensures the page is not used by others, it has way more parties than lego that can use the page at the same time of eviction. Magic kernel folks.</p>
@@ -2077,7 +2081,7 @@ Last Updated: Mar 16, 2018</p>
 <div class="md-source-date">
   <small>
     
-      Last update: March 16, 2018
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 16, 2018</span>
       
     
   </small>
@@ -2098,8 +2102,9 @@ Last Updated: Mar 16, 2018</p>
           </div>
         </div>
         
-          <a href="#" class="md-top md-icon" title="Back to top" data-md-component="top" data-md-state="hidden">
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
           </a>
         
       </main>
@@ -2161,10 +2166,10 @@ Last Updated: Mar 16, 2018</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.tabs.sticky", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.tabs.sticky", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.409db549.min.js", "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.82b56eb2.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.756773cc.min.js"></script>
       
     
   </body>

@@ -14,7 +14,7 @@
         <link rel="canonical" href="http://lastweek.io/notes/linux/linux-linker-script/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.6">
     
     
       
@@ -22,10 +22,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ca7ac06f.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.802231af.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.f1a3b89f.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -149,14 +149,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -2084,12 +2088,12 @@ and then the linker script will aggregate them. Let me summarize the common flow
 <ol>
 <li>Create a new section name. And use it to annotate your function and data. For example, I can create <code>__section("test")</code>, and mark <code>int foo __section("test")</code>. </li>
 <li>Then look into <code>vmlinux.lds.S</code>, add a new section. Also, add begin and end marcos before and after the section. You can use these macros in your C code.
-<div class="highlight"><pre><span></span><code>    <span class="p">.</span> <span class="o">=</span> <span class="n">ALIGN</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
-    <span class="p">.</span><span class="nl">test_section</span> <span class="p">:</span> <span class="n">AT</span><span class="p">(</span><span class="n">ADDR</span><span class="p">(.</span><span class="n">test_section</span><span class="p">)</span> <span class="o">-</span> <span class="n">LOAD_OFFSET</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">__test_section_start</span> <span class="o">=</span> <span class="p">.;</span>
-        <span class="o">*</span><span class="p">(.</span><span class="n">test</span><span class="p">);</span>
-        <span class="n">__test_section_end</span> <span class="o">=</span> <span class="p">.;</span>
-    <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p">.</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ALIGN</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="nl">test_section</span> <span class="p">:</span><span class="w"> </span><span class="n">AT</span><span class="p">(</span><span class="n">ADDR</span><span class="p">(.</span><span class="n">test_section</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">LOAD_OFFSET</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">__test_section_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.;</span><span class="w"></span>
+<span class="w">        </span><span class="o">*</span><span class="p">(.</span><span class="n">test</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">__test_section_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 </code></pre></div></li>
 <li>And in your C code, you can declare <code>__test_section_start</code> and <code>__test_section_end</code>,
 and use them. Kernel uses this trick a lot. If everything in this section is the same
@@ -2098,29 +2102,29 @@ type of data structures, you can simply walk through it as if it is an array.</l
 <p>Let&rsquo;s look at an example, say the x86 apicdrivers.</p>
 <p>They defined a macro to annotate apic drivers.
 <div class="highlight"><pre><span></span><code><span class="cp">#define apic_driver(sym)                                        \    </span>
-        <span class="k">static</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">apic</span> <span class="o">*</span><span class="n">__apicdrivers_</span><span class="err">##</span><span class="n">sym</span> <span class="n">__used</span>            <span class="err">\</span>    
-        <span class="n">__aligned</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">apic</span> <span class="o">*</span><span class="p">))</span>                        <span class="err">\</span>    
-        <span class="n">__section</span><span class="p">(</span><span class="s">&quot;.apicdrivers&quot;</span><span class="p">)</span> <span class="o">=</span> <span class="p">{</span> <span class="o">&amp;</span><span class="n">sym</span> <span class="p">}</span>
+<span class="w">        </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span> <span class="nc">apic</span><span class="w"> </span><span class="o">*</span><span class="n">__apicdrivers_</span><span class="err">##</span><span class="n">sym</span><span class="w"> </span><span class="n">__used</span><span class="w">            </span><span class="err">\</span><span class="w">    </span>
+<span class="w">        </span><span class="n">__aligned</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="nc">apic</span><span class="w"> </span><span class="o">*</span><span class="p">))</span><span class="w">                        </span><span class="err">\</span><span class="w">    </span>
+<span class="w">        </span><span class="n">__section</span><span class="p">(</span><span class="s">&quot;.apicdrivers&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sym</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 
 
-<span class="k">static</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">apic</span> <span class="n">testAPICdriver</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span> <span class="p">};</span>
-<span class="n">apic_driver</span><span class="p">(</span><span class="n">testAPICdriver</span><span class="p">)</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span> <span class="nc">apic</span><span class="w"> </span><span class="n">testAPICdriver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<span class="n">apic_driver</span><span class="p">(</span><span class="n">testAPICdriver</span><span class="p">)</span><span class="w"></span>
 </code></pre></div></p>
 <p>And inside linker script, they define:
-<div class="highlight"><pre><span></span><code>    <span class="p">.</span> <span class="o">=</span> <span class="n">ALIGN</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
-    <span class="p">.</span><span class="nl">apicdrivers</span> <span class="p">:</span> <span class="n">AT</span><span class="p">(</span><span class="n">ADDR</span><span class="p">(.</span><span class="n">apicdrivers</span><span class="p">)</span> <span class="o">-</span> <span class="n">LOAD_OFFSET</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">__apicdrivers</span> <span class="o">=</span> <span class="p">.;</span>
-        <span class="o">*</span><span class="p">(.</span><span class="n">apicdrivers</span><span class="p">);</span>
-        <span class="n">__apicdrivers_end</span> <span class="o">=</span> <span class="p">.;</span>
-    <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p">.</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ALIGN</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="nl">apicdrivers</span> <span class="p">:</span><span class="w"> </span><span class="n">AT</span><span class="p">(</span><span class="n">ADDR</span><span class="p">(.</span><span class="n">apicdrivers</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">LOAD_OFFSET</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">__apicdrivers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.;</span><span class="w"></span>
+<span class="w">        </span><span class="o">*</span><span class="p">(.</span><span class="n">apicdrivers</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">__apicdrivers_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 </code></pre></div></p>
 <p>Finally, define them in C and use it.
-<div class="highlight"><pre><span></span><code><span class="k">extern</span> <span class="k">struct</span> <span class="n">apic</span> <span class="o">*</span><span class="n">__apicdrivers</span><span class="p">[],</span> <span class="o">*</span><span class="n">__apicdrivers_end</span><span class="p">[];</span>
+<div class="highlight"><pre><span></span><code><span class="k">extern</span><span class="w"> </span><span class="k">struct</span> <span class="nc">apic</span><span class="w"> </span><span class="o">*</span><span class="n">__apicdrivers</span><span class="p">[],</span><span class="w"> </span><span class="o">*</span><span class="n">__apicdrivers_end</span><span class="p">[];</span><span class="w"></span>
 
-<span class="k">struct</span> <span class="n">apic</span> <span class="o">**</span><span class="n">drv</span><span class="p">;</span>
-<span class="k">for</span> <span class="p">(</span><span class="n">drv</span> <span class="o">=</span> <span class="n">__apicdrivers</span><span class="p">;</span> <span class="n">drv</span> <span class="o">&lt;</span> <span class="n">__apicdrivers_end</span><span class="p">;</span> <span class="n">drv</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-<span class="p">...</span>
-<span class="p">}</span>
+<span class="k">struct</span> <span class="nc">apic</span><span class="w"> </span><span class="o">**</span><span class="n">drv</span><span class="p">;</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">drv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__apicdrivers</span><span class="p">;</span><span class="w"> </span><span class="n">drv</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">__apicdrivers_end</span><span class="p">;</span><span class="w"> </span><span class="n">drv</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div></p>
 <p>The kernel scheduler code the trick to define various scheduler drivers too.</p>
 <h2 id="kernel">Kernel<a class="headerlink" href="#kernel" title="Permanent link">&para;</a></h2>
@@ -2137,13 +2141,13 @@ type of data structures, you can simply walk through it as if it is an array.</l
 <h2 id="boring-details">Boring Details<a class="headerlink" href="#boring-details" title="Permanent link">&para;</a></h2>
 <p>In the <code>vmlinux.lds.S</code>, those header files are included.
 The most important one is <code>vmlinux.lds.h</code>.
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;asm-generic/vmlinux.lds.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;asm/asm-offsets.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;asm/thread_info.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;asm/page_types.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;asm/orc_lookup.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;asm/cache.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;asm/boot.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm-generic/vmlinux.lds.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/asm-offsets.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/thread_info.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/page_types.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/orc_lookup.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/cache.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/boot.h&gt;</span><span class="cp"></span>
 </code></pre></div></p>
 <p>And be sure to checkout the <a href="https://github.com/torvalds/linux/blob/master/include/asm-generic/vmlinux.lds.h"><code>vmlinux.lds.h</code></a>.
 The top comments. It lays out the basic structrue of a linker script in linux.
@@ -2198,7 +2202,7 @@ And it defines all the macros used in the assembly linker file.
 <span class="cm"> * Some of the included output section have their own set of constants.</span>
 <span class="cm"> * Examples are: [__initramfs_start, __initramfs_end] for initramfs and</span>
 <span class="cm"> *               [__nosave_begin, __nosave_end] for the nosave data</span>
-<span class="cm"> */</span>
+<span class="cm"> */</span><span class="w"></span>
 </code></pre></div></p>
                 
                   
@@ -2208,7 +2212,7 @@ And it defines all the macros used in the assembly linker file.
 <div class="md-source-date">
   <small>
     
-      Last update: October 30, 2021
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 30, 2021</span>
       
     
   </small>
@@ -2229,8 +2233,9 @@ And it defines all the macros used in the assembly linker file.
           </div>
         </div>
         
-          <a href="#" class="md-top md-icon" title="Back to top" data-md-component="top" data-md-state="hidden">
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
           </a>
         
       </main>
@@ -2292,10 +2297,10 @@ And it defines all the macros used in the assembly linker file.
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.tabs.sticky", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.tabs.sticky", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.409db549.min.js", "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.82b56eb2.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.756773cc.min.js"></script>
       
     
   </body>
