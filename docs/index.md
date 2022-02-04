@@ -45,7 +45,7 @@ Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAA
 
 6. __Disaggregating and Consolidating Network Functionalities with SuperNIC__
   <br> *Yizhou Shan*, Will Lin, Ryan Kosta, Arvind Krishnamurthy, Yiying Zhang
-  <br> [[Preprint]](http://lastweek.io/pubs/SuperNIC.pdf)
+  <br> [[Preprint]](https://arxiv.org/pdf/2109.07744.pdf)
 
 5. __Clio: A Hardware-Software Co-Designed Disaggregated Memory System__
   <br> *Yizhou Shan*, Zhiyuan Guo (Equal Contribution), Xuhao Luo, Yutong Huang, Yiying Zhang
