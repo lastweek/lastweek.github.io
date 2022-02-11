@@ -19,12 +19,12 @@ They find a vulnerability in the 7-series chip and in turn able to decrypt a ful
 An FPGA bitstream can configure an FPGA.
 A bitstream includes the description of the hardware logic, routing, and initial
 values for both registers and on-chip memory (e.g., LUT).
-The common impression is that a bitstream has vendor-specific format thus cannot be reversed or understood.
-This impression is partially true.
+The common believe is that a bitstream has vendor-specific format thus cannot be reversed or understood.
+This is partially true.
 
 A bitstream file is more than the bits to configure an FPGA,
 it also has certain human-readable fields to describe those bits.
-In fact, it has a **assembly-like instruction set** to describe the FPGA configuration process.
+In fact, it has an **assembly-like instruction set** to describe the FPGA configuration process.
 This note is trying to walk through this.
 
 At a high-level, a bitstream file is similar to an executable program.
@@ -34,20 +34,23 @@ Thus, you **can** analyze the contents of a bitstream file, meaning you can unde
 The un-documented part is the **bits mapping**:
 the format of the configuration bits,
 especially how the bitstream bits map to specific on-chip LUTs, wires etc.
-Think this way, you can understand that the assembly instruction is doing addition on registers,
-but it does not tell you which register.
+Think this way: given some assembly instructions,
+you can simply understand that, say some assembly instructions are doing Addition on certain registers,
+however, the instructions do not specify which registers they operate on.
 
 As a normal FPGA user, you mostly do not need to understand neither of these.
-You only need to understand these if you are planning to do **bitstream readback**,
-**preemption scheduling**, and so on.
+You only need to understand this if you are planning to do **bitstream readback**,
+**preemption scheduling**, or similar stuff.
 
 After reading this note, I hope you could understand that a bitstream file is just
-a sequence of instructions and data.
-The FPGA itself has a simple state machine to parse the bitstream and then configure the chip (ICAP in Xilinx).
-Part of the bistream file format is public, the mapping between the bitstream configuration bits
+a sequence of instructions and data. Nothing fancy.
+
+The FPGA chip usually has a simple state machine module to accept and parse the bitstream, then configure the chip (ICAP in Xilinx).
+As we mentioned earlier, the bistream file format is partially public, the mapping between the bitstream configuration bits
 and the actual physical resource is undocumented.
 
 ## Bistream Related Files
+
 In a normal flow, Vivado only generates a simple `.bit` file.
 When you click "Program Device", Vivado will use this file to configure your FPGA.
 
