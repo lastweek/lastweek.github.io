@@ -41,15 +41,17 @@ I'm getting into Confidential Computing, ML, and database recently.
 Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAAAAAJ&hl=en).
 
 7. __De-virtualize the Virtualized Cloud for Performance and Security__
-   <br> Draft available upon request
+   <br> Under submission
 6. __Disaggregating and Consolidating Network Functionalities with SuperNIC__
   <br> *Yizhou Shan*, Will Lin, Ryan Kosta, Arvind Krishnamurthy, Yiying Zhang
   <br> [[Preprint]](https://arxiv.org/pdf/2109.07744.pdf)
+       [[Code]]()
 5. __Clio: A Hardware-Software Co-Designed Disaggregated Memory System__
   <br> *Yizhou Shan*, Zhiyuan Guo (co-first authors), Xuhao Luo, Yutong Huang, Yiying Zhang
   <br> *__ASPLOS '22__*
-       [[Preprint]](https://arxiv.org/pdf/2108.03492.pdf)
+       [[Paper]](https://lastweek.io/pubs/ASPLOS22-Clio.pdf)
        [[Code]](https://github.com/WukLab/Clio)
+       [[Slide]]()
 4. __Disaggregating Persistent Memory and Controlling Them Remotely: An Exploration of Passive Disaggregated Key-Value Stores__
   <br> Shin-Yeh Tsai, *Yizhou Shan*, Yiying Zhang
   <br> *__USENIX ATC 2020__*
