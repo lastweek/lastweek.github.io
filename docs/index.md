@@ -49,7 +49,7 @@ Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAA
 5. __Clio: A Hardware-Software Co-Designed Disaggregated Memory System__
   <br> *Yizhou Shan*, Zhiyuan Guo (co-first authors), Xuhao Luo, Yutong Huang, Yiying Zhang
   <br> *__ASPLOS '22__*
-       [[Paper]](https://lastweek.io/pubs/ASPLOS22-Clio.pdf)
+       [[Paper]](http://lastweek.io/pubs/ASPLOS22-Clio.pdf)
        [[Code]](https://github.com/WukLab/Clio)
        [[Slide]]()
 4. __Disaggregating Persistent Memory and Controlling Them Remotely: An Exploration of Passive Disaggregated Key-Value Stores__
