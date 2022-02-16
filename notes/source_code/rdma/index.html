@@ -1170,6 +1170,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#rdma-nic-latest-updates" class="md-nav__link">
+    RDMA NIC Latest Updates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dpdk-and-rdma" class="md-nav__link">
     DPDK and RDMA
   </a>
@@ -1192,13 +1199,6 @@
         <li class="md-nav__item">
   <a href="#rdma" class="md-nav__link">
     RDMA
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rdma-nic-latest-updates" class="md-nav__link">
-    RDMA NIC Latest Updates
   </a>
   
 </li>
@@ -2308,6 +2308,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#rdma-nic-latest-updates" class="md-nav__link">
+    RDMA NIC Latest Updates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dpdk-and-rdma" class="md-nav__link">
     DPDK and RDMA
   </a>
@@ -2330,13 +2337,6 @@
         <li class="md-nav__item">
   <a href="#rdma" class="md-nav__link">
     RDMA
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rdma-nic-latest-updates" class="md-nav__link">
-    RDMA NIC Latest Updates
   </a>
   
 </li>
@@ -2385,6 +2385,21 @@
 <p>This note mainly talks about how DPDK interacts with RDMA (libibverbs),
 and how libibverbs communicates with the kernel.
 I document some misc things about RDMA as well.</p>
+<h2 id="rdma-nic-latest-updates">RDMA NIC Latest Updates<a class="headerlink" href="#rdma-nic-latest-updates" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="https://docs.nvidia.com/networking/display/winof2v220/Ethernet+Network#EthernetNetwork-RoLN">Mellanox Zero Touch RoCE</a>.<ul>
+<li>Came across a thing called Zero Touch RoCE, looks like it essentially is RoCE w/o PFC.</li>
+<li>Based on the description, ConnectX-6 is actually using Selective Transmission to handle lossy RoCE.</li>
+<li>This means the IRN, SIGCOOM&lsquo;19 proposal actually made into production line?!</li>
+</ul>
+</li>
+<li><a href="https://docs.nvidia.com/networking/display/OFEDv502180/Programming#Programming-DeviceMemoryProgramming">Device Memory Programming</a><ul>
+<li>The RDMA NIC on-device memory is exposed to user applications. RDMA verbs can directly access them.
+  This avoids the PCIe trips to main memory. Great performance indeed.</li>
+<li>not sure how large it is and how to properly manage it.</li>
+</ul>
+</li>
+</ol>
 <h2 id="dpdk-and-rdma">DPDK and RDMA<a class="headerlink" href="#dpdk-and-rdma" title="Permanent link">&para;</a></h2>
 <p>DPDK leverages <a href="https://www.kernel.org/doc/Documentation/vfio.txt"><strong>VFIO</strong></a> to
 be able to directly access physical devices in the user space.
@@ -2471,19 +2486,6 @@ Userspace &ldquo;rdma-core&rdquo; vendor-driver deals with the kernel devel vend
 </ul>
 </li>
 </ul>
-<h2 id="rdma-nic-latest-updates">RDMA NIC Latest Updates<a class="headerlink" href="#rdma-nic-latest-updates" title="Permanent link">&para;</a></h2>
-<ol>
-<li><a href="https://docs.nvidia.com/networking/display/winof2v220/Ethernet+Network#EthernetNetwork-RoLN">Mellanox Zero Touch RoCE</a>.<ul>
-<li>Came across a thing called Zero Touch RoCE, looks like it essentially is RoCE w/o PFC.</li>
-<li>Based on the description, ConnectX-6 is actually using Selective Transmission to handle lossy RoCE.</li>
-<li>This means the IRN, SIGCOOM&lsquo;19 proposal actually made into production line?!</li>
-</ul>
-</li>
-<li>Device Memory.<ul>
-<li>TODO</li>
-</ul>
-</li>
-</ol>
                 
                   
                     
