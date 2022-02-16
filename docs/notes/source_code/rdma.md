@@ -11,6 +11,17 @@ This note mainly talks about how DPDK interacts with RDMA (libibverbs),
 and how libibverbs communicates with the kernel.
 I document some misc things about RDMA as well.
 
+## RDMA NIC Latest Updates
+
+1. [Mellanox Zero Touch RoCE](https://docs.nvidia.com/networking/display/winof2v220/Ethernet+Network#EthernetNetwork-RoLN).
+	- Came across a thing called Zero Touch RoCE, looks like it essentially is RoCE w/o PFC.
+	- Based on the description, ConnectX-6 is actually using Selective Transmission to handle lossy RoCE.
+	- This means the IRN, SIGCOOM'19 proposal actually made into production line?!
+2. [Device Memory Programming](https://docs.nvidia.com/networking/display/OFEDv502180/Programming#Programming-DeviceMemoryProgramming)
+	- The RDMA NIC on-device memory is exposed to user applications. RDMA verbs can directly access them.
+	  This avoids the PCIe trips to main memory. Great performance indeed.
+	- not sure how large it is and how to properly manage it.
+
 ## DPDK and RDMA
 
 DPDK leverages [**VFIO**](https://www.kernel.org/doc/Documentation/vfio.txt) to
@@ -92,14 +103,3 @@ For RDMA programming tricks, see this seminal work:
 	- [gRPC](https://github.com/lastweek/source-grpc)
 	- [eRPC, NSDI'19]()
 
-
-## RDMA NIC Latest Updates
-
-1. [Mellanox Zero Touch RoCE](https://docs.nvidia.com/networking/display/winof2v220/Ethernet+Network#EthernetNetwork-RoLN).
-	-  Came across a thing called Zero Touch RoCE, looks like it essentially is RoCE w/o PFC.
-	- Based on the description, ConnectX-6 is actually using Selective Transmission to handle lossy RoCE.
-	- This means the IRN, SIGCOOM'19 proposal actually made into production line?!
-2. [Device Memory Programming](https://docs.nvidia.com/networking/display/OFEDv502180/Programming#Programming-DeviceMemoryProgramming)
-	- The RDMA NIC on-device memory is exposed to user applications. RDMA verbs can directly access them.
-	  This avoids the PCIe trips to main memory. Great performance indeed.
-	- not sure how large it is and how to properly manage it.
