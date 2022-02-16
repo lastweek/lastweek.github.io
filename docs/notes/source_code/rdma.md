@@ -13,6 +13,9 @@ I document some misc things about RDMA as well.
 
 ## RDMA NIC Latest Updates
 
+I sometimes read the `MLNX_OFED` to track the latest changes introduced in RDMA NICs.
+They are not sorted chronologically.
+
 0. [Advanced Transport](https://docs.nvidia.com/networking/display/MLNXOFEDv543100/Advanced+Transport)
 	- This section talks about XRC and Dynamically Connected Transport (DCT).
 	  Those are not new, they have been around for some time.
@@ -27,7 +30,7 @@ I document some misc things about RDMA as well.
 2. [Out-of-Order (OOO) Data Placement](https://docs.nvidia.com/networking/display/MLNXOFEDv543100/Out-of-Order+%28OOO%29+Data+Placement)
 	- Interesting. So they now will not drop out-of-sequence/order packets.
 	  This of course is not their original Go-Back-N retranmission protocol,
-	  but this mechanism works well with data center multi-path routing (e.g., EMCP) and helps improve network utilization.
+	  but this mechanism works well with data center multi-path routing (e.g., ECMP) and helps improve network utilization.
 	- Looks like that this technique, along with the above Zero Touch RoCE, essentially
 	  transforms the original Go-Back-N based RDMA transport that best to work with PFC,
 	  into one that is Selective Retransmission-based and can work w/o lossless link layer.
@@ -41,9 +44,10 @@ I document some misc things about RDMA as well.
 	  So many PFC issues can be avoided if you are using RoCE.
 	  Just like the IRN paper mentioned, eventually, the iWRAP choice wins.
 3. [Device Memory Programming](https://docs.nvidia.com/networking/display/OFEDv502180/Programming#Programming-DeviceMemoryProgramming)
+	- (Thank you Stew for pointing me to this feature. It is used in the Sherman, SIGMOD'22 paper)
 	- The RDMA NIC on-device memory is exposed to user applications. RDMA verbs can directly access them.
-	  This avoids the PCIe trips to main memory. Great performance indeed.
-	- not sure how large it is and how to properly manage it.
+	  This avoids the PCIe trips to main memory. Great performance indeed. But I'm not sure how large it is and how to properly manage it.
+	- Do note that it is quite easy for any FPGA-based SmartNICs to have this sort of feature implemented.
 
 ## DPDK and RDMA
 
