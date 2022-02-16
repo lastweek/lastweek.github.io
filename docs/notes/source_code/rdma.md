@@ -13,11 +13,34 @@ I document some misc things about RDMA as well.
 
 ## RDMA NIC Latest Updates
 
+0. [Advanced Transport](https://docs.nvidia.com/networking/display/MLNXOFEDv543100/Advanced+Transport)
+	- This section talks about XRC and Dynamically Connected Transport (DCT).
+	  Those are not new, they have been around for some time.
+	  I'm really not sure whether anyone is using them.
+	- The RDMA scalability issue stems from the stateful RDMA QP/MR and limited on-chip SRAM cache.
+	  Many prior work tried to address them.
+	  The latest work in this space are: FLOCK, SOSP'21 that multiplex QPs in SW; LITE, SOSP'17; FaRM/FaSST/etc.
 1. [Mellanox Zero Touch RoCE](https://docs.nvidia.com/networking/display/winof2v220/Ethernet+Network#EthernetNetwork-RoLN).
 	- Came across a thing called Zero Touch RoCE, looks like it essentially is RoCE w/o PFC.
 	- Based on the description, ConnectX-6 is actually using Selective Transmission to handle lossy RoCE.
 	- This means the IRN, SIGCOOM'19 proposal actually made into production line?!
-2. [Device Memory Programming](https://docs.nvidia.com/networking/display/OFEDv502180/Programming#Programming-DeviceMemoryProgramming)
+2. [Out-of-Order (OOO) Data Placement](https://docs.nvidia.com/networking/display/MLNXOFEDv543100/Out-of-Order+%28OOO%29+Data+Placement)
+	- Interesting. So they now will not drop out-of-sequence/order packets.
+	  This of course is not their original Go-Back-N retranmission protocol,
+	  but this mechanism works well with data center multi-path routing (e.g., EMCP) and helps improve network utilization.
+	- Looks like that this technique, along with the above Zero Touch RoCE, essentially
+	  transforms the original Go-Back-N based RDMA transport that best to work with PFC,
+	  into one that is Selective Retransmission-based and can work w/o lossless link layer.
+	- This is of course not impossible and not difficult.
+	  In their OOO placement scheme, they can directly move OoO packets into host DRAM
+	  without even caching them in on-chip memory/cache (not possible!).
+	  So the cost is really minimal, maybe a set of bitmaps.
+	  They probably use some IRN-alike techniques to track the not-fully-received msgs.
+	- The end result is nice.
+	  The RDMA NIC can now get rid of its reliance on lossless link layer (IB or PFC-based Ethernet).
+	  So many PFC issues can be avoided if you are using RoCE.
+	  Just like the IRN paper mentioned, eventually, the iWRAP choice wins.
+3. [Device Memory Programming](https://docs.nvidia.com/networking/display/OFEDv502180/Programming#Programming-DeviceMemoryProgramming)
 	- The RDMA NIC on-device memory is exposed to user applications. RDMA verbs can directly access them.
 	  This avoids the PCIe trips to main memory. Great performance indeed.
 	- not sure how large it is and how to properly manage it.
