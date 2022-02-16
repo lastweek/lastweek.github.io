@@ -405,8 +405,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#intro" class="md-nav__link">
-    Intro
+  <a href="#deliverables" class="md-nav__link">
+    Deliverables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
   </a>
   
 </li>
@@ -2044,8 +2051,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#intro" class="md-nav__link">
-    Intro
+  <a href="#deliverables" class="md-nav__link">
+    Deliverables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
   </a>
   
 </li>
@@ -2151,12 +2165,23 @@
 </tbody>
 </table>
 </details>
-<p>Deliverables</p>
-<ol>
-<li><a href="https://docs.google.com/document/d/18jeI6TPUT8i6EoLmp40SJfjSYQNReFo2ZPU9_quu6bs/edit?usp=sharing" target="_blank">Practical Notes on the Virtualization Stack (QEMU, KVM, IOMMU, and more)</a> <a href="http://lastweek.io/pubs/virt_note.pdf">PDF version</a></li>
-<li><a href="http://lastweek.io/pubs/Virtualization_Cards_Yizhou_Shan.pdf" target="_blank">Slides on Cloud Virtualization Cards</a></li>
-</ol>
-<h2 id="intro">Intro<a class="headerlink" href="#intro" title="Permanent link">&para;</a></h2>
+<h2 id="deliverables">Deliverables<a class="headerlink" href="#deliverables" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Practical Notes on the Virtualization Stack (QEMU, KVM, IOMMU, and more)</strong></p>
+<ul>
+<li><a href="https://docs.google.com/document/d/18jeI6TPUT8i6EoLmp40SJfjSYQNReFo2ZPU9_quu6bs/edit?usp=sharing" target="_blank">Google Doc version</a></li>
+<li><a href="http://lastweek.io/pubs/virt_note.pdf">PDF version</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Gentle Introduction to Cloud Virtualization Cards</strong></p>
+<ul>
+<li><a href="http://lastweek.io/pubs/Virtualization_Cards_Yizhou_Shan.pdf" target="_blank">PDF version</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>This blog tries to cover a short history on virtualization,
 the practices used by cloud vendors, the specialized virtualization cards (e.g., AWS Nitro),
 and some detailed notes on QEMU/KVM.</p>
@@ -2170,15 +2195,15 @@ I was just reading QEMU/KVM and taking notes, but I end up exploring more.</p>
 <p>Also check out <a href="https://github.com/Wenzel/awesome-virtualization/issues">Awesome-Virtualization</a>.</p>
 <h2 id="a-short-history-of-virtualization">A Short History of Virtualization<a class="headerlink" href="#a-short-history-of-virtualization" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Software-based Virtualization. This is where VMware started. No hardware support but just smart software tricks. You should read their papers.</li>
-<li>Para-virtualization. This is what Xen invented. They changed the guest OS for a better emulation. No hardware support still. But the guest OS is changed.</li>
-<li>Hardware-assited virtualization. This is what AMD and Intel Vt-d + IOMMU for. The CPU would support virtualization mode and non-virtualization mode (in x86, each mode has Ring 0-3). However, the hardware change alone cannot work. They must work a virtual machine monitor for at least device emulation and other things. This is where KVM and QEMU came in. KVM enables Linux to use those CPU features and turns Linux into a type-2 hypervisor. Userspace QEMU, acting as a VMM, helps setup KVM and emulates devices (QEMU can also do passthrough via VFIO).</li>
-<li>Offload virtualization to dedicated hardware. This is what big cloud vendors are doing. For example, AWS Nitro cards, Mirosoft FPGA based SmartNIC cards.
+<li><strong>Software-based Virtualization</strong>. This is where VMware started. No hardware support but just smart software tricks. You should read their papers.</li>
+<li><strong>Para-virtualization</strong>. This is what Xen invented. They changed the guest OS for a better emulation. No hardware support still. But the guest OS is changed.</li>
+<li><strong>Hardware-assited Virtualization</strong>. This is what AMD and Intel Vt-d + IOMMU for. The CPU would support virtualization mode and non-virtualization mode (in x86, each mode has Ring 0-3). However, the hardware change alone cannot work. They must work a virtual machine monitor for at least device emulation and other things. This is where KVM and QEMU came in. KVM enables Linux to use those CPU features and turns Linux into a type-2 hypervisor. Userspace QEMU, acting as a VMM, helps setup KVM and emulates devices (QEMU can also do passthrough via VFIO).</li>
+<li><strong>Offload virtualization to dedicated hardware</strong>. This is what big cloud vendors are doing. For example, AWS Nitro cards, Mirosoft FPGA based SmartNIC cards.
 Emulation is costly. Especially for I/O data path. This problem got worse since hardware is faster and faster (e.g., 100G networking).
 So rather than relying on QEMU (or vendor kernel) to emulate storage/network/misc devices, these vendors build customized cards that would handle the &ldquo;device emulation&rdquo; part in hardware!
 Other than that, vendors offload quite a lot hypervisor functionalaties as well. E.g., Microsoft offload OpenVSwitch alike modules to their FPGA (called GFT in the NSDI&lsquo;18 paper).
 Guest VMs, of course, are not aware any of these. They see the same MMIO spaces. This approach greatly saves host CPU usage, hence reduces Datacenter Virtualization Tax.</li>
-<li>Bare-metal virtualization. Going back to where we started! Even with those great virtulization cards, the CPU still has virtualization modes enabled, and this has a cost!
+<li><strong>Bare-metal Virtualization</strong>. Going back to where we started! Even with those great virtulization cards, the CPU still has virtualization modes enabled, and this has a cost!
 In particular, the 2-level page table (EPT) is still in play and guest VMs will exit on certain instructions (e.g., CPUID). All these take a toll on performance even if the VM does no I/O.
 Since vendors usually have 1-to-1 pCPU and vCPU mapping, this virtualization overhead is simply annoying and should be avoided.
 Hence bare-metal virtualization, as in no hypervisors and no virtualization modes, yet we are still able to pack untrusted tenant VMs on one physical machine. Isn&rsquo;t this amazing?</li>
