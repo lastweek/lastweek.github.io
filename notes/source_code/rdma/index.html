@@ -1051,6 +1051,87 @@
               
   
   
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          DPDK and RDMA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        DPDK and RDMA
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rdma-nic-latest-updates" class="md-nav__link">
+    RDMA NIC Latest Updates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dpdk-and-rdma" class="md-nav__link">
+    DPDK and RDMA
+  </a>
+  
+    <nav class="md-nav" aria-label="DPDK and RDMA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dpdk-internal" class="md-nav__link">
+    DPDK Internal
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rdma" class="md-nav__link">
+    RDMA
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
   
     <li class="md-nav__item">
       <a href="../../program_advice/" class="md-nav__link">
@@ -1126,87 +1207,6 @@
       <a href="../virt/" class="md-nav__link">
         Virtualization
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          DPDK and RDMA
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        DPDK and RDMA
-      </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#rdma-nic-latest-updates" class="md-nav__link">
-    RDMA NIC Latest Updates
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dpdk-and-rdma" class="md-nav__link">
-    DPDK and RDMA
-  </a>
-  
-    <nav class="md-nav" aria-label="DPDK and RDMA">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dpdk-internal" class="md-nav__link">
-    DPDK Internal
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rdma" class="md-nav__link">
-    RDMA
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2386,6 +2386,8 @@
 and how libibverbs communicates with the kernel.
 I document some misc things about RDMA as well.</p>
 <h2 id="rdma-nic-latest-updates">RDMA NIC Latest Updates<a class="headerlink" href="#rdma-nic-latest-updates" title="Permanent link">&para;</a></h2>
+<p>I sometimes read the <code>MLNX_OFED</code> to track the latest changes introduced in RDMA NICs.
+They are not sorted chronologically.</p>
 <ol>
 <li><a href="https://docs.nvidia.com/networking/display/MLNXOFEDv543100/Advanced+Transport">Advanced Transport</a><ul>
 <li>This section talks about XRC and Dynamically Connected Transport (DCT).
@@ -2405,7 +2407,7 @@ I document some misc things about RDMA as well.</p>
 <li><a href="https://docs.nvidia.com/networking/display/MLNXOFEDv543100/Out-of-Order+%28OOO%29+Data+Placement">Out-of-Order (OOO) Data Placement</a><ul>
 <li>Interesting. So they now will not drop out-of-sequence/order packets.
   This of course is not their original Go-Back-N retranmission protocol,
-  but this mechanism works well with data center multi-path routing (e.g., EMCP) and helps improve network utilization.</li>
+  but this mechanism works well with data center multi-path routing (e.g., ECMP) and helps improve network utilization.</li>
 <li>Looks like that this technique, along with the above Zero Touch RoCE, essentially
   transforms the original Go-Back-N based RDMA transport that best to work with PFC,
   into one that is Selective Retransmission-based and can work w/o lossless link layer.</li>
@@ -2421,9 +2423,10 @@ I document some misc things about RDMA as well.</p>
 </ul>
 </li>
 <li><a href="https://docs.nvidia.com/networking/display/OFEDv502180/Programming#Programming-DeviceMemoryProgramming">Device Memory Programming</a><ul>
+<li>(Thank you Stew for pointing me to this feature. It is used in the Sherman, SIGMOD&lsquo;22 paper)</li>
 <li>The RDMA NIC on-device memory is exposed to user applications. RDMA verbs can directly access them.
-  This avoids the PCIe trips to main memory. Great performance indeed.</li>
-<li>not sure how large it is and how to properly manage it.</li>
+  This avoids the PCIe trips to main memory. Great performance indeed. But I&rsquo;m not sure how large it is and how to properly manage it.</li>
+<li>Do note that it is quite easy for any FPGA-based SmartNICs to have this sort of feature implemented.</li>
 </ul>
 </li>
 </ol>
@@ -2555,7 +2558,7 @@ Userspace &ldquo;rdma-core&rdquo; vendor-driver deals with the kernel devel vend
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../virt/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Virtualization" rel="prev">
+        <a href="../../rust/rust/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Learn Rust" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2564,20 +2567,20 @@ Userspace &ldquo;rdma-core&rdquo; vendor-driver deals with the kernel devel vend
               <span class="md-footer__direction">
                 Previous
               </span>
-              Virtualization
+              Learn Rust
             </div>
           </div>
         </a>
       
       
         
-        <a href="../20200501-on-graphic-softwares/" class="md-footer__link md-footer__link--next" aria-label="Next: Graphics" rel="next">
+        <a href="../../program_advice/" class="md-footer__link md-footer__link--next" aria-label="Next: Guideline &amp; Advice" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Graphics
+              Guideline & Advice
             </div>
           </div>
           <div class="md-footer__button md-icon">
