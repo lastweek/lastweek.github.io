@@ -2400,8 +2400,10 @@ They are not sorted chronologically.</p>
 </li>
 <li><a href="https://docs.nvidia.com/networking/display/winof2v220/Ethernet+Network#EthernetNetwork-RoLN">Mellanox Zero Touch RoCE</a>.<ul>
 <li>Came across a thing called Zero Touch RoCE, looks like it essentially is RoCE w/o PFC.</li>
-<li>Based on the description, ConnectX-6 is actually using Selective Transmission to handle lossy RoCE.</li>
-<li>This means the IRN, SIGCOOM&lsquo;19 proposal actually made into production line?!</li>
+<li>Based on the description, ConnectX-6 is actually using Selective Transmission to handle lossy RoCE!</li>
+<li>Wow, a lot of changes made to the CC algorithm. Apparently, they must be.</li>
+<li>So in all, they changed the retranmission mechanism and CC (the whole transport) to make
+  RDMA NIC work with lossy links (i.e., no PFC). This seems a milestone to me.</li>
 </ul>
 </li>
 <li><a href="https://docs.nvidia.com/networking/display/MLNXOFEDv543100/Out-of-Order+%28OOO%29+Data+Placement">Out-of-Order (OOO) Data Placement</a><ul>
@@ -2415,7 +2417,7 @@ They are not sorted chronologically.</p>
   In their OOO placement scheme, they can directly move OoO packets into host DRAM
   without even caching them in on-chip memory/cache (not possible!).
   So the cost is really minimal, maybe a set of bitmaps.
-  They probably use some IRN-alike techniques to track the not-fully-received msgs.</li>
+  They probably use techniques in the <a href="https://people.eecs.berkeley.edu/~radhika/irn.pdf">IRN, SIGCOMM&lsquo;19</a> paper to track the not-fully-received msgs.</li>
 <li>The end result is nice.
   The RDMA NIC can now get rid of its reliance on lossless link layer (IB or PFC-based Ethernet).
   So many PFC issues can be avoided if you are using RoCE.
