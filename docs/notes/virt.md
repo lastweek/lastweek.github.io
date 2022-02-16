@@ -16,7 +16,7 @@
 	- <a href="https://docs.google.com/document/d/18jeI6TPUT8i6EoLmp40SJfjSYQNReFo2ZPU9_quu6bs/edit?usp=sharing" target="_blank">Google Doc version</a>
 	- [PDF version](http://lastweek.io/pubs/virt_note.pdf)
 
-- **Gentle Introduction to Cloud Virtualization Cards**
+- **A Gentle and Short Introduction to the Cloud Virtualization Cards**
 	- <a href="http://lastweek.io/pubs/Virtualization_Cards_Yizhou_Shan.pdf" target="_blank">PDF version</a>
 
 ## Introduction
