@@ -12,7 +12,7 @@
 
 Deliverables
 
-1.  <a href="http://lastweek.io/pubs/virt_note.pdf" target="_blank">Detailed note on QEMU/KVM/Others</a>
+1.  <a href="https://docs.google.com/document/d/18jeI6TPUT8i6EoLmp40SJfjSYQNReFo2ZPU9_quu6bs/edit?usp=sharing" target="_blank">Practical Notes on the Virtualization Stack (QEMU, KVM, IOMMU, and more)</a> [PDF version](http://lastweek.io/pubs/virt_note.pdf)
 2.  <a href="http://lastweek.io/pubs/Virtualization_Cards_Yizhou_Shan.pdf" target="_blank">Slides on Cloud Virtualization Cards</a>
 
 ## Intro
@@ -112,7 +112,7 @@ The questions I've focused on are:
 - 5) Finally, if I want to write a new virtual machine monitor like QEMU,
 what should I build. Several recent projects (e.g., rust-vmm, firecracker) have hints on this.
 
-- <a href="https://gdoc.pub/doc/e/2PACX-1vSsskD0A2XgHoZhaYLAkS7lmCOrfxkGXk1WTovWEAyeoELVdBjrE-NzD8h-NvJfKhxMpUg2aXzaD-XG" target="_blank">Google Doc Version</a>
+- <a href="https://docs.google.com/document/d/18jeI6TPUT8i6EoLmp40SJfjSYQNReFo2ZPU9_quu6bs/edit?usp=sharing" target="_blank">Google Doc Version</a>
 - <a href="http://lastweek.io/pubs/virt_note.pdf" target="_blank">PDF Version</a>
 
 <iframe style="width: 100%; height: 800px;" frameborder="1" allowfullscreen 
