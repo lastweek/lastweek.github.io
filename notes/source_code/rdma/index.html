@@ -2387,10 +2387,37 @@ and how libibverbs communicates with the kernel.
 I document some misc things about RDMA as well.</p>
 <h2 id="rdma-nic-latest-updates">RDMA NIC Latest Updates<a class="headerlink" href="#rdma-nic-latest-updates" title="Permanent link">&para;</a></h2>
 <ol>
+<li><a href="https://docs.nvidia.com/networking/display/MLNXOFEDv543100/Advanced+Transport">Advanced Transport</a><ul>
+<li>This section talks about XRC and Dynamically Connected Transport (DCT).
+  Those are not new, they have been around for some time.
+  I&rsquo;m really not sure whether anyone is using them.</li>
+<li>The RDMA scalability issue stems from the stateful RDMA QP/MR and limited on-chip SRAM cache.
+  Many prior work tried to address them.
+  The latest work in this space are: FLOCK, SOSP&lsquo;21 that multiplex QPs in SW; LITE, SOSP&lsquo;17; FaRM/FaSST/etc.</li>
+</ul>
+</li>
 <li><a href="https://docs.nvidia.com/networking/display/winof2v220/Ethernet+Network#EthernetNetwork-RoLN">Mellanox Zero Touch RoCE</a>.<ul>
 <li>Came across a thing called Zero Touch RoCE, looks like it essentially is RoCE w/o PFC.</li>
 <li>Based on the description, ConnectX-6 is actually using Selective Transmission to handle lossy RoCE.</li>
 <li>This means the IRN, SIGCOOM&lsquo;19 proposal actually made into production line?!</li>
+</ul>
+</li>
+<li><a href="https://docs.nvidia.com/networking/display/MLNXOFEDv543100/Out-of-Order+%28OOO%29+Data+Placement">Out-of-Order (OOO) Data Placement</a><ul>
+<li>Interesting. So they now will not drop out-of-sequence/order packets.
+  This of course is not their original Go-Back-N retranmission protocol,
+  but this mechanism works well with data center multi-path routing (e.g., EMCP) and helps improve network utilization.</li>
+<li>Looks like that this technique, along with the above Zero Touch RoCE, essentially
+  transforms the original Go-Back-N based RDMA transport that best to work with PFC,
+  into one that is Selective Retransmission-based and can work w/o lossless link layer.</li>
+<li>This is of course not impossible and not difficult.
+  In their OOO placement scheme, they can directly move OoO packets into host DRAM
+  without even caching them in on-chip memory/cache (not possible!).
+  So the cost is really minimal, maybe a set of bitmaps.
+  They probably use some IRN-alike techniques to track the not-fully-received msgs.</li>
+<li>The end result is nice.
+  The RDMA NIC can now get rid of its reliance on lossless link layer (IB or PFC-based Ethernet).
+  So many PFC issues can be avoided if you are using RoCE.
+  Just like the IRN paper mentioned, eventually, the iWRAP choice wins.</li>
 </ul>
 </li>
 <li><a href="https://docs.nvidia.com/networking/display/OFEDv502180/Programming#Programming-DeviceMemoryProgramming">Device Memory Programming</a><ul>
