@@ -3,30 +3,34 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Feb 16, 2021| Some updates on Mellanox RDMA NICs|
 	|Dec 14, 2020| More on DPDK|
 	|May 28, 2020| Copied from summary|
 
-This note details how DPDK interacts with the RDMA subsystem.
-And how libibverbs communicates with kernel.
+This note mainly talks about how DPDK interacts with RDMA (libibverbs),
+and how libibverbs communicates with the kernel.
+I document some misc things about RDMA as well.
 
-## DPDK
+## DPDK and RDMA
 
-DPDK uses **VFIO** to directly access physical devices in users space.
-QEMU also uses VFIO to directly assign devices to guest OSes.
+DPDK leverages [**VFIO**](https://www.kernel.org/doc/Documentation/vfio.txt) to
+be able to directly access physical devices in the user space.
+Note that QEMU/Firecracker also use VFIO to directly assign devices to guest OSes (i.e., device passthrough mode).
 
-Though both DPDK and RDMA bypass kernel, their **control path** are very different.
-For most NICs in DPDK, there are **complete** self-contained device drivers in the user space,
-and these drivers communicate with the hardware device via MMIO.
-After VFIO ioctls, all data and control path in DPDK will bypass kernel. Nice, huh？
+Although both DPDK and RDMA's data path bypass kernel, their *control path* are very different from each other.
+For most NIC drivers in DPDK, there are completely self-contained device drivers in the user space,
+and these drivers can directly communicate with the hardware device via MMIO (all possible thanks to VFIO).
+Specifically, once DPDK has done some VFIO ioctls, all data and control path can bypass kernel. Nice, right？
 
-However, for rdma-core, a lot of control-path IB verbs (e.g., `create_pd`, `create_cq`) still
-communicate with kernel via Infiniband device file ioctl.
-And those in-kernel uverb hanlders are in `drivers/infiniband/core/uverbs.c`.
-This is a very complicated way to build communicatation channel between user and kernel space,
-though the most efficient.
-Those control verbs will **mmap** some pages between user and kernel,
-so all following datapath IB verbs (e.g., post_send) will just bypass kernel
-and talk to device MMIO directly. Although rdma-core also has some vendor-specific
+However, for the `rdma-core`, a lot of the control-path IB verbs (e.g., `create_pd`, `create_cq`)
+still communicate with the kernel via ioctl calls on Infiniband related device files.
+On the kernel side, the in-kernel uverb hanlders are located in `drivers/infiniband/core/uverbs.c`.
+Do note that this is a quite complicated way to build communicatation channels between user and kernel space,
+although it is quite efficient. This simple framework is used by several other kernel subsystems, such as `io_uring`.
+In details, the control verbs **mmap** some pages between user and kernel,
+then all the following data path IB verbs (e.g., `post_send`) could just bypass kernel
+and talk to the device via MMIO directly.
+Though `rdma-core` also has some vendor-specific
 "drivers", this is really different from the above DPDK's userspace PCIe driver.
 Userspace "rdma-core" vendor-driver deals with the kernel devel vendor-level driver details (same for the ones inside DPDK).
 
@@ -37,7 +41,7 @@ FWIW, if you are using a Mellanox VPI card in Ethernet mode (e.g. CX3-5),
 
 - ![image](../../images/dpdk_ibverbs.png)
 
-### Internal
+### DPDK Internal
 
 Top-down:
 
@@ -87,3 +91,13 @@ For RDMA programming tricks, see this seminal work:
 - RPC
 	- [gRPC](https://github.com/lastweek/source-grpc)
 	- [eRPC, NSDI'19]()
+
+
+## RDMA NIC Latest Updates
+
+1. [Mellanox Zero Touch RoCE](https://docs.nvidia.com/networking/display/winof2v220/Ethernet+Network#EthernetNetwork-RoLN).
+	-  Came across a thing called Zero Touch RoCE, looks like it essentially is RoCE w/o PFC.
+	- Based on the description, ConnectX-6 is actually using Selective Transmission to handle lossy RoCE.
+	- This means the IRN, SIGCOOM'19 proposal actually made into production line?!
+2. Device Memory.
+	- TODO
