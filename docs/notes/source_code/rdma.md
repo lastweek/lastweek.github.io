@@ -99,5 +99,7 @@ For RDMA programming tricks, see this seminal work:
 	-  Came across a thing called Zero Touch RoCE, looks like it essentially is RoCE w/o PFC.
 	- Based on the description, ConnectX-6 is actually using Selective Transmission to handle lossy RoCE.
 	- This means the IRN, SIGCOOM'19 proposal actually made into production line?!
-2. Device Memory.
-	- TODO
+2. [Device Memory Programming](https://docs.nvidia.com/networking/display/OFEDv502180/Programming#Programming-DeviceMemoryProgramming)
+	- The RDMA NIC on-device memory is exposed to user applications. RDMA verbs can directly access them.
+	  This avoids the PCIe trips to main memory. Great performance indeed.
+	- not sure how large it is and how to properly manage it.
