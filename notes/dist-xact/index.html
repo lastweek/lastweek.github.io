@@ -1,0 +1,2996 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Yizhou Shan">
+      
+      
+        <link rel="canonical" href="http://lastweek.io/notes/dist-xact/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+    
+    
+      
+        <title>Distributed Transactions and Databases - Yizhou Shan's Home Page</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.db9e7362.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Courier+Prime+Bold:300,400,400i,700%7CCourier+Prime+Bold&display=fallback">
+        <style>:root{--md-text-font-family:"Courier Prime Bold";--md-code-font-family:"Courier Prime Bold"}</style>
+      
+    
+    
+    
+    
+      
+  
+
+
+
+  
+  
+
+
+
+  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-143772066-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
+  <script async src="https://www.google-analytics.com/analytics.js"></script>
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#distributed-transactions-and-databases" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Yizhou Shan&#39;s Home Page" class="md-header__button md-logo" aria-label="Yizhou Shan's Home Page" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yizhou Shan's Home Page
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Distributed Transactions and Databases
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/lastweek/lastweek.github.io/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M105.2 24.9c-3.1-8.9-15.7-8.9-18.9 0L29.8 199.7h132c-.1 0-56.6-174.8-56.6-174.8zM.9 287.7c-2.6 8 .3 16.9 7.1 22l247.9 184-226.2-294zm160.8-88 94.3 294 94.3-294zm349.4 88-28.8-88-226.3 294 247.9-184c6.9-5.1 9.7-14 7.2-22zM425.7 24.9c-3.1-8.9-15.7-8.9-18.9 0l-56.6 174.8h132z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        Notes
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../source_code/summary/" class="md-tabs__link">
+        Code
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../fpga/bitstream/" class="md-tabs__link">
+        FPGA
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../lego/log/misc/" class="md-tabs__link">
+        LegoOS
+      </a>
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Yizhou Shan&#39;s Home Page" class="md-nav__button md-logo" aria-label="Yizhou Shan's Home Page" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Yizhou Shan's Home Page
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/lastweek/lastweek.github.io/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M105.2 24.9c-3.1-8.9-15.7-8.9-18.9 0L29.8 199.7h132c-.1 0-56.6-174.8-56.6-174.8zM.9 287.7c-2.6 8 .3 16.9 7.1 22l247.9 184-226.2-294zm160.8-88 94.3 294 94.3-294zm349.4 88-28.8-88-226.3 294 247.9-184c6.9-5.1 9.7-14 7.2-22zM425.7 24.9c-3.1-8.9-15.7-8.9-18.9 0l-56.6 174.8h132z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notes" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Distributed Transactions and Databases
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Distributed Transactions and Databases
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-i-started-this-note" class="md-nav__link">
+    Why I started this note
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#papers-and-readings" class="md-nav__link">
+    Papers and Readings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts" class="md-nav__link">
+    Concepts
+  </a>
+  
+    <nav class="md-nav" aria-label="Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#misc" class="md-nav__link">
+    Misc
+  </a>
+  
+    <nav class="md-nav" aria-label="Misc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2pc-vs-2pl" class="md-nav__link">
+    2PC v.s. 2PL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integrate-distributed-transaction-and-replication" class="md-nav__link">
+    Integrate Distributed Transaction and Replication
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenarios-and-hardware" class="md-nav__link">
+    Scenarios and Hardware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bottlenecks" class="md-nav__link">
+    Bottlenecks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-memory-vs-disk-base-dbms" class="md-nav__link">
+    In-memory v.s. Disk-base DBMS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-driving-dbms" class="md-nav__link">
+    Self-Driving DBMS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concurrency-control" class="md-nav__link">
+    Concurrency Control
+  </a>
+  
+    <nav class="md-nav" aria-label="Concurrency Control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-phase-locking-2pl" class="md-nav__link">
+    2 Phase Locking (2PL)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timestamp-ordering" class="md-nav__link">
+    Timestamp-Ordering
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mvcc" class="md-nav__link">
+    MVCC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isolation-serializability-snapshot-isolation-linearliability" class="md-nav__link">
+    Isolation: Serializability, Snapshot Isolation, Linearliability
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replication-protocols" class="md-nav__link">
+    Replication Protocols
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#classical-systems" class="md-nav__link">
+    Classical Systems
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#misc-concepts" class="md-nav__link">
+    Misc Concepts
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../virt/" class="md-nav__link">
+        Modern Virtualization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache_coherence/" class="md-nav__link">
+        Practical Cache Coherence
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic_linking/" class="md-nav__link">
+        Dynamic Linking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dcn/" class="md-nav__link">
+        Data Center Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packet-sched/" class="md-nav__link">
+        Switch Buffering and Packet Scheduling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sysml/" class="md-nav__link">
+        SysML
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arch/" class="md-nav__link">
+        Architecture
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cryptography/" class="md-nav__link">
+        Cryptography
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cryptocurrency/" class="md-nav__link">
+        Cryptocurrency
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hardware_pl/" class="md-nav__link">
+        Hardware Design Languages
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paper_perf_shadows/" class="md-nav__link">
+        Performance-Shadows
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/essential/" class="md-nav__link">
+        Essential
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/cheatsheet/" class="md-nav__link">
+        Cheatsheet
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/20200404-on-read-once/" class="md-nav__link">
+        On Read Once and Compiler Optimization
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Code
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Code" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Code
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../source_code/summary/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/" class="md-nav__link">
+        Linux Index
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/linux-function-trace/" class="md-nav__link">
+        Linux Dump Function Graph
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/fork/" class="md-nav__link">
+        Linux fork/switch_to
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/linux-rcu/" class="md-nav__link">
+        Linux RCU
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/linux-completion/" class="md-nav__link">
+        Linux Completion/swait
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/linux-workqueue/" class="md-nav__link">
+        Linux workqueue
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/linux-linker-script/" class="md-nav__link">
+        Linux Linker Script
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/linux-boot/" class="md-nav__link">
+        Linux Boot Sequence
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trace/" class="md-nav__link">
+        Linux Trace and Profile
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rmap/" class="md-nav__link">
+        Linux Reverse Mapping
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../userfaultfd/" class="md-nav__link">
+        Linux Userfaultfd
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cgroup-swap/" class="md-nav__link">
+        Linux Cgroup and Swap
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xperf/" class="md-nav__link">
+        Linux x86 Ring Switch
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/linux-x86-fpu/" class="md-nav__link">
+        Linux FPU
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/linux-iouring/" class="md-nav__link">
+        Linux io_uring
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/linux-resource/" class="md-nav__link">
+        Linux Resource
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proc/" class="md-nav__link">
+        Linux Special Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kvm-basic/" class="md-nav__link">
+        Linux KVM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/rust.md" class="md-nav__link">
+        Linux Rust
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3">
+          Go
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Go" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Go
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../go/golang/" class="md-nav__link">
+        Learn Go
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../go/gvisor/" class="md-nav__link">
+        gVisor
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" type="checkbox" id="__nav_3_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_4">
+          Rust
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Rust" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          Rust
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rust/rust/" class="md-nav__link">
+        Learn Rust
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rust/firecracker.md" class="md-nav__link">
+        Firecracker
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../source_code/rdma/" class="md-nav__link">
+        DPDK and RDMA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../program_advice/" class="md-nav__link">
+        Guideline & Advice
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../source_code/firmware-softwares/" class="md-nav__link">
+        Firmware & Bootloader
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../source_code/os/" class="md-nav__link">
+        Operating System
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../source_code/compilers/" class="md-nav__link">
+        Compilers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../source_code/unix-tools/" class="md-nav__link">
+        Unix Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../source_code/virt/" class="md-nav__link">
+        Virtualization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../source_code/20200501-on-graphic-softwares/" class="md-nav__link">
+        Graphics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../source_code/gpu/" class="md-nav__link">
+        GPU
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../source_code/fpga/" class="md-nav__link">
+        FPGA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../source_code/risc-v/" class="md-nav__link">
+        RISC-V
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../source_code/dotconfigs/" class="md-nav__link">
+        Dot-Configs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../source_code/misc/" class="md-nav__link">
+        Misc
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          FPGA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="FPGA" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          FPGA
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fpga/bitstream/" class="md-nav__link">
+        Bitstream Explained
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paper_fpga/" class="md-nav__link">
+        Papers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fpga/language/" class="md-nav__link">
+        Languages
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fpga/vivado/" class="md-nav__link">
+        Vivado Notes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fpga/setup_hold/" class="md-nav__link">
+        Setup and Hold Time
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fpga/pr/" class="md-nav__link">
+        Partial Reconfiguration
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          LegoOS
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="LegoOS" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          LegoOS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          Log
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Log" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          Log
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/log/misc/" class="md-nav__link">
+        MISC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/log/test-note/" class="md-nav__link">
+        Test Script
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Kernel
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Kernel" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Kernel
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/kernel/boot/" class="md-nav__link">
+        GRUB2 and Boot
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/kernel/kconfig/" class="md-nav__link">
+        Kconfig
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/kernel/debug/" class="md-nav__link">
+        Debug
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/kernel/grub/" class="md-nav__link">
+        GRUB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/kernel/profile/" class="md-nav__link">
+        Profile
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/kernel/profile_strace/" class="md-nav__link">
+        Profile strace
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/kernel/profile_heatmap/" class="md-nav__link">
+        Profile heatmap
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/kernel/profile_points/" class="md-nav__link">
+        Profile points
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/kernel/trampoline/" class="md-nav__link">
+        Trampoline
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/kernel/pagefault_disable/" class="md-nav__link">
+        Disable pgfault
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/kernel/stop_machine/" class="md-nav__link">
+        Stop machine
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/kernel/loader/" class="md-nav__link">
+        Program Loader
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/kernel/vDSO/" class="md-nav__link">
+        vDSO
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/kernel/vfs/" class="md-nav__link">
+        Virtual File System
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/kernel/vm/" class="md-nav__link">
+        Process Virtual Memory
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/kernel/fpu/" class="md-nav__link">
+        x86 FPU
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/kernel/irq/" class="md-nav__link">
+        IRQ
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/kernel/net_thpool/" class="md-nav__link">
+        Network Thpool
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Syscall
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Syscall" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Syscall
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/syscall/facts/" class="md-nav__link">
+        Facts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/kernel/profile_strace/" class="md-nav__link">
+        strace
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/syscall/compat/" class="md-nav__link">
+        compat
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/syscall/msync/" class="md-nav__link">
+        msync()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/syscall/mremap/" class="md-nav__link">
+        mremap()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/syscall/fork/" class="md-nav__link">
+        fork()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/syscall/getrusage/" class="md-nav__link">
+        getrusage()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/syscall/wait_and_exit/" class="md-nav__link">
+        wait4 and exit()
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Pcache
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Pcache" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Pcache
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/pcache/config/" class="md-nav__link">
+        Config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/pcache/sweep/" class="md-nav__link">
+        Sweep
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/pcache/tlb/" class="md-nav__link">
+        TLB Coherence
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/pcache/pgtable-lock/" class="md-nav__link">
+        PageTable Lock
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/pcache/victim/" class="md-nav__link">
+        Victim Cache
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/pcache/virtual_cache/" class="md-nav__link">
+        Virtual Cache
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/pcache/rmap/" class="md-nav__link">
+        Reverse Mapping
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/pcache/evict_and_ref/" class="md-nav__link">
+        Evict and Refcount
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/pcache/smp_design/" class="md-nav__link">
+        SMP Design
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/pcache/replication/" class="md-nav__link">
+        Replication
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_5" type="checkbox" id="__nav_5_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_5">
+          Driver
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Driver" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_5">
+          <span class="md-nav__icon md-icon"></span>
+          Driver
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/driver/pci/" class="md-nav__link">
+        PCI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/driver/ib/" class="md-nav__link">
+        Infiniband
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_6" type="checkbox" id="__nav_5_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_6">
+          Paper
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Paper" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_6">
+          <span class="md-nav__icon md-icon"></span>
+          Paper
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/paper/nmp/" class="md-nav__link">
+        NMP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/paper/processor_oom/" class="md-nav__link">
+        Processor OOM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/paper/genz/" class="md-nav__link">
+        Gen-Z
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/paper/replication/" class="md-nav__link">
+        Replication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lego/paper/related/" class="md-nav__link">
+        Related
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-i-started-this-note" class="md-nav__link">
+    Why I started this note
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#papers-and-readings" class="md-nav__link">
+    Papers and Readings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts" class="md-nav__link">
+    Concepts
+  </a>
+  
+    <nav class="md-nav" aria-label="Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#misc" class="md-nav__link">
+    Misc
+  </a>
+  
+    <nav class="md-nav" aria-label="Misc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2pc-vs-2pl" class="md-nav__link">
+    2PC v.s. 2PL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integrate-distributed-transaction-and-replication" class="md-nav__link">
+    Integrate Distributed Transaction and Replication
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenarios-and-hardware" class="md-nav__link">
+    Scenarios and Hardware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bottlenecks" class="md-nav__link">
+    Bottlenecks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-memory-vs-disk-base-dbms" class="md-nav__link">
+    In-memory v.s. Disk-base DBMS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-driving-dbms" class="md-nav__link">
+    Self-Driving DBMS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concurrency-control" class="md-nav__link">
+    Concurrency Control
+  </a>
+  
+    <nav class="md-nav" aria-label="Concurrency Control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-phase-locking-2pl" class="md-nav__link">
+    2 Phase Locking (2PL)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timestamp-ordering" class="md-nav__link">
+    Timestamp-Ordering
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mvcc" class="md-nav__link">
+    MVCC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isolation-serializability-snapshot-isolation-linearliability" class="md-nav__link">
+    Isolation: Serializability, Snapshot Isolation, Linearliability
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replication-protocols" class="md-nav__link">
+    Replication Protocols
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#classical-systems" class="md-nav__link">
+    Classical Systems
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#misc-concepts" class="md-nav__link">
+    Misc Concepts
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/lastweek/lastweek.github.io/edit/master/docs/notes/dist-xact.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="distributed-transactions-and-databases">Distributed Transactions and Databases<a class="headerlink" href="#distributed-transactions-and-databases" title="Permanent link">&para;</a></h1>
+<details class="note"><summary>Version History</summary><table>
+<thead>
+<tr>
+<th align="left">Date</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Feb 25, 2022</td>
+<td>Initial</td>
+</tr>
+</tbody>
+</table>
+</details>
+<p><img alt="⛵" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/26f5.svg" title=":sailboat:" /></p>
+<p>This note was originally written in this <a href="https://docs.google.com/document/d/1uziWg4Ca-0-MVf8ehD-cJnDqNkpzxjhj-I5Pu2Civ7A/edit?usp=sharing">google doc</a>.
+This note was my attempt to revive the distributed transaction topic and to get
+a better understanding about database systems in general.
+The end result is quite fruitful, I covered various concurrency control schemes,
+isolation levels, and so on. The consensus protocols, query optimizations etc topics are not extensively discussed here.</p>
+<h2 id="why-i-started-this-note">Why I started this note<a class="headerlink" href="#why-i-started-this-note" title="Permanent link">&para;</a></h2>
+<p>My knowledge about distributed transactions and stuff starts from my first project, Hotpot (2017). However, during these 5 years, my knowledge in this area kind of stagnated. I haven’t done any serious distributed systems since Hotpot. Although LegoOS, Clio, and SuperNIC are all distributed systems, they don’t touch any of these serious concepts.</p>
+<p>Today 02/16/2022, I’m reading the  <a href="https://www.usenix.org/conference/fast22/presentation/zhang-ming">FORD, FAST’22</a>  paper, they are designing distributed transactions for disaggregated persistent memory, they talked about OCC, 2PL, primary-backup etc schemes, and I decided to take another serious look at this topic. I still have the vivid memory of me reading some old Transaction-related surveys (after the ZooKeeper paper) in a small, smelly, broken Purdue ECE room when I first started my PhD. I also had a vivid memory of a meeting among myself, Yiying, Stanko, Marcus in a VMR office room. We were talking about OCC, MVCC, and the then upcoming OSDI’18 hybrid transaction paper. I was confused. Anyways, let’s revive this topic.</p>
+<h2 id="papers-and-readings">Papers and Readings<a class="headerlink" href="#papers-and-readings" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.google.com/spreadsheets/d/1JODWoEtDBxeOTr-ZqEqm3D-9wfADyNqgMoIOSpukBL0/edit#gid=266644662">01 Papers - ALL</a>   - there is a TAB dedicated to Distributed Transaction related papers.</p>
+<p><strong>Courses</strong></p>
+<ul>
+<li><a href="https://15445.courses.cs.cmu.edu/fall2019/schedule.html">Schedule | CMU 15-445/645 :: Intro to Database Systems (Fall 2019)</a> <ul>
+<li>This is DBMS basics, good start. </li>
+</ul>
+</li>
+<li><a href="https://15721.courses.cs.cmu.edu/spring2020/schedule.html">Schedule - CMU 15-721 :: Advanced Database Systems (Spring 2020)</a>  <ul>
+<li>This is more advanced paper reading.</li>
+</ul>
+</li>
+</ul>
+<p><strong>General Readings</strong></p>
+<ul>
+<li><a href="https://www.zotero.org/lastweek/collections/6GHIQ7E8">Zotero Paper Collection</a> </li>
+<li><a href="http://www.redbook.io/">http://www.redbook.io/</a>  The famous Red Book</li>
+<li><a href="https://github.com/theanalyst/awesome-distributed-systems">theanalyst/awesome-distributed-systems</a>   - Github Awesome List</li>
+<li><a href="https://dancres.github.io/Pages/">Distributed Systems Reading List</a>   - Reading List</li>
+</ul>
+<p><strong>Good Readings</strong></p>
+<ul>
+<li><a href="https://lamport.azurewebsites.net/pubs/time-clocks.pdf">Time, Clocks, and the Ordering of Events in a Distributed System, 1978</a>  - classical</li>
+<li><a href="https://www.eecs.harvard.edu/~htk/publication/1981-tods-kung-robinson.pdf">On Optimistic Methods for Concurrency Control, 1981</a> <ul>
+<li>First paper proposing OCC, definitely a seminal paper.</li>
+</ul>
+</li>
+<li><a href="https://people.eecs.berkeley.edu/~brewer/cs262/concurrency-distributed-databases.pdf">Concurrency Control in Distributed Database Systems</a> , 1981<ul>
+<li>This paper categorizes 2PL, MVCC, OCC etc into 2 big types.</li>
+<li>The CMU slides/papers use this categorization to this date.</li>
+</ul>
+</li>
+<li><a href="https://dl.acm.org/doi/abs/10.1145/78969.78972">Linearizability: a correctness condition for concurrent objects</a> , 1990 </li>
+<li><a href="https://www.vldb.org/pvldb/vol8/p209-yu.pdf">An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14</a> <ul>
+<li>A good read on comparing various concurrency control schemes.</li>
+<li>Note that the MVCC mentioned in this paper is MVTO.</li>
+</ul>
+</li>
+<li><a href="https://www.vldb.org/pvldb/vol10/p781-Wu.pdf">An Empirical Evaluation of In-Memory Multi-Version Concurrency Control, VLDB’17</a> <ul>
+<li>This is a really good read and should be read in great detail.</li>
+<li>Understand that OCC’s core is to reduce the critical section time. And MVCC is not a concurrency control method on its own, it merely enables multiple versions of the same object/tuple. Hence MVCC could work with any concurrency control methods, resulting in combos like MVTO, MVOCC, MV2PL.</li>
+</ul>
+</li>
+<li><a href="https://www.vldb.org/pvldb/vol10/p553-harding.pdf">An Evaluation of Distributed Concurrency Control, VLDB’17</a> <ul>
+<li>This read reminds us the default Isolation level out in the wild is usually not reliability, but something weaker like Snapshot Isolation, or Read Committed.</li>
+</ul>
+</li>
+</ul>
+<h2 id="concepts">Concepts<a class="headerlink" href="#concepts" title="Permanent link">&para;</a></h2>
+<h3 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<p>MVCC is prevalent as the default implementation choice, for its better performance on read transactions. It is coupled with a concurrency control, resulting in sth like MVTO, MVOCC, MV2PL. Essentially, MVCC is the de-facto choice for modern DBMS for its better performance regarding read/write transactions. See the MVCC section for more details.</p>
+<p>The following image shows the commercial/research use of MVCC DBMS.
+<img alt="" src="../Knowledge-Distributed-Transactions/iDNfWdTnUFKSbNxzup67Rxu1kONJvKCIdivaKgFv6cBy-Gdk2ht7jqcP4EMb6FN1sKE8lEDashuBQi5Q15Qupg47GQyRfVXFCdoES1wyVzyXFrQRpMQ2O868VgXCeb2I0fdNIrnF.png" /></p>
+<p>For isolation level, the serializable isolation is usually NOT the default option used by commercial DBMS systems. For better performance, the default one is usually Snapshot Isolation, or Read Committed. It is baffling to accept the fact that many real world systems are operating under a weak consistency model and we are actually okay with it! See the Isolation section for more details.</p>
+<p>The following image shows the default Isolation level used by various systems. A bit old image from a VLDB’13 paper.
+<img alt="" src="../Knowledge-Distributed-Transactions/u_3prdQiWiP9_lc4AhHAqhs1f3kaWJ-vaHo4qxrZ_0h3RektXZWXi9wSUfHpGhpdJIDp0dVM_ffWLKkYoeboVhBw7tCxiUS9jF98Q_YxiAZxfiToleWyfKfXlnt0K7cwEMwYu1tp.png" /></p>
+<h3 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link">&para;</a></h3>
+<h4 id="2pc-vs-2pl"><em>2PC v.s. 2PL</em><a class="headerlink" href="#2pc-vs-2pl" title="Permanent link">&para;</a></h4>
+<p>2-phase locking
+ <a href="https://en.wikipedia.org/wiki/Two-phase_commit_protocol">2-phase commit</a> 
+ <a href="https://en.wikipedia.org/wiki/Three-phase_commit_protocol">3-phase commit</a> </p>
+<blockquote>
+<p>The two-phase commit (2PC) protocol should not be confused with the  <a href="https://en.wikipedia.org/wiki/Two-phase_locking">two-phase locking</a>  (2PL) protocol, a  <a href="https://en.wikipedia.org/wiki/Concurrency_control">concurrency control</a>  protocol.  </p>
+</blockquote>
+<p>[<em>NOTE: the description about OCC, MVCC, 2PL might be wrong. I had the wrong impression about them. But now I understand after reading the VLDB’17 paper. I believe the MVCC below can be thought of as MVCC-TO, or MVTO.</em>]</p>
+<p>Concurrency control methods such as 2PL, T/O(OCC, MVCC-TO, T/O) etc methods are used to ensure concurrent operations to shared data are serialized, hence ensuring serializability and data consistency. Their mechanisms ensure operations such as read/write are ordered properly.  These mechanisms can be used both within a single machine or across nodes. (The  <a href="https://www.vldb.org/pvldb/vol8/p209-yu.pdf">An Evaluation of Concurrency Control with One Thousand Cores, VLDB’04</a>  paper evaluates several Concurrency Control methods within a single machine).</p>
+<p>Problem arises when going to multiple nodes: they cannot ensure whether the transaction commits at all participating nodes, some may have committed, some may have not - and this creates an inconsistent state. Use 2PL as an example: in 2PL, we first grab all locks across all involving nodes, we then run the execution/logic locally on a node, we finally send all the new data (if any) to other nodes and release the locks. In the last step, there is no way for us to make sure that all participating nodes have received the message. If only some of them finalized/committed the transaction, then the whole database/system is in an inconsistent state.</p>
+<p>This is where  <a href="https://en.wikipedia.org/wiki/Atomic_commit">atomic commit protocol</a>  such as  <a href="https://en.wikipedia.org/wiki/Two-phase_commit_protocol">2-phase commit</a>  comes in. It ensures that all participants either all commit or none of them commits the transaction. It does so by using another 2-phase protocol: prepare + commit. It is easy to understand. There are more complicated methods such as 3PC or Paxos Commit.</p>
+<p>I think my original confusion about 2PC and 2PL stems from my illusion that we can use 2PL to also implement what 2PC desires to achieve. But after the above reasoning, I realize that is not possible. 2PC and 2PL have very clear distinctions. I also had a misconception that 2PC is needed because it can ensure durability. This is also false because 2PC is required simply to ensure atomic commit, for both w/ or w/o durability guarantee. If we want durability, then 2PC’s participants would need to either do local logging or build on top of a replication mechanism such as Paxos.</p>
+<p>A short summary:</p>
+<ul>
+<li>Concurrency control methods include 2PL, OCC, MVCC, T/O etc algorithms.</li>
+<li>Atomic commit methods include 2PC, 2PC, paxos-commit</li>
+<li>Concurrency control methods can work in a single machine or across machines</li>
+<li>Once concurrency control goes distributed, it requires atomic commit to ensure consistency</li>
+<li>2PL + 2PC, OCC + 2PC, MVCC + 2PC etc are concurrency control + atomic commit</li>
+<li>Atomic commit can include or exclude durability guarantee</li>
+</ul>
+<h4 id="integrate-distributed-transaction-and-replication"><em>Integrate Distributed Transaction and Replication</em><a class="headerlink" href="#integrate-distributed-transaction-and-replication" title="Permanent link">&para;</a></h4>
+<p><img alt="" src="../Knowledge-Distributed-Transactions/KMQ5CuLYTnYoJaQD4c7ilZCM0hj7FPyJ1IM2hFv68eygjnDraeHpGxhFc1PFR-PCmEkRCEuNLNgRZeso4hs3UO5g-4tA4yB0Zvotnvd32-292Zjd0Y7tcPbL_RZ8AuJJhogdaNeQ.png" />
+(image from TAPIR, SOSP’15)</p>
+<p>I think the traditional DBMS systems design distributed transactions and replication as two different things. For example, the dist-xact could be sth like 2PL+2PC, or OCC+2PC. Below the dist-xact, lies the replication protocol such as Primary-Backup replication, Paxos, Raft.</p>
+<p>In the google spanner, they use 2PL+2PC for distributed transactions, which is layered on top of Paxos. A set of machines form a Paxos group. Each paxos group has a leader. This leader is sort of the transaction manager for its Paxos group. If there is a distributed transaction that touches multiple such Paxos groups, their leaders will run 2PL+2PC among them; leaders run Paxos within the Paxos group. This layering is good for modularization but at the cost of more data/messages exchanged. </p>
+<p>It results in <strong>over-coordination</strong>.</p>
+<p>It is a natural thought to <strong>co-design dist-xact and replication</strong> (reliability). For instance, in the FaRM, SOSP’15 paper, they describe the co-designed four-phase protocol (lock, validation, commit-backup, commit-primary). </p>
+<p>Related work in this space</p>
+<ul>
+<li>**Hotpot, SoCC’17**co-designs distributed transaction and replication in its MRSW and MRMW protocols (which are 2PL+2PC, and OCC+2PC, respectively)</li>
+<li><strong>FaRMv1, SOSP’15 &amp; NSDI’14</strong> co-designs distributed transaction and replication in one 4-phase protocol, using RDMA</li>
+<li>FaRMv2, SIGMOD’19</li>
+<li><a href="https://irenezhang.net/papers/tapir-sosp15.pdf">TAPIR, SOSP’15</a> </li>
+</ul>
+<h4 id="scenarios-and-hardware"><em>Scenarios and Hardware</em><a class="headerlink" href="#scenarios-and-hardware" title="Permanent link">&para;</a></h4>
+<p>One key thing worth considering is the operating environment.
+Some systems like Spanner target geo-distributed data centers, which could go though low-latency WAN.</p>
+<h4 id="bottlenecks"><em>Bottlenecks</em><a class="headerlink" href="#bottlenecks" title="Permanent link">&para;</a></h4>
+<p>Many papers and systems have mentioned that the global timestamp allocation is a major bottleneck in Timestamp Ordering concurrency control systems (including OCC and MVCC).  This is easy to understand: having some sort of global data structure that increases monotonically is hard in a distributed setting. I think that’s why several systems (Spanner, FaRMv2) resort to proactively dealing with clock uncertainties. </p>
+<h4 id="in-memory-vs-disk-base-dbms">In-memory v.s. Disk-base DBMS<a class="headerlink" href="#in-memory-vs-disk-base-dbms" title="Permanent link">&para;</a></h4>
+<p>XXX</p>
+<h4 id="self-driving-dbms">Self-Driving DBMS<a class="headerlink" href="#self-driving-dbms" title="Permanent link">&para;</a></h4>
+<p>Essentially uses ML to make some decisions?</p>
+<p>Readings:</p>
+<ul>
+<li><a href="https://db.cs.cmu.edu/papers/2017/p42-pavlo-cidr17.pdf">Self-Driving Database Management Systems</a> , CIDR’17 </li>
+<li><a href="https://dl.acm.org/doi/pdf/10.1145/3035918.3064029">Automatic Database Management System Tuning Through Large-scale Machine Learning</a>  </li>
+</ul>
+<h3 id="concurrency-control">Concurrency Control<a class="headerlink" href="#concurrency-control" title="Permanent link">&para;</a></h3>
+<p>Pessimistic Concurrency Control
+Optimistic Concurrency Control </p>
+<p>Must Read</p>
+<ul>
+<li>
+<ul>
+<li><a href="https://people.eecs.berkeley.edu/~brewer/cs262/concurrency-distributed-databases.pdf">Concurrency Control in Distributed Database Systems</a> , 1981</li>
+<li>This paper categorizes 2PL, MVCC, OCC etc into 2 big types.</li>
+<li>Must read. Seminal Paper.</li>
+</ul>
+</li>
+<li><a href="https://www.eecs.harvard.edu/~htk/publication/1981-tods-kung-robinson.pdf">On Optimistic Methods for Concurrency Control, 1981</a>  - first OCC paper </li>
+<li><a href="https://www.vldb.org/pvldb/vol8/p209-yu.pdf">An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14</a> <ul>
+<li>This CMU paper has very interesting categorization on concurrency control methods.</li>
+</ul>
+</li>
+<li><a href="https://www.vldb.org/pvldb/vol10/p553-harding.pdf">An Evaluation of Distributed Concurrency Control, VLDB’17</a> </li>
+<li><a href="https://15721.courses.cs.cmu.edu/spring2020/papers/03-mvcc1/wu-vldb2017.pdf">An Empirical Evaluation of In-Memory Multi-Version Concurrency Control, VLDB’17</a> <ul>
+<li>This paper is a must read, it explains MVTO, MV2PL, MVOCC.</li>
+</ul>
+</li>
+</ul>
+<p>Courses:</p>
+<ul>
+<li>CMU  <a href="https://15445.courses.cs.cmu.edu/fall2019/schedule.html">Database Systems (15-445/645)</a> , thanks to  <a href="http://www.cs.cmu.edu/~pavlo/">Andy Pavlo</a> <ul>
+<li><a href="https://15445.courses.cs.cmu.edu/fall2019/schedule.html#oct-23-2019">Concurrency Control Theory</a> </li>
+<li><a href="https://15445.courses.cs.cmu.edu/fall2019/schedule.html#oct-28-2019">Two-Phase Locking Concurrency Control</a> </li>
+<li><a href="https://15445.courses.cs.cmu.edu/fall2019/schedule.html#oct-30-2019">Timestamp Ordering Concurrency Control</a> </li>
+<li><a href="https://15445.courses.cs.cmu.edu/fall2019/schedule.html#nov-04-2019">Multi-Version Concurrency Control</a> </li>
+</ul>
+</li>
+<li>CMU  <a href="https://15721.courses.cs.cmu.edu/spring2020/schedule.html">Advanced Database Systems (15-721)</a> , thanks to  <a href="http://www.cs.cmu.edu/~pavlo/">Andy Pavlo</a> <ul>
+<li><a href="https://15721.courses.cs.cmu.edu/spring2020/schedule.html#jan-22-2020">Multi-Version Concurrency Control (Design Decisions)</a> </li>
+<li><a href="https://15721.courses.cs.cmu.edu/spring2020/schedule.html#jan-27-2020">Multi-Version Concurrency Control (Protocols)</a> </li>
+<li><a href="https://15721.courses.cs.cmu.edu/spring2020/schedule.html#jan-29-2020">Multi-Version Concurrency Control (Garbage Collection)</a> </li>
+</ul>
+</li>
+</ul>
+<p>This categorization is derived from this classical paper  <a href="https://people.eecs.berkeley.edu/~brewer/cs262/concurrency-distributed-databases.pdf">Concurrency Control in Distributed Database Systems</a> , 1981. Table is from the  <a href="https://www.vldb.org/pvldb/vol8/p209-yu.pdf">An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14</a> .
+<img alt="" src="../Knowledge-Distributed-Transactions/A1xlCuhGL6WCQjqfLNXr4LoyjN5UiRbyJfOyhe5-YH6ULXfUKeyxB-1ah4dMTGr1wFilk9VCoXNHoZzdgv1zLn2Tx8n1bclhKeivPDKzV7iVu4rq8vl364nQbNtrgYLlDyTct1_Q.png" />
+(Note: the MVCC is MVTO, not just MVCC itself)</p>
+<p>Also from this  <a href="https://15445.courses.cs.cmu.edu/fall2019/slides/18-timestampordering.pdf">CMU 15-445 slide</a> :
+<img alt="" src="../Knowledge-Distributed-Transactions/-FOAHSMN6LD21PPcBi1RzEIEGJwGmxDHOLTL359fLcH8OI48hpWBQMSM8KXRYhFWAUPugK-J5LDWO6znTIPMMPq6vvFlTcLsf5tJgsdE0H0iQNHNpWmAhZatZ4UfHnGyRM4zTQsA.png" /></p>
+<p>In general, there are two big types of concurrency control:</p>
+<ul>
+<li>Two-phase Locking</li>
+<li>Timestamp Ordering<ul>
+<li>TO</li>
+<li>OCC</li>
+<li>MVCC-TO</li>
+</ul>
+</li>
+</ul>
+<p>The traditional OCC, MVCC-TO, belongs to the Timestamp Ordering Optimistic category. 
+However, don’t confuse the MVCC with concurrency control. MVCC is not a concurrency control method and can work with any of the above concurrency control methods. The above table has MVCC under T/O because it is MVCC-T/O.
+* NOTE: After reading the VLDB’17 paper, I think that MVCC can NOT be categorized as a standalone concurrency control method. Hence, we should not say MVCC, OCC, 2PL as if they are in the same league. MVCC states multiple versions of the same object/tuple, it needs to work with other concurrency control methods, so as to end up with MVTO, MVOCC, MV2PL. I think the most common one, or the one that people unconsciously talk about is MVTO. See the following MVCC section for more details!</p>
+<p>Call back to Hotpot: MRSW is 2PL+2PC, MRMW is OCC+2PC.</p>
+<h4 id="2-phase-locking-2pl">2 Phase Locking (2PL)<a class="headerlink" href="#2-phase-locking-2pl" title="Permanent link">&para;</a></h4>
+<p>Easy to understand.</p>
+<h4 id="timestamp-ordering">Timestamp-Ordering<a class="headerlink" href="#timestamp-ordering" title="Permanent link">&para;</a></h4>
+<p>For details, read  <a href="https://www.vldb.org/pvldb/vol8/p209-yu.pdf">An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14</a>  and  <a href="https://15445.courses.cs.cmu.edu/fall2019/slides/18-timestampordering.pdf">CMU 15-445 slide</a> .</p>
+<ul>
+<li>Timestamp-Ordering TO</li>
+<li>OCC</li>
+<li>MVCC-TO</li>
+</ul>
+<h3 id="mvcc">MVCC<a class="headerlink" href="#mvcc" title="Permanent link">&para;</a></h3>
+<p>Papers</p>
+<ul>
+<li><a href="https://15721.courses.cs.cmu.edu/spring2020/schedule.html">https://15721.courses.cs.cmu.edu/spring2020/schedule.html</a>  <ul>
+<li>This course has links to various MVCC papers</li>
+</ul>
+</li>
+<li><a href="https://15721.courses.cs.cmu.edu/spring2020/papers/03-mvcc1/wu-vldb2017.pdf">An Empirical Evaluation of In-Memory Multi-Version Concurrency Control, VLDB’17</a> </li>
+<li><a href="https://15721.courses.cs.cmu.edu/spring2020/papers/03-mvcc1/p1850_danrkports_vldb2012.pdf">Serializable Snapshot Isolation in PostgreSQL, VLDB’12</a>  </li>
+<li><a href="https://db.in.tum.de/~boettcher/p128-boettcher.pdf">Scalable Garbage Collection for In-Memory MVCC Systems, VLDB’17</a>  </li>
+</ul>
+<p>After a couple days of intensive reading, my understanding about MVCC has expanded quite a lot. It kind of went like this:
+* In the first stage, I would list MVCC as the opposite approach to OCC. And appears this is most people’s impression? Meaning, when we talk about a system, we will describe it either as OCC or MVCC, as if they are two different things that cannot co-exist.
+* After reading Peloton, VLDB’17 paper and the Alibaba blog post, I realized that my understanding wasn’t correct. They reminded me that OCC, at its core, is a concurrency control method, with a clear goal of reducing the amount of time that a transaction holds locks. Since the original and most OCC implementations are using a single-versioned database plus local copies, we naturally think OCC ⇒ single version. However, if we recall the core of OCC, it does not preclude multi-version at all. OCC can work with MVCC.
+* In fact, our misconception also applies to MVCC, not just OCC. Like the alibaba blog post said, MVCC alone is not a concurrency control method, it merely says there will be multiple versions of the same object/tuple. As a result, MVCC has to work with a real concurrency control method to become a full solution.</p>
+<p>That’s why we have MVCC+TO, MVCC+2PL, MVCC+OCC.</p>
+<blockquote>
+<p>MVCC is an optimization technique for read and write requests. It does not completely solve the concurrency problem of databases, so it must be used with concurrency control techniques for a complete concurrency control. E.g., multiversion two-phase locking (MV2PL), multiversion timestamp ordering (MVTO), multiversion optimistic concurrency control (MVOCC), and MV-SSI.  </p>
+</blockquote>
+<p>This paper  <a href="https://15721.courses.cs.cmu.edu/spring2020/papers/03-mvcc1/wu-vldb2017.pdf">An Empirical Evaluation of In-Memory Multi-Version Concurrency Control, VLDB’17</a>  has a great explanation on how to implement MVTO, MVOCC, MV2PL.</p>
+<p>This image is from this  <a href="https://www.alibabacloud.com/blog/a-deep-dive-into-database-concurrency-control_596779">Alibaba Blog</a> . It captures what the above VLDB’17 paper said.
+<img alt="" src="../Knowledge-Distributed-Transactions/6sHo43Dta3eUAZVD5hTX1jmS9gzLPLoJN9oHrNCD35JAW2wD4mxCh8lTs4rfCi6yeR7FfZX5GEQo_vfs5lfUDAb8cDL0GQ9B-T_hG9qseCF9QKssfnWM8FRHWDg3-Mbzmk3U51f5.png" /> </p>
+<p><strong>It is important to note that MVCC is the de-facto choice for modern DBMS for its better performance regarding read/write transactions</strong>.
+<img alt="" src="../Knowledge-Distributed-Transactions/iDNfWdTnUFKSbNxzup67Rxu1kONJvKCIdivaKgFv6cBy-Gdk2ht7jqcP4EMb6FN1sKE8lEDashuBQi5Q15Qupg47GQyRfVXFCdoES1wyVzyXFrQRpMQ2O868VgXCeb2I0fdNIrnF%202.png" /></p>
+<h3 id="isolation-serializability-snapshot-isolation-linearliability">Isolation: Serializability, Snapshot Isolation, Linearliability<a class="headerlink" href="#isolation-serializability-snapshot-isolation-linearliability" title="Permanent link">&para;</a></h3>
+<p>Some official <sub><a href="https://en.wikipedia.org/wiki/Isolation_(database_systems)">Isolation levels</a></sub> in DBMS systems:</p>
+<ul>
+<li>Serializable</li>
+<li>Repeatable reads</li>
+<li>Read committed</li>
+<li>Read uncommitted</li>
+</ul>
+<p>Readings:</p>
+<ul>
+<li>The RedBook Chapter 6 has great discussion on why weak consistency (e.g., non-serializable snapshot isolation)  is more popular than the serializability, and their guess on why the world is “okay” with that usage.</li>
+<li><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-95-51.pdf">A Critique of ANSI SQL Isolation Levels, 1995</a>  </li>
+<li><a href="https://ssudan16.medium.com/database-isolation-levels-explained-61429c4b1e31">Database Isolation Levels explained | by sudan</a>  </li>
+<li><a href="https://www.cockroachlabs.com/blog/acid-rain/">Real Transactions are Serializable</a> </li>
+<li>CockroachDB provides strong (“SERIALIZABLE”) isolation by default to ensure that your application always sees the data it expects.  </li>
+<li>When you use a non-SERIALIZABLE isolation level, you’re giving the database permission to return an incorrect answer in the hope that it will be faster than producing the correct one.</li>
+<li>Oracle’s implementation of the SERIALIZABLE isolation level is actually a weaker mode called “snapshot isolation”: It is stronger than READ COMMITTED but weaker than SERIALIZABLE. It is similar to REPEATABLE READ but not exactly equivalent</li>
+<li><a href="https://www.postgresql.org/docs/current/transaction-iso.html">PostgreSQL: Documentation: 14: 13.2. Transaction Isolation</a>  </li>
+<li><a href="https://www.vldb.org/pvldb/vol7/p181-bailis.pdf">Highly Available Transactions: Virtues and Limitations, VLDB’17</a> <ul>
+<li>Discussed the default isolation models used by various systems. Quite telling</li>
+<li>Most systems DO NOT have Serializable as the default.</li>
+<li><img alt="" src="../Knowledge-Distributed-Transactions/u_3prdQiWiP9_lc4AhHAqhs1f3kaWJ-vaHo4qxrZ_0h3RektXZWXi9wSUfHpGhpdJIDp0dVM_ffWLKkYoeboVhBw7tCxiUS9jF98Q_YxiAZxfiToleWyfKfXlnt0K7cwEMwYu1tp%202.png" /> </li>
+</ul>
+</li>
+</ul>
+<p><strong>Takeaways</strong></p>
+<ul>
+<li>Many real-world DBMS and NoSQL systems adopt a weak consistency model (e.g., non-serializable snapshot isolation) as the default isolation level. They prefer this over serializability because a weak consistency model offers better performance. </li>
+<li>Weak consistency could lead to anomalies that are super hard to reason about. So why is the real world okay using this model? The redbook’s guess is that there is not enough concurrency in the real world workload so that corner cases rarely happen. I don’t really buy this argument but I can’t think of another good reason.</li>
+<li>
+<blockquote>
+<p>None of these weak isolation models guarantees serializability, but, as we see below, <strong>their beneﬁts are often considered to outweigh costs of possible consistency anomalies that might arise from their use</strong>.</p>
+</blockquote>
+</li>
+</ul>
+<p>The reason I came across this is because I was trying to understand <a href="https://en.wikipedia.org/wiki/Snapshot_isolation"> Snapshot Isolation </a> while reading NAM-DB (it provides SI). And turns out it is a much deeper discussion.</p>
+<p>This wiki  <a href="https://en.wikipedia.org/wiki/Snapshot_isolation">Snapshot Isolation </a> has a great explanation on what SI exactly is, and how it compares to the strict serializability. 
+* <strong>The following note was written before I read the SI wiki</strong>: <em>I have a very vague understanding about read-snapshots. My first thought is that it is probably only possible with MVCC, but not with OCC. Because intuitively, MVCC maintains multiple versions of the same object, hence able to provide a snapshot with respect to time. Spanner uses MVCC (2PL+2PC+Paxos) and has snapshots-related APIs. FaRMv1, DrTM uses OCC and has no snapshots</em>.
+* <strong>After reading the SI wiki</strong>: I think my first impression is correct. MVCC is convenient to implement Snapshot Isolation, as MVCC already maintains a series of recent history. <strong>However, I’m not 100% sure whether we can implement SI with OCC as well</strong>. We definitely need extra states on top of a normal OCC, and will that just result in sth like MVCC?
+* **Snapshot Isolation essentially allows****disjoint writes****from concurrent transactions, hence could result in a final state that is not possible in a Serialiable transaction.**Check the example case in the wiki, it is great and simple.
+* System wise, I came across these that provide SI
+    * Spanner - provide both serializable and (read-only) snapshot transactions
+    * NAM-DB, VLDB’17 - provides SI-only transactions</p>
+<p>Serializable
+Snapshot Isolation (SI)
+Serializable Snapshot Isolation (SSI)</p>
+<h3 id="replication-protocols">Replication Protocols<a class="headerlink" href="#replication-protocols" title="Permanent link">&para;</a></h3>
+<p>Paxos
+Vertical Paxos
+Raft
+Primary-Backup
+Virtual Synchrony</p>
+<h3 id="classical-systems">Classical Systems<a class="headerlink" href="#classical-systems" title="Permanent link">&para;</a></h3>
+<p>These systems of course touch most of the above concepts.</p>
+<ul>
+<li>ZooKeeper. The key thing is its Atomic Broadcast network library.</li>
+<li>Google BigTable, need a revisit</li>
+<li>Google Spanner. I have vivid memory reading it. TruTime. Need t a revisit as well. It touches a lot of things, appears it is MVCC? And uses Paxos.</li>
+</ul>
+<h3 id="misc-concepts">Misc Concepts<a class="headerlink" href="#misc-concepts" title="Permanent link">&para;</a></h3>
+<p>The Marzullo’s Algorithm, used by Google Spanner.  <a href="https://en.wikipedia.org/wiki/Marzullo%27s_algorithm">https://en.wikipedia.org/wiki/Marzullo%27s_algorithm</a>  </p>
+<p>Opacity, from FaRMv2</p>
+<p>What’s Really New with NewSQL?  <a href="https://faculty.washington.edu/wlloyd/courses/tcss562/papers/Spring2017/team5_team6_relational_DB_services/Whats%20Really%20New%20with%20NewSQL.pdf">What’s Really New with NewSQL?</a>  </p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 25, 2022</span>
+      
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+  <h2 id="__comments">Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>var script,disqus_config=function(){this.page.url="http://lastweek.io/notes/dist-xact/",this.page.identifier="notes/dist-xact/"};"undefined"==typeof DISQUS?((script=document.createElement("script")).async=!0,script.src="https://lastweek-io.disqus.com/embed.js",script.setAttribute("data-timestamp",Date.now()),document.body.appendChild(script)):DISQUS.reset({reload:!0,config:disqus_config})</script>
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Home
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../virt/" class="md-footer__link md-footer__link--next" aria-label="Next: Modern Virtualization" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Modern Virtualization
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.tabs.sticky", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      
+    
+  </body>
+</html>
