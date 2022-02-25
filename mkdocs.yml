@@ -5,6 +5,7 @@ site_url: 'http://lastweek.io'
 nav:
 - Home: 'index.md'
 - Notes:
+   - 'Distributed Transactions and Databases':              'notes/dist-xact.md'
    - 'Modern Virtualization':                               'notes/virt.md'
    - 'Practical Cache Coherence':                           'notes/cache_coherence.md'
    - 'Dynamic Linking':                                     'notes/dynamic_linking.md'
