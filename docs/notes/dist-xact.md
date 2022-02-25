@@ -53,7 +53,7 @@ Today 02/16/2022, I’m reading the  [FORD, FAST’22](https://www.usenix.org/co
 	* This is a really good read and should be read in great detail.
 	* Understand that OCC’s core is to reduce the critical section time. And MVCC is not a concurrency control method on its own, it merely enables multiple versions of the same object/tuple. Hence MVCC could work with any concurrency control methods, resulting in combos like MVTO, MVOCC, MV2PL.
 *  [An Evaluation of Distributed Concurrency Control, VLDB’17](https://www.vldb.org/pvldb/vol10/p553-harding.pdf) 
-	* This read reminds us the default Isolation level out in the wild is usually not reliability, but something weaker like Snapshot Isolation, or Read Committed.
+	* This read reminds us the default Isolation level out in the wild is usually not serializability, but something weaker like Snapshot Isolation, or Read Committed.
 
 ## Concepts
 
