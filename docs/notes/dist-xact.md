@@ -99,27 +99,6 @@ A short summary:
 * 2PL + 2PC, OCC + 2PC, MVCC + 2PC etc are concurrency control + atomic commit
 * Atomic commit can include or exclude durability guarantee
 
-#### *Integrate Distributed Transaction and Replication*
-
-![](Knowledge-Distributed-Transactions/KMQ5CuLYTnYoJaQD4c7ilZCM0hj7FPyJ1IM2hFv68eygjnDraeHpGxhFc1PFR-PCmEkRCEuNLNgRZeso4hs3UO5g-4tA4yB0Zvotnvd32-292Zjd0Y7tcPbL_RZ8AuJJhogdaNeQ.png)
-(image from TAPIR, SOSP’15)
-
-I think the traditional DBMS systems design distributed transactions and replication as two different things. For example, the dist-xact could be sth like 2PL+2PC, or OCC+2PC. Below the dist-xact, lies the replication protocol such as Primary-Backup replication, Paxos, Raft.
-
-In the google spanner, they use 2PL+2PC for distributed transactions, which is layered on top of Paxos. A set of machines form a Paxos group. Each paxos group has a leader. This leader is sort of the transaction manager for its Paxos group. If there is a distributed transaction that touches multiple such Paxos groups, their leaders will run 2PL+2PC among them; leaders run Paxos within the Paxos group. This layering is good for modularization but at the cost of more data/messages exchanged. 
-
-It results in **over-coordination**.
-
-It is a natural thought to **co-design dist-xact and replication** (reliability). For instance, in the FaRM, SOSP’15 paper, they describe the co-designed four-phase protocol (lock, validation, commit-backup, commit-primary). 
-
-Related work in this space
-
-* **Hotpot, SoCC’17**co-designs distributed transaction and replication in its MRSW and MRMW protocols (which are 2PL+2PC, and OCC+2PC, respectively)
-* **FaRMv1, SOSP’15 & NSDI’14** co-designs distributed transaction and replication in one 4-phase protocol, using RDMA
-* FaRMv2, SIGMOD’19
-*  [TAPIR, SOSP’15](https://irenezhang.net/papers/tapir-sosp15.pdf) 
-* [FORD: Fast One-sided RDMA-based Distributed Transactions for Disaggregated Persistent Memory, FAST'22]()
-
 #### *Scenarios and Hardware*
 
 One key thing worth considering is the operating environment.
@@ -140,6 +119,27 @@ Readings:
 
 *  [Self-Driving Database Management Systems](https://db.cs.cmu.edu/papers/2017/p42-pavlo-cidr17.pdf) , CIDR’17 
 *  [Automatic Database Management System Tuning Through Large-scale Machine Learning](https://dl.acm.org/doi/pdf/10.1145/3035918.3064029)  
+
+### *Integrate Distributed Transaction and Replication*
+
+![](Knowledge-Distributed-Transactions/KMQ5CuLYTnYoJaQD4c7ilZCM0hj7FPyJ1IM2hFv68eygjnDraeHpGxhFc1PFR-PCmEkRCEuNLNgRZeso4hs3UO5g-4tA4yB0Zvotnvd32-292Zjd0Y7tcPbL_RZ8AuJJhogdaNeQ.png)
+(image from TAPIR, SOSP’15)
+
+I think the traditional DBMS systems design distributed transactions and replication as two different things. For example, the dist-xact could be sth like 2PL+2PC, or OCC+2PC. Below the dist-xact, lies the replication protocol such as Primary-Backup replication, Paxos, Raft.
+
+In the google spanner, they use 2PL+2PC for distributed transactions, which is layered on top of Paxos. A set of machines form a Paxos group. Each paxos group has a leader. This leader is sort of the transaction manager for its Paxos group. If there is a distributed transaction that touches multiple such Paxos groups, their leaders will run 2PL+2PC among them; leaders run Paxos within the Paxos group. This layering is good for modularization but at the cost of more data/messages exchanged. 
+
+It results in **over-coordination**.
+
+It is a natural thought to **co-design dist-xact and replication** (reliability). For instance, in the FaRM, SOSP’15 paper, they describe the co-designed four-phase protocol (lock, validation, commit-backup, commit-primary). 
+
+Related work in this space
+
+* **Hotpot, SoCC’17**co-designs distributed transaction and replication in its MRSW and MRMW protocols (which are 2PL+2PC, and OCC+2PC, respectively)
+* **FaRMv1, SOSP’15 & NSDI’14** co-designs distributed transaction and replication in one 4-phase protocol, using RDMA
+* FaRMv2, SIGMOD’19
+*  [TAPIR, SOSP’15](https://irenezhang.net/papers/tapir-sosp15.pdf) 
+* [FORD: Fast One-sided RDMA-based Distributed Transactions for Disaggregated Persistent Memory, FAST'22]()
 
 ### Concurrency Control
 
