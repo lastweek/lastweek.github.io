@@ -118,6 +118,7 @@ Related work in this space
 * **FaRMv1, SOSP’15 & NSDI’14** co-designs distributed transaction and replication in one 4-phase protocol, using RDMA
 * FaRMv2, SIGMOD’19
 *  [TAPIR, SOSP’15](https://irenezhang.net/papers/tapir-sosp15.pdf) 
+* [FORD: Fast One-sided RDMA-based Distributed Transactions for Disaggregated Persistent Memory, FAST'22]()
 
 #### *Scenarios and Hardware*
 
