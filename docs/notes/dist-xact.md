@@ -21,7 +21,6 @@ Today 02/16/2022, I’m reading the  [FORD, FAST’22](https://www.usenix.org/co
 
 ## Papers and Readings
 
- [01 Papers - ALL](https://docs.google.com/spreadsheets/d/1JODWoEtDBxeOTr-ZqEqm3D-9wfADyNqgMoIOSpukBL0/edit#gid=266644662)   - there is a TAB dedicated to Distributed Transaction related papers.
 
 **Courses**
 
@@ -32,6 +31,7 @@ Today 02/16/2022, I’m reading the  [FORD, FAST’22](https://www.usenix.org/co
 
 **General Readings**
 
+*  [01 Papers - ALL](https://docs.google.com/spreadsheets/d/1JODWoEtDBxeOTr-ZqEqm3D-9wfADyNqgMoIOSpukBL0/edit#gid=266644662)   - a TAB is dedicated to this topic
 *  [Zotero Paper Collection](https://www.zotero.org/lastweek/collections/6GHIQ7E8) 
 *  [http://www.redbook.io/](http://www.redbook.io/)  The famous Red Book
 *  [theanalyst/awesome-distributed-systems](https://github.com/theanalyst/awesome-distributed-systems)   - Github Awesome List
@@ -55,20 +55,29 @@ Today 02/16/2022, I’m reading the  [FORD, FAST’22](https://www.usenix.org/co
 *  [An Evaluation of Distributed Concurrency Control, VLDB’17](https://www.vldb.org/pvldb/vol10/p553-harding.pdf) 
 	* This read reminds us the default Isolation level out in the wild is usually not serializability, but something weaker like Snapshot Isolation, or Read Committed.
 
-## Concepts
+## Quick Takeaway
 
-### Summary
-
-MVCC is prevalent as the default implementation choice, for its better performance on read transactions. It is coupled with a concurrency control, resulting in sth like MVTO, MVOCC, MV2PL. Essentially, MVCC is the de-facto choice for modern DBMS for its better performance regarding read/write transactions. See the MVCC section for more details.
+(1) Multi-versioning is the prevalent default implementation choice in the wild, for its better performance on various use cases.
+The multi-versioning itself is not a concurrency control, it must couple with a concurrency control method,
+resulting in combos such as MVTO, MVOCC, MV2PL.
+The popular MVCC concept mentioned in various literatures, I think, is MVTO, i.e., multi-versioning with timestamp-ordering.
+See the MVCC section for more details.
 
 The following image shows the commercial/research use of MVCC DBMS.
 ![](Knowledge-Distributed-Transactions/iDNfWdTnUFKSbNxzup67Rxu1kONJvKCIdivaKgFv6cBy-Gdk2ht7jqcP4EMb6FN1sKE8lEDashuBQi5Q15Qupg47GQyRfVXFCdoES1wyVzyXFrQRpMQ2O868VgXCeb2I0fdNIrnF.png)
 
 
-For isolation level, the serializable isolation is usually NOT the default option used by commercial DBMS systems. For better performance, the default one is usually Snapshot Isolation, or Read Committed. It is baffling to accept the fact that many real world systems are operating under a weak consistency model and we are actually okay with it! See the Isolation section for more details.
+(2) For database isolation levels, the Serializable isolation is usually NOT the default option provided by commercial DBMS systems.
+For better performance, the default one is usually Snapshot Isolation, or Read Committed.
+It is baffling to know the fact that many real world systems are actually operating under a weak consistency model
+and we are actually okay with it!
+The RedBook offers an interesting take on this topic. The market follows Gresham's law: bad money drives out good money.
+See the Isolation section for more details.
 
 The following image shows the default Isolation level used by various systems. A bit old image from a VLDB’13 paper.
 ![](Knowledge-Distributed-Transactions/u_3prdQiWiP9_lc4AhHAqhs1f3kaWJ-vaHo4qxrZ_0h3RektXZWXi9wSUfHpGhpdJIDp0dVM_ffWLKkYoeboVhBw7tCxiUS9jF98Q_YxiAZxfiToleWyfKfXlnt0K7cwEMwYu1tp.png)
+
+## Concepts
 
 ### Misc
 
@@ -125,30 +134,44 @@ Readings:
 ![](Knowledge-Distributed-Transactions/KMQ5CuLYTnYoJaQD4c7ilZCM0hj7FPyJ1IM2hFv68eygjnDraeHpGxhFc1PFR-PCmEkRCEuNLNgRZeso4hs3UO5g-4tA4yB0Zvotnvd32-292Zjd0Y7tcPbL_RZ8AuJJhogdaNeQ.png)
 (image from TAPIR, SOSP’15)
 
-I think the traditional DBMS systems design distributed transactions and replication as two different things. For example, the dist-xact could be sth like 2PL+2PC, or OCC+2PC. Below the dist-xact, lies the replication protocol such as Primary-Backup replication, Paxos, Raft.
+I think the traditional DBMS systems implement distributed transactions and replication protocols as two different things.
+For example, the dist-xact could be sth like 2PL+2PC, OCC+2PC, MVOCC+2PC. Beneath, the replication protocol could be Primary-Backup replication, Paxos, or Raft.
 
-In the google spanner, they use 2PL+2PC for distributed transactions, which is layered on top of Paxos. A set of machines form a Paxos group. Each paxos group has a leader. This leader is sort of the transaction manager for its Paxos group. If there is a distributed transaction that touches multiple such Paxos groups, their leaders will run 2PL+2PC among them; leaders run Paxos within the Paxos group. This layering is good for modularization but at the cost of more data/messages exchanged. 
+For the Google Spanner,
+I think the distributed transaction is using
+multi-versioned 2-phase locking with distributed 2-phase commit (i.e., MV2PL+2PC).
+Beneath, Spanner uses Paxos for data replication. The metadata stuff is stored in GFS.
+In their design, a set of machines form a Paxos group.
+Each paxos group has a leader. During a transaction, this leader is the transaction manager for its Paxos group.
+If a distributed transaction spans multiple Paxos groups, all group leaders would run MV2PL+2PC among them;
+leaders themselves run Paxos protocol within their own Paxos group.
+This layering is good for modularization but at the cost of more data/messages exchanged.
+Though, Spanner is a geo-distributed database, such design might be okay.
+It is not like it is building on top of RDMA or something.
 
-It results in **over-coordination**.
+The naive way of layering a distributed transaction protocol on top of a replication protocol
+results in **over-coordination**.
 
-It is a natural thought to **co-design dist-xact and replication** (reliability). For instance, in the FaRM, SOSP’15 paper, they describe the co-designed four-phase protocol (lock, validation, commit-backup, commit-primary). 
+It is a natural thought to **co-design dist-xact and replication**.
+For instance, FaRM, SOSP’15 & FORD, FAST'22 both describe a co-designed four-phase protocol (lock, validation, commit-backup, commit-primary). 
 
 Related work in this space
 
 * **Hotpot, SoCC’17**co-designs distributed transaction and replication in its MRSW and MRMW protocols (which are 2PL+2PC, and OCC+2PC, respectively)
 * **FaRMv1, SOSP’15 & NSDI’14** co-designs distributed transaction and replication in one 4-phase protocol, using RDMA
 * FaRMv2, SIGMOD’19
-*  [TAPIR, SOSP’15](https://irenezhang.net/papers/tapir-sosp15.pdf) 
+* [TAPIR, SOSP’15](https://irenezhang.net/papers/tapir-sosp15.pdf) 
 * [FORD: Fast One-sided RDMA-based Distributed Transactions for Disaggregated Persistent Memory, FAST'22]()
+* Papers from Mu Shuai
 
 ### Concurrency Control
 
-Pessimistic Concurrency Control
+Pessimistic Concurrency Control &
 Optimistic Concurrency Control 
 
 Must Read
 
-* *  [Concurrency Control in Distributed Database Systems](https://people.eecs.berkeley.edu/~brewer/cs262/concurrency-distributed-databases.pdf) , 1981
+* [Concurrency Control in Distributed Database Systems](https://people.eecs.berkeley.edu/~brewer/cs262/concurrency-distributed-databases.pdf) , 1981
 	* This paper categorizes 2PL, MVCC, OCC etc into 2 big types.
 	* Must read. Seminal Paper.
 *  [On Optimistic Methods for Concurrency Control, 1981](https://www.eecs.harvard.edu/~htk/publication/1981-tods-kung-robinson.pdf)  - first OCC paper 
