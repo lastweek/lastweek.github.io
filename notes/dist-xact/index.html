@@ -435,19 +435,19 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#quick-takeaway" class="md-nav__link">
+    Quick Takeaway
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#concepts" class="md-nav__link">
     Concepts
   </a>
   
     <nav class="md-nav" aria-label="Concepts">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    Summary
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#misc" class="md-nav__link">
@@ -2453,19 +2453,19 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#quick-takeaway" class="md-nav__link">
+    Quick Takeaway
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#concepts" class="md-nav__link">
     Concepts
   </a>
   
     <nav class="md-nav" aria-label="Concepts">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    Summary
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#misc" class="md-nav__link">
@@ -2632,7 +2632,6 @@ isolation levels, and so on. The consensus protocols, query optimizations etc to
 <p>My knowledge about distributed transactions and stuff starts from my first project, Hotpot (2017). However, during these 5 years, my knowledge in this area kind of stagnated. I haven’t done any serious distributed systems since Hotpot. Although LegoOS, Clio, and SuperNIC are all distributed systems, they don’t touch any of these serious concepts.</p>
 <p>Today 02/16/2022, I’m reading the  <a href="https://www.usenix.org/conference/fast22/presentation/zhang-ming">FORD, FAST’22</a>  paper, they are designing distributed transactions for disaggregated persistent memory, they talked about OCC, 2PL, primary-backup etc schemes, and I decided to take another serious look at this topic. I still have the vivid memory of me reading some old Transaction-related surveys (after the ZooKeeper paper) in a small, smelly, broken Purdue ECE room when I first started my PhD. I also had a vivid memory of a meeting among myself, Yiying, Stanko, Marcus in a VMR office room. We were talking about OCC, MVCC, and the then upcoming OSDI’18 hybrid transaction paper. I was confused. Anyways, let’s revive this topic.</p>
 <h2 id="papers-and-readings">Papers and Readings<a class="headerlink" href="#papers-and-readings" title="Permanent link">&para;</a></h2>
-<p><a href="https://docs.google.com/spreadsheets/d/1JODWoEtDBxeOTr-ZqEqm3D-9wfADyNqgMoIOSpukBL0/edit#gid=266644662">01 Papers - ALL</a>   - there is a TAB dedicated to Distributed Transaction related papers.</p>
 <p><strong>Courses</strong></p>
 <ul>
 <li><a href="https://15445.courses.cs.cmu.edu/fall2019/schedule.html">Schedule | CMU 15-445/645 :: Intro to Database Systems (Fall 2019)</a> <ul>
@@ -2646,6 +2645,7 @@ isolation levels, and so on. The consensus protocols, query optimizations etc to
 </ul>
 <p><strong>General Readings</strong></p>
 <ul>
+<li><a href="https://docs.google.com/spreadsheets/d/1JODWoEtDBxeOTr-ZqEqm3D-9wfADyNqgMoIOSpukBL0/edit#gid=266644662">01 Papers - ALL</a>   - a TAB is dedicated to this topic</li>
 <li><a href="https://www.zotero.org/lastweek/collections/6GHIQ7E8">Zotero Paper Collection</a> </li>
 <li><a href="http://www.redbook.io/">http://www.redbook.io/</a>  The famous Red Book</li>
 <li><a href="https://github.com/theanalyst/awesome-distributed-systems">theanalyst/awesome-distributed-systems</a>   - Github Awesome List</li>
@@ -2679,14 +2679,23 @@ isolation levels, and so on. The consensus protocols, query optimizations etc to
 </ul>
 </li>
 </ul>
-<h2 id="concepts">Concepts<a class="headerlink" href="#concepts" title="Permanent link">&para;</a></h2>
-<h3 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
-<p>MVCC is prevalent as the default implementation choice, for its better performance on read transactions. It is coupled with a concurrency control, resulting in sth like MVTO, MVOCC, MV2PL. Essentially, MVCC is the de-facto choice for modern DBMS for its better performance regarding read/write transactions. See the MVCC section for more details.</p>
+<h2 id="quick-takeaway">Quick Takeaway<a class="headerlink" href="#quick-takeaway" title="Permanent link">&para;</a></h2>
+<p>(1) Multi-versioning is the prevalent default implementation choice in the wild, for its better performance on various use cases.
+The multi-versioning itself is not a concurrency control, it must couple with a concurrency control method,
+resulting in combos such as MVTO, MVOCC, MV2PL.
+The popular MVCC concept mentioned in various literatures, I think, is MVTO, i.e., multi-versioning with timestamp-ordering.
+See the MVCC section for more details.</p>
 <p>The following image shows the commercial/research use of MVCC DBMS.
 <img alt="" src="../Knowledge-Distributed-Transactions/iDNfWdTnUFKSbNxzup67Rxu1kONJvKCIdivaKgFv6cBy-Gdk2ht7jqcP4EMb6FN1sKE8lEDashuBQi5Q15Qupg47GQyRfVXFCdoES1wyVzyXFrQRpMQ2O868VgXCeb2I0fdNIrnF.png" /></p>
-<p>For isolation level, the serializable isolation is usually NOT the default option used by commercial DBMS systems. For better performance, the default one is usually Snapshot Isolation, or Read Committed. It is baffling to accept the fact that many real world systems are operating under a weak consistency model and we are actually okay with it! See the Isolation section for more details.</p>
+<p>(2) For database isolation levels, the Serializable isolation is usually NOT the default option provided by commercial DBMS systems.
+For better performance, the default one is usually Snapshot Isolation, or Read Committed.
+It is baffling to know the fact that many real world systems are actually operating under a weak consistency model
+and we are actually okay with it!
+The RedBook offers an interesting take on this topic. The market follows Gresham&rsquo;s law: bad money drives out good money.
+See the Isolation section for more details.</p>
 <p>The following image shows the default Isolation level used by various systems. A bit old image from a VLDB’13 paper.
 <img alt="" src="../Knowledge-Distributed-Transactions/u_3prdQiWiP9_lc4AhHAqhs1f3kaWJ-vaHo4qxrZ_0h3RektXZWXi9wSUfHpGhpdJIDp0dVM_ffWLKkYoeboVhBw7tCxiUS9jF98Q_YxiAZxfiToleWyfKfXlnt0K7cwEMwYu1tp.png" /></p>
+<h2 id="concepts">Concepts<a class="headerlink" href="#concepts" title="Permanent link">&para;</a></h2>
 <h3 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link">&para;</a></h3>
 <h4 id="2pc-vs-2pl"><em>2PC v.s. 2PL</em><a class="headerlink" href="#2pc-vs-2pl" title="Permanent link">&para;</a></h4>
 <p>2-phase locking
@@ -2726,10 +2735,23 @@ Some systems like Spanner target geo-distributed data centers, which could go th
 <h3 id="integrate-distributed-transaction-and-replication"><em>Integrate Distributed Transaction and Replication</em><a class="headerlink" href="#integrate-distributed-transaction-and-replication" title="Permanent link">&para;</a></h3>
 <p><img alt="" src="../Knowledge-Distributed-Transactions/KMQ5CuLYTnYoJaQD4c7ilZCM0hj7FPyJ1IM2hFv68eygjnDraeHpGxhFc1PFR-PCmEkRCEuNLNgRZeso4hs3UO5g-4tA4yB0Zvotnvd32-292Zjd0Y7tcPbL_RZ8AuJJhogdaNeQ.png" />
 (image from TAPIR, SOSP’15)</p>
-<p>I think the traditional DBMS systems design distributed transactions and replication as two different things. For example, the dist-xact could be sth like 2PL+2PC, or OCC+2PC. Below the dist-xact, lies the replication protocol such as Primary-Backup replication, Paxos, Raft.</p>
-<p>In the google spanner, they use 2PL+2PC for distributed transactions, which is layered on top of Paxos. A set of machines form a Paxos group. Each paxos group has a leader. This leader is sort of the transaction manager for its Paxos group. If there is a distributed transaction that touches multiple such Paxos groups, their leaders will run 2PL+2PC among them; leaders run Paxos within the Paxos group. This layering is good for modularization but at the cost of more data/messages exchanged. </p>
-<p>It results in <strong>over-coordination</strong>.</p>
-<p>It is a natural thought to <strong>co-design dist-xact and replication</strong> (reliability). For instance, in the FaRM, SOSP’15 paper, they describe the co-designed four-phase protocol (lock, validation, commit-backup, commit-primary). </p>
+<p>I think the traditional DBMS systems implement distributed transactions and replication protocols as two different things.
+For example, the dist-xact could be sth like 2PL+2PC, OCC+2PC, MVOCC+2PC. Beneath, the replication protocol could be Primary-Backup replication, Paxos, or Raft.</p>
+<p>For the Google Spanner,
+I think the distributed transaction is using
+multi-versioned 2-phase locking with distributed 2-phase commit (i.e., MV2PL+2PC).
+Beneath, Spanner uses Paxos for data replication. The metadata stuff is stored in GFS.
+In their design, a set of machines form a Paxos group.
+Each paxos group has a leader. During a transaction, this leader is the transaction manager for its Paxos group.
+If a distributed transaction spans multiple Paxos groups, all group leaders would run MV2PL+2PC among them;
+leaders themselves run Paxos protocol within their own Paxos group.
+This layering is good for modularization but at the cost of more data/messages exchanged.
+Though, Spanner is a geo-distributed database, such design might be okay.
+It is not like it is building on top of RDMA or something.</p>
+<p>The naive way of layering a distributed transaction protocol on top of a replication protocol
+results in <strong>over-coordination</strong>.</p>
+<p>It is a natural thought to <strong>co-design dist-xact and replication</strong>.
+For instance, FaRM, SOSP’15 &amp; FORD, FAST&lsquo;22 both describe a co-designed four-phase protocol (lock, validation, commit-backup, commit-primary). </p>
 <p>Related work in this space</p>
 <ul>
 <li>**Hotpot, SoCC’17**co-designs distributed transaction and replication in its MRSW and MRMW protocols (which are 2PL+2PC, and OCC+2PC, respectively)</li>
@@ -2737,15 +2759,14 @@ Some systems like Spanner target geo-distributed data centers, which could go th
 <li>FaRMv2, SIGMOD’19</li>
 <li><a href="https://irenezhang.net/papers/tapir-sosp15.pdf">TAPIR, SOSP’15</a> </li>
 <li><a href="">FORD: Fast One-sided RDMA-based Distributed Transactions for Disaggregated Persistent Memory, FAST&lsquo;22</a></li>
+<li>Papers from Mu Shuai</li>
 </ul>
 <h3 id="concurrency-control">Concurrency Control<a class="headerlink" href="#concurrency-control" title="Permanent link">&para;</a></h3>
-<p>Pessimistic Concurrency Control
+<p>Pessimistic Concurrency Control &amp;
 Optimistic Concurrency Control </p>
 <p>Must Read</p>
 <ul>
-<li>
-<ul>
-<li><a href="https://people.eecs.berkeley.edu/~brewer/cs262/concurrency-distributed-databases.pdf">Concurrency Control in Distributed Database Systems</a> , 1981</li>
+<li><a href="https://people.eecs.berkeley.edu/~brewer/cs262/concurrency-distributed-databases.pdf">Concurrency Control in Distributed Database Systems</a> , 1981<ul>
 <li>This paper categorizes 2PL, MVCC, OCC etc into 2 big types.</li>
 <li>Must read. Seminal Paper.</li>
 </ul>
