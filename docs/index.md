@@ -12,7 +12,8 @@ Contact: **ys** AT **ucsd** DOT **edu**
 You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 ??? tip "Research News"
-	- [_Mar 2022_] Defended.
+	- [_Mar 2022_] Defended. The full defense slide is [here](./pubs/Defense_Slides_Yizhou_Shan.pdf).
+	- [_Mar 2022_] Serve as [APSys'22 PC]()
 	- [_Oct 2021_] Serve as [EuroSys'22 Shadow PC](https://2022.eurosys.org/)
 	- [_Sep 2021_] We made our [SuperNIC]() paper public.
 	- [_Sep 2021_] Serve as [SOSP'21 Artifact Evaluation PC]()

@@ -15,6 +15,8 @@ Combined, they are two extreme design points of the resource disaggregation idea
 All images below are from my recent defense slides.
 This note is part of my defense's intro.
 
+The full defense slide is [here](http://lastweek.io/pubs/Defense_Slides_Yizhou_Shan.pdf).
+
 ---
 
 ## Intro
