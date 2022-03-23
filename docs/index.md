@@ -2,16 +2,16 @@
 <img src="images/me.png" height=150 width=100>
 </p>
 
-Hello! I'm Yizhou Shan, a Ph.D. candidate at [University of California San Diego](https://cse.ucsd.edu/),
-advised by Prof. [Yiying Zhang](https://cseweb.ucsd.edu/~yiying/).
-I am a member of [UCSD Wuklab](http://wuklab.io) and [UCSD SysNet](https://www.sysnet.ucsd.edu/sysnet/).
-I was a [Purdue Boilermaker](https://engineering.purdue.edu/ECE) during 2016-2019.
+Hello! I'm Yizhou Shan, I've recently graduated from [University of California San Diego](https://cse.ucsd.edu/).
+I'm joining [Huawei Cloud](https://www.huaweicloud.com/intl/en-us/) as a Research Scientist
+to continue my pursuit on making [Resource Disaggregation](./pubs/Defense_Slides_Yizhou_Shan.pdf) practical and deployable.
 
 Contact: **ys** AT **ucsd** DOT **edu**
 
 You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 ??? tip "Research News"
+	- [_Mar 2022_] Serve as [ChinaSys'22 PC]()
 	- [_Mar 2022_] Defended. The full defense slide is [here](./pubs/Defense_Slides_Yizhou_Shan.pdf).
 	- [_Mar 2022_] Serve as [APSys'22 PC]()
 	- [_Oct 2021_] Serve as [EuroSys'22 Shadow PC](https://2022.eurosys.org/)
