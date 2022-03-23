@@ -3,8 +3,10 @@
 </p>
 
 Hello! I'm Yizhou Shan, I've recently graduated from [University of California San Diego](https://cse.ucsd.edu/).
+
 I'm joining [Huawei Cloud](https://www.huaweicloud.com/intl/en-us/) as a Research Scientist
-to continue my pursuit on making [Resource Disaggregation](./pubs/Defense_Slides_Yizhou_Shan.pdf) practical and deployable.
+to continue my research on making [Resource Disaggregation](https://github.com/lastweek/2022-UCSD-Thesis/blob/main/Yizhou_Shan_Dissertation_2022.pdf)
+practical and deployable in public clouds.
 
 Contact: **ys** AT **ucsd** DOT **edu**
 
