@@ -32,7 +32,10 @@ I have found several excellent primer readings.
 
 ## Motivation from the Google MLIR Paper
 
-*(This is a really nice Intro, pay close attention to how they lay out the storyline)*
+This is a *really nice Intro*, pay close attention to how they lay out the storyline.
+If you are new to PL just like me,
+I strongly recommend going through the MLIR Toy Example (covered below ) for a better understanding,
+and then come back, read through this again.
 
 1. A common characteristic of popular ML systems is their *“one size ﬁts all”* approach—a single abstraction level to interface with the system: the LLVM Intermediate Representation (IR) is roughly “C with vectors”, and JVM provides an “object-oriented type system with a garbage collector” abstraction. This “one size ﬁts all” approach is incredibly valuable—and in practice, the mapping to these domains from ubiquitous source languages (C/C++ and Java respectively) is straightforward.   (**Praise the unified LLVM IR**)
 2. At the same time, many problems are better modeled at a higher- or lower-level abstraction, e.g. source-level analysis of C++ code is very difﬁcult on LLVM IR. We observe that many languages (including e.g. Swift, Rust, Julia, Fortran) develop their own IR in order to solve domain-speciﬁc problems, like language/library-speciﬁc optimizations, ﬂow-sensitive type checking. Similarly, machine learning systems typically use “ML graphs” as a domain-speciﬁc abstraction in the same way. (**Point out the issues about LLVM IR**)
