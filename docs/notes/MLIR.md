@@ -20,6 +20,16 @@ My goals:
 
 Without further ado, let's get started.
 
+## MLIR Flow
+
+This figure shows MLIR's workflow.
+
+- On the left side, we have the applications, compilers, C programs, etc. as the input to MLIR.
+- Within MLIR, we can implement multiple *Dialects* for distinct inputs. For instance, we could use a Dialect to deal with tensors. Further, we can deploy a shared optimization layer to unify things.
+- Once we have an optimal IR, MLIR can now lower it onto the backends such as LLVM for CPUs, CIRCT for FPGAs. If you are targeting specialized hardware such as FPGA or TPU, you still need vendor-tools for final compilation (e.g., use Vivado to synthesis Verilog).
+
+![MLIR.png](https://res.craft.do/user/full/55556ffd-6bd0-f98b-802b-8680fc9006d8/doc/C108C7BD-1633-4A3C-AA6B-C7CC05C399F2/FA08E0F8-687F-4489-B2AC-29230E33CCBE_2/S1WndKzLkyiRmIkfMb87HYcQZv6wBiT9dUTrOyWgpBAz/MLIR.png)
+
 ## Resources
 
 I have found several excellent primer readings.
