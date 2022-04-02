@@ -421,6 +421,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#mlir-flow" class="md-nav__link">
+    MLIR Flow
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#resources" class="md-nav__link">
     Resources
   </a>
@@ -2385,6 +2392,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#mlir-flow" class="md-nav__link">
+    MLIR Flow
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#resources" class="md-nav__link">
     Resources
   </a>
@@ -2498,6 +2512,14 @@ Also for work reasons, I need to understand MLIR at a high-level.</p>
 <li>how to use MLIR to build languages, optimizations for heterogenous devices.</li>
 </ol>
 <p>Without further ado, let&rsquo;s get started.</p>
+<h2 id="mlir-flow">MLIR Flow<a class="headerlink" href="#mlir-flow" title="Permanent link">&para;</a></h2>
+<p>This figure shows MLIR&rsquo;s workflow.</p>
+<ul>
+<li>On the left side, we have the applications, compilers, C programs, etc. as the input to MLIR.</li>
+<li>Within MLIR, we can implement multiple <em>Dialects</em> for distinct inputs. For instance, we could use a Dialect to deal with tensors. Further, we can deploy a shared optimization layer to unify things.</li>
+<li>Once we have an optimal IR, MLIR can now lower it onto the backends such as LLVM for CPUs, CIRCT for FPGAs. If you are targeting specialized hardware such as FPGA or TPU, you still need vendor-tools for final compilation (e.g., use Vivado to synthesis Verilog).</li>
+</ul>
+<p><img alt="MLIR.png" src="https://res.craft.do/user/full/55556ffd-6bd0-f98b-802b-8680fc9006d8/doc/C108C7BD-1633-4A3C-AA6B-C7CC05C399F2/FA08E0F8-687F-4489-B2AC-29230E33CCBE_2/S1WndKzLkyiRmIkfMb87HYcQZv6wBiT9dUTrOyWgpBAz/MLIR.png" /></p>
 <h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
 <p>I have found several excellent primer readings.</p>
 <ul>
