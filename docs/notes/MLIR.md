@@ -20,11 +20,17 @@ My goals:
 
 Without further ado, let's get started.
 
-## MLIR Flow
+## MLIR At a High Level
 
-This figure shows MLIR's workflow.
+MLIR is short for Multi-Level Intermediate Representation.
+MLIR helps to build reusage compiler infrastructure
+and reduce duplicate codes.
 
-- On the left side, we have the applications, compilers, C programs, etc. as the input to MLIR.
+I draw the following figure to show MLIR's workflow at a very high level.
+
+In specific:
+
+- MLIR's input: applications, compilers, C program
 - Within MLIR, we can implement multiple *Dialects* for distinct inputs. For instance, we could use a Dialect to deal with tensors. Further, we can deploy a shared optimization layer to unify things.
 - Once we have an optimal IR, MLIR can now lower it onto the backends such as LLVM for CPUs, CIRCT for FPGAs. If you are targeting specialized hardware such as FPGA or TPU, you still need vendor-tools for final compilation (e.g., use Vivado to synthesis Verilog).
 
