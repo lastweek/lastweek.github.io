@@ -421,8 +421,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#mlir-flow" class="md-nav__link">
-    MLIR Flow
+  <a href="#mlir-at-a-high-level" class="md-nav__link">
+    MLIR At a High Level
   </a>
   
 </li>
@@ -2392,8 +2392,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#mlir-flow" class="md-nav__link">
-    MLIR Flow
+  <a href="#mlir-at-a-high-level" class="md-nav__link">
+    MLIR At a High Level
   </a>
   
 </li>
@@ -2512,10 +2512,14 @@ Also for work reasons, I need to understand MLIR at a high-level.</p>
 <li>how to use MLIR to build languages, optimizations for heterogenous devices.</li>
 </ol>
 <p>Without further ado, let&rsquo;s get started.</p>
-<h2 id="mlir-flow">MLIR Flow<a class="headerlink" href="#mlir-flow" title="Permanent link">&para;</a></h2>
-<p>This figure shows MLIR&rsquo;s workflow.</p>
+<h2 id="mlir-at-a-high-level">MLIR At a High Level<a class="headerlink" href="#mlir-at-a-high-level" title="Permanent link">&para;</a></h2>
+<p>MLIR is short for Multi-Level Intermediate Representation.
+MLIR helps to build reusage compiler infrastructure
+and reduce duplicate codes.</p>
+<p>I draw the following figure to show MLIR&rsquo;s workflow at a very high level.</p>
+<p>In specific:</p>
 <ul>
-<li>On the left side, we have the applications, compilers, C programs, etc. as the input to MLIR.</li>
+<li>MLIR&rsquo;s input: applications, compilers, C program</li>
 <li>Within MLIR, we can implement multiple <em>Dialects</em> for distinct inputs. For instance, we could use a Dialect to deal with tensors. Further, we can deploy a shared optimization layer to unify things.</li>
 <li>Once we have an optimal IR, MLIR can now lower it onto the backends such as LLVM for CPUs, CIRCT for FPGAs. If you are targeting specialized hardware such as FPGA or TPU, you still need vendor-tools for final compilation (e.g., use Vivado to synthesis Verilog).</li>
 </ul>
@@ -2649,7 +2653,7 @@ and then come back, read through this again.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 2, 2022</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 3, 2022</span>
       
     
   </small>
