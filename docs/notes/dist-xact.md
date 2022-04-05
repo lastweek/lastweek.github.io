@@ -369,3 +369,15 @@ The Marzullo’s Algorithm, used by Google Spanner.  [https://en.wikipedia.org/w
 Opacity, from FaRMv2
 
 What’s Really New with NewSQL?  [What’s Really New with NewSQL?](https://faculty.washington.edu/wlloyd/courses/tcss562/papers/Spring2017/team5_team6_relational_DB_services/Whats%20Really%20New%20with%20NewSQL.pdf)  
+
+## Thoughts on Future Work
+
+Database is a long-standing area with tons of papers published every year.
+There is never lack of innovation in this area.
+The challenges usually stem from the use of new hardware, networking, and use cases.
+
+Based on the recent trends, I think the following directions interest me.
+Some of them have been explored already or being explored.
+
+1. Database with high speed network such as RDMA. The use of RDMA challenges the transaction design, the replication protocol design, and so on. It bascially calls for a system re-design. Systems such as FaRM, HERD, FORD, pDPM and so on have explored this area quite extensively. But I always feel there is more to explore here. For instance, explore the data structure designs.
+2. Database on disaggregation and progrmmable networking hardware. Qizhen has done some amazing work in this space. But hs work is limited to a certain design choices. Besides, we should bring in programmable networking hardware such as p4 switch, NIC, etc. Can we break down a database into small code pieces and then run them on top of a set of small devices.
