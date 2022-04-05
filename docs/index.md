@@ -12,7 +12,28 @@ Contact: **ys** AT **ucsd** DOT **edu**
 
 You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
-??? tip "Research News"
+
+??? note "Blogging"
+
+    **Latest**
+
+      - Apr 2022 [MLIR](./notes/MLIR.md)
+      - Mar 2022 [Resource Disaggregation Spectrum](./notes/resource-disaggregation-spectrum.md)
+      - Feb 2022 [Distributed Transactions](./notes/dist-xact.md)
+      - Dec 2021 [Notes on Modern Data Center Networking](./notes/dcn.md)
+    
+    **Hot**
+
+      - Oct 2019 [FPGA Bitstream Explained](./fpga/bitstream.md)
+      - May 2020 [On DPDK and RDMA Related Software](./notes/source_code/rdma/)
+      - Jan 2020 [Modern Virtualization](./notes/virt.md)
+      - Dec 2020 [Dynamic Linking](./notes/dynamic_linking.md)
+      - Jun 2019 [Practical Cache Coherence](./notes/cache_coherence.md)
+      - Dec 2020 [Architecture](./notes/arch.md)
+      - and more!
+
+
+??? tip "Research"
 	- [_Mar 2022_] Serve as [ChinaSys'22 PC]()
 	- [_Mar 2022_] Serve as [APSys'22 PC]()
 	- [_Mar 2022_] Defended. The full defense slide is [here](./pubs/Defense_Slides_Yizhou_Shan.pdf).
@@ -36,6 +57,7 @@ You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 	- [_Jan 2019_] Short paper on __Disaggregated Persistent Memory__ accpeted to __NVMW'19__
 	- [_Jul 2018_] __LegoOS__ accepted to __OSDI'18__. Awarded Best Paper.
 	- [_May 2018_] Intern at [VMware Research](https://research.vmware.com/), with [Stanko Novakovic](https://sites.google.com/site/stankonovakovic/).
+
 
 ## Conferences
 
