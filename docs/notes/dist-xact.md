@@ -60,10 +60,12 @@ Pessimistic Concurrency Control & Optimistic Concurrency Control.
 **Must Read**
 
 * [Concurrency Control in Distributed Database Systems](https://people.eecs.berkeley.edu/~brewer/cs262/concurrency-distributed-databases.pdf), 1981. This paper categorizes 2PL, MVCC, OCC etc into 2 big types.
-*  [On Optimistic Methods for Concurrency Control, 1981](https://www.eecs.harvard.edu/~htk/publication/1981-tods-kung-robinson.pdf). This is the first OCC paper.
+* [On Optimistic Methods for Concurrency Control, 1981](https://www.eecs.harvard.edu/~htk/publication/1981-tods-kung-robinson.pdf). This is the first OCC paper.
 *  [An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14](https://www.vldb.org/pvldb/vol8/p209-yu.pdf). This CMU paper has follows the 1981 paper's categorization on CC methods.
 *  [An Evaluation of Distributed Concurrency Control, VLDB’17](https://www.vldb.org/pvldb/vol10/p553-harding.pdf) 
 *  [An Empirical Evaluation of In-Memory Multi-Version Concurrency Control, VLDB’17](https://15721.courses.cs.cmu.edu/spring2020/papers/03-mvcc1/wu-vldb2017.pdf). This paper is a must read, it explains what is MVTO, MV2PL, MVOCC, etc.
+* Optional [Aurogon: Taming Aborts in All Phases for Distributed In-Memory Transactions, FAST'22]()
+* Optional [FORD, FAST'22]()
 
 **Courses**
 
@@ -77,13 +79,16 @@ Pessimistic Concurrency Control & Optimistic Concurrency Control.
 	*  [Multi-Version Concurrency Control (Protocols)](https://15721.courses.cs.cmu.edu/spring2020/schedule.html#jan-27-2020) 
 	*  [Multi-Version Concurrency Control (Garbage Collection)](https://15721.courses.cs.cmu.edu/spring2020/schedule.html#jan-29-2020) 
 
-As we mentioned earlier, database concurrency control is categorized as two types: pessimistic CC using 2-phase locking (2PL) and optimistic CC using Timestamp-Ordering (T/O). This categorization is derived from this classical paper  [Concurrency Control in Distributed Database Systems](https://people.eecs.berkeley.edu/~brewer/cs262/concurrency-distributed-databases.pdf) , 1981. Table is from the  [An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14](https://www.vldb.org/pvldb/vol8/p209-yu.pdf) .
+As we mentioned earlier, database concurrency control is categorized as two types: **pessimistic CC using 2-phase locking (2PL)** and **optimistic CC using Timestamp-Ordering (T/O)**.
+This categorization is derived from this classical paper [Concurrency Control in Distributed Database Systems](https://people.eecs.berkeley.edu/~brewer/cs262/concurrency-distributed-databases.pdf).
+The following table is from [An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14](https://www.vldb.org/pvldb/vol8/p209-yu.pdf).
+
 ![](Knowledge-Distributed-Transactions/A1xlCuhGL6WCQjqfLNXr4LoyjN5UiRbyJfOyhe5-YH6ULXfUKeyxB-1ah4dMTGr1wFilk9VCoXNHoZzdgv1zLn2Tx8n1bclhKeivPDKzV7iVu4rq8vl364nQbNtrgYLlDyTct1_Q.png)
 
 Also from this  [CMU 15-445 slide](https://15445.courses.cs.cmu.edu/fall2019/slides/18-timestampordering.pdf) :
 ![](Knowledge-Distributed-Transactions/-FOAHSMN6LD21PPcBi1RzEIEGJwGmxDHOLTL359fLcH8OI48hpWBQMSM8KXRYhFWAUPugK-J5LDWO6znTIPMMPq6vvFlTcLsf5tJgsdE0H0iQNHNpWmAhZatZ4UfHnGyRM4zTQsA.png)
 
-Recap, 2 general types of CC mechanisms:
+Recap:
 
 * Pessimistic CC: Two-phase Locking (2PL)
 * Optimistic CC: Timestamp Ordering (T/O)
@@ -91,7 +96,7 @@ Recap, 2 general types of CC mechanisms:
 	* OCC
 	* MVCC-TO
 
-The traditional OCC, MVCC-TO fall into the T/O category. 
+The well-known `OCC`, `MVCC-TO` concepts fall into the T/O category. 
 However, don’t confuse the MVCC with concurrency control.
 MVCC is not a concurrency control method.
 It must work with a CC method.
@@ -103,15 +108,36 @@ Call back to Hotpot: I think its MRSW is 2PL+2PC, MRMW is OCC+2PC.
 
 #### Pessimistic CC: 2PL
 
-Easy to understand.
+Not too much to explain here. Maybe read the MV2PL paper for the MV + 2PL combo.
 
 #### Optimistic CC: T/O
 
-For details, read [An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14](https://www.vldb.org/pvldb/vol8/p209-yu.pdf)  and  [CMU 15-445 slide](https://15445.courses.cs.cmu.edu/fall2019/slides/18-timestampordering.pdf) .
+The essense of T/O, as its name suggested, is using timestamp to order operations and transactions.
+Image there exist a perfect logical clock available to all distributed nodes.
+Whenever a node wants to run a transaction, it will take a timestamp based on the global clock.
+The node further attaches this timestamp to all operations within the transaction it wishes to execute.
+This practice establishes a global order on all transactions. Conflicts therefore can be resolved using
+timestamps.
 
-* Timestamp-Ordering TO
-* OCC
-* MVCC-TO
+The above reasoning is a super high-level gist on how a T/O based CC could work.
+There are many nuances and implementation choices to be made.
+First of all, there is no such perfect clock among distributed nodes.
+Even if there is a centralize time management system, the cost will be super high.
+Because it has high-concurrency issues.
+Second, a system can order things in the beginning of a transaction, or in the middle, or in the end (OCC).
+Third, there might a single version, or multiple versions of the same data.
+Combined, they lead to several popular subcategories listed below.
+
+* Basic Timestamp-Ordering (Basic T/O)
+* Optimistic Concurrency Control (OCC)
+* Multi-version Concurrency Control (MVCC) with T/O
+
+Quote the VLDB'14 paper:
+
+> Timestamp ordering (T/O) concurrency control schemes generate a serialization order of transactions a priori and then the DBMS enforces this order. A transaction is assigned a unique, monotonically increasing timestamp before it is executed; this timestamp is used by the DBMS to process conﬂicting operations in the proper order (e.g., read and write operations on the same element, or two separate write operations on the same element).
+
+As for their detailed implementation rationale, I recommend reading
+[An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14](https://www.vldb.org/pvldb/vol8/p209-yu.pdf), [CMU 15-445 slide](https://15445.courses.cs.cmu.edu/fall2019/slides/18-timestampordering.pdf) .
 
 ### Multi-Versioning
 
