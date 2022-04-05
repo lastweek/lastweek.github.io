@@ -3,9 +3,12 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Apr 5, 2022| Reorg|
 	|Feb 25, 2022| Initial|
 
 :sailboat:
+
+## Why I started this note
 
 This note was originally written in this [google doc](https://docs.google.com/document/d/1uziWg4Ca-0-MVf8ehD-cJnDqNkpzxjhj-I5Pu2Civ7A/edit?usp=sharing).
 This note was my attempt to revive the distributed transaction topic and to get
@@ -13,71 +16,37 @@ a better understanding about database systems in general.
 The end result is quite fruitful, I covered various concurrency control schemes,
 isolation levels, and so on. The consensus protocols, query optimizations etc topics are not extensively discussed here.
 
-## Why I started this note
-
-My knowledge about distributed transactions and stuff starts from my first project, Hotpot (2017). However, during these 5 years, my knowledge in this area kind of stagnated. I haven’t done any serious distributed systems since Hotpot. Although LegoOS, Clio, and SuperNIC are all distributed systems, they don’t touch any of these serious concepts.
-
-Today 02/16/2022, I’m reading the  [FORD, FAST’22](https://www.usenix.org/conference/fast22/presentation/zhang-ming)  paper, they are designing distributed transactions for disaggregated persistent memory, they talked about OCC, 2PL, primary-backup etc schemes, and I decided to take another serious look at this topic. I still have the vivid memory of me reading some old Transaction-related surveys (after the ZooKeeper paper) in a small, smelly, broken Purdue ECE room when I first started my PhD. I also had a vivid memory of a meeting among myself, Yiying, Stanko, Marcus in a VMR office room. We were talking about OCC, MVCC, and the then upcoming OSDI’18 hybrid transaction paper. I was confused. Anyways, let’s revive this topic.
-
-## Papers and Readings
+Today 02/16/2022, I’m reading the  [FORD, FAST’22](https://www.usenix.org/conference/fast22/presentation/zhang-ming)  paper, they are designing distributed transactions for disaggregated persistent memory, they talked about OCC, 2PL, primary-backup etc schemes, and I decided to take another serious look at this topic. I still have the vivid memory of me reading some old Transaction-related surveys (after the ZooKeeper paper) in a small, smelly, broken Purdue ECE room when I first started my PhD. I also had a vivid memory of a meeting among myself, Yiying, Stanko, Marcus in a VMR office room. We were talking about OCC, MVCC, and the then upcoming OSDI’18 hybrid transaction paper. I was confused. Anyways, let’s get started.
 
 
-**Courses**
+## Quick Takeaways
 
-*  [Schedule | CMU 15-445/645 :: Intro to Database Systems (Fall 2019)](https://15445.courses.cs.cmu.edu/fall2019/schedule.html) 
-	* This is DBMS basics, good start. 
-*  [Schedule - CMU 15-721 :: Advanced Database Systems (Spring 2020)](https://15721.courses.cs.cmu.edu/spring2020/schedule.html)  
-	* This is more advanced paper reading.
+**(1) Multi-versioning (MV) is the prevalent default implementation choice in the wild, for its better performance on various scenarios.**
+Note, MV itself is *not* a concurrency control mechanism.
+MV must combine with a concurrency control mechanism (e.g., `2PL`, `T/O`),
+resulting in combos such as `MVTO`, `MVOCC`, `MV2PL`.
+In my opinion, the commonly mentioned `MVCC` in various literatures actually
+refers to `MVTO`, i.e., multi-versioning with timestamp-ordering
+(See the MVCC section below for more details).
 
-**General Readings**
-
-*  [01 Papers - ALL](https://docs.google.com/spreadsheets/d/1JODWoEtDBxeOTr-ZqEqm3D-9wfADyNqgMoIOSpukBL0/edit#gid=266644662)   - a TAB is dedicated to this topic
-*  [Zotero Paper Collection](https://www.zotero.org/lastweek/collections/6GHIQ7E8) 
-*  [http://www.redbook.io/](http://www.redbook.io/)  The famous Red Book
-*  [theanalyst/awesome-distributed-systems](https://github.com/theanalyst/awesome-distributed-systems)   - Github Awesome List
-*  [Distributed Systems Reading List](https://dancres.github.io/Pages/)   - Reading List
-
-**Good Readings**
-
-*  [Time, Clocks, and the Ordering of Events in a Distributed System, 1978](https://lamport.azurewebsites.net/pubs/time-clocks.pdf)  - classical
-*  [On Optimistic Methods for Concurrency Control, 1981](https://www.eecs.harvard.edu/~htk/publication/1981-tods-kung-robinson.pdf) 
-	* First paper proposing OCC, definitely a seminal paper.
-*  [Concurrency Control in Distributed Database Systems](https://people.eecs.berkeley.edu/~brewer/cs262/concurrency-distributed-databases.pdf) , 1981
-	* This paper categorizes 2PL, MVCC, OCC etc into 2 big types.
-	* The CMU slides/papers use this categorization to this date.
-*  [Linearizability: a correctness condition for concurrent objects](https://dl.acm.org/doi/abs/10.1145/78969.78972) , 1990 
-*  [An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14](https://www.vldb.org/pvldb/vol8/p209-yu.pdf) 
-	* A good read on comparing various concurrency control schemes.
-	* Note that the MVCC mentioned in this paper is MVTO.
-*  [An Empirical Evaluation of In-Memory Multi-Version Concurrency Control, VLDB’17](https://www.vldb.org/pvldb/vol10/p781-Wu.pdf) 
-	* This is a really good read and should be read in great detail.
-	* Understand that OCC’s core is to reduce the critical section time. And MVCC is not a concurrency control method on its own, it merely enables multiple versions of the same object/tuple. Hence MVCC could work with any concurrency control methods, resulting in combos like MVTO, MVOCC, MV2PL.
-*  [An Evaluation of Distributed Concurrency Control, VLDB’17](https://www.vldb.org/pvldb/vol10/p553-harding.pdf) 
-	* This read reminds us the default Isolation level out in the wild is usually not serializability, but something weaker like Snapshot Isolation, or Read Committed.
-
-## Quick Takeaway
-
-(1) Multi-versioning is the prevalent default implementation choice in the wild, for its better performance on various use cases.
-The multi-versioning itself is not a concurrency control, it must couple with a concurrency control method,
-resulting in combos such as MVTO, MVOCC, MV2PL.
-The popular MVCC concept mentioned in various literatures, I think, is MVTO, i.e., multi-versioning with timestamp-ordering.
-See the MVCC section for more details.
-
-The following image shows the commercial/research use of MVCC DBMS.
+This image shows the commercial/research use of MVCC DBMS.
 ![](Knowledge-Distributed-Transactions/iDNfWdTnUFKSbNxzup67Rxu1kONJvKCIdivaKgFv6cBy-Gdk2ht7jqcP4EMb6FN1sKE8lEDashuBQi5Q15Qupg47GQyRfVXFCdoES1wyVzyXFrQRpMQ2O868VgXCeb2I0fdNIrnF.png)
 
 
-(2) For database isolation levels, the Serializable isolation is usually NOT the default option provided by commercial DBMS systems.
-For better performance, the default one is usually Snapshot Isolation, or Read Committed.
+**(2) For better performance, database systems usually use Snapshot Isolation or Read Committed as their default isolation level**. The Serializable isolation is usually *note* the default choice in commercial DBMS systems.
 It is baffling to know the fact that many real world systems are actually operating under a weak consistency model
-and we are actually okay with it!
-The RedBook offers an interesting take on this topic. The market follows Gresham's law: bad money drives out good money.
-See the Isolation section for more details.
+and we (and the world) are okay with it!
+The *RedBook* offers an interesting take on this topic.
+The market follows Gresham's law: bad money drives out good money
+(See the Isolation section for more details).
 
-The following image shows the default Isolation level used by various systems. A bit old image from a VLDB’13 paper.
+This image shows the default Isolation level used by various systems (from a VLDB’13 paper).
 ![](Knowledge-Distributed-Transactions/u_3prdQiWiP9_lc4AhHAqhs1f3kaWJ-vaHo4qxrZ_0h3RektXZWXi9wSUfHpGhpdJIDp0dVM_ffWLKkYoeboVhBw7tCxiUS9jF98Q_YxiAZxfiToleWyfKfXlnt0K7cwEMwYu1tp.png)
 
 ## Concepts
+
+This section lays out various concepts related to distributed transactions and
+DBMS in general.
 
 ### Misc
 
@@ -210,7 +179,7 @@ In general, there are two big types of concurrency control:
 
 The traditional OCC, MVCC-TO, belongs to the Timestamp Ordering Optimistic category. 
 However, don’t confuse the MVCC with concurrency control. MVCC is not a concurrency control method and can work with any of the above concurrency control methods. The above table has MVCC under T/O because it is MVCC-T/O.
-* NOTE: After reading the VLDB’17 paper, I think that MVCC can NOT be categorized as a standalone concurrency control method. Hence, we should not say MVCC, OCC, 2PL as if they are in the same league. MVCC states multiple versions of the same object/tuple, it needs to work with other concurrency control methods, so as to end up with MVTO, MVOCC, MV2PL. I think the most common one, or the one that people unconsciously talk about is MVTO. See the following MVCC section for more details!
+	- NOTE: After reading the VLDB’17 paper, I think that MVCC can NOT be categorized as a standalone concurrency control method. Hence, we should not say MVCC, OCC, 2PL as if they are in the same league. MVCC states multiple versions of the same object/tuple, it needs to work with other concurrency control methods, so as to end up with MVTO, MVOCC, MV2PL. I think the most common one, or the one that people unconsciously talk about is MVTO. See the following MVCC section for more details!
 
 Call back to Hotpot: MRSW is 2PL+2PC, MRMW is OCC+2PC.
 
@@ -324,3 +293,41 @@ The Marzullo’s Algorithm, used by Google Spanner.  [https://en.wikipedia.org/w
 Opacity, from FaRMv2
 
 What’s Really New with NewSQL?  [What’s Really New with NewSQL?](https://faculty.washington.edu/wlloyd/courses/tcss562/papers/Spring2017/team5_team6_relational_DB_services/Whats%20Really%20New%20with%20NewSQL.pdf)  
+
+
+
+
+## Papers and Readings
+
+**Courses**
+
+*  [Schedule | CMU 15-445/645 :: Intro to Database Systems (Fall 2019)](https://15445.courses.cs.cmu.edu/fall2019/schedule.html) 
+	* This is DBMS basics, good start. 
+*  [Schedule - CMU 15-721 :: Advanced Database Systems (Spring 2020)](https://15721.courses.cs.cmu.edu/spring2020/schedule.html)  
+	* This is more advanced paper reading.
+
+**General Readings**
+
+*  [01 Papers - ALL](https://docs.google.com/spreadsheets/d/1JODWoEtDBxeOTr-ZqEqm3D-9wfADyNqgMoIOSpukBL0/edit#gid=266644662)   - a TAB is dedicated to this topic
+*  [Zotero Paper Collection](https://www.zotero.org/lastweek/collections/6GHIQ7E8) 
+*  [http://www.redbook.io/](http://www.redbook.io/)  The famous Red Book
+*  [theanalyst/awesome-distributed-systems](https://github.com/theanalyst/awesome-distributed-systems)   - Github Awesome List
+*  [Distributed Systems Reading List](https://dancres.github.io/Pages/)   - Reading List
+
+**Good Readings**
+
+*  [Time, Clocks, and the Ordering of Events in a Distributed System, 1978](https://lamport.azurewebsites.net/pubs/time-clocks.pdf)  - classical
+*  [On Optimistic Methods for Concurrency Control, 1981](https://www.eecs.harvard.edu/~htk/publication/1981-tods-kung-robinson.pdf) 
+	* First paper proposing OCC, definitely a seminal paper.
+*  [Concurrency Control in Distributed Database Systems](https://people.eecs.berkeley.edu/~brewer/cs262/concurrency-distributed-databases.pdf) , 1981
+	* This paper categorizes 2PL, MVCC, OCC etc into 2 big types.
+	* The CMU slides/papers use this categorization to this date.
+*  [Linearizability: a correctness condition for concurrent objects](https://dl.acm.org/doi/abs/10.1145/78969.78972) , 1990 
+*  [An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14](https://www.vldb.org/pvldb/vol8/p209-yu.pdf) 
+	* A good read on comparing various concurrency control schemes.
+	* Note that the MVCC mentioned in this paper is MVTO.
+*  [An Empirical Evaluation of In-Memory Multi-Version Concurrency Control, VLDB’17](https://www.vldb.org/pvldb/vol10/p781-Wu.pdf) 
+	* This is a really good read and should be read in great detail.
+	* Understand that OCC’s core is to reduce the critical section time. And MVCC is not a concurrency control method on its own, it merely enables multiple versions of the same object/tuple. Hence MVCC could work with any concurrency control methods, resulting in combos like MVTO, MVOCC, MV2PL.
+*  [An Evaluation of Distributed Concurrency Control, VLDB’17](https://www.vldb.org/pvldb/vol10/p553-harding.pdf) 
+	* This read reminds us the default Isolation level out in the wild is usually not serializability, but something weaker like Snapshot Isolation, or Read Committed.
