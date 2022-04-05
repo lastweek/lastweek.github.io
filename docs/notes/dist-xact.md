@@ -13,21 +13,21 @@
 This note was originally written in this [google doc](https://docs.google.com/document/d/1uziWg4Ca-0-MVf8ehD-cJnDqNkpzxjhj-I5Pu2Civ7A/edit?usp=sharing).
 This note was my attempt to revive the distributed transaction topic and to get
 a better understanding about database systems in general.
-The end result is quite fruitful, I covered various concurrency control schemes,
-isolation levels, and so on. The consensus protocols, query optimizations etc topics are not extensively discussed here.
+The result was quite fruitful, I covered various concurrency control schemes,
+isolation levels, etc. The consensus protocols, query optimizations etc topics are not extensively discussed here.
 
 Today 02/16/2022, I’m reading the  [FORD, FAST’22](https://www.usenix.org/conference/fast22/presentation/zhang-ming)  paper, they are designing distributed transactions for disaggregated persistent memory, they talked about OCC, 2PL, primary-backup etc schemes, and I decided to take another serious look at this topic. I still have the vivid memory of me reading some old Transaction-related surveys (after the ZooKeeper paper) in a small, smelly, broken Purdue ECE room when I first started my PhD. I also had a vivid memory of a meeting among myself, Yiying, Stanko, Marcus in a VMR office room. We were talking about OCC, MVCC, and the then upcoming OSDI’18 hybrid transaction paper. I was confused. Anyways, let’s get started.
 
 
 ## Quick Takeaways
 
-**(0) Concurrency control (CC) is categorized as two types: pessimistic CC using 2-phase locking (2PL) and optimistic CC using Timestamp-Ordering (T/O).**.
+**(1) Concurrency control (CC) is categorized as two types: pessimistic CC using 2-phase locking (2PL) and optimistic CC using Timestamp-Ordering (T/O).**.
 This categorization is derived from a classical paper ([Concurrency Control in Distributed Database Systems](https://people.eecs.berkeley.edu/~brewer/cs262/concurrency-distributed-databases.pdf), 1981).
-This image comes from [An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14](https://www.vldb.org/pvldb/vol8/p209-yu.pdf) . Note, I think the MVCC actually should be MVTO.
+This image comes from [An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14](https://www.vldb.org/pvldb/vol8/p209-yu.pdf). Note, I think the MVCC actually should be MVTO.
 ![](Knowledge-Distributed-Transactions/A1xlCuhGL6WCQjqfLNXr4LoyjN5UiRbyJfOyhe5-YH6ULXfUKeyxB-1ah4dMTGr1wFilk9VCoXNHoZzdgv1zLn2Tx8n1bclhKeivPDKzV7iVu4rq8vl364nQbNtrgYLlDyTct1_Q.png)
 
 
-**(1) Multi-versioning (MV) is the prevalent default implementation choice in the wild, for its better performance on various scenarios.**
+**(2) Multi-versioning (MV) is the prevalent default implementation choice in the wild, for its better performance on various scenarios.**
 Most people think MV is a CC mechanism, but it is not.
 MV must work with a CC mechanism (e.g., `2PL`, `T/O`) to become a full solution,
 resulting in combos such as `MVTO`, `MVOCC`, `MV2PL`.
@@ -35,11 +35,12 @@ In my opinion, the commonly mentioned `MVCC` in various literatures actually
 refers to `MVTO`, i.e., multi-versioning with timestamp-ordering
 (see the MVCC section below for more details).
 
-This image shows the commercial/research use of MVCC DBMS.
+This image shows the commercial/research use of MVCC DBMS. Credit: [An Empirical Evaluation of In-Memory Multi-Version Concurrency Control, VLDB'17](https://www.vldb.org/pvldb/vol10/p781-Wu.pdf)
+
 ![](Knowledge-Distributed-Transactions/iDNfWdTnUFKSbNxzup67Rxu1kONJvKCIdivaKgFv6cBy-Gdk2ht7jqcP4EMb6FN1sKE8lEDashuBQi5Q15Qupg47GQyRfVXFCdoES1wyVzyXFrQRpMQ2O868VgXCeb2I0fdNIrnF.png)
 
 
-**(2) For better performance, DBMS usually adopt `Snapshot Isolation` or `Read Committed` as their default isolation level**.
+**(3) For better performance, DBMS usually adopt `Snapshot Isolation` or `Read Committed` as their default isolation level**.
 The `Serializable` isolation level is usually *not* the default one in commercial DBMS.
 It is baffling to know the fact that many real world systems are actually operating under a weak consistency model
 and we (and the world) are okay with it!
@@ -47,7 +48,7 @@ The *RedBook* offers an interesting take on this topic.
 The market follows Gresham's law: bad money drives out good money
 (See the Isolation section for more details).
 
-This image shows the default Isolation level used by various systems (from a VLDB’13 paper).
+This image shows the default Isolation level used by various systems. Credit: [Highly Available Transactions: Virtues and Limitations, VLDB'13](https://www.vldb.org/pvldb/vol7/p181-bailis.pdf) 
 ![](Knowledge-Distributed-Transactions/u_3prdQiWiP9_lc4AhHAqhs1f3kaWJ-vaHo4qxrZ_0h3RektXZWXi9wSUfHpGhpdJIDp0dVM_ffWLKkYoeboVhBw7tCxiUS9jF98Q_YxiAZxfiToleWyfKfXlnt0K7cwEMwYu1tp.png)
 
 ## Concepts
