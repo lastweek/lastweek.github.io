@@ -2707,6 +2707,8 @@ The market follows Gresham&rsquo;s law: bad money drives out good money
 <li><a href="https://www.vldb.org/pvldb/vol8/p209-yu.pdf">An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14</a>. This CMU paper has follows the 1981 paper&rsquo;s categorization on CC methods.</li>
 <li><a href="https://www.vldb.org/pvldb/vol10/p553-harding.pdf">An Evaluation of Distributed Concurrency Control, VLDB’17</a> </li>
 <li><a href="https://15721.courses.cs.cmu.edu/spring2020/papers/03-mvcc1/wu-vldb2017.pdf">An Empirical Evaluation of In-Memory Multi-Version Concurrency Control, VLDB’17</a>. This paper is a must read, it explains what is MVTO, MV2PL, MVOCC, etc.</li>
+<li>Optional <a href="">Aurogon: Taming Aborts in All Phases for Distributed In-Memory Transactions, FAST&lsquo;22</a></li>
+<li>Optional <a href="">FORD, FAST&lsquo;22</a></li>
 </ul>
 <p><strong>Courses</strong></p>
 <ul>
@@ -2724,11 +2726,13 @@ The market follows Gresham&rsquo;s law: bad money drives out good money
 </ul>
 </li>
 </ul>
-<p>As we mentioned earlier, database concurrency control is categorized as two types: pessimistic CC using 2-phase locking (2PL) and optimistic CC using Timestamp-Ordering (T/O). This categorization is derived from this classical paper  <a href="https://people.eecs.berkeley.edu/~brewer/cs262/concurrency-distributed-databases.pdf">Concurrency Control in Distributed Database Systems</a> , 1981. Table is from the  <a href="https://www.vldb.org/pvldb/vol8/p209-yu.pdf">An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14</a> .
-<img alt="" src="../Knowledge-Distributed-Transactions/A1xlCuhGL6WCQjqfLNXr4LoyjN5UiRbyJfOyhe5-YH6ULXfUKeyxB-1ah4dMTGr1wFilk9VCoXNHoZzdgv1zLn2Tx8n1bclhKeivPDKzV7iVu4rq8vl364nQbNtrgYLlDyTct1_Q.png" /></p>
+<p>As we mentioned earlier, database concurrency control is categorized as two types: <strong>pessimistic CC using 2-phase locking (2PL)</strong> and <strong>optimistic CC using Timestamp-Ordering (T/O)</strong>.
+This categorization is derived from this classical paper <a href="https://people.eecs.berkeley.edu/~brewer/cs262/concurrency-distributed-databases.pdf">Concurrency Control in Distributed Database Systems</a>.
+The following table is from <a href="https://www.vldb.org/pvldb/vol8/p209-yu.pdf">An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14</a>.</p>
+<p><img alt="" src="../Knowledge-Distributed-Transactions/A1xlCuhGL6WCQjqfLNXr4LoyjN5UiRbyJfOyhe5-YH6ULXfUKeyxB-1ah4dMTGr1wFilk9VCoXNHoZzdgv1zLn2Tx8n1bclhKeivPDKzV7iVu4rq8vl364nQbNtrgYLlDyTct1_Q.png" /></p>
 <p>Also from this  <a href="https://15445.courses.cs.cmu.edu/fall2019/slides/18-timestampordering.pdf">CMU 15-445 slide</a> :
 <img alt="" src="../Knowledge-Distributed-Transactions/-FOAHSMN6LD21PPcBi1RzEIEGJwGmxDHOLTL359fLcH8OI48hpWBQMSM8KXRYhFWAUPugK-J5LDWO6znTIPMMPq6vvFlTcLsf5tJgsdE0H0iQNHNpWmAhZatZ4UfHnGyRM4zTQsA.png" /></p>
-<p>Recap, 2 general types of CC mechanisms:</p>
+<p>Recap:</p>
 <ul>
 <li>Pessimistic CC: Two-phase Locking (2PL)</li>
 <li>Optimistic CC: Timestamp Ordering (T/O)<ul>
@@ -2738,7 +2742,7 @@ The market follows Gresham&rsquo;s law: bad money drives out good money
 </ul>
 </li>
 </ul>
-<p>The traditional OCC, MVCC-TO fall into the T/O category. 
+<p>The well-known <code>OCC</code>, <code>MVCC-TO</code> concepts fall into the T/O category. 
 However, don’t confuse the MVCC with concurrency control.
 MVCC is not a concurrency control method.
 It must work with a CC method.
@@ -2746,14 +2750,33 @@ The above table has MVCC under T/O because it is MVCC-T/O.</p>
 <p>(Old note: After reading the VLDB’17 paper, I think that MVCC can NOT be categorized as a standalone concurrency control method. Hence, we should not say MVCC, OCC, 2PL as if they are in the same league. MVCC states multiple versions of the same object/tuple, it needs to work with other concurrency control methods, so as to end up with MVTO, MVOCC, MV2PL. I think the most common one, or the one that people unconsciously talk about is MVTO. See the following MVCC section for more details!)</p>
 <p>Call back to Hotpot: I think its MRSW is 2PL+2PC, MRMW is OCC+2PC.</p>
 <h4 id="pessimistic-cc-2pl">Pessimistic CC: 2PL<a class="headerlink" href="#pessimistic-cc-2pl" title="Permanent link">&para;</a></h4>
-<p>Easy to understand.</p>
+<p>Not too much to explain here. Maybe read the MV2PL paper for the MV + 2PL combo.</p>
 <h4 id="optimistic-cc-to">Optimistic CC: T/O<a class="headerlink" href="#optimistic-cc-to" title="Permanent link">&para;</a></h4>
-<p>For details, read <a href="https://www.vldb.org/pvldb/vol8/p209-yu.pdf">An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14</a>  and  <a href="https://15445.courses.cs.cmu.edu/fall2019/slides/18-timestampordering.pdf">CMU 15-445 slide</a> .</p>
+<p>The essense of T/O, as its name suggested, is using timestamp to order operations and transactions.
+Image there exist a perfect logical clock available to all distributed nodes.
+Whenever a node wants to run a transaction, it will take a timestamp based on the global clock.
+The node further attaches this timestamp to all operations within the transaction it wishes to execute.
+This practice establishes a global order on all transactions. Conflicts therefore can be resolved using
+timestamps.</p>
+<p>The above reasoning is a super high-level gist on how a T/O based CC could work.
+There are many nuances and implementation choices to be made.
+First of all, there is no such perfect clock among distributed nodes.
+Even if there is a centralize time management system, the cost will be super high.
+Because it has high-concurrency issues.
+Second, a system can order things in the beginning of a transaction, or in the middle, or in the end (OCC).
+Third, there might a single version, or multiple versions of the same data.
+Combined, they lead to several popular subcategories listed below.</p>
 <ul>
-<li>Timestamp-Ordering TO</li>
-<li>OCC</li>
-<li>MVCC-TO</li>
+<li>Basic Timestamp-Ordering (Basic T/O)</li>
+<li>Optimistic Concurrency Control (OCC)</li>
+<li>Multi-version Concurrency Control (MVCC) with T/O</li>
 </ul>
+<p>Quote the VLDB&lsquo;14 paper:</p>
+<blockquote>
+<p>Timestamp ordering (T/O) concurrency control schemes generate a serialization order of transactions a priori and then the DBMS enforces this order. A transaction is assigned a unique, monotonically increasing timestamp before it is executed; this timestamp is used by the DBMS to process conﬂicting operations in the proper order (e.g., read and write operations on the same element, or two separate write operations on the same element).</p>
+</blockquote>
+<p>As for their detailed implementation rationale, I recommend reading
+<a href="https://www.vldb.org/pvldb/vol8/p209-yu.pdf">An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14</a>, <a href="https://15445.courses.cs.cmu.edu/fall2019/slides/18-timestampordering.pdf">CMU 15-445 slide</a> .</p>
 <h3 id="multi-versioning">Multi-Versioning<a class="headerlink" href="#multi-versioning" title="Permanent link">&para;</a></h3>
 <p><strong>Papers</strong></p>
 <ul>
