@@ -21,19 +21,26 @@ Today 02/16/2022, I’m reading the  [FORD, FAST’22](https://www.usenix.org/co
 
 ## Quick Takeaways
 
+**(0) Concurrency control (CC) is categorized as two types: pessimistic CC using 2-phase locking (2PL) and optimistic CC using Timestamp-Ordering (T/O).**.
+This categorization is derived from a classical paper ([Concurrency Control in Distributed Database Systems](https://people.eecs.berkeley.edu/~brewer/cs262/concurrency-distributed-databases.pdf), 1981).
+This image comes from [An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14](https://www.vldb.org/pvldb/vol8/p209-yu.pdf) . Note, I think the MVCC actually should be MVTO.
+![](Knowledge-Distributed-Transactions/A1xlCuhGL6WCQjqfLNXr4LoyjN5UiRbyJfOyhe5-YH6ULXfUKeyxB-1ah4dMTGr1wFilk9VCoXNHoZzdgv1zLn2Tx8n1bclhKeivPDKzV7iVu4rq8vl364nQbNtrgYLlDyTct1_Q.png)
+
+
 **(1) Multi-versioning (MV) is the prevalent default implementation choice in the wild, for its better performance on various scenarios.**
-Note, MV itself is *not* a concurrency control mechanism.
-MV must combine with a concurrency control mechanism (e.g., `2PL`, `T/O`),
+Most people think MV is a CC mechanism, but it is not.
+MV must work with a CC mechanism (e.g., `2PL`, `T/O`) to become a full solution,
 resulting in combos such as `MVTO`, `MVOCC`, `MV2PL`.
 In my opinion, the commonly mentioned `MVCC` in various literatures actually
 refers to `MVTO`, i.e., multi-versioning with timestamp-ordering
-(See the MVCC section below for more details).
+(see the MVCC section below for more details).
 
 This image shows the commercial/research use of MVCC DBMS.
 ![](Knowledge-Distributed-Transactions/iDNfWdTnUFKSbNxzup67Rxu1kONJvKCIdivaKgFv6cBy-Gdk2ht7jqcP4EMb6FN1sKE8lEDashuBQi5Q15Qupg47GQyRfVXFCdoES1wyVzyXFrQRpMQ2O868VgXCeb2I0fdNIrnF.png)
 
 
-**(2) For better performance, database systems usually use Snapshot Isolation or Read Committed as their default isolation level**. The Serializable isolation is usually *note* the default choice in commercial DBMS systems.
+**(2) For better performance, DBMS usually adopt `Snapshot Isolation` or `Read Committed` as their default isolation level**.
+The `Serializable` isolation level is usually *not* the default one in commercial DBMS.
 It is baffling to know the fact that many real world systems are actually operating under a weak consistency model
 and we (and the world) are okay with it!
 The *RedBook* offers an interesting take on this topic.
@@ -45,112 +52,19 @@ This image shows the default Isolation level used by various systems (from a VLD
 
 ## Concepts
 
-This section lays out various concepts related to distributed transactions and
-DBMS in general.
-
-### Misc
-
-#### *2PC v.s. 2PL*
-
-2-phase locking
- [2-phase commit](https://en.wikipedia.org/wiki/Two-phase_commit_protocol) 
- [3-phase commit](https://en.wikipedia.org/wiki/Three-phase_commit_protocol) 
-
-> The two-phase commit (2PC) protocol should not be confused with the  [two-phase locking](https://en.wikipedia.org/wiki/Two-phase_locking)  (2PL) protocol, a  [concurrency control](https://en.wikipedia.org/wiki/Concurrency_control)  protocol.  
-
-[*NOTE: the description about OCC, MVCC, 2PL might be wrong. I had the wrong impression about them. But now I understand after reading the VLDB’17 paper. I believe the MVCC below can be thought of as MVCC-TO, or MVTO.*]
-
-Concurrency control methods such as 2PL, T/O(OCC, MVCC-TO, T/O) etc methods are used to ensure concurrent operations to shared data are serialized, hence ensuring serializability and data consistency. Their mechanisms ensure operations such as read/write are ordered properly.  These mechanisms can be used both within a single machine or across nodes. (The  [An Evaluation of Concurrency Control with One Thousand Cores, VLDB’04](https://www.vldb.org/pvldb/vol8/p209-yu.pdf)  paper evaluates several Concurrency Control methods within a single machine).
-
-Problem arises when going to multiple nodes: they cannot ensure whether the transaction commits at all participating nodes, some may have committed, some may have not - and this creates an inconsistent state. Use 2PL as an example: in 2PL, we first grab all locks across all involving nodes, we then run the execution/logic locally on a node, we finally send all the new data (if any) to other nodes and release the locks. In the last step, there is no way for us to make sure that all participating nodes have received the message. If only some of them finalized/committed the transaction, then the whole database/system is in an inconsistent state.
-
-This is where  [atomic commit protocol](https://en.wikipedia.org/wiki/Atomic_commit)  such as  [2-phase commit](https://en.wikipedia.org/wiki/Two-phase_commit_protocol)  comes in. It ensures that all participants either all commit or none of them commits the transaction. It does so by using another 2-phase protocol: prepare + commit. It is easy to understand. There are more complicated methods such as 3PC or Paxos Commit.
-
-I think my original confusion about 2PC and 2PL stems from my illusion that we can use 2PL to also implement what 2PC desires to achieve. But after the above reasoning, I realize that is not possible. 2PC and 2PL have very clear distinctions. I also had a misconception that 2PC is needed because it can ensure durability. This is also false because 2PC is required simply to ensure atomic commit, for both w/ or w/o durability guarantee. If we want durability, then 2PC’s participants would need to either do local logging or build on top of a replication mechanism such as Paxos.
-
-A short summary:
-
-* Concurrency control methods include 2PL, OCC, MVCC, T/O etc algorithms.
-* Atomic commit methods include 2PC, 2PC, paxos-commit
-* Concurrency control methods can work in a single machine or across machines
-* Once concurrency control goes distributed, it requires atomic commit to ensure consistency
-* 2PL + 2PC, OCC + 2PC, MVCC + 2PC etc are concurrency control + atomic commit
-* Atomic commit can include or exclude durability guarantee
-
-#### *Scenarios and Hardware*
-
-One key thing worth considering is the operating environment.
-Some systems like Spanner target geo-distributed data centers, which could go though low-latency WAN.
-
-#### *Bottlenecks*
-
-Many papers and systems have mentioned that the global timestamp allocation is a major bottleneck in Timestamp Ordering concurrency control systems (including OCC and MVCC).  This is easy to understand: having some sort of global data structure that increases monotonically is hard in a distributed setting. I think that’s why several systems (Spanner, FaRMv2) resort to proactively dealing with clock uncertainties. 
-
-#### In-memory v.s. Disk-base DBMS
-XXX
-
-#### Self-Driving DBMS
-
-Essentially uses ML to make some decisions?
-
-Readings:
-
-*  [Self-Driving Database Management Systems](https://db.cs.cmu.edu/papers/2017/p42-pavlo-cidr17.pdf) , CIDR’17 
-*  [Automatic Database Management System Tuning Through Large-scale Machine Learning](https://dl.acm.org/doi/pdf/10.1145/3035918.3064029)  
-
-### *Integrate Distributed Transaction and Replication*
-
-![](Knowledge-Distributed-Transactions/KMQ5CuLYTnYoJaQD4c7ilZCM0hj7FPyJ1IM2hFv68eygjnDraeHpGxhFc1PFR-PCmEkRCEuNLNgRZeso4hs3UO5g-4tA4yB0Zvotnvd32-292Zjd0Y7tcPbL_RZ8AuJJhogdaNeQ.png)
-(image from TAPIR, SOSP’15)
-
-I think the traditional DBMS systems implement distributed transactions and replication protocols as two different things.
-For example, the dist-xact could be sth like 2PL+2PC, OCC+2PC, MVOCC+2PC. Beneath, the replication protocol could be Primary-Backup replication, Paxos, or Raft.
-
-For the Google Spanner,
-I think the distributed transaction is using
-multi-versioned 2-phase locking with distributed 2-phase commit (i.e., MV2PL+2PC).
-Beneath, Spanner uses Paxos for data replication. The metadata stuff is stored in GFS.
-In their design, a set of machines form a Paxos group.
-Each paxos group has a leader. During a transaction, this leader is the transaction manager for its Paxos group.
-If a distributed transaction spans multiple Paxos groups, all group leaders would run MV2PL+2PC among them;
-leaders themselves run Paxos protocol within their own Paxos group.
-This layering is good for modularization but at the cost of more data/messages exchanged.
-Though, Spanner is a geo-distributed database, such design might be okay.
-It is not like it is building on top of RDMA or something.
-
-The naive way of layering a distributed transaction protocol on top of a replication protocol
-results in **over-coordination**.
-
-It is a natural thought to **co-design dist-xact and replication**.
-For instance, FaRM, SOSP’15 & FORD, FAST'22 both describe a co-designed four-phase protocol (lock, validation, commit-backup, commit-primary). 
-
-Related work in this space
-
-* **Hotpot, SoCC’17**co-designs distributed transaction and replication in its MRSW and MRMW protocols (which are 2PL+2PC, and OCC+2PC, respectively)
-* **FaRMv1, SOSP’15 & NSDI’14** co-designs distributed transaction and replication in one 4-phase protocol, using RDMA
-* FaRMv2, SIGMOD’19
-* [TAPIR, SOSP’15](https://irenezhang.net/papers/tapir-sosp15.pdf) 
-* [FORD: Fast One-sided RDMA-based Distributed Transactions for Disaggregated Persistent Memory, FAST'22]()
-* Papers from Mu Shuai
-
 ### Concurrency Control
 
-Pessimistic Concurrency Control &
-Optimistic Concurrency Control 
+Pessimistic Concurrency Control & Optimistic Concurrency Control.
 
-Must Read
+**Must Read**
 
-* [Concurrency Control in Distributed Database Systems](https://people.eecs.berkeley.edu/~brewer/cs262/concurrency-distributed-databases.pdf) , 1981
-	* This paper categorizes 2PL, MVCC, OCC etc into 2 big types.
-	* Must read. Seminal Paper.
-*  [On Optimistic Methods for Concurrency Control, 1981](https://www.eecs.harvard.edu/~htk/publication/1981-tods-kung-robinson.pdf)  - first OCC paper 
-*  [An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14](https://www.vldb.org/pvldb/vol8/p209-yu.pdf) 
-	* This CMU paper has very interesting categorization on concurrency control methods.
+* [Concurrency Control in Distributed Database Systems](https://people.eecs.berkeley.edu/~brewer/cs262/concurrency-distributed-databases.pdf), 1981. This paper categorizes 2PL, MVCC, OCC etc into 2 big types.
+*  [On Optimistic Methods for Concurrency Control, 1981](https://www.eecs.harvard.edu/~htk/publication/1981-tods-kung-robinson.pdf). This is the first OCC paper.
+*  [An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14](https://www.vldb.org/pvldb/vol8/p209-yu.pdf). This CMU paper has follows the 1981 paper's categorization on CC methods.
 *  [An Evaluation of Distributed Concurrency Control, VLDB’17](https://www.vldb.org/pvldb/vol10/p553-harding.pdf) 
-*  [An Empirical Evaluation of In-Memory Multi-Version Concurrency Control, VLDB’17](https://15721.courses.cs.cmu.edu/spring2020/papers/03-mvcc1/wu-vldb2017.pdf) 
-	* This paper is a must read, it explains MVTO, MV2PL, MVOCC.
+*  [An Empirical Evaluation of In-Memory Multi-Version Concurrency Control, VLDB’17](https://15721.courses.cs.cmu.edu/spring2020/papers/03-mvcc1/wu-vldb2017.pdf). This paper is a must read, it explains what is MVTO, MV2PL, MVOCC, etc.
 
-Courses:
+**Courses**
 
 * CMU  [Database Systems (15-445/645)](https://15445.courses.cs.cmu.edu/fall2019/schedule.html) , thanks to  [Andy Pavlo](http://www.cs.cmu.edu/~pavlo/) 
 	*  [Concurrency Control Theory](https://15445.courses.cs.cmu.edu/fall2019/schedule.html#oct-23-2019) 
@@ -162,61 +76,64 @@ Courses:
 	*  [Multi-Version Concurrency Control (Protocols)](https://15721.courses.cs.cmu.edu/spring2020/schedule.html#jan-27-2020) 
 	*  [Multi-Version Concurrency Control (Garbage Collection)](https://15721.courses.cs.cmu.edu/spring2020/schedule.html#jan-29-2020) 
 
-This categorization is derived from this classical paper  [Concurrency Control in Distributed Database Systems](https://people.eecs.berkeley.edu/~brewer/cs262/concurrency-distributed-databases.pdf) , 1981. Table is from the  [An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14](https://www.vldb.org/pvldb/vol8/p209-yu.pdf) .
+As we mentioned earlier, database concurrency control is categorized as two types: pessimistic CC using 2-phase locking (2PL) and optimistic CC using Timestamp-Ordering (T/O). This categorization is derived from this classical paper  [Concurrency Control in Distributed Database Systems](https://people.eecs.berkeley.edu/~brewer/cs262/concurrency-distributed-databases.pdf) , 1981. Table is from the  [An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14](https://www.vldb.org/pvldb/vol8/p209-yu.pdf) .
 ![](Knowledge-Distributed-Transactions/A1xlCuhGL6WCQjqfLNXr4LoyjN5UiRbyJfOyhe5-YH6ULXfUKeyxB-1ah4dMTGr1wFilk9VCoXNHoZzdgv1zLn2Tx8n1bclhKeivPDKzV7iVu4rq8vl364nQbNtrgYLlDyTct1_Q.png)
-(Note: the MVCC is MVTO, not just MVCC itself)
 
 Also from this  [CMU 15-445 slide](https://15445.courses.cs.cmu.edu/fall2019/slides/18-timestampordering.pdf) :
 ![](Knowledge-Distributed-Transactions/-FOAHSMN6LD21PPcBi1RzEIEGJwGmxDHOLTL359fLcH8OI48hpWBQMSM8KXRYhFWAUPugK-J5LDWO6znTIPMMPq6vvFlTcLsf5tJgsdE0H0iQNHNpWmAhZatZ4UfHnGyRM4zTQsA.png)
 
-In general, there are two big types of concurrency control:
+Recap, 2 general types of CC mechanisms:
 
-* Two-phase Locking
-* Timestamp Ordering
+* Pessimistic CC: Two-phase Locking (2PL)
+* Optimistic CC: Timestamp Ordering (T/O)
 	* TO
 	* OCC
 	* MVCC-TO
 
-The traditional OCC, MVCC-TO, belongs to the Timestamp Ordering Optimistic category. 
-However, don’t confuse the MVCC with concurrency control. MVCC is not a concurrency control method and can work with any of the above concurrency control methods. The above table has MVCC under T/O because it is MVCC-T/O.
-	- NOTE: After reading the VLDB’17 paper, I think that MVCC can NOT be categorized as a standalone concurrency control method. Hence, we should not say MVCC, OCC, 2PL as if they are in the same league. MVCC states multiple versions of the same object/tuple, it needs to work with other concurrency control methods, so as to end up with MVTO, MVOCC, MV2PL. I think the most common one, or the one that people unconsciously talk about is MVTO. See the following MVCC section for more details!
+The traditional OCC, MVCC-TO fall into the T/O category. 
+However, don’t confuse the MVCC with concurrency control.
+MVCC is not a concurrency control method.
+It must work with a CC method.
+The above table has MVCC under T/O because it is MVCC-T/O.
 
-Call back to Hotpot: MRSW is 2PL+2PC, MRMW is OCC+2PC.
+(Old note: After reading the VLDB’17 paper, I think that MVCC can NOT be categorized as a standalone concurrency control method. Hence, we should not say MVCC, OCC, 2PL as if they are in the same league. MVCC states multiple versions of the same object/tuple, it needs to work with other concurrency control methods, so as to end up with MVTO, MVOCC, MV2PL. I think the most common one, or the one that people unconsciously talk about is MVTO. See the following MVCC section for more details!)
 
-#### 2 Phase Locking (2PL)
+Call back to Hotpot: I think its MRSW is 2PL+2PC, MRMW is OCC+2PC.
+
+#### Pessimistic CC: 2PL
 
 Easy to understand.
 
-#### Timestamp-Ordering
+#### Optimistic CC: T/O
 
-For details, read  [An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14](https://www.vldb.org/pvldb/vol8/p209-yu.pdf)  and  [CMU 15-445 slide](https://15445.courses.cs.cmu.edu/fall2019/slides/18-timestampordering.pdf) .
+For details, read [An Evaluation of Concurrency Control with One Thousand Cores, VLDB’14](https://www.vldb.org/pvldb/vol8/p209-yu.pdf)  and  [CMU 15-445 slide](https://15445.courses.cs.cmu.edu/fall2019/slides/18-timestampordering.pdf) .
 
 * Timestamp-Ordering TO
 * OCC
 * MVCC-TO
 
-### MVCC
+### Multi-Versioning
 
-Papers
+**Papers**
 
-*  [https://15721.courses.cs.cmu.edu/spring2020/schedule.html](https://15721.courses.cs.cmu.edu/spring2020/schedule.html)  
-	* This course has links to various MVCC papers
+*  [https://15721.courses.cs.cmu.edu/spring2020/schedule.html](https://15721.courses.cs.cmu.edu/spring2020/schedule.html). This course has links to various MVCC papers
 *  [An Empirical Evaluation of In-Memory Multi-Version Concurrency Control, VLDB’17](https://15721.courses.cs.cmu.edu/spring2020/papers/03-mvcc1/wu-vldb2017.pdf) 
 *  [Serializable Snapshot Isolation in PostgreSQL, VLDB’12](https://15721.courses.cs.cmu.edu/spring2020/papers/03-mvcc1/p1850_danrkports_vldb2012.pdf)  
 *  [Scalable Garbage Collection for In-Memory MVCC Systems, VLDB’17](https://db.in.tum.de/~boettcher/p128-boettcher.pdf)  
 
 After a couple days of intensive reading, my understanding about MVCC has expanded quite a lot. It kind of went like this:
-* In the first stage, I would list MVCC as the opposite approach to OCC. And appears this is most people’s impression? Meaning, when we talk about a system, we will describe it either as OCC or MVCC, as if they are two different things that cannot co-exist.
-* After reading Peloton, VLDB’17 paper and the Alibaba blog post, I realized that my understanding wasn’t correct. They reminded me that OCC, at its core, is a concurrency control method, with a clear goal of reducing the amount of time that a transaction holds locks. Since the original and most OCC implementations are using a single-versioned database plus local copies, we naturally think OCC ⇒ single version. However, if we recall the core of OCC, it does not preclude multi-version at all. OCC can work with MVCC.
-* In fact, our misconception also applies to MVCC, not just OCC. Like the alibaba blog post said, MVCC alone is not a concurrency control method, it merely says there will be multiple versions of the same object/tuple. As a result, MVCC has to work with a real concurrency control method to become a full solution.
+
+- In the first stage, I would list MVCC as the opposite approach to OCC. And appears this is most people’s impression? Meaning, when we talk about a system, we will describe it either as OCC or MVCC, as if they are two different things that cannot co-exist.
+- After reading Peloton, VLDB’17 paper and the Alibaba blog post, I realized that my understanding wasn’t correct. They reminded me that **OCC, at its core, is a concurrency control method, with a clear goal of reducing the amount of time that a transaction holds locks**. Since the original and most OCC implementations are using a single-versioned database plus local copies, we naturally think OCC ⇒ single version. However, if we recall the core of OCC, **it does not preclude multi-versioning!**. OCC can work with MVCC.
+- My misconception also applies to MVCC, not just OCC. Like the alibaba blog post said, MVCC alone is not a concurrency control method, **it merely says there will be multiple versions of the same object/tuple**. As a result, MVCC has to work with a real concurrency control method to become a full solution.
 
 That’s why we have MVCC+TO, MVCC+2PL, MVCC+OCC.
 
 > MVCC is an optimization technique for read and write requests. It does not completely solve the concurrency problem of databases, so it must be used with concurrency control techniques for a complete concurrency control. E.g., multiversion two-phase locking (MV2PL), multiversion timestamp ordering (MVTO), multiversion optimistic concurrency control (MVOCC), and MV-SSI.  
 
-This paper  [An Empirical Evaluation of In-Memory Multi-Version Concurrency Control, VLDB’17](https://15721.courses.cs.cmu.edu/spring2020/papers/03-mvcc1/wu-vldb2017.pdf)  has a great explanation on how to implement MVTO, MVOCC, MV2PL.
+I highly recommend the [An Empirical Evaluation of In-Memory Multi-Version Concurrency Control, VLDB’17](https://15721.courses.cs.cmu.edu/spring2020/papers/03-mvcc1/wu-vldb2017.pdf) paper for a better understanding about MVTO, MVOCC, MV2PL, and how to implement them.
 
-This image is from this  [Alibaba Blog](https://www.alibabacloud.com/blog/a-deep-dive-into-database-concurrency-control_596779) . It captures what the above VLDB’17 paper said.
+This image is from this  [Alibaba Blog](https://www.alibabacloud.com/blog/a-deep-dive-into-database-concurrency-control_596779) . It is inline with what the above VLDB’17 paper said.
 ![](Knowledge-Distributed-Transactions/6sHo43Dta3eUAZVD5hTX1jmS9gzLPLoJN9oHrNCD35JAW2wD4mxCh8lTs4rfCi6yeR7FfZX5GEQo_vfs5lfUDAb8cDL0GQ9B-T_hG9qseCF9QKssfnWM8FRHWDg3-Mbzmk3U51f5.png) 
 
 **It is important to note that MVCC is the de-facto choice for modern DBMS for its better performance regarding read/write transactions**.
@@ -224,8 +141,7 @@ This image is from this  [Alibaba Blog](https://www.alibabacloud.com/blog/a-deep
 
 ### Isolation: Serializability, Snapshot Isolation, Linearliability
 
-
-Some official ~[Isolation levels](https://en.wikipedia.org/wiki/Isolation_(database_systems))~ in DBMS systems:
+Some official [Isolation levels](https://en.wikipedia.org/wiki/Isolation_(database_systems)) in DBMS systems:
 
 * Serializable
 * Repeatable reads
@@ -269,42 +185,129 @@ Serializable Snapshot Isolation (SSI)
 
 ### Replication Protocols
 
-
 Paxos
 Vertical Paxos
 Raft
 Primary-Backup
 Virtual Synchrony
 
-### Classical Systems
+TODO: come back and add more.
 
+### *Integrate Distributed Transaction and Replication*
+
+![](Knowledge-Distributed-Transactions/KMQ5CuLYTnYoJaQD4c7ilZCM0hj7FPyJ1IM2hFv68eygjnDraeHpGxhFc1PFR-PCmEkRCEuNLNgRZeso4hs3UO5g-4tA4yB0Zvotnvd32-292Zjd0Y7tcPbL_RZ8AuJJhogdaNeQ.png)
+(image from TAPIR, SOSP’15)
+
+I think most traditional DBMS systems implement *distributed transactions* and *replication *protocols* as two different things.
+For example, the dist-xact could be sth like 2PL+2PC, OCC+2PC, MVOCC+2PC. Beneath, the replication protocol could be Primary-Backup replication, Paxos, or Raft.
+
+For *Google Spanner*,
+(1) I think their distributed transaction is
+multi-versioned 2-phase locking with distributed 2-phase commit (i.e., `MV2PL+2PC`).
+(2) Beneath, Spanner uses Paxos for data replication. The metadata is stored in GFS.
+In their design, a set of machines form a Paxos group.
+Each paxos group has a leader. During a transaction, this leader is the transaction manager for its Paxos group.
+If a distributed transaction spans multiple Paxos groups, all group leaders would run MV2PL+2PC among them;
+leaders themselves run Paxos protocol within their own Paxos group.
+
+This layering is good for modularization but at the cost of more data/messages exchanged.
+But Spanner is a geo-distributed database, such design might be okay.
+It is not like it is building on top of RDMA or something.
+
+The takeway message is that: **The naive way of layering a distributed transaction protocol on top of a replication protocol results in `over-coordination`**.
+
+It is only natural to **co-design dist-xact and replication**.
+For instance, FaRM, SOSP’15 & FORD, FAST'22 both describe a co-designed four-phase protocol (lock, validation, commit-backup, commit-primary). 
+
+Related work in this space
+
+* **Hotpot, SoCC’17**co-designs distributed transaction and replication in its MRSW and MRMW protocols (which are 2PL+2PC, and OCC+2PC, respectively)
+* **FaRMv1, SOSP’15 & NSDI’14** co-designs distributed transaction and replication in one 4-phase protocol, using RDMA
+* FaRMv2, SIGMOD’19
+* [TAPIR, SOSP’15](https://irenezhang.net/papers/tapir-sosp15.pdf) 
+* [FORD: Fast One-sided RDMA-based Distributed Transactions for Disaggregated Persistent Memory, FAST'22]()
+* Papers from Mu Shuai
+
+### 2-Phase Commit v.s. 2PL
+
+- [2-phase locking]()
+- [2-phase commit](https://en.wikipedia.org/wiki/Two-phase_commit_protocol) 
+- [3-phase commit](https://en.wikipedia.org/wiki/Three-phase_commit_protocol) 
+
+> The two-phase commit (2PC) protocol should not be confused with the  [two-phase locking](https://en.wikipedia.org/wiki/Two-phase_locking)  (2PL) protocol, a  [concurrency control](https://en.wikipedia.org/wiki/Concurrency_control)  protocol.  
+
+[*NOTE: the description about OCC, MVCC, 2PL might be wrong. I had the wrong impression about them. But now I understand after reading the VLDB’17 paper. I believe the MVCC below can be thought of as MVCC-TO, or MVTO.*]
+
+CC methods such as 2PL, T/O(OCC, MVCC-TO, T/O) are used to ensure that concurrent operations to shared data are serialized, hence ensuring serializability and data consistency.
+CC ensures operations such as read and write are ordered properly.
+CC can be used both within a single node or across nodes (e.g., the [An Evaluation of Concurrency Control with One Thousand Cores, VLDB’04](https://www.vldb.org/pvldb/vol8/p209-yu.pdf) paper evaluates several CC methods within a single node).
+
+However, a simple CC is not sufficient when it comes to a distributed setting with multiple nodes:
+it cannot ensure a transaction commit could commit at all participating nodes.
+For instance, some nodes may have committed, others may have not - and this creates an inconsistent state.
+Let me use `2PL` as an example: in 2PL, we first grab all locks across all involving nodes, we then run the execution/logic locally on a node, we then send all the new data (if any) to other nodes and release the locks.
+In the last step, there is no way for us to make sure that all participating nodes have received the message.
+If only some of them finalized/committed the transaction, then the whole database/system is in an inconsistent state.
+
+This is where [Atomic Commit Protocol](https://en.wikipedia.org/wiki/Atomic_commit) such as  [2-phase commit](https://en.wikipedia.org/wiki/Two-phase_commit_protocol) comes to rescue.
+It ensures that all participants either all commit or none of them commits the transaction.
+It does so by using another 2-phase protocol: prepare + commit.
+It is not hard to understand. There are more complicated methods such as 3PC or Paxos Commit.
+
+I think my original confusion about 2PC and 2PL stems from my illusion that we can use 2PL to also implement what 2PC is designed to achieve. But after the above reasoning, I realized that is not possible.
+2PC and 2PL have very clear distinctions.
+I also had a misconception that 2PC is needed because it can ensure *durability*.
+This is also false because 2PC is required simply to ensure atomic commit, for both scenarios w/ or w/o guarantees.
+If we want durability, then 2PC’s participants would need to either do local logging or build on top of a replication mechanism such as Paxos.
+
+A short summary:
+
+* Concurrency control protocols: 2PL, T/O (OCC, MVCC, etc)
+* Atomic commit protocols 2PC, 2PC, paxos-commit
+* Concurrency control methods can work in a single node or across node
+* Once a CC goes distributed, it requires a atomic commit to ensure distributed consistency
+* 2PL + 2PC, OCC + 2PC, MVCC + 2PC etc are concurrency control + atomic commit
+* Atomic commit can include or exclude durability guarantee
+
+### Classical Systems
 
 These systems of course touch most of the above concepts.
 
 - ZooKeeper. The key thing is its Atomic Broadcast network library.
 - Google BigTable, need a revisit
-- Google Spanner. I have vivid memory reading it. TruTime. Need t a revisit as well. It touches a lot of things, appears it is MVCC? And uses Paxos.
-
-### Misc Concepts
+- Google Spanner. I have vivid memory reading it. TruTime. Need a revisit as well. It touches a lot of things, appears it is MVCC? And uses Paxos.
 
 
-The Marzullo’s Algorithm, used by Google Spanner.  [https://en.wikipedia.org/wiki/Marzullo%27s_algorithm](https://en.wikipedia.org/wiki/Marzullo%27s_algorithm)  
+### Misc
 
-Opacity, from FaRMv2
+#### *Scenarios and Hardware*
 
-What’s Really New with NewSQL?  [What’s Really New with NewSQL?](https://faculty.washington.edu/wlloyd/courses/tcss562/papers/Spring2017/team5_team6_relational_DB_services/Whats%20Really%20New%20with%20NewSQL.pdf)  
+One key thing worth considering is the operating environment.
+Some systems like Spanner target geo-distributed data centers, which could go though low-latency WAN.
 
+#### *Bottlenecks*
 
+Many papers and systems have mentioned that the global timestamp allocation is a major bottleneck in Timestamp Ordering concurrency control systems (including OCC and MVCC).  This is easy to understand: having some sort of global data structure that increases monotonically is hard in a distributed setting. I think that’s why several systems (Spanner, FaRMv2) resort to proactively dealing with clock uncertainties. 
+
+#### In-memory v.s. Disk-base DBMS
+XXX
+
+#### Self-Driving DBMS
+
+Essentially uses ML to make some decisions?
+
+Readings:
+
+*  [Self-Driving Database Management Systems](https://db.cs.cmu.edu/papers/2017/p42-pavlo-cidr17.pdf) , CIDR’17 
+*  [Automatic Database Management System Tuning Through Large-scale Machine Learning](https://dl.acm.org/doi/pdf/10.1145/3035918.3064029)  
 
 
 ## Papers and Readings
 
 **Courses**
 
-*  [Schedule | CMU 15-445/645 :: Intro to Database Systems (Fall 2019)](https://15445.courses.cs.cmu.edu/fall2019/schedule.html) 
-	* This is DBMS basics, good start. 
-*  [Schedule - CMU 15-721 :: Advanced Database Systems (Spring 2020)](https://15721.courses.cs.cmu.edu/spring2020/schedule.html)  
-	* This is more advanced paper reading.
+*  [Schedule | CMU 15-445/645 :: Intro to Database Systems (Fall 2019)](https://15445.courses.cs.cmu.edu/fall2019/schedule.html). This is DBMS basics, good start. 
+*  [Schedule - CMU 15-721 :: Advanced Database Systems (Spring 2020)](https://15721.courses.cs.cmu.edu/spring2020/schedule.html). This is advanced paper reading.
 
 **General Readings**
 
@@ -331,3 +334,11 @@ What’s Really New with NewSQL?  [What’s Really New with NewSQL?](https://fac
 	* Understand that OCC’s core is to reduce the critical section time. And MVCC is not a concurrency control method on its own, it merely enables multiple versions of the same object/tuple. Hence MVCC could work with any concurrency control methods, resulting in combos like MVTO, MVOCC, MV2PL.
 *  [An Evaluation of Distributed Concurrency Control, VLDB’17](https://www.vldb.org/pvldb/vol10/p553-harding.pdf) 
 	* This read reminds us the default Isolation level out in the wild is usually not serializability, but something weaker like Snapshot Isolation, or Read Committed.
+
+### Misc
+
+The Marzullo’s Algorithm, used by Google Spanner.  [https://en.wikipedia.org/wiki/Marzullo%27s_algorithm](https://en.wikipedia.org/wiki/Marzullo%27s_algorithm)  
+
+Opacity, from FaRMv2
+
+What’s Really New with NewSQL?  [What’s Really New with NewSQL?](https://faculty.washington.edu/wlloyd/courses/tcss562/papers/Spring2017/team5_team6_relational_DB_services/Whats%20Really%20New%20with%20NewSQL.pdf)  
