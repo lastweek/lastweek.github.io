@@ -179,6 +179,16 @@ It is a very interesting read. The following image shows its workflow.
 
 ![Screen Shot 2022-03-26 at 11.03.07.png](https://res.craft.do/user/full/55556ffd-6bd0-f98b-802b-8680fc9006d8/F3E059BD-1D25-4079-906A-0473EC00F25B_2/zn4K6fBjzy8dq2lJKtJbqtFYkV7OBRCHRTW59y0dTykz/Screen%20Shot%202022-03-26%20at%2011.03.07.png)
 
+### Example 6: EQueue, HPCA'22
+
+Compiler-Driven Simulation of Reconfigurable Hardware Accelerators, HPCA'22.
+
+- Add a new dialect in MLIR to model different accelerators. The goal is to help simulation.
+- There are two general approaches to do simulation: 1) use RTL-level, which is very precise and also very slow. 2) use high-level simulators, sth like gem5. Fast, but is far away from hardware.
+- The goal of this paper is to use MLIR to build sth in the middle. It introduces a new dialect IR, which can describe various accelerator structure (e.g., how many processors, memory, DMA engines etc). Since MLIR can lower IR, their system can model the accelerator at different levels. On one extreme, they can do very high-level simulation (probably just use their new IR). On the other extreme, they can lower their IR to be close to actual hardware.
+- Check their Fig3-Fig5 to understand how they can model different accelerators!
+
+
 ## General PL Related Readings
 
 1. Saw this paper on twitter today (03/25/2022). It won the ICSE influential award. [https://people.inf.ethz.ch/suz/publications/natural.pdf](https://people.inf.ethz.ch/suz/publications/natural.pdf)
