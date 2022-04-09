@@ -484,6 +484,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#example-6-equeue-hpca22" class="md-nav__link">
+    Example 6: EQueue, HPCA'22
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2455,6 +2462,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#example-6-equeue-hpca22" class="md-nav__link">
+    Example 6: EQueue, HPCA'22
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2641,6 +2655,14 @@ and then come back, read through this again.</p>
 <p><a href="https://raw.githubusercontent.com/hanchenye/scalehls/master/docs/ScaleHLS.svg">https://raw.githubusercontent.com/hanchenye/scalehls/master/docs/ScaleHLS.svg</a>  The whole system is implemented on top of MLIR. They introduced a new <code>HLSCPP</code> dialect. They take HLS C programs, or TORCH/ONNX graph-level programs, then produce highly-optimized HLS C/C++ programs.</p>
 <p>It is a very interesting read. The following image shows its workflow.</p>
 <p><img alt="Screen Shot 2022-03-26 at 11.03.07.png" src="https://res.craft.do/user/full/55556ffd-6bd0-f98b-802b-8680fc9006d8/F3E059BD-1D25-4079-906A-0473EC00F25B_2/zn4K6fBjzy8dq2lJKtJbqtFYkV7OBRCHRTW59y0dTykz/Screen%20Shot%202022-03-26%20at%2011.03.07.png" /></p>
+<h3 id="example-6-equeue-hpca22">Example 6: EQueue, HPCA&lsquo;22<a class="headerlink" href="#example-6-equeue-hpca22" title="Permanent link">&para;</a></h3>
+<p>Compiler-Driven Simulation of Reconfigurable Hardware Accelerators, HPCA&lsquo;22.</p>
+<ul>
+<li>Add a new dialect in MLIR to model different accelerators. The goal is to help simulation.</li>
+<li>There are two general approaches to do simulation: 1) use RTL-level, which is very precise and also very slow. 2) use high-level simulators, sth like gem5. Fast, but is far away from hardware.</li>
+<li>The goal of this paper is to use MLIR to build sth in the middle. It introduces a new dialect IR, which can describe various accelerator structure (e.g., how many processors, memory, DMA engines etc). Since MLIR can lower IR, their system can model the accelerator at different levels. On one extreme, they can do very high-level simulation (probably just use their new IR). On the other extreme, they can lower their IR to be close to actual hardware.</li>
+<li>Check their Fig3-Fig5 to understand how they can model different accelerators!</li>
+</ul>
 <h2 id="general-pl-related-readings">General PL Related Readings<a class="headerlink" href="#general-pl-related-readings" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Saw this paper on twitter today (03/25/2022). It won the ICSE influential award. <a href="https://people.inf.ethz.ch/suz/publications/natural.pdf">https://people.inf.ethz.ch/suz/publications/natural.pdf</a></li>
@@ -2653,7 +2675,7 @@ and then come back, read through this again.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 3, 2022</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 9, 2022</span>
       
     
   </small>
