@@ -34,6 +34,8 @@ You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 
 ??? tip "Research"
+	- [_Jun 2022_] A vision paper accepted to APSys'22
+	- [_Jun 2022_] Serve as [SoCC'22 PC](https://acmsocc.org/2022/program-committee.html)
 	- [_Mar 2022_] Serve as [ChinaSys'22 PC]()
 	- [_Mar 2022_] Serve as [APSys'22 PC]()
 	- [_Mar 2022_] Defended. The full defense slide is [here](./pubs/Defense_Slides_Yizhou_Shan.pdf).
@@ -59,13 +61,17 @@ You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 	- [_May 2018_] Intern at [VMware Research](https://research.vmware.com/), with [Stanko Novakovic](https://sites.google.com/site/stankonovakovic/).
 
 
-## Conferences
+## Publications
 
 My main research interests are ondistributed system, networking, OS, hardware (FPGA), and their intersections.
 I'm getting into Confidential Computing, ML, and database recently.
 
 Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAAAAAJ&hl=en).
 
+8. __Towards a Fully Disaggregated and Programmable Data Center__
+  <br> *Yizhou Shan*, Will Lin, Zhiyuan Guo, Yiying Zhang
+  <br> *__To appear at APSys 2022__*
+       [[Paper]]()
 7. __Distributing and Disaggregating Hardware Resources in Data Centers__
   <br> Yizhou Shan
   <br> [UCSD Dissertation 2022](https://escholarship.org/content/qt35s245rd/qt35s245rd_noSplash_e32c0215d4afc739cb21ef2618b5a968.pdf)
