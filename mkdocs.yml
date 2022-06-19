@@ -5,6 +5,7 @@ site_url: 'http://lastweek.io'
 nav:
 - Home: 'index.md'
 - Notes:
+   - 'CXL':                                                 'notes/CXL.md'
    - 'MLIR':                                                'notes/MLIR.md'
    - 'Resource Disaggregation Design Spectrums':            'notes/resource-disaggregation-spectrum.md'
    - 'Distributed Transactions and Databases':              'notes/dist-xact.md'
