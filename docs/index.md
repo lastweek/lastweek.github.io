@@ -71,7 +71,7 @@ Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAA
 8. __Towards a Fully Disaggregated and Programmable Data Center__
   <br> *Yizhou Shan*, Will Lin, Zhiyuan Guo, Yiying Zhang
   <br> *__To appear at APSys 2022__*
-       [[Paper]]()
+       [[Paper]](http://lastweek.io/pubs/apsys22.pdf)
 7. __Distributing and Disaggregating Hardware Resources in Data Centers__
   <br> Yizhou Shan
   <br> [UCSD Dissertation 2022](https://escholarship.org/content/qt35s245rd/qt35s245rd_noSplash_e32c0215d4afc739cb21ef2618b5a968.pdf)
