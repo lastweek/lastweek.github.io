@@ -156,6 +156,7 @@ I'm getting into Confidential Computing, ML, and database recently. Full list at
   <br> Yiying Zhang, *Yizhou Shan*, Sumukh Hallymysore
   <br> *17th International Workshop on High Performance Transaction Systems (__HPTS 2017__)*  [[Paper]](http://hpts.ws/papers/2017/lego.pdf)
 
+<!---
 ## Posters
 
 3. __Lego: A Distributed, Decomposed OS for Resource Disaggregation__ [PDF](https://lastweek.github.io/pubs/SOSP17-Lego-Poster.pdf)
@@ -165,6 +166,28 @@ I'm getting into Confidential Computing, ML, and database recently. Full list at
 1. __Disaggregated Operating System__ [PDF](https://lastweek.github.io/pubs/SoCC17-Lego-Poster.pdf)
    <br> *Yizhou Shan*, Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang
    <br> Poster at __SoCC 2017__
+--->
+
+## Professional Services
+
+**Program Committee**
+
+- SoCC    (2022)
+- EuroSys (2023, 2022 shadow, 2021 shadow)
+- ASPLOS  (2021 external)
+
+**Journal**
+
+- Journal of Systems Research: 2021 - Current
+- ACM Transactions on Architecture and Code Optimization (TACO): 2021
+- ACM Transactions on Storage (TOS): 2020
+- IEEE/ACM Transactions on Networking: 2020
+
+**Artifact Evaluation**
+
+- SOSP (2021)
+- OSDI (2020)
+
 
 ## Social
 
