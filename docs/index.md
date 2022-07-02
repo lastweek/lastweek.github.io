@@ -2,16 +2,13 @@
 <img src="images/me.png" height=150 width=100>
 </p>
 
-Hello! I'm Yizhou Shan, I've recently graduated from [University of California San Diego](https://cse.ucsd.edu/).
-
-I'm joining [Huawei Cloud](https://www.huaweicloud.com/intl/en-us/) as a Research Scientist
-to continue my research on making [Resource Disaggregation](https://github.com/lastweek/2022-UCSD-Thesis/blob/main/Yizhou_Shan_Dissertation_2022.pdf)
-practical and deployable in public clouds.
+Hello! I'm Yizhou Shan, I've recently graduated from [University of California San Diego](https://cse.ucsd.edu/)
+under the supervision of [Prof. Yiying Zhang](https://cseweb.ucsd.edu/~yiying/).
+I'm now a Research Scientist at [Huawei Cloud](https://www.huaweicloud.com/intl/en-us/).
 
 Contact: **ys** AT **ucsd** DOT **edu**
 
 You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
-
 
 ??? note "Blogging"
 
@@ -64,18 +61,35 @@ You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 ## Publications
 
 My main research interests are ondistributed system, networking, OS, hardware (FPGA), and their intersections.
-I'm getting into Confidential Computing, ML, and database recently.
+I'm getting into Confidential Computing, ML, and database recently. Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAAAAAJ&hl=en).
 
-Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAAAAAJ&hl=en).
+**Disaggregated Data Center Infrastructure**
+
+-  [Fully Disaggregated Data Center, APSys'22]()
+-  [LegoOS, OSDI'18](https://www.usenix.org/conference/osdi18/presentation/shan)
+
+**Disaggregated (Persistent) Memory**
+
+-  [Clio, ASPLOS'22](http://lastweek.io/pubs/ASPLOS22-Clio.pdf) - An FPGA-based disaggregated memory device
+-  [Clover, ATC'20](http://lastweek.io/pubs/ATC20-DPM.pdf) - Pure *one-sided* KVS on disaggregated PM
+-  [Storm, SYSTOR'19](http://lastweek.io/pubs/SYSTOR19-Storm.pdf) - Highly-efficient KVS on disaggregated memory
+-  [Hotpot, SoCC'17](http://lastweek.io/pubs/SoCC17-Hotpot.pdf) -  Transactional distributed PM over RDMA
+
+**Networking Design**
+
+-  [SuperNIC, arXiv'21](https://arxiv.org/pdf/2109.07744.pdf) - An FPGA-based Programmable Multi-Host NIC
+-  [Clio, ASPLOS'22](http://lastweek.io/pubs/ASPLOS22-Clio.pdf) - Rethinking RDMA NIC, congestion control
+
+**Selected Publications**
 
 8. __Towards a Fully Disaggregated and Programmable Data Center__
   <br> *Yizhou Shan*, Will Lin, Zhiyuan Guo, Yiying Zhang
   <br> *__To appear at APSys 2022__*
-       [[Paper]](http://lastweek.io/pubs/apsys22.pdf)
+       [[Paper]]()
 7. __Distributing and Disaggregating Hardware Resources in Data Centers__
   <br> Yizhou Shan
   <br> [UCSD Dissertation 2022](https://escholarship.org/content/qt35s245rd/qt35s245rd_noSplash_e32c0215d4afc739cb21ef2618b5a968.pdf)
-6. __Disaggregating and Consolidating Network Functionalities with SuperNIC__
+6. __A New Networking Device Designed for Disaggregation (under submission)__
   <br> *Yizhou Shan*, Will Lin, Ryan Kosta, Arvind Krishnamurthy, Yiying Zhang
   <br> [[Preprint]](https://arxiv.org/pdf/2109.07744.pdf)
        [[Code]]()
