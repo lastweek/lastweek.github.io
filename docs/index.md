@@ -6,9 +6,7 @@ Hello! I'm Yizhou Shan, I've recently graduated from [University of California S
 under the supervision of [Prof. Yiying Zhang](https://cseweb.ucsd.edu/~yiying/).
 I'm now a Research Scientist at [Huawei Cloud](https://www.huaweicloud.com/intl/en-us/).
 
-Contact: **ys** AT **ucsd** DOT **edu**
-
-You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
+Contact: **ys** AT **ucsd** DOT **edu** You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 ??? note "Blogging"
 
@@ -61,8 +59,8 @@ You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 ## Publications
 
-My main research interests are ondistributed system, networking, OS, hardware (FPGA), and their intersections.
-I'm getting into Confidential Computing, ML, and database recently. Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAAAAAJ&hl=en).
+My main research interests span distributed system, networking, OS, hardware (FPGA), and their intersections.
+Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAAAAAJ&hl=en).
 
 **Disaggregated Data Center Infrastructure**
 
