@@ -31,10 +31,11 @@ You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 
 ??? tip "Research"
-	- [_Jun 2022_] A vision paper accepted to APSys'22
+	- [_Jun 2022_] A vision paper accepted to [APSys'22](https://apsys2022.comp.nus.edu.sg/index.html)
+	- [_Jun 2022_] Serve as [EuroSys'23 PC](https://2023.eurosys.org/index.html)
 	- [_Jun 2022_] Serve as [SoCC'22 PC](https://acmsocc.org/2022/program-committee.html)
-	- [_Mar 2022_] Serve as [ChinaSys'22 PC]()
 	- [_Mar 2022_] Serve as [APSys'22 PC]()
+	- [_Mar 2022_] Serve as [ChinaSys'22 PC]()
 	- [_Mar 2022_] Defended. The full defense slide is [here](./pubs/Defense_Slides_Yizhou_Shan.pdf).
 	- [_Oct 2021_] Serve as [EuroSys'22 Shadow PC](https://2022.eurosys.org/)
 	- [_Sep 2021_] We made our [SuperNIC]() paper public.
