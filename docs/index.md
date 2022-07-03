@@ -59,17 +59,19 @@ Contact: **ys** AT **ucsd** DOT **edu** You can find my [CV here](http://lastwee
 	- [_May 2018_] Intern at [VMware Research](https://research.vmware.com/), with [Stanko Novakovic](https://sites.google.com/site/stankonovakovic/).
 
 
-## Publications
+## Research
 
-My main research interests span distributed system, networking, OS, hardware (FPGA), and their intersections.
-Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAAAAAJ&hl=en).
+My main research interests span
+distributed systems, data center networking,
+OS, hardware (FPGA), disaggregated memory/storage systems,
+and their intersections.
 
-**Disaggregated Data Center Infrastructure**
+**Disaggregated Data Center**
 
 -  [Fully Disaggregated Data Center, APSys'22]()
 -  [LegoOS, OSDI'18](https://www.usenix.org/conference/osdi18/presentation/shan)
 
-**Disaggregated (Persistent) Memory**
+**Disaggregated Memory**
 
 -  [Clio, ASPLOS'22](http://lastweek.io/pubs/ASPLOS22-Clio.pdf) - An FPGA-based disaggregated memory device
 -  [Clover, ATC'20](http://lastweek.io/pubs/ATC20-DPM.pdf) - Pure *one-sided* KVS on disaggregated PM
@@ -81,7 +83,8 @@ Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAA
 -  [SuperNIC, arXiv'21](https://arxiv.org/pdf/2109.07744.pdf) - An FPGA-based Programmable Multi-Host NIC
 -  [Clio, ASPLOS'22](http://lastweek.io/pubs/ASPLOS22-Clio.pdf) - Rethinking RDMA NIC, congestion control
 
-**Selected Publications**
+
+### Publications
 
 8. __Towards a Fully Disaggregated and Programmable Data Center__
   <br> *Yizhou Shan*, Will Lin, Zhiyuan Guo, Yiying Zhang
@@ -132,7 +135,7 @@ Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAA
        [[Slide]](http://lastweek.io/pubs/slides/Yizhou-Hotpot-SoCC17.pptx)
        [[Poster]](http://lastweek.io/pubs/slides/Poster-Hotpot-SoCC17.pptx)
 
-## Workshops
+### Workshops
 
 5. __Disaggregating Persistent Memory and Controlling Them Remotely: An Exploration of Passive Disaggregated Key-Value Stores__
   <br> Shin-Yeh Tsai, *Yizhou Shan*, Yiying Zhang
