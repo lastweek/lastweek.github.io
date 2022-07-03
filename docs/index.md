@@ -1,6 +1,8 @@
+<!---
 <p align="left">
 <img src="images/me.png" height=150 width=100>
 </p>
+--->
 
 Hello! I'm Yizhou Shan, I've recently graduated from [University of California San Diego](https://cse.ucsd.edu/)
 under the supervision of [Prof. Yiying Zhang](https://cseweb.ucsd.edu/~yiying/).
