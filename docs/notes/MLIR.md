@@ -3,24 +3,21 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Jul 3, 2022 | Add Pathways|
 	|Apr 2, 2022 | Ported from Craft. Recently, I switched to Craft for technical writing. I'm very happy I made that transition. Craft is great at exporting things to Markdown format. |
 
 :boom:
 
-Why I started this blog?
-Well first I'm under quarantine, what's a better thing
-to do other than learning some PL stuff?
-Also for work reasons, I need to understand MLIR at a high-level.
+This document is organized as follows.
 
-My goals:
-
-1. understand why MLIR was developed and how to use it.
-2. how MLIR interacts with LLVM.
-3. how to use MLIR to build languages, optimizations for heterogenous devices.
+1. MLIR at 10,000 feet - an overview.
+2. Why MLIR was created? - a study of the original MLIR paper.
+3. How MLIR is used in the wild? - case studies.
 
 Without further ado, let's get started.
 
-## MLIR At a High Level
+## MLIR At 10,000 Feet
+
 
 MLIR is short for Multi-Level Intermediate Representation.
 MLIR helps to build reusage compiler infrastructure
@@ -30,7 +27,7 @@ I draw the following figure to show MLIR's workflow at a very high level.
 
 In specific:
 
-- MLIR's input: applications, compilers, C program
+- MLIR's input: applications, compilers, C program, etc
 - Within MLIR, we can implement multiple *Dialects* for distinct inputs. For instance, we could use a Dialect to deal with tensors. Further, we can deploy a shared optimization layer to unify things.
 - Once we have an optimal IR, MLIR can now lower it onto the backends such as LLVM for CPUs, CIRCT for FPGAs. If you are targeting specialized hardware such as FPGA or TPU, you still need vendor-tools for final compilation (e.g., use Vivado to synthesis Verilog).
 
@@ -179,17 +176,43 @@ It is a very interesting read. The following image shows its workflow.
 
 ![Screen Shot 2022-03-26 at 11.03.07.png](https://res.craft.do/user/full/55556ffd-6bd0-f98b-802b-8680fc9006d8/F3E059BD-1D25-4079-906A-0473EC00F25B_2/zn4K6fBjzy8dq2lJKtJbqtFYkV7OBRCHRTW59y0dTykz/Screen%20Shot%202022-03-26%20at%2011.03.07.png)
 
+My thought: I think we will continue seeing more MLIR-based solutions
+to help DSA development. It'll be interesting to see some higher-level,
+or higher-order primitives constructed in MLIR to help, say, FPGA-based
+SQL develpoment (or rather, any types of FPGA-based computations).
+In general, MLIR helps to raise the abstrantion, hence we are able
+to raise the programmability futher.
+
 ### Example 6: EQueue, HPCA'22
 
 Compiler-Driven Simulation of Reconfigurable Hardware Accelerators, HPCA'22.
 
-- Add a new dialect in MLIR to model different accelerators. The goal is to help simulation.
+- The goal is to help simulation.
+- Add a new dialect in MLIR to model different accelerators.
 - There are two general approaches to do simulation: 1) use RTL-level, which is very precise and also very slow. 2) use high-level simulators, sth like gem5. Fast, but is far away from hardware.
 - The goal of this paper is to use MLIR to build sth in the middle. It introduces a new dialect IR, which can describe various accelerator structure (e.g., how many processors, memory, DMA engines etc). Since MLIR can lower IR, their system can model the accelerator at different levels. On one extreme, they can do very high-level simulation (probably just use their new IR). On the other extreme, they can lower their IR to be close to actual hardware.
 - Check their Fig3-Fig5 to understand how they can model different accelerators!
+
+### Example 7: Pathways, Google
+
+The paper is [Pathways: Asynchronous Distributed Dataflow For ML, arXiv'22](https://arxiv.org/pdf/2203.12533.pdf)
+
+From the paper:
+
+> "Sec 4.2: The client then constructs a device location-agnostic PATHWAYS intermediate representation (IR) for the program, expressed as a custom MLIR (Lattner et al., 2021) dialect. The IR is progressively “lowered” via a series of standard compiler passes, which eventually output a low-level representation that includes the physical device locations. This low-level program takes into account the network connectivity between physical devices and includes operations to transfer outputs from a source computation shard to the locations of its destination shards, including scatter and gather operations when a data exchange is required."
+
+
+### Misc
+
+Alpa, arXiv'21 proposes a set of methods to partition an ML
+training process to best utilize pipeline, data, model parallelism.
+This seems to be the first one doing all 3 at once. 
+There are, of course, similar papers in the past doing 2 out of 3
+(a paper from the Stanford folks).
+
+TVM IP stuff is also highly related.
 
 
 ## General PL Related Readings
 
 1. Saw this paper on twitter today (03/25/2022). It won the ICSE influential award. [https://people.inf.ethz.ch/suz/publications/natural.pdf](https://people.inf.ethz.ch/suz/publications/natural.pdf)
-

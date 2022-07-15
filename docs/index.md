@@ -1,17 +1,14 @@
+<!---
 <p align="left">
 <img src="images/me.png" height=150 width=100>
 </p>
+--->
 
-Hello! I'm Yizhou Shan, I've recently graduated from [University of California San Diego](https://cse.ucsd.edu/).
+Hello! I'm Yizhou Shan, I've recently graduated from [University of California San Diego](https://cse.ucsd.edu/)
+under the supervision of [Prof. Yiying Zhang](https://cseweb.ucsd.edu/~yiying/).
+I'm now a Research Scientist at [Huawei Cloud](https://www.huaweicloud.com/intl/en-us/).
 
-I'm joining [Huawei Cloud](https://www.huaweicloud.com/intl/en-us/) as a Research Scientist
-to continue my research on making [Resource Disaggregation](https://github.com/lastweek/2022-UCSD-Thesis/blob/main/Yizhou_Shan_Dissertation_2022.pdf)
-practical and deployable in public clouds.
-
-Contact: **ys** AT **ucsd** DOT **edu**
-
-You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
-
+Contact: **ys** AT **ucsd** DOT **edu** You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 ??? note "Blogging"
 
@@ -62,21 +59,41 @@ You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 	- [_May 2018_] Intern at [VMware Research](https://research.vmware.com/), with [Stanko Novakovic](https://sites.google.com/site/stankonovakovic/).
 
 
-## Publications
+## Research
 
-My main research interests are ondistributed system, networking, OS, hardware (FPGA), and their intersections.
-I'm getting into Confidential Computing, ML, and database recently.
+My main research interests span
+distributed systems, data center networking,
+OS, hardware (FPGA), disaggregated memory/storage systems,
+and their intersections.
 
-Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAAAAAJ&hl=en).
+**Disaggregated Data Center**
+
+-  [Fully Disaggregated Data Center, APSys'22]()
+-  [LegoOS, OSDI'18](https://www.usenix.org/conference/osdi18/presentation/shan)
+
+**Disaggregated Memory**
+
+-  [Clio, ASPLOS'22](http://lastweek.io/pubs/ASPLOS22-Clio.pdf) - An FPGA-based disaggregated memory device
+-  [Clover, ATC'20](http://lastweek.io/pubs/ATC20-DPM.pdf) - Pure *one-sided* KVS on disaggregated PM
+-  [Storm, SYSTOR'19](http://lastweek.io/pubs/SYSTOR19-Storm.pdf) - Highly-efficient KVS on disaggregated memory
+-  [Hotpot, SoCC'17](http://lastweek.io/pubs/SoCC17-Hotpot.pdf) -  Transactional distributed PM over RDMA
+
+**Networking Design**
+
+-  [SuperNIC, arXiv'21](https://arxiv.org/pdf/2109.07744.pdf) - An FPGA-based Programmable Multi-Host NIC
+-  [Clio, ASPLOS'22](http://lastweek.io/pubs/ASPLOS22-Clio.pdf) - Rethinking RDMA NIC, congestion control
+
+
+### Publications
 
 8. __Towards a Fully Disaggregated and Programmable Data Center__
   <br> *Yizhou Shan*, Will Lin, Zhiyuan Guo, Yiying Zhang
   <br> *__To appear at APSys 2022__*
-       [[Paper]](http://lastweek.io/pubs/apsys22.pdf)
+       [[Paper]]()
 7. __Distributing and Disaggregating Hardware Resources in Data Centers__
   <br> Yizhou Shan
   <br> [UCSD Dissertation 2022](https://escholarship.org/content/qt35s245rd/qt35s245rd_noSplash_e32c0215d4afc739cb21ef2618b5a968.pdf)
-6. __Disaggregating and Consolidating Network Functionalities with SuperNIC__
+6. __A New Networking Device Designed for Disaggregation (under submission)__
   <br> *Yizhou Shan*, Will Lin, Ryan Kosta, Arvind Krishnamurthy, Yiying Zhang
   <br> [[Preprint]](https://arxiv.org/pdf/2109.07744.pdf)
        [[Code]]()
@@ -118,7 +135,7 @@ Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAA
        [[Slide]](http://lastweek.io/pubs/slides/Yizhou-Hotpot-SoCC17.pptx)
        [[Poster]](http://lastweek.io/pubs/slides/Poster-Hotpot-SoCC17.pptx)
 
-## Workshops
+### Workshops
 
 5. __Disaggregating Persistent Memory and Controlling Them Remotely: An Exploration of Passive Disaggregated Key-Value Stores__
   <br> Shin-Yeh Tsai, *Yizhou Shan*, Yiying Zhang
@@ -142,6 +159,7 @@ Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAA
   <br> Yiying Zhang, *Yizhou Shan*, Sumukh Hallymysore
   <br> *17th International Workshop on High Performance Transaction Systems (__HPTS 2017__)*  [[Paper]](http://hpts.ws/papers/2017/lego.pdf)
 
+<!---
 ## Posters
 
 3. __Lego: A Distributed, Decomposed OS for Resource Disaggregation__ [PDF](https://lastweek.github.io/pubs/SOSP17-Lego-Poster.pdf)
@@ -151,6 +169,28 @@ Full list at [Google Scholar](https://scholar.google.com/citations?user=qgxGqYAA
 1. __Disaggregated Operating System__ [PDF](https://lastweek.github.io/pubs/SoCC17-Lego-Poster.pdf)
    <br> *Yizhou Shan*, Sumukh Hallymysore, Yutong Huang, Yilun Chen, Yiying Zhang
    <br> Poster at __SoCC 2017__
+--->
+
+## Professional Services
+
+**Program Committee**
+
+- SoCC    (2022)
+- EuroSys (2023, 2022 shadow, 2021 shadow)
+- ASPLOS  (2021 external)
+
+**Journal**
+
+- Journal of Systems Research: 2021 - Current
+- ACM Transactions on Architecture and Code Optimization (TACO): 2021
+- ACM Transactions on Storage (TOS): 2020
+- IEEE/ACM Transactions on Networking: 2020
+
+**Artifact Evaluation**
+
+- SOSP (2021)
+- OSDI (2020)
+
 
 ## Social
 
