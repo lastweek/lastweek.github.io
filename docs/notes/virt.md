@@ -3,6 +3,8 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Jul 17, 2022| Update deliverables|
+	|Nov 19, 2021| Add slides|
 	|Nov 19, 2021| Add slides|
 	|Jun 22, 2021| add steps and bare-metal virt |
 	|Dec 31, 2020| minor update|
@@ -12,12 +14,16 @@
 
 ## Deliverables
 
-- **Practical Notes on the Virtualization Stack (QEMU, KVM, IOMMU, and more)**
-	- <a href="https://docs.google.com/document/d/18jeI6TPUT8i6EoLmp40SJfjSYQNReFo2ZPU9_quu6bs/edit?usp=sharing" target="_blank">Google Doc version</a>
-	- [PDF version](http://lastweek.io/pubs/virt_note.pdf)
+I have created two documents about virtualization.
+Hope they will be useful to you.
 
-- **A Gentle and Short Introduction to the Cloud Virtualization Cards**
-	- <a href="http://lastweek.io/pubs/Virtualization_Cards_Yizhou_Shan.pdf" target="_blank">PDF version</a>
+1. **[Knowledge - Virtualization](https://docs.google.com/document/d/18jeI6TPUT8i6EoLmp40SJfjSYQNReFo2ZPU9_quu6bs/edit?usp=sharing)**
+	- List of resources about virtualization
+	- Light QEMU /KVM code study
+	- IO virtualization such as QEMU device emulation, virtio, IOMMU, etc.
+2. **[Introduction of Cloud Virtualization Cards](http://lastweek.io/pubs/Virtualization_Cards_Yizhou_Shan.pdf)**
+	- A gentle introduction to cloud virtualization cards
+	- E.g., AWS Nitro, NVIDIA BlueField DPU, Microsoft FPGA
 
 ## Introduction
 
@@ -104,7 +110,7 @@ The latter avoids the PCIe crossing. You can have NVMe-over-Fabric really easily
 ![image3](assets/virt-4.png)
 
 
-## Detailed Note on QEMU/KVM
+## Knowledge - Virtualization
 
 Below is the note I took when I was reading QEMU/KVM source code.
 The questions I've focused on are:
@@ -119,6 +125,8 @@ what should I build. Several recent projects (e.g., rust-vmm, firecracker) have 
 - <a href="https://docs.google.com/document/d/18jeI6TPUT8i6EoLmp40SJfjSYQNReFo2ZPU9_quu6bs/edit?usp=sharing" target="_blank">Google Doc Version</a>
 - <a href="http://lastweek.io/pubs/virt_note.pdf" target="_blank">PDF Version</a>
 
+<!-----
 <iframe style="width: 100%; height: 800px;" frameborder="1" allowfullscreen 
     src="https://docs.google.com/document/d/e/2PACX-1vSsskD0A2XgHoZhaYLAkS7lmCOrfxkGXk1WTovWEAyeoELVdBjrE-NzD8h-NvJfKhxMpUg2aXzaD-XG/pub?embedded=true">        
 </iframe>
+----->
