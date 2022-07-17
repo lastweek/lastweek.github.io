@@ -25,7 +25,7 @@ Hence my thoughts and views could be biased and wrong.
 If you are looking for serious CXL specification stuff,
 please check out the [official CXL site](https://www.computeexpresslink.org/).
 
-Without further ago, let's get started.
+Without further ado, let's get started.
 
 ## What is CXL?
 
