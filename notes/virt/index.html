@@ -389,7 +389,7 @@
   
     <li class="md-nav__item">
       <a href="../CXL/" class="md-nav__link">
-        CXL
+        What is up with CXL?
       </a>
     </li>
   
@@ -403,7 +403,7 @@
   
     <li class="md-nav__item">
       <a href="../MLIR/" class="md-nav__link">
-        MLIR
+        What is up with MLIR?
       </a>
     </li>
   
@@ -532,8 +532,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#detailed-note-on-qemukvm" class="md-nav__link">
-    Detailed Note on QEMU/KVM
+  <a href="#knowledge-virtualization" class="md-nav__link">
+    Knowledge - Virtualization
   </a>
   
 </li>
@@ -2447,8 +2447,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#detailed-note-on-qemukvm" class="md-nav__link">
-    Detailed Note on QEMU/KVM
+  <a href="#knowledge-virtualization" class="md-nav__link">
+    Knowledge - Virtualization
   </a>
   
 </li>
@@ -2480,6 +2480,14 @@
 </thead>
 <tbody>
 <tr>
+<td align="left">Jul 17, 2022</td>
+<td>Update deliverables</td>
+</tr>
+<tr>
+<td align="left">Nov 19, 2021</td>
+<td>Add slides</td>
+</tr>
+<tr>
 <td align="left">Nov 19, 2021</td>
 <td>Add slides</td>
 </tr>
@@ -2507,21 +2515,21 @@
 </table>
 </details>
 <h2 id="deliverables">Deliverables<a class="headerlink" href="#deliverables" title="Permanent link">&para;</a></h2>
-<ul>
-<li>
-<p><strong>Practical Notes on the Virtualization Stack (QEMU, KVM, IOMMU, and more)</strong></p>
-<ul>
-<li><a href="https://docs.google.com/document/d/18jeI6TPUT8i6EoLmp40SJfjSYQNReFo2ZPU9_quu6bs/edit?usp=sharing" target="_blank">Google Doc version</a></li>
-<li><a href="http://lastweek.io/pubs/virt_note.pdf">PDF version</a></li>
+<p>I have created two documents about virtualization.
+Hope they will be useful to you.</p>
+<ol>
+<li><strong><a href="https://docs.google.com/document/d/18jeI6TPUT8i6EoLmp40SJfjSYQNReFo2ZPU9_quu6bs/edit?usp=sharing">Knowledge - Virtualization</a></strong><ul>
+<li>List of resources about virtualization</li>
+<li>Light QEMU /KVM code study</li>
+<li>IO virtualization such as QEMU device emulation, virtio, IOMMU, etc.</li>
 </ul>
 </li>
-<li>
-<p><strong>A Gentle and Short Introduction to the Cloud Virtualization Cards</strong></p>
-<ul>
-<li><a href="http://lastweek.io/pubs/Virtualization_Cards_Yizhou_Shan.pdf" target="_blank">PDF version</a></li>
+<li><strong><a href="http://lastweek.io/pubs/Virtualization_Cards_Yizhou_Shan.pdf">Introduction of Cloud Virtualization Cards</a></strong><ul>
+<li>A gentle introduction to cloud virtualization cards</li>
+<li>E.g., AWS Nitro, NVIDIA BlueField DPU, Microsoft FPGA</li>
 </ul>
 </li>
-</ul>
+</ol>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>This blog tries to cover a short history on virtualization,
 the practices used by cloud vendors, the specialized virtualization cards (e.g., AWS Nitro),
@@ -2586,7 +2594,7 @@ At a high-level, they are <strong>&ldquo;SR-IOV + Hardware-based QEMU&rdquo;</st
 <p>For storage + NIC, they can have two discrete cards or a unified one.
 The latter avoids the PCIe crossing. You can have NVMe-over-Fabric really easily.</p>
 <p><img alt="image3" src="../assets/virt-4.png" /></p>
-<h2 id="detailed-note-on-qemukvm">Detailed Note on QEMU/KVM<a class="headerlink" href="#detailed-note-on-qemukvm" title="Permanent link">&para;</a></h2>
+<h2 id="knowledge-virtualization">Knowledge - Virtualization<a class="headerlink" href="#knowledge-virtualization" title="Permanent link">&para;</a></h2>
 <p>Below is the note I took when I was reading QEMU/KVM source code.
 The questions I&rsquo;ve focused on are:</p>
 <ul>
@@ -2603,9 +2611,11 @@ what should I build. Several recent projects (e.g., rust-vmm, firecracker) have 
 </li>
 <li><a href="http://lastweek.io/pubs/virt_note.pdf" target="_blank">PDF Version</a></li>
 </ul>
+<!-----
 <iframe style="width: 100%; height: 800px;" frameborder="1" allowfullscreen 
     src="https://docs.google.com/document/d/e/2PACX-1vSsskD0A2XgHoZhaYLAkS7lmCOrfxkGXk1WTovWEAyeoELVdBjrE-NzD8h-NvJfKhxMpUg2aXzaD-XG/pub?embedded=true">        
 </iframe>
+----->
                 
                   
                     
@@ -2614,7 +2624,7 @@ what should I build. Several recent projects (e.g., rust-vmm, firecracker) have 
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 17, 2022</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 17, 2022</span>
       
     
   </small>

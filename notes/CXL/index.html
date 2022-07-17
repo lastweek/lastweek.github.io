@@ -18,7 +18,7 @@
     
     
       
-        <title>CXL - Yizhou Shan's Home Page</title>
+        <title>What is up with CXL? - Yizhou Shan's Home Page</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#about-cxl" class="md-skip">
+        <a href="#what-is-up-with-cxl" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              CXL
+              What is up with CXL?
             
           </span>
         </div>
@@ -397,9 +397,74 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          What is up with CXL?
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
-        CXL
+        What is up with CXL?
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#intro" class="md-nav__link">
+    Intro
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-cxl" class="md-nav__link">
+    What is CXL?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-cxl" class="md-nav__link">
+    How to use CXL?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-the-status-of-cxl" class="md-nav__link">
+    What's the status of CXL?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-next-for-cxl" class="md-nav__link">
+    What's next for CXL?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#readings" class="md-nav__link">
+    Readings
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -413,7 +478,7 @@
   
     <li class="md-nav__item">
       <a href="../MLIR/" class="md-nav__link">
-        MLIR
+        What is up with MLIR?
       </a>
     </li>
   
@@ -2300,6 +2365,56 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#intro" class="md-nav__link">
+    Intro
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-cxl" class="md-nav__link">
+    What is CXL?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-cxl" class="md-nav__link">
+    How to use CXL?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-the-status-of-cxl" class="md-nav__link">
+    What's the status of CXL?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-next-for-cxl" class="md-nav__link">
+    What's next for CXL?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#readings" class="md-nav__link">
+    Readings
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2315,17 +2430,111 @@
                   </a>
                 
                 
-                <h1 id="about-cxl">About CXL<a class="headerlink" href="#about-cxl" title="Permanent link">&para;</a></h1>
-<p>Planned. 06/19/2022</p>
-<p>My general feeling is that people think very highly of CXL.
-But I have unpopular opinions: I don&rsquo;t think CXL the technology itself
-brings dramtic changes to the existing landscaple - some report
-extremely low latency implementations (e.g., MSR CXL), but these
-are limited in its scope. And to me, its merely moving some software VM
-functionalaties into the CXL PCIe device.
-Maybe I have some misunderstandings.</p>
-<p>Nonetheless, that&rsquo;s WHY I want to write something about it.
-This pushes me to read, think, and write clearly. Stay tuned.</p>
+                <h1 id="what-is-up-with-cxl">What is up with CXL?<a class="headerlink" href="#what-is-up-with-cxl" title="Permanent link">&para;</a></h1>
+<details class="note"><summary>Version History</summary><table>
+<thead>
+<tr>
+<th align="left">Date</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Jul 17, 2022</td>
+<td>Initial</td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>07/17/2022 not polished version, written top of my head.</p>
+<h2 id="intro">Intro<a class="headerlink" href="#intro" title="Permanent link">&para;</a></h2>
+<p><img alt="⛵" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/26f5.svg" title=":sailboat:" /></p>
+<p>You probably have heared about CXL many times.
+And you&rsquo;ve probably wondered, what is it, eactly?
+And why folks are so excited about it?
+This (short) note explains CXL from my own pespective.
+In particular, what is it, how to use it, 
+what&rsquo;s the current status, and what&rsquo;s next.</p>
+<p>I&rsquo;m no expert in the CXL protocol itself.
+I&rsquo;m just a systems researcher
+who may need to compare my systems against CXL-enabled ones.
+Hence my thoughts and views could be biased and wrong.
+If you are looking for serious CXL specification stuff,
+please check out the <a href="https://www.computeexpresslink.org/">official CXL site</a>.</p>
+<p>Without further ago, let&rsquo;s get started.</p>
+<h2 id="what-is-cxl">What is CXL?<a class="headerlink" href="#what-is-cxl" title="Permanent link">&para;</a></h2>
+<p>CXL is Compute Express Link. It has 3 types.
+I will focus on CXL type 3 device, the one used for memory expansion.
+The CXL hereafter refers to type 3 only unless otherwise noted.</p>
+<p>I think originally CXL was proposed to tame DRAM/PM heterogeneity
+and have a framework to maintain cache coherence among accelerators.
+Gradually, CXL is now mainly used in the disaggregated memory scenario.
+But was CXL originally designed with disaggregated memory in mind?
+I doubt that.</p>
+<p>It is interesting to think why CXL has such a spin-off.
+My take: CXL was designed for heterogeenous DRAM technologies.
+Hence one of its core design principle is to work with memory.
+Using memory requires low latency.
+As a result, CXL requires a low latency interconnection between
+a processing unit (e.g., CPU) and a CXL controller (the one right before memory).
+This eventually brings a CPU closer to a device (CXL controller) that is capable of
+accessing outside resources. It calls for something better/faster than PCIe.
+And this enables disaggregated memory usage.</p>
+<h2 id="how-to-use-cxl">How to use CXL?<a class="headerlink" href="#how-to-use-cxl" title="Permanent link">&para;</a></h2>
+<p>I think there are two ways to look at CXL,
+one from the traditional server side, and the other from disaggregated memory.
+Either way, CXL enables disaggregated memory with extrmely low latency.</p>
+<p><strong>From the traditional server angle</strong>:
+CXL allows the CPUs to access remote memory (i.e., memory resides outside the server box)
+at extremely low-latency, very much like accessing a NUMA node (could be ~100ns, see the MS arXiv paper).
+Since the remote memory is provisioned separately from the servers,
+you basically enjoys memory expansive &ldquo;free&rdquo;. Of course not exactly free, but it is
+relatable to NUMA system tuning.</p>
+<p><strong>From the disaggregated memory angle</strong>:
+CXL enables another design spectrum in disaggregated memory (DM) systems.
+Usually, DM systems access remote memory over RDMA with a few software tricks
+at the client side. The tricks include explicit APIs (AIFM, OSDI&lsquo;20), runtime (Semeru, OSDI&lsquo;20),
+kernel paging (InfiniSwap, NSDI&lsquo;17). No matter what software is used, the overhead
+of accessing disaggregated memory is usually larger than 2-4 us.
+The overhead comes from software cost, DMA to RDMA NIC cost, RDMA NIC cost, etc.
+CXL brings something new to the table.
+At its core, CXL claims a PCIe bus address and allows CPUs to access remote memory
+using LD/ST, bypassing all the software and NIC overheads.
+The DirectCXL, ATC&lsquo;22 paper has a nice breakdown.</p>
+<h2 id="whats-the-status-of-cxl">What&rsquo;s the status of CXL?<a class="headerlink" href="#whats-the-status-of-cxl" title="Permanent link">&para;</a></h2>
+<p>CXL is taking off.</p>
+<p>Cloud vendors are pushing it.
+Microsoft and Meta have released papers on their in-houst CXL platforms.
+Though no hardware is actually evaluated, they are building it.
+I remember Meta has CXL FPGAs long time ago.</p>
+<p>The whole industry is pushing it.
+There are numerous summits hosting CXL tutorials.</p>
+<h2 id="whats-next-for-cxl">What&rsquo;s next for CXL?<a class="headerlink" href="#whats-next-for-cxl" title="Permanent link">&para;</a></h2>
+<p>I think there are A LOT to explore.
+Research wise.</p>
+<h2 id="readings">Readings<a class="headerlink" href="#readings" title="Permanent link">&para;</a></h2>
+<ul>
+<li>First-Gen CXL, arXiv&lsquo;22.<ul>
+<li>Two contributions. Azure memory standing analysis, and a CXL prototype description.</li>
+<li>Works for opaque VM. The system is intergrated with cluster-side VM scheduler.</li>
+<li>No page migration, but VM migration.</li>
+<li>Has ML-based VM memory usage prediction</li>
+<li>And runtime QoS monitoring based on PMU countes</li>
+</ul>
+</li>
+<li>TPP, arXiv&lsquo;22.<ul>
+<li>Two contribtions. Workloads analysis and an enhanced paging system.</li>
+<li>Works within a normal linux kernel (has user space parts), various improvements on LRU lists etc.</li>
+<li>Both the MS and TPP paper assume accessing to remote CXL memory is like accessing NUMA nodes, latency runs at around 100ns. Crazy numbers.</li>
+</ul>
+</li>
+<li>DirectCXL, ATC&lsquo;22<ul>
+<li>First FPGA prototype.</li>
+<li>Since they don&rsquo;t have CXL-enabled x86, they use RISC-V.</li>
+<li>The latency is around 300ns?</li>
+</ul>
+</li>
+</ul>
                 
                   
                     
@@ -2334,7 +2543,7 @@ This pushes me to read, think, and write clearly. Stay tuned.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 19, 2022</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 17, 2022</span>
       
     
   </small>
@@ -2384,13 +2593,13 @@ This pushes me to read, think, and write clearly. Stay tuned.</p>
       
       
         
-        <a href="../MLIR/" class="md-footer__link md-footer__link--next" aria-label="Next: MLIR" rel="next">
+        <a href="../MLIR/" class="md-footer__link md-footer__link--next" aria-label="Next: What is up with MLIR?" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              MLIR
+              What is up with MLIR?
             </div>
           </div>
           <div class="md-footer__button md-icon">
