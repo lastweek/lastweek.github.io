@@ -5,14 +5,16 @@
 	|:---|-----------|
 	|Jul 17, 2022 | Initial|
 
-07/17/2022 not polished version, written top of my head.
+07/17/2022
+This is not a polished version, written top of my head.
+Going to add more CXL background.
 
 ## Intro
 
 :sailboat:
 
 You probably have heared about CXL many times.
-And you've probably wondered, what is it, eactly?
+And you've probably wondered, what is it, exactly?
 And why folks are so excited about it?
 This (short) note explains CXL from my own pespective.
 In particular, what is it, how to use it, 
