@@ -68,7 +68,7 @@ and their intersections.
 
 **Disaggregated Data Center**
 
--  [Fully Disaggregated Data Center, APSys'22]()
+-  [Fully Disaggregated Data Center, APSys'22](http://lastweek.io/pubs/apsys22.pdf)
 -  [LegoOS, OSDI'18](https://www.usenix.org/conference/osdi18/presentation/shan)
 
 **Disaggregated Memory**
@@ -89,7 +89,7 @@ and their intersections.
 8. __Towards a Fully Disaggregated and Programmable Data Center__
   <br> *Yizhou Shan*, Will Lin, Zhiyuan Guo, Yiying Zhang
   <br> *__To appear at APSys 2022__*
-       [[Paper]]()
+       [[Paper]](http://lastweek.io/pubs/apsys22.pdf)
 7. __Distributing and Disaggregating Hardware Resources in Data Centers__
   <br> Yizhou Shan
   <br> [UCSD Dissertation 2022](https://escholarship.org/content/qt35s245rd/qt35s245rd_noSplash_e32c0215d4afc739cb21ef2618b5a968.pdf)
