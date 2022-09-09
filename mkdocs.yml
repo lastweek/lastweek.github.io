@@ -5,8 +5,8 @@ site_url: 'http://lastweek.io'
 nav:
 - Home: 'index.md'
 - Notes:
-   - 'What is CXL?':                                'notes/CXL.md'
    - 'What is MLIR?':                               'notes/MLIR.md'
+   - 'What is CXL?':                                'notes/CXL.md'
    - 'Resource Disaggregation Design Spectrums':            'notes/resource-disaggregation-spectrum.md'
    - 'Distributed Transactions and Databases':              'notes/dist-xact.md'
    - 'Modern Virtualization':                               'notes/virt.md'

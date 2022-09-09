@@ -31,6 +31,7 @@ Contact: **ys** AT **ucsd** DOT **edu** You can find my [CV here](http://lastwee
 
 
 ??? tip "Research"
+	- [_Sep 2022_] I will serve as a [ATC'23]() PC.
 	- [_Jun 2022_] A vision paper accepted to [APSys'22](https://apsys2022.comp.nus.edu.sg/index.html)
 	- [_Jun 2022_] Serve as [EuroSys'23 PC](https://2023.eurosys.org/index.html)
 	- [_Jun 2022_] Serve as [SoCC'22 PC](https://acmsocc.org/2022/program-committee.html)
@@ -89,7 +90,7 @@ and their intersections.
 8. __Towards a Fully Disaggregated and Programmable Data Center__
   <br> *Yizhou Shan*, Will Lin, Zhiyuan Guo, Yiying Zhang
   <br> *__APSys 2022__*
-       [[Paper]](http://lastweek.io/pubs/apsys22.pdf)
+       [[Paper]](https://dl.acm.org/doi/abs/10.1145/3546591.3547527)
 7. __Distributing and Disaggregating Hardware Resources in Data Centers__
   <br> Yizhou Shan
   <br> [UCSD Dissertation 2022](https://escholarship.org/content/qt35s245rd/qt35s245rd_noSplash_e32c0215d4afc739cb21ef2618b5a968.pdf)
