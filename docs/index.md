@@ -31,6 +31,7 @@ Contact: **ys** AT **ucsd** DOT **edu** You can find my [CV here](http://lastwee
 
 
 ??? tip "Research"
+	- [_Oct 2022_] HoPP accepted to HPCA'23.
 	- [_Sep 2022_] I will serve as a [ATC'23]() PC.
 	- [_Jun 2022_] A vision paper accepted to [APSys'22](https://apsys2022.comp.nus.edu.sg/index.html)
 	- [_Jun 2022_] Serve as [EuroSys'23 PC](https://2023.eurosys.org/index.html)
@@ -74,6 +75,7 @@ and their intersections.
 
 **Disaggregated Memory**
 
+-  [HoPP, HPCA'23]() - Hardware-augmented Prefetching for Disaggregated Memory
 -  [Clio, ASPLOS'22](http://lastweek.io/pubs/ASPLOS22-Clio.pdf) - An FPGA-based disaggregated memory device
 -  [Clover, ATC'20](http://lastweek.io/pubs/ATC20-DPM.pdf) - Pure *one-sided* KVS on disaggregated PM
 -  [Storm, SYSTOR'19](http://lastweek.io/pubs/SYSTOR19-Storm.pdf) - Highly-efficient KVS on disaggregated memory
@@ -87,6 +89,9 @@ and their intersections.
 
 ### Publications
 
+9. __HoPP: Hardware-Software Co-Designed Page Prefetching for Disaggregated Memory__
+  <br> Haifeng Li, Ke Liu, Ting Liang, Zuojun Li, Tianyue Lu, Hui Yuan, Yinben Xia, Yungang Bao, Mingyu Chen, *Yizhou Shan*
+  <br> *__HPCA'23__* To Appear
 8. __Towards a Fully Disaggregated and Programmable Data Center__
   <br> *Yizhou Shan*, Will Lin, Zhiyuan Guo, Yiying Zhang
   <br> *__APSys 2022__*
