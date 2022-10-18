@@ -91,7 +91,7 @@ and their intersections.
 
 9. __HoPP: Hardware-Software Co-Designed Page Prefetching for Disaggregated Memory__
   <br> Haifeng Li, Ke Liu, Ting Liang, Zuojun Li, Tianyue Lu, Hui Yuan, Yinben Xia, Yungang Bao, Mingyu Chen, *Yizhou Shan*
-  <br> *__HPCA'23__* To Appear
+  <br> *__HPCA 2023__* To Appear
 8. __Towards a Fully Disaggregated and Programmable Data Center__
   <br> *Yizhou Shan*, Will Lin, Zhiyuan Guo, Yiying Zhang
   <br> *__APSys 2022__*
@@ -105,7 +105,7 @@ and their intersections.
        [[Code]]()
 5. __Clio: A Hardware-Software Co-Designed Disaggregated Memory System__
   <br> *Yizhou Shan*, Zhiyuan Guo (co-first authors), Xuhao Luo, Yutong Huang, Yiying Zhang
-  <br> *__ASPLOS '22__*
+  <br> *__ASPLOS 2022__*
        [[Paper]](http://lastweek.io/pubs/ASPLOS22-Clio.pdf)
        [[Code]](https://github.com/WukLab/Clio)
        [[Slide]]()
