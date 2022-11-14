@@ -2318,6 +2318,111 @@
 </table>
 </details>
 <p>Grab-and-go SSD 101 for newbies.</p>
+<p>Cell Bits (SLC, MLC, TLC)</p>
+<ul>
+<li>A cell can have 1-bit, 2-bit, 3-bit, or 4-bit saved. <a href="https://flashdba.com/2014/07/03/understanding-flash-slc-mlc-and-tlc/">There is a trade-off among these</a>. SLC has lower-latency and longer lifespan, but is more expensive. Enterprise &amp; Datacenter may prefer SLC for its longer lifespan cena better perf. Consumers may prefer MLC/TLC/QLC.</li>
+<li>A flash cell is a floating gate or a charge trap transistor to represent data by storing certain amount of charges, which determines the threshold voltage (Vth) of the cell.</li>
+<li>I like the following diagram &amp; blog. It clearly shows the difference.</li>
+<li>Reads<ul>
+<li><a href="https://computer.howstuffworks.com/flash-memory.htm">How Flash Memory Works | HowStuffWorks</a></li>
+<li><a href="https://flashdba.com/2014/07/03/understanding-flash-slc-mlc-and-tlc/">Understanding Flash: SLC, MLC and TLC | flashdba</a> </li>
+<li><a href="https://www.usenix.org/system/files/hotstorage19-paper-li.pdf">Sentinel Cells Enabled Fast Read for NAND Flash</a> HotStorage’19 </li>
+</ul>
+</li>
+</ul>
+<p>Parallelism and Packaging</p>
+<ul>
+<li>A NAND package is organized into a hierarchy of <strong>dies</strong>, <strong>planes</strong>, <strong>blocks **and **pages</strong>.</li>
+<li>There may be one or several dies within a single physical package.</li>
+<li>A die allows a single I/O command to be executed at a time.</li>
+<li>A plane allows similar flash commands to be executed in parallel within a die.</li>
+</ul>
+<p>There are three fundamental programming constraints that apply to NAND:</p>
+<ul>
+<li>a write command must always contain enough data to program one (or several) full flash page(s)</li>
+<li>writes must be sequential within a block</li>
+<li>an erase must be performed before a page within a block can be (re)written. The number of program/erase (PE) cycles is limited</li>
+</ul>
+<p>FTL</p>
+<ul>
+<li>A cell can have 1-bit, 2-bit, 3-bit, or 4-bit saved. <a href="https://flashdba.com/2014/07/03/understanding-flash-slc-mlc-and-tlc/">There is a trade-off among these</a>. SLC has lower-latency and longer lifespan, but is more expensive.</li>
+<li>A page has many cells.</li>
+<li>A page is usually a couple KBs, like 2KB, 4KB, 8KB, etc.</li>
+<li>A block has hundreds or thousands of pages, like 2MB, 4MB, etc</li>
+<li>Pages cannot be erased individually, only whole blocks can be erased.</li>
+<li>Why does SSD only support block-level erase rather than page-level erase?<ul>
+<li>Per-page FTL costs more memory than per-block FTL.</li>
+<li>The electricity/wires required are also less, I guess.</li>
+</ul>
+</li>
+<li>Reads<ul>
+<li><a href="https://www.usenix.org/legacy/event/usenix08/tech/full_papers/agrawal/agrawal.pdf">Design Tradeoffs for SSD Performance, ATC&lsquo;08</a></li>
+<li><a href="http://www.csc.lsu.edu/~fchen/publications/papers/hpca11.pdf">http://www.csc.lsu.edu/~fchen/publications/papers/hpca11.pdf</a> </li>
+</ul>
+</li>
+</ul>
+<p>Garbage Collection (GC)</p>
+<ul>
+<li>Why GC? Because SSD cells cannot be overwritten once programmed, it must be erased before it can be written again. Every SSD write would write into another block’s page other than the one you originally read data from. The original page is marked as “Stale” subsequently. It is apparent that many pages/blocks become stale gradually, and if no action is taken, the SSD will run out of space. GC mostly runs in the background to recycle such blocks (NOTE: erase happens in block-level granularity). If GC fails to catch up, foreground performance will be bottlenecked by Erase.</li>
+</ul>
+<p>Write Amplification Factor</p>
+<ul>
+<li>The amount of data written by the SSD controller into the NAND flash compared the amount of data written from the host OS.</li>
+<li>The larger the WA, the faster the SSD ages and the worse performance.</li>
+</ul>
+<p>TRIM</p>
+<ul>
+<li>Once you write something into an SSD block, SSD has no way to know whether a block is freed from FS/OS’s perspective. During GC, SSD would still move such “invalid” blocks around to make space. This is wasted effort.</li>
+<li>The <strong>TRIM</strong> command allows OS/FS to notify SSD that certain blocks are freed, hence SSD can erase them and no longer need to maintain them. It is a simple co-design.</li>
+</ul>
+<p>Over-Provisioning (OP) 冗余空间</p>
+<ul>
+<li>I saw: OP 10-15% for normal light workload. OP 25% for write-intensive workloads. Not confirmed</li>
+<li>OP basically allows you to absorb more transient traffic and allows FTL to balance writes across more blocks hence prolong the overall lifespan</li>
+</ul>
+<p>Wear  Leveling</p>
+<ul>
+<li>Wear = Last 持久</li>
+<li>Leveling = 水平</li>
+<li>FTL controller tries to balance the number of P/E cycles made to all SSD blocks, so that most of them age at the same pace. </li>
+</ul>
+<p>Queue Depth</p>
+<ul>
+<li>TODO</li>
+</ul>
+<p><a href="https://nvmexpress.org/resources/nvm-express-technology-features/nvme-namespaces/#:~:text=What%20is%20a%20Namespace%3F,provide%20access%20to%20a%20namespace.">NVMe Namespaces</a></p>
+<ul>
+<li>a namespace is a collection of logical block addresses (LBA) accessible to host software. A namespace ID (NSID) is an identifier used by a controller to provide access to a namespace.</li>
+<li>There are many reasons why host software would want to break up an NVMe SSD into multiple namespaces: for logical isolation, multi-tenancy, security isolation (encryption per namespace), write protecting a namespace for recovery purposes, overprovisioning to improve write performance and endurance and so on.</li>
+<li>Namespaces =&gt; Zoned Namespaces. Its not a huge leap. The ZNS SSD is much simplified.</li>
+</ul>
+<p>OpenChannel</p>
+<ul>
+<li>Open-Channel SSDs allow host and SSD to collaborate through a set of contiguous LBA chunks</li>
+<li>This eliminates in-device garbage collection overhead and reduces the cost of media over-provisioning and DRAM.</li>
+<li>With OCSSDs, the host is responsible for data placement. This includes underlying media reliability management such as wear-leveling, and specific media failure characteristics.</li>
+<li>This has the potential to improve SSD performance and media lifetime over_ Stream SSDs_, but the host must manage differences across SSD implementations to guarantee durability, making the interface hard to adopt and requiring continual software upkeep.</li>
+<li>Reads<ul>
+<li><a href="https://www.usenix.org/system/files/atc21-bjorling.pdf">ZNS: Avoiding the Block Interface Tax for Flash-based SSDs, ATC&lsquo;21</a></li>
+<li><a href="https://openchannelssd.readthedocs.io/en/latest/">https://openchannelssd.readthedocs.io/en/latest/</a> </li>
+</ul>
+</li>
+</ul>
+<p>Zoned Namespace (ZNS)</p>
+<ul>
+<li><a href="https://www.usenix.org/system/files/atc21-bjorling.pdf">ZNS: Avoiding the Block Interface Tax for Flash-based SSDs, ATC&lsquo;21</a> &amp; <a href="https://www.usenix.org/system/files/atc21_slides_bjorling.pdf">slide</a></li>
+<li>The SSD is partitioned into a set of zones.</li>
+<li>Each zone represents a region of the logical address space of the SSD that can be read arbitrarily but must be written sequentially, and to enable new writes, must be explicitly reset.</li>
+<li>Compared to OpenChannel: OC is shifting all management responsibilities to the host, which is burdensome to software. ZNS is different, ZNS disallows random writes but the SSD controller still needs to expose the Zone abstraction and manages the Zone to underlying block/page mapping. The benefit is that SSD can now do coarse-grained mapping. The host does fine-grained mapping and GC. </li>
+<li>The SSD controller is simpler in response to ZNS. Check The ZNS paper for the HW&amp;SW changes</li>
+<li>This implies that write amplification on the device is eliminated, which eliminates the need for capacity over-provisioning</li>
+</ul>
+<p>FDP</p>
+<ul>
+<li><a href="https://nvmexpress.org/wp-content/uploads/Hyperscale-Innovation-Flexible-Data-Placement-Mode-FDP.pdf">https://nvmexpress.org/wp-content/uploads/Hyperscale-Innovation-Flexible-Data-Placement-Mode-FDP.pdf</a> </li>
+<li><a href="https://www.youtube.com/watch?v=R0GHuKwi3Fc">https://www.youtube.com/watch?v=R0GHuKwi3Fc</a> </li>
+<li><a href="https://www.youtube.com/watch?v=ZEISXHcNmSk">https://www.youtube.com/watch?v=ZEISXHcNmSk</a> </li>
+</ul>
                 
                   
                     
