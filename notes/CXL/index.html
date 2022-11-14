@@ -2440,24 +2440,26 @@
 </thead>
 <tbody>
 <tr>
+<td align="left">Nov 15, 2022</td>
+<td>Small fixes</td>
+</tr>
+<tr>
 <td align="left">Jul 17, 2022</td>
 <td>Initial</td>
 </tr>
 </tbody>
 </table>
 </details>
-<p>07/17/2022
-This is not a polished version, written top of my head.
-Going to add more CXL background.</p>
 <h2 id="intro">Intro<a class="headerlink" href="#intro" title="Permanent link">&para;</a></h2>
 <p><img alt="⛵" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/26f5.svg" title=":sailboat:" /></p>
+<p>Is CXL just another NUMA?</p>
 <p>You probably have heared about CXL many times.
 And you&rsquo;ve probably wondered, what is it, exactly?
 And why folks are so excited about it?
 This (short) note explains CXL from my own pespective.
 In particular, what is it, how to use it, 
 what&rsquo;s the current status, and what&rsquo;s next.</p>
-<p>I&rsquo;m no expert in the CXL protocol itself.
+<p>DISCLAIMER: I&rsquo;m no expert in the CXL protocol itself.
 I&rsquo;m just a systems researcher
 who may need to compare my systems against CXL-enabled ones.
 Hence my thoughts and views could be biased and wrong.
@@ -2465,26 +2467,26 @@ If you are looking for serious CXL specification stuff,
 please check out the <a href="https://www.computeexpresslink.org/">official CXL site</a>.</p>
 <p>Without further ado, let&rsquo;s get started.</p>
 <h2 id="what-is-cxl">What is CXL?<a class="headerlink" href="#what-is-cxl" title="Permanent link">&para;</a></h2>
-<p>CXL is Compute Express Link. It has 3 types.
-I will focus on CXL type 3 device, the one used for memory expansion.
-The CXL hereafter refers to type 3 only unless otherwise noted.</p>
-<p>I think originally CXL was proposed to tame DRAM/PM heterogeneity
-and have a framework to maintain cache coherence among accelerators.
-Gradually, CXL is now mainly used in the disaggregated memory scenario.
-But was CXL originally designed with disaggregated memory in mind?
+<p>CXL is short for Compute Express Link. It has 3 types.
+I will focus on <em>CXL type 3</em> device, the one used for <strong>memory expansion</strong>.
+The CXL hereafter refers to type 3.</p>
+<p>Originally CXL was proposed to tame DRAM/PM heterogeneity
+and has a framework to maintain cache coherence among accelerators.
+CXL is now mainly used in the disaggregated memory scenario.
+But was CXL originally designed with the disaggregated memory setting in mind?
 I doubt that.</p>
-<p>It is interesting to think why CXL has such a spin-off.
-My take: CXL was designed for heterogeenous DRAM technologies.
-Hence one of its core design principle is to work with memory.
-Using memory requires low latency.
-As a result, CXL requires a low latency interconnection between
-a processing unit (e.g., CPU) and a CXL controller (the one right before memory).
-This eventually brings a CPU closer to a device (CXL controller) that is capable of
-accessing outside resources. It calls for something better/faster than PCIe.
-And this enables disaggregated memory usage.</p>
+<p>Hence it is interesting to think why CXL has such a successful spin-off.
+My take: because CXL was designed for heterogeenous DRAM technologies,
+one of its core design principle is to work with different kinds of memory.
+Using memory usually requires extremely low latency.
+As such, CXL requires a low latency interconnection between
+a processing unit (e.g., CPU) and a CXL controller (the one right before memory chips).
+This pursuit eventually brings a CPU closer to a device (CXL controller) that is capable of
+accessing external resources. It calls for something better/faster than the long-standing PCIe.
+And this subsequently enables the disaggregated memory usage.</p>
 <h2 id="how-to-use-cxl">How to use CXL?<a class="headerlink" href="#how-to-use-cxl" title="Permanent link">&para;</a></h2>
 <p>I think there are two ways to look at CXL,
-one from the traditional server side, and the other from disaggregated memory.
+one from the traditional server angel, and the other from resource disaggregation.
 Either way, CXL enables disaggregated memory with extrmely low latency.</p>
 <p><strong>From the traditional server angle</strong>:
 CXL allows the CPUs to access remote memory (i.e., memory resides outside the server box)
@@ -2510,10 +2512,11 @@ Microsoft and Meta have released papers on their in-houst CXL platforms.
 Though no hardware is actually evaluated, they are building it.
 I remember Meta has CXL FPGAs long time ago.</p>
 <p>The whole industry is pushing it.
-There are numerous summits hosting CXL tutorials.</p>
+There are numerous summits hosting CXL tutorials.
+The latest being <a href="https://www.opencompute.org/blog/2022-ocp-global-summit-key-takeaways-cxls-implications-for-server-architecture">OCP Global Summit 2022</a>.</p>
 <h2 id="whats-next-for-cxl">What&rsquo;s next for CXL?<a class="headerlink" href="#whats-next-for-cxl" title="Permanent link">&para;</a></h2>
-<p>I think there are A LOT to explore.
-Research wise.</p>
+<p>I think there are A LOT to explore. Research wise.
+Like concurrency.</p>
 <h2 id="readings">Readings<a class="headerlink" href="#readings" title="Permanent link">&para;</a></h2>
 <ul>
 <li>First-Gen CXL, arXiv&lsquo;22.<ul>
@@ -2522,6 +2525,7 @@ Research wise.</p>
 <li>No page migration, but VM migration.</li>
 <li>Has ML-based VM memory usage prediction</li>
 <li>And runtime QoS monitoring based on PMU countes</li>
+<li>The paper is accepted to ASPLOS&lsquo;23 and renamed to Pond.</li>
 </ul>
 </li>
 <li>TPP, arXiv&lsquo;22.<ul>
@@ -2545,7 +2549,7 @@ Research wise.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 18, 2022</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 15, 2022</span>
       
     
   </small>
