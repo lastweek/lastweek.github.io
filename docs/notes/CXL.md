@@ -3,15 +3,14 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Nov 15, 2022 | Small fixes|
 	|Jul 17, 2022 | Initial|
-
-07/17/2022
-This is not a polished version, written top of my head.
-Going to add more CXL background.
 
 ## Intro
 
 :sailboat:
+
+Is CXL just another NUMA?
 
 You probably have heared about CXL many times.
 And you've probably wondered, what is it, exactly?
@@ -20,7 +19,7 @@ This (short) note explains CXL from my own pespective.
 In particular, what is it, how to use it, 
 what's the current status, and what's next.
 
-I'm no expert in the CXL protocol itself.
+DISCLAIMER: I'm no expert in the CXL protocol itself.
 I'm just a systems researcher
 who may need to compare my systems against CXL-enabled ones.
 Hence my thoughts and views could be biased and wrong.
@@ -31,30 +30,30 @@ Without further ado, let's get started.
 
 ## What is CXL?
 
-CXL is Compute Express Link. It has 3 types.
-I will focus on CXL type 3 device, the one used for memory expansion.
-The CXL hereafter refers to type 3 only unless otherwise noted.
+CXL is short for Compute Express Link. It has 3 types.
+I will focus on *CXL type 3* device, the one used for **memory expansion**.
+The CXL hereafter refers to type 3.
 
-I think originally CXL was proposed to tame DRAM/PM heterogeneity
-and have a framework to maintain cache coherence among accelerators.
-Gradually, CXL is now mainly used in the disaggregated memory scenario.
-But was CXL originally designed with disaggregated memory in mind?
+Originally CXL was proposed to tame DRAM/PM heterogeneity
+and has a framework to maintain cache coherence among accelerators.
+CXL is now mainly used in the disaggregated memory scenario.
+But was CXL originally designed with the disaggregated memory setting in mind?
 I doubt that.
 
-It is interesting to think why CXL has such a spin-off.
-My take: CXL was designed for heterogeenous DRAM technologies.
-Hence one of its core design principle is to work with memory.
-Using memory requires low latency.
-As a result, CXL requires a low latency interconnection between
-a processing unit (e.g., CPU) and a CXL controller (the one right before memory).
-This eventually brings a CPU closer to a device (CXL controller) that is capable of
-accessing outside resources. It calls for something better/faster than PCIe.
-And this enables disaggregated memory usage.
+Hence it is interesting to think why CXL has such a successful spin-off.
+My take: because CXL was designed for heterogeenous DRAM technologies,
+one of its core design principle is to work with different kinds of memory.
+Using memory usually requires extremely low latency.
+As such, CXL requires a low latency interconnection between
+a processing unit (e.g., CPU) and a CXL controller (the one right before memory chips).
+This pursuit eventually brings a CPU closer to a device (CXL controller) that is capable of
+accessing external resources. It calls for something better/faster than the long-standing PCIe.
+And this subsequently enables the disaggregated memory usage.
 
 ## How to use CXL?
 
 I think there are two ways to look at CXL,
-one from the traditional server side, and the other from disaggregated memory.
+one from the traditional server angel, and the other from resource disaggregation.
 Either way, CXL enables disaggregated memory with extrmely low latency.
 
 **From the traditional server angle**:
@@ -87,11 +86,12 @@ I remember Meta has CXL FPGAs long time ago.
 
 The whole industry is pushing it.
 There are numerous summits hosting CXL tutorials.
+The latest being [OCP Global Summit 2022](https://www.opencompute.org/blog/2022-ocp-global-summit-key-takeaways-cxls-implications-for-server-architecture).
 
 ## What's next for CXL?
 
-I think there are A LOT to explore.
-Research wise.
+I think there are A LOT to explore. Research wise.
+Like concurrency.
 
 ## Readings
 
@@ -101,6 +101,7 @@ Research wise.
 	- No page migration, but VM migration.
 	- Has ML-based VM memory usage prediction
 	- And runtime QoS monitoring based on PMU countes
+	- The paper is accepted to ASPLOS'23 and renamed to Pond.
 - TPP, arXiv'22.
 	- Two contribtions. Workloads analysis and an enhanced paging system.
 	- Works within a normal linux kernel (has user space parts), various improvements on LRU lists etc.

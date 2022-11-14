@@ -4,16 +4,18 @@
 </p>
 --->
 
-Hello! I'm Yizhou Shan, I've recently graduated from [University of California San Diego](https://cse.ucsd.edu/)
+Hello! I'm Yizhou, I'm a Research Scientist at [Huawei Cloud](https://www.huaweicloud.com/intl/en-us/).
+I earned my PhD from [University of California San Diego](https://cse.ucsd.edu/)
 under the supervision of [Prof. Yiying Zhang](https://cseweb.ucsd.edu/~yiying/).
-I'm now a Research Scientist at [Huawei Cloud](https://www.huaweicloud.com/intl/en-us/).
 
-Contact: **ys** AT **ucsd** DOT **edu** You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
+Contact: **y1shan** AT **eng** DOT **ucsd** DOT **edu**.
+You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 ??? note "Blogging"
 
     **Latest**
 
+      - Jul 2022 [CXL](./notes/CXL.md)
       - Apr 2022 [MLIR](./notes/MLIR.md)
       - Mar 2022 [Resource Disaggregation Spectrum](./notes/resource-disaggregation-spectrum.md)
       - Feb 2022 [Distributed Transactions](./notes/dist-xact.md)
