@@ -5,7 +5,11 @@
 	|:---|-----------|
 	|Nov 15, 2022 | Initial |
 
-Grab-and-go SSD 101 for newbies.
+
+Grab-and-go SSD 101 for newbies like myself.
+
+
+## Basics
 
 **Cell Bits (SLC, MLC, TLC)**
 
@@ -104,3 +108,14 @@ Grab-and-go SSD 101 for newbies.
 * [https://nvmexpress.org/wp-content/uploads/Hyperscale-Innovation-Flexible-Data-Placement-Mode-FDP.pdf](https://nvmexpress.org/wp-content/uploads/Hyperscale-Innovation-Flexible-Data-Placement-Mode-FDP.pdf) 
 * [https://www.youtube.com/watch?v=R0GHuKwi3Fc](https://www.youtube.com/watch?v=R0GHuKwi3Fc) 
 * [https://www.youtube.com/watch?v=ZEISXHcNmSk](https://www.youtube.com/watch?v=ZEISXHcNmSk) 
+
+## Readings
+
+- This is my starting point. This is a 6-blog series and contains almost every detail we’d care about. I recommend reading this. [Coding for SSDs – Part 6: A Summary – What every programmer should know about solid-state drives](https://codecapsule.com/2014/02/12/coding-for-ssds-part-6-a-summary-what-every-programmer-should-know-about-solid-state-drives/) 
+- Many recommend this paper as the one which proposed the log-based remapping mechanism. [A Reconfigurable FTL (Flash Translation Layer) Architecture for NAND Flash-Based Applications](https://people.eecs.berkeley.edu/~kubitron/cs262/handouts/papers/a38-park.pdf) 
+- Classical reads recommended by everyone
+	- [Design Tradeoffs for SSD Performance, ATC'08](https://www.usenix.org/legacy/event/usenix08/tech/full_papers/agrawal/agrawal.pdf)
+	- [http://www.csc.lsu.edu/~fchen/publications/papers/hpca11.pdf](http://www.csc.lsu.edu/~fchen/publications/papers/hpca11.pdf) 
+	- [WiscKey: Separating Keys from Values in SSD-conscious Storage, FAST'16](https://www.usenix.org/system/files/conference/fast16/fast16-papers-lu.pdf) 
+- Jian Huang’s paper [1](https://platformxlab.github.io/papers/flashmap-isca15.pdf) & [2](https://platformxlab.github.io/papers/flashblox-fast17.pdf) 
+
