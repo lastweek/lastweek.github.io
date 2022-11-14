@@ -216,13 +216,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../MLIR/" class="md-tabs__link">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
         Notes
       </a>
     </li>
@@ -356,12 +358,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       
       
@@ -382,11 +386,58 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../MLIR/" class="md-nav__link">
-        What is MLIR?
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          SSD 101
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        SSD 101
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basics" class="md-nav__link">
+    Basics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#readings" class="md-nav__link">
+    Readings
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -412,22 +463,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../resource-disaggregation-spectrum/" class="md-nav__link">
-        Resource Disaggregation Design Spectrums
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../dist-xact/" class="md-nav__link">
-        Distributed Transactions and Databases
+      <a href="../MLIR/" class="md-nav__link">
+        What is MLIR?
       </a>
     </li>
   
@@ -456,6 +493,34 @@
     <li class="md-nav__item">
       <a href="../cache_coherence/" class="md-nav__link">
         Practical Cache Coherence
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resource-disaggregation-spectrum/" class="md-nav__link">
+        Resource Disaggregation Design Spectrums
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dist-xact/" class="md-nav__link">
+        Distributed Transactions and Databases
       </a>
     </li>
   
@@ -2286,6 +2351,28 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basics" class="md-nav__link">
+    Basics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#readings" class="md-nav__link">
+    Readings
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2317,8 +2404,9 @@
 </tbody>
 </table>
 </details>
-<p>Grab-and-go SSD 101 for newbies.</p>
-<p>Cell Bits (SLC, MLC, TLC)</p>
+<p>Grab-and-go SSD 101 for newbies like myself.</p>
+<h2 id="basics">Basics<a class="headerlink" href="#basics" title="Permanent link">&para;</a></h2>
+<p><strong>Cell Bits (SLC, MLC, TLC)</strong></p>
 <ul>
 <li>A cell can have 1-bit, 2-bit, 3-bit, or 4-bit saved. <a href="https://flashdba.com/2014/07/03/understanding-flash-slc-mlc-and-tlc/">There is a trade-off among these</a>. SLC has lower-latency and longer lifespan, but is more expensive. Enterprise &amp; Datacenter may prefer SLC for its longer lifespan cena better perf. Consumers may prefer MLC/TLC/QLC.</li>
 <li>A flash cell is a floating gate or a charge trap transistor to represent data by storing certain amount of charges, which determines the threshold voltage (Vth) of the cell.</li>
@@ -2330,20 +2418,20 @@
 </ul>
 </li>
 </ul>
-<p>Parallelism and Packaging</p>
+<p><strong>Parallelism and Packaging</strong></p>
 <ul>
-<li>A NAND package is organized into a hierarchy of <strong>dies</strong>, <strong>planes</strong>, <strong>blocks **and **pages</strong>.</li>
+<li>A NAND package is organized into a hierarchy of <strong>dies</strong>,  <strong>planes</strong>,  <strong>blocks **, and **pages</strong>.</li>
 <li>There may be one or several dies within a single physical package.</li>
 <li>A die allows a single I/O command to be executed at a time.</li>
 <li>A plane allows similar flash commands to be executed in parallel within a die.</li>
 </ul>
-<p>There are three fundamental programming constraints that apply to NAND:</p>
+<p><strong>There are three fundamental programming constraints that apply to NAND</strong>:</p>
 <ul>
 <li>a write command must always contain enough data to program one (or several) full flash page(s)</li>
 <li>writes must be sequential within a block</li>
 <li>an erase must be performed before a page within a block can be (re)written. The number of program/erase (PE) cycles is limited</li>
 </ul>
-<p>FTL</p>
+<p><strong>FTL</strong></p>
 <ul>
 <li>A cell can have 1-bit, 2-bit, 3-bit, or 4-bit saved. <a href="https://flashdba.com/2014/07/03/understanding-flash-slc-mlc-and-tlc/">There is a trade-off among these</a>. SLC has lower-latency and longer lifespan, but is more expensive.</li>
 <li>A page has many cells.</li>
@@ -2361,42 +2449,42 @@
 </ul>
 </li>
 </ul>
-<p>Garbage Collection (GC)</p>
+<p><strong>Garbage Collection (GC)</strong></p>
 <ul>
 <li>Why GC? Because SSD cells cannot be overwritten once programmed, it must be erased before it can be written again. Every SSD write would write into another block’s page other than the one you originally read data from. The original page is marked as “Stale” subsequently. It is apparent that many pages/blocks become stale gradually, and if no action is taken, the SSD will run out of space. GC mostly runs in the background to recycle such blocks (NOTE: erase happens in block-level granularity). If GC fails to catch up, foreground performance will be bottlenecked by Erase.</li>
 </ul>
-<p>Write Amplification Factor</p>
+<p><strong>Write Amplification Factor</strong></p>
 <ul>
 <li>The amount of data written by the SSD controller into the NAND flash compared the amount of data written from the host OS.</li>
 <li>The larger the WA, the faster the SSD ages and the worse performance.</li>
 </ul>
-<p>TRIM</p>
+<p><strong>TRIM</strong></p>
 <ul>
 <li>Once you write something into an SSD block, SSD has no way to know whether a block is freed from FS/OS’s perspective. During GC, SSD would still move such “invalid” blocks around to make space. This is wasted effort.</li>
 <li>The <strong>TRIM</strong> command allows OS/FS to notify SSD that certain blocks are freed, hence SSD can erase them and no longer need to maintain them. It is a simple co-design.</li>
 </ul>
-<p>Over-Provisioning (OP) 冗余空间</p>
+<p><strong>Over-Provisioning (OP)</strong></p>
 <ul>
 <li>I saw: OP 10-15% for normal light workload. OP 25% for write-intensive workloads. Not confirmed</li>
 <li>OP basically allows you to absorb more transient traffic and allows FTL to balance writes across more blocks hence prolong the overall lifespan</li>
 </ul>
-<p>Wear  Leveling</p>
+<p><strong>Wear  Leveling</strong></p>
 <ul>
 <li>Wear = Last 持久</li>
 <li>Leveling = 水平</li>
 <li>FTL controller tries to balance the number of P/E cycles made to all SSD blocks, so that most of them age at the same pace. </li>
 </ul>
-<p>Queue Depth</p>
+<p><strong>Queue Depth</strong></p>
 <ul>
 <li>TODO</li>
 </ul>
-<p><a href="https://nvmexpress.org/resources/nvm-express-technology-features/nvme-namespaces/#:~:text=What%20is%20a%20Namespace%3F,provide%20access%20to%20a%20namespace.">NVMe Namespaces</a></p>
+<p><strong><a href="https://nvmexpress.org/resources/nvm-express-technology-features/nvme-namespaces/#:~:text=What%20is%20a%20Namespace%3F,provide%20access%20to%20a%20namespace.">NVMe Namespaces</a></strong></p>
 <ul>
 <li>a namespace is a collection of logical block addresses (LBA) accessible to host software. A namespace ID (NSID) is an identifier used by a controller to provide access to a namespace.</li>
 <li>There are many reasons why host software would want to break up an NVMe SSD into multiple namespaces: for logical isolation, multi-tenancy, security isolation (encryption per namespace), write protecting a namespace for recovery purposes, overprovisioning to improve write performance and endurance and so on.</li>
 <li>Namespaces =&gt; Zoned Namespaces. Its not a huge leap. The ZNS SSD is much simplified.</li>
 </ul>
-<p>OpenChannel</p>
+<p><strong>Open Channel SSD</strong></p>
 <ul>
 <li>Open-Channel SSDs allow host and SSD to collaborate through a set of contiguous LBA chunks</li>
 <li>This eliminates in-device garbage collection overhead and reduces the cost of media over-provisioning and DRAM.</li>
@@ -2408,7 +2496,7 @@
 </ul>
 </li>
 </ul>
-<p>Zoned Namespace (ZNS)</p>
+<p><strong>Zoned Namespace (ZNS)</strong></p>
 <ul>
 <li><a href="https://www.usenix.org/system/files/atc21-bjorling.pdf">ZNS: Avoiding the Block Interface Tax for Flash-based SSDs, ATC&lsquo;21</a> &amp; <a href="https://www.usenix.org/system/files/atc21_slides_bjorling.pdf">slide</a></li>
 <li>The SSD is partitioned into a set of zones.</li>
@@ -2417,11 +2505,23 @@
 <li>The SSD controller is simpler in response to ZNS. Check The ZNS paper for the HW&amp;SW changes</li>
 <li>This implies that write amplification on the device is eliminated, which eliminates the need for capacity over-provisioning</li>
 </ul>
-<p>FDP</p>
+<p><strong>Flexible Data Placement (FDP) v.s. ZNS</strong></p>
 <ul>
 <li><a href="https://nvmexpress.org/wp-content/uploads/Hyperscale-Innovation-Flexible-Data-Placement-Mode-FDP.pdf">https://nvmexpress.org/wp-content/uploads/Hyperscale-Innovation-Flexible-Data-Placement-Mode-FDP.pdf</a> </li>
 <li><a href="https://www.youtube.com/watch?v=R0GHuKwi3Fc">https://www.youtube.com/watch?v=R0GHuKwi3Fc</a> </li>
 <li><a href="https://www.youtube.com/watch?v=ZEISXHcNmSk">https://www.youtube.com/watch?v=ZEISXHcNmSk</a> </li>
+</ul>
+<h2 id="readings">Readings<a class="headerlink" href="#readings" title="Permanent link">&para;</a></h2>
+<ul>
+<li>This is my starting point. This is a 6-blog series and contains almost every detail we’d care about. I recommend reading this. <a href="https://codecapsule.com/2014/02/12/coding-for-ssds-part-6-a-summary-what-every-programmer-should-know-about-solid-state-drives/">Coding for SSDs – Part 6: A Summary – What every programmer should know about solid-state drives</a> </li>
+<li>Many recommend this paper as the one which proposed the log-based remapping mechanism. <a href="https://people.eecs.berkeley.edu/~kubitron/cs262/handouts/papers/a38-park.pdf">A Reconfigurable FTL (Flash Translation Layer) Architecture for NAND Flash-Based Applications</a> </li>
+<li>Classical reads recommended by everyone<ul>
+<li><a href="https://www.usenix.org/legacy/event/usenix08/tech/full_papers/agrawal/agrawal.pdf">Design Tradeoffs for SSD Performance, ATC&lsquo;08</a></li>
+<li><a href="http://www.csc.lsu.edu/~fchen/publications/papers/hpca11.pdf">http://www.csc.lsu.edu/~fchen/publications/papers/hpca11.pdf</a> </li>
+<li><a href="https://www.usenix.org/system/files/conference/fast16/fast16-papers-lu.pdf">WiscKey: Separating Keys from Values in SSD-conscious Storage, FAST&lsquo;16</a> </li>
+</ul>
+</li>
+<li>Jian Huang’s paper <a href="https://platformxlab.github.io/papers/flashmap-isca15.pdf">1</a> &amp; <a href="https://platformxlab.github.io/papers/flashblox-fast17.pdf">2</a> </li>
 </ul>
                 
                   
@@ -2461,6 +2561,41 @@
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Home
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../CXL/" class="md-footer__link md-footer__link--next" aria-label="Next: What is CXL?" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              What is CXL?
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
