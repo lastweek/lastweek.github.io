@@ -506,6 +506,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>http://lastweek.io/notes/ssd/</loc>
+         <lastmod>2022-11-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>http://lastweek.io/notes/sysml/</loc>
          <lastmod>2022-11-14</lastmod>
          <changefreq>daily</changefreq>
