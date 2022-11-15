@@ -5,7 +5,6 @@
 	|:---|-----------|
 	|Nov 15, 2022 | Initial |
 
-
 Grab-and-go SSD 101 for newbies like myself.
 
 
@@ -23,16 +22,16 @@ Grab-and-go SSD 101 for newbies like myself.
 
 **Parallelism and Packaging**
 
-* A NAND package is organized into a hierarchy of **dies**,  **planes**,  **blocks **, and **pages**.
+* A NAND package is organized into a hierarchy of **dies**,  **planes**,  **blocks**, and **pages**.
 * There may be one or several dies within a single physical package.
 * A die allows a single I/O command to be executed at a time.
 * A plane allows similar flash commands to be executed in parallel within a die.
 
 
-**There are three fundamental programming constraints that apply to NAND**:
+**NAND has 3 fundamental programming constraints**:
 
 * a write command must always contain enough data to program one (or several) full flash page(s)
-*  writes must be sequential within a block
+* writes must be sequential within a block
 * an erase must be performed before a page within a block can be (re)written. The number of program/erase (PE) cycles is limited
 
 **FTL**
@@ -84,7 +83,7 @@ Grab-and-go SSD 101 for newbies like myself.
 * There are many reasons why host software would want to break up an NVMe SSD into multiple namespaces: for logical isolation, multi-tenancy, security isolation (encryption per namespace), write protecting a namespace for recovery purposes, overprovisioning to improve write performance and endurance and so on.
 * Namespaces => Zoned Namespaces. Its not a huge leap. The ZNS SSD is much simplified.
 
-**Open Channel SSD**
+### Open Channel SSD
 
 * Open-Channel SSDs allow host and SSD to collaborate through a set of contiguous LBA chunks
 * This eliminates in-device garbage collection overhead and reduces the cost of media over-provisioning and DRAM.
@@ -94,7 +93,7 @@ Grab-and-go SSD 101 for newbies like myself.
     * [ZNS: Avoiding the Block Interface Tax for Flash-based SSDs, ATC'21](https://www.usenix.org/system/files/atc21-bjorling.pdf)
     * [https://openchannelssd.readthedocs.io/en/latest/](https://openchannelssd.readthedocs.io/en/latest/) 
 
-**Zoned Namespace (ZNS)**
+### Zoned Namespace (ZNS)
 
 * [ZNS: Avoiding the Block Interface Tax for Flash-based SSDs, ATC'21](https://www.usenix.org/system/files/atc21-bjorling.pdf) & [slide](https://www.usenix.org/system/files/atc21_slides_bjorling.pdf)
 * The SSD is partitioned into a set of zones.
@@ -103,11 +102,21 @@ Grab-and-go SSD 101 for newbies like myself.
 * The SSD controller is simpler in response to ZNS. Check The ZNS paper for the HW&SW changes
 * This implies that write amplification on the device is eliminated, which eliminates the need for capacity over-provisioning
 
-**Flexible Data Placement (FDP) v.s. ZNS**
+### Flexible Data Placement (FDP) v.s. ZNS
 
 * [https://nvmexpress.org/wp-content/uploads/Hyperscale-Innovation-Flexible-Data-Placement-Mode-FDP.pdf](https://nvmexpress.org/wp-content/uploads/Hyperscale-Innovation-Flexible-Data-Placement-Mode-FDP.pdf) 
 * [https://www.youtube.com/watch?v=R0GHuKwi3Fc](https://www.youtube.com/watch?v=R0GHuKwi3Fc) 
 * [https://www.youtube.com/watch?v=ZEISXHcNmSk](https://www.youtube.com/watch?v=ZEISXHcNmSk) 
+
+### AWS Nitro SSD
+
+AWS re:Invent 2021 introduced their AWS Nitro SSD.
+There is only limited information about it.
+
+- They onload part of the traditional SSD FTL to a Nitro chip. Which parts are onloaded? I think it should be modules related to GC, wear-leveling etc. 
+- Their approach is different from the ZNS/FDP approach although they are doing some sort of data placement in the onloaded FTL.
+- They’ve been boasting about their SW upgrades (instead of HW) with nearly zero downtime.
+- End to End control requires us to break the strict abstraction/protocol boundaries. And in the SSD world, the FTL is the layer *guarding* the underlying flash. E2E opt should break this boundary, but the question is how much and to what extent. Following this principle, t does not make sense for them to onload the entire FTL to the Nitro SSD - some part of it for E2E opt should be sufficient (the parts like GC, like wear-leveling, i presume). This approach is similar to one taken by Google Aquila. They break the strict protocol boundaries among the network's physical/link/net/transport, allowing the transport to directly instruct link layer packets. And by breaking the protocol boundaries, Google Aquila achieves stable tail latency
 
 ## Readings
 
