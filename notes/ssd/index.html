@@ -425,6 +425,40 @@
     Basics
   </a>
   
+    <nav class="md-nav" aria-label="Basics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#open-channel-ssd" class="md-nav__link">
+    Open Channel SSD
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zoned-namespace-zns" class="md-nav__link">
+    Zoned Namespace (ZNS)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flexible-data-placement-fdp-vs-zns" class="md-nav__link">
+    Flexible Data Placement (FDP) v.s. ZNS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-nitro-ssd" class="md-nav__link">
+    AWS Nitro SSD
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2362,6 +2396,40 @@
     Basics
   </a>
   
+    <nav class="md-nav" aria-label="Basics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#open-channel-ssd" class="md-nav__link">
+    Open Channel SSD
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zoned-namespace-zns" class="md-nav__link">
+    Zoned Namespace (ZNS)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flexible-data-placement-fdp-vs-zns" class="md-nav__link">
+    Flexible Data Placement (FDP) v.s. ZNS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-nitro-ssd" class="md-nav__link">
+    AWS Nitro SSD
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2420,12 +2488,12 @@
 </ul>
 <p><strong>Parallelism and Packaging</strong></p>
 <ul>
-<li>A NAND package is organized into a hierarchy of <strong>dies</strong>,  <strong>planes</strong>,  <strong>blocks **, and **pages</strong>.</li>
+<li>A NAND package is organized into a hierarchy of <strong>dies</strong>,  <strong>planes</strong>,  <strong>blocks</strong>, and <strong>pages</strong>.</li>
 <li>There may be one or several dies within a single physical package.</li>
 <li>A die allows a single I/O command to be executed at a time.</li>
 <li>A plane allows similar flash commands to be executed in parallel within a die.</li>
 </ul>
-<p><strong>There are three fundamental programming constraints that apply to NAND</strong>:</p>
+<p><strong>NAND has 3 fundamental programming constraints</strong>:</p>
 <ul>
 <li>a write command must always contain enough data to program one (or several) full flash page(s)</li>
 <li>writes must be sequential within a block</li>
@@ -2484,7 +2552,7 @@
 <li>There are many reasons why host software would want to break up an NVMe SSD into multiple namespaces: for logical isolation, multi-tenancy, security isolation (encryption per namespace), write protecting a namespace for recovery purposes, overprovisioning to improve write performance and endurance and so on.</li>
 <li>Namespaces =&gt; Zoned Namespaces. Its not a huge leap. The ZNS SSD is much simplified.</li>
 </ul>
-<p><strong>Open Channel SSD</strong></p>
+<h3 id="open-channel-ssd">Open Channel SSD<a class="headerlink" href="#open-channel-ssd" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Open-Channel SSDs allow host and SSD to collaborate through a set of contiguous LBA chunks</li>
 <li>This eliminates in-device garbage collection overhead and reduces the cost of media over-provisioning and DRAM.</li>
@@ -2496,7 +2564,7 @@
 </ul>
 </li>
 </ul>
-<p><strong>Zoned Namespace (ZNS)</strong></p>
+<h3 id="zoned-namespace-zns">Zoned Namespace (ZNS)<a class="headerlink" href="#zoned-namespace-zns" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://www.usenix.org/system/files/atc21-bjorling.pdf">ZNS: Avoiding the Block Interface Tax for Flash-based SSDs, ATC&lsquo;21</a> &amp; <a href="https://www.usenix.org/system/files/atc21_slides_bjorling.pdf">slide</a></li>
 <li>The SSD is partitioned into a set of zones.</li>
@@ -2505,11 +2573,20 @@
 <li>The SSD controller is simpler in response to ZNS. Check The ZNS paper for the HW&amp;SW changes</li>
 <li>This implies that write amplification on the device is eliminated, which eliminates the need for capacity over-provisioning</li>
 </ul>
-<p><strong>Flexible Data Placement (FDP) v.s. ZNS</strong></p>
+<h3 id="flexible-data-placement-fdp-vs-zns">Flexible Data Placement (FDP) v.s. ZNS<a class="headerlink" href="#flexible-data-placement-fdp-vs-zns" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://nvmexpress.org/wp-content/uploads/Hyperscale-Innovation-Flexible-Data-Placement-Mode-FDP.pdf">https://nvmexpress.org/wp-content/uploads/Hyperscale-Innovation-Flexible-Data-Placement-Mode-FDP.pdf</a> </li>
 <li><a href="https://www.youtube.com/watch?v=R0GHuKwi3Fc">https://www.youtube.com/watch?v=R0GHuKwi3Fc</a> </li>
 <li><a href="https://www.youtube.com/watch?v=ZEISXHcNmSk">https://www.youtube.com/watch?v=ZEISXHcNmSk</a> </li>
+</ul>
+<h3 id="aws-nitro-ssd">AWS Nitro SSD<a class="headerlink" href="#aws-nitro-ssd" title="Permanent link">&para;</a></h3>
+<p>AWS re:Invent 2021 introduced their AWS Nitro SSD.
+There is only limited information about it.</p>
+<ul>
+<li>They onload part of the traditional SSD FTL to a Nitro chip. Which parts are onloaded? I think it should be modules related to GC, wear-leveling etc. </li>
+<li>Their approach is different from the ZNS/FDP approach although they are doing some sort of data placement in the onloaded FTL.</li>
+<li>They’ve been boasting about their SW upgrades (instead of HW) with nearly zero downtime.</li>
+<li>End to End control requires us to break the strict abstraction/protocol boundaries. And in the SSD world, the FTL is the layer <em>guarding</em> the underlying flash. E2E opt should break this boundary, but the question is how much and to what extent. Following this principle, t does not make sense for them to onload the entire FTL to the Nitro SSD - some part of it for E2E opt should be sufficient (the parts like GC, like wear-leveling, i presume). This approach is similar to one taken by Google Aquila. They break the strict protocol boundaries among the network&rsquo;s physical/link/net/transport, allowing the transport to directly instruct link layer packets. And by breaking the protocol boundaries, Google Aquila achieves stable tail latency</li>
 </ul>
 <h2 id="readings">Readings<a class="headerlink" href="#readings" title="Permanent link">&para;</a></h2>
 <ul>
