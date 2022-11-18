@@ -83,6 +83,17 @@ Grab-and-go SSD 101 for newbies like myself.
 * There are many reasons why host software would want to break up an NVMe SSD into multiple namespaces: for logical isolation, multi-tenancy, security isolation (encryption per namespace), write protecting a namespace for recovery purposes, overprovisioning to improve write performance and endurance and so on.
 * Namespaces => Zoned Namespaces. Its not a huge leap. The ZNS SSD is much simplified.
 
+### Seq v.s. Random SSD Writes
+
+- From the FTL’s point of view, seq/random NVMe accesses both translate to random blocks accesses.
+  As you know, it’s an append-only program in SSD with no write-in-place.
+- Whether it is random or sequential, it usually shows during the background operations (i.e. GC).
+  When more blocks within the Superblock get trimmed simultaneously
+  (which means the host file size is relatively big or you have an SW to arrange a similar type of data as a group),
+  this is considered sequential.
+  If a few blocks are being trimmed sporadically in the Superblock (which means the host is dealing with small files), then it is considered a random behavior, which brings up the WAF since more LBAs need to get rotated during GC or WL. The performance difference between random and sequential is pretty much coming from these background activities. In addition, if the OP size is small, it gets worse.  
+
+
 ### Open Channel SSD
 
 * Open-Channel SSDs allow host and SSD to collaborate through a set of contiguous LBA chunks
