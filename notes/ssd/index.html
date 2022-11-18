@@ -429,6 +429,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#seq-vs-random-ssd-writes" class="md-nav__link">
+    Seq v.s. Random SSD Writes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#open-channel-ssd" class="md-nav__link">
     Open Channel SSD
   </a>
@@ -2400,6 +2407,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#seq-vs-random-ssd-writes" class="md-nav__link">
+    Seq v.s. Random SSD Writes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#open-channel-ssd" class="md-nav__link">
     Open Channel SSD
   </a>
@@ -2552,6 +2566,16 @@
 <li>There are many reasons why host software would want to break up an NVMe SSD into multiple namespaces: for logical isolation, multi-tenancy, security isolation (encryption per namespace), write protecting a namespace for recovery purposes, overprovisioning to improve write performance and endurance and so on.</li>
 <li>Namespaces =&gt; Zoned Namespaces. Its not a huge leap. The ZNS SSD is much simplified.</li>
 </ul>
+<h3 id="seq-vs-random-ssd-writes">Seq v.s. Random SSD Writes<a class="headerlink" href="#seq-vs-random-ssd-writes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>From the FTL’s point of view, seq/random NVMe accesses both translate to random blocks accesses.
+  As you know, it’s an append-only program in SSD with no write-in-place.</li>
+<li>Whether it is random or sequential, it usually shows during the background operations (i.e. GC).
+  When more blocks within the Superblock get trimmed simultaneously
+  (which means the host file size is relatively big or you have an SW to arrange a similar type of data as a group),
+  this is considered sequential.
+  If a few blocks are being trimmed sporadically in the Superblock (which means the host is dealing with small files), then it is considered a random behavior, which brings up the WAF since more LBAs need to get rotated during GC or WL. The performance difference between random and sequential is pretty much coming from these background activities. In addition, if the OP size is small, it gets worse.  </li>
+</ul>
 <h3 id="open-channel-ssd">Open Channel SSD<a class="headerlink" href="#open-channel-ssd" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Open-Channel SSDs allow host and SSD to collaborate through a set of contiguous LBA chunks</li>
@@ -2608,7 +2632,7 @@ There is only limited information about it.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 15, 2022</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 18, 2022</span>
       
     
   </small>
