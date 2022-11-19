@@ -79,7 +79,7 @@ and their intersections.
 
 **Disaggregated Memory**
 
--  [HoPP, HPCA'23]() - Hardware-augmented Prefetching for Disaggregated Memory
+-  [HoPP, HPCA'23]() and [MARB, DATE'23]() - Hardware-augmented Prefetching for Disaggregated Memory
 -  [Clio, ASPLOS'22](http://lastweek.io/pubs/ASPLOS22-Clio.pdf) - An FPGA-based disaggregated memory device
 -  [Clover, ATC'20](http://lastweek.io/pubs/ATC20-DPM.pdf) - Pure *one-sided* KVS on disaggregated PM
 -  [Storm, SYSTOR'19](http://lastweek.io/pubs/SYSTOR19-Storm.pdf) - Highly-efficient KVS on disaggregated memory
