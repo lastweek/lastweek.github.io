@@ -34,6 +34,7 @@ You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 
 ??? tip "Research"
+	- [_Nov 2022_] MARB accepted to DATE'23.
 	- [_Oct 2022_] HoPP accepted to HPCA'23.
 	- [_Sep 2022_] I will serve as a [ATC'23]() PC.
 	- [_Jun 2022_] A vision paper accepted to [APSys'22](https://apsys2022.comp.nus.edu.sg/index.html)
@@ -92,6 +93,9 @@ and their intersections.
 
 ### Publications
 
+10. __MARB: Bridge the Semantic Gap between Operating System and Application Memory Access Behavior__
+  <br> Haifeng Li, Ke Liu, Ting Liang, Zuojun Li, Tianyue Lu, Hui Yuan, Yinben Xia, Yungang Bao, Mingyu Chen, *Yizhou Shan*
+  <br> *__DATE 2023__* To Appear
 9. __HoPP: Hardware-Software Co-Designed Page Prefetching for Disaggregated Memory__
   <br> Haifeng Li, Ke Liu, Ting Liang, Zuojun Li, Tianyue Lu, Hui Yuan, Yinben Xia, Yungang Bao, Mingyu Chen, *Yizhou Shan*
   <br> *__HPCA 2023__* To Appear
