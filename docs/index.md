@@ -15,7 +15,7 @@ You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
     **Latest**
 
-      - Nov 2022 [CXL](./notes/ssd.md)
+      - Nov 2022 [SSD 101](./notes/ssd.md)
       - Jul 2022 [CXL](./notes/CXL.md)
       - Apr 2022 [MLIR](./notes/MLIR.md)
       - Mar 2022 [Resource Disaggregation Spectrum](./notes/resource-disaggregation-spectrum.md)
