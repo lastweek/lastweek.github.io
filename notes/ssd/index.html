@@ -429,6 +429,76 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#cell-bits-slc-mlc-tlc" class="md-nav__link">
+    Cell Bits (SLC, MLC, TLC)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallelism-and-packaging" class="md-nav__link">
+    Parallelism and Packaging
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nand-has-3-programming-constraints" class="md-nav__link">
+    NAND has 3 programming constraints
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ftl-flash-translation-layer" class="md-nav__link">
+    FTL Flash Translation Layer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#garbage-collection-gc" class="md-nav__link">
+    Garbage Collection (GC)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write-amplification-factor" class="md-nav__link">
+    Write Amplification Factor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trim" class="md-nav__link">
+    TRIM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#over-provisioning-op" class="md-nav__link">
+    Over-Provisioning (OP)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wear-leveling" class="md-nav__link">
+    Wear  Leveling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#queue-depth" class="md-nav__link">
+    Queue Depth
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#seq-vs-random-ssd-writes" class="md-nav__link">
     Seq v.s. Random SSD Writes
   </a>
@@ -459,6 +529,13 @@
           <li class="md-nav__item">
   <a href="#aws-nitro-ssd" class="md-nav__link">
     AWS Nitro SSD
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cxl-ssd-and-smart-ssd" class="md-nav__link">
+    CXL SSD and Smart SSD
   </a>
   
 </li>
@@ -2407,6 +2484,76 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#cell-bits-slc-mlc-tlc" class="md-nav__link">
+    Cell Bits (SLC, MLC, TLC)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallelism-and-packaging" class="md-nav__link">
+    Parallelism and Packaging
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nand-has-3-programming-constraints" class="md-nav__link">
+    NAND has 3 programming constraints
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ftl-flash-translation-layer" class="md-nav__link">
+    FTL Flash Translation Layer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#garbage-collection-gc" class="md-nav__link">
+    Garbage Collection (GC)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write-amplification-factor" class="md-nav__link">
+    Write Amplification Factor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trim" class="md-nav__link">
+    TRIM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#over-provisioning-op" class="md-nav__link">
+    Over-Provisioning (OP)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wear-leveling" class="md-nav__link">
+    Wear  Leveling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#queue-depth" class="md-nav__link">
+    Queue Depth
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#seq-vs-random-ssd-writes" class="md-nav__link">
     Seq v.s. Random SSD Writes
   </a>
@@ -2437,6 +2584,13 @@
           <li class="md-nav__item">
   <a href="#aws-nitro-ssd" class="md-nav__link">
     AWS Nitro SSD
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cxl-ssd-and-smart-ssd" class="md-nav__link">
+    CXL SSD and Smart SSD
   </a>
   
 </li>
@@ -2480,6 +2634,10 @@
 </thead>
 <tbody>
 <tr>
+<td align="left">Nov 20, 2022</td>
+<td>polish a bit, just a bit :)</td>
+</tr>
+<tr>
 <td align="left">Nov 15, 2022</td>
 <td>Initial</td>
 </tr>
@@ -2488,11 +2646,10 @@
 </details>
 <p>Grab-and-go SSD 101 for newbies like myself.</p>
 <h2 id="basics">Basics<a class="headerlink" href="#basics" title="Permanent link">&para;</a></h2>
-<p><strong>Cell Bits (SLC, MLC, TLC)</strong></p>
+<h3 id="cell-bits-slc-mlc-tlc">Cell Bits (SLC, MLC, TLC)<a class="headerlink" href="#cell-bits-slc-mlc-tlc" title="Permanent link">&para;</a></h3>
 <ul>
 <li>A cell can have 1-bit, 2-bit, 3-bit, or 4-bit saved. <a href="https://flashdba.com/2014/07/03/understanding-flash-slc-mlc-and-tlc/">There is a trade-off among these</a>. SLC has lower-latency and longer lifespan, but is more expensive. Enterprise &amp; Datacenter may prefer SLC for its longer lifespan cena better perf. Consumers may prefer MLC/TLC/QLC.</li>
 <li>A flash cell is a floating gate or a charge trap transistor to represent data by storing certain amount of charges, which determines the threshold voltage (Vth) of the cell.</li>
-<li>I like the following diagram &amp; blog. It clearly shows the difference.</li>
 <li>Reads<ul>
 <li><a href="https://computer.howstuffworks.com/flash-memory.htm">How Flash Memory Works | HowStuffWorks</a></li>
 <li><a href="https://flashdba.com/2014/07/03/understanding-flash-slc-mlc-and-tlc/">Understanding Flash: SLC, MLC and TLC | flashdba</a> </li>
@@ -2500,63 +2657,65 @@
 </ul>
 </li>
 </ul>
-<p><strong>Parallelism and Packaging</strong></p>
+<h3 id="parallelism-and-packaging">Parallelism and Packaging<a class="headerlink" href="#parallelism-and-packaging" title="Permanent link">&para;</a></h3>
 <ul>
 <li>A NAND package is organized into a hierarchy of <strong>dies</strong>,  <strong>planes</strong>,  <strong>blocks</strong>, and <strong>pages</strong>.</li>
 <li>There may be one or several dies within a single physical package.</li>
 <li>A die allows a single I/O command to be executed at a time.</li>
 <li>A plane allows similar flash commands to be executed in parallel within a die.</li>
+<li>A page is usally 2K, 4K, etc. A block has thousands of pages, could be couple MBs.</li>
 </ul>
-<p><strong>NAND has 3 fundamental programming constraints</strong>:</p>
+<h3 id="nand-has-3-programming-constraints">NAND has 3 programming constraints<a class="headerlink" href="#nand-has-3-programming-constraints" title="Permanent link">&para;</a></h3>
+<ol>
+<li>A write command must always contain enough data to program one (or several) full flash page(s)</li>
+<li>Writes must be sequential within a block</li>
+<li>An erase must be performed before a page within a block can be (re)written. The number of program/erase (PE) cycles is limited</li>
+</ol>
+<h3 id="ftl-flash-translation-layer">FTL Flash Translation Layer<a class="headerlink" href="#ftl-flash-translation-layer" title="Permanent link">&para;</a></h3>
 <ul>
-<li>a write command must always contain enough data to program one (or several) full flash page(s)</li>
-<li>writes must be sequential within a block</li>
-<li>an erase must be performed before a page within a block can be (re)written. The number of program/erase (PE) cycles is limited</li>
-</ul>
-<p><strong>FTL</strong></p>
-<ul>
-<li>A cell can have 1-bit, 2-bit, 3-bit, or 4-bit saved. <a href="https://flashdba.com/2014/07/03/understanding-flash-slc-mlc-and-tlc/">There is a trade-off among these</a>. SLC has lower-latency and longer lifespan, but is more expensive.</li>
-<li>A page has many cells.</li>
-<li>A page is usually a couple KBs, like 2KB, 4KB, 8KB, etc.</li>
-<li>A block has hundreds or thousands of pages, like 2MB, 4MB, etc</li>
-<li>Pages cannot be erased individually, only whole blocks can be erased.</li>
+<li>For historical reasons, the SSDs first appeared with block interfaces.</li>
+<li>But this block interface conflicts with the underlying NAND flash addressing model.</li>
+<li>Hence, a FTL layer is introduced to bridge this gap.</li>
+<li>This abstraction stays.</li>
+<li>But this abstraction has many downsides, especially considering NAND flash&rsquo;s 3 fundamental programming constaints. Many background tasks are needed such as GC. It turns out those activities are the main culprit of SSD performance degradation under intensive workload.</li>
 <li>Why does SSD only support block-level erase rather than page-level erase?<ul>
 <li>Per-page FTL costs more memory than per-block FTL.</li>
 <li>The electricity/wires required are also less, I guess.</li>
 </ul>
 </li>
 <li>Reads<ul>
+<li>The ZNS ATC paper has an excellent historical pespective.</li>
 <li><a href="https://www.usenix.org/legacy/event/usenix08/tech/full_papers/agrawal/agrawal.pdf">Design Tradeoffs for SSD Performance, ATC&lsquo;08</a></li>
 <li><a href="http://www.csc.lsu.edu/~fchen/publications/papers/hpca11.pdf">http://www.csc.lsu.edu/~fchen/publications/papers/hpca11.pdf</a> </li>
 </ul>
 </li>
 </ul>
-<p><strong>Garbage Collection (GC)</strong></p>
+<h3 id="garbage-collection-gc">Garbage Collection (GC)<a class="headerlink" href="#garbage-collection-gc" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Why GC? Because SSD cells cannot be overwritten once programmed, it must be erased before it can be written again. Every SSD write would write into another block’s page other than the one you originally read data from. The original page is marked as “Stale” subsequently. It is apparent that many pages/blocks become stale gradually, and if no action is taken, the SSD will run out of space. GC mostly runs in the background to recycle such blocks (NOTE: erase happens in block-level granularity). If GC fails to catch up, foreground performance will be bottlenecked by Erase.</li>
 </ul>
-<p><strong>Write Amplification Factor</strong></p>
+<h3 id="write-amplification-factor">Write Amplification Factor<a class="headerlink" href="#write-amplification-factor" title="Permanent link">&para;</a></h3>
 <ul>
 <li>The amount of data written by the SSD controller into the NAND flash compared the amount of data written from the host OS.</li>
 <li>The larger the WA, the faster the SSD ages and the worse performance.</li>
 </ul>
-<p><strong>TRIM</strong></p>
+<h3 id="trim">TRIM<a class="headerlink" href="#trim" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Once you write something into an SSD block, SSD has no way to know whether a block is freed from FS/OS’s perspective. During GC, SSD would still move such “invalid” blocks around to make space. This is wasted effort.</li>
 <li>The <strong>TRIM</strong> command allows OS/FS to notify SSD that certain blocks are freed, hence SSD can erase them and no longer need to maintain them. It is a simple co-design.</li>
 </ul>
-<p><strong>Over-Provisioning (OP)</strong></p>
+<h3 id="over-provisioning-op">Over-Provisioning (OP)<a class="headerlink" href="#over-provisioning-op" title="Permanent link">&para;</a></h3>
 <ul>
 <li>I saw: OP 10-15% for normal light workload. OP 25% for write-intensive workloads. Not confirmed</li>
 <li>OP basically allows you to absorb more transient traffic and allows FTL to balance writes across more blocks hence prolong the overall lifespan</li>
 </ul>
-<p><strong>Wear  Leveling</strong></p>
+<h3 id="wear-leveling">Wear  Leveling<a class="headerlink" href="#wear-leveling" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Wear = Last 持久</li>
 <li>Leveling = 水平</li>
 <li>FTL controller tries to balance the number of P/E cycles made to all SSD blocks, so that most of them age at the same pace. </li>
 </ul>
-<p><strong>Queue Depth</strong></p>
+<h3 id="queue-depth">Queue Depth<a class="headerlink" href="#queue-depth" title="Permanent link">&para;</a></h3>
 <ul>
 <li>TODO</li>
 </ul>
@@ -2612,6 +2771,11 @@ There is only limited information about it.</p>
 <li>They’ve been boasting about their SW upgrades (instead of HW) with nearly zero downtime.</li>
 <li>End to End control requires us to break the strict abstraction/protocol boundaries. And in the SSD world, the FTL is the layer <em>guarding</em> the underlying flash. E2E opt should break this boundary, but the question is how much and to what extent. Following this principle, t does not make sense for them to onload the entire FTL to the Nitro SSD - some part of it for E2E opt should be sufficient (the parts like GC, like wear-leveling, i presume). This approach is similar to one taken by Google Aquila. They break the strict protocol boundaries among the network&rsquo;s physical/link/net/transport, allowing the transport to directly instruct link layer packets. And by breaking the protocol boundaries, Google Aquila achieves stable tail latency</li>
 </ul>
+<h3 id="cxl-ssd-and-smart-ssd">CXL SSD and Smart SSD<a class="headerlink" href="#cxl-ssd-and-smart-ssd" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Samsung released their <a href="https://www.servethehome.com/samsung-memory-semantic-cxl-ssd-at-fms-2022-powered-by-amd-xilinx/">CXL SSD</a> on Aug 2022. From the architecture diagram, we can see that the SSD supports both CXL.io for LBA access and CXL.mem for load/store.</li>
+<li><a href="https://www.servethehome.com/samsung-and-amd-xilinx-launch-2nd-gen-smartssd/">Samsung also partered with Xilinx to produce SmartSSD</a>, bringing an FPGA into their SSD. The news show the FPGA is used for NDP, encryption etc. Makes sense for them to produce such a combined technology. But noted, this still exposes an traditional NVMe interface, no deep co-design with cloud workloads. </li>
+</ul>
 <h2 id="readings">Readings<a class="headerlink" href="#readings" title="Permanent link">&para;</a></h2>
 <ul>
 <li>This is my starting point. This is a 6-blog series and contains almost every detail we’d care about. I recommend reading this. <a href="https://codecapsule.com/2014/02/12/coding-for-ssds-part-6-a-summary-what-every-programmer-should-know-about-solid-state-drives/">Coding for SSDs – Part 6: A Summary – What every programmer should know about solid-state drives</a> </li>
@@ -2632,7 +2796,7 @@ There is only limited information about it.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 18, 2022</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 20, 2022</span>
       
     
   </small>
