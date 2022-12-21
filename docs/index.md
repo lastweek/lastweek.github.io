@@ -34,6 +34,7 @@ You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 
 ??? tip "Research"
+	- [_Dec 2022_] I will serve as a [NSDI'24]() PC.
 	- [_Nov 2022_] MARB accepted to DATE'23.
 	- [_Oct 2022_] HoPP accepted to HPCA'23.
 	- [_Sep 2022_] I will serve as an [ATC'23]() PC.
@@ -189,19 +190,20 @@ and their intersections.
 
 **Program Committee**
 
+- NSDI    (2024)
 - ATC     (2023)
 - SoCC    (2022)
 - EuroSys (2023, 2022 shadow, 2021 shadow)
 - ASPLOS  (2021 external)
 
-**Journal**
+**Journal Reviewer**
 
 - Journal of Systems Research: 2021 - Current
 - ACM Transactions on Architecture and Code Optimization (TACO): 2021
 - ACM Transactions on Storage (TOS): 2020
 - IEEE/ACM Transactions on Networking: 2020
 
-**Artifact Evaluation**
+**Artifact Evaluation Committee**
 
 - SOSP (2021)
 - OSDI (2020)
