@@ -527,6 +527,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#example-8-daphne-cidr22" class="md-nav__link">
+    Example 8: DAPHNE, CIDR22
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-9-lingodb-vldb22" class="md-nav__link">
+    Example 9: LingoDB, VLDB22
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#misc" class="md-nav__link">
     Misc
   </a>
@@ -2519,6 +2533,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#example-8-daphne-cidr22" class="md-nav__link">
+    Example 8: DAPHNE, CIDR22
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-9-lingodb-vldb22" class="md-nav__link">
+    Example 9: LingoDB, VLDB22
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#misc" class="md-nav__link">
     Misc
   </a>
@@ -2563,6 +2591,10 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td align="left">Jan 14, 2023</td>
+<td>Add LingoDB and DAPHNE</td>
+</tr>
 <tr>
 <td align="left">Jul 3, 2022</td>
 <td>Add Pathways</td>
@@ -2732,6 +2764,13 @@ to raise the programmability futher.</p>
 <blockquote>
 <p>&ldquo;Sec 4.2: The client then constructs a device location-agnostic PATHWAYS intermediate representation (IR) for the program, expressed as a custom MLIR (Lattner et al., 2021) dialect. The IR is progressively “lowered” via a series of standard compiler passes, which eventually output a low-level representation that includes the physical device locations. This low-level program takes into account the network connectivity between physical devices and includes operations to transfer outputs from a source computation shard to the locations of its destination shards, including scatter and gather operations when a data exchange is required.&rdquo;</p>
 </blockquote>
+<h3 id="example-8-daphne-cidr22">Example 8: DAPHNE, CIDR22<a class="headerlink" href="#example-8-daphne-cidr22" title="Permanent link">&para;</a></h3>
+<p><a href="https://daphne-eu.eu/">DAPHNE</a> is an extensive open framework that unites ML, HPC, and data management workloads.
+It uses MLIR to build operators and data representations (e.g., tensor, matrix).</p>
+<h3 id="example-9-lingodb-vldb22">Example 9: LingoDB, VLDB22<a class="headerlink" href="#example-9-lingodb-vldb22" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.vldb.org/pvldb/vol15/p2389-jungmair.pdf">LingoDB</a> is quite interesting. I don&rsquo;t have enough knowledge to understand the paper well.
+But it appears to co-design database&rsquo;s query optimizer and underlying operators.
+The query optimizations are implemented as MLIR passes.</p>
 <h3 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link">&para;</a></h3>
 <p>Alpa, arXiv&lsquo;21 proposes a set of methods to partition an ML
 training process to best utilize pipeline, data, model parallelism.
@@ -2751,7 +2790,7 @@ There are, of course, similar papers in the past doing 2 out of 3
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 3, 2022</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 14, 2023</span>
       
     
   </small>
