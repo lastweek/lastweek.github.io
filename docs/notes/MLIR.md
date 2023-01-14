@@ -3,6 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|Jan 14, 2023 | Add LingoDB and DAPHNE|
 	|Jul 3, 2022 | Add Pathways|
 	|Apr 2, 2022 | Ported from Craft. Recently, I switched to Craft for technical writing. I'm very happy I made that transition. Craft is great at exporting things to Markdown format. |
 
@@ -201,6 +202,16 @@ From the paper:
 
 > "Sec 4.2: The client then constructs a device location-agnostic PATHWAYS intermediate representation (IR) for the program, expressed as a custom MLIR (Lattner et al., 2021) dialect. The IR is progressively “lowered” via a series of standard compiler passes, which eventually output a low-level representation that includes the physical device locations. This low-level program takes into account the network connectivity between physical devices and includes operations to transfer outputs from a source computation shard to the locations of its destination shards, including scatter and gather operations when a data exchange is required."
 
+### Example 8: DAPHNE, CIDR22
+
+[DAPHNE](https://daphne-eu.eu/) is an extensive open framework that unites ML, HPC, and data management workloads.
+It uses MLIR to build operators and data representations (e.g., tensor, matrix).
+
+### Example 9: LingoDB, VLDB22
+
+[LingoDB](https://www.vldb.org/pvldb/vol15/p2389-jungmair.pdf) is quite interesting. I don't have enough knowledge to understand the paper well.
+But it appears to co-design database's query optimizer and underlying operators.
+The query optimizations are implemented as MLIR passes.
 
 ### Misc
 
