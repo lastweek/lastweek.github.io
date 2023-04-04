@@ -94,13 +94,16 @@ and their intersections.
 
 ### Publications
 
-10. __Optimizing Hardware-Based Network Computation DAGs for Multiple Tenants with SuperNIC__
+11. __Optimizing Hardware-Based Network Computation DAGs for Multiple Tenants with SuperNIC__
   <br> *Yizhou Shan*, Will Lin, Ryan Kosta, Arvind Krishnamurthy, Yiying Zhang
   <br> [[Preprint]](https://arxiv.org/pdf/2109.07744.pdf)
        [[Code]]()
+10. __Core slicing: closing the gap between leaky confidential VMs and bare-metal cloud__
+  <br> Ziqiao Zhou, Yizhou Shan, Weidong Cui, Xinyang Ge, Marcus Peinado, Andrew Baumann
+  <br> *__OSDI 2023__* To Appear
 9. __MARB: Bridge the Semantic Gap between Operating System and Application Memory Access Behavior__
   <br> Haifeng Li, Ke Liu, Ting Liang, Zuojun Li, Tianyue Lu, Hui Yuan, Yinben Xia, Yungang Bao, Mingyu Chen, *Yizhou Shan*
-  <br> *__DATE 2023__* To Appear
+  <br> *__DATE 2023__*
 8. __HoPP: Hardware-Software Co-Designed Page Prefetching for Disaggregated Memory__
   <br> Haifeng Li, Ke Liu, Ting Liang, Zuojun Li, Tianyue Lu, Hui Yuan, Yinben Xia, Yungang Bao, Mingyu Chen, *Yizhou Shan*
   <br> *__HPCA 2023__*
