@@ -75,6 +75,7 @@ and their intersections.
 
 **Disaggregated Data Center**
 
+-  [Skadi, HotOS'23]()
 -  [Fully Disaggregated Data Center, APSys'22](http://lastweek.io/pubs/apsys22.pdf)
 -  [LegoOS, OSDI'18](https://www.usenix.org/conference/osdi18/presentation/shan)
 
