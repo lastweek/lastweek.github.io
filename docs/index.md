@@ -98,8 +98,11 @@ and their intersections.
   <br> *Yizhou Shan*, Will Lin, Ryan Kosta, Arvind Krishnamurthy, Yiying Zhang
   <br> [[Preprint]](https://arxiv.org/pdf/2109.07744.pdf)
        [[Code]]()
+10. __Skadi: Building a Distributed Runtime for Data Systems in Disaggregated Data Centers__
+  <br>  Cunchen Hu, Chenxi Wang, Sa Wang, Ninghui Sun, Yungang Bao, Jieru Zhao, Sanidhya Kashyap, Pengfei Zuo, Xusheng Chen, Liangliang Xu, Qin Zhang, Hao Feng, *Yizhou Shan*
+  <br> *__HotOS 2023__* To Appear
 10. __Core slicing: closing the gap between leaky confidential VMs and bare-metal cloud__
-  <br> Ziqiao Zhou, Yizhou Shan, Weidong Cui, Xinyang Ge, Marcus Peinado, Andrew Baumann
+  <br> Ziqiao Zhou, *Yizhou Shan*, Weidong Cui, Xinyang Ge, Marcus Peinado, Andrew Baumann
   <br> *__OSDI 2023__* To Appear
 9. __MARB: Bridge the Semantic Gap between Operating System and Application Memory Access Behavior__
   <br> Haifeng Li, Ke Liu, Ting Liang, Zuojun Li, Tianyue Lu, Hui Yuan, Yinben Xia, Yungang Bao, Mingyu Chen, *Yizhou Shan*
