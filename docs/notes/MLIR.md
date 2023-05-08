@@ -3,6 +3,7 @@
 ??? note "Version History"
 	|Date|Description|
 	|:---|-----------|
+	|May 8, 2023| Add Mojo |
 	|Jan 14, 2023 | Add LingoDB and DAPHNE|
 	|Jul 3, 2022 | Add Pathways|
 	|Apr 2, 2022 | Ported from Craft. Recently, I switched to Craft for technical writing. I'm very happy I made that transition. Craft is great at exporting things to Markdown format. |
@@ -38,7 +39,7 @@ In specific:
 
 I have found several excellent primer readings.
 
-- [LLVM Paper from Google, 2020](https://arxiv.org/pdf/2002.11054.pdf). This paper describes the rationale behind MLIR. Chris L is one of the authord.
+- [LLVM Paper from Google, 2020](https://arxiv.org/pdf/2002.11054.pdf). This paper describes the rationale behind MLIR. Chris L is one of the authors.
 - [LLVM MLIR Tutorial](https://llvm.org/devmtg/2020-09/slides/MLIR_Tutorial.pdf)
 	- I didn't understand this image when I first read it. But now it all makes sense. MLIR is something that lies across language AST and LLVM IR.
 	- ![Screen Shot 2022-03-26 at 12.33.07.png](https://res.craft.do/user/full/55556ffd-6bd0-f98b-802b-8680fc9006d8/C49C3496-9B3F-4DE2-8BA1-E14318AEDD11_2/MTX2hqSriKVySNvWxTykadfIFFtq4JlJMwxn4imR2U0z/Screen%20Shot%202022-03-26%20at%2012.33.07.png)
@@ -46,10 +47,10 @@ I have found several excellent primer readings.
 
 ## Motivation from the Google MLIR Paper
 
-This is a *really nice Intro*, pay close attention to how they lay out the storyline.
+This paper has a *really nice Intro*, pay close attention to how they lay out the storyline.
 If you are new to PL just like me,
 I strongly recommend going through the MLIR Toy Example (covered below ) for a better understanding,
-and then come back, read through this again.
+and then come back, read through this again. The following text are directly copied from this seminal paper.
 
 1. A common characteristic of popular ML systems is their *“one size ﬁts all”* approach—a single abstraction level to interface with the system: the LLVM Intermediate Representation (IR) is roughly “C with vectors”, and JVM provides an “object-oriented type system with a garbage collector” abstraction. This “one size ﬁts all” approach is incredibly valuable—and in practice, the mapping to these domains from ubiquitous source languages (C/C++ and Java respectively) is straightforward.   (**Praise the unified LLVM IR**)
 2. At the same time, many problems are better modeled at a higher- or lower-level abstraction, e.g. source-level analysis of C++ code is very difﬁcult on LLVM IR. We observe that many languages (including e.g. Swift, Rust, Julia, Fortran) develop their own IR in order to solve domain-speciﬁc problems, like language/library-speciﬁc optimizations, ﬂow-sensitive type checking. Similarly, machine learning systems typically use “ML graphs” as a domain-speciﬁc abstraction in the same way. (**Point out the issues about LLVM IR**)
@@ -212,6 +213,13 @@ It uses MLIR to build operators and data representations (e.g., tensor, matrix).
 [LingoDB](https://www.vldb.org/pvldb/vol15/p2389-jungmair.pdf) is quite interesting. I don't have enough knowledge to understand the paper well.
 But it appears to co-design database's query optimizer and underlying operators.
 The query optimizations are implemented as MLIR passes.
+
+### Example 10: Mojo
+
+The Modular.AI's first production releasing video is really exciting.
+Chris and the his team introduced another amazing programming language to the world.
+The [doc](https://docs.modular.com/mojo/notebooks/BoolMLIR.html) says Mojo's low-level primitives are built on top of MLIR.
+I'm still on waiting list to try Mojo out :)
 
 ### Misc
 
