@@ -541,6 +541,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#example-10-mojo" class="md-nav__link">
+    Example 10: Mojo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#misc" class="md-nav__link">
     Misc
   </a>
@@ -2547,6 +2554,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#example-10-mojo" class="md-nav__link">
+    Example 10: Mojo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#misc" class="md-nav__link">
     Misc
   </a>
@@ -2592,6 +2606,10 @@
 </thead>
 <tbody>
 <tr>
+<td align="left">May 8, 2023</td>
+<td>Add Mojo</td>
+</tr>
+<tr>
 <td align="left">Jan 14, 2023</td>
 <td>Add LingoDB and DAPHNE</td>
 </tr>
@@ -2629,7 +2647,7 @@ and reduce duplicate codes.</p>
 <h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
 <p>I have found several excellent primer readings.</p>
 <ul>
-<li><a href="https://arxiv.org/pdf/2002.11054.pdf">LLVM Paper from Google, 2020</a>. This paper describes the rationale behind MLIR. Chris L is one of the authord.</li>
+<li><a href="https://arxiv.org/pdf/2002.11054.pdf">LLVM Paper from Google, 2020</a>. This paper describes the rationale behind MLIR. Chris L is one of the authors.</li>
 <li><a href="https://llvm.org/devmtg/2020-09/slides/MLIR_Tutorial.pdf">LLVM MLIR Tutorial</a><ul>
 <li>I didn&rsquo;t understand this image when I first read it. But now it all makes sense. MLIR is something that lies across language AST and LLVM IR.</li>
 <li><img alt="Screen Shot 2022-03-26 at 12.33.07.png" src="https://res.craft.do/user/full/55556ffd-6bd0-f98b-802b-8680fc9006d8/C49C3496-9B3F-4DE2-8BA1-E14318AEDD11_2/MTX2hqSriKVySNvWxTykadfIFFtq4JlJMwxn4imR2U0z/Screen%20Shot%202022-03-26%20at%2012.33.07.png" /></li>
@@ -2638,10 +2656,10 @@ and reduce duplicate codes.</p>
 <li><a href="https://arxiv.org/abs/2107.11673">ScaleHLS, HPCA&lsquo;22</a> can compile HLS C/C++ or PyTorch model to optimized HLS C/C++ using MLIR.</li>
 </ul>
 <h2 id="motivation-from-the-google-mlir-paper">Motivation from the Google MLIR Paper<a class="headerlink" href="#motivation-from-the-google-mlir-paper" title="Permanent link">&para;</a></h2>
-<p>This is a <em>really nice Intro</em>, pay close attention to how they lay out the storyline.
+<p>This paper has a <em>really nice Intro</em>, pay close attention to how they lay out the storyline.
 If you are new to PL just like me,
 I strongly recommend going through the MLIR Toy Example (covered below ) for a better understanding,
-and then come back, read through this again.</p>
+and then come back, read through this again. The following text are directly copied from this seminal paper.</p>
 <ol>
 <li>A common characteristic of popular ML systems is their <em>“one size ﬁts all”</em> approach—a single abstraction level to interface with the system: the LLVM Intermediate Representation (IR) is roughly “C with vectors”, and JVM provides an “object-oriented type system with a garbage collector” abstraction. This “one size ﬁts all” approach is incredibly valuable—and in practice, the mapping to these domains from ubiquitous source languages (C/C++ and Java respectively) is straightforward.   (<strong>Praise the unified LLVM IR</strong>)</li>
 <li>At the same time, many problems are better modeled at a higher- or lower-level abstraction, e.g. source-level analysis of C++ code is very difﬁcult on LLVM IR. We observe that many languages (including e.g. Swift, Rust, Julia, Fortran) develop their own IR in order to solve domain-speciﬁc problems, like language/library-speciﬁc optimizations, ﬂow-sensitive type checking. Similarly, machine learning systems typically use “ML graphs” as a domain-speciﬁc abstraction in the same way. (<strong>Point out the issues about LLVM IR</strong>)</li>
@@ -2771,6 +2789,11 @@ It uses MLIR to build operators and data representations (e.g., tensor, matrix).
 <p><a href="https://www.vldb.org/pvldb/vol15/p2389-jungmair.pdf">LingoDB</a> is quite interesting. I don&rsquo;t have enough knowledge to understand the paper well.
 But it appears to co-design database&rsquo;s query optimizer and underlying operators.
 The query optimizations are implemented as MLIR passes.</p>
+<h3 id="example-10-mojo">Example 10: Mojo<a class="headerlink" href="#example-10-mojo" title="Permanent link">&para;</a></h3>
+<p>The Modular.AI&rsquo;s first production releasing video is really exciting.
+Chris and the his team introduced another amazing programming language to the world.
+The <a href="https://docs.modular.com/mojo/notebooks/BoolMLIR.html">doc</a> says Mojo&rsquo;s low-level primitives are built on top of MLIR.
+I&rsquo;m still on waiting list to try Mojo out :)</p>
 <h3 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link">&para;</a></h3>
 <p>Alpa, arXiv&lsquo;21 proposes a set of methods to partition an ML
 training process to best utilize pipeline, data, model parallelism.
@@ -2790,7 +2813,7 @@ There are, of course, similar papers in the past doing 2 out of 3
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 14, 2023</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 8, 2023</span>
       
     
   </small>
