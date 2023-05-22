@@ -73,7 +73,7 @@ distributed systems, data center networking,
 OS, hardware (FPGA), disaggregated memory/storage systems,
 and their intersections.
 
-**Disaggregated Data Center**
+**Disaggregated Data Center Architecture**
 
 -  [Skadi, HotOS'23]()
 -  [Fully Disaggregated Data Center, APSys'22](http://lastweek.io/pubs/apsys22.pdf)
@@ -81,7 +81,7 @@ and their intersections.
 
 **Disaggregated Memory**
 
--  [HoPP, HPCA'23](http://lastweek.io/pubs/HoPP-HPCA23.pdf) and [MARB, DATE'23]() - Hardware-augmented Prefetching for Disaggregated Memory
+-  [HoPP, HPCA'23](http://lastweek.io/pubs/HoPP-HPCA23.pdf) and [MARB, DATE'23]() - Hardware-accelerated Prefetching for DisaggMem
 -  [Clio, ASPLOS'22](http://lastweek.io/pubs/ASPLOS22-Clio.pdf) - An FPGA-based disaggregated memory device
 -  [Clover, ATC'20](http://lastweek.io/pubs/ATC20-DPM.pdf) - Pure *one-sided* KVS on disaggregated PM
 -  [Storm, SYSTOR'19](http://lastweek.io/pubs/SYSTOR19-Storm.pdf) - Highly-efficient KVS on disaggregated memory
@@ -89,6 +89,7 @@ and their intersections.
 
 **Networking Design**
 
+-  [Storm, SYSTOR'19](http://lastweek.io/pubs/SYSTOR19-Storm.pdf) - RDMA Cards are evolving!
 -  [SuperNIC, arXiv'21](https://arxiv.org/pdf/2109.07744.pdf) - An FPGA-based Programmable Multi-Host NIC
 -  [Clio, ASPLOS'22](http://lastweek.io/pubs/ASPLOS22-Clio.pdf) - Rethinking RDMA NIC, congestion control
 
