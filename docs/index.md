@@ -75,7 +75,7 @@ and their intersections.
 
 **Disaggregated Data Center Architecture**
 
--  [Skadi, HotOS'23]()
+-  [Skadi, HotOS'23](http://lastweek.io/pubs/Skadi_HotOS23.pdf)
 -  [Fully Disaggregated Data Center, APSys'22](http://lastweek.io/pubs/apsys22.pdf)
 -  [LegoOS, OSDI'18](https://www.usenix.org/conference/osdi18/presentation/shan)
 
@@ -103,7 +103,7 @@ and their intersections.
 10. __Skadi: Building a Distributed Runtime for Data Systems in Disaggregated Data Centers__
   <br>  Cunchen Hu, Chenxi Wang, Sa Wang, Ninghui Sun, Yungang Bao, Jieru Zhao, Sanidhya Kashyap, Pengfei Zuo, Xusheng Chen, Liangliang Xu, Qin Zhang, Hao Feng, *Yizhou Shan*
   <br> *__HotOS 2023__*
-	[[Paper]]()
+	[[Paper]](http://lastweek.io/pubs/Skadi_HotOS23.pdf)
 10. __Core slicing: closing the gap between leaky confidential VMs and bare-metal cloud__
   <br> Ziqiao Zhou, *Yizhou Shan*, Weidong Cui, Xinyang Ge, Marcus Peinado, Andrew Baumann
   <br> *__OSDI 2023__*
