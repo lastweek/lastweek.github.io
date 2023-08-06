@@ -2578,10 +2578,10 @@ Hence bare-metal virtualization, as in no hypervisors and no virtualization mode
 It will VM exit to the KVM module, which then dispatch (essentially return the ioctl call)
 the events to the userspace hypervisor (e.g., QEMU, Firecracker).
 Inside those hypervisors, there would be many implementation choices.
-Say the VM is tring to send out a packet via the emualted NIC,
+Say the VM is trying to send out a packet via the emulated NIC,
 QEMU at this point will send out that packet using normal sockets (via host Linux).</p>
 <p>This is the basic flow: VM -&gt; KVM -&gt; QEMU/Firecracker -&gt; host Linux.
-Internally, it could have many variantions.</p>
+Internally, it could have many variations.</p>
 <p>The green line represents SR-IOV enabled passthrough path.
 The VM can skip all hypervisor modules.
 SR-IOV is an all-or-nothing solution, so, once enabled,

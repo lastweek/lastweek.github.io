@@ -2426,7 +2426,7 @@ The sentry is their core kernel.</p>
 So apparently, docker can use gVisor instead of Linux to launch the container.
 We explicitly use the <code>runsc</code> runtime from gVisor.
 After the container is started, I run dmesg. It looks interesting.
-Same for files under <code>/proc</code>. Everything is emualted by gVisor.
+Same for files under <code>/proc</code>. Everything is emulated by gVisor.
 <div class="highlight"><pre><span></span><code>docker run --runtime<span class="o">=</span>runsc --rm -it ubuntu /bin/bash
 </code></pre></div></p>
 <div class="highlight"><pre><span></span><code>root@59e9ca6d20a2:/proc# dmesg
