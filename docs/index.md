@@ -8,7 +8,7 @@ Hello! I'm Yizhou, I'm a Research Scientist at [Huawei Cloud](https://www.huawei
 I earned my PhD from [University of California San Diego](https://cse.ucsd.edu/)
 under the supervision of [Prof. Yiying Zhang](https://cseweb.ucsd.edu/~yiying/).
 
-Contact: **y1shan** AT **eng** DOT **ucsd** DOT **edu**.
+Contact: **syzwhat** AT **gmail** DOT **com**
 You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 ??? note "Blogging"
@@ -200,11 +200,11 @@ and their intersections.
 
 **Program Committee**
 
-- NSDI    (2024)
+- NSDI    (2024-spring, 2024-fall)
 - ATC     (2023)
-- SoCC    (2022)
-- EuroSys (2023, 2022 shadow, 2021 shadow)
-- ASPLOS  (2021 external)
+- SoCC    (2023, 2022)
+- EuroSys (2023-spring, 2023-fall, 2022 shadow, 2021 shadow)
+- ASPLOS  (2021-external)
 
 **Journal Reviewer**
 
