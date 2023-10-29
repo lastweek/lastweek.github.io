@@ -201,9 +201,13 @@ and their intersections.
 **Program Committee**
 
 - NSDI    (2024-spring, 2024-fall)
-- ATC     (2023)
+- ATC     (2024, 2023)
 - SoCC    (2023, 2022)
-- EuroSys (2023-spring, 2023-fall, 2022 shadow, 2021 shadow)
+- EuroSys (2024, 2023-spring, 2023-fall)
+
+**Shadow/External Program Committee**
+
+- EuroSys (2022-shadow, 2021-shadow)
 - ASPLOS  (2021-external)
 
 **Journal Reviewer**
