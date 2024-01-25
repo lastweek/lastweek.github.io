@@ -96,6 +96,15 @@ and their intersections.
 
 ### Publications
 
+
+13. __CaraServe: CPU-Assisted and Rank-Aware LoRA Serving for Generative LLM Inference__
+  <br> Suyi Li, Hanfeng Lu, Tianyuan Wu, Minchen Yu, Qizhen Weng, Xusheng Chen, *Yizhou Shan*, Binhang Yuan, Wei Wang
+  <br> [[Preprint]](https://arxiv.org/abs/2401.11240)
+       [[Code]]()
+12. __Inference without Interference: Disaggregate LLM Inference for Mixed Downstream Workloads__
+  <br> Cunchen Hu, Heyang Huang, Liangliang Xu, Xusheng Chen, Jiang Xu, Shuang Chen, Hao Feng, Chenxi Wang, Sa Wang, Yungang Bao, Ninghui Sun, *Yizhou Shan*
+  <br> [[Preprint]](https://arxiv.org/pdf/2401.11181.pdf)
+       [[Code]]()
 11. __Optimizing Hardware-Based Network Computation DAGs for Multiple Tenants with SuperNIC__
   <br> *Yizhou Shan*, Will Lin, Ryan Kosta, Arvind Krishnamurthy, Yiying Zhang
   <br> [[Preprint]](https://arxiv.org/pdf/2109.07744.pdf)
