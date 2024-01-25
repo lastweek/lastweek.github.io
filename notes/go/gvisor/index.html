@@ -2427,23 +2427,24 @@ So apparently, docker can use gVisor instead of Linux to launch the container.
 We explicitly use the <code>runsc</code> runtime from gVisor.
 After the container is started, I run dmesg. It looks interesting.
 Same for files under <code>/proc</code>. Everything is emualted by gVisor.
-<div class="highlight"><pre><span></span><code>docker run --runtime<span class="o">=</span>runsc --rm -it ubuntu /bin/bash
-</code></pre></div></p>
-<div class="highlight"><pre><span></span><code>root@59e9ca6d20a2:/proc# dmesg
-[    0.000000] Starting gVisor...
-[    0.461512] Waiting for children...
-[    0.882428] Searching for socket adapter...
-[    1.224004] Gathering forks...
-[    1.310421] Consulting tar man page...
-[    1.542386] Committing treasure map to memory...
-[    1.648830] Feeding the init monster...
-[    1.910484] Letting the watchdogs out...
-[    2.316306] Mounting deweydecimalfs...
-[    2.734728] Creating process schedule...
-[    3.013152] Generating random numbers by fair dice roll...
-[    3.351471] Setting up VFS2...
-[    3.508762] Ready!
-</code></pre></div>
+<code>bash
+docker run --runtime=runsc --rm -it ubuntu /bin/bash</code></p>
+<p>```
+root@59e9ca6d20a2:/proc# dmesg
+[    0.000000] Starting gVisor&hellip;
+[    0.461512] Waiting for children&hellip;
+[    0.882428] Searching for socket adapter&hellip;
+[    1.224004] Gathering forks&hellip;
+[    1.310421] Consulting tar man page&hellip;
+[    1.542386] Committing treasure map to memory&hellip;
+[    1.648830] Feeding the init monster&hellip;
+[    1.910484] Letting the watchdogs out&hellip;
+[    2.316306] Mounting deweydecimalfs&hellip;
+[    2.734728] Creating process schedule&hellip;
+[    3.013152] Generating random numbers by fair dice roll&hellip;
+[    3.351471] Setting up VFS2&hellip;
+[    3.508762] Ready!</p>
+<p>```</p>
                 
                   
                     

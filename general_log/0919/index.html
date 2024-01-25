@@ -2319,17 +2319,16 @@
 <p>Log range 0920 - 0930.</p>
 <h1 id="92619">9/26/19<a class="headerlink" href="#92619" title="Permanent link">&para;</a></h1>
 <p>Check out PR today.</p>
-<div class="highlight"><pre><span></span><code>create_pblock
-</code></pre></div>
+<p><code>create_pblock</code></p>
 <h1 id="92519">9/25/19<a class="headerlink" href="#92519" title="Permanent link">&para;</a></h1>
 <p>Singularity and Helios</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="o">-</span> <span class="n">I</span><span class="s1">&#39;ve been reading Singularity today. It has many insights on extension and isolation. Something we might be interested: 1) application has a manifest. We may want to have a similar one for each FPGA app. 2) Seal OS architecture, where the OS or app remain invariant after install. This is the nature of FPGA..</span>
-<span class="o">-</span> <span class="n">Also</span><span class="p">,</span> <span class="n">I</span> <span class="n">think</span> <span class="n">it</span><span class="s1">&#39;s important to figure out a way to do IP sharing. The same thing is also beneficial for PR.</span>
-<span class="o">-</span> <span class="n">Scheduling</span><span class="p">:</span> <span class="n">preemptive</span> <span class="ow">or</span> <span class="n">non</span><span class="o">-</span><span class="n">preemptive</span><span class="o">..</span>
-</code></pre></div>
-</td></tr></table>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">I</span><span class="s1">&#39;ve been reading Singularity today. It has many insights on extension and isolation. Something we might be interested: 1) application has a manifest. We may want to have a similar one for each FPGA app. 2) Seal OS architecture, where the OS or app remain invariant after install. This is the nature of FPGA..</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Also</span><span class="p">,</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="n">think</span><span class="w"> </span><span class="n">it</span><span class="s1">&#39;s important to figure out a way to do IP sharing. The same thing is also beneficial for PR.</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Scheduling</span><span class="p">:</span><span class="w"> </span><span class="n">preemptive</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">non</span><span class="o">-</span><span class="n">preemptive</span><span class="o">..</span>
+</code></pre></div></td></tr></table></div>
+
 <p>Thoughts after reading Singularity papers
     - The contract-based channel is promising
     - The manifest-based program approach is also promising. Similarly, the AmoghOS has some Resource Vector associated with each FPGA application. I think it&rsquo;s valid and beneficial to attach such a spec with FPGA applications.</p>

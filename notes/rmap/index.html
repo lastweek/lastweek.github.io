@@ -2440,13 +2440,13 @@ it&rsquo;s just easy to understand. I will check later on.</p>
 <li>For <a href="https://github.com/torvalds/linux/blob/e93c9c99a629c61837d5a7fc2120cd2b6c70dbdd/mm/rmap.c#L1878">file</a>: <code>unsigned long address = vma_address(page, vma);</code></li>
 <li>And  <code>vma_address()</code> is basically <code>page-&gt;index</code></li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"></span>
-<span class="w">    </span><span class="n">__vma_address</span><span class="p">(</span><span class="k">struct</span> <span class="nc">page</span><span class="w"> </span><span class="o">*</span><span class="n">page</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span> <span class="nc">vm_area_struct</span><span class="w"> </span><span class="o">*</span><span class="n">vma</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">pgoff_t</span><span class="w"> </span><span class="n">pgoff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">page_to_pgoff</span><span class="p">(</span><span class="n">page</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">vma</span><span class="o">-&gt;</span><span class="n">vm_start</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">((</span><span class="n">pgoff</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">vma</span><span class="o">-&gt;</span><span class="n">vm_pgoff</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">PAGE_SHIFT</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-</code></pre></div>
+<p><code>c
+    static inline unsigned long
+    __vma_address(struct page *page, struct vm_area_struct *vma)
+    {
+        pgoff_t pgoff = page_to_pgoff(page);
+        return vma-&gt;vm_start + ((pgoff - vma-&gt;vm_pgoff) &lt;&lt; PAGE_SHIFT);
+    }</code></p>
 <p>Compared to basic PTE-chain based solution, object-based rmap:</p>
 <p><strong>The real benefit</strong></p>
 <ul>

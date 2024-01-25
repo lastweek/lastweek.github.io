@@ -2432,13 +2432,12 @@ by the secondary CPU to jump from <code>16-bit realmode</code> to <code>64-bit</
 into kernel image directly. So we have to piggyback the trampoline.bin binary
 code into a section, which is described by <code>trampoline_start</code> and <code>trampoline_end</code>. So the kernel can address the trampoline code via these two symbols.</p>
 <p>The compile flow is:
-<div class="highlight"><pre><span></span><code>    arch/x86/realmode/rm/trmapoline.S
+<code>arch/x86/realmode/rm/trmapoline.S
     -&gt; CC__ arch/x86/realmode/rm/trmapoline.o
        -&gt; LD arch/x86/realmode/rm/trampoline
           -&gt; OBJCOPY arch/x86/realmode/rm/trampoline.bin
              -&gt; This bin goes into piggy.o
-            -&gt; piggy.o goes into vmImage
-</code></pre></div></p>
+            -&gt; piggy.o goes into vmImage</code></p>
 <h2 id="what-happened-at-runtime">What happened at runtime?<a class="headerlink" href="#what-happened-at-runtime" title="Permanent link">&para;</a></h2>
 <p>The setup code was loaded by GRUB below 1MB. Inside <code>arch/x86/boot/main.c</code>, we
 will save the <code>cs()</code> into the <code>boot_params</code> and pass it to kernel. In <code>setup_arch()</code>, we will copy the trampoline.bin code to the <code>cs()</code> address reported by <code>boot_param</code>. This means we will override setup code, which is okay.</p>

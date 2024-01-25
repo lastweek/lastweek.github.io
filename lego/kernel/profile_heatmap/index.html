@@ -2419,23 +2419,23 @@
 <p>Of course, we also have a simple dump function <code>void print_profile_heatmap_nr(int nr)</code>, which is similar to userspace tool <code>readprofile</code>.</p>
 <h2 id="example-output">Example Output<a class="headerlink" href="#example-output" title="Permanent link">&para;</a></h2>
 <p>Workload is: MT-Phoenix word count, with 1GB data. (We probably want to rule out <code>cpu_idle()</code>)
-<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="w"> </span><span class="mf">1017.309754</span><span class="p">]</span><span class="w"> </span><span class="n">Kernel</span><span class="w"> </span><span class="n">Heatmap</span><span class="w"> </span><span class="p">(</span><span class="n">top</span><span class="w"> </span><span class="err">#</span><span class="mi">10</span><span class="p">)</span><span class="w"></span>
-<span class="p">[</span><span class="w"> </span><span class="mf">1017.313731</span><span class="p">]</span><span class="w">          </span><span class="n">Address</span><span class="w">              </span><span class="n">Function</span><span class="w">          </span><span class="n">NR</span><span class="w">          </span><span class="o">%</span><span class="w"></span>
-<span class="p">[</span><span class="w"> </span><span class="mf">1017.321294</span><span class="p">]</span><span class="w"> </span><span class="o">----------------</span><span class="w">  </span><span class="o">--------------------</span><span class="w">  </span><span class="o">----------</span><span class="w">  </span><span class="o">---------</span><span class="w"></span>
-<span class="p">[</span><span class="w"> </span><span class="mf">1017.328858</span><span class="p">]</span><span class="w"> </span><span class="n">ffffffff8101a600</span><span class="w">              </span><span class="n">cpu_idle</span><span class="w">      </span><span class="mi">112082</span><span class="w">      </span><span class="mf">73.11</span><span class="w"></span>
-<span class="p">[</span><span class="w"> </span><span class="mf">1017.336421</span><span class="p">]</span><span class="w"> </span><span class="n">ffffffff810666f0</span><span class="w">            </span><span class="n">__schedule</span><span class="w">       </span><span class="mi">19192</span><span class="w">      </span><span class="mf">12.95</span><span class="w"></span>
-<span class="p">[</span><span class="w"> </span><span class="mf">1017.343983</span><span class="p">]</span><span class="w"> </span><span class="n">ffffffff8104f500</span><span class="w">       </span><span class="n">mlx4_ib_poll_cq</span><span class="w">        </span><span class="mi">5551</span><span class="w">       </span><span class="mf">3.99</span><span class="w"></span>
-<span class="p">[</span><span class="w"> </span><span class="mf">1017.351546</span><span class="p">]</span><span class="w"> </span><span class="n">ffffffff8103bf50</span><span class="w">             </span><span class="n">delay_tsc</span><span class="w">        </span><span class="mi">5393</span><span class="w">       </span><span class="mf">3.83</span><span class="w"></span>
-<span class="p">[</span><span class="w"> </span><span class="mf">1017.359110</span><span class="p">]</span><span class="w"> </span><span class="n">ffffffff81034a10</span><span class="w">    </span><span class="n">victim_flush_async</span><span class="w">        </span><span class="mi">3766</span><span class="w">       </span><span class="mf">2.72</span><span class="w"></span>
-<span class="p">[</span><span class="w"> </span><span class="mf">1017.366673</span><span class="p">]</span><span class="w"> </span><span class="n">ffffffff8102b220</span><span class="w">   </span><span class="n">slob_alloc</span><span class="p">.</span><span class="n">constpro</span><span class="w">        </span><span class="mi">1992</span><span class="w">       </span><span class="mf">1.47</span><span class="w"></span>
-<span class="p">[</span><span class="w"> </span><span class="mf">1017.374235</span><span class="p">]</span><span class="w"> </span><span class="n">ffffffff810668d0</span><span class="w">              </span><span class="n">schedule</span><span class="w">        </span><span class="mi">1519</span><span class="w">       </span><span class="mf">0.15</span><span class="w"></span>
-<span class="p">[</span><span class="w"> </span><span class="mf">1017.381800</span><span class="p">]</span><span class="w"> </span><span class="n">ffffffff810648f0</span><span class="w">   </span><span class="n">fit_send_reply_with</span><span class="w">         </span><span class="mi">956</span><span class="w">       </span><span class="mf">0.95</span><span class="w"></span>
-<span class="p">[</span><span class="w"> </span><span class="mf">1017.389362</span><span class="p">]</span><span class="w"> </span><span class="n">ffffffff81062370</span><span class="w">   </span><span class="n">ibapi_send_reply_ti</span><span class="w">         </span><span class="mi">307</span><span class="w">       </span><span class="mf">0.30</span><span class="w"></span>
-<span class="p">[</span><span class="w"> </span><span class="mf">1017.396925</span><span class="p">]</span><span class="w"> </span><span class="n">ffffffff8105a0d0</span><span class="w">   </span><span class="n">ib_mad_completion_h</span><span class="w">         </span><span class="mi">232</span><span class="w">       </span><span class="mf">0.23</span><span class="w"></span>
-<span class="p">[</span><span class="w"> </span><span class="mf">1017.404487</span><span class="p">]</span><span class="w"> </span><span class="o">----------------</span><span class="w">  </span><span class="o">--------------------</span><span class="w">  </span><span class="o">----------</span><span class="w">  </span><span class="o">---------</span><span class="w"></span>
-<span class="p">[</span><span class="w"> </span><span class="mf">1017.412052</span><span class="p">]</span><span class="w">                                             </span><span class="mi">151994</span><span class="w">     </span><span class="mf">100.00</span><span class="w"></span>
-<span class="p">[</span><span class="w"> </span><span class="mf">1017.419613</span><span class="p">]</span><span class="w"></span>
-</code></pre></div></p>
+<code>c
+[ 1017.309754] Kernel Heatmap (top #10)
+[ 1017.313731]          Address              Function          NR          %
+[ 1017.321294] ----------------  --------------------  ----------  ---------
+[ 1017.328858] ffffffff8101a600              cpu_idle      112082      73.11
+[ 1017.336421] ffffffff810666f0            __schedule       19192      12.95
+[ 1017.343983] ffffffff8104f500       mlx4_ib_poll_cq        5551       3.99
+[ 1017.351546] ffffffff8103bf50             delay_tsc        5393       3.83
+[ 1017.359110] ffffffff81034a10    victim_flush_async        3766       2.72
+[ 1017.366673] ffffffff8102b220   slob_alloc.constpro        1992       1.47
+[ 1017.374235] ffffffff810668d0              schedule        1519       0.15
+[ 1017.381800] ffffffff810648f0   fit_send_reply_with         956       0.95
+[ 1017.389362] ffffffff81062370   ibapi_send_reply_ti         307       0.30
+[ 1017.396925] ffffffff8105a0d0   ib_mad_completion_h         232       0.23
+[ 1017.404487] ----------------  --------------------  ----------  ---------
+[ 1017.412052]                                             151994     100.00
+[ 1017.419613]</code></p>
 <p>&ndash;<br />
 Yizhou Shan<br />
 Created: April 06, 2018<br />

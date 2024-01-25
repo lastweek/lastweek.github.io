@@ -2345,79 +2345,114 @@
 <li>Refcount checking is also necessary. In the eviction routine, we need to use  <code>atomic_xchg</code> to reset the refcount. If this fails, it means someone else is using it. Do note, this <code>atomic_xchg</code> is carried out with pcm locked. Thus the ordering of locking, get/put matters in the code.</li>
 </ul>
 <p>The code itself tells a much more complete story, I strongly recommend you read the code if you are interested. Here I will list the most interesting part. For the other users except eviction, they need to do this:
-<div class="highlight"><pre><span></span><code><span class="n">pcm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pte_to_pcache_meta</span><span class="p">(</span><span class="n">ptent</span><span class="p">);</span><span class="w"></span>
-<span class="cm">/*   </span>
-<span class="cm"> * We have a strict lock ordering everyone should obey:</span>
-<span class="cm"> *      lock pcache</span>
-<span class="cm"> *      lock pte</span>
-<span class="cm"> * The caller already locked pte, thus we should avoid deadlock here</span>
-<span class="cm"> * by droping pte lock first and then acquire both of them in order.</span>
-<span class="cm"> */</span><span class="w"></span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="o">!</span><span class="n">trylock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="cm">/* in case it got evicted and @pcm becomes invalid */</span><span class="w"></span>
-<span class="w">    </span><span class="n">get_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span><span class="w"></span>
+```c hl_lines=&rdquo;28&rdquo;
+pcm = pte_to_pcache_meta(ptent);
+/* <br />
+ * We have a strict lock ordering everyone should obey:
+ *      lock pcache
+ *      lock pte
+ * The caller already locked pte, thus we should avoid deadlock here
+ * by droping pte lock first and then acquire both of them in order.
+ <em>/
+if (unlikely(!trylock_pcache(pcm))) {
+    /</em> in case it got evicted and @pcm becomes invalid */
+    get_pcache(pcm);</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="o">/*</span>
+<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Once</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">release</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">pte</span><span class="w"> </span><span class="n">lock</span><span class="p">,</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">pcm</span><span class="w"> </span><span class="n">may</span><span class="w"> </span><span class="n">be</span>
+<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">unmapped</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">another</span><span class="w"> </span><span class="n">thread</span><span class="w"> </span><span class="nb">who</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">doing</span><span class="w"> </span><span class="n">eviction</span><span class="p">.</span>
+<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Since</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">grabbed</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="n">ref</span><span class="w"> </span><span class="n">above</span><span class="p">,</span><span class="w"> </span><span class="n">so</span><span class="w"> </span><span class="n">even</span>
+<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">unmapped</span><span class="p">,</span><span class="w"> </span><span class="n">eviction</span><span class="w"> </span><span class="n">thread</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">fail</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">free</span><span class="w"> </span><span class="n">it</span><span class="p">.</span>
+<span class="w"> </span><span class="o">*/</span>
+<span class="n">spin_unlock</span><span class="p">(</span><span class="n">ptl</span><span class="p">);</span>
 
-<span class="w">    </span><span class="cm">/*</span>
-<span class="cm">     * Once we release the pte lock, this pcm may be</span>
-<span class="cm">     * unmapped by another thread who is doing eviction.</span>
-<span class="cm">     * Since we have grabbed one extra ref above, so even</span>
-<span class="cm">     * it is unmapped, eviction thread will not fail to free it.</span>
-<span class="cm">     */</span><span class="w"></span>
-<span class="w">    </span><span class="n">spin_unlock</span><span class="p">(</span><span class="n">ptl</span><span class="p">);</span><span class="w"></span>
+<span class="n">lock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
+<span class="n">spin_lock</span><span class="p">(</span><span class="n">ptl</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">lock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">spin_lock</span><span class="p">(</span><span class="n">ptl</span><span class="p">);</span><span class="w"></span>
+<span class="o">/*</span><span class="w">   </span>
+<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Since</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">dropped</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">lock</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">pcache</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="n">might</span>
+<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">got</span><span class="w"> </span><span class="n">evicted</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">middle</span><span class="p">.</span>
+<span class="w"> </span><span class="o">*/</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span>!<span class="n">pte_same</span><span class="p">(</span><span class="o">*</span><span class="n">pte</span><span class="p">,</span><span class="w"> </span><span class="n">ptent</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">unlock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
+<span class="w">    </span><span class="o">/*</span><span class="w">   </span>
+<span class="w">     </span><span class="o">*</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">put</span><span class="w"> </span><span class="n">maybe</span><span class="w"> </span><span class="n">decreases</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">ref</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">     </span><span class="o">*</span><span class="w"> </span><span class="nb">and</span><span class="w"> </span><span class="n">eventually</span><span class="w"> </span><span class="n">free</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">pcache</span><span class="w"> </span><span class="n">line</span><span class="p">.</span>
+<span class="w">     </span><span class="o">*</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">happens</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="p">@</span><span class="n">pcm</span><span class="w"> </span><span class="n">was</span><span class="w"> </span><span class="n">selected</span>
+<span class="w">     </span><span class="o">*</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">evicted</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="n">time</span><span class="p">.</span>
+<span class="w">     </span><span class="o">*/</span>
+<span class="w">    </span><span class="n">put_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="n">EAGAIN</span><span class="p">;</span>
+<span class="p">}</span><span class="w">    </span>
+<span class="n">put_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
 
-<span class="w">    </span><span class="cm">/*   </span>
-<span class="cm">     * Since we dropped the lock, the pcache line might</span>
-<span class="cm">     * be got evicted in the middle.</span>
-<span class="cm">     */</span><span class="w"></span>
-<span class="hll"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">pte_same</span><span class="p">(</span><span class="o">*</span><span class="n">pte</span><span class="p">,</span><span class="w"> </span><span class="n">ptent</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-</span><span class="w">        </span><span class="n">unlock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="cm">/*   </span>
-<span class="cm">         * This put maybe decreases the ref to 0</span>
-<span class="cm">         * and eventually free the pcache line.</span>
-<span class="cm">         * This happens if the @pcm was selected</span>
-<span class="cm">         * to be evicted at the same time.</span>
-<span class="cm">         */</span><span class="w"></span>
-<span class="w">        </span><span class="n">put_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="n">EAGAIN</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w">    </span>
-<span class="w">    </span><span class="n">put_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div></p>
+<p>}
+```</p>
 <p>As for the eviction thread, it needs to make sure it is the last user using this pcm:
-<div class="highlight"><pre><span></span><code><span class="cm">/*  </span>
-<span class="cm"> * Each rmap counts one refcount, plus the one grabbed</span>
-<span class="cm"> * during evict_find_line(), we should have (nr_mapped + 1)</span>
-<span class="cm"> * here if there are no any other users.</span>
-<span class="cm"> *</span>
-<span class="cm"> * Furthurmore, others can not go from munmap/mremap/wp to</span>
-<span class="cm"> * put_pcache() within pcache_zap_pte(), pcache_move_pte()</span>
-<span class="cm"> * or pcache_do_wp_page(). Thus the refcount must larger or</span>
-<span class="cm"> * equal to (nr_mapped + 1).</span>
-<span class="cm"> *</span>
-<span class="cm"> * But if there truly other users (refcount &gt; nr_mapped + 1),</span>
-<span class="cm"> * then we should manually sub the refcount. The other users</span>
-<span class="cm"> * which are currently holding the ref, will free the pcache</span>
-<span class="cm"> * once it call put_pcache.</span>
-<span class="cm"> */</span><span class="w"></span>
-<span class="n">PCACHE_BUG_ON_PCM</span><span class="p">(</span><span class="n">pcache_ref_count</span><span class="p">(</span><span class="n">pcm</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nr_mapped</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">pcm</span><span class="p">);</span><span class="w"></span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="o">!</span><span class="n">pcache_ref_freeze</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span><span class="w"> </span><span class="n">nr_mapped</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="n">pcache_ref_sub_and_test</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span><span class="w"> </span><span class="n">nr_mapped</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;BUG: pcm refcount, nr_mapped: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nr_mapped</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">dump_pcache_meta</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ref error&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">BUG</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w">   </span>
+```c
+/*<br />
+ * Each rmap counts one refcount, plus the one grabbed
+ * during evict_find_line(), we should have (nr_mapped + 1)
+ * here if there are no any other users.
+ *
+ * Furthurmore, others can not go from munmap/mremap/wp to
+ * put_pcache() within pcache_zap_pte(), pcache_move_pte()
+ * or pcache_do_wp_page(). Thus the refcount must larger or
+ * equal to (nr_mapped + 1).
+ *
+ * But if there truly other users (refcount &gt; nr_mapped + 1),
+ * then we should manually sub the refcount. The other users
+ * which are currently holding the ref, will free the pcache
+ * once it call put_pcache.
+ */
+PCACHE_BUG_ON_PCM(pcache_ref_count(pcm) &lt; nr_mapped + 1, pcm);
+if (unlikely(!pcache_ref_freeze(pcm, nr_mapped + 1))) {
+    if (unlikely(pcache_ref_sub_and_test(pcm, nr_mapped + 1))) {
+        pr_info(&ldquo;BUG: pcm refcount, nr_mapped: %d\n&rdquo;, nr_mapped);
+        dump_pcache_meta(pcm, &ldquo;ref error&rdquo;);
+        BUG();
+    }   </p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>ClearPcacheReclaim(pcm);
+add_to_lru_list(pcm, pset);
+unlock_pcache(pcm);
 
-<span class="w">    </span><span class="n">ClearPcacheReclaim</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">add_to_lru_list</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span><span class="w"> </span><span class="n">pset</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">unlock_pcache</span><span class="p">(</span><span class="n">pcm</span><span class="p">);</span><span class="w"></span>
+inc_pcache_event(PCACHE_EVICTION_EAGAIN_CONCURRENT);
+return PCACHE_EVICT_EAGAIN_CONCURRENT;
+</code></pre></div></td></tr></table></div>
 
-<span class="w">    </span><span class="n">inc_pcache_event</span><span class="p">(</span><span class="n">PCACHE_EVICTION_EAGAIN_CONCURRENT</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">PCACHE_EVICT_EAGAIN_CONCURRENT</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div></p>
+<p>}
+```</p>
 <hr />
 <p>My personal thought: live eviction against live objects/references is very hard. You first need to use refcount to ensure a correct ordering. You also need to have a way to prevent others from using the going-to-be-evicted pointer, or have a way to detect a under-use pointer.  In this Lego pcache case, we use the combination of pte lock, pcache lock, and pcache refcount, to ensure everyone is safe. And all these is quite similar to Linux page operations. I learned a lot from its code. But I still not fully understand how it ensures the page is not used by others, it has way more parties than lego that can use the page at the same time of eviction. Magic kernel folks.</p>
 <p>&ndash;<br />

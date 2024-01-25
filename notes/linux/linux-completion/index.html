@@ -2407,43 +2407,62 @@ They provide APIs for you to insert (sleep) and delete (wakeup) threads within t
 <p>The <code>completion</code> API essentially builds itself on top of <code>swait</code>.
 The <code>complete()</code> call directly call <code>swake_up_locked()</code>.
 I guess the only interesting thing is <code>wait_for_completion()</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">__sched</span><span class="w"></span>
-<span class="n">wait_for_common</span><span class="p">(</span><span class="k">struct</span> <span class="nc">completion</span><span class="w"> </span><span class="o">*</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">timeout</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">__wait_for_common</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">schedule_timeout</span><span class="p">,</span><span class="w"> </span><span class="n">timeout</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
+<p><code>c
+static long __sched
+wait_for_common(struct completion *x, long timeout, int state)
+{
+    return __wait_for_common(x, schedule_timeout, timeout, state);
+}</code></p>
 <p>All different flavors of wait eventually fall into the following func.
 It adds the current thread into the <code>swait</code> queue, change the thread state,
 then simply calls <code>action()</code> function pointer, which, in normal cases, is <code>schedule_timeout()</code>.
 So this is the place a thread goes to sleep and wait for the other thread to call <code>complete()</code>.
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">__sched</span><span class="w"></span>
-<span class="n">do_wait_for_common</span><span class="p">(</span><span class="k">struct</span> <span class="nc">completion</span><span class="w"> </span><span class="o">*</span><span class="n">x</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="kt">long</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">action</span><span class="p">)(</span><span class="kt">long</span><span class="p">),</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">timeout</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">done</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">DECLARE_SWAITQUEUE</span><span class="p">(</span><span class="n">wait</span><span class="p">);</span><span class="w"></span>
+```c
+static inline long __sched
+do_wait_for_common(struct completion *x,
+           long (*action)(long), long timeout, int state)
+{
+    if (!x-&gt;done) {
+        DECLARE_SWAITQUEUE(wait);</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">do</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">signal_pending_state</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">current</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">ERESTARTSYS</span><span class="p">;</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">__prepare_to_swait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">wait</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">wait</span><span class="p">);</span>
+<span class="w">        </span><span class="n">__set_current_state</span><span class="p">(</span><span class="n">state</span><span class="p">);</span>
+<span class="w">        </span><span class="n">raw_spin_unlock_irq</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">wait</span><span class="o">.</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">        </span><span class="n">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">action</span><span class="p">(</span><span class="n">timeout</span><span class="p">);</span>
+<span class="w">        </span><span class="n">raw_spin_lock_irq</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">wait</span><span class="o">.</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">done</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">timeout</span><span class="p">);</span>
+<span class="w">    </span><span class="n">__finish_swait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">wait</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">wait</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">done</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">timeout</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">done</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">UINT_MAX</span><span class="p">)</span>
+<span class="w">    </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">done</span><span class="o">--</span><span class="p">;</span>
+<span class="k">return</span><span class="w"> </span><span class="n">timeout</span><span class="w"> </span><span class="err">?</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
 
-<span class="w">        </span><span class="k">do</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">signal_pending_state</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">current</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">ERESTARTSYS</span><span class="p">;</span><span class="w"></span>
-<span class="w">                </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">            </span><span class="n">__prepare_to_swait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">wait</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">wait</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="n">__set_current_state</span><span class="p">(</span><span class="n">state</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="n">raw_spin_unlock_irq</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">wait</span><span class="p">.</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="n">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">action</span><span class="p">(</span><span class="n">timeout</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="n">raw_spin_lock_irq</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">wait</span><span class="p">.</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">done</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">timeout</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">__finish_swait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">wait</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">wait</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">done</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">timeout</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">done</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">UINT_MAX</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">done</span><span class="o">--</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">timeout</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div></p>
+<p>}
+```</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Documentation/scheduler/completion.rst</li>

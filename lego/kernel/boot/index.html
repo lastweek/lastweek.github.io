@@ -2443,29 +2443,30 @@ They have different effects, but not sure what are those differences.
 I remember only the linux16 one works for me,
 but not remembering why either. At least on CentOS 7, it&rsquo;s all linux16.</p>
 <p>The <code>linux16</code> and <code>initrd16</code> in <code>grub-core/loader/i386/pc/linux.c</code>:
-<div class="highlight"><pre><span></span><code><span class="n">GRUB_MOD_INIT</span><span class="p">(</span><span class="n">linux16</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">cmd_linux</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="n">grub_register_command</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;linux16&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">grub_cmd_linux</span><span class="p">,</span><span class="w"></span>
-<span class="w">               </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">N_</span><span class="p">(</span><span class="s">&quot;Load Linux.&quot;</span><span class="p">));</span><span class="w"></span>
-<span class="w">  </span><span class="n">cmd_initrd</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="n">grub_register_command</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;initrd16&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">grub_cmd_initrd</span><span class="p">,</span><span class="w"></span>
-<span class="w">               </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">N_</span><span class="p">(</span><span class="s">&quot;Load initrd.&quot;</span><span class="p">));</span><span class="w"></span>
-<span class="w">  </span><span class="n">my_mod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mod</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div></p>
+```c
+GRUB_MOD_INIT(linux16)
+{
+  cmd_linux =
+    grub_register_command (&ldquo;linux16&rdquo;, grub_cmd_linux,
+               0, N_(&ldquo;Load Linux.&rdquo;));
+  cmd_initrd =
+    grub_register_command (&ldquo;initrd16&rdquo;, grub_cmd_initrd,
+               0, N_(&ldquo;Load initrd.&rdquo;));
+  my_mod = mod;
+}</p>
+<p>```</p>
 <p>The <code>linux</code> and <code>initrd</code> in <code>grub-core/loader/i386/linux.c</code>:
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="n">grub_command_t</span><span class="w"> </span><span class="n">cmd_linux</span><span class="p">,</span><span class="w"> </span><span class="n">cmd_initrd</span><span class="p">;</span><span class="w"></span>
-
-<span class="n">GRUB_MOD_INIT</span><span class="p">(</span><span class="n">linux</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">cmd_linux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grub_register_command</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;linux&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">grub_cmd_linux</span><span class="p">,</span><span class="w"></span>
-<span class="w">                     </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">N_</span><span class="p">(</span><span class="s">&quot;Load Linux.&quot;</span><span class="p">));</span><span class="w"></span>
-<span class="w">  </span><span class="n">cmd_initrd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grub_register_command</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;initrd&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">grub_cmd_initrd</span><span class="p">,</span><span class="w"></span>
-<span class="w">                      </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">N_</span><span class="p">(</span><span class="s">&quot;Load initrd.&quot;</span><span class="p">));</span><span class="w"></span>
-<span class="w">  </span><span class="n">my_mod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mod</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div></p>
+```c
+static grub_command_t cmd_linux, cmd_initrd;</p>
+<p>GRUB_MOD_INIT(linux)
+{
+  cmd_linux = grub_register_command (&ldquo;linux&rdquo;, grub_cmd_linux,
+                     0, N_(&ldquo;Load Linux.&rdquo;));
+  cmd_initrd = grub_register_command (&ldquo;initrd&rdquo;, grub_cmd_initrd,
+                      0, N_(&ldquo;Load initrd.&rdquo;));
+  my_mod = mod;
+}
+```</p>
 <h2 id="boot-protocol-and-sequence">Boot Protocol and Sequence<a class="headerlink" href="#boot-protocol-and-sequence" title="Permanent link">&para;</a></h2>
 <p>This was written for <a href="https://github.com/lastweek/source-grub2">https://github.com/lastweek/source-grub2</a>. I just copied it here.</p>
 <p>Linux (x86) has a boot protocol, described by <a href="https://www.kernel.org/doc/html/latest/x86/boot.html">https://www.kernel.org/doc/html/latest/x86/boot.html</a>.
@@ -2495,12 +2496,12 @@ It is running after BIOS but before the actual Linux kernel.
 Thus this piece of code must rely on BIOS to do stuff, which makes it very unique.
 The major task of the setup code is to prepare the <code>struct boot_params</code>, which has all the boot information, some of them were extracted from the <code>header.S</code>. The <code>struct boot_params</code> will be passed down and used by many kernel subsystems later on.
 The final jump happens in <code>arch/x86/boot/pmjump.S</code>
-<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="cp">#</span>
-<span class="w">        </span><span class="cp"># Jump to protected-mode kernel, 0x100000</span>
-<span class="w">        </span><span class="cp"># which is the compressed/head_$(BITS).o</span>
-<span class="w">        </span><span class="cp">#</span>
-<span class="w">        </span><span class="n">jmp</span><span class="w">     </span><span class="o">*%</span><span class="n">eax</span><span class="w"></span>
-</code></pre></div></p>
+<code>c
+        #
+        # Jump to protected-mode kernel, 0x100000
+        # which is the compressed/head_$(BITS).o
+        #
+        jmp     *%eax</code></p>
 </li>
 <li>
 <p>Then, we are in <code>arch/x86/boot/compressed/head_64.S</code>.

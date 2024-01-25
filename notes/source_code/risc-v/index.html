@@ -2552,8 +2552,8 @@ After that, it passes control to normal bootloaders like u-boot or GRUB, or just
 - See <code>sbi_system.c</code> and <code>sbi_ipi.c</code>. It looks like the reset is: send an IPI to target HART, which will then ran a sbi_ipi_process_halt handler to halt.
 - Is this warm or cold reboot? Or neither?</p>
 <h4 id="scripts">Scripts<a class="headerlink" href="#scripts" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>make <span class="nv">V</span><span class="o">=</span><span class="m">1</span> <span class="nv">CROSS_COMPILE</span><span class="o">=</span>riscv64-linux-gnu- <span class="nv">PLATFORM</span><span class="o">=</span>generic <span class="nv">FW_PAYLOAD_PATH</span><span class="o">=</span>../linux/arch/riscv/boot/Image
-</code></pre></div>
+<p><code>bash
+make V=1 CROSS_COMPILE=riscv64-linux-gnu- PLATFORM=generic FW_PAYLOAD_PATH=../linux/arch/riscv/boot/Image</code></p>
 <h2 id="qemu">QEMU<a class="headerlink" href="#qemu" title="Permanent link">&para;</a></h2>
 <p>Code in <code>hw/riscv/</code>, <code>hw/intc/*_clint_*</code>.</p>
 <h2 id="kernel">Kernel<a class="headerlink" href="#kernel" title="Permanent link">&para;</a></h2>

@@ -853,20 +853,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#kernel" class="md-nav__link">
-    Kernel
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#boring-details" class="md-nav__link">
-    Boring Details
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2373,20 +2359,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#kernel" class="md-nav__link">
-    Kernel
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#boring-details" class="md-nav__link">
-    Boring Details
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2439,44 +2411,47 @@ and then the linker script will aggregate them. Let me summarize the common flow
 <ol>
 <li>Create a new section name. And use it to annotate your function and data. For example, I can create <code>__section("test")</code>, and mark <code>int foo __section("test")</code>. </li>
 <li>Then look into <code>vmlinux.lds.S</code>, add a new section. Also, add begin and end marcos before and after the section. You can use these macros in your C code.
-<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p">.</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ALIGN</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">.</span><span class="nl">test_section</span> <span class="p">:</span><span class="w"> </span><span class="n">AT</span><span class="p">(</span><span class="n">ADDR</span><span class="p">(.</span><span class="n">test_section</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">LOAD_OFFSET</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">__test_section_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.;</span><span class="w"></span>
-<span class="w">        </span><span class="o">*</span><span class="p">(.</span><span class="n">test</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">__test_section_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-</code></pre></div></li>
+<code>c
+    . = ALIGN(8);
+    .test_section : AT(ADDR(.test_section) - LOAD_OFFSET) {
+        __test_section_start = .;
+        *(.test);
+        __test_section_end = .;
+    }</code></li>
 <li>And in your C code, you can declare <code>__test_section_start</code> and <code>__test_section_end</code>,
 and use them. Kernel uses this trick a lot. If everything in this section is the same
 type of data structures, you can simply walk through it as if it is an array.</li>
 </ol>
 <p>Let&rsquo;s look at an example, say the x86 apicdrivers.</p>
 <p>They defined a macro to annotate apic drivers.
-<div class="highlight"><pre><span></span><code><span class="cp">#define apic_driver(sym)                                        \    </span>
-<span class="w">        </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span> <span class="nc">apic</span><span class="w"> </span><span class="o">*</span><span class="n">__apicdrivers_</span><span class="err">##</span><span class="n">sym</span><span class="w"> </span><span class="n">__used</span><span class="w">            </span><span class="err">\</span><span class="w">    </span>
-<span class="w">        </span><span class="n">__aligned</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="nc">apic</span><span class="w"> </span><span class="o">*</span><span class="p">))</span><span class="w">                        </span><span class="err">\</span><span class="w">    </span>
-<span class="w">        </span><span class="n">__section</span><span class="p">(</span><span class="s">&quot;.apicdrivers&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sym</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+```c</p>
+<h1 id="define-apic_driversym">define apic_driver(sym)                                        \<a class="headerlink" href="#define-apic_driversym" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">struct</span><span class="w"> </span><span class="n">apic</span><span class="w"> </span><span class="o">*</span><span class="n">__apicdrivers_</span><span class="c1">##sym __used            \    </span>
+<span class="w">    </span><span class="n">__aligned</span><span class="p">(</span><span class="n">sizeof</span><span class="p">(</span><span class="n">struct</span><span class="w"> </span><span class="n">apic</span><span class="w"> </span><span class="o">*</span><span class="p">))</span><span class="w">                        </span>\<span class="w">    </span>
+<span class="w">    </span><span class="n">__section</span><span class="p">(</span><span class="s2">&quot;.apicdrivers&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sym</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
 
-
-<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span> <span class="nc">apic</span><span class="w"> </span><span class="n">testAPICdriver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
-<span class="n">apic_driver</span><span class="p">(</span><span class="n">testAPICdriver</span><span class="p">)</span><span class="w"></span>
-</code></pre></div></p>
+<p>static const struct apic testAPICdriver = { &hellip; };
+apic_driver(testAPICdriver)
+```</p>
 <p>And inside linker script, they define:
-<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p">.</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ALIGN</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">.</span><span class="nl">apicdrivers</span> <span class="p">:</span><span class="w"> </span><span class="n">AT</span><span class="p">(</span><span class="n">ADDR</span><span class="p">(.</span><span class="n">apicdrivers</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">LOAD_OFFSET</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">__apicdrivers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.;</span><span class="w"></span>
-<span class="w">        </span><span class="o">*</span><span class="p">(.</span><span class="n">apicdrivers</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">__apicdrivers_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-</code></pre></div></p>
+<code>c
+    . = ALIGN(8);
+    .apicdrivers : AT(ADDR(.apicdrivers) - LOAD_OFFSET) {
+        __apicdrivers = .;
+        *(.apicdrivers);
+        __apicdrivers_end = .;
+    }</code></p>
 <p>Finally, define them in C and use it.
-<div class="highlight"><pre><span></span><code><span class="k">extern</span><span class="w"> </span><span class="k">struct</span> <span class="nc">apic</span><span class="w"> </span><span class="o">*</span><span class="n">__apicdrivers</span><span class="p">[],</span><span class="w"> </span><span class="o">*</span><span class="n">__apicdrivers_end</span><span class="p">[];</span><span class="w"></span>
-
-<span class="k">struct</span> <span class="nc">apic</span><span class="w"> </span><span class="o">**</span><span class="n">drv</span><span class="p">;</span><span class="w"></span>
-<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">drv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__apicdrivers</span><span class="p">;</span><span class="w"> </span><span class="n">drv</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">__apicdrivers_end</span><span class="p">;</span><span class="w"> </span><span class="n">drv</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div></p>
+```c
+extern struct apic *__apicdrivers[], *__apicdrivers_end[];</p>
+<p>struct apic **drv;
+for (drv = __apicdrivers; drv &lt; __apicdrivers_end; drv++) {
+&hellip;
+}</p>
+<p>```</p>
 <p>The kernel scheduler code the trick to define various scheduler drivers too.</p>
 <h2 id="kernel">Kernel<a class="headerlink" href="#kernel" title="Permanent link">&para;</a></h2>
 <p>Various things that use linker script to organize their data and functions.</p>
@@ -2492,69 +2467,70 @@ type of data structures, you can simply walk through it as if it is an array.</l
 <h2 id="boring-details">Boring Details<a class="headerlink" href="#boring-details" title="Permanent link">&para;</a></h2>
 <p>In the <code>vmlinux.lds.S</code>, those header files are included.
 The most important one is <code>vmlinux.lds.h</code>.
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm-generic/vmlinux.lds.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/asm-offsets.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/thread_info.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/page_types.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/orc_lookup.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/cache.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/boot.h&gt;</span><span class="cp"></span>
-</code></pre></div></p>
+```c</p>
+<h1 id="include">include <asm-generic/vmlinux.lds.h><a class="headerlink" href="#include" title="Permanent link">&para;</a></h1>
+<h1 id="include_1">include <asm/asm-offsets.h><a class="headerlink" href="#include_1" title="Permanent link">&para;</a></h1>
+<h1 id="include_2">include <asm/thread_info.h><a class="headerlink" href="#include_2" title="Permanent link">&para;</a></h1>
+<h1 id="include_3">include <asm/page_types.h><a class="headerlink" href="#include_3" title="Permanent link">&para;</a></h1>
+<h1 id="include_4">include <asm/orc_lookup.h><a class="headerlink" href="#include_4" title="Permanent link">&para;</a></h1>
+<h1 id="include_5">include <asm/cache.h><a class="headerlink" href="#include_5" title="Permanent link">&para;</a></h1>
+<h1 id="include_6">include <asm/boot.h><a class="headerlink" href="#include_6" title="Permanent link">&para;</a></h1>
+<p>```</p>
 <p>And be sure to checkout the <a href="https://github.com/torvalds/linux/blob/master/include/asm-generic/vmlinux.lds.h"><code>vmlinux.lds.h</code></a>.
 The top comments. It lays out the basic structrue of a linker script in linux.
 And it defines all the macros used in the assembly linker file.
-<div class="highlight"><pre><span></span><code><span class="cm">/*</span>
-<span class="cm"> * Helper macros to support writing architecture specific</span>
-<span class="cm"> * linker scripts.</span>
-<span class="cm"> *</span>
-<span class="cm"> * A minimal linker scripts has following content:</span>
-<span class="cm"> * [This is a sample, architectures may have special requiriements]</span>
-<span class="cm"> *</span>
-<span class="cm"> * OUTPUT_FORMAT(...)</span>
-<span class="cm"> * OUTPUT_ARCH(...)</span>
-<span class="cm"> * ENTRY(...)</span>
-<span class="cm"> * SECTIONS</span>
-<span class="cm"> * {</span>
-<span class="cm"> *  . = START;</span>
-<span class="cm"> *  __init_begin = .;</span>
-<span class="cm"> *  HEAD_TEXT_SECTION</span>
-<span class="cm"> *  INIT_TEXT_SECTION(PAGE_SIZE)</span>
-<span class="cm"> *  INIT_DATA_SECTION(...)</span>
-<span class="cm"> *  PERCPU_SECTION(CACHELINE_SIZE)</span>
-<span class="cm"> *  __init_end = .;</span>
-<span class="cm"> *</span>
-<span class="cm"> *  _stext = .;</span>
-<span class="cm"> *  TEXT_SECTION = 0</span>
-<span class="cm"> *  _etext = .;</span>
-<span class="cm"> *</span>
-<span class="cm"> *      _sdata = .;</span>
-<span class="cm"> *  RO_DATA(PAGE_SIZE)</span>
-<span class="cm"> *  RW_DATA(...)</span>
-<span class="cm"> *  _edata = .;</span>
-<span class="cm"> *</span>
-<span class="cm"> *  EXCEPTION_TABLE(...)</span>
-<span class="cm"> *</span>
-<span class="cm"> *  BSS_SECTION(0, 0, 0)</span>
-<span class="cm"> *  _end = .;</span>
-<span class="cm"> *</span>
-<span class="cm"> *  STABS_DEBUG</span>
-<span class="cm"> *  DWARF_DEBUG</span>
-<span class="cm"> *  ELF_DETAILS</span>
-<span class="cm"> *</span>
-<span class="cm"> *  DISCARDS        // must be the last</span>
-<span class="cm"> * }</span>
-<span class="cm"> *</span>
-<span class="cm"> * [__init_begin, __init_end] is the init section that may be freed after init</span>
-<span class="cm"> *  // __init_begin and __init_end should be page aligned, so that we can</span>
-<span class="cm"> *  // free the whole .init memory</span>
-<span class="cm"> * [_stext, _etext] is the text section</span>
-<span class="cm"> * [_sdata, _edata] is the data section</span>
-<span class="cm"> *</span>
-<span class="cm"> * Some of the included output section have their own set of constants.</span>
-<span class="cm"> * Examples are: [__initramfs_start, __initramfs_end] for initramfs and</span>
-<span class="cm"> *               [__nosave_begin, __nosave_end] for the nosave data</span>
-<span class="cm"> */</span><span class="w"></span>
-</code></pre></div></p>
+<code>c
+/*
+ * Helper macros to support writing architecture specific
+ * linker scripts.
+ *
+ * A minimal linker scripts has following content:
+ * [This is a sample, architectures may have special requiriements]
+ *
+ * OUTPUT_FORMAT(...)
+ * OUTPUT_ARCH(...)
+ * ENTRY(...)
+ * SECTIONS
+ * {
+ *  . = START;
+ *  __init_begin = .;
+ *  HEAD_TEXT_SECTION
+ *  INIT_TEXT_SECTION(PAGE_SIZE)
+ *  INIT_DATA_SECTION(...)
+ *  PERCPU_SECTION(CACHELINE_SIZE)
+ *  __init_end = .;
+ *
+ *  _stext = .;
+ *  TEXT_SECTION = 0
+ *  _etext = .;
+ *
+ *      _sdata = .;
+ *  RO_DATA(PAGE_SIZE)
+ *  RW_DATA(...)
+ *  _edata = .;
+ *
+ *  EXCEPTION_TABLE(...)
+ *
+ *  BSS_SECTION(0, 0, 0)
+ *  _end = .;
+ *
+ *  STABS_DEBUG
+ *  DWARF_DEBUG
+ *  ELF_DETAILS
+ *
+ *  DISCARDS        // must be the last
+ * }
+ *
+ * [__init_begin, __init_end] is the init section that may be freed after init
+ *  // __init_begin and __init_end should be page aligned, so that we can
+ *  // free the whole .init memory
+ * [_stext, _etext] is the text section
+ * [_sdata, _edata] is the data section
+ *
+ * Some of the included output section have their own set of constants.
+ * Examples are: [__initramfs_start, __initramfs_end] for initramfs and
+ *               [__nosave_begin, __nosave_end] for the nosave data
+ */</code></p>
                 
                   
                     

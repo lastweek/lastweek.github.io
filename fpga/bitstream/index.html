@@ -2499,7 +2499,7 @@ Note that the <code>.bin</code> file starts directly from line 8, no general hea
 The interesting part is the 1s and 0s.
 Unless otherwise noted, when we refer to bitstream format, we focus on the 1s and 0s only
 and omit any general ASICC information headers.</p>
-<div class="highlight"><pre><span></span><code>Xilinx ASCII Bitstream
+<p><code>Xilinx ASCII Bitstream
 Created by Bitstream 2018.3 SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
 Design name:    base_mb_wrapper;UserID=0XFFFFFFFF;Version=2018.3
 Architecture:   virtexuplus
@@ -2509,8 +2509,7 @@ Bits:           641272864
 11111111111111111111111111111111
 11111111111111111111111111111111
 11111111111111111111111111111111
-...
-</code></pre></div>
+...</code></p>
 <p>Note that each line has 32 bits, thus 4 bytes.
 In Xilinx bistream format, each four bytes is a packet (analogous to CPU instruction).
 Each packet has certain format, it could be a special <em>header packet</em>, or a normal <em>data packet</em>.
@@ -2548,7 +2547,7 @@ Here, <code>0xffffffff</code> has no effect, like a NOP.
 <code>0x000000bb</code> and <code>0x11220044</code> are special bus detect words.
 <code>0xaa995566</code> is another special work marking the synchronization status.
 The last few lines mark the beginning of the configuration bits section.</p>
-<div class="highlight"><pre><span></span><code>Parsed from base_mb_wrapper.rbt
+<p><code>Parsed from base_mb_wrapper.rbt
 ffffffff 
 ffffffff 
 ffffffff 
@@ -2619,8 +2618,7 @@ aa995566  SYNC
 20000000 
 30004000 Write to FDRI
 5065eadc            &lt;- The length of configuration bits, follows a certain format
-00000000            &lt;- The first 4 bytes of the configuration bits!
-</code></pre></div>
+00000000            &lt;- The first 4 bytes of the configuration bits!</code></p>
 <p>Thank you for reading. Hope you enjoyed this post.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ol>

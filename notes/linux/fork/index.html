@@ -804,47 +804,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#misc" class="md-nav__link">
-    Misc
-  </a>
-  
-    <nav class="md-nav" aria-label="Misc">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#linux-current" class="md-nav__link">
-    Linux current
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#linux-pt_regs" class="md-nav__link">
-    Linux pt_regs
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#leveraging-ret-and-iret" class="md-nav__link">
-    Leveraging ret and iret
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#kernel-exception-handling" class="md-nav__link">
-    Kernel Exception Handling
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2414,47 +2373,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#misc" class="md-nav__link">
-    Misc
-  </a>
-  
-    <nav class="md-nav" aria-label="Misc">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#linux-current" class="md-nav__link">
-    Linux current
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#linux-pt_regs" class="md-nav__link">
-    Linux pt_regs
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#leveraging-ret-and-iret" class="md-nav__link">
-    Leveraging ret and iret
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#kernel-exception-handling" class="md-nav__link">
-    Kernel Exception Handling
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2528,32 +2446,50 @@ should be straightforward to understand. We will look into that later.
 Alright, if this fork() is actually creating a kernel thread, we will save the kernel function
 pointer and argument pointer to the <code>struct fork_frame</code> as well! All these info saved here
 will be used later on in the assembly (<code>entry_64.S</code>).
-<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="n">childregs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">task_pt_regs</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">fork_frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">container_of</span><span class="p">(</span><span class="n">childregs</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span> <span class="nc">fork_frame</span><span class="p">,</span><span class="w"> </span><span class="n">regs</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">frame</span><span class="o">-&gt;</span><span class="n">ret_addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="p">)</span><span class="w"> </span><span class="n">ret_from_fork</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"> </span>
-<span class="w">        </span><span class="cm">/*</span>
-<span class="cm">         * Save the kernel function pointer</span>
-<span class="cm">         * and argument pointer to the `struct fork_frame`</span>
-<span class="cm">         */</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">flags</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">PF_KTHREAD</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">     </span>
-<span class="w">                </span><span class="n">p</span><span class="o">-&gt;</span><span class="kr">thread</span><span class="p">.</span><span class="n">pkru</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pkru_get_init_value</span><span class="p">();</span><span class="w">     </span>
-<span class="w">                </span><span class="n">memset</span><span class="p">(</span><span class="n">childregs</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="nc">pt_regs</span><span class="p">));</span><span class="w">     </span>
-<span class="w">                </span><span class="n">kthread_frame_init</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="n">arg</span><span class="p">);</span><span class="w">     </span>
-<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">     </span>
-<span class="w">        </span><span class="p">}</span><span class="w">     </span>
-</code></pre></div></p>
+```c</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">childregs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">task_pt_regs</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">fork_frame</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">container_of</span><span class="p">(</span><span class="nx">childregs</span><span class="p">,</span><span class="w"> </span><span class="nx">struct</span><span class="w"> </span><span class="nx">fork_frame</span><span class="p">,</span><span class="w"> </span><span class="nx">regs</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">frame</span><span class="o">-&gt;</span><span class="nx">ret_addr</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="nx">unsigned</span><span class="w"> </span><span class="nx">long</span><span class="p">)</span><span class="w"> </span><span class="nx">ret_from_fork</span><span class="p">;</span>
+<span class="w">    </span><span class="o">...</span>
+<span class="w">    </span><span class="o">...</span><span class="w"> </span>
+<span class="w">    </span><span class="cm">/*</span>
+<span class="cm">     * Save the kernel function pointer</span>
+<span class="cm">     * and argument pointer to the `struct fork_frame`</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">unlikely</span><span class="p">(</span><span class="nx">p</span><span class="o">-&gt;</span><span class="nx">flags</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="nx">PF_KTHREAD</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">     </span>
+<span class="w">            </span><span class="nx">p</span><span class="o">-&gt;</span><span class="nx">thread</span><span class="p">.</span><span class="nx">pkru</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">pkru_get_init_value</span><span class="p">();</span><span class="w">     </span>
+<span class="w">            </span><span class="nx">memset</span><span class="p">(</span><span class="nx">childregs</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nx">sizeof</span><span class="p">(</span><span class="nx">struct</span><span class="w"> </span><span class="nx">pt_regs</span><span class="p">));</span><span class="w">     </span>
+<span class="w">            </span><span class="nx">kthread_frame_init</span><span class="p">(</span><span class="nx">frame</span><span class="p">,</span><span class="w"> </span><span class="nx">sp</span><span class="p">,</span><span class="w"> </span><span class="nx">arg</span><span class="p">);</span><span class="w">     </span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">     </span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+
+<p>```</p>
 <p>Then the newly created thread will be enqueued into the runqueue.
 Eventually it will gets running.</p>
 <h2 id="running-for-the-first-time-after-fork">Running For the first time after fork()<a class="headerlink" href="#running-for-the-first-time-after-fork" title="Permanent link">&para;</a></h2>
 <p>When the scheduler decides to run a thread, it will at least call <code>context_switch()</code>,
 which internally calls <code>switch_to()</code>, which is just a macro around <code>__switch_to_asm</code>.
-<div class="highlight"><pre><span></span><code><span class="cp">#define switch_to(prev, next, last)                                     \    </span>
-<span class="k">do</span><span class="w"> </span><span class="p">{</span><span class="w">                                                                    </span><span class="err">\</span><span class="w">    </span>
-<span class="w">        </span><span class="p">((</span><span class="n">last</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__switch_to_asm</span><span class="p">((</span><span class="n">prev</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="n">next</span><span class="p">)));</span><span class="w">                     </span><span class="err">\</span><span class="w">    </span>
-<span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
+```c</p>
+<h1 id="define-switch_toprev-next-last">define switch_to(prev, next, last)                                     \<a class="headerlink" href="#define-switch_toprev-next-last" title="Permanent link">&para;</a></h1>
+<p>do {                                                                      <br />
+        ((last) = __switch_to_asm((prev), (next)));                       <br />
+} while (0) 
+```</p>
 <p><code>__switch_to_asm</code> is simply playing around the <code>struct fork_frame</code> we discussed above.
 It first the current thread&rsquo;s state, switch stack (to the newly created thread&rsquo;s stack),
 then starts popping out regs, eventually, only the <code>ret_addr</code> field remains in the stack!!</p>
@@ -2562,13 +2498,13 @@ Hence no return address will be pushed into the stack.
 Later on, when <code>__switch_to()</code> finishes and returns, the hardware
 will use the last field in the stack, which is the <code>ret_addr</code> field we placed there during <code>copy_thread()</code>! Elegant, isn&rsquo;t it? </p>
 <p>So, for a newly created process, the control flow is as follows
-<div class="highlight"><pre><span></span><code><span class="n">context_switch</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"></span>
-<span class="n">__switch_to_asm</span><span class="w"> </span><span class="p">(</span><span class="k">asm</span><span class="p">)</span><span class="w"></span>
-<span class="n">__switch_to</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"></span>
-<span class="n">ret_from_fork</span><span class="w"> </span><span class="p">(</span><span class="k">asm</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="o">==&gt;</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">system</span><span class="w"> </span><span class="n">call</span><span class="w"></span>
-<span class="w">   </span><span class="o">==&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">kernel</span><span class="w"> </span><span class="n">function</span><span class="w"></span>
-</code></pre></div></p>
+<code>c
+context_switch (c)
+__switch_to_asm (asm)
+__switch_to (c)
+ret_from_fork (asm)
+   ==&gt; return system call
+   ==&gt; run kernel function</code></p>
 <p>Note the two lines switching stack.
 The <code>TASK_threadsp</code> is actually referring to <code>p-&gt;thread.sp</code>.
 For a newly created thread, <code>p-&gt;thread.sp</code> was set during <code>copy_thread()</code>
@@ -2585,40 +2521,61 @@ this is the <code>ret_field</code> position for <code>struct fork_frame</code>)!
 When A got re-scheduled again, it runs into <code>__switch_to_asm</code> again.
 Unlike the fork case, here the ret_field points to where A gave up control, essentially the original
 <code>context_switch()</code>. So A will resume to <code>context_switch()</code> and run into <code>finish_task_switch()</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="cm">/*</span>
-<span class="cm"> * %rdi: prev task</span>
-<span class="cm"> * %rsi: next task</span>
-<span class="cm"> */</span><span class="w"></span>
-<span class="n">ENTRY</span><span class="p">(</span><span class="n">__switch_to_asm</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="n">pushq</span><span class="w">   </span><span class="o">%</span><span class="n">rbp</span><span class="w">    </span>
-<span class="w">        </span><span class="n">pushq</span><span class="w">   </span><span class="o">%</span><span class="n">rbx</span><span class="w">    </span>
-<span class="w">        </span><span class="n">pushq</span><span class="w">   </span><span class="o">%</span><span class="n">r12</span><span class="w">    </span>
-<span class="w">        </span><span class="n">pushq</span><span class="w">   </span><span class="o">%</span><span class="n">r13</span><span class="w">    </span>
-<span class="w">        </span><span class="n">pushq</span><span class="w">   </span><span class="o">%</span><span class="n">r14</span><span class="w">    </span>
-<span class="w">        </span><span class="n">pushq</span><span class="w">   </span><span class="o">%</span><span class="n">r15</span><span class="w">    </span>
+<p>```c
+/*
+ * %rdi: prev task
+ * %rsi: next task
+ */
+ENTRY(__switch_to_asm)
+        pushq   %rbp  <br />
+        pushq   %rbx  <br />
+        pushq   %r12  <br />
+        pushq   %r13  <br />
+        pushq   %r14  <br />
+        pushq   %r15    </p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="cm">/* Switch stack */</span><span class="w">    </span>
+<span class="w">    </span><span class="n">movq</span><span class="w">    </span><span class="o">%</span><span class="n">rsp</span><span class="p">,</span><span class="w"> </span><span class="n">TASK_threadsp</span><span class="p">(</span><span class="o">%</span><span class="n">rdi</span><span class="p">)</span><span class="w">    </span>
+<span class="w">    </span><span class="n">movq</span><span class="w">    </span><span class="n">TASK_threadsp</span><span class="p">(</span><span class="o">%</span><span class="n">rsi</span><span class="p">),</span><span class="w"> </span><span class="o">%</span><span class="n">rsp</span>
 
-<span class="w">        </span><span class="cm">/* Switch stack */</span><span class="w">    </span>
-<span class="w">        </span><span class="n">movq</span><span class="w">    </span><span class="o">%</span><span class="n">rsp</span><span class="p">,</span><span class="w"> </span><span class="n">TASK_threadsp</span><span class="p">(</span><span class="o">%</span><span class="n">rdi</span><span class="p">)</span><span class="w">    </span>
-<span class="w">        </span><span class="n">movq</span><span class="w">    </span><span class="n">TASK_threadsp</span><span class="p">(</span><span class="o">%</span><span class="n">rsi</span><span class="p">),</span><span class="w"> </span><span class="o">%</span><span class="n">rsp</span><span class="w">    </span>
+<span class="w">    </span><span class="cm">/* restore callee-saved registers */</span><span class="w">    </span>
+<span class="w">    </span><span class="n">popq</span><span class="w">    </span><span class="o">%</span><span class="n">r15</span><span class="w">    </span>
+<span class="w">    </span><span class="n">popq</span><span class="w">    </span><span class="o">%</span><span class="n">r14</span><span class="w">    </span>
+<span class="w">    </span><span class="n">popq</span><span class="w">    </span><span class="o">%</span><span class="n">r13</span><span class="w">    </span>
+<span class="w">    </span><span class="n">popq</span><span class="w">    </span><span class="o">%</span><span class="n">r12</span><span class="w">    </span>
+<span class="w">    </span><span class="n">popq</span><span class="w">    </span><span class="o">%</span><span class="n">rbx</span><span class="w">    </span>
+<span class="w">    </span><span class="n">popq</span><span class="w">    </span><span class="o">%</span><span class="n">rbp</span>
 
-<span class="w">        </span><span class="cm">/* restore callee-saved registers */</span><span class="w">    </span>
-<span class="w">        </span><span class="n">popq</span><span class="w">    </span><span class="o">%</span><span class="n">r15</span><span class="w">    </span>
-<span class="w">        </span><span class="n">popq</span><span class="w">    </span><span class="o">%</span><span class="n">r14</span><span class="w">    </span>
-<span class="w">        </span><span class="n">popq</span><span class="w">    </span><span class="o">%</span><span class="n">r13</span><span class="w">    </span>
-<span class="w">        </span><span class="n">popq</span><span class="w">    </span><span class="o">%</span><span class="n">r12</span><span class="w">    </span>
-<span class="w">        </span><span class="n">popq</span><span class="w">    </span><span class="o">%</span><span class="n">rbx</span><span class="w">    </span>
-<span class="w">        </span><span class="n">popq</span><span class="w">    </span><span class="o">%</span><span class="n">rbp</span><span class="w">    </span>
+<span class="w">    </span><span class="cm">/*</span>
+<span class="cm">     * Note:</span>
+<span class="cm">     * After popping out the above fields, now we only have</span>
+<span class="cm">     * the `ret_field` left in the stack, which was pushed</span>
+<span class="cm">     * into the stack by `copy_thread()`!</span>
+<span class="cm">     * This is a *JUMP* to __switch_to() function!</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="n">jmp</span><span class="w">     </span><span class="n">__switch_to</span>
+</code></pre></div></td></tr></table></div>
 
-<span class="w">        </span><span class="cm">/*</span>
-<span class="cm">         * Note:</span>
-<span class="cm">         * After popping out the above fields, now we only have</span>
-<span class="cm">         * the `ret_field` left in the stack, which was pushed</span>
-<span class="cm">         * into the stack by `copy_thread()`!</span>
-<span class="cm">         * This is a *JUMP* to __switch_to() function!</span>
-<span class="cm">         */</span><span class="w"></span>
-<span class="w">        </span><span class="n">jmp</span><span class="w">     </span><span class="n">__switch_to</span><span class="w"></span>
-<span class="n">END</span><span class="p">(</span><span class="n">__switch_to_asm</span><span class="p">)</span><span class="w"></span>
-</code></pre></div>
+<p>END(__switch_to_asm)
+```</p>
 <p>I want to spend a few words on <code>ret_from_fork</code> as well.
 It is a quite interesting function.
 As we discussed above, a newly created thread will first run <code>ret_from_fork()</code>.
@@ -2627,39 +2584,40 @@ And it got into this function by simply return from <code>__switch_to()</code>.<
 If it is, we will invoke the kernel function directly (this is how kthread
 create new kernel thread). And this kernel thread is allowed to return
 to userspace by calling exec and its friends!</p>
-<div class="highlight"><pre><span></span><code><span class="cm">/*                                                                                           </span>
-<span class="cm"> * A newly forked process directly context switches into this address.                                                                                           </span>
-<span class="cm"> *                                                                                           </span>
-<span class="cm"> * rax: prev task we switched from                                                                                           </span>
-<span class="cm"> * rbx: kernel thread func (NULL for user thread)                                                                                           </span>
-<span class="cm"> * r12: kernel thread arg                                                                                           </span>
-<span class="cm"> */</span><span class="w">                                                                                           </span>
-<span class="n">ENTRY</span><span class="p">(</span><span class="n">ret_from_fork</span><span class="p">)</span><span class="w">                                                                                           </span>
-<span class="w">        </span><span class="n">movq</span><span class="w">    </span><span class="o">%</span><span class="n">rax</span><span class="p">,</span><span class="w"> </span><span class="o">%</span><span class="n">rdi</span><span class="w"></span>
-<span class="w">        </span><span class="n">call</span><span class="w">    </span><span class="n">schedule_tail</span><span class="w">           </span><span class="cm">/* rdi: &#39;prev&#39; task parameter */</span><span class="w"></span>
+<p>```c
+/*                                                                                         <br />
+ * A newly forked process directly context switches into this address.                                                                                         <br />
+ *                                                                                         <br />
+ * rax: prev task we switched from                                                                                         <br />
+ * rbx: kernel thread func (NULL for user thread)                                                                                         <br />
+ * r12: kernel thread arg                                                                                         <br />
+<em>/                                                                                         <br />
+ENTRY(ret_from_fork)                                                                                         <br />
+        movq    %rax, %rdi
+        call    schedule_tail           /</em> rdi: &lsquo;prev&rsquo; task parameter */</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    testq   %rbx, %rbx              /* from kernel_thread? <span class="gs">*/</span>
+<span class="gs">    jnz     1f                      /*</span> kernel threads are uncommon */
+</code></pre></div></td></tr></table></div>
 
-<span class="w">        </span><span class="n">testq</span><span class="w">   </span><span class="o">%</span><span class="n">rbx</span><span class="p">,</span><span class="w"> </span><span class="o">%</span><span class="n">rbx</span><span class="w">              </span><span class="cm">/* from kernel_thread? */</span><span class="w"></span>
-<span class="w">        </span><span class="n">jnz</span><span class="w">     </span><span class="mf">1f</span><span class="w">                      </span><span class="cm">/* kernel threads are uncommon */</span><span class="w"></span>
-
-<span class="mi">2</span><span class="o">:</span><span class="w">                                                                                           </span>
-<span class="w">        </span><span class="n">movq</span><span class="w">    </span><span class="o">%</span><span class="n">rsp</span><span class="p">,</span><span class="w"> </span><span class="o">%</span><span class="n">rdi</span><span class="w"></span>
-<span class="w">        </span><span class="n">call</span><span class="w">    </span><span class="n">syscall_return_slowpath</span><span class="w"> </span><span class="cm">/* return with IRQs disabled */</span><span class="w"></span>
-<span class="w">        </span><span class="n">SWAPGS</span><span class="w">                          </span><span class="cm">/* switch to user gs.base */</span><span class="w"></span>
-<span class="w">        </span><span class="n">jmp</span><span class="w">     </span><span class="n">restore_regs_and_iret</span><span class="w"></span>
-
-<span class="mi">1</span><span class="o">:</span><span class="w">                                                                                           </span>
-<span class="w">        </span><span class="cm">/* kernel thread */</span><span class="w"></span>
-<span class="w">        </span><span class="n">movq</span><span class="w">    </span><span class="o">%</span><span class="n">r12</span><span class="p">,</span><span class="w"> </span><span class="o">%</span><span class="n">rdi</span><span class="w"></span>
-<span class="w">        </span><span class="n">call</span><span class="w">    </span><span class="o">*%</span><span class="n">rbx</span><span class="w"></span>
-<span class="w">        </span><span class="cm">/*    </span>
-<span class="cm">         * A kernel thread is allowed to return here after successfully    </span>
-<span class="cm">         * calling do_execve().  Exit to userspace to complete the execve()    </span>
-<span class="cm">         * syscall:    </span>
-<span class="cm">         */</span><span class="w"></span>
-<span class="w">        </span><span class="n">movq</span><span class="w">    </span><span class="n">$0</span><span class="p">,</span><span class="w"> </span><span class="n">RAX</span><span class="p">(</span><span class="o">%</span><span class="n">rsp</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="n">jmp</span><span class="w">     </span><span class="mi">2</span><span class="n">b</span><span class="w"></span>
-<span class="n">END</span><span class="p">(</span><span class="n">ret_from_fork</span><span class="p">)</span><span class="w"></span>
-</code></pre></div>
+<p>2:                                                                                         <br />
+        movq    %rsp, %rdi
+        call    syscall_return_slowpath /* return with IRQs disabled <em>/
+        SWAPGS                          /</em> switch to user gs.base */
+        jmp     restore_regs_and_iret</p>
+<p>1:                                                                                         <br />
+        /* kernel thread <em>/
+        movq    %r12, %rdi
+        call    *%rbx
+        /</em>  <br />
+         * A kernel thread is allowed to return here after successfully  <br />
+         * calling do_execve().  Exit to userspace to complete the execve()  <br />
+         * syscall:  <br />
+         */
+        movq    $0, RAX(%rsp)
+        jmp     2b
+END(ret_from_fork)
+```</p>
 <h2 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link">&para;</a></h2>
 <h3 id="linux-current">Linux <code>current</code><a class="headerlink" href="#linux-current" title="Permanent link">&para;</a></h3>
 <p>The <code>current</code> macro refers to the current running thread.

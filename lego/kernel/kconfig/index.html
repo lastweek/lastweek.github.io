@@ -2470,97 +2470,88 @@
 <li>make sure <code>CONFIG_DEFAULT_MEM_NODE</code> at processor component is pointing to memory component&rsquo;s node id.</li>
 </ul>
 <p>A typical code snippet and configuration would be:
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">lego_cluster_hostnames</span><span class="p">[</span><span class="n">CONFIG_FIT_NR_NODES</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w">     </span><span class="o">=</span><span class="w">       </span><span class="s">&quot;wuklab00&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w">     </span><span class="o">=</span><span class="w">       </span><span class="s">&quot;wuklab01&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
-</code></pre></div></p>
-<div class="highlight"><pre><span></span><code>wuklab00 Processor
-
-#
-# Lego Processor Component Configurations
-#
-CONFIG_COMP_PROCESSOR=y
+<code>c
+static const char *lego_cluster_hostnames[CONFIG_FIT_NR_NODES] = {
+        [0]     =       "wuklab00",
+        [1]     =       "wuklab01",
+};</code></p>
+<p>```
+wuklab00 Processor</p>
+<h1 id="_1"><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h1 id="lego-processor-component-configurations">Lego Processor Component Configurations<a class="headerlink" href="#lego-processor-component-configurations" title="Permanent link">&para;</a></h1>
+<h1 id="_2"><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
+<p>CONFIG_COMP_PROCESSOR=y
 CONFIG_CHECKPOINT=y
-CONFIG_MEMMAP_MEMBLOCK_RESERVED=y
-# CONFIG_PCACHE_EVICT_RANDOM is not set
-# CONFIG_PCACHE_EVICT_FIFO is not set
-CONFIG_PCACHE_EVICT_LRU=y
-CONFIG_PCACHE_EVICT_GENERIC_SWEEP=y
-# CONFIG_PCACHE_EVICTION_WRITE_PROTECT is not set
-# CONFIG_PCACHE_EVICTION_PERSET_LIST is not set
-CONFIG_PCACHE_EVICTION_VICTIM=y
+CONFIG_MEMMAP_MEMBLOCK_RESERVED=y</p>
+<h1 id="config_pcache_evict_random-is-not-set">CONFIG_PCACHE_EVICT_RANDOM is not set<a class="headerlink" href="#config_pcache_evict_random-is-not-set" title="Permanent link">&para;</a></h1>
+<h1 id="config_pcache_evict_fifo-is-not-set">CONFIG_PCACHE_EVICT_FIFO is not set<a class="headerlink" href="#config_pcache_evict_fifo-is-not-set" title="Permanent link">&para;</a></h1>
+<p>CONFIG_PCACHE_EVICT_LRU=y
+CONFIG_PCACHE_EVICT_GENERIC_SWEEP=y</p>
+<h1 id="config_pcache_eviction_write_protect-is-not-set">CONFIG_PCACHE_EVICTION_WRITE_PROTECT is not set<a class="headerlink" href="#config_pcache_eviction_write_protect-is-not-set" title="Permanent link">&para;</a></h1>
+<h1 id="config_pcache_eviction_perset_list-is-not-set">CONFIG_PCACHE_EVICTION_PERSET_LIST is not set<a class="headerlink" href="#config_pcache_eviction_perset_list-is-not-set" title="Permanent link">&para;</a></h1>
+<p>CONFIG_PCACHE_EVICTION_VICTIM=y
 CONFIG_PCACHE_EVICTION_VICTIM_NR_ENTRIES=8
-CONFIG_PCACHE_PREFETCH=y
-
-#
-# Processor DEBUG Options
-#
-
-#
-# Lego Memory Component Configurations
-#
-# CONFIG_COMP_MEMORY is not set
-
-#
-# DRAM Cache Options
-#
-CONFIG_PCACHE_LINE_SIZE_SHIFT=12
-CONFIG_PCACHE_ASSOCIATIVITY_SHIFT=3
-
-#
-# General Manager Config/Debug Options
-#
-CONFIG_DEFAULT_MEM_NODE=1
+CONFIG_PCACHE_PREFETCH=y</p>
+<h1 id="_3"><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
+<h1 id="processor-debug-options">Processor DEBUG Options<a class="headerlink" href="#processor-debug-options" title="Permanent link">&para;</a></h1>
+<h1 id="_4"><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h1>
+<h1 id="_5"><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h1>
+<h1 id="lego-memory-component-configurations">Lego Memory Component Configurations<a class="headerlink" href="#lego-memory-component-configurations" title="Permanent link">&para;</a></h1>
+<h1 id="_6"><a class="headerlink" href="#_6" title="Permanent link">&para;</a></h1>
+<h1 id="config_comp_memory-is-not-set">CONFIG_COMP_MEMORY is not set<a class="headerlink" href="#config_comp_memory-is-not-set" title="Permanent link">&para;</a></h1>
+<h1 id="_7"><a class="headerlink" href="#_7" title="Permanent link">&para;</a></h1>
+<h1 id="dram-cache-options">DRAM Cache Options<a class="headerlink" href="#dram-cache-options" title="Permanent link">&para;</a></h1>
+<h1 id="_8"><a class="headerlink" href="#_8" title="Permanent link">&para;</a></h1>
+<p>CONFIG_PCACHE_LINE_SIZE_SHIFT=12
+CONFIG_PCACHE_ASSOCIATIVITY_SHIFT=3</p>
+<h1 id="_9"><a class="headerlink" href="#_9" title="Permanent link">&para;</a></h1>
+<h1 id="general-manager-configdebug-options">General Manager Config/Debug Options<a class="headerlink" href="#general-manager-configdebug-options" title="Permanent link">&para;</a></h1>
+<h1 id="_10"><a class="headerlink" href="#_10" title="Permanent link">&para;</a></h1>
+<p>CONFIG_DEFAULT_MEM_NODE=1
 CONFIG_DEFAULT_STORAGE_NODE=2
-CONFIG_USE_RAMFS=y
-
-#
-# Networking
-#
-# CONFIG_LWIP is not set
-CONFIG_FIT=y
-# CONFIG_FIT_DEBUG is not set
-CONFIG_FIT_INITIAL_SLEEP_TIMEOUT=30
+CONFIG_USE_RAMFS=y</p>
+<h1 id="_11"><a class="headerlink" href="#_11" title="Permanent link">&para;</a></h1>
+<h1 id="networking">Networking<a class="headerlink" href="#networking" title="Permanent link">&para;</a></h1>
+<h1 id="_12"><a class="headerlink" href="#_12" title="Permanent link">&para;</a></h1>
+<h1 id="config_lwip-is-not-set">CONFIG_LWIP is not set<a class="headerlink" href="#config_lwip-is-not-set" title="Permanent link">&para;</a></h1>
+<p>CONFIG_FIT=y</p>
+<h1 id="config_fit_debug-is-not-set">CONFIG_FIT_DEBUG is not set<a class="headerlink" href="#config_fit_debug-is-not-set" title="Permanent link">&para;</a></h1>
+<p>CONFIG_FIT_INITIAL_SLEEP_TIMEOUT=30
 CONFIG_FIT_NR_NODES=2
 CONFIG_FIT_LOCAL_ID=0
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>wuklab01 Memory
-
-#
-# Lego Memory Component Configurations
-#
-CONFIG_COMP_MEMORY=y
-
-#
-# Memory DEBUG Options
-#
-# CONFIG_MEM_PREFETCH is not set
-
-#
-# DRAM Cache Options
-#
-CONFIG_PCACHE_LINE_SIZE_SHIFT=12
-CONFIG_PCACHE_ASSOCIATIVITY_SHIFT=3
-
-#
-# General Manager Config/Debug Options
-#
-CONFIG_DEFAULT_MEM_NODE=1
+```</p>
+<p>```
+wuklab01 Memory</p>
+<h1 id="_13"><a class="headerlink" href="#_13" title="Permanent link">&para;</a></h1>
+<h1 id="lego-memory-component-configurations_1">Lego Memory Component Configurations<a class="headerlink" href="#lego-memory-component-configurations_1" title="Permanent link">&para;</a></h1>
+<h1 id="_14"><a class="headerlink" href="#_14" title="Permanent link">&para;</a></h1>
+<p>CONFIG_COMP_MEMORY=y</p>
+<h1 id="_15"><a class="headerlink" href="#_15" title="Permanent link">&para;</a></h1>
+<h1 id="memory-debug-options">Memory DEBUG Options<a class="headerlink" href="#memory-debug-options" title="Permanent link">&para;</a></h1>
+<h1 id="_16"><a class="headerlink" href="#_16" title="Permanent link">&para;</a></h1>
+<h1 id="config_mem_prefetch-is-not-set">CONFIG_MEM_PREFETCH is not set<a class="headerlink" href="#config_mem_prefetch-is-not-set" title="Permanent link">&para;</a></h1>
+<h1 id="_17"><a class="headerlink" href="#_17" title="Permanent link">&para;</a></h1>
+<h1 id="dram-cache-options_1">DRAM Cache Options<a class="headerlink" href="#dram-cache-options_1" title="Permanent link">&para;</a></h1>
+<h1 id="_18"><a class="headerlink" href="#_18" title="Permanent link">&para;</a></h1>
+<p>CONFIG_PCACHE_LINE_SIZE_SHIFT=12
+CONFIG_PCACHE_ASSOCIATIVITY_SHIFT=3</p>
+<h1 id="_19"><a class="headerlink" href="#_19" title="Permanent link">&para;</a></h1>
+<h1 id="general-manager-configdebug-options_1">General Manager Config/Debug Options<a class="headerlink" href="#general-manager-configdebug-options_1" title="Permanent link">&para;</a></h1>
+<h1 id="_20"><a class="headerlink" href="#_20" title="Permanent link">&para;</a></h1>
+<p>CONFIG_DEFAULT_MEM_NODE=1
 CONFIG_DEFAULT_STORAGE_NODE=2
 CONFIG_USE_RAMFS=y
-CONFIG_RAMFS_OBJECT_FILE=&quot;usr/pcache_conflict.o&quot;
-
-#
-# Networking
-#
-# CONFIG_LWIP is not set
-CONFIG_FIT=y
-# CONFIG_FIT_DEBUG is not set
-CONFIG_FIT_INITIAL_SLEEP_TIMEOUT=30
+CONFIG_RAMFS_OBJECT_FILE=&rdquo;usr/pcache_conflict.o&rdquo;</p>
+<h1 id="_21"><a class="headerlink" href="#_21" title="Permanent link">&para;</a></h1>
+<h1 id="networking_1">Networking<a class="headerlink" href="#networking_1" title="Permanent link">&para;</a></h1>
+<h1 id="_22"><a class="headerlink" href="#_22" title="Permanent link">&para;</a></h1>
+<h1 id="config_lwip-is-not-set_1">CONFIG_LWIP is not set<a class="headerlink" href="#config_lwip-is-not-set_1" title="Permanent link">&para;</a></h1>
+<p>CONFIG_FIT=y</p>
+<h1 id="config_fit_debug-is-not-set_1">CONFIG_FIT_DEBUG is not set<a class="headerlink" href="#config_fit_debug-is-not-set_1" title="Permanent link">&para;</a></h1>
+<p>CONFIG_FIT_INITIAL_SLEEP_TIMEOUT=30
 CONFIG_FIT_NR_NODES=2
 CONFIG_FIT_LOCAL_ID=1
-</code></pre></div>
+```</p>
                 
                   
                     

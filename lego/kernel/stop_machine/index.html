@@ -2334,83 +2334,108 @@
                 <h1 id="the-highest-priority-thread-in-kernel">The highest priority thread in kernel<a class="headerlink" href="#the-highest-priority-thread-in-kernel" title="Permanent link">&para;</a></h1>
 <p>This document is about <code>migration/N</code> kernel threads, <code>stop_sched</code> schdueling class, and the interesting source file <code>kernel/stop_machine.c</code>. Background on kernel scheduler design is recommended.</p>
 <p>Scheduler uses the following code to pick the next runnable task:
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">struct</span> <span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
-<span class="n">pick_next_task</span><span class="p">(</span><span class="k">struct</span> <span class="nc">rq</span><span class="w"> </span><span class="o">*</span><span class="n">rq</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span> <span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">prev</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">struct</span> <span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span> <span class="nc">sched_class</span><span class="w"> </span><span class="o">*</span><span class="n">class</span><span class="p">;</span><span class="w"></span>
-
-<span class="nl">again</span><span class="p">:</span><span class="w"></span>
-<span class="w">        </span><span class="n">for_each_class</span><span class="p">(</span><span class="n">class</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">class</span><span class="o">-&gt;</span><span class="n">pick_next_task</span><span class="p">(</span><span class="n">rq</span><span class="p">,</span><span class="w"> </span><span class="n">prev</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RETRY_TASK</span><span class="p">))</span><span class="w"></span>
-<span class="w">                                </span><span class="k">goto</span><span class="w"> </span><span class="n">again</span><span class="p">;</span><span class="w"></span>
-<span class="w">                        </span><span class="k">return</span><span class="w"> </span><span class="n">p</span><span class="p">;</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w">    </span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="n">BUG</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div></p>
+```c
+static inline struct task_struct *
+pick_next_task(struct rq *rq, struct task_struct *prev)
+{
+        struct task_struct *p;
+        const struct sched_class *class;</p>
+<p>again:
+        for_each_class(class) {
+                p = class-&gt;pick_next_task(rq, prev);
+                if (p) {
+                        if (unlikely(p == RETRY_TASK))
+                                goto again;
+                        return p;
+                }  <br />
+        }
+        BUG();
+}
+```</p>
 <p>while the class is linked together as:
-<div class="highlight"><pre><span></span><code><span class="cp">#define sched_class_highest     (&amp;stop_sched_class)                                                       </span>
-<span class="cp">#define for_each_class(class) \                                                                           </span>
-<span class="w">   </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sched_class_highest</span><span class="p">;</span><span class="w"> </span><span class="n">class</span><span class="p">;</span><span class="w"> </span><span class="n">class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">class</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span><span class="w"></span>
-</code></pre></div></p>
+```c</p>
+<h1 id="define-sched_class_highest-stop_sched_class">define sched_class_highest     (&amp;stop_sched_class)<a class="headerlink" href="#define-sched_class_highest-stop_sched_class" title="Permanent link">&para;</a></h1>
+<h1 id="define-for_each_classclass">define for_each_class(class) \<a class="headerlink" href="#define-for_each_classclass" title="Permanent link">&para;</a></h1>
+<p>for (class = sched_class_highest; class; class = class-&gt;next)
+```</p>
 <p>Clearly, the highest priority class is <code>stop_sched_class</code>. Whenever this scheduling has class runnable threads, scheduler will always run them first. So what kernel threads are using this scheduling class? Well, you must have seen something like <code>migration/0</code> when you do <code>ps aux</code> in Linux. And yes, these kernel threads are the only users.</p>
 <p>These threads are sleeping most of their lifetime, they will be invoked to do some very urgent stuff. For example, when a user thread that is currently running on CPU0 calls <code>sched_setaffinity()</code> to bind to CPU1, kernel is not able to do this because this user thread is currently running (runqueue can not move a <em>running</em> task out, it can only move queued task out). Then, scheduler has to ask <code>migration/0</code> for help. Once there is a job enqueued, <code>migration/0</code> will be invoked. Since it has the highest-priority, it will start execution immediately. Thus the migration from CPU0 to CPU1 is performed safely and fast.</p>
 <p><code>migration</code> code is defined in <code>kernel/stop_machine.c</code>. They are created during early boot. They use the <code>smpboot_register_percpu_thread</code> to create threads. They are written in this way because Linux supports cpu hotplug. To simplify we can also create them manually through <code>kthread_create</code>. Since Lego does not support cpu hotplug, and this <code>cpu_stop_init</code> is called after SMP is initialized, so Lego has slight different initialiaztion:
-<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">__init</span><span class="w"> </span><span class="n">cpu_stop_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">cpu</span><span class="p">;</span><span class="w"></span>
+```c
+void __init cpu_stop_init(void)
+{
+        unsigned int cpu;</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">for_each_possible_cpu</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">struct</span><span class="w"> </span><span class="n">cpu_stopper</span><span class="w"> </span><span class="o">*</span><span class="n">stopper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">per_cpu</span><span class="p">(</span><span class="n">cpu_stopper</span><span class="p">,</span><span class="w"> </span><span class="n">cpu</span><span class="p">);</span>
 
-<span class="w">        </span><span class="n">for_each_possible_cpu</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="k">struct</span> <span class="nc">cpu_stopper</span><span class="w"> </span><span class="o">*</span><span class="n">stopper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">per_cpu</span><span class="p">(</span><span class="n">cpu_stopper</span><span class="p">,</span><span class="w"> </span><span class="n">cpu</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">spin_lock_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stopper</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">            </span><span class="n">INIT_LIST_HEAD</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stopper</span><span class="o">-&gt;</span><span class="n">works</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">                </span><span class="n">spin_lock_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stopper</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="n">INIT_LIST_HEAD</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stopper</span><span class="o">-&gt;</span><span class="n">works</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">BUG_ON</span><span class="p">(</span><span class="n">smpboot_register_percpu_thread</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cpu_stop_threads</span><span class="p">));</span>
 
-<span class="w">        </span><span class="n">BUG_ON</span><span class="p">(</span><span class="n">smpboot_register_percpu_thread</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cpu_stop_threads</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="cm">/*</span>
+<span class="cm">     * smpboot_create_threads use kthread_create_on_cpu() to</span>
+<span class="cm">     * create new threads. And they are parked, too.</span>
+<span class="cm">     * Since we call this function after smp_init(), all CPUs</span>
+<span class="cm">     * are already online, thus we need to unpark them manually.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="n">for_each_online_cpu</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span>
+<span class="w">            </span><span class="n">stop_machine_unpark</span><span class="p">(</span><span class="n">cpu</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
 
-<span class="w">        </span><span class="cm">/*</span>
-<span class="cm">         * smpboot_create_threads use kthread_create_on_cpu() to</span>
-<span class="cm">         * create new threads. And they are parked, too.</span>
-<span class="cm">         * Since we call this function after smp_init(), all CPUs</span>
-<span class="cm">         * are already online, thus we need to unpark them manually.</span>
-<span class="cm">         */</span><span class="w"></span>
-<span class="w">        </span><span class="n">for_each_online_cpu</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span><span class="w"></span>
-<span class="w">                </span><span class="n">stop_machine_unpark</span><span class="p">(</span><span class="n">cpu</span><span class="p">);</span><span class="w"></span>
-</code></pre></div></p>
+<p>```</p>
 <p>Internally, it also use a list to keep enqueued jobs. Once the thread is waken up, it tries to lookup this list and dequeue jobs (similar to kthread creation, kworker etc.):
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">cpu_stopper_thread</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">cpu</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">struct</span> <span class="nc">cpu_stopper</span><span class="w"> </span><span class="o">*</span><span class="n">stopper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">per_cpu</span><span class="p">(</span><span class="n">cpu_stopper</span><span class="p">,</span><span class="w"> </span><span class="n">cpu</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">struct</span> <span class="nc">cpu_stop_work</span><span class="w"> </span><span class="o">*</span><span class="n">work</span><span class="p">;</span><span class="w"></span>
+```c
+static void cpu_stopper_thread(unsigned int cpu)
+{
+        struct cpu_stopper *stopper = &amp;per_cpu(cpu_stopper, cpu);
+        struct cpu_stop_work *work;</p>
+<p>repeat:
+        work = NULL;
+        spin_lock_irq(&amp;stopper-&gt;lock);
+        if (!list_empty(&amp;stopper-&gt;works)) {
+                work = list_first_entry(&amp;stopper-&gt;works,
+                                        struct cpu_stop_work, list);
+                list_del_init(&amp;work-&gt;list);
+        } <br />
+        spin_unlock_irq(&amp;stopper-&gt;lock);</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="nv">work</span><span class="ss">)</span><span class="w"> </span>{
+<span class="w">            </span>...
+<span class="w">            </span><span class="nv">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">fn</span><span class="ss">(</span><span class="nv">arg</span><span class="ss">)</span><span class="c1">;</span>
+<span class="w">            </span>...
+<span class="w">            </span><span class="k">goto</span><span class="w"> </span><span class="nl">repeat</span><span class="c1">;</span>
+<span class="w">    </span>}
+</code></pre></div></td></tr></table></div>
 
-<span class="nl">repeat</span><span class="p">:</span><span class="w"></span>
-<span class="w">        </span><span class="n">work</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">spin_lock_irq</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stopper</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">list_empty</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stopper</span><span class="o">-&gt;</span><span class="n">works</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">work</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list_first_entry</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stopper</span><span class="o">-&gt;</span><span class="n">works</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                        </span><span class="k">struct</span> <span class="nc">cpu_stop_work</span><span class="p">,</span><span class="w"> </span><span class="n">list</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="n">list_del_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">work</span><span class="o">-&gt;</span><span class="n">list</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w">   </span>
-<span class="w">        </span><span class="n">spin_unlock_irq</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stopper</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">work</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="p">...</span><span class="w"></span>
-<span class="w">                </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fn</span><span class="p">(</span><span class="n">arg</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="p">...</span><span class="w"></span>
-<span class="w">                </span><span class="k">goto</span><span class="w"> </span><span class="n">repeat</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w">   </span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div></p>
+<p>}
+```</p>
 <p>It has several interesting public APIs that are quite similar to <code>smp_call_functions</code>, but the difference is: this set of APIs provide a guaranteed time-to-execute waiting time, because it will simply preempt anything running on CPU.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">stop_one_cpu</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">cpu</span><span class="p">,</span><span class="w"> </span><span class="n">cpu_stop_fn_t</span><span class="w"> </span><span class="n">fn</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">);</span><span class="w"></span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">stop_cpus</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">struct</span> <span class="nc">cpumask</span><span class="w"> </span><span class="o">*</span><span class="n">cpumask</span><span class="p">,</span><span class="w"> </span><span class="n">cpu_stop_fn_t</span><span class="w"> </span><span class="n">fn</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">);</span><span class="w"></span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">try_stop_cpus</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">struct</span> <span class="nc">cpumask</span><span class="w"> </span><span class="o">*</span><span class="n">cpumask</span><span class="p">,</span><span class="w"> </span><span class="n">cpu_stop_fn_t</span><span class="w"> </span><span class="n">fn</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
+<p><code>c
+int stop_one_cpu(unsigned int cpu, cpu_stop_fn_t fn, void *arg);
+int stop_cpus(const struct cpumask *cpumask, cpu_stop_fn_t fn, void *arg);
+int try_stop_cpus(const struct cpumask *cpumask, cpu_stop_fn_t fn, void *arg);</code></p>
 <p>They are used only when there are some very urgent things to do. So, please use with caution.</p>
 <p>&ndash;<br />
 Yizhou Shan<br />

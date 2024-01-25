@@ -1920,13 +1920,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#c-code" class="md-nav__link">
-    C code
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -2415,13 +2408,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#c-code" class="md-nav__link">
-    C code
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -2455,91 +2441,115 @@
 <h2 id="internal">Internal<a class="headerlink" href="#internal" title="Permanent link">&para;</a></h2>
 <h3 id="entry-points">Entry Points<a class="headerlink" href="#entry-points" title="Permanent link">&para;</a></h3>
 <p>The assembly entry points are defined in <code>entry/entry_64_compat.S</code>:
-<div class="highlight"><pre><span></span><code><span class="nf">ENTRY</span><span class="p">(</span><span class="no">entry_SYSENTER_compat</span><span class="p">)</span>
-        <span class="na">...</span>
-        <span class="nf">call</span>    <span class="no">do_fast_syscall_32</span>
-<span class="nf">GLOBAL</span><span class="p">(</span><span class="no">__end_entry_SYSENTER_compat</span><span class="p">)</span>
-<span class="nf">ENDPROC</span><span class="p">(</span><span class="no">entry_SYSENTER_compat</span><span class="p">)</span>
-
-<span class="nf">ENTRY</span><span class="p">(</span><span class="no">entry_SYSCALL_compat</span><span class="p">)</span>
-        <span class="na">...</span>
-        <span class="nf">call</span>    <span class="no">do_fast_syscall_32</span>
-<span class="nf">END</span><span class="p">(</span><span class="no">entry_SYSCALL_compat</span><span class="p">)</span>
-
-<span class="nf">ENTRY</span><span class="p">(</span><span class="no">entry_INT80_compat</span><span class="p">)</span>
-        <span class="na">...</span>
-        <span class="nf">call</span>    <span class="no">do_int80_syscall_32</span>
-<span class="nf">END</span><span class="p">(</span><span class="no">entry_INT80_compat</span><span class="p">)</span>
-</code></pre></div></p>
+```asm
+ENTRY(entry_SYSENTER_compat)
+        &hellip;
+        call    do_fast_syscall_32
+GLOBAL(__end_entry_SYSENTER_compat)
+ENDPROC(entry_SYSENTER_compat)</p>
+<p>ENTRY(entry_SYSCALL_compat)
+        &hellip;
+        call    do_fast_syscall_32
+END(entry_SYSCALL_compat)</p>
+<p>ENTRY(entry_INT80_compat)
+        &hellip;
+        call    do_int80_syscall_32
+END(entry_INT80_compat)
+```</p>
 <h3 id="entry-points-setup">Entry Points Setup<a class="headerlink" href="#entry-points-setup" title="Permanent link">&para;</a></h3>
 <p>The assembly entry points are filled to system registers and IDT table. So users can <code>actually</code> issue those calls, Lego is able to catch them:
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">syscall_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">wrmsr</span><span class="p">(</span><span class="n">MSR_STAR</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">__USER32_CS</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">__KERNEL_CS</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">wrmsrl</span><span class="p">(</span><span class="n">MSR_LSTAR</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="p">)</span><span class="n">entry_SYSCALL_64</span><span class="p">);</span><span class="w"></span>
+```c
+static void syscall_init(void)
+{
+        wrmsr(MSR_STAR, 0, (__USER32_CS &lt;&lt; 16) | __KERNEL_CS);
+        wrmsrl(MSR_LSTAR, (unsigned long)entry_SYSCALL_64);</p>
+<h1 id="ifdef-config_ia32_emulation">ifdef CONFIG_IA32_EMULATION<a class="headerlink" href="#ifdef-config_ia32_emulation" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>    wrmsrl(MSR_CSTAR, (unsigned long)entry_SYSCALL_compat);
+    /*  
+     <span class="k">*</span> This only works on Intel CPUs.
+     <span class="k">*</span> On AMD CPUs these MSRs are 32-bit, CPU truncates MSR_IA32_SYSENTER_EIP.
+     <span class="k">*</span> This does not cause SYSENTER to jump to the wrong location, because
+     <span class="k">*</span> AMD doesn&#39;t allow SYSENTER in long mode (either 32- or 64-bit).
+     */
+    wrmsrl_safe(MSR_IA32_SYSENTER_CS, (u64)__KERNEL_CS);
+    wrmsrl_safe(MSR_IA32_SYSENTER_ESP, 0ULL);
+    wrmsrl_safe(MSR_IA32_SYSENTER_EIP, (u64)entry_SYSENTER_compat);
+</code></pre></div></td></tr></table></div>
 
-<span class="cp">#ifdef CONFIG_IA32_EMULATION</span>
-<span class="w">        </span><span class="n">wrmsrl</span><span class="p">(</span><span class="n">MSR_CSTAR</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="p">)</span><span class="n">entry_SYSCALL_compat</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="cm">/*  </span>
-<span class="cm">         * This only works on Intel CPUs.</span>
-<span class="cm">         * On AMD CPUs these MSRs are 32-bit, CPU truncates MSR_IA32_SYSENTER_EIP.</span>
-<span class="cm">         * This does not cause SYSENTER to jump to the wrong location, because</span>
-<span class="cm">         * AMD doesn&#39;t allow SYSENTER in long mode (either 32- or 64-bit).</span>
-<span class="cm">         */</span><span class="w"></span>
-<span class="w">        </span><span class="n">wrmsrl_safe</span><span class="p">(</span><span class="n">MSR_IA32_SYSENTER_CS</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">u64</span><span class="p">)</span><span class="n">__KERNEL_CS</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">wrmsrl_safe</span><span class="p">(</span><span class="n">MSR_IA32_SYSENTER_ESP</span><span class="p">,</span><span class="w"> </span><span class="mi">0ULL</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">wrmsrl_safe</span><span class="p">(</span><span class="n">MSR_IA32_SYSENTER_EIP</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">u64</span><span class="p">)</span><span class="n">entry_SYSENTER_compat</span><span class="p">);</span><span class="w"></span>
-<span class="cp">#else</span>
-<span class="w">        </span><span class="n">wrmsrl</span><span class="p">(</span><span class="n">MSR_CSTAR</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="p">)</span><span class="n">ignore_sysret</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">wrmsrl_safe</span><span class="p">(</span><span class="n">MSR_IA32_SYSENTER_CS</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">u64</span><span class="p">)</span><span class="n">GDT_ENTRY_INVALID_SEG</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">wrmsrl_safe</span><span class="p">(</span><span class="n">MSR_IA32_SYSENTER_ESP</span><span class="p">,</span><span class="w"> </span><span class="mi">0ULL</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">wrmsrl_safe</span><span class="p">(</span><span class="n">MSR_IA32_SYSENTER_EIP</span><span class="p">,</span><span class="w"> </span><span class="mi">0ULL</span><span class="p">);</span><span class="w"></span>
-<span class="cp">#endif</span>
+<h1 id="else">else<a class="headerlink" href="#else" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    wrmsrl(MSR_CSTAR, (unsigned long)ignore_sysret);
+    wrmsrl_safe(MSR_IA32_SYSENTER_CS, (u64)GDT_ENTRY_INVALID_SEG);
+    wrmsrl_safe(MSR_IA32_SYSENTER_ESP, 0ULL);
+    wrmsrl_safe(MSR_IA32_SYSENTER_EIP, 0ULL);
+</code></pre></div></td></tr></table></div>
 
+<h1 id="endif">endif<a class="headerlink" href="#endif" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">/*</span><span class="w"> </span><span class="n">Flags</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="nb">clear</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">syscall</span><span class="w"> </span><span class="o">*/</span>
+<span class="w">    </span><span class="n">wrmsrl</span><span class="p">(</span><span class="n">MSR_SYSCALL_MASK</span><span class="p">,</span>
+<span class="w">           </span><span class="n">X86_EFLAGS_TF</span><span class="o">|</span><span class="n">X86_EFLAGS_DF</span><span class="o">|</span><span class="n">X86_EFLAGS_IF</span><span class="o">|</span>
+<span class="w">           </span><span class="n">X86_EFLAGS_IOPL</span><span class="o">|</span><span class="n">X86_EFLAGS_AC</span><span class="o">|</span><span class="n">X86_EFLAGS_NT</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
 
-<span class="w">        </span><span class="cm">/* Flags to clear on syscall */</span><span class="w"></span>
-<span class="w">        </span><span class="n">wrmsrl</span><span class="p">(</span><span class="n">MSR_SYSCALL_MASK</span><span class="p">,</span><span class="w"></span>
-<span class="w">               </span><span class="n">X86_EFLAGS_TF</span><span class="o">|</span><span class="n">X86_EFLAGS_DF</span><span class="o">|</span><span class="n">X86_EFLAGS_IF</span><span class="o">|</span><span class="w"></span>
-<span class="w">               </span><span class="n">X86_EFLAGS_IOPL</span><span class="o">|</span><span class="n">X86_EFLAGS_AC</span><span class="o">|</span><span class="n">X86_EFLAGS_NT</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">kernel</span><span class="o">/</span><span class="n">cpu</span><span class="o">/</span><span class="n">common</span><span class="p">.</span><span class="n">c</span><span class="w"></span>
+<p>}
+arch/x86/kernel/cpu/common.c</p>
+<p>void __init trap_init(void)
+{
+        &hellip;</p>
+<h1 id="ifdef-config_ia32_emulation_1">ifdef CONFIG_IA32_EMULATION<a class="headerlink" href="#ifdef-config_ia32_emulation_1" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    set_system_intr_gate(IA32_SYSCALL_VECTOR, entry_INT80_compat);
+    set_bit(IA32_SYSCALL_VECTOR, used_vectors);
+</code></pre></div></td></tr></table></div>
 
-<span class="kt">void</span><span class="w"> </span><span class="n">__init</span><span class="w"> </span><span class="n">trap_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="cp">#ifdef CONFIG_IA32_EMULATION</span>
-<span class="w">        </span><span class="n">set_system_intr_gate</span><span class="p">(</span><span class="n">IA32_SYSCALL_VECTOR</span><span class="p">,</span><span class="w"> </span><span class="n">entry_INT80_compat</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">set_bit</span><span class="p">(</span><span class="n">IA32_SYSCALL_VECTOR</span><span class="p">,</span><span class="w"> </span><span class="n">used_vectors</span><span class="p">);</span><span class="w"></span>
-<span class="cp">#endif</span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="n">arch</span><span class="o">/</span><span class="n">x86</span><span class="o">/</span><span class="n">kernel</span><span class="o">/</span><span class="n">traps</span><span class="p">.</span><span class="n">c</span><span class="w"></span>
-</code></pre></div></p>
+<h1 id="endif_1">endif<a class="headerlink" href="#endif_1" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    ...
+</code></pre></div></td></tr></table></div>
+
+<p>}
+arch/x86/kernel/traps.c
+```</p>
 <h3 id="c-code">C code<a class="headerlink" href="#c-code" title="Permanent link">&para;</a></h3>
 <p>The actual C code is in <code>entry/common.c</code>:
-<div class="highlight"><pre><span></span><code><span class="cp">#if defined(CONFIG_X86_32) || defined(CONFIG_IA32_EMULATION)</span>
-<span class="k">static</span><span class="w"> </span><span class="n">__always_inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">do_syscall_32_irqs_on</span><span class="p">(</span><span class="k">struct</span> <span class="nc">pt_regs</span><span class="w"> </span><span class="o">*</span><span class="n">regs</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="cp">#ifdef CONFIG_IA32_EMULATION</span>
-<span class="w">        </span><span class="n">current</span><span class="o">-&gt;</span><span class="kr">thread</span><span class="p">.</span><span class="n">status</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">TS_COMPAT</span><span class="p">;</span><span class="w"></span>
-<span class="cp">#endif</span>
+```c</p>
+<h1 id="if-definedconfig_x86_32-definedconfig_ia32_emulation">if defined(CONFIG_X86_32) || defined(CONFIG_IA32_EMULATION)<a class="headerlink" href="#if-definedconfig_x86_32-definedconfig_ia32_emulation" title="Permanent link">&para;</a></h1>
+<p>static __always_inline void do_syscall_32_irqs_on(struct pt_regs *regs)
+{</p>
+<h1 id="ifdef-config_ia32_emulation_2">ifdef CONFIG_IA32_EMULATION<a class="headerlink" href="#ifdef-config_ia32_emulation_2" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">current</span><span class="o">-&gt;</span><span class="n">thread</span><span class="p">.</span><span class="n">status</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">TS_COMPAT</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
 
-<span class="w">        </span><span class="n">BUG</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<h1 id="endif_2">endif<a class="headerlink" href="#endif_2" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    BUG();
+</code></pre></div></td></tr></table></div>
 
-<span class="cm">/* Handles int $0x80 */</span><span class="w"></span>
-<span class="n">__visible</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">do_int80_syscall_32</span><span class="p">(</span><span class="k">struct</span> <span class="nc">pt_regs</span><span class="w"> </span><span class="o">*</span><span class="n">regs</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">BUG</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="cm">/* Returns 0 to return using IRET or 1 to return using SYSEXIT/SYSRETL. */</span><span class="w"></span>
-<span class="n">__visible</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">do_fast_syscall_32</span><span class="p">(</span><span class="k">struct</span> <span class="nc">pt_regs</span><span class="w"> </span><span class="o">*</span><span class="n">regs</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">BUG</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="cp">#endif</span>
-</code></pre></div></p>
+<p>}</p>
+<p>/* Handles int $0x80 */
+__visible void do_int80_syscall_32(struct pt_regs *regs)
+{
+        BUG();
+}</p>
+<p>/* Returns 0 to return using IRET or 1 to return using SYSEXIT/SYSRETL. */
+__visible long do_fast_syscall_32(struct pt_regs *regs)
+{
+        BUG();
+}</p>
+<h1 id="endif_3">endif<a class="headerlink" href="#endif_3" title="Permanent link">&para;</a></h1>
+<p>```</p>
 <p>&ndash;<br />
 Yizhou Shan<br />
 Created: Feb 22, 2018<br />

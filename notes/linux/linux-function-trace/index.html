@@ -2414,72 +2414,67 @@ my other blog here: <a href="http://lastweek.io/notes/trace/#ftrace">http://last
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <p>Say I want to check <code>handle_mm_fault()</code>&lsquo;s runtime call graph.
 I would first modify the scipts to include this func.
-<div class="highlight"><pre><span></span><code><span class="nb">set</span> -e
-
-<span class="nv">DIR</span><span class="o">=</span>/sys/kernel/debug/tracing
-
-<span class="c1"># Presetup if any</span>
-<span class="c1"># ./prepare.sh</span>
-
-<span class="c1"># Disable tracing and clear trace</span>
-<span class="nb">echo</span> <span class="m">0</span> &gt; <span class="nv">$DIR</span>/tracing_on
-<span class="nb">echo</span> &gt; <span class="nv">$DIR</span>/trace
-<span class="nb">echo</span> &gt; <span class="nv">$DIR</span>/set_ftrace_filter
-<span class="nb">echo</span> &gt; <span class="nv">$DIR</span>/set_graph_function
-
-<span class="c1"># Setup tracer type</span>
-<span class="nb">echo</span> function_graph &gt; <span class="nv">$DIR</span>/current_tracer
-
-<span class="c1">#</span>
-<span class="c1"># The functions we&#39;d trace</span>
-<span class="c1">#</span>
-<span class="nb">echo</span> handle_mm_fault &gt;&gt; <span class="nv">$DIR</span>/set_graph_function
-
-<span class="nb">echo</span> <span class="s2">&quot;Enabled graph functions:&quot;</span>
-cat <span class="nv">$DIR</span>/set_graph_function
-
-<span class="nb">echo</span> <span class="m">1</span> &gt; <span class="nv">$DIR</span>/tracing_on
-</code></pre></div></p>
+```bash
+set -e</p>
+<p>DIR=/sys/kernel/debug/tracing</p>
+<h1 id="presetup-if-any">Presetup if any<a class="headerlink" href="#presetup-if-any" title="Permanent link">&para;</a></h1>
+<h1 id="preparesh">./prepare.sh<a class="headerlink" href="#preparesh" title="Permanent link">&para;</a></h1>
+<h1 id="disable-tracing-and-clear-trace">Disable tracing and clear trace<a class="headerlink" href="#disable-tracing-and-clear-trace" title="Permanent link">&para;</a></h1>
+<p>echo 0 &gt; $DIR/tracing_on
+echo &gt; $DIR/trace
+echo &gt; $DIR/set_ftrace_filter
+echo &gt; $DIR/set_graph_function</p>
+<h1 id="setup-tracer-type">Setup tracer type<a class="headerlink" href="#setup-tracer-type" title="Permanent link">&para;</a></h1>
+<p>echo function_graph &gt; $DIR/current_tracer</p>
+<h1 id="_1"><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h1 id="the-functions-wed-trace">The functions we&rsquo;d trace<a class="headerlink" href="#the-functions-wed-trace" title="Permanent link">&para;</a></h1>
+<h1 id="_2"><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
+<p>echo handle_mm_fault &gt;&gt; $DIR/set_graph_function</p>
+<p>echo &ldquo;Enabled graph functions:&rdquo;
+cat $DIR/set_graph_function</p>
+<p>echo 1 &gt; $DIR/tracing_on
+```</p>
 <p>Run the scripts, and look into the trace file, it would give
 us something like the following. Though, keep in mind that
 functions like <code>handle_mm_fault()</code> is very dynamic, there
 are many call graph combos.
-<div class="highlight"><pre><span></span><code># tracer: function_graph                            
-#                                                            
-# CPU  DURATION                  FUNCTION CALLS       
-# |     |   |                     |   |   |   |       
- 39)               |  handle_mm_fault() {           
- 39)   0.677 us    |    mem_cgroup_from_task();       
- 39)   0.918 us    |    __count_memcg_events();         
- 39)               |    __handle_mm_fault() {                 
- 39)               |      do_huge_pmd_numa_page() {             
- 39)   0.682 us    |        _raw_spin_lock();       
- 39)   0.570 us    |        pmd_trans_migrating();                 
- 39)               |        mpol_misplaced() {                 
- 39)   0.471 us    |          __get_vma_policy();       
- 39)               |          get_vma_policy.part.0() {       
- 39)   0.387 us    |            get_task_policy.part.0();       
- 39)   1.091 us    |          }                            
- 39)               |          should_numa_migrate_memory() {       
- 39)   0.374 us    |            page_cpupid_xchg_last();       
- 39)   1.095 us    |          }       
- 39)   4.410 us    |        }       
- 39)   0.389 us    |        unlock_page();       
- 39)               |        task_numa_fault() {       
- 39)               |          __kmalloc() {           
- 39)   0.382 us    |            kmalloc_slab();       
- 39)               |            _cond_resched() {            
- 39)   0.391 us    |              rcu_all_qs();       
- 39)   1.115 us    |            }                   
- 39)   0.391 us    |            should_failslab();       
- 39)   0.461 us    |            memcg_kmem_put_cache();       
- 39)   4.628 us    |          }                         
- 39)   0.529 us    |          task_numa_placement();          
- 39)   6.481 us    |        }                                   
- 39) + 15.130 us   |      }           
- 39) + 16.854 us   |    }                                          
+```</p>
+<h1 id="tracer-function_graph">tracer: function_graph<a class="headerlink" href="#tracer-function_graph" title="Permanent link">&para;</a></h1>
+<h1 id="_3"><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
+<h1 id="cpu-duration-function-calls">CPU  DURATION                  FUNCTION CALLS<a class="headerlink" href="#cpu-duration-function-calls" title="Permanent link">&para;</a></h1>
+<h1 id="_4">|     |   |                     |   |   |   |<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h1>
+<p>39)               |  handle_mm_fault() {         <br />
+ 39)   0.677 us    |    mem_cgroup_from_task();     <br />
+ 39)   0.918 us    |    __count_memcg_events();       <br />
+ 39)               |    __handle_mm_fault() {               <br />
+ 39)               |      do_huge_pmd_numa_page() {           <br />
+ 39)   0.682 us    |        _raw_spin_lock();     <br />
+ 39)   0.570 us    |        pmd_trans_migrating();               <br />
+ 39)               |        mpol_misplaced() {               <br />
+ 39)   0.471 us    |          __get_vma_policy();     <br />
+ 39)               |          get_vma_policy.part.0() {     <br />
+ 39)   0.387 us    |            get_task_policy.part.0();     <br />
+ 39)   1.091 us    |          }                          <br />
+ 39)               |          should_numa_migrate_memory() {     <br />
+ 39)   0.374 us    |            page_cpupid_xchg_last();     <br />
+ 39)   1.095 us    |          }     <br />
+ 39)   4.410 us    |        }     <br />
+ 39)   0.389 us    |        unlock_page();     <br />
+ 39)               |        task_numa_fault() {     <br />
+ 39)               |          __kmalloc() {         <br />
+ 39)   0.382 us    |            kmalloc_slab();     <br />
+ 39)               |            _cond_resched() {          <br />
+ 39)   0.391 us    |              rcu_all_qs();     <br />
+ 39)   1.115 us    |            }                 <br />
+ 39)   0.391 us    |            should_failslab();     <br />
+ 39)   0.461 us    |            memcg_kmem_put_cache();     <br />
+ 39)   4.628 us    |          }                       <br />
+ 39)   0.529 us    |          task_numa_placement();        <br />
+ 39)   6.481 us    |        }                                 <br />
+ 39) + 15.130 us   |      }         <br />
+ 39) + 16.854 us   |    }                                        <br />
  39) + 21.198 us   |  }
-</code></pre></div></p>
+```</p>
                 
                   
                     

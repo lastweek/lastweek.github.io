@@ -2507,22 +2507,21 @@ But the important thing is to understand the core!</p>
 </li>
 <li>
 <p>So it looks like there 2 worker pools per cpu, and it is accessed by macro. But can we create more pools?
-<div class="highlight"><pre><span></span><code><span class="n">NR_STD_WORKER_POOLS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
-<span class="cm">/* the per-cpu worker pools */</span><span class="w"></span>
-<span class="k">static</span><span class="w"> </span><span class="n">DEFINE_PER_CPU_SHARED_ALIGNED</span><span class="p">(</span><span class="k">struct</span> <span class="nc">worker_pool</span><span class="w"> </span><span class="p">[</span><span class="n">NR_STD_WORKER_POOLS</span><span class="p">],</span><span class="w"> </span><span class="n">cpu_worker_pools</span><span class="p">);</span><span class="w"></span>
-
-
-<span class="cp">#define for_each_cpu_worker_pool(pool, cpu)             \</span>
-<span class="cp">    for ((pool) = &amp;per_cpu(cpu_worker_pools, cpu)[0];       \</span>
-<span class="cp">         (pool) &lt; &amp;per_cpu(cpu_worker_pools, cpu)[NR_STD_WORKER_POOLS]; \</span>
-<span class="cp">         (pool)++)</span>
-</code></pre></div></p>
+```c
+NR_STD_WORKER_POOLS = 2
+/* the per-cpu worker pools */
+static DEFINE_PER_CPU_SHARED_ALIGNED(struct worker_pool [NR_STD_WORKER_POOLS], cpu_worker_pools);</p>
 </li>
-<li>
-<p><code>workqueues</code> is a list of all workqueues
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="n">LIST_HEAD</span><span class="p">(</span><span class="n">workqueues</span><span class="p">);</span><span class="w">       </span><span class="cm">/* PR: list of all workqueues */</span><span class="w"></span>
-</code></pre></div></p>
-</li>
+</ul>
+<p>#define for_each_cpu_worker_pool(pool, cpu)             \
+    for ((pool) = &amp;per_cpu(cpu_worker_pools, cpu)[0];       \
+         (pool) &lt; &amp;per_cpu(cpu_worker_pools, cpu)[NR_STD_WORKER_POOLS]; \
+         (pool)++)
+```</p>
+<ul>
+<li><code>workqueues</code> is a list of all workqueues
+<code>c
+static LIST_HEAD(workqueues);       /* PR: list of all workqueues */</code></li>
 </ul>
 <h3 id="create-workers">Create workers<a class="headerlink" href="#create-workers" title="Permanent link">&para;</a></h3>
 <p>The first is I want to understand is how workers are created,
@@ -2532,52 +2531,70 @@ to create a single worker, then I check who calls it.</p>
 <p>The <code>create_worker()</code> - creates a worker thread.
 The steps are straightforward. Calling into <code>kthread_create</code>,
 attach it to a <code>worker_pool</code>. So this is how worker and pool got connected.
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="k">struct</span> <span class="nc">worker</span><span class="w"> </span><span class="o">*</span><span class="n">create_worker</span><span class="p">(</span><span class="k">struct</span> <span class="nc">worker_pool</span><span class="w"> </span><span class="o">*</span><span class="n">pool</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="p">...</span><span class="w"></span>
+```c
+static struct worker *create_worker(struct worker_pool *pool)
+{
+&hellip;</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code>worker-&gt;task = kthread_create_on_node(worker_thread, worker, pool-&gt;node,
+                      &quot;kworker/%s&quot;, id_buf);
 
-<span class="w">    </span><span class="n">worker</span><span class="o">-&gt;</span><span class="n">task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kthread_create_on_node</span><span class="p">(</span><span class="n">worker_thread</span><span class="p">,</span><span class="w"> </span><span class="n">worker</span><span class="p">,</span><span class="w"> </span><span class="n">pool</span><span class="o">-&gt;</span><span class="n">node</span><span class="p">,</span><span class="w"></span>
-<span class="w">                          </span><span class="s">&quot;kworker/%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">id_buf</span><span class="p">);</span><span class="w"></span>
+
+/* successful, attach the worker to the pool <span class="gs">*/</span>
+<span class="gs">worker_attach_to_pool(worker, pool);</span>
 
 
-<span class="w">    </span><span class="cm">/* successful, attach the worker to the pool */</span><span class="w"></span>
-<span class="w">    </span><span class="n">worker_attach_to_pool</span><span class="p">(</span><span class="n">worker</span><span class="p">,</span><span class="w"> </span><span class="n">pool</span><span class="p">);</span><span class="w"></span>
+<span class="gs">/*</span> start the newly created worker */
+raw_spin_lock_irq(&amp;pool-&gt;lock);
+worker-&gt;pool-&gt;nr_workers++;
+worker_enter_idle(worker);
+wake_up_process(worker-&gt;task);
+raw_spin_unlock_irq(&amp;pool-&gt;lock);
+</code></pre></div></td></tr></table></div>
 
-
-<span class="w">    </span><span class="cm">/* start the newly created worker */</span><span class="w"></span>
-<span class="w">    </span><span class="n">raw_spin_lock_irq</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pool</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">worker</span><span class="o">-&gt;</span><span class="n">pool</span><span class="o">-&gt;</span><span class="n">nr_workers</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">worker_enter_idle</span><span class="p">(</span><span class="n">worker</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">wake_up_process</span><span class="p">(</span><span class="n">worker</span><span class="o">-&gt;</span><span class="n">task</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">raw_spin_unlock_irq</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pool</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div></p>
+<p>&hellip;
+}
+```</p>
 <p>The <code>worker_attach_to_pool()</code> is quite simple, just some list op.
-<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="n">list_add_tail</span><span class="p">(</span><span class="o">&amp;</span><span class="n">worker</span><span class="o">-&gt;</span><span class="n">node</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pool</span><span class="o">-&gt;</span><span class="n">workers</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">worker</span><span class="o">-&gt;</span><span class="n">pool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pool</span><span class="p">;</span><span class="w"></span>
-</code></pre></div></p>
+<code>c
+    list_add_tail(&amp;worker-&gt;node, &amp;pool-&gt;workers);
+    worker-&gt;pool = pool;</code></p>
 <p>Okay, now I want to see who calls <code>create_worker()</code>.
 It is a static function, so only called within this file. Cool.</p>
 <p>First off, it is called by <code>workqueue_init()</code>, during startup.
 So here looks like it is creating a worker for the per-cpu pools (2 pools per cpu).
 What are those workers for though?
-<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">__init</span><span class="w"> </span><span class="n">workqueue_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="p">...</span><span class="w"></span>
-<span class="w">    </span><span class="cm">/* create the initial workers */</span><span class="w"></span>
-<span class="w">    </span><span class="n">for_each_online_cpu</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">for_each_cpu_worker_pool</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span><span class="w"> </span><span class="n">cpu</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">pool</span><span class="o">-&gt;</span><span class="n">flags</span><span class="w"> </span><span class="o">&amp;=</span><span class="w"> </span><span class="o">~</span><span class="n">POOL_DISASSOCIATED</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="n">BUG_ON</span><span class="p">(</span><span class="o">!</span><span class="n">create_worker</span><span class="p">(</span><span class="n">pool</span><span class="p">));</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+```c
+void __init workqueue_init(void)
+{
+&hellip;
+    /* create the initial workers */
+    for_each_online_cpu(cpu) {
+        for_each_cpu_worker_pool(pool, cpu) {
+            pool-&gt;flags &amp;= ~POOL_DISASSOCIATED;
+            BUG_ON(!create_worker(pool));
+        }
+    }</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>hash_for_each(unbound_pool_hash, bkt, pool, hash_node)
+    BUG_ON(!create_worker(pool));
+</code></pre></div></td></tr></table></div>
 
-<span class="w">    </span><span class="n">hash_for_each</span><span class="p">(</span><span class="n">unbound_pool_hash</span><span class="p">,</span><span class="w"> </span><span class="n">bkt</span><span class="p">,</span><span class="w"> </span><span class="n">pool</span><span class="p">,</span><span class="w"> </span><span class="n">hash_node</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="n">BUG_ON</span><span class="p">(</span><span class="o">!</span><span class="n">create_worker</span><span class="p">(</span><span class="n">pool</span><span class="p">));</span><span class="w"></span>
-<span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div></p>
+<p>&hellip;
+}
+```</p>
 <p>Anyways, it is also called within <code>workqueue_prepare_cpu()</code>, which is a callback
 for cpu hotplug. Skip. Also called by <code>maybe_create_worker()</code>, which seems to be called
 within worker thread itself to create another worker within a pool.
@@ -2585,20 +2602,20 @@ I&rsquo;m not sure whether the initial workers we created in <code>workqueue_ini
 during runtime..</p>
 <p>Anyways, the final caller is <code>get_unbound_pool()</code>. Looks promising.
 It does says <code>start the initial worker</code>. So follows the caller of <code>get_unbound_pool()</code>.
-<div class="highlight"><pre><span></span><code><span class="cm">/**</span>
-<span class="cm"> * get_unbound_pool - get a worker_pool with the specified attributes</span>
-<span class="cm"> * @attrs: the attributes of the worker_pool to get</span>
-<span class="cm"> ..</span>
-<span class="cm"> */</span><span class="w"></span>
-<span class="k">static</span><span class="w"> </span><span class="k">struct</span> <span class="nc">worker_pool</span><span class="w"> </span><span class="o">*</span><span class="n">get_unbound_pool</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">struct</span> <span class="nc">workqueue_attrs</span><span class="w"> </span><span class="o">*</span><span class="n">attrs</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="p">...</span><span class="w"></span>
-<span class="w">    </span><span class="cm">/* create and start the initial worker */</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">wq_online</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">create_worker</span><span class="p">(</span><span class="n">pool</span><span class="p">))</span><span class="w"></span>
-<span class="w">        </span><span class="k">goto</span><span class="w"> </span><span class="n">fail</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div></p>
+<code>c
+/**
+ * get_unbound_pool - get a worker_pool with the specified attributes
+ * @attrs: the attributes of the worker_pool to get
+ ..
+ */
+static struct worker_pool *get_unbound_pool(const struct workqueue_attrs *attrs)
+{
+    ...
+    /* create and start the initial worker */
+    if (wq_online &amp;&amp; !create_worker(pool))
+        goto fail;
+    ...
+}</code></p>
 <p>The <code>get_unbound_pool()</code> is called by <code>alloc_unbound_pwq()</code> only.
 It seems to be creating <code>struct pool_workqueue</code>.
 This structure, seems a wrapper around <code>struct worker_pool</code>?</p>
@@ -2610,15 +2627,15 @@ It gots the workqueue entry and some attributes and then do some work based on t
 Well, it looks like inside <code>apply_wqattrs_prepare()</code>, it is looping over nodes.
 So it appears end of the day, it is one create_worker per node?
 I thought it is per cpu? Well, I could try it out and see.</p>
-<div class="highlight"><pre><span></span><code><span class="n">alloc_workqueue</span><span class="p">()</span><span class="w">               </span><span class="o">-</span><span class="w"> </span><span class="n">Public</span><span class="w"> </span><span class="n">API</span><span class="w"></span>
-<span class="w">  </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">alloc_and_link_pwqs</span><span class="p">(</span><span class="k">struct</span> <span class="nc">workqueue_struct</span><span class="w"> </span><span class="o">*</span><span class="n">wq</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">apply_workqueue_attrs</span><span class="p">(</span><span class="n">workqueue_struct</span><span class="p">,</span><span class="w"> </span><span class="n">workqueue_attrs</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">apply_workqueue_attrs_locked</span><span class="p">(</span><span class="n">workqueue_struct</span><span class="p">,</span><span class="w"> </span><span class="n">workqueue_attrs</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">apply_wqattrs_prepare</span><span class="p">()</span><span class="w"> </span><span class="o">*****</span><span class="w"></span>
-<span class="w">                </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">alloc_unbound_pwq</span><span class="p">()</span><span class="w"></span>
-<span class="w">                    </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">get_unbound_pool</span><span class="p">()</span><span class="w"></span>
-<span class="w">                        </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">create_worker</span><span class="p">()</span><span class="w"></span>
-</code></pre></div>
+<p><code>c
+alloc_workqueue()               - Public API
+  -&gt; alloc_and_link_pwqs(struct workqueue_struct *wq)
+    -&gt; apply_workqueue_attrs(workqueue_struct, workqueue_attrs)
+        -&gt; apply_workqueue_attrs_locked(workqueue_struct, workqueue_attrs)
+            -&gt; apply_wqattrs_prepare() *****
+                -&gt; alloc_unbound_pwq()
+                    -&gt; get_unbound_pool()
+                        -&gt; create_worker()</code></p>
 <p>Actually, look closely into <code>get_unbound_pool()</code>.
 It actually has quite some logic before calling into <code>create_worker()</code>.
 This logic is checking whether we already have a matching pool and return early.
@@ -2634,49 +2651,74 @@ And, it sorts of also answered my earlier question:
 the workers are generic and it appears <code>alloc_workqueue</code> actually
 will not create new threads. New users reuse the old worker threads.
 Though the worker may create more depends on load (that func is simple too..).</p>
-<div class="highlight"><pre><span></span><code><span class="cm">/**</span>
-<span class="cm"> * worker_thread - the worker thread function</span>
-<span class="cm"> * @__worker: self</span>
-<span class="cm"> *</span>
-<span class="cm"> * The worker thread function.  All workers belong to a worker_pool -</span>
-<span class="cm"> * either a per-cpu one or dynamic unbound one.  These workers process all</span>
-<span class="cm"> * work items regardless of their specific target workqueue.  The only</span>
-<span class="cm"> * exception is work items which belong to workqueues with a rescuer which</span>
-<span class="cm"> * will be explained in rescuer_thread().</span>
-<span class="cm"> *</span>
-<span class="cm"> * Return: 0</span>
-<span class="cm"> */</span><span class="w"></span>
-<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">worker_thread</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">__worker</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">struct</span> <span class="nc">worker</span><span class="w"> </span><span class="o">*</span><span class="n">worker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__worker</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">struct</span> <span class="nc">worker_pool</span><span class="w"> </span><span class="o">*</span><span class="n">pool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">worker</span><span class="o">-&gt;</span><span class="n">pool</span><span class="p">;</span><span class="w"></span>
+<p>```c
+/**
+ * worker_thread - the worker thread function
+ * @__worker: self
+ *
+ * The worker thread function.  All workers belong to a worker_pool -
+ * either a per-cpu one or dynamic unbound one.  These workers process all
+ * work items regardless of their specific target workqueue.  The only
+ * exception is work items which belong to workqueues with a rescuer which
+ * will be explained in rescuer_thread().
+ *
+ * Return: 0
+ */
+static int worker_thread(void *__worker)
+{
+    struct worker *worker = __worker;
+    struct worker_pool *pool = worker-&gt;pool;</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="o">...</span>
 
-<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="nt">do</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">//</span>
+<span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="n">Yizhou</span><span class="p">:</span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="n">See</span><span class="p">,</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">dequeuing</span><span class="w"> </span><span class="n">work</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">pool</span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="n">So</span><span class="p">,</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">check</span><span class="w"> </span><span class="n">who</span><span class="o">/</span><span class="n">when</span><span class="w"> </span><span class="n">enqueue</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="n">worklist</span>
+<span class="w">    </span><span class="o">//</span>
+<span class="w">    </span><span class="n">struct</span><span class="w"> </span><span class="n">work_struct</span><span class="w"> </span><span class="o">*</span><span class="n">work</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="nf">list_first_entry</span><span class="p">(</span><span class="err">&amp;</span><span class="n">pool</span><span class="o">-</span><span class="err">&gt;</span><span class="n">worklist</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">struct</span><span class="w"> </span><span class="n">work_struct</span><span class="p">,</span><span class="w"> </span><span class="n">entry</span><span class="p">);</span>
 
-<span class="w">    </span><span class="k">do</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="c1">//</span>
-<span class="w">        </span><span class="c1">// Yizhou:</span>
-<span class="w">        </span><span class="c1">// See, we are dequeuing work from the pool</span>
-<span class="w">        </span><span class="c1">// So, we can check who/when enqueue into worklist</span>
-<span class="w">        </span><span class="c1">//</span>
-<span class="w">        </span><span class="k">struct</span> <span class="nc">work_struct</span><span class="w"> </span><span class="o">*</span><span class="n">work</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">            </span><span class="n">list_first_entry</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pool</span><span class="o">-&gt;</span><span class="n">worklist</span><span class="p">,</span><span class="w"></span>
-<span class="w">                     </span><span class="k">struct</span> <span class="nc">work_struct</span><span class="p">,</span><span class="w"> </span><span class="n">entry</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">pool-&gt;watchdog_ts</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">jiffies</span><span class="p">;</span>
 
-<span class="w">        </span><span class="n">pool</span><span class="o">-&gt;</span><span class="n">watchdog_ts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jiffies</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">if</span><span class="w"> </span><span class="err">(likely(!(*work_data_bits(work)</span><span class="w"> </span><span class="err">&amp;</span><span class="w"> </span><span class="err">WORK_STRUCT_LINKED)))</span><span class="w"> </span><span class="err">{</span>
+<span class="w">        </span><span class="c">/* optimization path, not strictly necessary */</span>
+<span class="w">        </span><span class="err">process_one_work(worker,</span><span class="w"> </span><span class="err">work)</span><span class="p">;</span>
+<span class="w">        </span><span class="err">if</span><span class="w"> </span><span class="err">(unlikely(!list_empty(&amp;worker-&gt;scheduled)))</span>
+<span class="w">            </span><span class="err">process_scheduled_works(worker)</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="nt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="err">move_linked_works(work,</span><span class="w"> </span><span class="err">&amp;worker-&gt;scheduled,</span><span class="w"> </span><span class="err">NULL)</span><span class="p">;</span>
+<span class="w">        </span><span class="err">process_scheduled_works(worker)</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="err">}</span><span class="w"> </span><span class="nt">while</span><span class="w"> </span><span class="o">(</span><span class="nt">keep_working</span><span class="o">(</span><span class="nt">pool</span><span class="o">));</span>
+</code></pre></div></td></tr></table></div>
 
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">likely</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="o">*</span><span class="n">work_data_bits</span><span class="p">(</span><span class="n">work</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">WORK_STRUCT_LINKED</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="cm">/* optimization path, not strictly necessary */</span><span class="w"></span>
-<span class="w">            </span><span class="n">process_one_work</span><span class="p">(</span><span class="n">worker</span><span class="p">,</span><span class="w"> </span><span class="n">work</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">unlikely</span><span class="p">(</span><span class="o">!</span><span class="n">list_empty</span><span class="p">(</span><span class="o">&amp;</span><span class="n">worker</span><span class="o">-&gt;</span><span class="n">scheduled</span><span class="p">)))</span><span class="w"></span>
-<span class="w">                </span><span class="n">process_scheduled_works</span><span class="p">(</span><span class="n">worker</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">move_linked_works</span><span class="p">(</span><span class="n">work</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">worker</span><span class="o">-&gt;</span><span class="n">scheduled</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="n">process_scheduled_works</span><span class="p">(</span><span class="n">worker</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">keep_working</span><span class="p">(</span><span class="n">pool</span><span class="p">));</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
+<p>}
+```</p>
 <p>So, checking out <code>worklist</code>. It is simply modified by <code>__queue_work()</code>.
 Now the last question, I guess, is to figure out how <code>__queue_work()</code> decide
 which pool to insert the new work into.</p>

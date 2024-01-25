@@ -2456,16 +2456,16 @@
 <h2 id="context-switch">Context Switch<a class="headerlink" href="#context-switch" title="Permanent link">&para;</a></h2>
 <p>FPU consists a lot registers, and each thread has its own FPU context. However, CPU will not save the FPU registers for us, it is software&rsquo;s duty to save and restore FPU context properly. FPU context is saved in <code>struct fpu</code>.</p>
 <p>Thus whenever we switch task, we also need to switch FPU context:
-<div class="highlight"><pre><span></span><code><span class="n">__visible</span><span class="w"> </span><span class="k">struct</span> <span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
-<span class="n">__switch_to</span><span class="p">(</span><span class="k">struct</span> <span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">prev_p</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span> <span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">next_p</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="p">..</span><span class="w"></span>
-<span class="w">        </span><span class="n">fpu_switch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">switch_fpu_prepare</span><span class="p">(</span><span class="n">prev_fpu</span><span class="p">,</span><span class="w"> </span><span class="n">next_fpu</span><span class="p">,</span><span class="w"> </span><span class="n">cpu</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">..</span><span class="w"></span>
-<span class="w">        </span><span class="n">switch_fpu_finish</span><span class="p">(</span><span class="n">next_fpu</span><span class="p">,</span><span class="w"> </span><span class="n">fpu_switch</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">..</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div></p>
+<code>c
+__visible struct task_struct *
+__switch_to(struct task_struct *prev_p, struct task_struct *next_p)
+{
+        ..
+        fpu_switch = switch_fpu_prepare(prev_fpu, next_fpu, cpu);
+        ..
+        switch_fpu_finish(next_fpu, fpu_switch);
+        ..
+}</code></p>
 <h2 id="syscall">SYSCALL<a class="headerlink" href="#syscall" title="Permanent link">&para;</a></h2>
 <ul>
 <li>

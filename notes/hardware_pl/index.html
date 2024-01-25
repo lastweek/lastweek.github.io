@@ -2512,12 +2512,12 @@ Besides, you can use Scala Functional Programming to express hardware, really po
 1. <strong>Connection</strong>.
 I need to connect a lot of AxiStream interfaces very frequently.
 To connect an input port onto an output port, we can do something like the following snippets.
-<div class="highlight"><pre><span></span><code><span class="n">io</span><span class="p">.</span><span class="n">in</span> <span class="o">&gt;&gt;</span> <span class="n">io</span><span class="p">.</span><span class="n">out</span><span class="p">.</span>
-</code></pre></div>
+<code>scala
+io.in &gt;&gt; io.out.</code>
 2. <strong>Functional Programming</strong>.
 I can do something like this to get the sum of an array:
-<div class="highlight"><pre><span></span><code><span class="n">array</span><span class="p">.</span><span class="n">foldLeft</span><span class="p">(</span><span class="mi">0</span><span class="p">)(</span><span class="n">_+_</span><span class="p">)</span>
-</code></pre></div></p>
+<code>scala
+array.foldLeft(0)(_+_)</code></p>
 <h2 id="google-xls">Google XLS<a class="headerlink" href="#google-xls" title="Permanent link">&para;</a></h2>
 <p>The <a href="https://google.github.io/xls/">XLS (Accelerated HW Synthesis)</a> project is a Rust-like DSL for hardware development.</p>
 <h3 id="build">Build<a class="headerlink" href="#build" title="Permanent link">&para;</a></h3>
@@ -2527,34 +2527,32 @@ To run, <code>docker run -i -t &lt;ID&gt; /bin/bash</code>. After that, follow t
 <p>The whole project is pre-mature. There are not too many examples, the building process is too long,
 and even the basic <code>.x -&gt; .v</code> generation needs quite some manual typing.</p>
 <p>Following its <code>simple_adder</code> quick-start instructions, the following Verilog code is generated:</p>
-<div class="highlight"><pre><span></span><code><span class="k">module</span> <span class="n">__simple_add__add</span><span class="p">(</span>
-  <span class="k">input</span> <span class="kt">wire</span> <span class="n">clk</span><span class="p">,</span>
-  <span class="k">input</span> <span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">x</span><span class="p">,</span>
-  <span class="k">input</span> <span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">y</span><span class="p">,</span>
-  <span class="k">output</span> <span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">out</span>
-<span class="p">);</span>
-  <span class="c1">// ===== Pipe stage 0:</span>
-
-  <span class="c1">// Registers for pipe stage 0:</span>
-  <span class="kt">reg</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">p0_x</span><span class="p">;</span>
-  <span class="kt">reg</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">p0_y</span><span class="p">;</span>
-  <span class="k">always_ff</span> <span class="p">@</span> <span class="p">(</span><span class="k">posedge</span> <span class="n">clk</span><span class="p">)</span> <span class="k">begin</span>
-    <span class="n">p0_x</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="p">;</span>
-    <span class="n">p0_y</span> <span class="o">&lt;=</span> <span class="n">y</span><span class="p">;</span>
-  <span class="k">end</span>
-
-  <span class="c1">// ===== Pipe stage 1:</span>
-  <span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">p1_add_3_comb</span><span class="p">;</span>
-  <span class="k">assign</span> <span class="n">p1_add_3_comb</span> <span class="o">=</span> <span class="n">p0_x</span> <span class="o">+</span> <span class="n">p0_y</span><span class="p">;</span>
-
-  <span class="c1">// Registers for pipe stage 1:</span>
-  <span class="kt">reg</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">p1_add_3</span><span class="p">;</span>
-  <span class="k">always_ff</span> <span class="p">@</span> <span class="p">(</span><span class="k">posedge</span> <span class="n">clk</span><span class="p">)</span> <span class="k">begin</span>
-    <span class="n">p1_add_3</span> <span class="o">&lt;=</span> <span class="n">p1_add_3_comb</span><span class="p">;</span>
-  <span class="k">end</span>
-  <span class="k">assign</span> <span class="n">out</span> <span class="o">=</span> <span class="n">p1_add_3</span><span class="p">;</span>
-<span class="k">endmodule</span>
-</code></pre></div>
+<p>```Verilog
+module __simple_add__add(
+  input wire clk,
+  input wire [31:0] x,
+  input wire [31:0] y,
+  output wire [31:0] out
+);
+  // ===== Pipe stage 0:</p>
+<p>// Registers for pipe stage 0:
+  reg [31:0] p0_x;
+  reg [31:0] p0_y;
+  always_ff @ (posedge clk) begin
+    p0_x &lt;= x;
+    p0_y &lt;= y;
+  end</p>
+<p>// ===== Pipe stage 1:
+  wire [31:0] p1_add_3_comb;
+  assign p1_add_3_comb = p0_x + p0_y;</p>
+<p>// Registers for pipe stage 1:
+  reg [31:0] p1_add_3;
+  always_ff @ (posedge clk) begin
+    p1_add_3 &lt;= p1_add_3_comb;
+  end
+  assign out = p1_add_3;
+endmodule
+```</p>
 <h2 id="llvm-circt">LLVM CIRCT<a class="headerlink" href="#llvm-circt" title="Permanent link">&para;</a></h2>
 <p><a href="https://github.com/llvm/circt">&ldquo;CIRCT&rdquo; stands for &ldquo;Circuit IR Compilers and Tools&rdquo;</a>.
 This is also an early-stage LLVM project.</p>

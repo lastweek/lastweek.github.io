@@ -2600,17 +2600,17 @@
 <code>PartPin</code> is short for Partition Pins.
 <code>PPLOC</code> is short for Partpin LOC.</p>
 <p>Get the list of partition pins:
-<div class="highlight"><pre><span></span><code><span class="nv">get_pplocs</span><span class="w"> </span><span class="o">-</span>pins<span class="w"> </span><span class="k">[</span><span class="nv">get_pins</span><span class="w"> </span><span class="o">-</span>hier<span class="w"> </span><span class="o">*</span><span class="k">]</span>
-</code></pre></div></p>
+<code>tcl
+get_pplocs -pins [get_pins -hier *]</code></p>
 <p>Partition pin (seems) map to a NODE:
-<div class="highlight"><pre><span></span><code><span class="o">%</span><span class="w"> </span><span class="nv">report_property</span><span class="w"> </span><span class="k">[</span><span class="nv">get_pplocs</span><span class="w"> </span><span class="o">-</span>pins<span class="w"> </span><span class="k">[</span><span class="nv">get_pins</span><span class="w"> </span>XXX<span class="k">]]</span>
-<span class="o">%</span><span class="w"> </span><span class="nv">report_property</span><span class="w"> </span><span class="k">[</span><span class="nv">get_pplocs</span><span class="w"> </span><span class="o">-</span>pins<span class="w"> </span><span class="k">[</span><span class="nv">get_pins</span><span class="w"> </span>inst_count<span class="o">/</span>count_out<span class="k">[</span><span class="nv">0</span><span class="k">]]]</span>
-
-<span class="nv">INFO</span><span class="o">:</span><span class="w"> </span><span class="k">[</span><span class="nv">Vivado</span><span class="w"> </span><span class="mi">12</span><span class="o">-</span><span class="mi">4841</span><span class="k">]</span><span class="w"> </span>Found<span class="w"> </span>PartPin:<span class="w"> </span>INT_X17Y790<span class="o">/</span>NN1_E_BEG3
-<span class="nv">Property</span><span class="w">           </span>Type<span class="w">    </span>Read-only<span class="w">  </span>Value
-<span class="nv">BASE_CLOCK_REGION</span><span class="w">  </span>string<span class="w">  </span>true<span class="w">       </span>X0Y13
-<span class="nv">CLASS</span><span class="w">              </span>string<span class="w">  </span>true<span class="w">       </span>node
-</code></pre></div></p>
+```tcl
+% report_property [get_pplocs -pins [get_pins XXX]]
+% report_property [get_pplocs -pins [get_pins inst_count/count_out[0]]]</p>
+<p>INFO: [Vivado 12-4841] Found PartPin: INT_X17Y790/NN1_E_BEG3
+Property           Type    Read-only  Value
+BASE_CLOCK_REGION  string  true       X0Y13
+CLASS              string  true       node
+```</p>
 <hr />
 <h3 id="pblocks">Pblocks<a class="headerlink" href="#pblocks" title="Permanent link">&para;</a></h3>
 <h4 id="semantic-of-exclude_placement">Semantic of <code>EXCLUDE_PLACEMENT</code><a class="headerlink" href="#semantic-of-exclude_placement" title="Permanent link">&para;</a></h4>
@@ -2634,8 +2634,8 @@ confined strictly to the resources owned by the Pblock, the routing footprint is
 <p>However, this option does not prevent routings from the static region from crossing RPs.</p>
 <p>This command is useful when you want to do some hacking about Partition Pins.
 Actually, you can also do this via GUI.</p>
-<div class="highlight"><pre><span></span><code><span class="nv">set_param</span><span class="w"> </span>hd.routingContainmentAreaExpansion<span class="w"> </span>false
-</code></pre></div>
+<p><code>tcl
+set_param hd.routingContainmentAreaExpansion false</code></p>
 <p>But you wouldn&rsquo;t believe that: <strong>Static routing is still allowed to use resources inside of the Pblock.</strong>
 The implication is also obvious: all PR bitstreams and even blank bitstream will also have the static
 routing, if their targeted Pblocks happen to have static routing in the first place. This is also why
@@ -2644,29 +2644,29 @@ we will need the static bitstream as the base to do PR bitstream generation.</p>
 <h3 id="clear-rm-and-lock-down-static">Clear RM and Lock Down Static<a class="headerlink" href="#clear-rm-and-lock-down-static" title="Permanent link">&para;</a></h3>
 <p>These commands clear out the Reconfigurable Module logics from the whole design
 and then lock down the static region and static routing. (Reference: UG947)</p>
-<div class="highlight"><pre><span></span><code><span class="nv">update_design</span><span class="w"> </span><span class="o">-</span>cell<span class="w"> </span>XXX<span class="w"> </span><span class="o">-</span>black_box
-
-<span class="nv">lock_design</span><span class="w"> </span><span class="o">-</span>level<span class="w"> </span>routing
-</code></pre></div>
+<p>```tcl
+update_design -cell XXX -black_box</p>
+<p>lock_design -level routing
+```</p>
 <hr />
 <h3 id="routing">Routing<a class="headerlink" href="#routing" title="Permanent link">&para;</a></h3>
 <h4 id="get-the-routing-of-a-net">Get the routing of a net<a class="headerlink" href="#get-the-routing-of-a-net" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="k">set</span><span class="w"> </span>net<span class="w"> </span><span class="k">[</span><span class="nv">get_nets</span><span class="w"> </span>XXX<span class="k">]</span>
-<span class="nv">get_property</span><span class="w"> </span>ROUTE<span class="w"> </span><span class="nv">$net</span>
-</code></pre></div>
+<p><code>tcl
+set net [get_nets XXX]
+get_property ROUTE $net</code></p>
 <h4 id="lock-the-routing-of-a-net">Lock the routing of a net<a class="headerlink" href="#lock-the-routing-of-a-net" title="Permanent link">&para;</a></h4>
 <p>We need to lock both the net and the connected cells. Reference is UG903.</p>
 <p>Following commands lock a route of a net. This net is already routed.
 You could run one by one.
 After execution, the route will become dashed (means locked).
 Replace the net name with your interested one.
-<div class="highlight"><pre><span></span><code><span class="nb">set</span> net <span class="o">[</span>get_nets inst_count/count_out<span class="o">[</span><span class="m">0</span><span class="o">]]</span>
-get_property ROUTE <span class="nv">$net</span>
-set_property FIXED_ROUTE <span class="o">[</span>get_property ROUTE <span class="nv">$net</span><span class="o">]</span> <span class="nv">$net</span>
-
-set_property is_bel_fixed <span class="m">1</span> <span class="o">[</span>get_cells XXX<span class="o">]</span>
-set_property is_loc_fixed <span class="m">1</span> <span class="o">[</span>get_cells XXX<span class="o">]</span>
-</code></pre></div></p>
+```bash
+set net [get_nets inst_count/count_out[0]]
+get_property ROUTE $net
+set_property FIXED_ROUTE [get_property ROUTE $net] $net</p>
+<p>set_property is_bel_fixed 1 [get_cells XXX]
+set_property is_loc_fixed 1 [get_cells XXX]
+```</p>
 <h4 id="manual-routing">Manual routing<a class="headerlink" href="#manual-routing" title="Permanent link">&para;</a></h4>
 <p>A great GUI-based manual routing tutorial can be found at <a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2019_1/ug986-vivado-tutorial-implementation.pdf">UG986 Lab 3</a>. The last step of manual routing, of course is to lock down the LOC and set <code>FIXED_ROUTE</code>.</p>
 <p>But how can we manually route an unrouted net?

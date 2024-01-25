@@ -2593,16 +2593,16 @@ It&rsquo;s essentially the second part of tracing we mentioned above.
 </ul>
 <p>Trace in real time:</p>
 <p>Print the number of page faults happen in every one second:
-<div class="highlight"><pre><span></span><code>perf stat -e <span class="s2">&quot;page-faults&quot;</span> -I <span class="m">1000</span> -a -- sleep <span class="m">10</span>
-</code></pre></div></p>
+<code>bash
+perf stat -e "page-faults" -I 1000 -a -- sleep 10</code></p>
 <p>Print the numberf of <code>mmap</code> syscall happen in every one second:
-<div class="highlight"><pre><span></span><code>perf stat -e <span class="s2">&quot;syscalls:sys_enter_mmap&quot;</span> -I <span class="m">1000</span> -a -- sleep <span class="m">10</span>
-</code></pre></div></p>
+<code>bash
+perf stat -e "syscalls:sys_enter_mmap" -I 1000 -a -- sleep 10</code></p>
 <p>Dynamically trace kernel functions:
-<div class="highlight"><pre><span></span><code>perf probe --add do_anonymous_page
-perf stat -I <span class="m">5000</span> -e <span class="s2">&quot;page-faults,probe:do_anonymous_page&quot;</span> -- sleep <span class="m">10</span>
-perf probe --del<span class="o">=</span>probe:do_anonymous_page
-</code></pre></div></p>
+<code>bash
+perf probe --add do_anonymous_page
+perf stat -I 5000 -e "page-faults,probe:do_anonymous_page" -- sleep 10
+perf probe --del=probe:do_anonymous_page</code></p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <p>I have built the LegoOS <a href="http://lastweek.io/lego/kernel/profile/">profilers</a>,
 and <a href="http://lastweek.io/lego/kernel/profile_points/">profile points</a> before.</p>

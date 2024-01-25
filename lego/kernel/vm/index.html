@@ -1794,40 +1794,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#facts" class="md-nav__link">
-    Facts
-  </a>
-  
-    <nav class="md-nav" aria-label="Facts">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#munmap-can-split-vma" class="md-nav__link">
-    munmap can split vma
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#msync-is-not-atomic" class="md-nav__link">
-    msync() is not atomic
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#msync-need-concurrency-control" class="md-nav__link">
-    msync() need concurrency control
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2419,40 +2385,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#facts" class="md-nav__link">
-    Facts
-  </a>
-  
-    <nav class="md-nav" aria-label="Facts">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#munmap-can-split-vma" class="md-nav__link">
-    munmap can split vma
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#msync-is-not-atomic" class="md-nav__link">
-    msync() is not atomic
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#msync-need-concurrency-control" class="md-nav__link">
-    msync() need concurrency control
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2474,11 +2406,11 @@
 <h2 id="limits">Limits<a class="headerlink" href="#limits" title="Permanent link">&para;</a></h2>
 <h3 id="max-number-of-vmas">Max Number of VMAs<a class="headerlink" href="#max-number-of-vmas" title="Permanent link">&para;</a></h3>
 <p>By default, the maximum number of VMAs is: <code>65530</code>. It is defined by the following variable:
-<div class="highlight"><pre><span></span><code><span class="cp">#define MAPCOUNT_ELF_CORE_MARGIN        (5)</span>
-<span class="cp">#define DEFAULT_MAX_MAP_COUNT   (USHRT_MAX - MAPCOUNT_ELF_CORE_MARGIN)</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="n">sysctl_max_map_count</span><span class="w"> </span><span class="n">__read_mostly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DEFAULT_MAX_MAP_COUNT</span><span class="p">;</span><span class="w"></span>
-</code></pre></div></p>
+```c</p>
+<h1 id="define-mapcount_elf_core_margin-5">define MAPCOUNT_ELF_CORE_MARGIN        (5)<a class="headerlink" href="#define-mapcount_elf_core_margin-5" title="Permanent link">&para;</a></h1>
+<h1 id="define-default_max_map_count-ushrt_max-mapcount_elf_core_margin">define DEFAULT_MAX_MAP_COUNT   (USHRT_MAX - MAPCOUNT_ELF_CORE_MARGIN)<a class="headerlink" href="#define-default_max_map_count-ushrt_max-mapcount_elf_core_margin" title="Permanent link">&para;</a></h1>
+<p>int sysctl_max_map_count __read_mostly = DEFAULT_MAX_MAP_COUNT;
+```</p>
 <h2 id="facts">Facts<a class="headerlink" href="#facts" title="Permanent link">&para;</a></h2>
 <h3 id="munmap-can-split-vma"><code>munmap</code> can split vma<a class="headerlink" href="#munmap-can-split-vma" title="Permanent link">&para;</a></h3>
 <p><code>munmap</code> can create a hole with an existing vma, thus divide one existing vma to two new vmas. Do note that, <code>munmap</code> can create hole for both anonymous vma <em><strong>and</strong></em> file-backed vma.</p>

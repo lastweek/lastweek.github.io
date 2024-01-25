@@ -2360,17 +2360,17 @@ it will optmize away repeated memory accesses
 if it thinks the accessed variable/data is thread-local.
 For instance, the following code snippet shows how gcc -O2 removes the memory access part.
 Without -O2, a simple assembly loop is generated. With -O2, gcc generates a deadlock itself.</p>
-<div class="highlight"><pre><span></span><code><span class="w">          </span><span class="n">Original</span><span class="w"> </span><span class="n">C</span><span class="w">                        </span><span class="n">Assembly</span><span class="w">                 </span><span class="n">Assembly</span><span class="w"></span>
-<span class="w">                                            </span><span class="p">(</span><span class="n">gcc</span><span class="w"> </span><span class="o">-</span><span class="n">S</span><span class="p">)</span><span class="w">               </span><span class="p">(</span><span class="n">gcc</span><span class="w"> </span><span class="o">-</span><span class="n">S</span><span class="w"> </span><span class="o">-</span><span class="n">O2</span><span class="p">)</span><span class="w"></span>
-<span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w">                           </span><span class="o">|</span><span class="w">                            </span><span class="o">|</span><span class="w"></span>
-<span class="w">                                 </span><span class="o">|</span><span class="w"> </span><span class="p">.</span><span class="nl">L2</span><span class="p">:</span><span class="w">                       </span><span class="o">|</span><span class="w"> </span><span class="p">.</span><span class="nl">L2</span><span class="p">:</span><span class="w"></span>
-<span class="cm">/* Spin until x becomes true */</span><span class="w">  </span><span class="o">|</span><span class="w">     </span><span class="n">movl</span><span class="w">    </span><span class="n">x</span><span class="p">(</span><span class="o">%</span><span class="n">rip</span><span class="p">),</span><span class="w"> </span><span class="o">%</span><span class="n">eax</span><span class="w">  </span><span class="o">|</span><span class="w">     </span><span class="n">jmp</span><span class="w"> </span><span class="p">.</span><span class="n">L2</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="n">wait_for_x</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w">            </span><span class="o">|</span><span class="w">     </span><span class="n">cmpl</span><span class="w">    </span><span class="n">$1</span><span class="p">,</span><span class="w"> </span><span class="o">%</span><span class="n">eax</span><span class="w">       </span><span class="o">|</span><span class="w"></span>
-<span class="p">{</span><span class="w">                                </span><span class="o">|</span><span class="w">     </span><span class="n">je</span><span class="w">      </span><span class="p">.</span><span class="n">L2</span><span class="w">            </span><span class="o">|</span><span class="w"></span>
-<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w">           </span><span class="o">|</span><span class="w">                            </span><span class="o">|</span><span class="w"></span>
-<span class="w">                </span><span class="p">;</span><span class="w">                </span><span class="o">|</span><span class="w">                            </span><span class="o">|</span><span class="w"></span>
-<span class="p">}</span><span class="w">                                </span><span class="o">|</span><span class="w">                            </span><span class="o">|</span><span class="w"></span>
-</code></pre></div>
+<p><code>c
+          Original C                        Assembly                 Assembly
+                                            (gcc -S)               (gcc -S -O2)
+int x;                           |                            |
+                                 | .L2:                       | .L2:
+/* Spin until x becomes true */  |     movl    x(%rip), %eax  |     jmp .L2
+void wait_for_x(void)            |     cmpl    $1, %eax       |
+{                                |     je      .L2            |
+        while (x == 1)           |                            |
+                ;                |                            |
+}                                |                            |</code></p>
 <p><em>Why this is happening?</em> Because gcc thinks vairable <code>x</code> is thread-local and will not be accessed
 by multiple threads at the same time. Thus gcc thinks the above <code>while (x == 1) ;</code> check will never break,
 so generating an assembly deadlock jmp loop.</p>
@@ -2379,17 +2379,18 @@ In the following code snippet, there are two threads, A and B.
 Thread A wait until B change <code>x</code> to 1.
 If we compile with -O2, thread A will deadlock.
 And this was my bug above.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="cm">/* a global shared variable*/</span><span class="w"></span>
+<p>```c
+int x; /* a global shared variable*/</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>       Thread A                         Thread B
+</code></pre></div></td></tr></table></div>
 
-<span class="w">           </span><span class="n">Thread</span><span class="w"> </span><span class="n">A</span><span class="w">                         </span><span class="n">Thread</span><span class="w"> </span><span class="n">B</span><span class="w"></span>
-
-<span class="cm">/* Spin until x becomes true */</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="cm">/* Set x at some point */</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="n">wait_for_x</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w">            </span><span class="o">|</span><span class="w">   </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="p">{</span><span class="w">                                </span><span class="o">|</span><span class="w"> </span>
-<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w">           </span><span class="o">|</span><span class="w"> </span>
-<span class="w">                </span><span class="p">;</span><span class="w">                </span><span class="o">|</span><span class="w"> </span>
-<span class="p">}</span><span class="w">                                </span><span class="o">|</span><span class="w"> </span>
-</code></pre></div>
+<p>/* Spin until x becomes true <em>/  |   /</em> Set x at some point */
+void wait_for_x(void)            |   x = 1;
+{                                | 
+        while (x == 1)           | 
+                ;                | 
+}                                | 
+```</p>
 <p>The common approach, is to add <code>volatile</code> modifier, to explicitly express the concurrency issue.
 But <a href="https://github.com/torvalds/linux/blob/master/Documentation/process/volatile-considered-harmful.rst">volatile is considered harmful</a> by linux kernel, and I agree with it.</p>
 <p>I generally use <code>READ_ONCE</code>, <code>WRITE_ONCE</code>, <code>ACCESS_ONCE</code> macros.

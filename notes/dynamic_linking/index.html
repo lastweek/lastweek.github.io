@@ -538,51 +538,10 @@
     ld.so
   </a>
   
-    <nav class="md-nav" aria-label="ld.so">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#fun-fact-about-ld_preload" class="md-nav__link">
-    Fun fact about LD_PRELOAD
-  </a>
-  
 </li>
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#understanding" class="md-nav__link">
-    Understanding
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-kernel-loads-user-program" class="md-nav__link">
-    How Kernel Loads User Program
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-kernel-loads-kernel-module" class="md-nav__link">
-    How Kernel Loads Kernel Module
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    Summary
-  </a>
   
 </li>
       
@@ -2431,51 +2390,10 @@
     ld.so
   </a>
   
-    <nav class="md-nav" aria-label="ld.so">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#fun-fact-about-ld_preload" class="md-nav__link">
-    Fun fact about LD_PRELOAD
-  </a>
-  
 </li>
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#understanding" class="md-nav__link">
-    Understanding
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-kernel-loads-user-program" class="md-nav__link">
-    How Kernel Loads User Program
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-kernel-loads-kernel-module" class="md-nav__link">
-    How Kernel Loads Kernel Module
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    Summary
-  </a>
   
 </li>
       
@@ -2553,124 +2471,84 @@ You can run <code>man ld.so</code> to see more details.</p>
 <li><code>GOT[2]</code> points to <code>_dl_runtime_resolve()</code>! This is the runtime dynamic linker entry point.</li>
 </ul>
 <p>File <code>sysdep/generic/dl-machine.c</code> populates <code>GOT[1]</code> and <code>GOT[2]</code>.
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="cm">/* Set up the loaded object described by L so its unrelocated PLT</span>
-<span class="cm">   entries will jump to the on-demand fixup code in dl-runtime.c.  */</span><span class="w"></span>
+```c linenums=&rdquo;1&rdquo; hl_lines=&rdquo;16 20&rdquo;
+/* Set up the loaded object described by L so its unrelocated PLT
+   entries will jump to the on-demand fixup code in dl-runtime.c.  */</p>
+<p>static inline int
+elf_machine_runtime_setup (struct link_map *l, int lazy)
+{
+  extern void _dl_runtime_resolve (Elf32_Word);</p>
+<p>if (lazy)
+    {
+      /* The GOT entries for functions in the PLT have not yet been filled
+         in.  Their initial contents will arrange when called to push an
+         offset into the .rel.plt section, push <em>GLOBAL_OFFSET_TABLE</em>[1],
+         and then jump to _GLOBAL_OFFSET_TABLE[2].  <em>/
+      Elf32_Addr *got = (Elf32_Addr *) D_PTR (l, l_info[DT_PLTGOT]);
+      got[1] = (Elf32_Addr) l;  /</em> Identify this shared object.  */</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="cm">/* This function will get called to fix up the GOT entry indicated by</span>
+<span class="cm">     the offset on the stack, and then jump to the resolved address.  */</span>
+<span class="w">  </span><span class="nx">got</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="nx">Elf32_Addr</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">_dl_runtime_resolve</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
 
-<span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">int</span><span class="w"></span>
-<span class="nf">elf_machine_runtime_setup</span><span class="w"> </span><span class="p">(</span><span class="k">struct</span> <span class="nc">link_map</span><span class="w"> </span><span class="o">*</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">lazy</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">_dl_runtime_resolve</span><span class="w"> </span><span class="p">(</span><span class="n">Elf32_Word</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lazy</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="cm">/* The GOT entries for functions in the PLT have not yet been filled</span>
-<span class="cm">         in.  Their initial contents will arrange when called to push an</span>
-<span class="cm">         offset into the .rel.plt section, push _GLOBAL_OFFSET_TABLE_[1],</span>
-<span class="cm">         and then jump to _GLOBAL_OFFSET_TABLE[2].  */</span><span class="w"></span>
-<span class="w">      </span><span class="n">Elf32_Addr</span><span class="w"> </span><span class="o">*</span><span class="n">got</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Elf32_Addr</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">D_PTR</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">l_info</span><span class="p">[</span><span class="n">DT_PLTGOT</span><span class="p">]);</span><span class="w"></span>
-<span class="hll"><span class="w">      </span><span class="n">got</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Elf32_Addr</span><span class="p">)</span><span class="w"> </span><span class="n">l</span><span class="p">;</span><span class="w">  </span><span class="cm">/* Identify this shared object.  */</span><span class="w"></span>
-</span>
-<span class="w">      </span><span class="cm">/* This function will get called to fix up the GOT entry indicated by</span>
-<span class="cm">         the offset on the stack, and then jump to the resolved address.  */</span><span class="w"></span>
-<span class="hll"><span class="w">      </span><span class="n">got</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Elf32_Addr</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_dl_runtime_resolve</span><span class="p">;</span><span class="w"></span>
-</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">lazy</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table></p>
+<p>return lazy;
+}
+```</p>
 <p><code>_dl_runtime_resolve()</code> is architecture specific and has a mix of assembly and C code.
 The flow is similar to the syscall handling: it first saves the registers,
 then calling the actual resolver, then restore all saved registers.
 For 64bit x86, the source code is in <code>sysdeps/x86_64/dl-trampoline.h</code>:
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    <span class="na">.globl</span> <span class="no">_dl_runtime_resolve</span>
-    <span class="na">.type</span> <span class="no">_dl_runtime_resolve</span><span class="p">,</span> <span class="na">@function</span>
-<span class="nl">_dl_runtime_resolve:</span>
-    <span class="na">...</span>
-    <span class="na">...</span>
+```asm linenums=&rdquo;1&rdquo; hl_lines=&rdquo;11&rdquo;
+    .globl _dl_runtime_resolve
+    .type _dl_runtime_resolve, @function
+_dl_runtime_resolve:
+    &hellip;
+    &hellip;</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">#</span><span class="w"> </span><span class="n">Copy</span><span class="w"> </span><span class="n">args</span><span class="w"> </span><span class="n">pushed</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">PLT</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">register</span><span class="p">.</span>
+<span class="p">#</span><span class="w"> </span><span class="o">%</span><span class="nl">rdi:</span><span class="w"> </span><span class="n">link_map</span><span class="p">,</span><span class="w"> </span><span class="o">%</span><span class="nl">rsi:</span><span class="w"> </span><span class="n">reloc_index</span>
+<span class="n">mov</span><span class="w"> </span><span class="p">(</span><span class="n">LOCAL_STORAGE_AREA</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">8</span><span class="p">)(</span><span class="o">%</span><span class="n">BASE</span><span class="p">),</span><span class="w"> </span><span class="o">%</span><span class="n">RSI_LP</span>
+<span class="n">mov</span><span class="w"> </span><span class="n">LOCAL_STORAGE_AREA</span><span class="p">(</span><span class="o">%</span><span class="n">BASE</span><span class="p">),</span><span class="w"> </span><span class="o">%</span><span class="n">RDI_LP</span>
+<span class="n">call</span><span class="w"> </span><span class="n">_dl_fixup</span><span class="w">      </span><span class="p">#</span><span class="w"> </span><span class="n">Call</span><span class="w"> </span><span class="n">resolver</span><span class="p">.</span>
+<span class="n">mov</span><span class="w"> </span><span class="o">%</span><span class="n">RAX_LP</span><span class="p">,</span><span class="w"> </span><span class="o">%</span><span class="n">R11_LP</span><span class="w">    </span><span class="p">#</span><span class="w"> </span><span class="n">Save</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">value</span>
 
-    <span class="c1"># Copy args pushed by PLT in register.</span>
-    <span class="c1"># %rdi: link_map, %rsi: reloc_index</span>
-    <span class="nf">mov</span> <span class="p">(</span><span class="no">LOCAL_STORAGE_AREA</span> <span class="err">+</span> <span class="mi">8</span><span class="p">)(</span><span class="nv">%BASE</span><span class="p">),</span> <span class="nv">%RSI_LP</span>
-    <span class="nf">mov</span> <span class="no">LOCAL_STORAGE_AREA</span><span class="p">(</span><span class="nv">%BASE</span><span class="p">),</span> <span class="nv">%RDI_LP</span>
-<span class="hll">    <span class="nf">call</span> <span class="no">_dl_fixup</span>      <span class="c1"># Call resolver.</span>
-</span>    <span class="nf">mov</span> <span class="nv">%RAX_LP</span><span class="p">,</span> <span class="nv">%R11_LP</span>    <span class="c1"># Save return value</span>
+<span class="p">...</span>
+</code></pre></div></td></tr></table></div>
 
-    <span class="na">...</span>
-</code></pre></div>
-</td></tr></table></p>
+<p>```</p>
 <p>Bingo, <code>_dl_fixup()</code> is the final piece of the runtime dynamic linker resolver. We could find it in <code>elf/dl-runtime.c</code>, which is a file for on-demand PLT fixup.:
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="cm">/* This function is called through a special trampoline from the PLT the</span>
-<span class="cm">   first time each PLT entry is called.  We must perform the relocation</span>
-<span class="cm">   specified in the PLT of the given shared object, and return the resolved</span>
-<span class="cm">   function address to the trampoline, which will restart the original call</span>
-<span class="cm">   to that address.  Future calls will bounce directly from the PLT to the</span>
-<span class="cm">   function.  */</span><span class="w"></span>
+```c linenums=&rdquo;1&rdquo;
+/* This function is called through a special trampoline from the PLT the
+   first time each PLT entry is called.  We must perform the relocation
+   specified in the PLT of the given shared object, and return the resolved
+   function address to the trampoline, which will restart the original call
+   to that address.  Future calls will bounce directly from the PLT to the
+   function.  */</p>
+<p>DL_FIXUP_VALUE_TYPE
+attribute_hidden __attribute ((noinline)) ARCH_FIXUP_ATTRIBUTE
+_dl_fixup (</p>
+<h1 id="ifdef-elf_machine_runtime_fixup_args">ifdef ELF_MACHINE_RUNTIME_FIXUP_ARGS<a class="headerlink" href="#ifdef-elf_machine_runtime_fixup_args" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>   ELF_MACHINE_RUNTIME_FIXUP_ARGS,
+</code></pre></div></td></tr></table></div>
 
-<span class="n">DL_FIXUP_VALUE_TYPE</span><span class="w"></span>
-<span class="n">attribute_hidden</span><span class="w"> </span><span class="n">__attribute</span><span class="w"> </span><span class="p">((</span><span class="n">noinline</span><span class="p">))</span><span class="w"> </span><span class="n">ARCH_FIXUP_ATTRIBUTE</span><span class="w"></span>
-<span class="n">_dl_fixup</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="cp"># ifdef ELF_MACHINE_RUNTIME_FIXUP_ARGS</span>
-<span class="w">       </span><span class="n">ELF_MACHINE_RUNTIME_FIXUP_ARGS</span><span class="p">,</span><span class="w"></span>
-<span class="cp"># endif</span>
-<span class="w">       </span><span class="k">struct</span> <span class="nc">link_map</span><span class="w"> </span><span class="o">*</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">ElfW</span><span class="p">(</span><span class="n">Word</span><span class="p">)</span><span class="w"> </span><span class="n">reloc_arg</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table></p>
+<h1 id="endif">endif<a class="headerlink" href="#endif" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>   struct link_map *l, ElfW(Word) reloc_arg)
+</code></pre></div></td></tr></table></div>
+
+<p>{
+    &hellip;
+}
+```</p>
 <p>Understanding this piece of code requires some effort. Happy hacking!</p>
 <h4 id="fun-fact-about-ld_preload">Fun fact about LD_PRELOAD<a class="headerlink" href="#fun-fact-about-ld_preload" title="Permanent link">&para;</a></h4>
 <p>If you use <code>LD_PRELOAD</code> to run a program,
@@ -2727,121 +2605,63 @@ and then invoke the dynamic linker <code>ld.so</code> instead of invoking user E
 Those modules are ELF binaries.
 Let&rsquo;s first examine those binaries and see how kernel parses them.</p>
 <p>Suppose we have this simple C module code:
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">printk</span><span class="p">(</span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">hello_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">printk</span><span class="p">(</span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">printk</span><span class="p">(</span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">foo</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table></p>
+```c linenums=&rdquo;1&rdquo;
+int foo(void)
+{
+    printk(&ldquo;Hello World!\n&rdquo;);
+}</p>
+<p>static int hello_init(void)
+{
+    printk(&ldquo;Hello World!\n&rdquo;);
+    printk(&ldquo;Hello World!\n&rdquo;);
+    foo();
+    return 0;
+}
+```</p>
 <p>Once you compile it into a kernel module, we can examine the binary
 by using <code>objdump -dx hello.ko</code>.
 Those highlighted lines mark some of the dynamic linking slots.
 They will be patched by basic load-time relocation.
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Disassembly of section .text.unlikely:
-
-0000000000000000 &lt;foo&gt;:
-   0:   e8 00 00 00 00          callq  5 &lt;foo+0x5&gt;
-                        1: R_X86_64_PLT32       __fentry__-0x4
+``` linenums=&rdquo;1&rdquo; hl_lines=&rdquo;19-23&rdquo;
+Disassembly of section .text.unlikely:</p>
+<p>0000000000000000 <foo>:
+   0:   e8 00 00 00 00          callq  5 <foo+0x5>
+                        1: R_X86_64_PLT32       <strong>fentry</strong>-0x4
    5:   55                      push   %rbp
    6:   48 c7 c7 00 00 00 00    mov    $0x0,%rdi
                         9: R_X86_64_32S .rodata.str1.1
    d:   48 89 e5                mov    %rsp,%rbp
-  10:   e8 00 00 00 00          callq  15 &lt;foo+0x15&gt;
+  10:   e8 00 00 00 00          callq  15 <foo+0x15>
                         11: R_X86_64_PLT32      printk-0x4
   15:   5d                      pop    %rbp
-  16:   c3                      retq   
-
-0000000000000017 &lt;init_module&gt;:
-  17:   e8 00 00 00 00          callq  1c &lt;init_module+0x5&gt;
-                        18: R_X86_64_PLT32      __fentry__-0x4
+  16:   c3                      retq   </p>
+<p>0000000000000017 <init_module>:
+  17:   e8 00 00 00 00          callq  1c <init_module+0x5>
+                        18: R_X86_64_PLT32      <strong>fentry</strong>-0x4
   1c:   55                      push   %rbp
-<span class="hll">  1d:   48 c7 c7 00 00 00 00    mov    $0x0,%rdi
-</span><span class="hll">                        20: R_X86_64_32S        .rodata.str1.1
-</span><span class="hll">  24:   48 89 e5                mov    %rsp,%rbp
-</span><span class="hll">  27:   e8 00 00 00 00          callq  2c &lt;init_module+0x15&gt;
-</span><span class="hll">                        28: R_X86_64_PLT32      printk-0x4
-</span>  2c:   48 c7 c7 00 00 00 00    mov    $0x0,%rdi
+  1d:   48 c7 c7 00 00 00 00    mov    $0x0,%rdi
+                        20: R_X86_64_32S        .rodata.str1.1
+  24:   48 89 e5                mov    %rsp,%rbp
+  27:   e8 00 00 00 00          callq  2c <init_module+0x15>
+                        28: R_X86_64_PLT32      printk-0x4
+  2c:   48 c7 c7 00 00 00 00    mov    $0x0,%rdi
                         2f: R_X86_64_32S        .rodata.str1.1
-  33:   e8 00 00 00 00          callq  38 &lt;init_module+0x21&gt;
+  33:   e8 00 00 00 00          callq  38 <init_module+0x21>
                         34: R_X86_64_PLT32      printk-0x4
-  38:   e8 00 00 00 00          callq  3d &lt;init_module+0x26&gt;
+  38:   e8 00 00 00 00          callq  3d <init_module+0x26>
                         39: R_X86_64_PLT32      foo-0x4
   3d:   31 c0                   xor    %eax,%eax
   3f:   5d                      pop    %rbp
-  40:   c3                      retq   
-</code></pre></div>
-</td></tr></table></p>
+  40:   c3                      retq <br />
+```</p>
 <p>It is also worth checking out the <code>.symtab</code> section.
 If your module is using kernel functions or variables,
 the compiler does not know their precise addresses during compile time.
 The compiler will add several entries into the <code>.symtab</code> with properties
 marked as <code>GLOBAL, UND</code>. For example, you can run <code>readelf -s hello.ko</code>
 to check that. I will post part of the output:
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Symbol table &#39;.symtab&#39; contains 29 entries:
+<code>linenums="1"
+Symbol table '.symtab' contains 29 entries:
    Num:    Value          Size Type    Bind   Vis      Ndx Name
      0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
      1: 0000000000000000     0 SECTION LOCAL  DEFAULT    1 
@@ -2855,9 +2675,7 @@ to check that. I will post part of the output:
     25: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __fentry__
     26: 0000000000000017    42 FUNC    GLOBAL DEFAULT    5 init_module
     27: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND printk
-    28: 0000000000000000    23 FUNC    GLOBAL DEFAULT    5 foo
-</code></pre></div>
-</td></tr></table></p>
+    28: 0000000000000000    23 FUNC    GLOBAL DEFAULT    5 foo</code></p>
 <p>The <code>simplify_symbols()</code> below will find the kernel virtual addresses
 for UNDEF symbols in the <code>.symtab</code> section. Those will further be
 used to patch dynamic relocation entries.</p>
@@ -2869,74 +2687,44 @@ Within that, it calls the big function <code>load_module()</code>.</p>
 <p>In the begining of <code>load_module()</code>, there are some
 usual tasks examining ELF headers, allocating memory etc.
 After that, kernel will try to find the addresses for UNDEF symbols:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">kernel</span><span class="o">/</span><span class="n">module</span><span class="p">.</span><span class="n">c</span><span class="w"> </span><span class="n">load_module</span><span class="p">()</span><span class="w"></span>
-<span class="w">        </span><span class="cm">/* Fix up syms, so that st_value is a pointer to location. */</span><span class="w"></span>
-<span class="w">        </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">simplify_symbols</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
-<span class="w">                </span><span class="k">goto</span><span class="w"> </span><span class="n">free_modinfo</span><span class="p">;</span><span class="w"></span>
+<p>```c linenums=&rdquo;1&rdquo;
+kernel/module.c load_module()
+        /* Fix up syms, so that st_value is a pointer to location. */
+        err = simplify_symbols(mod, info);
+        if (err &lt; 0)
+                goto free_modinfo;</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    err = apply_relocations(mod, info);
+    if (err &lt; 0)
+            goto free_modinfo;
+</code></pre></div></td></tr></table></div>
 
-<span class="w">        </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">apply_relocations</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
-<span class="w">                </span><span class="k">goto</span><span class="w"> </span><span class="n">free_modinfo</span><span class="p">;</span><span class="w"></span>
-
-<span class="o">==&gt;</span><span class="w"></span>
-
-<span class="n">This</span><span class="w"> </span><span class="n">function</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">find</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">kernel</span><span class="w"> </span><span class="n">virtual</span><span class="w"> </span><span class="n">addresses</span><span class="w"></span>
-<span class="k">for</span><span class="w"> </span><span class="n">UNDEF</span><span class="w"> </span><span class="n">symbols</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="err">`</span><span class="p">.</span><span class="n">symtab</span><span class="err">`</span><span class="w"> </span><span class="n">section</span><span class="p">.</span><span class="w"></span>
-
-<span class="n">simplify_symbols</span><span class="p">()</span><span class="w"></span>
-<span class="w">              </span><span class="k">case</span><span class="w"> </span><span class="nl">SHN_UNDEF</span><span class="p">:</span><span class="w"></span>
-<span class="w">                        </span><span class="n">ksym</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resolve_symbol_wait</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">);</span><span class="w"></span>
-<span class="w">                        </span><span class="cm">/* Ok if resolved.  */</span><span class="w"></span>
-<span class="w">                        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ksym</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">IS_ERR</span><span class="p">(</span><span class="n">ksym</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                                </span><span class="n">sym</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">st_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kernel_symbol_value</span><span class="p">(</span><span class="n">ksym</span><span class="p">);</span><span class="w"></span>
-<span class="w">                                </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
-<span class="w">                        </span><span class="p">}</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table>
+<p>==&gt;</p>
+<p>This function will find the kernel virtual addresses
+for UNDEF symbols in the <code>.symtab</code> section.</p>
+<p>simplify_symbols()
+              case SHN_UNDEF:
+                        ksym = resolve_symbol_wait(mod, info, name);
+                        /* Ok if resolved.  */
+                        if (ksym &amp;&amp; !IS_ERR(ksym)) {
+                                sym[i].st_value = kernel_symbol_value(ksym);
+                                break;
+                        }
+```</p>
 <p>After resolving symbols to the real kernel virtual addresses,
 the next step is to patch the code to update all the relocation entries.
 If will do so for sections with these two types: <code>SHT_REL</code> and <code>SHT_RELA</code>.
 It looks like x86_64 is only using <code>apply_relocate_add()</code>, the one with explict addends.
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">kernel</span><span class="o">/</span><span class="n">module</span><span class="p">.</span><span class="n">c</span><span class="w"> </span><span class="n">apply_relocations</span><span class="p">()</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">info</span><span class="o">-&gt;</span><span class="n">sechdrs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">sh_type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SHT_REL</span><span class="p">)</span><span class="w"></span>
-<span class="w">                        </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">apply_relocate</span><span class="p">(</span><span class="n">info</span><span class="o">-&gt;</span><span class="n">sechdrs</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="o">-&gt;</span><span class="n">strtab</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                             </span><span class="n">info</span><span class="o">-&gt;</span><span class="n">index</span><span class="p">.</span><span class="n">sym</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">mod</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">info</span><span class="o">-&gt;</span><span class="n">sechdrs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">sh_type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SHT_RELA</span><span class="p">)</span><span class="w"></span>
-<span class="w">                        </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">apply_relocate_add</span><span class="p">(</span><span class="n">info</span><span class="o">-&gt;</span><span class="n">sechdrs</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="o">-&gt;</span><span class="n">strtab</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                                 </span><span class="n">info</span><span class="o">-&gt;</span><span class="n">index</span><span class="p">.</span><span class="n">sym</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">mod</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table></p>
+<code>c linenums="1"
+kernel/module.c apply_relocations()
+        ...
+                else if (info-&gt;sechdrs[i].sh_type == SHT_REL)
+                        err = apply_relocate(info-&gt;sechdrs, info-&gt;strtab,
+                                             info-&gt;index.sym, i, mod);
+                else if (info-&gt;sechdrs[i].sh_type == SHT_RELA)
+                        err = apply_relocate_add(info-&gt;sechdrs, info-&gt;strtab,
+                                                 info-&gt;index.sym, i, mod);</code></p>
 <p>Zoom into <code>apply_relocate_add()</code>, very interesting function.
 It is similar to the userspace linker ld.so.
 It could be summarized as follows:</p>

@@ -2395,24 +2395,24 @@
 <h2 id="data-worth-a-billion">Data Worth a Billion<a class="headerlink" href="#data-worth-a-billion" title="Permanent link">&para;</a></h2>
 <p>Pcache-reclaim, or any other object reclaim, need some <strong>data</strong> to algorithm about. So specific algorithm can select the <code>best</code> candidate to reclaim. In reality, algorithms are designed quite well, but <strong>how to get the data</strong> part becomes extremely hard. I think this applies to many different systems.</p>
 <p>For example, to select the hot pages in x86 is notorious hard because x86 hardware only provides a <code>Referenced</code> bit for system software to reason about. To make it worse, <code>Referenced</code> bit is cached in TLB, which means CPU will <em>NOT</em>  set the <code>Referenced</code> bit even you reset in PTE, because CPU think the bit is already set. In order to get an <em>accurate</em> hot pages tracking, you probably need a TLB flush after reset <code>Referenced</code> bit. But, are you kidding me, a TLB flush after each reset? We have to say NO here. The Linux code explains it well:
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">ptep_clear_flush_young</span><span class="p">(</span><span class="n">pte_t</span><span class="w"> </span><span class="o">*</span><span class="n">ptep</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="cm">/*</span>
-<span class="cm">         * On x86 CPUs, clearing the accessed bit without a TLB flush</span>
-<span class="cm">         * doesn&#39;t cause data corruption. [ It could cause incorrect</span>
-<span class="cm">         * page aging and the (mistaken) reclaim of hot pages, but the</span>
-<span class="cm">         * chance of that should be relatively low. ]</span>
-<span class="cm">         *</span>
-<span class="cm">         * So as a performance optimization don&#39;t flush the TLB when</span>
-<span class="cm">         * clearing the accessed bit, it will eventually be flushed by</span>
-<span class="cm">         * a context switch or a VM operation anyway. [ In the rare</span>
-<span class="cm">         * event of it not getting flushed for a long time the delay</span>
-<span class="cm">         * shouldn&#39;t really matter because there&#39;s no real memory</span>
-<span class="cm">         * pressure for swapout to react to. ]</span>
-<span class="cm">         */</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ptep_test_and_clear_young</span><span class="p">(</span><span class="n">ptep</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div></p>
+<code>c
+static inline int ptep_clear_flush_young(pte_t *ptep)
+{
+        /*
+         * On x86 CPUs, clearing the accessed bit without a TLB flush
+         * doesn't cause data corruption. [ It could cause incorrect
+         * page aging and the (mistaken) reclaim of hot pages, but the
+         * chance of that should be relatively low. ]
+         *
+         * So as a performance optimization don't flush the TLB when
+         * clearing the accessed bit, it will eventually be flushed by
+         * a context switch or a VM operation anyway. [ In the rare
+         * event of it not getting flushed for a long time the delay
+         * shouldn't really matter because there's no real memory
+         * pressure for swapout to react to. ]
+         */
+        return ptep_test_and_clear_young(ptep);
+}</code></p>
 <h2 id="aggressiveness">Aggressiveness<a class="headerlink" href="#aggressiveness" title="Permanent link">&para;</a></h2>
 <p>An aggressive sweep algorithm will disturb the normal operations a lot. In Lego, there 4 main factors that define the aggressiveness:</p>
 <ul>

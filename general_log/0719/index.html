@@ -2394,14 +2394,14 @@ I&rsquo;m first trying <em>Round-Robin</em>.</p>
 <p>Try TF Cifar. First run without pgadvance, see how
 the first 100 step performs in different runs.
 They seem to be very stable.
-<div class="highlight"><pre><span></span><code><span class="m">1</span><span class="o">)</span>
-    <span class="nv">step</span> <span class="o">=</span> <span class="m">100</span> <span class="o">(</span><span class="m">167</span>.432 sec<span class="o">)</span>
-<span class="m">2</span><span class="o">)</span>
-    <span class="nv">step</span> <span class="o">=</span> <span class="m">100</span> <span class="o">(</span><span class="m">168</span>.021 sec<span class="o">)</span>
-    <span class="nv">step</span> <span class="o">=</span> <span class="m">200</span> <span class="o">(</span><span class="m">167</span>.467 sec<span class="o">)</span>
-<span class="m">3</span><span class="o">)</span>
-    <span class="nv">step</span> <span class="o">=</span> <span class="m">100</span> <span class="o">(</span><span class="m">167</span>.903 sec<span class="o">)</span>
-</code></pre></div></p>
+<code>bash
+1)
+    step = 100 (167.432 sec)
+2)
+    step = 100 (168.021 sec)
+    step = 200 (167.467 sec)
+3)
+    step = 100 (167.903 sec)</code></p>
 <p>DAMN. Forgot to turn off huge page.
 Now use <code>perf</code> to make sure <code>do_anonymous_page</code> got enough cycles..</p>
 <p>22/23 down, no pgadvance, 163, 161, 161
@@ -2422,7 +2422,8 @@ I&rsquo;m reporting CPU cycles, CPU frequency change shouldn&rsquo;t matter, rig
 optimize 0-order allocation. In my test case,
 each CPU keep 7 free pages. The patten is reflected
 in the measurement. Note that, the refill is sync.</p>
-<div class="highlight"><pre><span></span><code>&quot;&quot;&quot; (latency in CPU cycles. 2.4GHz Xeon E5 v3) &quot;&quot;&quot;
+<p><code>hl_lines="16"
+""" (latency in CPU cycles. 2.4GHz Xeon E5 v3) """
 ...
 [ 1043.789257] idx=11956    order=0        latency=3128
 [ 1043.789257] idx=11957    order=0        latency=376 
@@ -2437,8 +2438,8 @@ in the measurement. Note that, the refill is sync.</p>
 [ 1043.789261] idx=11966    order=0        latency=392 
 [ 1043.789261] idx=11967    order=0        latency=360 
 [ 1043.789262] idx=11968    order=0        latency=360 
-<span class="hll">[ 1043.789262] idx=11969    order=0        latency=376 
-</span>[ 1043.789262] idx=11970    order=0        latency=2992
+[ 1043.789262] idx=11969    order=0        latency=376 
+[ 1043.789262] idx=11970    order=0        latency=2992
 [ 1043.789263] idx=11971    order=0        latency=29930
 [ 1043.789263] idx=11972    order=0        latency=171
 [ 1043.789264] idx=11973    order=0        latency=156
@@ -2460,8 +2461,7 @@ in the measurement. Note that, the refill is sync.</p>
 [ 1043.789270] idx=11989    order=0        latency=174
 [ 1043.789270] idx=11990    order=0        latency=171
 [ 1043.789270] idx=11991    order=0        latency=1266
-...
-</code></pre></div>
+...</code></p>
                 
                   
                     

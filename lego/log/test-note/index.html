@@ -2437,22 +2437,19 @@
 <h2 id="cpu-freq">CPU Freq<a class="headerlink" href="#cpu-freq" title="Permanent link">&para;</a></h2>
 <p>For fair comparision, we disable cpu freq tuning (because lego does not have it. shame!):</p>
 <p>Add this to boot kernel command parameter:
-<div class="highlight"><pre><span></span><code>intel_pstate=disable
-</code></pre></div></p>
+<code>intel_pstate=disable</code></p>
 <h2 id="swap-to-ssd">swap-to-ssd<a class="headerlink" href="#swap-to-ssd" title="Permanent link">&para;</a></h2>
 <p>Please remember to clear the page cache!
-<div class="highlight"><pre><span></span><code>echo 3 &gt; /proc/sys/vm/drop_caches
+<code>echo 3 &gt; /proc/sys/vm/drop_caches
 rm -rf /tmp/mnist_model/
-lxc-execute -n test -s lxc.cgroup.memory.limit_in_bytes=128M -- python mnist.py
-</code></pre></div></p>
+lxc-execute -n test -s lxc.cgroup.memory.limit_in_bytes=128M -- python mnist.py</code></p>
 <h2 id="swap-to-ramdisk">swap-to-ramdisk<a class="headerlink" href="#swap-to-ramdisk" title="Permanent link">&para;</a></h2>
 <p>Please note we are using BLK_DEV_RAM, a block device based on RAM. We are NOT using tmpfs or ramfs. The difference is:.
-<div class="highlight"><pre><span></span><code>modprobe brd rd_size=16777216
+<code>modprobe brd rd_size=16777216
 dd if=/dev/zero of=/dev/ram0 bs=4K
 mkswap /dev/ram0
 swapon /dev/ram0
-swapoff others
-</code></pre></div></p>
+swapoff others</code></p>
 <h2 id="accelio-and-nbdx">Accelio and nbdX<a class="headerlink" href="#accelio-and-nbdx" title="Permanent link">&para;</a></h2>
 <p>Follow <a href="https://community.mellanox.com/docs/DOC-2113">this</a>, and <a href="https://community.mellanox.com/docs/DOC-1528">this</a>.</p>
 <p>Tested with</p>
@@ -2467,24 +2464,22 @@ swapoff others
 <li>Stick with 3.13 at both client and server. Client with 3.19 will crash</li>
 </ul>
 <p>Server:
-<div class="highlight"><pre><span></span><code>touch /mnt/ssd/swap
-truncate -s +4G /mnt/ssd/swap
-
-raio_server -a 10.0.0.X -p 5555 -t rdma -f 0
-</code></pre></div></p>
+```
+touch /mnt/ssd/swap
+truncate -s +4G /mnt/ssd/swap</p>
+<p>raio_server -a 10.0.0.X -p 5555 -t rdma -f 0
+```</p>
 <p>Client:
-<div class="highlight"><pre><span></span><code>modprobe xio_rdma; modprobe xio_tcp
-modprobe nbdx
-
-nbdxadm -o create_host -i 0 -p &quot;10.0.0.X:5555&quot;
-nbdxadm -o create_device -i 0 -d 0 -f &quot;/mnt/ssd/swap&quot;
-
-nbdxadm -o show_all_devices
-
-mkswap /dev/nbdx0
+```
+modprobe xio_rdma; modprobe xio_tcp
+modprobe nbdx</p>
+<p>nbdxadm -o create_host -i 0 -p &ldquo;10.0.0.X:5555&rdquo;
+nbdxadm -o create_device -i 0 -d 0 -f &ldquo;/mnt/ssd/swap&rdquo;</p>
+<p>nbdxadm -o show_all_devices</p>
+<p>mkswap /dev/nbdx0
 swapon /dev/nbdx0
 swapoff others
-</code></pre></div></p>
+```</p>
 <h2 id="infiniswap">Infiniswap<a class="headerlink" href="#infiniswap" title="Permanent link">&para;</a></h2>
 <p>Tested with</p>
 <ul>
@@ -2495,21 +2490,19 @@ swapoff others
 <p>Note</p>
 <p>1.
 At server side, use server ib0&rsquo;s IP address:</p>
-<div class="highlight"><pre><span></span><code><span class="cp"># ifconfig</span>
-<span class="nl">ib0</span><span class="p">:</span><span class="w"> </span><span class="n">flags</span><span class="o">=</span><span class="mi">4163</span><span class="o">&lt;</span><span class="n">UP</span><span class="p">,</span><span class="n">BROADCAST</span><span class="p">,</span><span class="n">RUNNING</span><span class="p">,</span><span class="n">MULTICAST</span><span class="o">&gt;</span><span class="w">  </span><span class="n">mtu</span><span class="w"> </span><span class="mi">2044</span><span class="w"></span>
-<span class="w">        </span><span class="n">inet</span><span class="w"> </span><span class="mf">10.0.0.67</span><span class="w">  </span><span class="n">netmask</span><span class="w"> </span><span class="mf">255.255.255.0</span><span class="w">  </span><span class="n">broadcast</span><span class="w"> </span><span class="mf">10.0.0.255</span><span class="w"></span>
-
-<span class="p">.</span><span class="o">/</span><span class="n">infiniswap</span><span class="o">-</span><span class="n">daemon</span><span class="w"> </span><span class="mf">10.0.0.67</span><span class="w"> </span><span class="mi">9400</span><span class="w"></span>
-</code></pre></div>
+<p>```c</p>
+<h1 id="ifconfig">ifconfig<a class="headerlink" href="#ifconfig" title="Permanent link">&para;</a></h1>
+<p>ib0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 2044
+        inet 10.0.0.67  netmask 255.255.255.0  broadcast 10.0.0.255</p>
+<p>./infiniswap-daemon 10.0.0.67 9400
+```</p>
 <p>At client side, use server ib0&rsquo;s IP in portal.list:
-<div class="highlight"><pre><span></span><code>1
-10.0.0.67:9400
-</code></pre></div></p>
+<code>1
+10.0.0.67:9400</code></p>
 <p>2.
 At client side, change the <code>BACKUP_DISK</code> to an unused disk, and use a CORRECT one! Otherwise, wait for kernel panic, ugh.
-<div class="highlight"><pre><span></span><code>Use HDD such as /dev/sdb
-A SSD will kill Infiniswap.
-</code></pre></div></p>
+<code>Use HDD such as /dev/sdb
+A SSD will kill Infiniswap.</code></p>
 <p>3.
 Also, looks like we need to remove <code>memmap</code> from kernel parameter.</p>
                 

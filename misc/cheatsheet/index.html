@@ -679,69 +679,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#markdown" class="md-nav__link">
-    Markdown
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tmux" class="md-nav__link">
-    tmux
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bash" class="md-nav__link">
-    bash
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#git" class="md-nav__link">
-    Git
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#qemu" class="md-nav__link">
-    QEMU
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-centos-on-dell-poweredge" class="md-nav__link">
-    Install CentOS on Dell PowerEdge
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#avoid-typing-ssh-password" class="md-nav__link">
-    Avoid Typing SSH Password
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#grub2-on-ubuntu" class="md-nav__link">
-    GRUB2 on Ubuntu
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#migrate-to-ubuntu-from-macos" class="md-nav__link">
-    Migrate to Ubuntu From MacOS
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2448,69 +2385,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#markdown" class="md-nav__link">
-    Markdown
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tmux" class="md-nav__link">
-    tmux
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bash" class="md-nav__link">
-    bash
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#git" class="md-nav__link">
-    Git
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#qemu" class="md-nav__link">
-    QEMU
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-centos-on-dell-poweredge" class="md-nav__link">
-    Install CentOS on Dell PowerEdge
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#avoid-typing-ssh-password" class="md-nav__link">
-    Avoid Typing SSH Password
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#grub2-on-ubuntu" class="md-nav__link">
-    GRUB2 on Ubuntu
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#migrate-to-ubuntu-from-macos" class="md-nav__link">
-    Migrate to Ubuntu From MacOS
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2537,29 +2411,29 @@
 <ul>
 <li>
 <p>Server side: Start server on certain port with certain geometry:
-<div class="highlight"><pre><span></span><code>vncserver :66 -geometry 1920x1080
-</code></pre></div></p>
+<code>vncserver :66 -geometry 1920x1080</code></p>
 </li>
 <li>
 <p>Client side: for safety, use SSH tunnel.</p>
 <ul>
 <li><code>-p 22</code>: ssh port is 22</li>
 <li><code>-L 7777:localhost:5966</code>: Forward localhost&rsquo;s 7777 to server&rsquo;s 5966
-<div class="highlight"><pre><span></span><code>Step 1)
-ssh -p 22 -v -C -L 7777:localhost:5966 root@yourserver.com
-
-Step 2)
-Use VNC client to establish connection with localhost:7777
-</code></pre></div></li>
+```
+Step 1)
+ssh -p 22 -v -C -L 7777:localhost:5966 <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#114;&#111;&#111;&#116;&#64;&#121;&#111;&#117;&#114;&#115;&#101;&#114;&#118;&#101;&#114;&#46;&#99;&#111;&#109;">&#114;&#111;&#111;&#116;&#64;&#121;&#111;&#117;&#114;&#115;&#101;&#114;&#118;&#101;&#114;&#46;&#99;&#111;&#109;</a></li>
 </ul>
 </li>
 </ul>
+<p>Step 2)
+Use VNC client to establish connection with localhost:7777
+```</p>
 <h2 id="virsh">virsh<a class="headerlink" href="#virsh" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Pass commands to QEMU in the virsh bash:
-<div class="highlight"><pre><span></span><code># qemu-monitor-command guest_os_id --hmp &quot;info cpus&quot;
-</code></pre></div></li>
+```</li>
 </ul>
+<h1 id="qemu-monitor-command-guest_os_id-hmp-info-cpus">qemu-monitor-command guest_os_id &ndash;hmp &ldquo;info cpus&rdquo;<a class="headerlink" href="#qemu-monitor-command-guest_os_id-hmp-info-cpus" title="Permanent link">&para;</a></h1>
+<p>```</p>
 <h2 id="markdown">Markdown<a class="headerlink" href="#markdown" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://www.webpagefx.com/tools/emoji-cheat-sheet/">Emoji cheatsheet</a></li>
@@ -2570,58 +2444,54 @@ Use VNC client to establish connection with localhost:7777
 </ul>
 <h2 id="bash">bash<a class="headerlink" href="#bash" title="Permanent link">&para;</a></h2>
 <ul>
-<li>
-<p>Show current git branch in PS1:
-<div class="highlight"><pre><span></span><code>parse_git_branch<span class="o">()</span> <span class="o">{</span>
-     git branch <span class="m">2</span>&gt; /dev/null <span class="p">|</span> sed -e <span class="s1">&#39;/^[^*]/d&#39;</span> -e <span class="s1">&#39;s/* \(.*\)/ git:(\1)/&#39;</span>
-<span class="o">}</span>
-
-<span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;\[\e[32m\][\u@\h: \W\e[33m\]\$(parse_git_branch)\[\033[32m\]]\[\e[00m\] </span>$<span class="s2"> &quot;</span>
-</code></pre></div></p>
-</li>
-<li>
-<p>Forward <code>man</code> pages to <code>vim</code>:
-<div class="highlight"><pre><span></span><code>vman<span class="o">()</span> <span class="o">{</span> man <span class="nv">$*</span> <span class="p">|</span> col -b <span class="p">|</span> vim -c <span class="s1">&#39;set ft=man nomod nolist&#39;</span> -<span class="p">;</span> <span class="o">}</span>    
-<span class="nb">alias</span> <span class="nv">man</span><span class="o">=</span><span class="s2">&quot;vman&quot;</span>
-</code></pre></div></p>
-</li>
+<li>Show current git branch in PS1:
+```bash
+parse_git_branch() {
+     git branch 2&gt; /dev/null | sed -e &lsquo;/<sup>[</sup><em>]/d&rsquo; -e &lsquo;s/</em> <span class="arithmatex"><span class="MathJax_Preview">.*</span><script type="math/tex">.*</script></span>/ git:(\1)/&rsquo;
+}</li>
+</ul>
+<p>PS1=&rdquo;[\e[32m][\u@\h: \W\e[33m]$(parse_git_branch)[\033[32m]][\e[00m] $ &rdquo;
+```</p>
+<ul>
+<li>Forward <code>man</code> pages to <code>vim</code>:
+<code>bash
+vman() { man $* | col -b | vim -c 'set ft=man nomod nolist' -; }    
+alias man="vman"</code></li>
 </ul>
 <h2 id="git">Git<a class="headerlink" href="#git" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>git log --pretty=&quot;%C(Yellow)%h %C(auto)%d (%C(Green)%cr%C(reset))%x09 %C(Cyan)%an: %C(reset)%s&quot; --date=short --graph
-</code></pre></div>
+<p><code>git log --pretty="%C(Yellow)%h %C(auto)%d (%C(Green)%cr%C(reset))%x09 %C(Cyan)%an: %C(reset)%s" --date=short --graph</code></p>
 <h2 id="qemu">QEMU<a class="headerlink" href="#qemu" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Run standalone kernel:
-<div class="highlight"><pre><span></span><code><span class="c1"># Create a new directory to store the serial output from printk().</span>
-<span class="nv">OUTPUT_DIR</span><span class="o">=</span><span class="s2">&quot;test-output&quot;</span>
-<span class="k">if</span> <span class="o">[</span> -e <span class="nv">$OUTPUT_DIR</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-        <span class="k">if</span> <span class="o">[</span> -f <span class="nv">$OUTPUT_DIR</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-                <span class="nb">echo</span> <span class="s2">&quot;ERROR: </span><span class="nv">$OUTPUT_DIR</span><span class="s2"> is not a directly&quot;</span>
-                <span class="nb">exit</span> <span class="m">1</span>
-        <span class="k">fi</span>
-<span class="k">else</span>
-        mkdir -p <span class="nv">$OUTPUT_DIR</span>
-<span class="k">fi</span>
-
-<span class="nv">KERNEL</span><span class="o">=</span><span class="s2">&quot;arch/x86_64/boot/bzImage&quot;</span>
-<span class="nv">KERNEL_PARAM</span><span class="o">=</span><span class="s2">&quot;console=ttyS0 earlyprintk=serial,ttyS0,115200&quot;</span>
-<span class="nv">SERIAL</span><span class="o">=</span><span class="s2">&quot;-serial file:</span><span class="nv">$OUTPUT_DIR</span><span class="s2">/ttyS0 -serial file:</span><span class="nv">$OUTPUT_DIR</span><span class="s2">/ttyS1&quot;</span>
-
-<span class="c1"># -cpu Haswell,+tsc,+sse,+xsave,+aes,+avx,+erms,+pdpe1gb,+pge \</span>
-<span class="c1"># Above -cpu option may not work with some kernels.</span>
-qemu-system-x86_64 -s  <span class="se">\</span>
-        -nographic <span class="se">\</span>
-        -kernel <span class="nv">$KERNEL</span> -append <span class="s2">&quot;</span><span class="nv">$KERNEL_PARAM</span><span class="s2">&quot;</span> <span class="se">\</span>
-        -no-reboot <span class="se">\</span>
-        -d int,cpu_reset -D <span class="nv">$OUTPUT_DIR</span>/qemu.log <span class="se">\</span>
-        <span class="nv">$SERIAL</span> <span class="se">\</span>
-        -m 16G <span class="se">\</span>
-        -monitor stdio <span class="se">\</span>
-        -smp <span class="nv">cpus</span><span class="o">=</span><span class="m">24</span>,cores<span class="o">=</span><span class="m">12</span>,threads<span class="o">=</span><span class="m">2</span>,sockets<span class="o">=</span><span class="m">2</span> <span class="se">\</span>
-        -numa node,cpus<span class="o">=</span><span class="m">0</span>-11,mem<span class="o">=</span>8G,nodeid<span class="o">=</span><span class="m">0</span> <span class="se">\</span>
-        -numa node,cpus<span class="o">=</span><span class="m">12</span>-23,mem<span class="o">=</span>8G,nodeid<span class="o">=</span><span class="m">1</span>
-</code></pre></div></li>
+```bash</li>
 </ul>
+<h1 id="create-a-new-directory-to-store-the-serial-output-from-printk">Create a new directory to store the serial output from printk().<a class="headerlink" href="#create-a-new-directory-to-store-the-serial-output-from-printk" title="Permanent link">&para;</a></h1>
+<p>OUTPUT_DIR=&rdquo;test-output&rdquo;
+if [ -e $OUTPUT_DIR ]; then
+        if [ -f $OUTPUT_DIR ]; then
+                echo &ldquo;ERROR: $OUTPUT_DIR is not a directly&rdquo;
+                exit 1
+        fi
+else
+        mkdir -p $OUTPUT_DIR
+fi</p>
+<p>KERNEL=&rdquo;arch/x86_64/boot/bzImage&rdquo;
+KERNEL_PARAM=&rdquo;console=ttyS0 earlyprintk=serial,ttyS0,115200&rdquo;
+SERIAL=&rdquo;-serial file:<span class="arithmatex"><span class="MathJax_Preview">OUTPUT_DIR/ttyS0 -serial file:</span><script type="math/tex">OUTPUT_DIR/ttyS0 -serial file:</script></span>OUTPUT_DIR/ttyS1&rdquo;</p>
+<p># -cpu Haswell,+tsc,+sse,+xsave,+aes,+avx,+erms,+pdpe1gb,+pge \</p>
+<h1 id="above-cpu-option-may-not-work-with-some-kernels">Above -cpu option may not work with some kernels.<a class="headerlink" href="#above-cpu-option-may-not-work-with-some-kernels" title="Permanent link">&para;</a></h1>
+<p>qemu-system-x86_64 -s  \
+        -nographic \
+        -kernel <span class="arithmatex"><span class="MathJax_Preview">KERNEL -append "</span><script type="math/tex">KERNEL -append "</script></span>KERNEL_PARAM&rdquo; \
+        -no-reboot \
+        -d int,cpu_reset -D $OUTPUT_DIR/qemu.log \
+        $SERIAL \
+        -m 16G \
+        -monitor stdio \
+        -smp cpus=24,cores=12,threads=2,sockets=2 \
+        -numa node,cpus=0-11,mem=8G,nodeid=0 \
+        -numa node,cpus=12-23,mem=8G,nodeid=1
+```</p>
 <h2 id="install-centos-on-dell-poweredge">Install CentOS on Dell PowerEdge<a class="headerlink" href="#install-centos-on-dell-poweredge" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Enable <code>SR-IOV</code> for future usage<ul>
@@ -2662,9 +2532,8 @@ qemu-system-x86_64 -s  <span class="se">\</span>
 <ul>
 <li>Nothing like grubby?! Shame on you.</li>
 <li>Step I: <code>cat /boot/grub/grub.cfg | grep menuentry</code>
-<div class="highlight"><pre><span></span><code>menuentry &#39;Ubuntu, with Linux 4.16.0&#39; --class ubuntu  ...
-menuentry &#39;Ubuntu, with Linux 4.9.92&#39; --class ubuntu  ...
-</code></pre></div></li>
+<code>menuentry 'Ubuntu, with Linux 4.16.0' --class ubuntu  ...
+menuentry 'Ubuntu, with Linux 4.9.92' --class ubuntu  ...</code></li>
 <li>Step II: Open <code>/etc/default/grub</code>, change<ul>
 <li>GRUB_DEFAULT=&rdquo;Advanced options for Ubuntu&gt;Ubuntu, with Linux 4.16.0&rdquo;</li>
 <li>GRUB_DEFAULT=&rdquo;Advanced options for Ubuntu&gt;Ubuntu, with Linux 4.9.92&rdquo;</li>

@@ -2349,21 +2349,25 @@ it is mapped into kernel direct mapping and has <code>struct page</code>.</p>
 <p>For those who have done DAX, or NVM related stuff, you must have struggled with
 <code>memmap $</code>, and complained why it does not have <code>struct page</code>, I guess? So here is
 the simple code to do so:
-<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;@&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">start_at</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">memparse</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">e820_add_region</span><span class="p">(</span><span class="n">start_at</span><span class="p">,</span><span class="w"> </span><span class="n">mem_size</span><span class="p">,</span><span class="w"> </span><span class="n">E820_RAM</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;#&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">start_at</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">memparse</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">e820_add_region</span><span class="p">(</span><span class="n">start_at</span><span class="p">,</span><span class="w"> </span><span class="n">mem_size</span><span class="p">,</span><span class="w"> </span><span class="n">E820_ACPI</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;$&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">start_at</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">memparse</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+```C
+if (*p == &lsquo;@&rsquo;) {
+        start_at = memparse(p+1, &amp;p);
+        e820_add_region(start_at, mem_size, E820_RAM);
+} else if (*p == &lsquo;#&rsquo;) {
+        start_at = memparse(p+1, &amp;p);
+        e820_add_region(start_at, mem_size, E820_ACPI);
+} else if (*p == &lsquo;$&rsquo;) {
+        start_at = memparse(p+1, &amp;p);</p>
+<h1 id="ifdef-config_memmap_memblock_reserved">ifdef CONFIG_MEMMAP_MEMBLOCK_RESERVED<a class="headerlink" href="#ifdef-config_memmap_memblock_reserved" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    memblock_reserve(start_at, mem_size);
+</code></pre></div></td></tr></table></div>
 
-<span class="cp">#ifdef CONFIG_MEMMAP_MEMBLOCK_RESERVED</span>
-<span class="w">        </span><span class="n">memblock_reserve</span><span class="p">(</span><span class="n">start_at</span><span class="p">,</span><span class="w"> </span><span class="n">mem_size</span><span class="p">);</span><span class="w"></span>
-<span class="cp">#else</span>
-<span class="w">        </span><span class="n">e820_add_region</span><span class="p">(</span><span class="n">start_at</span><span class="p">,</span><span class="w"> </span><span class="n">mem_size</span><span class="p">,</span><span class="w"> </span><span class="n">E820_RESERVED</span><span class="p">);</span><span class="w"></span>
-<span class="cp">#endif</span>
-</code></pre></div></p>
+<h1 id="else">else<a class="headerlink" href="#else" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">e820_add_region</span><span class="p">(</span><span class="n">start_at</span><span class="p">,</span><span class="w"> </span><span class="n">mem_size</span><span class="p">,</span><span class="w"> </span><span class="n">E820_RESERVED</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+
+<h1 id="endif">endif<a class="headerlink" href="#endif" title="Permanent link">&para;</a></h1>
+<p>```</p>
 <p>But why we are having this? Because I think the <code>direct 1GB mapping</code> may have
 better performance: huge page mapping can truly save us a lot TLB misses. However, the real performance number is unknown.</p>
 <p>If unsure, say <code>Y</code>.</p>
