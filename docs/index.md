@@ -75,6 +75,11 @@ machine learning systems, distributed systems, data center networking,
 OS, hardware (FPGA), disaggregated memory/storage systems,
 and their intersections.
 
+**Large Language Models Inference at Cloud Scale**
+
+- [CaraServe](https://arxiv.org/abs/2401.11240)
+- [TetriServe](https://arxiv.org/pdf/2401.11181.pdf)
+
 **Disaggregated Data Center Architecture**
 
 -  [Skadi, HotOS'23](http://lastweek.io/pubs/Skadi_HotOS23.pdf)
