@@ -71,7 +71,7 @@ You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 ## Research
 
 My main research interests span
-distributed systems, data center networking,
+machine learning systems, distributed systems, data center networking,
 OS, hardware (FPGA), disaggregated memory/storage systems,
 and their intersections.
 
