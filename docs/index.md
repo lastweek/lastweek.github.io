@@ -34,7 +34,8 @@ You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 
 ??? tip "Research"
-	- [_Jan 2024_] I will serve as a [EuroSys'24]() PC.
+	- [_Apr 2024_] I will serve as a [NSDI'25]() PC.
+	- [_Jan 2024_] I will serve as a [EuroSys'25]() PC.
 	- [_Jan 2024_] I will serve as a [ATC'24]() PC.
 	- [_Dec 2022_] I will serve as a [NSDI'24]() PC.
 	- [_Nov 2022_] MARB accepted to DATE'23.
@@ -216,10 +217,10 @@ and their intersections.
 
 **Program Committee**
 
-- NSDI    (2024-spring, 2024-fall)
+- EuroSys (2025, 2024, 2023)
 - ATC     (2024, 2023)
+- NSDI    (2025, 2024)
 - SoCC    (2023, 2022)
-- EuroSys (2024, 2023-spring, 2023-fall)
 
 **Shadow/External Program Committee**
 
