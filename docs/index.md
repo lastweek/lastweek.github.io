@@ -8,6 +8,9 @@ Hello! I'm Yizhou, I'm a Research Scientist at [Huawei Cloud](https://www.huawei
 I earned my PhD from [University of California San Diego](https://cse.ucsd.edu/)
 under the supervision of [Prof. Yiying Zhang](https://cseweb.ucsd.edu/~yiying/).
 
+I now run Huawei Cloud's Serverless AI platform, responsible for cost-efficient model serving, agent serving, and supervised fine-tuning.
+If you are interested in working with me (full-time or intern), we should talk.
+
 Contact: **syzwhat** AT **gmail** DOT **com**
 You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
@@ -34,6 +37,8 @@ You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 
 ??? tip "Research"
+    - [_Nov 2024_] I will serve as a PC for FAST'25, FAST'26, ATC'25.
+    - [_Nov 2024_] InstInfer accepted to HPCA'25.
 	- [_Apr 2024_] I will serve as a [NSDI'25]() PC.
 	- [_Jan 2024_] I will serve as a [EuroSys'25]() PC.
 	- [_Jan 2024_] I will serve as a [ATC'24]() PC.
@@ -76,10 +81,14 @@ machine learning systems, distributed systems, data center networking,
 OS, hardware (FPGA), disaggregated memory/storage systems,
 and their intersections.
 
-**Large Language Models Inference at Cloud Scale**
+**Serving LLMs at Cloud Scale**
 
-- [CaraServe](https://arxiv.org/abs/2401.11240)
-- [TetriServe](https://arxiv.org/pdf/2401.11181.pdf)
+- [EPIC](https://arxiv.org/abs/2410.15332) - Position-Independent KV caching
+- [InstInfer](https://arxiv.org/abs/2409.04992) - Programmable Attention Offload
+- [MemServe](https://arxiv.org/abs/2406.17565) - Disaggregated PD w/ Context Caching
+- [TetriServe](https://arxiv.org/pdf/2401.11181.pdf) - Disaggregated PD
+- [CaraServe](https://arxiv.org/abs/2401.11240) - Multi-LoRA Serving
+- [The CAP Principle for LLM Serving]() - a survey
 
 **Disaggregated Data Center Architecture**
 
@@ -217,9 +226,10 @@ and their intersections.
 
 **Program Committee**
 
+- FAST    (2026, 2025)
 - EuroSys (2025, 2024, 2023)
-- ATC     (2024, 2023)
-- NSDI    (2025, 2024)
+- ATC     (2025, 2024, 2023)
+- NSDI    (2026, 2025, 2024)
 - SoCC    (2023, 2022)
 
 **Shadow/External Program Committee**
