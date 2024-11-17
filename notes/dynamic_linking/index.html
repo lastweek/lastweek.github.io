@@ -7,14 +7,20 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
-      
         <meta name="author" content="Yizhou Shan">
       
       
         <link rel="canonical" href="http://lastweek.io/notes/dynamic_linking/">
       
+      
+        <link rel="prev" href="../dist-xact/">
+      
+      
+        <link rel="next" href="../dcn/">
+      
+      
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
     
     
       
@@ -22,39 +28,33 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
         
-      
-    
-    
-    
-      
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Courier+Prime+Bold:300,400,400i,700%7CCourier+Prime+Bold&display=fallback">
-        <style>:root{--md-text-font-family:"Courier Prime Bold";--md-code-font-family:"Courier Prime Bold"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Courier+Prime+Bold:300,300i,400,400i,700,700i%7CCourier+Prime+Bold:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Courier Prime Bold";--md-code-font:"Courier Prime Bold"}</style>
       
     
     
-    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
-  
 
-
-
-  
-  
-
-
-
-  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-143772066-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
-
-
+    
     
     
   </head>
@@ -67,12 +67,8 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
-    
-    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
-    
-      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -89,20 +85,22 @@
       
     </div>
     
+    
       
 
   
 
-<header class="md-header md-header--lifted" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Yizhou Shan&#39;s Home Page" class="md-header__button md-logo" aria-label="Yizhou Shan's Home Page" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -121,58 +119,68 @@
       </div>
     </div>
     
-      <form class="md-header__option" data-md-component="palette">
-        
-          
-          
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
-          
-            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg>
-            </label>
-          
-        
-          
-          
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
-          
-            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg>
-            </label>
-          
-        
-      </form>
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
       </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -181,11 +189,10 @@
     
     
       <div class="md-header__source">
-        
-<a href="https://github.com/lastweek/lastweek.github.io/" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/lastweek/lastweek.github.io" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M105.2 24.9c-3.1-8.9-15.7-8.9-18.9 0L29.8 199.7h132c-.1 0-56.6-174.8-56.6-174.8zM.9 287.7c-2.6 8 .3 16.9 7.1 22l247.9 184-226.2-294zm160.8-88 94.3 294 94.3-294zm349.4 88-28.8-88-226.3 294 247.9-184c6.9-5.1 9.7-14 7.2-22zM425.7 24.9c-3.1-8.9-15.7-8.9-18.9 0l-56.6 174.8h132z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="m503.5 204.6-.7-1.8-69.7-181.78c-1.4-3.57-3.9-6.59-7.2-8.64-2.4-1.55-5.1-2.515-8-2.81s-5.7.083-8.4 1.11c-2.7 1.02-5.1 2.66-7.1 4.78-1.9 2.12-3.3 4.67-4.1 7.44l-47 144H160.8l-47.1-144c-.8-2.77-2.2-5.31-4.1-7.43-2-2.12-4.4-3.75-7.1-4.77a18.1 18.1 0 0 0-8.38-1.113 18.4 18.4 0 0 0-8.04 2.793 18.1 18.1 0 0 0-7.16 8.64L9.267 202.8l-.724 1.8a129.57 129.57 0 0 0-3.52 82c7.747 26.9 24.047 50.7 46.447 67.6l.27.2.59.4 105.97 79.5 52.6 39.7 32 24.2c3.7 1.9 8.3 4.3 13 4.3s9.3-2.4 13-4.3l32-24.2 52.6-39.7 106.7-79.9.3-.3c22.4-16.9 38.7-40.6 45.6-67.5 8.6-27 7.4-55.8-2.6-82"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -198,19 +205,24 @@
     
       
 <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-tabs__inner md-grid">
+  <div class="md-grid">
     <ul class="md-tabs__list">
       
         
   
   
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
 
-
-  <li class="md-tabs__item">
-    <a href="../.." class="md-tabs__link">
-      Home
-    </a>
-  </li>
+      </a>
+    </li>
+  
 
       
         
@@ -218,71 +230,81 @@
   
     
   
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../ssd/" class="md-tabs__link">
+          
+  
+  Notes
 
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../ssd/" class="md-tabs__link md-tabs__link--active">
-        Notes
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../source_code/summary/" class="md-tabs__link">
-        Code
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
         
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../fpga/bitstream/" class="md-tabs__link">
-        FPGA
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
   
   
   
     
+    
+      <li class="md-tabs__item">
+        <a href="../source_code/summary/" class="md-tabs__link">
+          
+  
+  Code
 
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../lego/log/misc/" class="md-tabs__link">
-        LegoOS
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../fpga/bitstream/" class="md-tabs__link">
+          
+  
+  FPGA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../lego/log/misc/" class="md-tabs__link">
+          
+  
+  LegoOS
+
+        </a>
+      </li>
+    
+  
+
+    
   
 
       
@@ -308,6 +330,7 @@
                   <div class="md-sidebar__inner">
                     
 
+
   
 
 
@@ -316,18 +339,17 @@
     <a href="../.." title="Yizhou Shan&#39;s Home Page" class="md-nav__button md-logo" aria-label="Yizhou Shan's Home Page" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     Yizhou Shan's Home Page
   </label>
   
     <div class="md-nav__source">
-      
-<a href="https://github.com/lastweek/lastweek.github.io/" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/lastweek/lastweek.github.io" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M105.2 24.9c-3.1-8.9-15.7-8.9-18.9 0L29.8 199.7h132c-.1 0-56.6-174.8-56.6-174.8zM.9 287.7c-2.6 8 .3 16.9 7.1 22l247.9 184-226.2-294zm160.8-88 94.3 294 94.3-294zm349.4 88-28.8-88-226.3 294 247.9-184c6.9-5.1 9.7-14 7.2-22zM425.7 24.9c-3.1-8.9-15.7-8.9-18.9 0l-56.6 174.8h132z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="m503.5 204.6-.7-1.8-69.7-181.78c-1.4-3.57-3.9-6.59-7.2-8.64-2.4-1.55-5.1-2.515-8-2.81s-5.7.083-8.4 1.11c-2.7 1.02-5.1 2.66-7.1 4.78-1.9 2.12-3.3 4.67-4.1 7.44l-47 144H160.8l-47.1-144c-.8-2.77-2.2-5.31-4.1-7.43-2-2.12-4.4-3.75-7.1-4.77a18.1 18.1 0 0 0-8.38-1.113 18.4 18.4 0 0 0-8.04 2.793 18.1 18.1 0 0 0-7.16 8.64L9.267 202.8l-.724 1.8a129.57 129.57 0 0 0-3.52 82c7.747 26.9 24.047 50.7 46.447 67.6l.27.2.59.4 105.97 79.5 52.6 39.7 32 24.2c3.7 1.9 8.3 4.3 13 4.3s9.3-2.4 13-4.3l32-24.2 52.6-39.7 106.7-79.9.3-.3c22.4-16.9 38.7-40.6 45.6-67.5 8.6-27 7.4-55.8-2.6-82"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -339,14 +361,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../.." class="md-nav__link">
-        Home
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
       </a>
     </li>
   
@@ -354,157 +381,233 @@
     
       
       
-      
-
   
   
     
   
   
+  
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+      
+        
+        
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2">
-          Notes
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Notes" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
-          <span class="md-nav__icon md-icon"></span>
-          Notes
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
           
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Notes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Notes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../ssd/" class="md-nav__link">
-        SSD 101
+        
+  
+  <span class="md-ellipsis">
+    SSD 101
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../CXL/" class="md-nav__link">
-        What is CXL?
+        
+  
+  <span class="md-ellipsis">
+    What is CXL?
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../MLIR/" class="md-nav__link">
-        What is MLIR?
+        
+  
+  <span class="md-ellipsis">
+    What is MLIR?
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../virt/" class="md-nav__link">
-        Modern Virtualization
+        
+  
+  <span class="md-ellipsis">
+    Modern Virtualization
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../cache_coherence/" class="md-nav__link">
-        Practical Cache Coherence
+        
+  
+  <span class="md-ellipsis">
+    Practical Cache Coherence
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../resource-disaggregation-spectrum/" class="md-nav__link">
-        Resource Disaggregation Design Spectrums
+        
+  
+  <span class="md-ellipsis">
+    Resource Disaggregation Design Spectrums
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../dist-xact/" class="md-nav__link">
-        Distributed Transactions and Databases
+        
+  
+  <span class="md-ellipsis">
+    Distributed Transactions and Databases
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
   
   
     
   
   
+  
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
         
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Dynamic Linking
+          
+  
+  <span class="md-ellipsis">
+    Dynamic Linking
+  </span>
+  
+
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Dynamic Linking
+        
+  
+  <span class="md-ellipsis">
+    Dynamic Linking
+  </span>
+  
+
       </a>
       
         
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -520,14 +623,18 @@
       
         <li class="md-nav__item">
   <a href="#c-start-up-csu" class="md-nav__link">
-    C Start Up (csu)
+    <span class="md-ellipsis">
+      C Start Up (csu)
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#dynamic-linking-in-user-space" class="md-nav__link">
-    Dynamic Linking in User Space
+    <span class="md-ellipsis">
+      Dynamic Linking in User Space
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Dynamic Linking in User Space">
@@ -535,13 +642,66 @@
         
           <li class="md-nav__item">
   <a href="#ldso" class="md-nav__link">
-    ld.so
+    <span class="md-ellipsis">
+      ld.so
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ld.so">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fun-fact-about-ld_preload" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fun fact about LD_PRELOAD
+    </span>
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-kernel-loads-user-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Kernel Loads User Program
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-kernel-loads-kernel-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Kernel Loads Kernel Module
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
   
 </li>
       
@@ -552,1795 +712,2639 @@
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../dcn/" class="md-nav__link">
-        Data Center Networking
+        
+  
+  <span class="md-ellipsis">
+    Data Center Networking
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../packet-sched/" class="md-nav__link">
-        Switch Buffering and Packet Scheduling
+        
+  
+  <span class="md-ellipsis">
+    Switch Buffering and Packet Scheduling
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../sysml/" class="md-nav__link">
-        SysML
+        
+  
+  <span class="md-ellipsis">
+    SysML
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../arch/" class="md-nav__link">
-        Architecture
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../cryptography/" class="md-nav__link">
-        Cryptography
+        
+  
+  <span class="md-ellipsis">
+    Cryptography
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../cryptocurrency/" class="md-nav__link">
-        Cryptocurrency
+        
+  
+  <span class="md-ellipsis">
+    Cryptocurrency
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../hardware_pl/" class="md-nav__link">
-        Hardware Design Languages
+        
+  
+  <span class="md-ellipsis">
+    Hardware Design Languages
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../paper_perf_shadows/" class="md-nav__link">
-        Performance-Shadows
+        
+  
+  <span class="md-ellipsis">
+    Performance-Shadows
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../misc/essential/" class="md-nav__link">
-        Essential
+        
+  
+  <span class="md-ellipsis">
+    Essential
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../misc/cheatsheet/" class="md-nav__link">
-        Cheatsheet
+        
+  
+  <span class="md-ellipsis">
+    Cheatsheet
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../blog/20200404-on-read-once/" class="md-nav__link">
-        On Read Once and Compiler Optimization
+        
+  
+  <span class="md-ellipsis">
+    On Read Once and Compiler Optimization
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
-      
-
+  
   
   
   
     
+    
+    
+      
+      
+    
+    
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3">
-          Code
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Code" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
-          <span class="md-nav__icon md-icon"></span>
-          Code
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
           
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Code
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Code
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../source_code/summary/" class="md-nav__link">
-        Index
+        
+  
+  <span class="md-ellipsis">
+    Index
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     
+    
+    
+      
+      
+    
+    
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3_2">
-          Linux
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Linux" data-md-level="2">
-        <label class="md-nav__title" for="__nav_3_2">
-          <span class="md-nav__icon md-icon"></span>
-          Linux
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
           
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../linux/" class="md-nav__link">
-        Linux Index
+        
+  
+  <span class="md-ellipsis">
+    Linux Index
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../linux/linux-function-trace/" class="md-nav__link">
-        Linux Dump Function Graph
+        
+  
+  <span class="md-ellipsis">
+    Linux Dump Function Graph
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../linux/fork/" class="md-nav__link">
-        Linux fork/switch_to
+        
+  
+  <span class="md-ellipsis">
+    Linux fork/switch_to
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../linux/linux-rcu/" class="md-nav__link">
-        Linux RCU
+        
+  
+  <span class="md-ellipsis">
+    Linux RCU
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../linux/linux-completion/" class="md-nav__link">
-        Linux Completion/swait
+        
+  
+  <span class="md-ellipsis">
+    Linux Completion/swait
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../linux/linux-workqueue/" class="md-nav__link">
-        Linux workqueue
+        
+  
+  <span class="md-ellipsis">
+    Linux workqueue
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../linux/linux-linker-script/" class="md-nav__link">
-        Linux Linker Script
+        
+  
+  <span class="md-ellipsis">
+    Linux Linker Script
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../linux/linux-boot/" class="md-nav__link">
-        Linux Boot Sequence
+        
+  
+  <span class="md-ellipsis">
+    Linux Boot Sequence
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../trace/" class="md-nav__link">
-        Linux Trace and Profile
+        
+  
+  <span class="md-ellipsis">
+    Linux Trace and Profile
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../rmap/" class="md-nav__link">
-        Linux Reverse Mapping
+        
+  
+  <span class="md-ellipsis">
+    Linux Reverse Mapping
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../userfaultfd/" class="md-nav__link">
-        Linux Userfaultfd
+        
+  
+  <span class="md-ellipsis">
+    Linux Userfaultfd
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../cgroup-swap/" class="md-nav__link">
-        Linux Cgroup and Swap
+        
+  
+  <span class="md-ellipsis">
+    Linux Cgroup and Swap
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../xperf/" class="md-nav__link">
-        Linux x86 Ring Switch
+        
+  
+  <span class="md-ellipsis">
+    Linux x86 Ring Switch
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../linux/linux-x86-fpu/" class="md-nav__link">
-        Linux FPU
+        
+  
+  <span class="md-ellipsis">
+    Linux FPU
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../linux/linux-iouring/" class="md-nav__link">
-        Linux io_uring
+        
+  
+  <span class="md-ellipsis">
+    Linux io_uring
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../linux/linux-resource/" class="md-nav__link">
-        Linux Resource
+        
+  
+  <span class="md-ellipsis">
+    Linux Resource
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../proc/" class="md-nav__link">
-        Linux Special Files
+        
+  
+  <span class="md-ellipsis">
+    Linux Special Files
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../kvm-basic/" class="md-nav__link">
-        Linux KVM
+        
+  
+  <span class="md-ellipsis">
+    Linux KVM
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../linux/rust.md" class="md-nav__link">
-        Linux Rust
+        
+  
+  <span class="md-ellipsis">
+    Linux Rust
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     
+    
+    
+      
+      
+    
+    
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3_3">
-          Go
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Go" data-md-level="2">
-        <label class="md-nav__title" for="__nav_3_3">
-          <span class="md-nav__icon md-icon"></span>
-          Go
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
           
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Go
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Go
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../go/golang/" class="md-nav__link">
-        Learn Go
+        
+  
+  <span class="md-ellipsis">
+    Learn Go
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../go/gvisor/" class="md-nav__link">
-        gVisor
+        
+  
+  <span class="md-ellipsis">
+    gVisor
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     
+    
+    
+      
+      
+    
+    
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" type="checkbox" id="__nav_3_4" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3_4">
-          Rust
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Rust" data-md-level="2">
-        <label class="md-nav__title" for="__nav_3_4">
-          <span class="md-nav__icon md-icon"></span>
-          Rust
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
           
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Rust
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Rust
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../rust/rust/" class="md-nav__link">
-        Learn Rust
+        
+  
+  <span class="md-ellipsis">
+    Learn Rust
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../rust/firecracker.md" class="md-nav__link">
-        Firecracker
+        
+  
+  <span class="md-ellipsis">
+    Firecracker
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../source_code/rdma/" class="md-nav__link">
-        DPDK and RDMA
+        
+  
+  <span class="md-ellipsis">
+    DPDK and RDMA
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../program_advice/" class="md-nav__link">
-        Guideline & Advice
+        
+  
+  <span class="md-ellipsis">
+    Guideline & Advice
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../source_code/firmware-softwares/" class="md-nav__link">
-        Firmware & Bootloader
+        
+  
+  <span class="md-ellipsis">
+    Firmware & Bootloader
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../source_code/os/" class="md-nav__link">
-        Operating System
+        
+  
+  <span class="md-ellipsis">
+    Operating System
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../source_code/compilers/" class="md-nav__link">
-        Compilers
+        
+  
+  <span class="md-ellipsis">
+    Compilers
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../source_code/unix-tools/" class="md-nav__link">
-        Unix Tools
+        
+  
+  <span class="md-ellipsis">
+    Unix Tools
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../source_code/virt/" class="md-nav__link">
-        Virtualization
+        
+  
+  <span class="md-ellipsis">
+    Virtualization
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../source_code/20200501-on-graphic-softwares/" class="md-nav__link">
-        Graphics
+        
+  
+  <span class="md-ellipsis">
+    Graphics
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../source_code/gpu/" class="md-nav__link">
-        GPU
+        
+  
+  <span class="md-ellipsis">
+    GPU
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../source_code/fpga/" class="md-nav__link">
-        FPGA
+        
+  
+  <span class="md-ellipsis">
+    FPGA
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../source_code/risc-v/" class="md-nav__link">
-        RISC-V
+        
+  
+  <span class="md-ellipsis">
+    RISC-V
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../source_code/dotconfigs/" class="md-nav__link">
-        Dot-Configs
+        
+  
+  <span class="md-ellipsis">
+    Dot-Configs
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../source_code/misc/" class="md-nav__link">
-        Misc
+        
+  
+  <span class="md-ellipsis">
+    Misc
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
-      
-
+  
   
   
   
     
+    
+    
+      
+      
+    
+    
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_4">
-          FPGA
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="FPGA" data-md-level="1">
-        <label class="md-nav__title" for="__nav_4">
-          <span class="md-nav__icon md-icon"></span>
-          FPGA
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
           
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    FPGA
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            FPGA
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../fpga/bitstream/" class="md-nav__link">
-        Bitstream Explained
+        
+  
+  <span class="md-ellipsis">
+    Bitstream Explained
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../paper_fpga/" class="md-nav__link">
-        Papers
+        
+  
+  <span class="md-ellipsis">
+    Papers
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../fpga/language/" class="md-nav__link">
-        Languages
+        
+  
+  <span class="md-ellipsis">
+    Languages
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../fpga/vivado/" class="md-nav__link">
-        Vivado Notes
+        
+  
+  <span class="md-ellipsis">
+    Vivado Notes
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../fpga/setup_hold/" class="md-nav__link">
-        Setup and Hold Time
+        
+  
+  <span class="md-ellipsis">
+    Setup and Hold Time
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../fpga/pr/" class="md-nav__link">
-        Partial Reconfiguration
+        
+  
+  <span class="md-ellipsis">
+    Partial Reconfiguration
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
+  
+  
+  
+  
+    
+    
+    
       
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    LegoOS
+  </span>
+  
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            LegoOS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
   
   
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    
+    
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_5">
-          LegoOS
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="LegoOS" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
-          <span class="md-nav__icon md-icon"></span>
-          LegoOS
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_5_1">
-          Log
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Log" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_1">
-          <span class="md-nav__icon md-icon"></span>
-          Log
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
           
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Log
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Log
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/log/misc/" class="md-nav__link">
-        MISC
+        
+  
+  <span class="md-ellipsis">
+    MISC
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/log/test-note/" class="md-nav__link">
-        Test Script
+        
+  
+  <span class="md-ellipsis">
+    Test Script
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     
+    
+    
+      
+      
+    
+    
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_5_2">
-          Kernel
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Kernel" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_2">
-          <span class="md-nav__icon md-icon"></span>
-          Kernel
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
           
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kernel
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            Kernel
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/kernel/boot/" class="md-nav__link">
-        GRUB2 and Boot
+        
+  
+  <span class="md-ellipsis">
+    GRUB2 and Boot
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/kernel/kconfig/" class="md-nav__link">
-        Kconfig
+        
+  
+  <span class="md-ellipsis">
+    Kconfig
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/kernel/debug/" class="md-nav__link">
-        Debug
+        
+  
+  <span class="md-ellipsis">
+    Debug
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/kernel/grub/" class="md-nav__link">
-        GRUB
+        
+  
+  <span class="md-ellipsis">
+    GRUB
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/kernel/profile/" class="md-nav__link">
-        Profile
+        
+  
+  <span class="md-ellipsis">
+    Profile
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/kernel/profile_strace/" class="md-nav__link">
-        Profile strace
+        
+  
+  <span class="md-ellipsis">
+    Profile strace
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/kernel/profile_heatmap/" class="md-nav__link">
-        Profile heatmap
+        
+  
+  <span class="md-ellipsis">
+    Profile heatmap
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/kernel/profile_points/" class="md-nav__link">
-        Profile points
+        
+  
+  <span class="md-ellipsis">
+    Profile points
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/kernel/trampoline/" class="md-nav__link">
-        Trampoline
+        
+  
+  <span class="md-ellipsis">
+    Trampoline
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/kernel/pagefault_disable/" class="md-nav__link">
-        Disable pgfault
+        
+  
+  <span class="md-ellipsis">
+    Disable pgfault
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/kernel/stop_machine/" class="md-nav__link">
-        Stop machine
+        
+  
+  <span class="md-ellipsis">
+    Stop machine
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/kernel/loader/" class="md-nav__link">
-        Program Loader
+        
+  
+  <span class="md-ellipsis">
+    Program Loader
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/kernel/vDSO/" class="md-nav__link">
-        vDSO
+        
+  
+  <span class="md-ellipsis">
+    vDSO
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/kernel/vfs/" class="md-nav__link">
-        Virtual File System
+        
+  
+  <span class="md-ellipsis">
+    Virtual File System
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/kernel/vm/" class="md-nav__link">
-        Process Virtual Memory
+        
+  
+  <span class="md-ellipsis">
+    Process Virtual Memory
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/kernel/fpu/" class="md-nav__link">
-        x86 FPU
+        
+  
+  <span class="md-ellipsis">
+    x86 FPU
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/kernel/irq/" class="md-nav__link">
-        IRQ
+        
+  
+  <span class="md-ellipsis">
+    IRQ
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/kernel/net_thpool/" class="md-nav__link">
-        Network Thpool
+        
+  
+  <span class="md-ellipsis">
+    Network Thpool
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     
+    
+    
+      
+      
+    
+    
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_5_3">
-          Syscall
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Syscall" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_3">
-          <span class="md-nav__icon md-icon"></span>
-          Syscall
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
           
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Syscall
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Syscall
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/syscall/facts/" class="md-nav__link">
-        Facts
+        
+  
+  <span class="md-ellipsis">
+    Facts
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/kernel/profile_strace/" class="md-nav__link">
-        strace
+        
+  
+  <span class="md-ellipsis">
+    Profile strace
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/syscall/compat/" class="md-nav__link">
-        compat
+        
+  
+  <span class="md-ellipsis">
+    compat
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/syscall/msync/" class="md-nav__link">
-        msync()
+        
+  
+  <span class="md-ellipsis">
+    msync()
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/syscall/mremap/" class="md-nav__link">
-        mremap()
+        
+  
+  <span class="md-ellipsis">
+    mremap()
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/syscall/fork/" class="md-nav__link">
-        fork()
+        
+  
+  <span class="md-ellipsis">
+    fork()
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/syscall/getrusage/" class="md-nav__link">
-        getrusage()
+        
+  
+  <span class="md-ellipsis">
+    getrusage()
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/syscall/wait_and_exit/" class="md-nav__link">
-        wait4 and exit()
+        
+  
+  <span class="md-ellipsis">
+    wait4 and exit()
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     
+    
+    
+      
+      
+    
+    
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_5_4">
-          Pcache
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Pcache" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_4">
-          <span class="md-nav__icon md-icon"></span>
-          Pcache
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
           
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Pcache
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            Pcache
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/pcache/config/" class="md-nav__link">
-        Config
+        
+  
+  <span class="md-ellipsis">
+    Config
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/pcache/sweep/" class="md-nav__link">
-        Sweep
+        
+  
+  <span class="md-ellipsis">
+    Sweep
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/pcache/tlb/" class="md-nav__link">
-        TLB Coherence
+        
+  
+  <span class="md-ellipsis">
+    TLB Coherence
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/pcache/pgtable-lock/" class="md-nav__link">
-        PageTable Lock
+        
+  
+  <span class="md-ellipsis">
+    PageTable Lock
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/pcache/victim/" class="md-nav__link">
-        Victim Cache
+        
+  
+  <span class="md-ellipsis">
+    Victim Cache
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/pcache/virtual_cache/" class="md-nav__link">
-        Virtual Cache
+        
+  
+  <span class="md-ellipsis">
+    Virtual Cache
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/pcache/rmap/" class="md-nav__link">
-        Reverse Mapping
+        
+  
+  <span class="md-ellipsis">
+    Reverse Mapping
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/pcache/evict_and_ref/" class="md-nav__link">
-        Evict and Refcount
+        
+  
+  <span class="md-ellipsis">
+    Evict and Refcount
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/pcache/smp_design/" class="md-nav__link">
-        SMP Design
+        
+  
+  <span class="md-ellipsis">
+    SMP Design
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/pcache/replication/" class="md-nav__link">
-        Replication
+        
+  
+  <span class="md-ellipsis">
+    Replication
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     
+    
+    
+      
+      
+    
+    
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_5" type="checkbox" id="__nav_5_5" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_5_5">
-          Driver
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Driver" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_5">
-          <span class="md-nav__icon md-icon"></span>
-          Driver
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
           
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Driver
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            Driver
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/driver/pci/" class="md-nav__link">
-        PCI
+        
+  
+  <span class="md-ellipsis">
+    PCI
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/driver/ib/" class="md-nav__link">
-        Infiniband
+        
+  
+  <span class="md-ellipsis">
+    Infiniband
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     
+    
+    
+      
+      
+    
+    
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_6" type="checkbox" id="__nav_5_6" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_5_6">
-          Paper
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Paper" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_6">
-          <span class="md-nav__icon md-icon"></span>
-          Paper
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6" >
+        
           
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Paper
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            Paper
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/paper/nmp/" class="md-nav__link">
-        NMP
+        
+  
+  <span class="md-ellipsis">
+    NMP
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/paper/processor_oom/" class="md-nav__link">
-        Processor OOM
+        
+  
+  <span class="md-ellipsis">
+    Processor OOM
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/paper/genz/" class="md-nav__link">
-        Gen-Z
+        
+  
+  <span class="md-ellipsis">
+    Gen-Z
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/paper/replication/" class="md-nav__link">
-        Replication
+        
+  
+  <span class="md-ellipsis">
+    Replication
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../lego/paper/related/" class="md-nav__link">
-        Related
+        
+  
+  <span class="md-ellipsis">
+    Related
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2357,6 +3361,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -2372,14 +3377,18 @@
       
         <li class="md-nav__item">
   <a href="#c-start-up-csu" class="md-nav__link">
-    C Start Up (csu)
+    <span class="md-ellipsis">
+      C Start Up (csu)
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#dynamic-linking-in-user-space" class="md-nav__link">
-    Dynamic Linking in User Space
+    <span class="md-ellipsis">
+      Dynamic Linking in User Space
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Dynamic Linking in User Space">
@@ -2387,13 +3396,66 @@
         
           <li class="md-nav__item">
   <a href="#ldso" class="md-nav__link">
-    ld.so
+    <span class="md-ellipsis">
+      ld.so
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ld.so">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fun-fact-about-ld_preload" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fun fact about LD_PRELOAD
+    </span>
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-kernel-loads-user-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Kernel Loads User Program
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-kernel-loads-kernel-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Kernel Loads Kernel Module
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
   
 </li>
       
@@ -2405,40 +3467,43 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
-                  <a href="https://github.com/lastweek/lastweek.github.io/edit/master/docs/notes/dynamic_linking.md" title="Edit this page" class="md-content__button md-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
-                  </a>
-                
-                
-                <h1 id="dynamic-linking">Dynamic Linking<a class="headerlink" href="#dynamic-linking" title="Permanent link">&para;</a></h1>
-<details class="note"><summary>Version History</summary><table>
+                  
+
+  
+  
+
+
+<h1 id="dynamic-linking">Dynamic Linking<a class="headerlink" href="#dynamic-linking" title="Permanent link">&para;</a></h1>
+<details class="note">
+<summary>Version History</summary>
+<table>
 <thead>
 <tr>
-<th align="left">Date</th>
+<th style="text-align: left;">Date</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">Mar 19, 2021</td>
+<td style="text-align: left;">Mar 19, 2021</td>
 <td>add sth about LD_PRELOAD</td>
 </tr>
 <tr>
-<td align="left">Jan 01, 2021</td>
+<td style="text-align: left;">Jan 01, 2021</td>
 <td>Add kernel module loading part</td>
 </tr>
 <tr>
-<td align="left">Dec 24, 2020</td>
+<td style="text-align: left;">Dec 24, 2020</td>
 <td>Adopted from my previous <a href="https://github.com/lastweek/source-glibc">note</a></td>
 </tr>
 </tbody>
 </table>
 </details>
-<p><img alt="🚣" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f6a3.svg" title=":rowboat:" /></p>
+<p><img alt="🚣" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6a3.svg" title=":rowboat:" /></p>
 <p>This blog looks at some part of the user-space dynamic linker,
 how kernel loads user program, and how kernel loads kernel modules.</p>
 <p>The related code: glibc, kernel execve loader, kernel module loader.</p>
@@ -2471,84 +3536,121 @@ You can run <code>man ld.so</code> to see more details.</p>
 <li><code>GOT[2]</code> points to <code>_dl_runtime_resolve()</code>! This is the runtime dynamic linker entry point.</li>
 </ul>
 <p>File <code>sysdep/generic/dl-machine.c</code> populates <code>GOT[1]</code> and <code>GOT[2]</code>.
-```c linenums=&rdquo;1&rdquo; hl_lines=&rdquo;16 20&rdquo;
-/* Set up the loaded object described by L so its unrelocated PLT
-   entries will jump to the on-demand fixup code in dl-runtime.c.  */</p>
-<p>static inline int
-elf_machine_runtime_setup (struct link_map *l, int lazy)
-{
-  extern void _dl_runtime_resolve (Elf32_Word);</p>
-<p>if (lazy)
-    {
-      /* The GOT entries for functions in the PLT have not yet been filled
-         in.  Their initial contents will arrange when called to push an
-         offset into the .rel.plt section, push <em>GLOBAL_OFFSET_TABLE</em>[1],
-         and then jump to _GLOBAL_OFFSET_TABLE[2].  <em>/
-      Elf32_Addr *got = (Elf32_Addr *) D_PTR (l, l_info[DT_PLTGOT]);
-      got[1] = (Elf32_Addr) l;  /</em> Identify this shared object.  */</p>
-<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="cm">/* This function will get called to fix up the GOT entry indicated by</span>
-<span class="cm">     the offset on the stack, and then jump to the resolved address.  */</span>
-<span class="w">  </span><span class="nx">got</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="nx">Elf32_Addr</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">_dl_runtime_resolve</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cm">/* Set up the loaded object described by L so its unrelocated PLT</span>
+<span class="cm">   entries will jump to the on-demand fixup code in dl-runtime.c.  */</span>
 
-<p>return lazy;
-}
-```</p>
+<span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">int</span>
+<span class="nf">elf_machine_runtime_setup</span><span class="w"> </span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">link_map</span><span class="w"> </span><span class="o">*</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">lazy</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">_dl_runtime_resolve</span><span class="w"> </span><span class="p">(</span><span class="n">Elf32_Word</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lazy</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="cm">/* The GOT entries for functions in the PLT have not yet been filled</span>
+<span class="cm">         in.  Their initial contents will arrange when called to push an</span>
+<span class="cm">         offset into the .rel.plt section, push _GLOBAL_OFFSET_TABLE_[1],</span>
+<span class="cm">         and then jump to _GLOBAL_OFFSET_TABLE[2].  */</span>
+<span class="w">      </span><span class="n">Elf32_Addr</span><span class="w"> </span><span class="o">*</span><span class="n">got</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Elf32_Addr</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">D_PTR</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">l_info</span><span class="p">[</span><span class="n">DT_PLTGOT</span><span class="p">]);</span>
+<span class="hll"><span class="w">      </span><span class="n">got</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Elf32_Addr</span><span class="p">)</span><span class="w"> </span><span class="n">l</span><span class="p">;</span><span class="w">  </span><span class="cm">/* Identify this shared object.  */</span>
+</span>
+<span class="w">      </span><span class="cm">/* This function will get called to fix up the GOT entry indicated by</span>
+<span class="cm">         the offset on the stack, and then jump to the resolved address.  */</span>
+<span class="hll"><span class="w">      </span><span class="n">got</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Elf32_Addr</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_dl_runtime_resolve</span><span class="p">;</span>
+</span><span class="w">    </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">lazy</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
 <p><code>_dl_runtime_resolve()</code> is architecture specific and has a mix of assembly and C code.
 The flow is similar to the syscall handling: it first saves the registers,
 then calling the actual resolver, then restore all saved registers.
 For 64bit x86, the source code is in <code>sysdeps/x86_64/dl-trampoline.h</code>:
-```asm linenums=&rdquo;1&rdquo; hl_lines=&rdquo;11&rdquo;
-    .globl _dl_runtime_resolve
-    .type _dl_runtime_resolve, @function
-_dl_runtime_resolve:
-    &hellip;
-    &hellip;</p>
-<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">#</span><span class="w"> </span><span class="n">Copy</span><span class="w"> </span><span class="n">args</span><span class="w"> </span><span class="n">pushed</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">PLT</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">register</span><span class="p">.</span>
-<span class="p">#</span><span class="w"> </span><span class="o">%</span><span class="nl">rdi:</span><span class="w"> </span><span class="n">link_map</span><span class="p">,</span><span class="w"> </span><span class="o">%</span><span class="nl">rsi:</span><span class="w"> </span><span class="n">reloc_index</span>
-<span class="n">mov</span><span class="w"> </span><span class="p">(</span><span class="n">LOCAL_STORAGE_AREA</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">8</span><span class="p">)(</span><span class="o">%</span><span class="n">BASE</span><span class="p">),</span><span class="w"> </span><span class="o">%</span><span class="n">RSI_LP</span>
-<span class="n">mov</span><span class="w"> </span><span class="n">LOCAL_STORAGE_AREA</span><span class="p">(</span><span class="o">%</span><span class="n">BASE</span><span class="p">),</span><span class="w"> </span><span class="o">%</span><span class="n">RDI_LP</span>
-<span class="n">call</span><span class="w"> </span><span class="n">_dl_fixup</span><span class="w">      </span><span class="p">#</span><span class="w"> </span><span class="n">Call</span><span class="w"> </span><span class="n">resolver</span><span class="p">.</span>
-<span class="n">mov</span><span class="w"> </span><span class="o">%</span><span class="n">RAX_LP</span><span class="p">,</span><span class="w"> </span><span class="o">%</span><span class="n">R11_LP</span><span class="w">    </span><span class="p">#</span><span class="w"> </span><span class="n">Save</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">value</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="na">.globl</span><span class="w"> </span><span class="no">_dl_runtime_resolve</span>
+<span class="w">    </span><span class="na">.type</span><span class="w"> </span><span class="no">_dl_runtime_resolve</span><span class="p">,</span><span class="w"> </span><span class="na">@function</span>
+<span class="nl">_dl_runtime_resolve:</span>
+<span class="w">    </span><span class="na">...</span>
+<span class="w">    </span><span class="na">...</span>
 
-<span class="p">...</span>
-</code></pre></div></td></tr></table></div>
+<span class="w">    </span><span class="c1"># Copy args pushed by PLT in register.</span>
+<span class="w">    </span><span class="c1"># %rdi: link_map, %rsi: reloc_index</span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="p">(</span><span class="no">LOCAL_STORAGE_AREA</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="mi">8</span><span class="p">)(</span><span class="nv">%BASE</span><span class="p">),</span><span class="w"> </span><span class="nv">%RSI_LP</span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="no">LOCAL_STORAGE_AREA</span><span class="p">(</span><span class="nv">%BASE</span><span class="p">),</span><span class="w"> </span><span class="nv">%RDI_LP</span>
+<span class="hll"><span class="w">    </span><span class="nf">call</span><span class="w"> </span><span class="no">_dl_fixup</span><span class="w">      </span><span class="c1"># Call resolver.</span>
+</span><span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nv">%RAX_LP</span><span class="p">,</span><span class="w"> </span><span class="nv">%R11_LP</span><span class="w">    </span><span class="c1"># Save return value</span>
 
-<p>```</p>
+<span class="w">    </span><span class="na">...</span>
+</code></pre></div></td></tr></table></div></p>
 <p>Bingo, <code>_dl_fixup()</code> is the final piece of the runtime dynamic linker resolver. We could find it in <code>elf/dl-runtime.c</code>, which is a file for on-demand PLT fixup.:
-```c linenums=&rdquo;1&rdquo;
-/* This function is called through a special trampoline from the PLT the
-   first time each PLT entry is called.  We must perform the relocation
-   specified in the PLT of the given shared object, and return the resolved
-   function address to the trampoline, which will restart the original call
-   to that address.  Future calls will bounce directly from the PLT to the
-   function.  */</p>
-<p>DL_FIXUP_VALUE_TYPE
-attribute_hidden __attribute ((noinline)) ARCH_FIXUP_ATTRIBUTE
-_dl_fixup (</p>
-<h1 id="ifdef-elf_machine_runtime_fixup_args">ifdef ELF_MACHINE_RUNTIME_FIXUP_ARGS<a class="headerlink" href="#ifdef-elf_machine_runtime_fixup_args" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>   ELF_MACHINE_RUNTIME_FIXUP_ARGS,
-</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cm">/* This function is called through a special trampoline from the PLT the</span>
+<span class="cm">   first time each PLT entry is called.  We must perform the relocation</span>
+<span class="cm">   specified in the PLT of the given shared object, and return the resolved</span>
+<span class="cm">   function address to the trampoline, which will restart the original call</span>
+<span class="cm">   to that address.  Future calls will bounce directly from the PLT to the</span>
+<span class="cm">   function.  */</span>
 
-<h1 id="endif">endif<a class="headerlink" href="#endif" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>   struct link_map *l, ElfW(Word) reloc_arg)
-</code></pre></div></td></tr></table></div>
-
-<p>{
-    &hellip;
-}
-```</p>
+<span class="n">DL_FIXUP_VALUE_TYPE</span>
+<span class="n">attribute_hidden</span><span class="w"> </span><span class="n">__attribute</span><span class="w"> </span><span class="p">((</span><span class="n">noinline</span><span class="p">))</span><span class="w"> </span><span class="n">ARCH_FIXUP_ATTRIBUTE</span>
+<span class="n">_dl_fixup</span><span class="w"> </span><span class="p">(</span>
+<span class="cp"># ifdef ELF_MACHINE_RUNTIME_FIXUP_ARGS</span>
+<span class="w">       </span><span class="n">ELF_MACHINE_RUNTIME_FIXUP_ARGS</span><span class="p">,</span>
+<span class="cp"># endif</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">link_map</span><span class="w"> </span><span class="o">*</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">ElfW</span><span class="p">(</span><span class="n">Word</span><span class="p">)</span><span class="w"> </span><span class="n">reloc_arg</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
 <p>Understanding this piece of code requires some effort. Happy hacking!</p>
 <h4 id="fun-fact-about-ld_preload">Fun fact about LD_PRELOAD<a class="headerlink" href="#fun-fact-about-ld_preload" title="Permanent link">&para;</a></h4>
 <p>If you use <code>LD_PRELOAD</code> to run a program,
@@ -2605,63 +3707,119 @@ and then invoke the dynamic linker <code>ld.so</code> instead of invoking user E
 Those modules are ELF binaries.
 Let&rsquo;s first examine those binaries and see how kernel parses them.</p>
 <p>Suppose we have this simple C module code:
-```c linenums=&rdquo;1&rdquo;
-int foo(void)
-{
-    printk(&ldquo;Hello World!\n&rdquo;);
-}</p>
-<p>static int hello_init(void)
-{
-    printk(&ldquo;Hello World!\n&rdquo;);
-    printk(&ldquo;Hello World!\n&rdquo;);
-    foo();
-    return 0;
-}
-```</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">printk</span><span class="p">(</span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">hello_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">printk</span><span class="p">(</span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printk</span><span class="p">(</span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">foo</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
 <p>Once you compile it into a kernel module, we can examine the binary
 by using <code>objdump -dx hello.ko</code>.
 Those highlighted lines mark some of the dynamic linking slots.
 They will be patched by basic load-time relocation.
-``` linenums=&rdquo;1&rdquo; hl_lines=&rdquo;19-23&rdquo;
-Disassembly of section .text.unlikely:</p>
-<p>0000000000000000 <foo>:
-   0:   e8 00 00 00 00          callq  5 <foo+0x5>
-                        1: R_X86_64_PLT32       <strong>fentry</strong>-0x4
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code>Disassembly of section .text.unlikely:
+
+0000000000000000 &lt;foo&gt;:
+   0:   e8 00 00 00 00          callq  5 &lt;foo+0x5&gt;
+                        1: R_X86_64_PLT32       __fentry__-0x4
    5:   55                      push   %rbp
    6:   48 c7 c7 00 00 00 00    mov    $0x0,%rdi
                         9: R_X86_64_32S .rodata.str1.1
    d:   48 89 e5                mov    %rsp,%rbp
-  10:   e8 00 00 00 00          callq  15 <foo+0x15>
+  10:   e8 00 00 00 00          callq  15 &lt;foo+0x15&gt;
                         11: R_X86_64_PLT32      printk-0x4
   15:   5d                      pop    %rbp
-  16:   c3                      retq   </p>
-<p>0000000000000017 <init_module>:
-  17:   e8 00 00 00 00          callq  1c <init_module+0x5>
-                        18: R_X86_64_PLT32      <strong>fentry</strong>-0x4
+  16:   c3                      retq   
+
+0000000000000017 &lt;init_module&gt;:
+  17:   e8 00 00 00 00          callq  1c &lt;init_module+0x5&gt;
+                        18: R_X86_64_PLT32      __fentry__-0x4
   1c:   55                      push   %rbp
-  1d:   48 c7 c7 00 00 00 00    mov    $0x0,%rdi
-                        20: R_X86_64_32S        .rodata.str1.1
-  24:   48 89 e5                mov    %rsp,%rbp
-  27:   e8 00 00 00 00          callq  2c <init_module+0x15>
-                        28: R_X86_64_PLT32      printk-0x4
-  2c:   48 c7 c7 00 00 00 00    mov    $0x0,%rdi
+<span class="hll">  1d:   48 c7 c7 00 00 00 00    mov    $0x0,%rdi
+</span><span class="hll">                        20: R_X86_64_32S        .rodata.str1.1
+</span><span class="hll">  24:   48 89 e5                mov    %rsp,%rbp
+</span><span class="hll">  27:   e8 00 00 00 00          callq  2c &lt;init_module+0x15&gt;
+</span><span class="hll">                        28: R_X86_64_PLT32      printk-0x4
+</span>  2c:   48 c7 c7 00 00 00 00    mov    $0x0,%rdi
                         2f: R_X86_64_32S        .rodata.str1.1
-  33:   e8 00 00 00 00          callq  38 <init_module+0x21>
+  33:   e8 00 00 00 00          callq  38 &lt;init_module+0x21&gt;
                         34: R_X86_64_PLT32      printk-0x4
-  38:   e8 00 00 00 00          callq  3d <init_module+0x26>
+  38:   e8 00 00 00 00          callq  3d &lt;init_module+0x26&gt;
                         39: R_X86_64_PLT32      foo-0x4
   3d:   31 c0                   xor    %eax,%eax
   3f:   5d                      pop    %rbp
-  40:   c3                      retq <br />
-```</p>
+  40:   c3                      retq   
+</code></pre></div></td></tr></table></div></p>
 <p>It is also worth checking out the <code>.symtab</code> section.
 If your module is using kernel functions or variables,
 the compiler does not know their precise addresses during compile time.
 The compiler will add several entries into the <code>.symtab</code> with properties
 marked as <code>GLOBAL, UND</code>. For example, you can run <code>readelf -s hello.ko</code>
 to check that. I will post part of the output:
-<code>linenums="1"
-Symbol table '.symtab' contains 29 entries:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code>Symbol table &#39;.symtab&#39; contains 29 entries:
    Num:    Value          Size Type    Bind   Vis      Ndx Name
      0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
      1: 0000000000000000     0 SECTION LOCAL  DEFAULT    1 
@@ -2675,7 +3833,8 @@ Symbol table '.symtab' contains 29 entries:
     25: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __fentry__
     26: 0000000000000017    42 FUNC    GLOBAL DEFAULT    5 init_module
     27: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND printk
-    28: 0000000000000000    23 FUNC    GLOBAL DEFAULT    5 foo</code></p>
+    28: 0000000000000000    23 FUNC    GLOBAL DEFAULT    5 foo
+</code></pre></div></td></tr></table></div></p>
 <p>The <code>simplify_symbols()</code> below will find the kernel virtual addresses
 for UNDEF symbols in the <code>.symtab</code> section. Those will further be
 used to patch dynamic relocation entries.</p>
@@ -2687,44 +3846,72 @@ Within that, it calls the big function <code>load_module()</code>.</p>
 <p>In the begining of <code>load_module()</code>, there are some
 usual tasks examining ELF headers, allocating memory etc.
 After that, kernel will try to find the addresses for UNDEF symbols:</p>
-<p>```c linenums=&rdquo;1&rdquo;
-kernel/module.c load_module()
-        /* Fix up syms, so that st_value is a pointer to location. */
-        err = simplify_symbols(mod, info);
-        if (err &lt; 0)
-                goto free_modinfo;</p>
-<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    err = apply_relocations(mod, info);
-    if (err &lt; 0)
-            goto free_modinfo;
-</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">kernel</span><span class="o">/</span><span class="n">module</span><span class="p">.</span><span class="n">c</span><span class="w"> </span><span class="n">load_module</span><span class="p">()</span>
+<span class="w">        </span><span class="cm">/* Fix up syms, so that st_value is a pointer to location. */</span>
+<span class="w">        </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">simplify_symbols</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">                </span><span class="k">goto</span><span class="w"> </span><span class="n">free_modinfo</span><span class="p">;</span>
 
-<p>==&gt;</p>
-<p>This function will find the kernel virtual addresses
-for UNDEF symbols in the <code>.symtab</code> section.</p>
-<p>simplify_symbols()
-              case SHN_UNDEF:
-                        ksym = resolve_symbol_wait(mod, info, name);
-                        /* Ok if resolved.  */
-                        if (ksym &amp;&amp; !IS_ERR(ksym)) {
-                                sym[i].st_value = kernel_symbol_value(ksym);
-                                break;
-                        }
-```</p>
+<span class="w">        </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">apply_relocations</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">                </span><span class="k">goto</span><span class="w"> </span><span class="n">free_modinfo</span><span class="p">;</span>
+
+<span class="o">==&gt;</span>
+
+<span class="n">This</span><span class="w"> </span><span class="n">function</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">find</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">kernel</span><span class="w"> </span><span class="n">virtual</span><span class="w"> </span><span class="n">addresses</span>
+<span class="k">for</span><span class="w"> </span><span class="n">UNDEF</span><span class="w"> </span><span class="n">symbols</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="err">`</span><span class="p">.</span><span class="n">symtab</span><span class="err">`</span><span class="w"> </span><span class="n">section</span><span class="p">.</span>
+
+<span class="n">simplify_symbols</span><span class="p">()</span>
+<span class="w">              </span><span class="k">case</span><span class="w"> </span><span class="no">SHN_UNDEF</span><span class="p">:</span>
+<span class="w">                        </span><span class="n">ksym</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resolve_symbol_wait</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
+<span class="w">                        </span><span class="cm">/* Ok if resolved.  */</span>
+<span class="w">                        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ksym</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">IS_ERR</span><span class="p">(</span><span class="n">ksym</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                </span><span class="n">sym</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">st_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kernel_symbol_value</span><span class="p">(</span><span class="n">ksym</span><span class="p">);</span>
+<span class="w">                                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">                        </span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
 <p>After resolving symbols to the real kernel virtual addresses,
 the next step is to patch the code to update all the relocation entries.
 If will do so for sections with these two types: <code>SHT_REL</code> and <code>SHT_RELA</code>.
 It looks like x86_64 is only using <code>apply_relocate_add()</code>, the one with explict addends.
-<code>c linenums="1"
-kernel/module.c apply_relocations()
-        ...
-                else if (info-&gt;sechdrs[i].sh_type == SHT_REL)
-                        err = apply_relocate(info-&gt;sechdrs, info-&gt;strtab,
-                                             info-&gt;index.sym, i, mod);
-                else if (info-&gt;sechdrs[i].sh_type == SHT_RELA)
-                        err = apply_relocate_add(info-&gt;sechdrs, info-&gt;strtab,
-                                                 info-&gt;index.sym, i, mod);</code></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">kernel</span><span class="o">/</span><span class="n">module</span><span class="p">.</span><span class="n">c</span><span class="w"> </span><span class="n">apply_relocations</span><span class="p">()</span>
+<span class="w">        </span><span class="p">...</span>
+<span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">info</span><span class="o">-&gt;</span><span class="n">sechdrs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">sh_type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SHT_REL</span><span class="p">)</span>
+<span class="w">                        </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">apply_relocate</span><span class="p">(</span><span class="n">info</span><span class="o">-&gt;</span><span class="n">sechdrs</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="o">-&gt;</span><span class="n">strtab</span><span class="p">,</span>
+<span class="w">                                             </span><span class="n">info</span><span class="o">-&gt;</span><span class="n">index</span><span class="p">.</span><span class="n">sym</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">mod</span><span class="p">);</span>
+<span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">info</span><span class="o">-&gt;</span><span class="n">sechdrs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">sh_type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SHT_RELA</span><span class="p">)</span>
+<span class="w">                        </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">apply_relocate_add</span><span class="p">(</span><span class="n">info</span><span class="o">-&gt;</span><span class="n">sechdrs</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="o">-&gt;</span><span class="n">strtab</span><span class="p">,</span>
+<span class="w">                                                 </span><span class="n">info</span><span class="o">-&gt;</span><span class="n">index</span><span class="p">.</span><span class="n">sym</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">mod</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div></p>
 <p>Zoom into <code>apply_relocate_add()</code>, very interesting function.
 It is similar to the userspace linker ld.so.
 It could be summarized as follows:</p>
@@ -2750,92 +3937,68 @@ and pass information along the toolchain.
 The whole concetps involves many parties, ranging from compiler, linker, and kernel.
 Each takes its own part in the process.</p>
 <p>As always, hope you enjoyed this blog. Happy Hacking!</p>
-                
-                  
-                    
 
-<hr>
-<div class="md-source-date">
-  <small>
+
+
+
+
+
+
+  
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 20, 2021</span>
+  
+  
+
+
+  <aside class="md-source-file">
+    
       
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 19, 2021</span>
+  </span>
+
     
-  </small>
-</div>
-                  
+    
+    
+    
+  </aside>
+
+
+
+
+
                 
-              
-              
-                
-
-
-  <h2 id="__comments">Comments</h2>
-  <div id="disqus_thread"></div>
-  <script>var script,disqus_config=function(){this.page.url="http://lastweek.io/notes/dynamic_linking/",this.page.identifier="notes/dynamic_linking/"};"undefined"==typeof DISQUS?((script=document.createElement("script")).async=!0,script.src="https://lastweek-io.disqus.com/embed.js",script.setAttribute("data-timestamp",Date.now()),document.body.appendChild(script)):DISQUS.reset({reload:!0,config:disqus_config})</script>
-
-              
-            </article>
-          </div>
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
-          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
-            Back to top
-          </a>
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
         
       </main>
       
-        
-<footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../dist-xact/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Distributed Transactions and Databases" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Distributed Transactions and Databases
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../dcn/" class="md-footer__link md-footer__link--next" aria-label="Next: Data Center Networking" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Data Center Networking
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
+        <footer class="md-footer">
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-        
-          Made with
-          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-            Material for MkDocs
-          </a>
-        
-        
-      </div>
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
       
     </div>
   </div>
@@ -2845,10 +4008,12 @@ Each takes its own part in the process.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.tabs.sticky", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.1e84347e.min.js"></script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["instant", "tabs", "navigation.tabs", "navigation.tabs.sticky", "navigation.top"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
     
   </body>
