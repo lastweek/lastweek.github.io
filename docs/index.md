@@ -83,12 +83,12 @@ and their intersections.
 
 **Serving LLMs at Cloud Scale**
 
-- [EPIC](https://arxiv.org/abs/2410.15332) - Position-Independent KV caching
-- [InstInfer](https://arxiv.org/abs/2409.04992) - Programmable Attention Offload
-- [MemServe](https://arxiv.org/abs/2406.17565) - Disaggregated PD w/ Context Caching
-- [TetriServe](https://arxiv.org/pdf/2401.11181.pdf) - Disaggregated PD
-- [CaraServe](https://arxiv.org/abs/2401.11240) - Multi-LoRA Serving
-- [The CAP Principle for LLM Serving]() - a survey
+- [EPIC, 2024](https://arxiv.org/abs/2410.15332) - Position-Independent KV caching
+- [InstInfer, HPCA'25](https://arxiv.org/abs/2409.04992) - Programmable Attention Offload
+- [MemServe, 2024](https://arxiv.org/abs/2406.17565) - Disaggregated PD w/ Context Caching
+- [TetriServe, 2024](https://arxiv.org/pdf/2401.11181.pdf) - Disaggregated PD
+- [CaraServe, 2024](https://arxiv.org/abs/2401.11240) - Multi-LoRA Serving
+- [The CAP Principle for LLM Serving, 2024]() - a survey
 
 **Disaggregated Data Center Architecture**
 
