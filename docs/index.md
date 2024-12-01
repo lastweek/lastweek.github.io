@@ -4,11 +4,13 @@
 </p>
 --->
 
-Hello! I'm Yizhou, I'm a Research Scientist at [Huawei Cloud](https://www.huaweicloud.com/intl/en-us/).
-I earned my PhD from [University of California San Diego](https://cse.ucsd.edu/)
+Hello! I'm Yizhou Shan (单一舟), I'm a Research Scientist at [Huawei Cloud](https://www.huaweicloud.com/intl/en-us/).
+I earned my PhD from [University of California San Diego, CSE](https://cse.ucsd.edu/)
 under the supervision of [Prof. Yiying Zhang](https://cseweb.ucsd.edu/~yiying/).
 
-I now run Huawei Cloud's Serverless AI platform, responsible for cost-efficient model serving, agent serving, and supervised fine-tuning.
+I now run **Serverless AI platform** at Huawei Cloud,
+responsible for cost-efficient Model Serving (LLM, LMM, T2I, T2V, etc),
+Agent Serving, and Post-Training infrastructure.
 If you are interested in working with me (full-time or intern), we should talk.
 
 Contact: **syzwhat** AT **gmail** DOT **com**
