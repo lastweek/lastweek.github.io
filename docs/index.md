@@ -13,7 +13,7 @@ responsible for cost-efficient Model Serving (LLM, LMM, T2I, T2V, etc),
 Agent Serving, and Post-Training infrastructure.
 If you are interested in working with me (full-time or intern), we should talk.
 
-Contact: **syzwhat** AT **gmail** DOT **com**
+Contact: **shanyizhou** AT **huawei** DOT **com**
 You can find my [CV here](http://lastweek.io/pubs/Yizhou_Shan_CV.pdf).
 
 ??? note "Blogging"
@@ -85,11 +85,12 @@ and their intersections.
 
 **Serving LLMs at Cloud Scale**
 
-- [EPIC, 2024](https://arxiv.org/abs/2410.15332) - Position-Independent KV caching
+- [EPIC, ICML 2025](https://arxiv.org/abs/2410.15332) - Position-Independent KV caching
+- [DeepServe, ATC 2025]() - Serverless LLM Serving
+- [TOPPINGS, ATC 2025]() - Multi-LoRA Serving (first submitted to ATC'24...)
 - [InstInfer, HPCA'25](https://arxiv.org/abs/2409.04992) - Programmable Attention Offload
 - [MemServe, 2024](https://arxiv.org/abs/2406.17565) - Disaggregated PD w/ Context Caching
 - [TetriServe, 2024](https://arxiv.org/pdf/2401.11181.pdf) - Disaggregated PD
-- [CaraServe, 2024](https://arxiv.org/abs/2401.11240) - Multi-LoRA Serving
 - [The CAP Principle for LLM Serving, 2024]() - a survey
 
 **Disaggregated Data Center Architecture**
