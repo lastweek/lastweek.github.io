@@ -3413,7 +3413,7 @@ under the supervision of <a href="https://cseweb.ucsd.edu/~yiying/">Prof. Yiying
 responsible for cost-efficient Model Serving (LLM, LMM, T2I, T2V, etc),
 Agent Serving, and Post-Training infrastructure.
 If you are interested in working with me (full-time or intern), we should talk.</p>
-<p>Contact: <strong>syzwhat</strong> AT <strong>gmail</strong> DOT <strong>com</strong>
+<p>Contact: <strong>shanyizhou</strong> AT <strong>huawei</strong> DOT <strong>com</strong>
 You can find my <a href="http://lastweek.io/pubs/Yizhou_Shan_CV.pdf">CV here</a>.</p>
 <details class="note">
 <summary>Blogging</summary>
@@ -3482,13 +3482,15 @@ You can find my <a href="http://lastweek.io/pubs/Yizhou_Shan_CV.pdf">CV here</a>
 machine learning systems, distributed systems, data center networking,
 OS, hardware (FPGA), disaggregated memory/storage systems,
 and their intersections.</p>
-<p><strong>Serving LLMs at Cloud Scale</strong></p>
+<p><strong>Disaggregated LLM Serving at Cloud Scale</strong></p>
 <ul>
-<li><a href="https://arxiv.org/abs/2410.15332">EPIC, 2024</a> - Position-Independent KV caching</li>
+<li><a href="">DeepServe, ATC 2025</a> - Serverless LLM Serving</li>
+<li><a href="https://arxiv.org/abs/2410.15332">EPIC, ICML 2025</a> - Position-Independent KV caching</li>
+<li><a href="">RaaS, ACL 2025</a> - Reasoning-aware Attention Sparsity</li>
+<li><a href="">TOPPINGS, ATC 2025</a> - Multi-LoRA Serving (first submitted to ATC&lsquo;24&hellip;)</li>
 <li><a href="https://arxiv.org/abs/2409.04992">InstInfer, HPCA&lsquo;25</a> - Programmable Attention Offload</li>
 <li><a href="https://arxiv.org/abs/2406.17565">MemServe, 2024</a> - Disaggregated PD w/ Context Caching</li>
 <li><a href="https://arxiv.org/pdf/2401.11181.pdf">TetriServe, 2024</a> - Disaggregated PD</li>
-<li><a href="https://arxiv.org/abs/2401.11240">CaraServe, 2024</a> - Multi-LoRA Serving</li>
 <li><a href="">The CAP Principle for LLM Serving, 2024</a> - a survey</li>
 </ul>
 <p><strong>Disaggregated Data Center Architecture</strong></p>
@@ -3499,6 +3501,7 @@ and their intersections.</p>
 </ul>
 <p><strong>Disaggregated Memory</strong></p>
 <ul>
+<li><a href="">Beehive, NSDI&lsquo;25</a> - Scalable Disaggregated Memory Runtime</li>
 <li><a href="http://lastweek.io/pubs/HoPP-HPCA23.pdf">HoPP, HPCA&lsquo;23</a> and <a href="">MARB, DATE&lsquo;23</a> - Hardware-accelerated Prefetching for DisaggMem</li>
 <li><a href="http://lastweek.io/pubs/ASPLOS22-Clio.pdf">Clio, ASPLOS&lsquo;22</a> - An FPGA-based disaggregated memory device</li>
 <li><a href="http://lastweek.io/pubs/ATC20-DPM.pdf">Clover, ATC&lsquo;20</a> - Pure <em>one-sided</em> KVS on disaggregated PM</li>
@@ -3513,10 +3516,26 @@ and their intersections.</p>
 </ul>
 <h3 id="publications">Publications<a class="headerlink" href="#publications" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>CaraServe: CPU-Assisted and Rank-Aware LoRA Serving for Generative LLM Inference</strong>
+<li><strong>BlitzScale: Fast and Live Large Model Autoscaling with O(1) Host Caching</strong>
+  <br> Dingyan Zhang, Haotian Wang, Yang Liu, Xingda Wei, <em>Yizhou Shan</em>, Rong Chen, Haibo Chen
+  <br> <em><strong>OSDI 2025</strong></em>
+       <a href="">[Paper]</a></li>
+<li><strong>DRack: A CXL-Disaggregated Rack Architecture to Boost Inter-Rack Communication</strong>
+  <br> <em><strong>ATC 2025</strong></em>
+       <a href="">[Paper]</a></li>
+<li><strong>TOPPINGs: CPU-Assisted and Rank-Aware LoRA Serving for Generative LLM Inference</strong>
   <br> Suyi Li, Hanfeng Lu, Tianyuan Wu, Minchen Yu, Qizhen Weng, Xusheng Chen, <em>Yizhou Shan</em>, Binhang Yuan, Wei Wang
-  <br> <a href="https://arxiv.org/abs/2401.11240">[Preprint]</a>
-       <a href="">[Code]</a></li>
+  <br> <em><strong>ATC 2025</strong></em>
+       <a href="https://arxiv.org/abs/2401.11240">[Paper]</a></li>
+<li><strong>DEEPSERVE: Serverless Large Language Model Serving at Scale</strong>
+  <br> <em><strong>ATC 2025</strong></em>
+       <a href="https://arxiv.org/abs/2401.11240">[Paper]</a></li>
+<li><strong>EPIC: Efficient Position-Independent Caching for Serving Large Language Models</strong>
+  <br> <em><strong>ICML 2025</strong></em>
+       <a href="https://arxiv.org/abs/2410.15332">[Paper]</a></li>
+<li><strong>RaaS: Reasoning-Aware Attention Sparsity for Efficient LLM Reasoning</strong>
+  <br> <em><strong>ACL 2025</strong></em>
+       <a href="https://arxiv.org/pdf/2502.11147">[Paper]</a></li>
 <li><strong>Inference without Interference: Disaggregate LLM Inference for Mixed Downstream Workloads</strong>
   <br> Cunchen Hu, Heyang Huang, Liangliang Xu, Xusheng Chen, Jiang Xu, Shuang Chen, Hao Feng, Chenxi Wang, Sa Wang, Yungang Bao, Ninghui Sun, <em>Yizhou Shan</em>
   <br> <a href="https://arxiv.org/pdf/2401.11181.pdf">[Preprint]</a>
@@ -3687,7 +3706,7 @@ and their intersections.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 1, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 8, 2025</span>
   </span>
 
     
