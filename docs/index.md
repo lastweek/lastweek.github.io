@@ -83,10 +83,11 @@ machine learning systems, distributed systems, data center networking,
 OS, hardware (FPGA), disaggregated memory/storage systems,
 and their intersections.
 
-**Serving LLMs at Cloud Scale**
+**Disaggregated LLM Serving at Cloud Scale**
 
-- [EPIC, ICML 2025](https://arxiv.org/abs/2410.15332) - Position-Independent KV caching
 - [DeepServe, ATC 2025]() - Serverless LLM Serving
+- [EPIC, ICML 2025](https://arxiv.org/abs/2410.15332) - Position-Independent KV caching
+- [RaaS, ACL 2025]() - Reasoning-aware Attention Sparsity
 - [TOPPINGS, ATC 2025]() - Multi-LoRA Serving (first submitted to ATC'24...)
 - [InstInfer, HPCA'25](https://arxiv.org/abs/2409.04992) - Programmable Attention Offload
 - [MemServe, 2024](https://arxiv.org/abs/2406.17565) - Disaggregated PD w/ Context Caching
@@ -101,6 +102,7 @@ and their intersections.
 
 **Disaggregated Memory**
 
+-  [Beehive, NSDI'25]() - Scalable Disaggregated Memory Runtime
 -  [HoPP, HPCA'23](http://lastweek.io/pubs/HoPP-HPCA23.pdf) and [MARB, DATE'23]() - Hardware-accelerated Prefetching for DisaggMem
 -  [Clio, ASPLOS'22](http://lastweek.io/pubs/ASPLOS22-Clio.pdf) - An FPGA-based disaggregated memory device
 -  [Clover, ATC'20](http://lastweek.io/pubs/ATC20-DPM.pdf) - Pure *one-sided* KVS on disaggregated PM
@@ -117,19 +119,35 @@ and their intersections.
 ### Publications
 
 
-13. __CaraServe: CPU-Assisted and Rank-Aware LoRA Serving for Generative LLM Inference__
+19. __BlitzScale: Fast and Live Large Model Autoscaling with O(1) Host Caching__
+  <br> Dingyan Zhang, Haotian Wang, Yang Liu, Xingda Wei, *Yizhou Shan*, Rong Chen, Haibo Chen
+  <br> *__OSDI 2025__*
+       [[Paper]]()
+18. __DRack: A CXL-Disaggregated Rack Architecture to Boost Inter-Rack Communication__
+  <br> *__ATC 2025__*
+       [[Paper]]()
+17. __TOPPINGs: CPU-Assisted and Rank-Aware LoRA Serving for Generative LLM Inference__
   <br> Suyi Li, Hanfeng Lu, Tianyuan Wu, Minchen Yu, Qizhen Weng, Xusheng Chen, *Yizhou Shan*, Binhang Yuan, Wei Wang
-  <br> [[Preprint]](https://arxiv.org/abs/2401.11240)
-       [[Code]]()
-12. __Inference without Interference: Disaggregate LLM Inference for Mixed Downstream Workloads__
+  <br> *__ATC 2025__*
+       [[Paper]](https://arxiv.org/abs/2401.11240)
+16. __DEEPSERVE: Serverless Large Language Model Serving at Scale__
+  <br> *__ATC 2025__*
+       [[Paper]](https://arxiv.org/abs/2401.11240)
+15. __EPIC: Efficient Position-Independent Caching for Serving Large Language Models__
+  <br> *__ICML 2025__*
+       [[Paper]](https://arxiv.org/abs/2410.15332)
+14. __RaaS: Reasoning-Aware Attention Sparsity for Efficient LLM Reasoning__
+  <br> *__ACL 2025__*
+       [[Paper]](https://arxiv.org/pdf/2502.11147)
+13. __Inference without Interference: Disaggregate LLM Inference for Mixed Downstream Workloads__
   <br> Cunchen Hu, Heyang Huang, Liangliang Xu, Xusheng Chen, Jiang Xu, Shuang Chen, Hao Feng, Chenxi Wang, Sa Wang, Yungang Bao, Ninghui Sun, *Yizhou Shan*
   <br> [[Preprint]](https://arxiv.org/pdf/2401.11181.pdf)
        [[Code]]()
-11. __Optimizing Hardware-Based Network Computation DAGs for Multiple Tenants with SuperNIC__
+12. __Optimizing Hardware-Based Network Computation DAGs for Multiple Tenants with SuperNIC__
   <br> *Yizhou Shan*, Will Lin, Ryan Kosta, Arvind Krishnamurthy, Yiying Zhang
   <br> [[Preprint]](https://arxiv.org/pdf/2109.07744.pdf)
        [[Code]]()
-10. __Skadi: Building a Distributed Runtime for Data Systems in Disaggregated Data Centers__
+11. __Skadi: Building a Distributed Runtime for Data Systems in Disaggregated Data Centers__
   <br>  Cunchen Hu, Chenxi Wang, Sa Wang, Ninghui Sun, Yungang Bao, Jieru Zhao, Sanidhya Kashyap, Pengfei Zuo, Xusheng Chen, Liangliang Xu, Qin Zhang, Hao Feng, *Yizhou Shan*
   <br> *__HotOS 2023__*
 	[[Paper]](https://sigops.org/s/conferences/hotos/2023/papers/hu.pdf)
