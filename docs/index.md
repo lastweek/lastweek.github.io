@@ -86,7 +86,7 @@ and their intersections.
 **Disaggregated LLM Serving at Cloud Scale**
 
 - [DeepServe, ATC 2025]() - Serverless LLM Serving
-- [EPIC, ICML 2025](https://arxiv.org/abs/2410.15332) - Position-Independent KV caching
+- [EPIC, ICML 2025](https://openreview.net/pdf?id=qjd3ZUiHRT) - Position-Independent KV caching
 - [RaaS, ACL 2025]() - Reasoning-aware Attention Sparsity
 - [TOPPINGS, ATC 2025]() - Multi-LoRA Serving (first submitted to ATC'24...)
 - [InstInfer, HPCA'25](https://arxiv.org/abs/2409.04992) - Programmable Attention Offload
@@ -134,6 +134,7 @@ and their intersections.
   <br> *__ATC 2025__*
        [[Paper]](https://arxiv.org/abs/2401.11240)
 15. __EPIC: Efficient Position-Independent Caching for Serving Large Language Models__
+  <br> Junhao Hu, Wenrui Huang, Weidong Wang, Haoyi Wang, Tiancheng Hu, Qin Zhang, Hao Feng, Xusheng Chen, *Yizhou Shan*, Tao Xie
   <br> *__ICML 2025__*
        [[Paper]](https://arxiv.org/abs/2410.15332)
 14. __RaaS: Reasoning-Aware Attention Sparsity for Efficient LLM Reasoning__
