@@ -8,7 +8,7 @@ Hello! I'm Yizhou Shan (单一舟), I'm a Research Scientist at [Huawei Cloud](h
 I earned my PhD from [University of California San Diego, CSE](https://cse.ucsd.edu/)
 under the supervision of [Prof. Yiying Zhang](https://cseweb.ucsd.edu/~yiying/).
 
-I now run **Serverless AI platform** at Huawei Cloud,
+I run **Serverless AI platform** at Huawei Cloud,
 responsible for cost-efficient Model Serving (LLM, LMM, T2I, T2V, etc),
 Agent Serving, and Post-Training infrastructure.
 If you are interested in working with me (full-time or intern), we should talk.
@@ -85,6 +85,7 @@ and their intersections.
 
 **Disaggregated LLM Serving at Cloud Scale**
 
+- [xDeepServe, arXiv 2025](https://arxiv.org/pdf/2508.02520) Serving LLMs on CloudMatrix384 AI SuperPod
 - [DeepServe, ATC 2025]() - Serverless LLM Serving
 - [EPIC, ICML 2025](https://openreview.net/pdf?id=qjd3ZUiHRT) - Position-Independent KV caching
 - [RaaS, ACL 2025]() - Reasoning-aware Attention Sparsity
@@ -119,6 +120,9 @@ and their intersections.
 ### Publications
 
 
+19. __xDeepServe: Model-as-a-Service on Huawei CloudMatrix384__
+  <br> XDS Team
+  <br> [[Paper]](https://arxiv.org/pdf/2508.02520)
 19. __BlitzScale: Fast and Live Large Model Autoscaling with O(1) Host Caching__
   <br> Dingyan Zhang, Haotian Wang, Yang Liu, Xingda Wei, *Yizhou Shan*, Rong Chen, Haibo Chen
   <br> *__OSDI 2025__*
